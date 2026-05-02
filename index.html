@@ -3,1583 +3,1228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LocalGB — Gilgit-Baltistan, As Locals Tell It</title>
+<title>LocalGB — Gilgit-Baltistan Field Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,500;1,6..96,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-/* ─── RESET ─────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════════ */
+:root {
+  --bg:       #0F0D09;
+  --bg-2:     #161410;
+  --bg-3:     #1D1B16;
+  --text:     #E5DFC8;
+  --text-2:   #6E6860;
+  --text-3:   #3A3830;
+  --red:      #C83200;
+  --red-2:    #8B2200;
+  --amber:    #A87C20;
+  --line:     rgba(229,223,200,0.08);
+  --line-2:   rgba(229,223,200,0.04);
+  --fd:       'Bodoni Moda', Georgia, serif;
+  --fm:       'IBM Plex Mono', 'Courier New', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
-/* ─── TOKENS ─────────────────────────────────────────── */
-:root {
-  --ink:        #07080D;
-  --ink-2:      #0C0E16;
-  --ink-3:      #121620;
-  --ink-4:      #1A1F2C;
-  --gold:       #C8903A;
-  --gold-lt:    #DEAD68;
-  --gold-dk:    #8B621A;
-  --gold-glow:  rgba(200,144,58,0.10);
-  --gold-border:rgba(200,144,58,0.20);
-  --cream:      #F0E8D5;
-  --cream-2:    #AAA296;
-  --cream-3:    rgba(240,232,213,0.05);
-  --font-d:     'Cormorant Garamond', Georgia, serif;
-  --font-u:     'Syne', sans-serif;
-  --r:          8px;
-  --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
-}
-
-/* ─── BASE ───────────────────────────────────────────── */
 body {
-  background: var(--ink);
-  color: var(--cream);
-  font-family: var(--font-u);
-  font-size: 15px;
-  line-height: 1.65;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--fm);
+  font-size: 14px;
+  line-height: 1.6;
   overflow-x: hidden;
+  cursor: crosshair;
   -webkit-font-smoothing: antialiased;
 }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; cursor: crosshair; }
 
-/* ─── GRAIN OVERLAY ──────────────────────────────────── */
-body::before {
+/* ═══════════════════════════════════════════════════════
+   GRID TEXTURE
+═══════════════════════════════════════════════════════ */
+body::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 0;
   pointer-events: none;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 59px, var(--line-2) 59px, var(--line-2) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, var(--line-2) 59px, var(--line-2) 60px);
 }
 
-/* ─── UTILITY ─────────────────────────────────────────── */
-.label {
-  display: inline-block;
-  font-family: var(--font-u);
+/* ═══════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 2.5rem;
+  height: 52px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.h-logo {
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.h-logo::before { content: '↗'; color: var(--red); font-size: 0.9rem; font-weight: 400; }
+.h-coords {
   font-size: 0.62rem;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+.h-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  list-style: none;
+}
+.h-nav a {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+.h-nav a:hover { color: var(--text); }
+.h-nav .cta {
+  color: var(--red);
+  border: 1px solid var(--red-2);
+  padding: 0.3rem 0.8rem;
+  transition: background 0.2s, color 0.2s;
+}
+.h-nav .cta:hover { background: var(--red); color: var(--bg); }
+
+/* ═══════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 52px 0 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+}
+.hero-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding: 0 2.5rem 4rem;
+}
+.hero-left { padding-top: 8vh; }
+.hero-elevation-label {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero-elevation-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 1px;
+  background: var(--red);
+}
+.hero-number {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(9rem, 18vw, 18rem);
+  line-height: 0.85;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  display: inline-block;
+}
+.hero-number-unit {
+  font-family: var(--fm);
+  font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+  font-weight: 300;
+  color: var(--text-2);
+  vertical-align: super;
+  letter-spacing: 0.05em;
+  margin-left: 0.15em;
+}
+.hero-peak-id {
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  color: var(--text-2);
+  letter-spacing: 0.08em;
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 2px solid var(--text-3);
+  padding-left: 1rem;
+}
+.hero-peak-id strong { color: var(--text); font-weight: 500; }
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 4rem;
+}
+.hero-headline {
+  font-family: var(--fd);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 4.5vw, 5rem);
+  line-height: 1.08;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+.hero-body {
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: var(--text-2);
+  max-width: 400px;
+  margin-bottom: 2.5rem;
+}
+.hero-body em { color: var(--text); font-style: normal; }
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--fm);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--text);
+  padding: 0.75rem 1.6rem;
+  border: none;
+  cursor: crosshair;
+  transition: background 0.2s, color 0.2s;
+  width: fit-content;
+}
+.hero-cta:hover { background: var(--red); color: var(--text); }
+.hero-cta::after { content: '↗'; font-weight: 400; font-size: 1rem; }
+.hero-bottom {
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.hero-stat {
+  padding: 1.5rem 2.5rem;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--text);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════════════════ */
+.wrap { position: relative; z-index: 1; max-width: 1380px; margin: 0 auto; padding: 0 2.5rem; }
+.s-label {
+  font-family: var(--fm);
+  font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-.section-title {
-  font-family: var(--font-d);
-  font-weight: 400;
-  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
-  line-height: 1.05;
-  color: var(--cream);
-}
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.s-label::before { content: ''; width: 16px; height: 1px; background: var(--red); flex-shrink: 0; }
 
-/* ─── NAVBAR ─────────────────────────────────────────── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
+/* ═══════════════════════════════════════════════════════
+   SURVEY INDEX
+═══════════════════════════════════════════════════════ */
+.survey-section {
+  position: relative; z-index: 1;
+  padding: 6rem 0;
+  border-top: 1px solid var(--line);
+}
+.survey-header {
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 2rem;
+}
+.survey-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.9;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.survey-title em {
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+  font-size: 0.7em;
+  color: var(--text-2);
+}
+.survey-note {
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: var(--text-2);
+  max-width: 360px;
+}
+.survey-table { width: 100%; border-collapse: collapse; }
+.survey-table thead tr {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.survey-table th {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 0.8rem 2.5rem;
+  text-align: left;
+}
+.survey-row {
+  border-bottom: 1px solid var(--line);
+  cursor: crosshair;
+  transition: background 0.15s;
+}
+.survey-row:hover { background: var(--bg-2); }
+.survey-row:hover .sr-arrow { opacity: 1; transform: translateX(0); }
+.survey-table td { padding: 1.6rem 2.5rem; vertical-align: middle; }
+.sr-index { font-size: 0.62rem; color: var(--text-3); font-weight: 300; letter-spacing: 0.06em; width: 60px; }
+.sr-name { font-family: var(--fd); font-weight: 500; font-size: 1.55rem; color: var(--text); line-height: 1; }
+.sr-coords { font-size: 0.65rem; color: var(--text-2); white-space: nowrap; letter-spacing: 0.04em; }
+.sr-elevation { font-size: 0.78rem; font-weight: 500; color: var(--text-2); white-space: nowrap; }
+.sr-elevation strong { font-size: 1.1rem; color: var(--text); font-weight: 600; margin-right: 0.2em; }
+.sr-count { font-size: 0.65rem; color: var(--text-2); }
+.sr-count strong { color: var(--text); }
+.sr-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.sr-tag {
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.45rem;
+  border: 1px solid var(--line);
+  color: var(--text-2);
+}
+.sr-arrow {
+  font-size: 1.1rem;
+  color: var(--red);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+  display: block;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════
+   DISPATCH (RED)
+═══════════════════════════════════════════════════════ */
+.dispatch-section {
+  position: relative; z-index: 1;
+  background: var(--red);
+  padding: 7rem 2.5rem;
+  overflow: hidden;
+}
+.dispatch-section::before {
+  content: 'DISPATCH';
+  position: absolute;
+  top: 50%; right: 2rem;
+  font-family: var(--fm);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.12);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+}
+.dispatch-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: center;
+}
+.dispatch-meta { display: flex; flex-direction: column; gap: 1.2rem; }
+.dispatch-meta-item {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.dispatch-meta-item strong {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.9);
+  font-family: var(--fd);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  font-style: italic;
+}
+.dispatch-quote {
+  font-family: var(--fd);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.15;
+  color: #fff;
+}
+.dispatch-quote cite {
+  display: block;
+  font-family: var(--fm);
+  font-style: normal;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   TREK LOG
+═══════════════════════════════════════════════════════ */
+.treks-section {
+  position: relative; z-index: 1;
+  background: var(--bg-2);
+  padding: 6rem 0;
+  border-top: 1px solid var(--line);
+}
+.treks-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  margin-bottom: 3.5rem;
+}
+.treks-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+  color: var(--text);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.treks-more {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.2s;
+  padding-bottom: 0.4rem;
+}
+.treks-more:hover { gap: 0.9rem; }
+.trek-entries { display: flex; flex-direction: column; }
+.trek-entry {
+  display: grid;
+  grid-template-columns: 52px 1fr 180px 140px 110px 80px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 0 2.5rem;
+  cursor: crosshair;
+  transition: background 0.15s;
+  min-height: 88px;
+}
+.trek-entry:first-child { border-top: 1px solid var(--line); }
+.trek-entry:hover { background: var(--bg-3); }
+.trek-num { font-size: 0.62rem; color: var(--text-3); font-weight: 300; }
+.trek-name { font-family: var(--fd); font-weight: 500; font-size: 1.35rem; color: var(--text); line-height: 1.1; margin-bottom: 0.2rem; }
+.trek-region { font-size: 0.62rem; color: var(--text-2); letter-spacing: 0.06em; }
+.trek-elev { font-size: 0.72rem; color: var(--text-2); }
+.trek-elev strong { color: var(--text); font-size: 0.9rem; font-weight: 500; }
+.trek-days { font-size: 0.7rem; color: var(--text-2); }
+.trek-days strong { color: var(--text); }
+.trek-diff {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid currentColor;
+  width: fit-content;
+}
+.trek-diff.hard     { color: #E04020; }
+.trek-diff.moderate { color: var(--amber); }
+.trek-diff.easy     { color: #608040; }
+.trek-action {
+  font-size: 0.65rem;
+  color: var(--red);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: right;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.trek-entry:hover .trek-action { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════
+   THINGS TO DO
+═══════════════════════════════════════════════════════ */
+.todo-section {
+  position: relative; z-index: 1;
+  padding: 6rem 0;
+  border-top: 1px solid var(--line);
+}
+.todo-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 3rem;
+}
+.todo-side-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  align-self: start;
+  margin-top: 0.5rem;
+  border-right: 1px solid var(--line);
+  padding-right: 1.2rem;
+}
+.todo-heading {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+  color: var(--text);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+.todo-heading em {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-2);
+  font-size: 0.6em;
+  margin-bottom: 0.3em;
+}
+.todo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.todo-item {
+  background: var(--bg);
+  padding: 1.8rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: crosshair;
+  transition: background 0.15s;
+  min-height: 130px;
+}
+.todo-item:hover { background: var(--bg-2); }
+.todo-item:hover .ti-link { opacity: 1; }
+.ti-num { font-size: 0.58rem; color: var(--text-3); font-weight: 300; margin-bottom: 0.4rem; }
+.ti-name { font-family: var(--fd); font-weight: 500; font-size: 1.2rem; color: var(--text); line-height: 1.15; }
+.ti-loc { font-size: 0.62rem; color: var(--text-2); letter-spacing: 0.04em; flex: 1; }
+.ti-link {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  opacity: 0;
+  transition: opacity 0.15s;
+  margin-top: auto;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BUDGET TABLE
+═══════════════════════════════════════════════════════ */
+.budget-section {
+  position: relative; z-index: 1;
+  padding: 6rem 0;
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+.budget-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+  color: var(--text);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.budget-sub {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  margin-top: 1rem;
+  max-width: 480px;
+  line-height: 1.8;
+}
+.budget-table { width: 100%; border-collapse: collapse; }
+.budget-table thead tr {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.budget-table th {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 0.8rem 2.5rem;
+  text-align: left;
+}
+.budget-table td {
+  padding: 1.5rem 2.5rem;
+  font-size: 0.8rem;
+  color: var(--text-2);
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.7;
+}
+.budget-table tr:hover td { background: var(--bg-3); }
+.bt-tier { font-family: var(--fd); font-weight: 700; font-size: 1.3rem; color: var(--text); white-space: nowrap; }
+.bt-price { font-family: var(--fd); font-weight: 700; font-size: 1.5rem; color: var(--text); white-space: nowrap; }
+.bt-price small { font-family: var(--fm); font-size: 0.7rem; color: var(--text-2); font-weight: 400; }
+
+/* ═══════════════════════════════════════════════════════
+   AGENCIES
+═══════════════════════════════════════════════════════ */
+.agencies-section {
+  position: relative; z-index: 1;
+  padding: 6rem 0;
+  border-top: 1px solid var(--line);
+}
+.agencies-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+  color: var(--text);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.agency-entries { display: flex; flex-direction: column; }
+.agency-entry {
+  display: grid;
+  grid-template-columns: 52px 1fr 220px 150px 130px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 1.8rem 2.5rem;
+  cursor: crosshair;
+  transition: background 0.15s;
+}
+.agency-entry:first-child { border-top: 1px solid var(--line); }
+.agency-entry:hover { background: var(--bg-2); }
+.ae-num { font-size: 0.62rem; color: var(--text-3); font-weight: 300; }
+.ae-name { font-family: var(--fd); font-weight: 500; font-size: 1.35rem; color: var(--text); margin-bottom: 0.2rem; }
+.ae-spec { font-size: 0.62rem; color: var(--text-2); letter-spacing: 0.04em; }
+.ae-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.ae-tag {
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  border: 1px solid var(--line);
+  padding: 0.15rem 0.4rem;
+}
+.ae-rating { font-size: 0.72rem; color: var(--text-2); }
+.ae-rating strong { color: var(--text); font-size: 1.1rem; }
+.ae-vetted {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #608040;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════
+   FIELD REPORTS
+═══════════════════════════════════════════════════════ */
+.blog-section {
+  position: relative; z-index: 1;
+  padding: 6rem 0;
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+.blog-title {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+  color: var(--text);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.blog-entries {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.blog-entry {
+  background: var(--bg-2);
+  padding: 2.5rem;
+  cursor: crosshair;
+  transition: background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.blog-entry:hover { background: var(--bg-3); }
+.be-meta { display: flex; align-items: center; gap: 1rem; }
+.be-cat {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.be-date { font-size: 0.6rem; color: var(--text-3); }
+.be-title {
+  font-family: var(--fd);
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--text);
+  line-height: 1.2;
+  flex: 1;
+}
+.blog-entry.featured .be-title { font-size: 1.9rem; }
+.be-excerpt { font-size: 0.76rem; color: var(--text-2); line-height: 1.8; }
+.be-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3rem;
-  height: 68px;
-  transition: background var(--transition), border-color var(--transition);
-  border-bottom: 1px solid transparent;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
 }
-nav.scrolled {
-  background: rgba(7,8,13,0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-color: var(--gold-border);
-}
-.nav-logo {
-  font-family: var(--font-d);
-  font-size: 1.55rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  display: flex;
-  align-items: baseline;
-  gap: 0.1em;
-}
-.nav-logo .l1 { color: var(--gold); }
-.nav-logo .l2 { color: var(--cream); }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2.2rem;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--cream); }
-.nav-cta {
-  font-family: var(--font-u);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid var(--gold-border);
-  color: var(--gold-lt);
-  border-radius: 3px;
-  transition: background var(--transition), color var(--transition), border-color var(--transition);
-  cursor: pointer;
-  background: none;
-}
-.nav-cta:hover {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--ink);
-}
-
-/* ─── HERO ───────────────────────────────────────────── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  background: radial-gradient(ellipse 70% 50% at 50% -5%, #18243A 0%, var(--ink) 65%);
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 0 4rem;
-  padding-top: 68px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--gold-glow);
-  border: 1px solid var(--gold-border);
-  border-radius: 100px;
-  padding: 0.35rem 1rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  margin-bottom: 2rem;
-  animation: fadeDown 0.8s ease 0.2s both;
-}
-.hero-badge::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.5; transform: scale(0.8); }
-}
-.hero-h1 {
-  font-family: var(--font-d);
-  font-weight: 400;
-  font-size: clamp(4.2rem, 11vw, 9.5rem);
-  line-height: 0.92;
-  color: var(--cream);
-  letter-spacing: -0.01em;
-  margin-bottom: 0.25em;
-  animation: fadeUp 0.9s ease 0.35s both;
-}
-.hero-h1 em {
-  font-style: italic;
-  color: var(--gold-lt);
-}
-.hero-h1 .hero-line2 {
-  display: block;
-  font-size: clamp(3.5rem, 9vw, 8rem);
-}
-.hero-h1 .hero-line3 {
-  display: block;
-  font-size: clamp(4.8rem, 12.5vw, 11rem);
-  color: var(--cream);
-  position: relative;
-  display: inline-block;
-}
-.hero-h1 .hero-line3::after {
-  content: '';
-  position: absolute;
-  bottom: -0.08em;
-  left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-}
-.hero-sub {
-  font-family: var(--font-u);
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--cream-2);
-  max-width: 520px;
-  margin: 2rem 0 2.8rem;
-  animation: fadeUp 0.9s ease 0.5s both;
-}
-.hero-sub strong { color: var(--cream); font-weight: 600; }
-.hero-ctas {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  animation: fadeUp 0.9s ease 0.65s both;
-}
-.btn-primary {
-  background: var(--gold);
-  color: var(--ink);
-  font-family: var(--font-u);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.85rem 2rem;
-  border-radius: 3px;
-  border: 1px solid var(--gold);
-  cursor: pointer;
-  transition: background var(--transition), transform 0.2s;
-}
-.btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
-.btn-ghost {
-  background: transparent;
-  color: var(--cream-2);
-  font-family: var(--font-u);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.85rem 2rem;
-  border-radius: 3px;
-  border: 1px solid rgba(240,232,213,0.15);
-  cursor: pointer;
-  transition: color var(--transition), border-color var(--transition);
-}
-.btn-ghost:hover { color: var(--cream); border-color: rgba(240,232,213,0.4); }
-.hero-scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-  z-index: 2;
-  animation: fadeUp 1s ease 1.2s both;
-}
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollDrop 2s ease-in-out infinite;
-}
-@keyframes scrollDrop {
-  0%   { transform: scaleY(0); transform-origin: top; }
-  50%  { transform: scaleY(1); transform-origin: top; }
-  51%  { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* ─── MOUNTAIN SVG ───────────────────────────────────── */
-.hero-mountains {
-  position: absolute;
-  bottom: -2px;
-  left: 0; right: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 1;
-  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 18%, black 45%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 18%, black 45%);
-}
-.hero-mountains svg { display: block; width: 100%; height: auto; }
-
-/* ─── MARQUEE ─────────────────────────────────────────── */
-.marquee-wrap {
-  background: var(--ink-3);
-  border-top: 1px solid var(--gold-border);
-  border-bottom: 1px solid var(--gold-border);
-  padding: 0.9rem 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.marquee-track {
-  display: inline-flex;
-  animation: marquee 28s linear infinite;
-}
-.marquee-track:hover { animation-play-state: paused; }
-.marquee-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.5rem;
-  font-size: 0.68rem;
+.be-read {
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--cream-2);
-  padding: 0 2rem;
-  transition: color 0.2s;
-}
-.marquee-item:hover { color: var(--gold); }
-.marquee-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ─── SECTION WRAPPER ────────────────────────────────── */
-.section {
-  padding: 7rem 4rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.section-header {
-  margin-bottom: 3.5rem;
-}
-.section-header.centered { text-align: center; }
-
-/* ─── DESTINATIONS ───────────────────────────────────── */
-.destinations-section { padding: 7rem 0; background: var(--ink-2); }
-.destinations-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
-.destinations-grid {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
-  grid-template-rows: 260px 260px;
-  gap: 14px;
-  margin-top: 3.5rem;
-}
-.dest-card {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform var(--transition);
-}
-.dest-card:hover { transform: scale(1.012); }
-.dest-card.large { grid-row: 1 / 3; }
-.dest-card-bg {
-  position: absolute;
-  inset: 0;
-  transition: transform 0.6s ease;
-}
-.dest-card:hover .dest-card-bg { transform: scale(1.06); }
-.dest-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.75) 100%);
-  z-index: 1;
-}
-.dest-card-content {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 1.5rem 1.8rem;
-  z-index: 2;
-  transition: transform var(--transition);
-}
-.dest-card.large .dest-card-content { padding: 2.2rem 2.5rem; }
-.dest-tag {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.4rem;
-  display: block;
-}
-.dest-name {
-  font-family: var(--font-d);
-  font-weight: 400;
-  font-size: 1.8rem;
-  color: var(--cream);
-  line-height: 1.1;
-  margin-bottom: 0.3rem;
-}
-.dest-card.large .dest-name { font-size: 2.8rem; }
-.dest-meta {
-  font-size: 0.7rem;
-  color: rgba(240,232,213,0.65);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.8rem;
-}
-.dest-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s, transform 0.3s;
-}
-.dest-card:hover .dest-arrow { opacity: 1; transform: translateY(0); }
-
-/* card gradients — landscape-evocative */
-.card-hunza       .dest-card-bg { background: linear-gradient(150deg, #2C1205 0%, #5C2C10 30%, #8B4815 60%, #C8701A 85%, #E0A030 100%); }
-.card-skardu      .dest-card-bg { background: linear-gradient(150deg, #020810 0%, #081428 40%, #0C2448 70%, #103580 100%); }
-.card-fairy       .dest-card-bg { background: linear-gradient(150deg, #030A03 0%, #0A1A0A 40%, #122A12 70%, #1A4520 100%); }
-.card-k2          .dest-card-bg { background: linear-gradient(150deg, #050810 0%, #0A1020 40%, #101825 70%, #182840 100%); }
-.card-naran       .dest-card-bg { background: linear-gradient(150deg, #030A05 0%, #0A1C0C 40%, #122815 70%, #1C4020 100%); }
-
-/* decorative peak in card */
-.card-peak {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  opacity: 0.18;
-  z-index: 0;
-}
-
-/* ─── LOCAL ANGLE ─────────────────────────────────────── */
-.local-section {
-  padding: 7rem 4rem;
-  background: var(--ink);
-  position: relative;
-  overflow: hidden;
-}
-.local-section::before {
-  content: '';
-  position: absolute;
-  top: -200px; right: -200px;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(200,144,58,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-.local-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-.local-quote {
-  font-family: var(--font-d);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  line-height: 1.2;
-  color: var(--cream);
-  border-left: 2px solid var(--gold);
-  padding-left: 2.2rem;
-}
-.local-quote span { color: var(--gold-lt); }
-.local-right {}
-.local-body {
-  font-size: 0.92rem;
-  line-height: 1.8;
-  color: var(--cream-2);
-  margin-bottom: 2.5rem;
-}
-.local-body strong { color: var(--cream); }
-.local-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
-.stat-item {}
-.stat-num {
-  font-family: var(--font-d);
-  font-size: 2.8rem;
-  font-weight: 500;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 0.25rem;
-}
-.stat-label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-}
-
-/* ─── THINGS TO DO ───────────────────────────────────── */
-.todo-section {
-  padding: 7rem 0;
-  background: var(--ink-2);
-  overflow: hidden;
-}
-.todo-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
-.todo-scroll {
+  color: var(--red);
   display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  margin-top: 3rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--ink-4) transparent;
-  -webkit-overflow-scrolling: touch;
-}
-.todo-scroll::-webkit-scrollbar { height: 4px; }
-.todo-scroll::-webkit-scrollbar-track { background: transparent; }
-.todo-scroll::-webkit-scrollbar-thumb { background: var(--ink-4); border-radius: 2px; }
-.todo-card {
-  flex: 0 0 200px;
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  padding: 1.8rem 1.5rem;
-  cursor: pointer;
-  transition: border-color var(--transition), transform var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-.todo-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--gold-glow), transparent);
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-.todo-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
-.todo-card:hover::before { opacity: 1; }
-.todo-icon {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-.todo-name {
-  font-family: var(--font-d);
-  font-weight: 400;
-  font-size: 1.25rem;
-  color: var(--cream);
-  margin-bottom: 0.3rem;
-  line-height: 1.2;
-}
-.todo-loc {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-/* ─── TREKS ──────────────────────────────────────────── */
-.treks-section {
-  padding: 7rem 4rem;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.treks-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 3.5rem;
-}
-.trek-card {
-  background: var(--ink-2);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  padding: 2rem;
-  cursor: pointer;
-  transition: border-color var(--transition), transform var(--transition);
-  position: relative;
-}
-.trek-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
-.trek-difficulty {
-  display: inline-block;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 3px;
-  margin-bottom: 1rem;
-}
-.diff-moderate { background: rgba(200,144,58,0.15); color: var(--gold); }
-.diff-hard     { background: rgba(200,80,58,0.15);  color: #E08070; }
-.diff-easy     { background: rgba(58,200,100,0.15); color: #60C080; }
-.trek-name {
-  font-family: var(--font-d);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--cream);
-  margin-bottom: 0.5rem;
-  line-height: 1.15;
-}
-.trek-meta {
-  display: flex;
-  gap: 1.2rem;
-  margin-bottom: 1rem;
-}
-.trek-meta-item {
-  font-size: 0.68rem;
-  color: var(--cream-2);
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.trek-meta-item span { color: var(--cream); font-weight: 600; }
-.trek-desc {
-  font-size: 0.82rem;
-  color: var(--cream-2);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-.trek-link {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   transition: gap 0.2s;
 }
-.trek-card:hover .trek-link { gap: 0.7rem; }
+.blog-entry:hover .be-read { gap: 0.8rem; }
+.be-time { font-size: 0.62rem; color: var(--text-3); }
 
-/* ─── BUDGET SECTION ─────────────────────────────────── */
-.budget-section {
-  padding: 7rem 4rem;
-  background: var(--ink-2);
-}
-.budget-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.budget-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 3.5rem;
-}
-.budget-card {
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  padding: 2.2rem;
-  position: relative;
-  overflow: hidden;
-  transition: border-color var(--transition);
-}
-.budget-card:hover { border-color: var(--gold-border); }
-.budget-card.featured {
-  border-color: var(--gold-border);
-  background: linear-gradient(160deg, var(--gold-glow), var(--ink-3));
-}
-.budget-badge {
-  position: absolute;
-  top: 1.2rem; right: 1.2rem;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--gold);
-  color: var(--ink);
-  padding: 0.2rem 0.6rem;
-  border-radius: 3px;
-}
-.budget-tier {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
-}
-.budget-price {
-  font-family: var(--font-d);
-  font-size: 3rem;
-  font-weight: 500;
-  color: var(--cream);
-  line-height: 1;
-  margin-bottom: 0.2rem;
-}
-.budget-price sup {
-  font-size: 1.2rem;
-  vertical-align: super;
-  color: var(--cream-2);
-}
-.budget-per {
-  font-size: 0.7rem;
-  color: var(--cream-2);
-  margin-bottom: 2rem;
-}
-.budget-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.06);
-  margin-bottom: 1.5rem;
-}
-.budget-items {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  margin-bottom: 2rem;
-}
-.budget-item {
-  font-size: 0.8rem;
-  color: var(--cream-2);
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  line-height: 1.5;
-}
-.budget-item::before {
-  content: '◆';
-  color: var(--gold);
-  font-size: 0.4rem;
-  margin-top: 0.35rem;
-  flex-shrink: 0;
-}
-
-/* ─── AGENCIES ───────────────────────────────────────── */
-.agencies-section {
-  padding: 7rem 4rem;
-  background: var(--ink);
-}
-.agencies-inner { max-width: 1280px; margin: 0 auto; }
-.agencies-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 3.5rem;
-}
-.agency-card {
-  background: var(--ink-2);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  padding: 2rem;
-  transition: border-color var(--transition), transform var(--transition);
-  cursor: pointer;
-}
-.agency-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
-.agency-logo-placeholder {
-  width: 48px; height: 48px;
-  border-radius: 8px;
-  background: var(--ink-3);
-  border: 1px solid var(--gold-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-d);
-  font-size: 1.2rem;
-  color: var(--gold);
-  margin-bottom: 1.2rem;
-  font-weight: 500;
-}
-.agency-name {
-  font-family: var(--font-d);
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: var(--cream);
-  margin-bottom: 0.3rem;
-}
-.agency-spec {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.8rem;
-}
-.agency-desc {
-  font-size: 0.8rem;
-  color: var(--cream-2);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-.agency-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.5rem;
-}
-.agency-tag {
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.55rem;
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 3px;
-  color: var(--cream-2);
-}
-.agency-stars {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.72rem;
-  color: var(--gold);
-  margin-bottom: 0.2rem;
-}
-.agency-reviews {
-  font-size: 0.65rem;
-  color: var(--cream-2);
-}
-.agency-vetted {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #60C080;
-  margin-top: 1rem;
-  background: rgba(58,200,100,0.08);
-  padding: 0.25rem 0.6rem;
-  border-radius: 3px;
-}
-.agencies-footer {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-/* ─── BLOG / ARTICLES ────────────────────────────────── */
-.blog-section {
-  padding: 7rem 4rem;
-  background: var(--ink-2);
-}
-.blog-inner { max-width: 1280px; margin: 0 auto; }
-.blog-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 14px;
-  margin-top: 3.5rem;
-}
-.blog-card {
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color var(--transition), transform var(--transition);
-}
-.blog-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
-.blog-img {
-  height: 180px;
-  position: relative;
-  overflow: hidden;
-}
-.blog-card.featured .blog-img { height: 240px; }
-.blog-img-bg {
-  position: absolute;
-  inset: 0;
-  transition: transform 0.5s ease;
-}
-.blog-card:hover .blog-img-bg { transform: scale(1.06); }
-.blog-body { padding: 1.6rem; }
-.blog-cat {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.6rem;
-}
-.blog-title {
-  font-family: var(--font-d);
-  font-weight: 400;
-  font-size: 1.35rem;
-  color: var(--cream);
-  line-height: 1.25;
-  margin-bottom: 0.7rem;
-}
-.blog-card.featured .blog-title { font-size: 1.8rem; }
-.blog-excerpt {
-  font-size: 0.78rem;
-  color: var(--cream-2);
-  line-height: 1.7;
-  margin-bottom: 1.2rem;
-}
-.blog-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.blog-read {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.blog-time {
-  font-size: 0.65rem;
-  color: var(--cream-2);
-}
-.art-bg-1 { background: linear-gradient(160deg, #1A1005 0%, #3A2010 50%, #5A3820 100%); }
-.art-bg-2 { background: linear-gradient(160deg, #050A10 0%, #0A1A2A 50%, #102240 100%); }
-.art-bg-3 { background: linear-gradient(160deg, #050A05 0%, #0A180A 50%, #122212 100%); }
-
-/* ─── FOOTER ─────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════ */
 footer {
-  background: var(--ink);
-  border-top: 1px solid var(--gold-border);
-  padding: 5rem 4rem 2.5rem;
-}
-.footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
+  position: relative; z-index: 1;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
 }
 .footer-top {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  gap: 4rem;
-  padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  margin-bottom: 2.5rem;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid var(--line);
+  gap: 2rem;
 }
-.footer-brand {}
 .footer-logo {
-  font-family: var(--font-d);
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-.footer-logo .l1 { color: var(--gold); }
-.footer-logo .l2 { color: var(--cream); }
-.footer-tagline {
-  font-style: italic;
-  font-family: var(--font-d);
-  font-size: 1rem;
-  color: var(--cream-2);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  max-width: 260px;
-}
-.footer-socials {
-  display: flex;
-  gap: 0.8rem;
-}
-.social-btn {
-  width: 34px; height: 34px;
-  border-radius: 6px;
-  border: 1px solid var(--gold-border);
+  font-family: var(--fm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: var(--cream-2);
-  transition: border-color 0.2s, color 0.2s;
-  cursor: pointer;
+  gap: 0.5rem;
 }
-.social-btn:hover { border-color: var(--gold); color: var(--gold); }
-.footer-col-title {
+.footer-logo::before { content: '↗'; color: var(--red); }
+.footer-center-links { display: flex; gap: 2rem; list-style: none; }
+.footer-center-links a {
   font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.4rem;
+  color: var(--text-2);
+  transition: color 0.15s;
 }
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-.footer-links a {
-  font-size: 0.8rem;
-  color: var(--cream-2);
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--cream); }
+.footer-center-links a:hover { color: var(--text); }
+.footer-right { text-align: right; font-size: 0.62rem; color: var(--text-3); letter-spacing: 0.04em; }
 .footer-bottom {
+  padding: 1.2rem 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.footer-copy {
-  font-size: 0.7rem;
-  color: var(--cream-2);
-}
-.footer-made {
-  font-family: var(--font-d);
-  font-style: italic;
-  font-size: 0.88rem;
-  color: var(--cream-2);
-}
-.footer-made span { color: var(--gold); }
+.footer-copy { font-size: 0.6rem; color: var(--text-3); letter-spacing: 0.06em; }
+.footer-made { font-family: var(--fd); font-style: italic; font-size: 0.88rem; color: var(--text-2); }
+.footer-made span { color: var(--red); }
 
-/* ─── KEYFRAMES ──────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ═══════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════ */
+.slide-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0); }
+.slide-up.visible { opacity: 1; transform: none; }
+
+.fade-in { opacity: 0; transition: opacity 0.7s ease; }
+.fade-in.visible { opacity: 1; }
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
+.stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0ms; }
+.stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:70ms; }
+.stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:140ms; }
+.stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:210ms; }
+.stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:280ms; }
+.stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:350ms; }
+
 </style>
 </head>
 <body>
 
-<!-- ─── NAV ─────────────────────────────────────────── -->
-<nav id="navbar">
-  <div class="nav-logo">
-    <span class="l1">Local</span><span class="l2">GB</span>
-  </div>
-  <ul class="nav-links">
+<!-- ══ HEADER ═══════════════════════════════════════════ -->
+<header>
+  <div class="h-logo">Local GB</div>
+  <div class="h-coords">35°17′N · 74°39′E &nbsp;·&nbsp; Gilgit-Baltistan, Pakistan</div>
+  <ul class="h-nav">
     <li><a href="#">Destinations</a></li>
     <li><a href="#">Treks</a></li>
-    <li><a href="#">Things To Do</a></li>
     <li><a href="#">Agencies</a></li>
     <li><a href="#">Blog</a></li>
+    <li><a href="#" class="cta">↗ Plan Trip</a></li>
   </ul>
-  <button class="nav-cta">Plan Your Trip</button>
-</nav>
+</header>
 
-<!-- ─── HERO ─────────────────────────────────────────── -->
+<!-- ══ HERO ══════════════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Pakistan's Most Honest Travel Guide</div>
-    <h1 class="hero-h1">
-      <em>The Real</em>
-      <span class="hero-line2">Gilgit-</span>
-      <span class="hero-line3">Baltistan.</span>
-    </h1>
-    <p class="hero-sub">
-      Not filtered through an agency. Not written by someone 2,000km away.<br>
-      <strong>Honest guides from someone who was born here</strong> — where to go, what to skip, and how to spend half what the agencies charge you.
-    </p>
-    <div class="hero-ctas">
-      <button class="btn-primary">Explore Destinations</button>
-      <button class="btn-ghost">Browse Treks &rarr;</button>
-    </div>
-  </div>
-
-  <!-- Mountain Silhouette -->
-  <div class="hero-mountains">
-    <svg viewBox="0 0 1440 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
-      <!-- Layer 1: Distant ghost mountains -->
-      <path d="M0,520 L0,435 L48,418 L92,428 L138,410 L180,422 L224,402 L265,415 L308,394 L348,408 L388,386 L428,400 L466,378 L503,392 L540,370 L576,384 L612,360 L645,375 L678,352 L708,368 L736,344 L762,360 L786,336 L808,352 L829,330 L850,346 L872,324 L893,340 L916,318 L939,334 L963,313 L988,328 L1015,338 L1045,350 L1078,362 L1114,375 L1153,388 L1195,400 L1240,412 L1288,424 L1340,436 L1440,455 L1440,520 Z"
-        fill="rgba(30,45,72,0.35)"/>
-      <!-- Layer 2: Main dramatic peaks — K2 apex ~x=770 -->
-      <path d="M0,520 L0,468 L42,452 L88,462 L132,442 L174,455 L216,430 L255,444 L292,418 L326,432 L360,405 L390,420 L420,392 L448,408 L474,378 L498,394 L520,362 L542,380 L562,348 L581,366 L600,332 L618,352 L636,315 L653,336 L669,295 L684,318 L698,272 L711,298 L722,248 L733,276 L742,222 L751,252 L758,196 L764,228 L770,170 L775,204 L779,145 L783,180 L786,118 L789,155 L792,92 L794,130 L796,72 L798,108 L799,52 L800,88 L801,38 L802,72 L803,28 L804,58 L805,18 L806,50 L807,28 L808,12 L809,32 L810,18 L811,38 L812,22 L813,48 L815,68 L817,92 L820,118 L823,145 L827,172 L831,198 L836,222 L842,245 L848,265 L856,282 L864,272 L872,288 L881,278 L892,295 L904,305 L918,318 L934,330 L952,342 L972,354 L995,365 L1020,376 L1048,386 L1078,396 L1112,406 L1148,416 L1188,426 L1232,436 L1280,446 L1332,456 L1440,472 L1440,520 Z"
-        fill="#0C1018"/>
-      <!-- Layer 3: Near foreground -->
-      <path d="M0,520 L0,492 L80,482 L165,490 L248,478 L335,486 L420,474 L508,482 L592,470 L682,478 L768,466 L855,475 L940,463 L1028,472 L1115,460 L1200,470 L1288,458 L1370,466 L1440,475 L1440,520 Z"
-        fill="#07080D"/>
-    </svg>
-  </div>
-
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-<!-- ─── MARQUEE ─────────────────────────────────────── -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <!-- duplicated for seamless loop -->
-    <span class="marquee-item"><span class="marquee-dot"></span>Hunza Valley</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>K2 Base Camp</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Fairy Meadows</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Skardu</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Nanga Parbat</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Karakoram Highway</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Deosai Plains</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Attabad Lake</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Shandur Polo Festival</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Shigar Fort</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Naltar Valley</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Gondogoro La</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Hunza Valley</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>K2 Base Camp</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Fairy Meadows</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Skardu</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Nanga Parbat</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Karakoram Highway</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Deosai Plains</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Attabad Lake</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Shandur Polo Festival</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Shigar Fort</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Naltar Valley</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Gondogoro La</span>
-  </div>
-</div>
-
-<!-- ─── DESTINATIONS ─────────────────────────────────── -->
-<section class="destinations-section">
-  <div class="destinations-inner">
-    <div class="reveal">
-      <span class="label">Destinations</span>
-      <h2 class="section-title">Where Do You<br>Want To Go?</h2>
-    </div>
-    <div class="destinations-grid reveal">
-      <!-- Hunza — large -->
-      <div class="dest-card card-hunza large">
-        <div class="dest-card-bg"></div>
-        <svg class="card-peak" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax meet">
-          <path d="M0,200 L0,150 L40,130 L80,145 L120,110 L160,128 L200,85 L215,100 L225,70 L235,100 L250,88 L280,120 L320,105 L360,130 L400,118 L400,200 Z" fill="rgba(255,255,255,0.06)"/>
-        </svg>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <span class="dest-tag">Hunza Valley</span>
-          <div class="dest-name">The Golden<br>Valley</div>
-          <div class="dest-meta">Karimabad · Attabad Lake · Eagle's Nest · Khunjerab Pass</div>
-          <a class="dest-arrow" href="#">Explore &rarr;</a>
-        </div>
+  <div class="hero-main">
+    <div class="hero-left">
+      <div class="hero-elevation-label">Survey Reference K-2</div>
+      <div class="hero-number">
+        <span id="counter">0</span><span class="hero-number-unit">m</span>
       </div>
-      <!-- Skardu -->
-      <div class="dest-card card-skardu">
-        <div class="dest-card-bg"></div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <span class="dest-tag">Skardu</span>
-          <div class="dest-name">Heart of<br>Baltistan</div>
-          <div class="dest-meta">Shangrila · Deosai · Shigar Fort</div>
-          <a class="dest-arrow" href="#">Explore &rarr;</a>
-        </div>
-      </div>
-      <!-- Fairy Meadows -->
-      <div class="dest-card card-fairy">
-        <div class="dest-card-bg"></div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <span class="dest-tag">Fairy Meadows</span>
-          <div class="dest-name">Below<br>Nanga Parbat</div>
-          <div class="dest-meta">Camping · Base Camp · Trekking</div>
-          <a class="dest-arrow" href="#">Explore &rarr;</a>
-        </div>
-      </div>
-      <!-- K2 -->
-      <div class="dest-card card-k2">
-        <div class="dest-card-bg"></div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <span class="dest-tag">K2 Trek</span>
-          <div class="dest-name">The Savage<br>Summit</div>
-          <div class="dest-meta">Base Camp · Gondogoro La · Concordia</div>
-          <a class="dest-arrow" href="#">Explore &rarr;</a>
-        </div>
-      </div>
-      <!-- Naran -->
-      <div class="dest-card card-naran">
-        <div class="dest-card-bg"></div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <span class="dest-tag">Naran Kaghan</span>
-          <div class="dest-name">Valley of<br>Waterfalls</div>
-          <div class="dest-meta">Saif-ul-Malook · Babusar Top</div>
-          <a class="dest-arrow" href="#">Explore &rarr;</a>
-        </div>
+      <div class="hero-peak-id">
+        <span>Karakoram Range, Pakistan</span>
+        <span><strong>35°52′57″N 76°30′48″E</strong></span>
+        <span>Second highest peak on Earth</span>
+        <span>Surveyed 1856 · T.G. Montgomerie</span>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ─── LOCAL ANGLE ───────────────────────────────────── -->
-<section class="local-section">
-  <div class="local-inner">
-    <div class="reveal">
-      <blockquote class="local-quote">
-        "Agencies show you<br>the mountains.<br><span>I'll show you how<br>to afford them."</span>
-      </blockquote>
-    </div>
-    <div class="reveal">
-      <span class="label">Why Trust a Local</span>
-      <h2 class="section-title" style="font-size:clamp(2rem,3vw,3rem); margin-bottom:1.5rem;">Not an agency.<br>A neighbour.</h2>
-      <p class="local-body">
-        I grew up 40km from Fairy Meadows. I know which guesthouses are honest and which ones overcharge tourists by 300%. I know the jeep driver who won't take you on a shortcut that washed out last monsoon. I know which agencies have guides who speak Shina and which ones send someone who's never actually done K2 base camp.<br><br>
-        <strong>This site has no packages to sell you.</strong> I earn only when I recommend something I'd send my own family to.
+    <div class="hero-right">
+      <h1 class="hero-headline">The honest guide<br>to Pakistan's most<br>extreme landscape.</h1>
+      <p class="hero-body">
+        Not an agency. Not a package. Not written 2,000km from the mountains.<br><br>
+        This is <em>Gilgit-Baltistan from the inside</em> — where to go, what it actually costs, which operators are trustworthy, and what every other guide gets wrong.
       </p>
-      <div class="local-stats">
-        <div class="stat-item">
-          <div class="stat-num">12+</div>
-          <div class="stat-label">Years living here</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">47</div>
-          <div class="stat-label">Vetted agencies</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">140+</div>
-          <div class="stat-label">Destination guides</div>
-        </div>
-      </div>
+      <a href="#" class="hero-cta">Enter the field guide</a>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-stat">
+      <span class="hero-stat-num">8,611</span>
+      <span class="hero-stat-label">Metres — K2 summit</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">140+</span>
+      <span class="hero-stat-label">Destination guides</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">47</span>
+      <span class="hero-stat-label">Vetted local agencies</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">0</span>
+      <span class="hero-stat-label">Sponsored listings</span>
     </div>
   </div>
 </section>
 
-<!-- ─── THINGS TO DO ─────────────────────────────────── -->
+<!-- ══ SURVEY INDEX ══════════════════════════════════════ -->
+<section class="survey-section">
+  <div class="survey-header wrap">
+    <div>
+      <div class="s-label" style="margin-bottom:1.2rem;">Survey Index — Vol. I</div>
+      <h2 class="survey-title slide-up">Major<br>Destinations<br><em>Catalogued</em></h2>
+    </div>
+    <p class="survey-note fade-in">Six primary zones. Each mapped from ground level. Click any entry for the full field guide — routes, costs, guesthouses, and what to avoid.</p>
+  </div>
+  <div class="wrap">
+    <table class="survey-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Designation</th>
+          <th>Coordinates</th>
+          <th>Elevation</th>
+          <th>Guides</th>
+          <th>Tags</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="stagger">
+        <tr class="survey-row">
+          <td class="sr-index">01</td>
+          <td><div class="sr-name">Hunza Valley</div></td>
+          <td class="sr-coords">36°19′N · 74°39′E</td>
+          <td class="sr-elevation"><strong>2,438</strong>m ASL</td>
+          <td class="sr-count"><strong>32</strong> guides</td>
+          <td><div class="sr-tags"><span class="sr-tag">Cultural</span><span class="sr-tag">Hotels</span><span class="sr-tag">Autumn</span></div></td>
+          <td><span class="sr-arrow">↗</span></td>
+        </tr>
+        <tr class="survey-row">
+          <td class="sr-index">02</td>
+          <td><div class="sr-name">Skardu</div></td>
+          <td class="sr-coords">35°18′N · 75°37′E</td>
+          <td class="sr-elevation"><strong>2,228</strong>m ASL</td>
+          <td class="sr-count"><strong>28</strong> guides</td>
+          <td><div class="sr-tags"><span class="sr-tag">Lakes</span><span class="sr-tag">Desert</span><span class="sr-tag">Forts</span></div></td>
+          <td><span class="sr-arrow">↗</span></td>
+        </tr>
+        <tr class="survey-row">
+          <td class="sr-index">03</td>
+          <td><div class="sr-name">Fairy Meadows</div></td>
+          <td class="sr-coords">35°22′N · 74°35′E</td>
+          <td class="sr-elevation"><strong>3,300</strong>m ASL</td>
+          <td class="sr-count"><strong>14</strong> guides</td>
+          <td><div class="sr-tags"><span class="sr-tag">Camping</span><span class="sr-tag">Trek</span></div></td>
+          <td><span class="sr-arrow">↗</span></td>
+        </tr>
+        <tr class="survey-row">
+          <td class="sr-index">04</td>
+          <td><div class="sr-name">Gilgit City</div></td>
+          <td class="sr-coords">35°55′N · 74°18′E</td>
+          <td class="sr-elevation"><strong>1,500</strong>m ASL</td>
+          <td class="sr-count"><strong>19</strong> guides</td>
+          <td><div class="sr-tags"><span class="sr-tag">Gateway</span><span class="sr-tag">Food</span><span class="sr-tag">Skiing</span></div></td>
+          <td><span class="sr-arrow">↗</span></td>
+        </tr>
+        <tr class="survey-row">
+          <td class="sr-index">05</td>
+          <td><div class="sr-name">Naran Kaghan</div></td>
+          <td class="sr-coords">34°54′N · 73°39′E</td>
+          <td class="sr-elevation"><strong>2,409</strong>m ASL</td>
+          <td class="sr-count"><strong>24</strong> guides</td>
+          <td><div class="sr-tags"><span class="sr-tag">Lakes</span><span class="sr-tag">Rafting</span></div></td>
+          <td><span class="sr-arrow">↗</span></td>
+        </tr>
+        <tr class="survey-row">
+          <td class="sr-index">06</td>
+          <td><div class="sr-name">Hidden Valleys</div></td>
+          <td class="sr-coords">36°–37°N · 73°–76°E</td>
+          <td class="sr-elevation"><strong>3,000+</strong>m ASL</td>
+          <td class="sr-count"><strong>18</strong> guides</td>
+          <td><div class="sr-tags"><span class="sr-tag">Off-beat</span><span class="sr-tag">Remote</span></div></td>
+          <td><span class="sr-arrow">↗</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ DISPATCH ══════════════════════════════════════════ -->
+<section class="dispatch-section">
+  <div class="dispatch-inner">
+    <div class="dispatch-meta">
+      <div class="dispatch-meta-item">Origin<strong>Gilgit-Baltistan</strong></div>
+      <div class="dispatch-meta-item">Local since<strong>Birth</strong></div>
+      <div class="dispatch-meta-item">Affiliation<strong>None — no agency</strong></div>
+      <div class="dispatch-meta-item">Agenda<strong>Honest information</strong></div>
+    </div>
+    <blockquote class="dispatch-quote">
+      "Agencies show you<br>the mountains.<br>I'll show you<br>how to afford them —<br>and which ones<br>to actually trust."
+      <cite>— The author &nbsp;·&nbsp; 40km from Fairy Meadows &nbsp;·&nbsp; Born here</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══ TREK LOG ═══════════════════════════════════════════ -->
+<section class="treks-section">
+  <div class="treks-header wrap">
+    <div>
+      <div class="s-label" style="margin-bottom:1rem;">Trek Register</div>
+      <h2 class="treks-title slide-up">Expeditions,<br>Honestly Reviewed</h2>
+    </div>
+    <a href="#" class="treks-more">Full trek index ↗</a>
+  </div>
+  <div class="trek-entries stagger">
+    <div class="trek-entry">
+      <span class="trek-num">T-01</span>
+      <div class="trek-info"><div class="trek-name">K2 Base Camp</div><div class="trek-region">Baltoro Glacier · Skardu Region</div></div>
+      <div class="trek-elev">Base Camp: <strong>5,000m</strong></div>
+      <div class="trek-days"><strong>11–14</strong> days</div>
+      <span class="trek-diff hard">Strenuous</span>
+      <span class="trek-action">Open log ↗</span>
+    </div>
+    <div class="trek-entry">
+      <span class="trek-num">T-02</span>
+      <div class="trek-info"><div class="trek-name">Gondogoro La</div><div class="trek-region">Hushe Valley · Karakoram</div></div>
+      <div class="trek-elev">Pass: <strong>5,585m</strong></div>
+      <div class="trek-days"><strong>12–16</strong> days</div>
+      <span class="trek-diff hard">Strenuous</span>
+      <span class="trek-action">Open log ↗</span>
+    </div>
+    <div class="trek-entry">
+      <span class="trek-num">T-03</span>
+      <div class="trek-info"><div class="trek-name">Fairy Meadows</div><div class="trek-region">Nanga Parbat · Diamer District</div></div>
+      <div class="trek-elev">Meadows: <strong>3,300m</strong></div>
+      <div class="trek-days"><strong>2–3</strong> days</div>
+      <span class="trek-diff moderate">Moderate</span>
+      <span class="trek-action">Open log ↗</span>
+    </div>
+    <div class="trek-entry">
+      <span class="trek-num">T-04</span>
+      <div class="trek-info"><div class="trek-name">Rakaposhi Base Camp</div><div class="trek-region">Minapin Village · Hunza</div></div>
+      <div class="trek-elev">Base Camp: <strong>3,500m</strong></div>
+      <div class="trek-days"><strong>2</strong> days</div>
+      <span class="trek-diff easy">Easy</span>
+      <span class="trek-action">Open log ↗</span>
+    </div>
+    <div class="trek-entry">
+      <span class="trek-num">T-05</span>
+      <div class="trek-info"><div class="trek-name">Karambar Lake</div><div class="trek-region">Ishkoman Valley · Ghizer</div></div>
+      <div class="trek-elev">Lake: <strong>4,225m</strong></div>
+      <div class="trek-days"><strong>4–5</strong> days</div>
+      <span class="trek-diff moderate">Moderate</span>
+      <span class="trek-action">Open log ↗</span>
+    </div>
+    <div class="trek-entry">
+      <span class="trek-num">T-06</span>
+      <div class="trek-info"><div class="trek-name">Rush Lake</div><div class="trek-region">Nagar Valley · Hunza</div></div>
+      <div class="trek-elev">Lake: <strong>4,694m</strong></div>
+      <div class="trek-days"><strong>2</strong> days</div>
+      <span class="trek-diff moderate">Moderate</span>
+      <span class="trek-action">Open log ↗</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ THINGS TO DO ══════════════════════════════════════ -->
 <section class="todo-section">
   <div class="todo-inner">
-    <div class="reveal">
-      <span class="label">Experiences</span>
-      <h2 class="section-title">Things To Do<br>In GB</h2>
-    </div>
-    <div class="todo-scroll">
-      <div class="todo-card">
-        <span class="todo-icon">⛷️</span>
-        <div class="todo-name">Skiing in Naltar</div>
-        <div class="todo-loc">Gilgit · Jan–Mar</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🪂</span>
-        <div class="todo-name">Paragliding</div>
-        <div class="todo-loc">Gilgit · Apr–Oct</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🏇</span>
-        <div class="todo-name">Shandur Polo</div>
-        <div class="todo-loc">Ghizer · July</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🚙</span>
-        <div class="todo-name">Jeep Safari</div>
-        <div class="todo-loc">All GB · Year-round</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🌸</span>
-        <div class="todo-name">Cherry Blossoms</div>
-        <div class="todo-loc">Hunza · March–April</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🏕️</span>
-        <div class="todo-name">Wild Camping</div>
-        <div class="todo-loc">Fairy Meadows · May–Sep</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🌊</span>
-        <div class="todo-name">River Rafting</div>
-        <div class="todo-loc">Naran · Jun–Aug</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">✨</span>
-        <div class="todo-name">Stargazing</div>
-        <div class="todo-loc">Deosai · Jul–Sep</div>
-      </div>
-      <div class="todo-card">
-        <span class="todo-icon">🧗</span>
-        <div class="todo-name">Rock Climbing</div>
-        <div class="todo-loc">Trango · May–Oct</div>
+    <div class="todo-side-label">Experiences · GB</div>
+    <div class="todo-right">
+      <h2 class="todo-heading slide-up"><em>What to actually do</em>Things To Do In GB</h2>
+      <div class="todo-grid stagger">
+        <div class="todo-item"><span class="ti-num">01</span><div class="ti-name">Skiing, Naltar Valley</div><div class="ti-loc">Gilgit · Jan–Mar · 2,900m</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">02</span><div class="ti-name">Shandur Polo Festival</div><div class="ti-loc">Ghizer · July · 3,734m</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">03</span><div class="ti-name">Paragliding, Gilgit</div><div class="ti-loc">Gilgit · Apr–Oct</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">04</span><div class="ti-name">Jeep Safari, KKH</div><div class="ti-loc">All GB · Year-round</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">05</span><div class="ti-name">Cherry Blossom, Hunza</div><div class="ti-loc">Hunza · Mar–Apr</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">06</span><div class="ti-name">Wild Camping, Deosai</div><div class="ti-loc">Skardu · Jul–Sep · 4,114m</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">07</span><div class="ti-name">Stargazing, Deosai</div><div class="ti-loc">Skardu · Jul–Sep · Darkest sky</div><span class="ti-link">Field notes ↗</span></div>
+        <div class="todo-item"><span class="ti-num">08</span><div class="ti-name">Rock Climbing, Trango</div><div class="ti-loc">Baltoro · May–Oct · Expert</div><span class="ti-link">Field notes ↗</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── TREKS ─────────────────────────────────────────── -->
-<section class="treks-section reveal">
-  <span class="label">Trekking</span>
-  <h2 class="section-title">Pakistan's Greatest<br>Treks, Honestly Reviewed</h2>
-  <div class="treks-grid">
-    <div class="trek-card">
-      <span class="trek-difficulty diff-hard">Strenuous</span>
-      <div class="trek-name">K2 Base Camp</div>
-      <div class="trek-meta">
-        <div class="trek-meta-item">⏱ <span>11–14 days</span></div>
-        <div class="trek-meta-item">📍 <span>Skardu</span></div>
-        <div class="trek-meta-item">⬆ <span>5,000m</span></div>
-      </div>
-      <p class="trek-desc">The classic Karakoram circuit. Baltoro Glacier, Concordia, and the greatest concentration of 8,000m peaks on earth. Requires permits and a registered guide.</p>
-      <a class="trek-link" href="#">Read full guide &rarr;</a>
-    </div>
-    <div class="trek-card">
-      <span class="trek-difficulty diff-moderate">Moderate</span>
-      <div class="trek-name">Fairy Meadows Hike</div>
-      <div class="trek-meta">
-        <div class="trek-meta-item">⏱ <span>2–3 days</span></div>
-        <div class="trek-meta-item">📍 <span>Diamer</span></div>
-        <div class="trek-meta-item">⬆ <span>3,300m</span></div>
-      </div>
-      <p class="trek-desc">Short but unforgettable. A 3-hour jeep ride followed by a 1.5-hour hike to the most famous meadow in Pakistan. Great for families with older kids.</p>
-      <a class="trek-link" href="#">Read full guide &rarr;</a>
-    </div>
-    <div class="trek-card">
-      <span class="trek-difficulty diff-easy">Easy</span>
-      <div class="trek-name">Rakaposhi Base Camp</div>
-      <div class="trek-meta">
-        <div class="trek-meta-item">⏱ <span>2 days</span></div>
-        <div class="trek-meta-item">📍 <span>Hunza</span></div>
-        <div class="trek-meta-item">⬆ <span>3,500m</span></div>
-      </div>
-      <p class="trek-desc">One of the best short treks in GB. Day one from Minapin village through orchards to basecamp. One of the clearest close-up views of a 7000m peak you'll find.</p>
-      <a class="trek-link" href="#">Read full guide &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── BUDGET SECTION ────────────────────────────────── -->
+<!-- ══ BUDGET ════════════════════════════════════════════ -->
 <section class="budget-section">
-  <div class="budget-inner">
-    <div class="reveal" style="text-align:center;">
-      <span class="label">Budget Guide</span>
-      <h2 class="section-title">GB On Any Budget</h2>
-      <p style="color:var(--cream-2);font-size:0.9rem;margin-top:1rem;max-width:480px;margin-inline:auto;line-height:1.75;">Forget what the agencies charge. Here's what GB actually costs — from backpacker hostels to comfortable guesthouses.</p>
-    </div>
-    <div class="budget-grid reveal">
-      <div class="budget-card">
-        <div class="budget-tier">Backpacker</div>
-        <div class="budget-price"><sup>Rs.</sup>3,500<span style="font-size:1.2rem;color:var(--cream-2)">/day</span></div>
-        <div class="budget-per">All-in · food, bed, transport</div>
-        <div class="budget-divider"></div>
-        <ul class="budget-items">
-          <li class="budget-item">Dormitory guesthouses (Hunza, Skardu)</li>
-          <li class="budget-item">Local dhabas for every meal</li>
-          <li class="budget-item">Shared jeeps between valleys</li>
-          <li class="budget-item">No guided treks — self-navigate</li>
-          <li class="budget-item">Free camping at Fairy Meadows</li>
-        </ul>
-        <button class="btn-ghost" style="width:100%;text-align:center;">View Budget Itinerary</button>
-      </div>
-      <div class="budget-card featured">
-        <span class="budget-badge">Most Popular</span>
-        <div class="budget-tier">Mid-Range</div>
-        <div class="budget-price"><sup>Rs.</sup>9,000<span style="font-size:1.2rem;color:var(--cream-2)">/day</span></div>
-        <div class="budget-per">All-in · comfortable style</div>
-        <div class="budget-divider"></div>
-        <ul class="budget-items">
-          <li class="budget-item">Private room in family guesthouses</li>
-          <li class="budget-item">Mix of local and tourist restaurants</li>
-          <li class="budget-item">Private jeep sharing with 3–4 people</li>
-          <li class="budget-item">Day guides for major treks</li>
-          <li class="budget-item">1–2 night hotel upgrade in Hunza</li>
-        </ul>
-        <button class="btn-primary" style="width:100%;text-align:center;">View Mid-Range Itinerary</button>
-      </div>
-      <div class="budget-card">
-        <div class="budget-tier">Comfortable</div>
-        <div class="budget-price"><sup>Rs.</sup>22,000<span style="font-size:1.2rem;color:var(--cream-2)">/day</span></div>
-        <div class="budget-per">All-in · no compromises</div>
-        <div class="budget-divider"></div>
-        <ul class="budget-items">
-          <li class="budget-item">Serena Hotels or Eagle's Nest level</li>
-          <li class="budget-item">Full restaurant meals, no dhabas</li>
-          <li class="budget-item">Dedicated private jeep + driver</li>
-          <li class="budget-item">Full-time certified mountain guide</li>
-          <li class="budget-item">Porter support on all treks</li>
-        </ul>
-        <button class="btn-ghost" style="width:100%;text-align:center;">View Comfort Itinerary</button>
-      </div>
-    </div>
+  <div class="wrap" style="margin-bottom:3.5rem;">
+    <div class="s-label" style="margin-bottom:1rem;">Budget Register</div>
+    <h2 class="budget-title slide-up">GB On Any Budget</h2>
+    <p class="budget-sub">Actual costs. Not what agencies quote you. Based on current guesthouse rates, transport, and food as of 2025 — verified on the ground.</p>
+  </div>
+  <div class="wrap">
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Tier</th><th>Per day (all-in)</th><th>Accommodation</th><th>Transport</th><th>Food</th><th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="bt-tier">Backpacker</div></td>
+          <td><div class="bt-price">Rs. 3,500 <small>/ day</small></div></td>
+          <td>Dorm beds · Shared facilities</td>
+          <td>Shared jeep · Local wagons</td>
+          <td>Dhabas only · 3 meals ≈ Rs. 600</td>
+          <td>Self-navigate all treks. No guides. Free camping at Fairy Meadows.</td>
+        </tr>
+        <tr>
+          <td><div class="bt-tier">Mid-Range</div></td>
+          <td><div class="bt-price">Rs. 9,000 <small>/ day</small></div></td>
+          <td>Private room · Family guesthouse</td>
+          <td>Shared private jeep (3–4 people)</td>
+          <td>Mix of local + tourist restaurants</td>
+          <td>Day guides for major treks only. 1–2 nights at a better hotel in Hunza.</td>
+        </tr>
+        <tr>
+          <td><div class="bt-tier">Comfortable</div></td>
+          <td><div class="bt-price">Rs. 22,000 <small>/ day</small></div></td>
+          <td>Serena / Eagle's Nest level</td>
+          <td>Dedicated private jeep + driver</td>
+          <td>Full restaurant meals throughout</td>
+          <td>Certified guide full-time. Porter support. No compromises on logistics.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- ─── AGENCIES ──────────────────────────────────────── -->
+<!-- ══ AGENCIES ══════════════════════════════════════════ -->
 <section class="agencies-section">
-  <div class="agencies-inner">
-    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;">
-      <div>
-        <span class="label">Vetted Agencies</span>
-        <h2 class="section-title">Agencies I<br>Actually Trust</h2>
-        <p style="color:var(--cream-2);font-size:0.85rem;margin-top:1rem;max-width:440px;line-height:1.75;">I've personally contacted, visited, or trekked with every agency listed here. No paid listings. No fake reviews.</p>
-      </div>
-      <button class="btn-ghost">See All 47 Agencies &rarr;</button>
+  <div class="wrap" style="margin-bottom:3.5rem;display:flex;align-items:flex-end;justify-content:space-between;">
+    <div>
+      <div class="s-label" style="margin-bottom:1rem;">Agency Register</div>
+      <h2 class="agencies-title slide-up">Vetted Operators</h2>
     </div>
-    <div class="agencies-grid">
-      <div class="agency-card">
-        <div class="agency-logo-placeholder">A</div>
-        <div class="agency-name">Apricot Tours</div>
-        <div class="agency-spec">Hunza · Skardu · K2 Treks</div>
-        <p class="agency-desc">One of the most established GB operators. Strong on the Baltoro glacier circuit. Their guides are genuinely experienced. Prices are honest.</p>
-        <div class="agency-tags">
-          <span class="agency-tag">K2 Base Camp</span>
-          <span class="agency-tag">Gondogoro La</span>
-          <span class="agency-tag">Hunza Tours</span>
-        </div>
-        <div class="agency-stars">★★★★★</div>
-        <div class="agency-reviews">4.8 · 143 reviews</div>
-        <div class="agency-vetted">✓ Personally vetted</div>
-      </div>
-      <div class="agency-card">
-        <div class="agency-logo-placeholder">N</div>
-        <div class="agency-name">Nature Adventure</div>
-        <div class="agency-spec">Budget Tours · Northern Areas</div>
-        <p class="agency-desc">Best option for budget travellers who still want a proper guide. Honest about what's included. No surprise costs. Particularly good for Naran Kaghan.</p>
-        <div class="agency-tags">
-          <span class="agency-tag">Naran Kaghan</span>
-          <span class="agency-tag">Fairy Meadows</span>
-          <span class="agency-tag">Budget Tours</span>
-        </div>
-        <div class="agency-stars">★★★★☆</div>
-        <div class="agency-reviews">4.5 · 88 reviews</div>
-        <div class="agency-vetted">✓ Personally vetted</div>
-      </div>
-      <div class="agency-card">
-        <div class="agency-logo-placeholder">S</div>
-        <div class="agency-name">Shimshal Adventure</div>
-        <div class="agency-spec">Remote Treks · Off-Beat Valleys</div>
-        <p class="agency-desc">Run by people from Shimshal village itself. If you want to go somewhere most tourists never reach — Karambar Lake, Chapursan — these are your people.</p>
-        <div class="agency-tags">
-          <span class="agency-tag">Shimshal Pass</span>
-          <span class="agency-tag">Karambar Lake</span>
-          <span class="agency-tag">Chapursan</span>
-        </div>
-        <div class="agency-stars">★★★★★</div>
-        <div class="agency-reviews">4.9 · 62 reviews</div>
-        <div class="agency-vetted">✓ Personally vetted</div>
-      </div>
+    <a href="#" class="treks-more">All 47 agencies ↗</a>
+  </div>
+  <div class="agency-entries stagger">
+    <div class="agency-entry">
+      <span class="ae-num">A-01</span>
+      <div><div class="ae-name">Apricot Tours</div><div class="ae-spec">Est. 2002 · Islamabad + Skardu</div></div>
+      <div class="ae-tags"><span class="ae-tag">K2 Base Camp</span><span class="ae-tag">Gondogoro La</span><span class="ae-tag">Hunza</span></div>
+      <div class="ae-rating"><strong>4.8</strong> / 5 · 143 reviews</div>
+      <div class="ae-vetted">✓ Personally vetted</div>
+    </div>
+    <div class="agency-entry">
+      <span class="ae-num">A-02</span>
+      <div><div class="ae-name">Nature Adventure Club</div><div class="ae-spec">Budget-first · Lahore + Gilgit</div></div>
+      <div class="ae-tags"><span class="ae-tag">Naran Kaghan</span><span class="ae-tag">Fairy Meadows</span><span class="ae-tag">Budget</span></div>
+      <div class="ae-rating"><strong>4.5</strong> / 5 · 88 reviews</div>
+      <div class="ae-vetted">✓ Personally vetted</div>
+    </div>
+    <div class="agency-entry">
+      <span class="ae-num">A-03</span>
+      <div><div class="ae-name">Shimshal Adventure</div><div class="ae-spec">Village-run · Remote valleys</div></div>
+      <div class="ae-tags"><span class="ae-tag">Shimshal Pass</span><span class="ae-tag">Karambar Lake</span><span class="ae-tag">Chapursan</span></div>
+      <div class="ae-rating"><strong>4.9</strong> / 5 · 62 reviews</div>
+      <div class="ae-vetted">✓ Personally vetted</div>
     </div>
   </div>
 </section>
 
-<!-- ─── BLOG ───────────────────────────────────────────── -->
+<!-- ══ FIELD REPORTS ═════════════════════════════════════ -->
 <section class="blog-section">
-  <div class="blog-inner">
-    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;">
-      <div>
-        <span class="label">From the Blog</span>
-        <h2 class="section-title">Latest Guides &<br>Honest Reviews</h2>
-      </div>
-      <button class="btn-ghost">View All Articles &rarr;</button>
+  <div class="wrap" style="margin-bottom:3.5rem;display:flex;align-items:flex-end;justify-content:space-between;">
+    <div>
+      <div class="s-label" style="margin-bottom:1rem;">Field Reports</div>
+      <h2 class="blog-title slide-up">Latest Dispatches</h2>
     </div>
-    <div class="blog-grid reveal">
-      <div class="blog-card featured">
-        <div class="blog-img">
-          <div class="blog-img-bg art-bg-1"></div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat">Budget Guide</div>
-          <div class="blog-title">GB in 10 Days for Under Rs. 45,000 — A Complete Breakdown</div>
-          <p class="blog-excerpt">Exact costs, which guesthouses to book, which meals to skip, and the one splurge that's genuinely worth it (hint: it's the jeep from Raikot Bridge).</p>
-          <div class="blog-footer">
-            <span class="blog-read">Read Guide &rarr;</span>
-            <span class="blog-time">12 min read</span>
-          </div>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-img">
-          <div class="blog-img-bg art-bg-2"></div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat">Destination</div>
-          <div class="blog-title">Passu Cones: The View Nobody Tells You About</div>
-          <p class="blog-excerpt">Six jagged limestone spires rising 6,000m from the Karakoram Highway. The best view is 20 minutes off the road and completely free.</p>
-          <div class="blog-footer">
-            <span class="blog-read">Read Guide &rarr;</span>
-            <span class="blog-time">7 min read</span>
-          </div>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-img">
-          <div class="blog-img-bg art-bg-3"></div>
-        </div>
-        <div class="blog-body">
-          <div class="blog-cat">Practical</div>
-          <div class="blog-title">NOC Permits in GB: The Complete 2025 Guide</div>
-          <p class="blog-excerpt">Which valleys need a No-Objection Certificate, how to get one, how long it takes, and what happens if you enter without one. No agency fluff.</p>
-          <div class="blog-footer">
-            <span class="blog-read">Read Guide &rarr;</span>
-            <span class="blog-time">9 min read</span>
-          </div>
-        </div>
-      </div>
+    <a href="#" class="treks-more">Full archive ↗</a>
+  </div>
+  <div class="blog-entries">
+    <div class="blog-entry featured">
+      <div class="be-meta"><span class="be-cat">Budget Guide</span><span class="be-date">May 2025</span></div>
+      <div class="be-title">GB in 10 Days for Under Rs. 45,000 — A Complete Cost Breakdown</div>
+      <p class="be-excerpt">Exact costs, which guesthouses to book, which meals to skip, and the one splurge that's genuinely worth it. Day-by-day itemised log from Islamabad to Khunjerab Pass and back via Skardu.</p>
+      <div class="be-footer"><span class="be-read">Read dispatch ↗</span><span class="be-time">12 min read</span></div>
+    </div>
+    <div class="blog-entry">
+      <div class="be-meta"><span class="be-cat">Destination</span><span class="be-date">Apr 2025</span></div>
+      <div class="be-title">Passu Cones: The View Nobody Writes About</div>
+      <p class="be-excerpt">Six limestone spires at 6,000m. The best viewpoint is 20 minutes off the KKH and completely free. Here's exactly where to stand.</p>
+      <div class="be-footer"><span class="be-read">Read dispatch ↗</span><span class="be-time">7 min read</span></div>
+    </div>
+    <div class="blog-entry">
+      <div class="be-meta"><span class="be-cat">Practical</span><span class="be-date">Mar 2025</span></div>
+      <div class="be-title">NOC Permits in GB: The 2025 Honest Guide</div>
+      <p class="be-excerpt">Which valleys need a No-Objection Certificate, how to get one, how long it takes, and what happens if you don't have it.</p>
+      <div class="be-footer"><span class="be-read">Read dispatch ↗</span><span class="be-time">9 min read</span></div>
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></div>
-        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
-        <div class="footer-socials">
-          <div class="social-btn">Y</div>
-          <div class="social-btn">I</div>
-          <div class="social-btn">T</div>
-          <div class="social-btn">F</div>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Destinations</div>
-        <ul class="footer-links">
-          <li><a href="#">Hunza Valley</a></li>
-          <li><a href="#">Skardu</a></li>
-          <li><a href="#">Fairy Meadows</a></li>
-          <li><a href="#">Gilgit City</a></li>
-          <li><a href="#">Naran Kaghan</a></li>
-          <li><a href="#">Hidden Valleys</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Trekking</div>
-        <ul class="footer-links">
-          <li><a href="#">K2 Base Camp</a></li>
-          <li><a href="#">Fairy Meadows</a></li>
-          <li><a href="#">Gondogoro La</a></li>
-          <li><a href="#">Rakaposhi BC</a></li>
-          <li><a href="#">Laila Peak BC</a></li>
-          <li><a href="#">All Treks</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Practical</div>
-        <ul class="footer-links">
-          <li><a href="#">Budget Guide</a></li>
-          <li><a href="#">NOC &amp; Permits</a></li>
-          <li><a href="#">Best Time to Visit</a></li>
-          <li><a href="#">How to Reach</a></li>
-          <li><a href="#">Vetted Agencies</a></li>
-          <li><a href="#">What to Pack</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span>
-      <span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span>
-    </div>
+  <div class="footer-top">
+    <div class="footer-logo">Local GB</div>
+    <ul class="footer-center-links">
+      <li><a href="#">Destinations</a></li>
+      <li><a href="#">Treks</a></li>
+      <li><a href="#">Budget</a></li>
+      <li><a href="#">Agencies</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <div class="footer-right">35°17′N · 74°39′E · Gilgit-Baltistan, Pakistan</div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 LocalGB · No sponsored content · No packages sold</span>
+    <span class="footer-made">Made from the mountains, <span>for the mountains.</span></span>
   </div>
 </footer>
 
 <script>
-// ─── NAVBAR SCROLL ─────────────────────────────────────
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+/* ── COUNTER ───────────────────────────────────────────── */
+function animateCounter(el, target, duration) {
+  const start = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+    el.textContent = Math.round(ease * target).toLocaleString();
+    if (p < 1) requestAnimationFrame(tick);
+  })(start);
+}
+setTimeout(() => animateCounter(document.getElementById('counter'), 8611, 2200), 400);
 
-// ─── REVEAL ON SCROLL ──────────────────────────────────
-const revealEls = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      // Stagger siblings
-      const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-      let delay = 0;
-      siblings.forEach((s, idx) => { if (s === entry.target) delay = idx * 80; });
-      setTimeout(() => entry.target.classList.add('visible'), delay);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-revealEls.forEach(el => observer.observe(el));
+/* ── SCROLL REVEAL ─────────────────────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.slide-up, .fade-in, .stagger').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
