@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalGB — Gilgit-Baltistan, As Locals Tell It</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --ink:        #07080D;
+  --ink-2:      #0C0E16;
+  --ink-3:      #121620;
+  --ink-4:      #1A1F2C;
+  --gold:       #C8903A;
+  --gold-lt:    #DEAD68;
+  --gold-dk:    #8B621A;
+  --gold-glow:  rgba(200,144,58,0.10);
+  --gold-border:rgba(200,144,58,0.20);
+  --cream:      #F0E8D5;
+  --cream-2:    #AAA296;
+  --cream-3:    rgba(240,232,213,0.05);
+  --font-d:     'Cormorant Garamond', Georgia, serif;
+  --font-u:     'Syne', sans-serif;
+  --r:          8px;
+  --transition: 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ─── BASE ───────────────────────────────────────────── */
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-u);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── GRAIN OVERLAY ──────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─── UTILITY ─────────────────────────────────────────── */
+.label {
+  display: inline-block;
+  font-family: var(--font-u);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  line-height: 1.05;
+  color: var(--cream);
+}
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── NAVBAR ─────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 68px;
+  transition: background var(--transition), border-color var(--transition);
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(7,8,13,0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-color: var(--gold-border);
+}
+.nav-logo {
+  font-family: var(--font-d);
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+}
+.nav-logo .l1 { color: var(--gold); }
+.nav-logo .l2 { color: var(--cream); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream-2);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-cta {
+  font-family: var(--font-u);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--gold-border);
+  color: var(--gold-lt);
+  border-radius: 3px;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  cursor: pointer;
+  background: none;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse 70% 50% at 50% -5%, #18243A 0%, var(--ink) 65%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 4rem;
+  padding-top: 68px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gold-glow);
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  padding: 0.35rem 1rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 2rem;
+  animation: fadeDown 0.8s ease 0.2s both;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.8); }
+}
+.hero-h1 {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(4.2rem, 11vw, 9.5rem);
+  line-height: 0.92;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25em;
+  animation: fadeUp 0.9s ease 0.35s both;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--gold-lt);
+}
+.hero-h1 .hero-line2 {
+  display: block;
+  font-size: clamp(3.5rem, 9vw, 8rem);
+}
+.hero-h1 .hero-line3 {
+  display: block;
+  font-size: clamp(4.8rem, 12.5vw, 11rem);
+  color: var(--cream);
+  position: relative;
+  display: inline-block;
+}
+.hero-h1 .hero-line3::after {
+  content: '';
+  position: absolute;
+  bottom: -0.08em;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.hero-sub {
+  font-family: var(--font-u);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--cream-2);
+  max-width: 520px;
+  margin: 2rem 0 2.8rem;
+  animation: fadeUp 0.9s ease 0.5s both;
+}
+.hero-sub strong { color: var(--cream); font-weight: 600; }
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeUp 0.9s ease 0.65s both;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-u);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 3px;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background var(--transition), transform 0.2s;
+}
+.btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--cream-2);
+  font-family: var(--font-u);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border-radius: 3px;
+  border: 1px solid rgba(240,232,213,0.15);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.btn-ghost:hover { color: var(--cream); border-color: rgba(240,232,213,0.4); }
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-2);
+  z-index: 2;
+  animation: fadeUp 1s ease 1.2s both;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollDrop 2s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ─── MOUNTAIN SVG ───────────────────────────────────── */
+.hero-mountains {
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 18%, black 45%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 18%, black 45%);
+}
+.hero-mountains svg { display: block; width: 100%; height: auto; }
+
+/* ─── MARQUEE ─────────────────────────────────────────── */
+.marquee-wrap {
+  background: var(--ink-3);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 0.9rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-2);
+  padding: 0 2rem;
+  transition: color 0.2s;
+}
+.marquee-item:hover { color: var(--gold); }
+.marquee-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── SECTION WRAPPER ────────────────────────────────── */
+.section {
+  padding: 7rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.section-header {
+  margin-bottom: 3.5rem;
+}
+.section-header.centered { text-align: center; }
+
+/* ─── DESTINATIONS ───────────────────────────────────── */
+.destinations-section { padding: 7rem 0; background: var(--ink-2); }
+.destinations-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+.destinations-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 14px;
+  margin-top: 3.5rem;
+}
+.dest-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+.dest-card:hover { transform: scale(1.012); }
+.dest-card.large { grid-row: 1 / 3; }
+.dest-card-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.dest-card:hover .dest-card-bg { transform: scale(1.06); }
+.dest-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.75) 100%);
+  z-index: 1;
+}
+.dest-card-content {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 1.8rem;
+  z-index: 2;
+  transition: transform var(--transition);
+}
+.dest-card.large .dest-card-content { padding: 2.2rem 2.5rem; }
+.dest-tag {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.dest-name {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+.dest-card.large .dest-name { font-size: 2.8rem; }
+.dest-meta {
+  font-size: 0.7rem;
+  color: rgba(240,232,213,0.65);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+.dest-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.dest-card:hover .dest-arrow { opacity: 1; transform: translateY(0); }
+
+/* card gradients — landscape-evocative */
+.card-hunza       .dest-card-bg { background: linear-gradient(150deg, #2C1205 0%, #5C2C10 30%, #8B4815 60%, #C8701A 85%, #E0A030 100%); }
+.card-skardu      .dest-card-bg { background: linear-gradient(150deg, #020810 0%, #081428 40%, #0C2448 70%, #103580 100%); }
+.card-fairy       .dest-card-bg { background: linear-gradient(150deg, #030A03 0%, #0A1A0A 40%, #122A12 70%, #1A4520 100%); }
+.card-k2          .dest-card-bg { background: linear-gradient(150deg, #050810 0%, #0A1020 40%, #101825 70%, #182840 100%); }
+.card-naran       .dest-card-bg { background: linear-gradient(150deg, #030A05 0%, #0A1C0C 40%, #122815 70%, #1C4020 100%); }
+
+/* decorative peak in card */
+.card-peak {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  opacity: 0.18;
+  z-index: 0;
+}
+
+/* ─── LOCAL ANGLE ─────────────────────────────────────── */
+.local-section {
+  padding: 7rem 4rem;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.local-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(200,144,58,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.local-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.local-quote {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  line-height: 1.2;
+  color: var(--cream);
+  border-left: 2px solid var(--gold);
+  padding-left: 2.2rem;
+}
+.local-quote span { color: var(--gold-lt); }
+.local-right {}
+.local-body {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--cream-2);
+  margin-bottom: 2.5rem;
+}
+.local-body strong { color: var(--cream); }
+.local-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.stat-item {}
+.stat-num {
+  font-family: var(--font-d);
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream-2);
+}
+
+/* ─── THINGS TO DO ───────────────────────────────────── */
+.todo-section {
+  padding: 7rem 0;
+  background: var(--ink-2);
+  overflow: hidden;
+}
+.todo-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+.todo-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-top: 3rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-4) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.todo-scroll::-webkit-scrollbar { height: 4px; }
+.todo-scroll::-webkit-scrollbar-track { background: transparent; }
+.todo-scroll::-webkit-scrollbar-thumb { background: var(--ink-4); border-radius: 2px; }
+.todo-card {
+  flex: 0 0 200px;
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 1.8rem 1.5rem;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.todo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-glow), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.todo-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
+.todo-card:hover::before { opacity: 1; }
+.todo-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.todo-name {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+.todo-loc {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── TREKS ──────────────────────────────────────────── */
+.treks-section {
+  padding: 7rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.treks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 3.5rem;
+}
+.trek-card {
+  background: var(--ink-2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition);
+  position: relative;
+}
+.trek-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+.trek-difficulty {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+.diff-moderate { background: rgba(200,144,58,0.15); color: var(--gold); }
+.diff-hard     { background: rgba(200,80,58,0.15);  color: #E08070; }
+.diff-easy     { background: rgba(58,200,100,0.15); color: #60C080; }
+.trek-name {
+  font-family: var(--font-d);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  line-height: 1.15;
+}
+.trek-meta {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+.trek-meta-item {
+  font-size: 0.68rem;
+  color: var(--cream-2);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.trek-meta-item span { color: var(--cream); font-weight: 600; }
+.trek-desc {
+  font-size: 0.82rem;
+  color: var(--cream-2);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.trek-link {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.trek-card:hover .trek-link { gap: 0.7rem; }
+
+/* ─── BUDGET SECTION ─────────────────────────────────── */
+.budget-section {
+  padding: 7rem 4rem;
+  background: var(--ink-2);
+}
+.budget-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 3.5rem;
+}
+.budget-card {
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.budget-card:hover { border-color: var(--gold-border); }
+.budget-card.featured {
+  border-color: var(--gold-border);
+  background: linear-gradient(160deg, var(--gold-glow), var(--ink-3));
+}
+.budget-badge {
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+}
+.budget-tier {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.budget-price {
+  font-family: var(--font-d);
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.budget-price sup {
+  font-size: 1.2rem;
+  vertical-align: super;
+  color: var(--cream-2);
+}
+.budget-per {
+  font-size: 0.7rem;
+  color: var(--cream-2);
+  margin-bottom: 2rem;
+}
+.budget-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin-bottom: 1.5rem;
+}
+.budget-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+.budget-item {
+  font-size: 0.8rem;
+  color: var(--cream-2);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+}
+.budget-item::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 0.4rem;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+/* ─── AGENCIES ───────────────────────────────────────── */
+.agencies-section {
+  padding: 7rem 4rem;
+  background: var(--ink);
+}
+.agencies-inner { max-width: 1280px; margin: 0 auto; }
+.agencies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 3.5rem;
+}
+.agency-card {
+  background: var(--ink-2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 2rem;
+  transition: border-color var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+.agency-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+.agency-logo-placeholder {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  background: var(--ink-3);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-d);
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.agency-name {
+  font-family: var(--font-d);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+}
+.agency-spec {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+.agency-desc {
+  font-size: 0.8rem;
+  color: var(--cream-2);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.agency-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+.agency-tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 3px;
+  color: var(--cream-2);
+}
+.agency-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+.agency-reviews {
+  font-size: 0.65rem;
+  color: var(--cream-2);
+}
+.agency-vetted {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #60C080;
+  margin-top: 1rem;
+  background: rgba(58,200,100,0.08);
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+}
+.agencies-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ─── BLOG / ARTICLES ────────────────────────────────── */
+.blog-section {
+  padding: 7rem 4rem;
+  background: var(--ink-2);
+}
+.blog-inner { max-width: 1280px; margin: 0 auto; }
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 3.5rem;
+}
+.blog-card {
+  background: var(--ink-3);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.blog-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+.blog-img {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+.blog-card.featured .blog-img { height: 240px; }
+.blog-img-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.5s ease;
+}
+.blog-card:hover .blog-img-bg { transform: scale(1.06); }
+.blog-body { padding: 1.6rem; }
+.blog-cat {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.blog-title {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: 1.35rem;
+  color: var(--cream);
+  line-height: 1.25;
+  margin-bottom: 0.7rem;
+}
+.blog-card.featured .blog-title { font-size: 1.8rem; }
+.blog-excerpt {
+  font-size: 0.78rem;
+  color: var(--cream-2);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+.blog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blog-read {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.blog-time {
+  font-size: 0.65rem;
+  color: var(--cream-2);
+}
+.art-bg-1 { background: linear-gradient(160deg, #1A1005 0%, #3A2010 50%, #5A3820 100%); }
+.art-bg-2 { background: linear-gradient(160deg, #050A10 0%, #0A1A2A 50%, #102240 100%); }
+.art-bg-3 { background: linear-gradient(160deg, #050A05 0%, #0A180A 50%, #122212 100%); }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid var(--gold-border);
+  padding: 5rem 4rem 2.5rem;
+}
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 2.5rem;
+}
+.footer-brand {}
+.footer-logo {
+  font-family: var(--font-d);
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.footer-logo .l1 { color: var(--gold); }
+.footer-logo .l2 { color: var(--cream); }
+.footer-tagline {
+  font-style: italic;
+  font-family: var(--font-d);
+  font-size: 1rem;
+  color: var(--cream-2);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 260px;
+}
+.footer-socials {
+  display: flex;
+  gap: 0.8rem;
+}
+.social-btn {
+  width: 34px; height: 34px;
+  border-radius: 6px;
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--cream-2);
+  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.social-btn:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col-title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--cream-2);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-size: 0.7rem;
+  color: var(--cream-2);
+}
+.footer-made {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--cream-2);
+}
+.footer-made span { color: var(--gold); }
+
+/* ─── KEYFRAMES ──────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="l1">Local</span><span class="l2">GB</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Destinations</a></li>
+    <li><a href="#">Treks</a></li>
+    <li><a href="#">Things To Do</a></li>
+    <li><a href="#">Agencies</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Trip</button>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Pakistan's Most Honest Travel Guide</div>
+    <h1 class="hero-h1">
+      <em>The Real</em>
+      <span class="hero-line2">Gilgit-</span>
+      <span class="hero-line3">Baltistan.</span>
+    </h1>
+    <p class="hero-sub">
+      Not filtered through an agency. Not written by someone 2,000km away.<br>
+      <strong>Honest guides from someone who was born here</strong> — where to go, what to skip, and how to spend half what the agencies charge you.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary">Explore Destinations</button>
+      <button class="btn-ghost">Browse Treks &rarr;</button>
+    </div>
+  </div>
+
+  <!-- Mountain Silhouette -->
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+      <!-- Layer 1: Distant ghost mountains -->
+      <path d="M0,520 L0,435 L48,418 L92,428 L138,410 L180,422 L224,402 L265,415 L308,394 L348,408 L388,386 L428,400 L466,378 L503,392 L540,370 L576,384 L612,360 L645,375 L678,352 L708,368 L736,344 L762,360 L786,336 L808,352 L829,330 L850,346 L872,324 L893,340 L916,318 L939,334 L963,313 L988,328 L1015,338 L1045,350 L1078,362 L1114,375 L1153,388 L1195,400 L1240,412 L1288,424 L1340,436 L1440,455 L1440,520 Z"
+        fill="rgba(30,45,72,0.35)"/>
+      <!-- Layer 2: Main dramatic peaks — K2 apex ~x=770 -->
+      <path d="M0,520 L0,468 L42,452 L88,462 L132,442 L174,455 L216,430 L255,444 L292,418 L326,432 L360,405 L390,420 L420,392 L448,408 L474,378 L498,394 L520,362 L542,380 L562,348 L581,366 L600,332 L618,352 L636,315 L653,336 L669,295 L684,318 L698,272 L711,298 L722,248 L733,276 L742,222 L751,252 L758,196 L764,228 L770,170 L775,204 L779,145 L783,180 L786,118 L789,155 L792,92 L794,130 L796,72 L798,108 L799,52 L800,88 L801,38 L802,72 L803,28 L804,58 L805,18 L806,50 L807,28 L808,12 L809,32 L810,18 L811,38 L812,22 L813,48 L815,68 L817,92 L820,118 L823,145 L827,172 L831,198 L836,222 L842,245 L848,265 L856,282 L864,272 L872,288 L881,278 L892,295 L904,305 L918,318 L934,330 L952,342 L972,354 L995,365 L1020,376 L1048,386 L1078,396 L1112,406 L1148,416 L1188,426 L1232,436 L1280,446 L1332,456 L1440,472 L1440,520 Z"
+        fill="#0C1018"/>
+      <!-- Layer 3: Near foreground -->
+      <path d="M0,520 L0,492 L80,482 L165,490 L248,478 L335,486 L420,474 L508,482 L592,470 L682,478 L768,466 L855,475 L940,463 L1028,472 L1115,460 L1200,470 L1288,458 L1370,466 L1440,475 L1440,520 Z"
+        fill="#07080D"/>
+    </svg>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─────────────────────────────────────── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <!-- duplicated for seamless loop -->
+    <span class="marquee-item"><span class="marquee-dot"></span>Hunza Valley</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>K2 Base Camp</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Fairy Meadows</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Skardu</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Nanga Parbat</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Karakoram Highway</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Deosai Plains</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Attabad Lake</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Shandur Polo Festival</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Shigar Fort</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Naltar Valley</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Gondogoro La</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hunza Valley</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>K2 Base Camp</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Fairy Meadows</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Skardu</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Nanga Parbat</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Karakoram Highway</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Deosai Plains</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Attabad Lake</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Shandur Polo Festival</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Shigar Fort</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Naltar Valley</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Gondogoro La</span>
+  </div>
+</div>
+
+<!-- ─── DESTINATIONS ─────────────────────────────────── -->
+<section class="destinations-section">
+  <div class="destinations-inner">
+    <div class="reveal">
+      <span class="label">Destinations</span>
+      <h2 class="section-title">Where Do You<br>Want To Go?</h2>
+    </div>
+    <div class="destinations-grid reveal">
+      <!-- Hunza — large -->
+      <div class="dest-card card-hunza large">
+        <div class="dest-card-bg"></div>
+        <svg class="card-peak" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax meet">
+          <path d="M0,200 L0,150 L40,130 L80,145 L120,110 L160,128 L200,85 L215,100 L225,70 L235,100 L250,88 L280,120 L320,105 L360,130 L400,118 L400,200 Z" fill="rgba(255,255,255,0.06)"/>
+        </svg>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <span class="dest-tag">Hunza Valley</span>
+          <div class="dest-name">The Golden<br>Valley</div>
+          <div class="dest-meta">Karimabad · Attabad Lake · Eagle's Nest · Khunjerab Pass</div>
+          <a class="dest-arrow" href="#">Explore &rarr;</a>
+        </div>
+      </div>
+      <!-- Skardu -->
+      <div class="dest-card card-skardu">
+        <div class="dest-card-bg"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <span class="dest-tag">Skardu</span>
+          <div class="dest-name">Heart of<br>Baltistan</div>
+          <div class="dest-meta">Shangrila · Deosai · Shigar Fort</div>
+          <a class="dest-arrow" href="#">Explore &rarr;</a>
+        </div>
+      </div>
+      <!-- Fairy Meadows -->
+      <div class="dest-card card-fairy">
+        <div class="dest-card-bg"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <span class="dest-tag">Fairy Meadows</span>
+          <div class="dest-name">Below<br>Nanga Parbat</div>
+          <div class="dest-meta">Camping · Base Camp · Trekking</div>
+          <a class="dest-arrow" href="#">Explore &rarr;</a>
+        </div>
+      </div>
+      <!-- K2 -->
+      <div class="dest-card card-k2">
+        <div class="dest-card-bg"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <span class="dest-tag">K2 Trek</span>
+          <div class="dest-name">The Savage<br>Summit</div>
+          <div class="dest-meta">Base Camp · Gondogoro La · Concordia</div>
+          <a class="dest-arrow" href="#">Explore &rarr;</a>
+        </div>
+      </div>
+      <!-- Naran -->
+      <div class="dest-card card-naran">
+        <div class="dest-card-bg"></div>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-content">
+          <span class="dest-tag">Naran Kaghan</span>
+          <div class="dest-name">Valley of<br>Waterfalls</div>
+          <div class="dest-meta">Saif-ul-Malook · Babusar Top</div>
+          <a class="dest-arrow" href="#">Explore &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOCAL ANGLE ───────────────────────────────────── -->
+<section class="local-section">
+  <div class="local-inner">
+    <div class="reveal">
+      <blockquote class="local-quote">
+        "Agencies show you<br>the mountains.<br><span>I'll show you how<br>to afford them."</span>
+      </blockquote>
+    </div>
+    <div class="reveal">
+      <span class="label">Why Trust a Local</span>
+      <h2 class="section-title" style="font-size:clamp(2rem,3vw,3rem); margin-bottom:1.5rem;">Not an agency.<br>A neighbour.</h2>
+      <p class="local-body">
+        I grew up 40km from Fairy Meadows. I know which guesthouses are honest and which ones overcharge tourists by 300%. I know the jeep driver who won't take you on a shortcut that washed out last monsoon. I know which agencies have guides who speak Shina and which ones send someone who's never actually done K2 base camp.<br><br>
+        <strong>This site has no packages to sell you.</strong> I earn only when I recommend something I'd send my own family to.
+      </p>
+      <div class="local-stats">
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years living here</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">47</div>
+          <div class="stat-label">Vetted agencies</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">140+</div>
+          <div class="stat-label">Destination guides</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THINGS TO DO ─────────────────────────────────── -->
+<section class="todo-section">
+  <div class="todo-inner">
+    <div class="reveal">
+      <span class="label">Experiences</span>
+      <h2 class="section-title">Things To Do<br>In GB</h2>
+    </div>
+    <div class="todo-scroll">
+      <div class="todo-card">
+        <span class="todo-icon">⛷️</span>
+        <div class="todo-name">Skiing in Naltar</div>
+        <div class="todo-loc">Gilgit · Jan–Mar</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🪂</span>
+        <div class="todo-name">Paragliding</div>
+        <div class="todo-loc">Gilgit · Apr–Oct</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🏇</span>
+        <div class="todo-name">Shandur Polo</div>
+        <div class="todo-loc">Ghizer · July</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🚙</span>
+        <div class="todo-name">Jeep Safari</div>
+        <div class="todo-loc">All GB · Year-round</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🌸</span>
+        <div class="todo-name">Cherry Blossoms</div>
+        <div class="todo-loc">Hunza · March–April</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🏕️</span>
+        <div class="todo-name">Wild Camping</div>
+        <div class="todo-loc">Fairy Meadows · May–Sep</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🌊</span>
+        <div class="todo-name">River Rafting</div>
+        <div class="todo-loc">Naran · Jun–Aug</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">✨</span>
+        <div class="todo-name">Stargazing</div>
+        <div class="todo-loc">Deosai · Jul–Sep</div>
+      </div>
+      <div class="todo-card">
+        <span class="todo-icon">🧗</span>
+        <div class="todo-name">Rock Climbing</div>
+        <div class="todo-loc">Trango · May–Oct</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TREKS ─────────────────────────────────────────── -->
+<section class="treks-section reveal">
+  <span class="label">Trekking</span>
+  <h2 class="section-title">Pakistan's Greatest<br>Treks, Honestly Reviewed</h2>
+  <div class="treks-grid">
+    <div class="trek-card">
+      <span class="trek-difficulty diff-hard">Strenuous</span>
+      <div class="trek-name">K2 Base Camp</div>
+      <div class="trek-meta">
+        <div class="trek-meta-item">⏱ <span>11–14 days</span></div>
+        <div class="trek-meta-item">📍 <span>Skardu</span></div>
+        <div class="trek-meta-item">⬆ <span>5,000m</span></div>
+      </div>
+      <p class="trek-desc">The classic Karakoram circuit. Baltoro Glacier, Concordia, and the greatest concentration of 8,000m peaks on earth. Requires permits and a registered guide.</p>
+      <a class="trek-link" href="#">Read full guide &rarr;</a>
+    </div>
+    <div class="trek-card">
+      <span class="trek-difficulty diff-moderate">Moderate</span>
+      <div class="trek-name">Fairy Meadows Hike</div>
+      <div class="trek-meta">
+        <div class="trek-meta-item">⏱ <span>2–3 days</span></div>
+        <div class="trek-meta-item">📍 <span>Diamer</span></div>
+        <div class="trek-meta-item">⬆ <span>3,300m</span></div>
+      </div>
+      <p class="trek-desc">Short but unforgettable. A 3-hour jeep ride followed by a 1.5-hour hike to the most famous meadow in Pakistan. Great for families with older kids.</p>
+      <a class="trek-link" href="#">Read full guide &rarr;</a>
+    </div>
+    <div class="trek-card">
+      <span class="trek-difficulty diff-easy">Easy</span>
+      <div class="trek-name">Rakaposhi Base Camp</div>
+      <div class="trek-meta">
+        <div class="trek-meta-item">⏱ <span>2 days</span></div>
+        <div class="trek-meta-item">📍 <span>Hunza</span></div>
+        <div class="trek-meta-item">⬆ <span>3,500m</span></div>
+      </div>
+      <p class="trek-desc">One of the best short treks in GB. Day one from Minapin village through orchards to basecamp. One of the clearest close-up views of a 7000m peak you'll find.</p>
+      <a class="trek-link" href="#">Read full guide &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BUDGET SECTION ────────────────────────────────── -->
+<section class="budget-section">
+  <div class="budget-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="label">Budget Guide</span>
+      <h2 class="section-title">GB On Any Budget</h2>
+      <p style="color:var(--cream-2);font-size:0.9rem;margin-top:1rem;max-width:480px;margin-inline:auto;line-height:1.75;">Forget what the agencies charge. Here's what GB actually costs — from backpacker hostels to comfortable guesthouses.</p>
+    </div>
+    <div class="budget-grid reveal">
+      <div class="budget-card">
+        <div class="budget-tier">Backpacker</div>
+        <div class="budget-price"><sup>Rs.</sup>3,500<span style="font-size:1.2rem;color:var(--cream-2)">/day</span></div>
+        <div class="budget-per">All-in · food, bed, transport</div>
+        <div class="budget-divider"></div>
+        <ul class="budget-items">
+          <li class="budget-item">Dormitory guesthouses (Hunza, Skardu)</li>
+          <li class="budget-item">Local dhabas for every meal</li>
+          <li class="budget-item">Shared jeeps between valleys</li>
+          <li class="budget-item">No guided treks — self-navigate</li>
+          <li class="budget-item">Free camping at Fairy Meadows</li>
+        </ul>
+        <button class="btn-ghost" style="width:100%;text-align:center;">View Budget Itinerary</button>
+      </div>
+      <div class="budget-card featured">
+        <span class="budget-badge">Most Popular</span>
+        <div class="budget-tier">Mid-Range</div>
+        <div class="budget-price"><sup>Rs.</sup>9,000<span style="font-size:1.2rem;color:var(--cream-2)">/day</span></div>
+        <div class="budget-per">All-in · comfortable style</div>
+        <div class="budget-divider"></div>
+        <ul class="budget-items">
+          <li class="budget-item">Private room in family guesthouses</li>
+          <li class="budget-item">Mix of local and tourist restaurants</li>
+          <li class="budget-item">Private jeep sharing with 3–4 people</li>
+          <li class="budget-item">Day guides for major treks</li>
+          <li class="budget-item">1–2 night hotel upgrade in Hunza</li>
+        </ul>
+        <button class="btn-primary" style="width:100%;text-align:center;">View Mid-Range Itinerary</button>
+      </div>
+      <div class="budget-card">
+        <div class="budget-tier">Comfortable</div>
+        <div class="budget-price"><sup>Rs.</sup>22,000<span style="font-size:1.2rem;color:var(--cream-2)">/day</span></div>
+        <div class="budget-per">All-in · no compromises</div>
+        <div class="budget-divider"></div>
+        <ul class="budget-items">
+          <li class="budget-item">Serena Hotels or Eagle's Nest level</li>
+          <li class="budget-item">Full restaurant meals, no dhabas</li>
+          <li class="budget-item">Dedicated private jeep + driver</li>
+          <li class="budget-item">Full-time certified mountain guide</li>
+          <li class="budget-item">Porter support on all treks</li>
+        </ul>
+        <button class="btn-ghost" style="width:100%;text-align:center;">View Comfort Itinerary</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AGENCIES ──────────────────────────────────────── -->
+<section class="agencies-section">
+  <div class="agencies-inner">
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;">
+      <div>
+        <span class="label">Vetted Agencies</span>
+        <h2 class="section-title">Agencies I<br>Actually Trust</h2>
+        <p style="color:var(--cream-2);font-size:0.85rem;margin-top:1rem;max-width:440px;line-height:1.75;">I've personally contacted, visited, or trekked with every agency listed here. No paid listings. No fake reviews.</p>
+      </div>
+      <button class="btn-ghost">See All 47 Agencies &rarr;</button>
+    </div>
+    <div class="agencies-grid">
+      <div class="agency-card">
+        <div class="agency-logo-placeholder">A</div>
+        <div class="agency-name">Apricot Tours</div>
+        <div class="agency-spec">Hunza · Skardu · K2 Treks</div>
+        <p class="agency-desc">One of the most established GB operators. Strong on the Baltoro glacier circuit. Their guides are genuinely experienced. Prices are honest.</p>
+        <div class="agency-tags">
+          <span class="agency-tag">K2 Base Camp</span>
+          <span class="agency-tag">Gondogoro La</span>
+          <span class="agency-tag">Hunza Tours</span>
+        </div>
+        <div class="agency-stars">★★★★★</div>
+        <div class="agency-reviews">4.8 · 143 reviews</div>
+        <div class="agency-vetted">✓ Personally vetted</div>
+      </div>
+      <div class="agency-card">
+        <div class="agency-logo-placeholder">N</div>
+        <div class="agency-name">Nature Adventure</div>
+        <div class="agency-spec">Budget Tours · Northern Areas</div>
+        <p class="agency-desc">Best option for budget travellers who still want a proper guide. Honest about what's included. No surprise costs. Particularly good for Naran Kaghan.</p>
+        <div class="agency-tags">
+          <span class="agency-tag">Naran Kaghan</span>
+          <span class="agency-tag">Fairy Meadows</span>
+          <span class="agency-tag">Budget Tours</span>
+        </div>
+        <div class="agency-stars">★★★★☆</div>
+        <div class="agency-reviews">4.5 · 88 reviews</div>
+        <div class="agency-vetted">✓ Personally vetted</div>
+      </div>
+      <div class="agency-card">
+        <div class="agency-logo-placeholder">S</div>
+        <div class="agency-name">Shimshal Adventure</div>
+        <div class="agency-spec">Remote Treks · Off-Beat Valleys</div>
+        <p class="agency-desc">Run by people from Shimshal village itself. If you want to go somewhere most tourists never reach — Karambar Lake, Chapursan — these are your people.</p>
+        <div class="agency-tags">
+          <span class="agency-tag">Shimshal Pass</span>
+          <span class="agency-tag">Karambar Lake</span>
+          <span class="agency-tag">Chapursan</span>
+        </div>
+        <div class="agency-stars">★★★★★</div>
+        <div class="agency-reviews">4.9 · 62 reviews</div>
+        <div class="agency-vetted">✓ Personally vetted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BLOG ───────────────────────────────────────────── -->
+<section class="blog-section">
+  <div class="blog-inner">
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;">
+      <div>
+        <span class="label">From the Blog</span>
+        <h2 class="section-title">Latest Guides &<br>Honest Reviews</h2>
+      </div>
+      <button class="btn-ghost">View All Articles &rarr;</button>
+    </div>
+    <div class="blog-grid reveal">
+      <div class="blog-card featured">
+        <div class="blog-img">
+          <div class="blog-img-bg art-bg-1"></div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-cat">Budget Guide</div>
+          <div class="blog-title">GB in 10 Days for Under Rs. 45,000 — A Complete Breakdown</div>
+          <p class="blog-excerpt">Exact costs, which guesthouses to book, which meals to skip, and the one splurge that's genuinely worth it (hint: it's the jeep from Raikot Bridge).</p>
+          <div class="blog-footer">
+            <span class="blog-read">Read Guide &rarr;</span>
+            <span class="blog-time">12 min read</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img">
+          <div class="blog-img-bg art-bg-2"></div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-cat">Destination</div>
+          <div class="blog-title">Passu Cones: The View Nobody Tells You About</div>
+          <p class="blog-excerpt">Six jagged limestone spires rising 6,000m from the Karakoram Highway. The best view is 20 minutes off the road and completely free.</p>
+          <div class="blog-footer">
+            <span class="blog-read">Read Guide &rarr;</span>
+            <span class="blog-time">7 min read</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img">
+          <div class="blog-img-bg art-bg-3"></div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-cat">Practical</div>
+          <div class="blog-title">NOC Permits in GB: The Complete 2025 Guide</div>
+          <p class="blog-excerpt">Which valleys need a No-Objection Certificate, how to get one, how long it takes, and what happens if you enter without one. No agency fluff.</p>
+          <div class="blog-footer">
+            <span class="blog-read">Read Guide &rarr;</span>
+            <span class="blog-time">9 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></div>
+        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
+        <div class="footer-socials">
+          <div class="social-btn">Y</div>
+          <div class="social-btn">I</div>
+          <div class="social-btn">T</div>
+          <div class="social-btn">F</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations</div>
+        <ul class="footer-links">
+          <li><a href="#">Hunza Valley</a></li>
+          <li><a href="#">Skardu</a></li>
+          <li><a href="#">Fairy Meadows</a></li>
+          <li><a href="#">Gilgit City</a></li>
+          <li><a href="#">Naran Kaghan</a></li>
+          <li><a href="#">Hidden Valleys</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Trekking</div>
+        <ul class="footer-links">
+          <li><a href="#">K2 Base Camp</a></li>
+          <li><a href="#">Fairy Meadows</a></li>
+          <li><a href="#">Gondogoro La</a></li>
+          <li><a href="#">Rakaposhi BC</a></li>
+          <li><a href="#">Laila Peak BC</a></li>
+          <li><a href="#">All Treks</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Practical</div>
+        <ul class="footer-links">
+          <li><a href="#">Budget Guide</a></li>
+          <li><a href="#">NOC &amp; Permits</a></li>
+          <li><a href="#">Best Time to Visit</a></li>
+          <li><a href="#">How to Reach</a></li>
+          <li><a href="#">Vetted Agencies</a></li>
+          <li><a href="#">What to Pack</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span>
+      <span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── NAVBAR SCROLL ─────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ─── REVEAL ON SCROLL ──────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      // Stagger siblings
+      const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+      let delay = 0;
+      siblings.forEach((s, idx) => { if (s === entry.target) delay = idx * 80; });
+      setTimeout(() => entry.target.classList.add('visible'), delay);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
