@@ -2,622 +2,1459 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Explore Nearby — Hotels, Restaurants & Things To Do in GB — LocalGB</title>
-<meta name="description" content="Find hotels, restaurants, treks, and things to do near you in Gilgit-Baltistan. Select your location and explore curated, honest recommendations.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Explore GB — Plan Your Trip & Find Nearby — LocalGB</title>
+<meta name="description" content="Plan your Gilgit-Baltistan trip by budget. Get a personalised day-by-day itinerary, find hotels, restaurants, treks, and things to do nearby.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/main.css">
 <style>
-/* ── App shell ───────────────────────────────────────────── */
-.explore-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+/* ── Reset + Tokens ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:         #07080D;
+  --ink-2:       #0C0E16;
+  --ink-3:       #111420;
+  --ink-4:       #1A1F2C;
+  --gold:        #C8903A;
+  --gold-lt:     #DEAD68;
+  --gold-glow:   rgba(200,144,58,0.10);
+  --gold-border: rgba(200,144,58,0.25);
+  --cream:       #F0E8D5;
+  --cream-2:     #AAA296;
+  --fd: 'Cormorant Garamond', Georgia, serif;
+  --fu: 'Syne', sans-serif;
+  --r:   16px;
+  --r-sm: 10px;
+  --nav-h: 60px;
+  --bot-h: 72px;
+}
+html { height: 100%; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--fu);
+  font-size: 14px;
+  min-height: 100%;
+  padding-bottom: calc(var(--bot-h) + env(safe-area-inset-bottom));
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: var(--fu); cursor: pointer; border: none; outline: none; }
+input  { font-family: var(--fu); outline: none; }
+a { text-decoration: none; color: inherit; }
 
-/* ── Step indicators ─────────────────────────────────────── */
-.steps-bar { display: flex; align-items: center; gap: 0; margin: 2.5rem 0 3rem; }
-.step-pill { display: flex; align-items: center; gap: 0.6rem; font-family: var(--fu); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-2); opacity: 0.4; transition: opacity 0.3s; }
-.step-pill.active { opacity: 1; color: var(--gold); }
-.step-pill.done { opacity: 0.6; color: var(--cream-2); }
-.step-pill .sp-num { width: 24px; height: 24px; border-radius: 50%; border: 1px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; flex-shrink: 0; }
-.step-pill.done .sp-num { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-.step-pill.active .sp-num { border-color: var(--gold); }
-.step-sep { flex: 1; height: 1px; background: rgba(255,255,255,0.07); margin: 0 0.8rem; max-width: 60px; }
+/* ── Top nav (site) ─────────────────────────────── */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.25rem;
+  background: rgba(7,8,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-logo { font-family: var(--fd); font-size: 1.4rem; }
+.nav-logo .l1 { color: var(--cream); }
+.nav-logo .l2 { color: var(--gold); font-style: italic; }
+.nav-back { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); }
+.nav-back svg { opacity: 0.6; }
 
-/* ── Section label ───────────────────────────────────────── */
-.app-label { font-family: var(--fu); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
-.app-heading { font-family: var(--fd); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; color: var(--cream); margin-bottom: 1.8rem; }
+/* ── Bottom tab bar ─────────────────────────────── */
+.bot-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  height: calc(var(--bot-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: rgba(10,11,18,0.97);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: stretch;
+}
+.bot-tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; background: none; color: var(--cream-2);
+  font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.bot-tab.active { color: var(--gold); }
+.bot-tab-icon { font-size: 1.3rem; line-height: 1; }
+.bot-tab.active .bot-tab-icon { filter: drop-shadow(0 0 6px rgba(200,144,58,0.5)); }
 
-/* ── Region grid (Step 1) ────────────────────────────────── */
-.region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-@media (max-width: 600px) { .region-grid { grid-template-columns: repeat(2, 1fr); } }
-.region-card { position: relative; border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 1.4rem 1.2rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; overflow: hidden; min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; }
-.region-card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; opacity: 0.55; transition: opacity 0.2s; }
-.region-card.hunza::before    { background: linear-gradient(145deg, #3A1A05, #7A3A0A); }
-.region-card.skardu::before   { background: linear-gradient(145deg, #05101A, #0A2040); }
-.region-card.gilgit::before   { background: linear-gradient(145deg, #0A0804, #2A1A08); }
-.region-card.fairy::before    { background: linear-gradient(145deg, #051005, #0E2810); }
-.region-card.chilas::before   { background: linear-gradient(145deg, #0C0804, #281808); }
-.region-card.naran::before    { background: linear-gradient(145deg, #051008, #0C2010); }
-.region-card:hover { border-color: var(--gold-border); }
-.region-card:hover::before { opacity: 0.75; }
-.region-card.selected { border-color: var(--gold); }
-.region-card.selected::before { opacity: 0.85; }
-.rc-name { font-family: var(--fd); font-size: 1.2rem; font-weight: 400; color: var(--cream); position: relative; z-index: 1; }
-.rc-sub  { font-family: var(--fu); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,232,213,0.55); position: relative; z-index: 1; margin-top: 0.2rem; }
+/* ── Views ──────────────────────────────────────── */
+.view { display: none; }
+.view.active { display: block; }
 
-/* ── Sub-area picker (Step 2) ────────────────────────────── */
-#step2 { display: none; margin-top: 3rem; }
-.subarea-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.subarea-btn { font-family: var(--fu); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.55rem 1.3rem; border-radius: 3px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2); background: none; cursor: pointer; transition: all 0.2s; }
-.subarea-btn:hover { border-color: var(--gold-border); color: var(--gold); }
-.subarea-btn.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+/* ── Screen wizard ──────────────────────────────── */
+.wizard { overflow: hidden; }
+.screens { display: flex; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.screen {
+  min-width: 100%; padding: 1.5rem 1.25rem 2rem;
+  opacity: 0; transform: translateX(24px);
+  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  transition-delay: 0.15s;
+}
+.screen.visible { opacity: 1; transform: translateX(0); }
 
-/* ── Results (Step 3) ────────────────────────────────────── */
-#step3 { display: none; margin-top: 3rem; }
-.filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.filter-btn { font-family: var(--fu); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.1rem; border-radius: 3px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2); background: none; cursor: pointer; transition: all 0.2s; }
-.filter-btn:hover { border-color: var(--gold-border); color: var(--gold); }
-.filter-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+/* ── Progress bar ───────────────────────────────── */
+.progress-bar {
+  height: 3px; background: rgba(255,255,255,0.05);
+  position: sticky; top: var(--nav-h); z-index: 99;
+}
+.progress-fill {
+  height: 100%; background: var(--gold);
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+  border-radius: 0 2px 2px 0;
+}
 
-.results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
-.result-card { border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 1.4rem; transition: border-color 0.2s; display: flex; flex-direction: column; }
-.result-card:hover { border-color: rgba(200,144,58,0.3); }
-.rc-cat-tag { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--fu); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; }
-.rc-cat-tag.hotel     { color: #C8903A; }
-.rc-cat-tag.restaurant{ color: #8DB87A; }
-.rc-cat-tag.trek      { color: #7AB8D4; }
-.rc-cat-tag.todo      { color: #B87AAA; }
-.rc-cat-icon { font-size: 0.8rem; }
-.rc-title { font-family: var(--fd); font-size: 1.2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.4rem; }
-.rc-desc  { font-size: 0.77rem; color: var(--cream-2); line-height: 1.75; flex: 1; margin-bottom: 0.9rem; }
-.rc-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
-.rc-price { font-family: var(--fu); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; color: var(--gold); }
-.rc-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.rc-badge { font-family: var(--fu); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 2px; background: rgba(255,255,255,0.05); color: var(--cream-2); }
+/* ── Step header ────────────────────────────────── */
+.step-label {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+}
+.step-title {
+  font-family: var(--fd); font-size: 1.9rem; font-weight: 400;
+  color: var(--cream); line-height: 1.2; margin-bottom: 0.5rem;
+}
+.step-sub {
+  font-size: 0.78rem; color: var(--cream-2); line-height: 1.65; margin-bottom: 1.8rem;
+}
 
-.no-results { text-align: center; padding: 3rem 1rem; color: var(--cream-2); font-size: 0.85rem; }
-.no-results strong { display: block; font-family: var(--fd); font-size: 1.4rem; color: var(--cream); margin-bottom: 0.5rem; }
+/* ── Cards ──────────────────────────────────────── */
+.card {
+  background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r); padding: 1.1rem 1.1rem;
+  transition: border-color 0.2s;
+}
+.card.selected { border-color: var(--gold); background: rgba(200,144,58,0.06); }
+.card.tappable:active { transform: scale(0.98); }
 
-/* ── Breadcrumb trail ────────────────────────────────────── */
-.location-trail { display: flex; align-items: center; gap: 0.5rem; font-family: var(--fu); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); margin-bottom: 1.5rem; flex-wrap: wrap; }
-.lt-sep { opacity: 0.3; }
-.lt-region { color: var(--gold); }
-.lt-change { color: var(--cream-2); text-decoration: underline; cursor: pointer; opacity: 0.6; }
-.lt-change:hover { opacity: 1; }
+/* ── Budget type toggle ─────────────────────────── */
+.toggle-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--ink-2); border-radius: var(--r-sm);
+  padding: 4px; gap: 4px; margin-bottom: 1.2rem;
+}
+.toggle-btn {
+  padding: 0.65rem; border-radius: 8px; background: none;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--cream-2); transition: all 0.2s;
+}
+.toggle-btn.active { background: var(--gold); color: var(--ink); }
 
-/* ── Empty state ─────────────────────────────────────────── */
-.empty-hero { text-align: center; padding: 4rem 1rem 2rem; }
-.empty-hero p { font-size: 0.82rem; color: var(--cream-2); max-width: 380px; margin: 0.8rem auto 0; line-height: 1.75; }
+/* ── Budget input ───────────────────────────────── */
+.budget-input-wrap {
+  position: relative; margin-bottom: 1rem;
+}
+.budget-prefix {
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 0.05em;
+}
+.budget-input {
+  width: 100%; background: var(--ink-3); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-sm); padding: 1rem 1rem 1rem 3.5rem;
+  font-size: 1.3rem; font-weight: 600; color: var(--cream);
+  transition: border-color 0.2s;
+}
+.budget-input:focus { border-color: var(--gold-border); }
+.budget-input::placeholder { color: rgba(170,162,150,0.3); }
+
+/* ── Covers checkboxes ──────────────────────────── */
+.covers-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem;
+}
+.cover-chip {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r-sm); padding: 0.75rem 0.9rem;
+  cursor: pointer; transition: all 0.2s; user-select: none;
+}
+.cover-chip.selected { border-color: var(--gold); background: rgba(200,144,58,0.08); }
+.cover-chip-icon { font-size: 1.1rem; }
+.cover-chip-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--cream-2); }
+.cover-chip.selected .cover-chip-label { color: var(--gold-lt); }
+.cover-check { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid rgba(255,255,255,0.15); margin-left: auto; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.cover-chip.selected .cover-check { background: var(--gold); border-color: var(--gold); }
+
+/* ── Days slider ────────────────────────────────── */
+.days-display {
+  text-align: center; padding: 1.5rem 0 1rem;
+}
+.days-num {
+  font-family: var(--fd); font-size: 5rem; line-height: 1; color: var(--cream);
+}
+.days-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-2); margin-top: 0.3rem;
+}
+.days-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: 3px;
+  background: var(--ink-4); outline: none; cursor: pointer;
+  margin: 0.5rem 0 0.4rem;
+}
+.days-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gold); border: 3px solid var(--ink);
+  box-shadow: 0 0 0 2px var(--gold);
+  cursor: pointer;
+}
+.days-slider::-moz-range-thumb {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gold); border: 3px solid var(--ink);
+  cursor: pointer;
+}
+.days-minmax {
+  display: flex; justify-content: space-between;
+  font-size: 0.62rem; color: var(--cream-2); letter-spacing: 0.05em;
+}
+
+/* ── Warning banner ─────────────────────────────── */
+.warn-box {
+  background: rgba(200,100,58,0.1); border: 1px solid rgba(200,100,58,0.3);
+  border-radius: var(--r-sm); padding: 0.9rem 1rem; margin: 1rem 0;
+  font-size: 0.76rem; color: #F0C0A0; line-height: 1.6; display: none;
+}
+.warn-box.show { display: block; }
+.warn-box strong { color: #F5D0B0; display: block; margin-bottom: 0.2rem; }
+
+/* ── Location cards ─────────────────────────────── */
+.location-list { display: flex; flex-direction: column; gap: 0.7rem; }
+.loc-card {
+  background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r); overflow: hidden; transition: border-color 0.2s;
+}
+.loc-card.selected { border-color: var(--gold); }
+.loc-header {
+  display: flex; align-items: center; padding: 1rem 1.1rem;
+  cursor: pointer; gap: 0.9rem; user-select: none;
+}
+.loc-gradient {
+  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+}
+.loc-info { flex: 1; }
+.loc-name { font-family: var(--fd); font-size: 1.2rem; color: var(--cream); }
+.loc-meta { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); margin-top: 0.15rem; }
+.loc-toggle {
+  width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; color: var(--cream-2); transition: all 0.2s; flex-shrink: 0;
+}
+.loc-card.selected .loc-toggle { background: var(--gold); color: var(--ink); }
+.loc-subareas {
+  padding: 0 1.1rem 1rem; display: none;
+  flex-wrap: wrap; gap: 0.5rem;
+}
+.loc-card.selected .loc-subareas { display: flex; }
+.sub-chip {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.4rem 0.85rem; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2); background: none;
+  cursor: pointer; transition: all 0.2s; user-select: none;
+}
+.sub-chip.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+.loc-days-row {
+  display: none; padding: 0 1.1rem 1rem; align-items: center; gap: 0.8rem;
+}
+.loc-card.selected .loc-days-row { display: flex; }
+.loc-days-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); white-space: nowrap; }
+.loc-days-stepper { display: flex; align-items: center; gap: 0.6rem; margin-left: auto; }
+.stepper-btn {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--ink-4);
+  border: 1px solid rgba(255,255,255,0.1); color: var(--cream); font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; user-select: none;
+}
+.stepper-btn:active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.stepper-val { font-family: var(--fd); font-size: 1.4rem; color: var(--cream); min-width: 2rem; text-align: center; }
+.stepper-day-label { font-size: 0.62rem; color: var(--cream-2); }
+
+/* ── CTA button ─────────────────────────────────── */
+.cta-wrap { padding: 1.5rem 0 0; }
+.btn-cta {
+  width: 100%; padding: 1.05rem; border-radius: var(--r);
+  background: var(--gold); color: var(--ink);
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.2s; box-shadow: 0 4px 20px rgba(200,144,58,0.25);
+}
+.btn-cta:active { transform: scale(0.98); background: var(--gold-lt); }
+.btn-cta:disabled { opacity: 0.35; pointer-events: none; }
+.btn-secondary {
+  width: 100%; padding: 0.9rem; border-radius: var(--r);
+  background: none; border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2);
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-top: 0.7rem; transition: all 0.2s;
+}
+.btn-secondary:active { border-color: var(--gold-border); color: var(--gold); }
+
+/* ── Generating screen ──────────────────────────── */
+.generating-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 60vh; gap: 1.5rem; text-align: center;
+}
+.gen-spinner {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 2px solid rgba(200,144,58,0.15);
+  border-top-color: var(--gold);
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.gen-title { font-family: var(--fd); font-size: 1.8rem; color: var(--cream); }
+.gen-sub { font-size: 0.77rem; color: var(--cream-2); }
+
+/* ── Itinerary output ───────────────────────────── */
+.itin-header {
+  background: linear-gradient(160deg, #1A0E04 0%, #2E1A08 100%);
+  border-radius: var(--r); padding: 1.5rem; margin-bottom: 1rem;
+}
+.itin-header-top {
+  display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem;
+}
+.itin-title { font-family: var(--fd); font-size: 1.8rem; color: var(--cream); line-height: 1.2; }
+.itin-subtitle { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+.itin-edit-btn {
+  padding: 0.4rem 0.9rem; border-radius: 20px;
+  background: rgba(200,144,58,0.15); border: 1px solid var(--gold-border);
+  color: var(--gold); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.budget-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.2rem; }
+.budget-pill {
+  padding: 0.35rem 0.8rem; border-radius: 20px;
+  background: rgba(255,255,255,0.06); font-size: 0.65rem; color: var(--cream-2);
+  font-weight: 600; letter-spacing: 0.05em;
+}
+.budget-pill.gold { background: rgba(200,144,58,0.12); color: var(--gold); }
+
+.budget-breakdown {
+  background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r); padding: 1.1rem; margin-bottom: 1rem;
+}
+.bb-title { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-2); margin-bottom: 0.9rem; }
+.bb-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.bb-row:last-child { border-bottom: none; margin-top: 0.3rem; padding-top: 0.7rem; }
+.bb-row-label { font-size: 0.75rem; color: var(--cream-2); }
+.bb-row-val { font-size: 0.78rem; font-weight: 600; color: var(--cream); }
+.bb-row.total .bb-row-label { font-weight: 700; color: var(--cream); }
+.bb-row.total .bb-row-val { color: var(--gold); font-family: var(--fd); font-size: 1rem; }
+.bb-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; margin: 0.7rem 0 0; overflow: hidden; }
+.bb-bar-fill { height: 100%; border-radius: 2px; transition: width 0.6s; }
+
+.warn-banner {
+  background: rgba(200,80,40,0.1); border: 1px solid rgba(200,80,40,0.25);
+  border-radius: var(--r-sm); padding: 1rem; margin-bottom: 1rem;
+  font-size: 0.76rem; color: #F0B8A0; line-height: 1.65;
+}
+.warn-banner strong { color: #F5C8B0; display: block; margin-bottom: 0.3rem; font-size: 0.8rem; }
+.good-banner {
+  background: rgba(100,180,80,0.08); border: 1px solid rgba(100,180,80,0.2);
+  border-radius: var(--r-sm); padding: 1rem; margin-bottom: 1rem;
+  font-size: 0.76rem; color: #B0D8A0; line-height: 1.65;
+}
+.good-banner strong { color: #C0E8B0; display: block; margin-bottom: 0.2rem; }
+
+/* ── Day cards ──────────────────────────────────── */
+.day-card {
+  background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r); overflow: hidden; margin-bottom: 0.8rem;
+}
+.day-header {
+  padding: 1rem 1.1rem; display: flex; align-items: center; gap: 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.day-num-badge {
+  width: 38px; height: 38px; border-radius: 10px; background: var(--gold-glow);
+  border: 1px solid var(--gold-border); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.day-num-badge span { font-family: var(--fd); font-size: 1.1rem; color: var(--gold); }
+.day-header-info { flex: 1; }
+.day-location { font-family: var(--fd); font-size: 1.1rem; color: var(--cream); }
+.day-date { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); margin-top: 0.1rem; }
+.day-body { padding: 0.8rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.day-item { display: flex; gap: 0.8rem; align-items: flex-start; }
+.day-item-time { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); min-width: 52px; padding-top: 0.15rem; }
+.day-item-content { flex: 1; }
+.day-item-name { font-size: 0.83rem; font-weight: 600; color: var(--cream); margin-bottom: 0.15rem; }
+.day-item-desc { font-size: 0.74rem; color: var(--cream-2); line-height: 1.6; }
+.day-item-cost { font-size: 0.65rem; font-weight: 600; color: var(--gold); margin-top: 0.2rem; }
+.day-item-type { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 4px; margin-bottom: 0.2rem; display: inline-block; }
+.type-hotel { background: rgba(200,144,58,0.12); color: var(--gold); }
+.type-food  { background: rgba(100,180,80,0.1);  color: #90C870; }
+.type-trek  { background: rgba(100,160,220,0.1); color: #90C8E0; }
+.type-todo  { background: rgba(180,100,200,0.1); color: #C890D0; }
+.type-travel{ background: rgba(255,255,255,0.05); color: var(--cream-2); }
+.day-total  { margin-top: 0.5rem; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: center; }
+.day-total-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); }
+.day-total-val { font-size: 0.8rem; font-weight: 600; color: var(--cream); }
+
+/* ── Explore view ───────────────────────────────── */
+.explore-hero { padding: 1.5rem 1.25rem 0.5rem; }
+.explore-hero-title { font-family: var(--fd); font-size: 2rem; color: var(--cream); margin-bottom: 0.3rem; }
+.explore-hero-sub { font-size: 0.78rem; color: var(--cream-2); line-height: 1.6; }
+.explore-region-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; padding: 1.25rem; }
+.exp-reg-card {
+  border-radius: var(--r); padding: 1.1rem; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06); min-height: 90px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden; transition: border-color 0.2s;
+}
+.exp-reg-card::before { content: ''; position: absolute; inset: 0; opacity: 0.6; transition: opacity 0.2s; }
+.exp-reg-card.hunza::before  { background: linear-gradient(145deg,#3A1A05,#7A3A0A); }
+.exp-reg-card.skardu::before { background: linear-gradient(145deg,#05101A,#0A2040); }
+.exp-reg-card.gilgit::before { background: linear-gradient(145deg,#0A0804,#2A1A08); }
+.exp-reg-card.fairy::before  { background: linear-gradient(145deg,#051005,#0E2810); }
+.exp-reg-card.chilas::before { background: linear-gradient(145deg,#0C0804,#281808); }
+.exp-reg-card.naran::before  { background: linear-gradient(145deg,#051008,#0C2010); }
+.exp-reg-card:active { transform: scale(0.97); }
+.exp-reg-card.selected { border-color: var(--gold); }
+.exp-reg-name { font-family: var(--fd); font-size: 1.15rem; color: var(--cream); position: relative; z-index: 1; }
+.exp-reg-sub  { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,232,213,0.5); position: relative; z-index: 1; margin-top: 0.15rem; }
+.exp-sub-bar {
+  display: flex; overflow-x: auto; gap: 0.5rem; padding: 0 1.25rem 0.8rem;
+  scrollbar-width: none;
+}
+.exp-sub-bar::-webkit-scrollbar { display: none; }
+.exp-sub-chip {
+  white-space: nowrap; padding: 0.5rem 1rem; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2);
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  background: none; flex-shrink: 0; transition: all 0.2s;
+}
+.exp-sub-chip.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+.exp-filter-bar {
+  display: flex; overflow-x: auto; gap: 0.5rem; padding: 0 1.25rem 1rem;
+  scrollbar-width: none;
+}
+.exp-filter-bar::-webkit-scrollbar { display: none; }
+.exp-filter-btn {
+  white-space: nowrap; padding: 0.45rem 1rem; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08); color: var(--cream-2); background: none;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  flex-shrink: 0; transition: all 0.2s;
+}
+.exp-filter-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+.exp-results { padding: 0 1.25rem; display: flex; flex-direction: column; gap: 0.7rem; }
+.exp-card {
+  background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r); padding: 1.1rem;
+}
+.exp-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.5rem; gap: 0.5rem; }
+.exp-cat-tag { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 4px; flex-shrink: 0; }
+.exp-cat-tag.hotel      { background: rgba(200,144,58,0.12); color: var(--gold); }
+.exp-cat-tag.restaurant { background: rgba(100,180,80,0.1);  color: #90C870; }
+.exp-cat-tag.trek       { background: rgba(100,160,220,0.1); color: #90C8E0; }
+.exp-cat-tag.todo       { background: rgba(180,100,200,0.1); color: #C890D0; }
+.exp-name { font-family: var(--fd); font-size: 1.15rem; color: var(--cream); margin-bottom: 0.35rem; }
+.exp-desc { font-size: 0.75rem; color: var(--cream-2); line-height: 1.7; margin-bottom: 0.7rem; }
+.exp-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; }
+.exp-price { font-size: 0.68rem; font-weight: 700; color: var(--gold); }
+.exp-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.exp-badge { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.18rem 0.45rem; border-radius: 3px; background: rgba(255,255,255,0.05); color: var(--cream-2); }
+.exp-empty { text-align: center; padding: 3rem 1rem; color: var(--cream-2); font-size: 0.82rem; }
+.exp-placeholder { padding: 3rem 1.25rem; text-align: center; }
+.exp-placeholder p { font-size: 0.78rem; color: var(--cream-2); line-height: 1.7; margin-top: 0.5rem; }
 </style>
 </head>
 <body>
 
-<nav id="navbar" class="solid">
+<nav class="site-nav">
+  <a href="../index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    LocalGB
+  </a>
   <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
-  <ul class="nav-links">
-    <li><a href="../hunza/index.html">Destinations</a></li>
-    <li><a href="../trekking/index.html">Treks</a></li>
-    <li><a href="../travel/index.html">Things To Do</a></li>
-    <li><a href="../agencies/index.html">Agencies</a></li>
-    <li><a href="../blog/index.html">Blog</a></li>
-  </ul>
-  <button class="nav-cta">Plan Your Trip</button>
+  <div style="width:72px"></div>
 </nav>
 
-<section class="page-hero" style="min-height:40vh;">
-  <div class="page-hero-img" style="background:linear-gradient(155deg, #06050A 0%, #0C0A14 40%, #141020 100%)"></div>
-  <div class="page-hero-overlay" style="background:linear-gradient(180deg,rgba(6,5,10,0.2) 0%,rgba(6,5,10,0.9) 100%)"></div>
-  <div class="page-hero-content">
-    <div class="page-hero-tag">Explore Nearby</div>
-    <h1 class="page-hero-h1">Where Are<br><em>You Right Now?</em></h1>
-    <p class="page-hero-sub">Select your location and we'll show you the best hotels, restaurants, treks, and things to do nearby — curated, honest, no fluff.</p>
-  </div>
-</section>
+<!-- ── PLAN VIEW ─────────────────────────────────────── -->
+<div class="view active wizard" id="viewPlan">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
 
-<div class="breadcrumb">
-  <div class="breadcrumb-inner">
-    <a href="../index.html">Home</a>
-    <span class="breadcrumb-sep">/</span>
-    <span class="breadcrumb-current">Explore</span>
+  <div class="screens" id="screens">
+
+    <!-- Screen 0: Welcome -->
+    <div class="screen visible" id="s0">
+      <div style="padding-top:2rem">
+        <div class="step-label">Trip Planner</div>
+        <h1 class="step-title">Plan Your<br><em style="font-style:italic;color:var(--gold-lt)">GB Trip</em></h1>
+        <p class="step-sub">Set your budget and destinations. We'll build a realistic day-by-day itinerary with hotels, food, treks, and things to do — matched to what you can actually spend.</p>
+        <div style="display:flex;flex-direction:column;gap:0.7rem;margin-top:2rem;">
+          <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.1rem;">
+            <div style="font-size:1.5rem">💰</div>
+            <div><div style="font-size:0.78rem;font-weight:600;color:var(--cream);margin-bottom:0.15rem;">Budget-matched</div><div style="font-size:0.72rem;color:var(--cream-2);">Hotels, food, transport & activities within your range</div></div>
+          </div>
+          <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.1rem;">
+            <div style="font-size:1.5rem">🗺</div>
+            <div><div style="font-size:0.78rem;font-weight:600;color:var(--cream);margin-bottom:0.15rem;">Multi-stop routes</div><div style="font-size:0.72rem;color:var(--cream-2);">Pick regions and exact sub-areas along your route</div></div>
+          </div>
+          <div class="card" style="display:flex;align-items:center;gap:1rem;padding:1rem 1.1rem;">
+            <div style="font-size:1.5rem">⚠️</div>
+            <div><div style="font-size:0.78rem;font-weight:600;color:var(--cream);margin-bottom:0.15rem;">Honest warnings</div><div style="font-size:0.72rem;color:var(--cream-2);">If your plan doesn't add up, we'll tell you and suggest fixes</div></div>
+          </div>
+        </div>
+        <div class="cta-wrap">
+          <button class="btn-cta" onclick="goScreen(1)">Start Planning →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 1: Budget -->
+    <div class="screen" id="s1">
+      <div class="step-label">Step 1 of 3</div>
+      <h2 class="step-title">What's your<br>budget?</h2>
+      <p class="step-sub">Set a total or per-day budget. Choose what it needs to cover — we'll match every recommendation to it.</p>
+
+      <div class="toggle-row">
+        <button class="toggle-btn active" id="btnTotal" onclick="setBudgetType('total')">Total Trip</button>
+        <button class="toggle-btn" id="btnDaily" onclick="setBudgetType('daily')">Per Day</button>
+      </div>
+
+      <div class="budget-input-wrap">
+        <span class="budget-prefix">Rs.</span>
+        <input type="number" class="budget-input" id="budgetInput" placeholder="e.g. 60000" inputmode="numeric" oninput="onBudgetChange()">
+      </div>
+
+      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream-2);margin-bottom:0.6rem;">Budget covers:</div>
+      <div class="covers-grid">
+        <div class="cover-chip selected" data-cover="accommodation" onclick="toggleCover(this)">
+          <span class="cover-chip-icon">🏨</span>
+          <span class="cover-chip-label">Hotels</span>
+          <div class="cover-check">✓</div>
+        </div>
+        <div class="cover-chip selected" data-cover="food" onclick="toggleCover(this)">
+          <span class="cover-chip-icon">🍽</span>
+          <span class="cover-chip-label">Food</span>
+          <div class="cover-check">✓</div>
+        </div>
+        <div class="cover-chip selected" data-cover="transport" onclick="toggleCover(this)">
+          <span class="cover-chip-icon">🚐</span>
+          <span class="cover-chip-label">Transport</span>
+          <div class="cover-check">✓</div>
+        </div>
+        <div class="cover-chip selected" data-cover="activities" onclick="toggleCover(this)">
+          <span class="cover-chip-icon">🥾</span>
+          <span class="cover-chip-label">Activities</span>
+          <div class="cover-check">✓</div>
+        </div>
+      </div>
+
+      <div id="budgetTierHint" style="display:none;margin-bottom:1rem;">
+        <div class="card" style="padding:0.85rem 1rem;display:flex;align-items:center;gap:0.8rem;">
+          <span id="tierIcon" style="font-size:1.3rem"></span>
+          <div><div id="tierLabel" style="font-size:0.78rem;font-weight:600;color:var(--cream);margin-bottom:0.1rem;"></div><div id="tierDesc" style="font-size:0.7rem;color:var(--cream-2);"></div></div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="btn-cta" id="btnBudgetNext" onclick="goScreen(2)" disabled>Continue →</button>
+        <button class="btn-secondary" onclick="goScreen(0)">← Back</button>
+      </div>
+    </div>
+
+    <!-- Screen 2: Days + Locations -->
+    <div class="screen" id="s2">
+      <div class="step-label">Step 2 of 3</div>
+      <h2 class="step-title">How many days<br>& where?</h2>
+      <p class="step-sub">Set your trip length, then pick your regions and sub-areas. Adjust days per stop using the + / − controls.</p>
+
+      <div class="days-display">
+        <div class="days-num" id="daysNum">7</div>
+        <div class="days-label">days total</div>
+      </div>
+      <input type="range" class="days-slider" id="daysSlider" min="3" max="21" value="7" oninput="onDaysChange(this.value)">
+      <div class="days-minmax"><span>3 days</span><span>21 days</span></div>
+
+      <div id="daysWarn" class="warn-box" style="margin-top:1rem;"></div>
+
+      <div style="margin-top:1.8rem;margin-bottom:0.8rem;">
+        <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream-2);">Select regions & areas</div>
+      </div>
+
+      <div class="location-list" id="locationList">
+        <!-- Hunza -->
+        <div class="loc-card" id="loc-hunza">
+          <div class="loc-header" onclick="toggleLocation('hunza')">
+            <div class="loc-gradient" style="background:linear-gradient(145deg,#3A1A05,#7A3A0A)"></div>
+            <div class="loc-info">
+              <div class="loc-name">Hunza Valley</div>
+              <div class="loc-meta">Karimabad · Passu · Gulmit</div>
+            </div>
+            <div class="loc-toggle" id="lt-hunza">+</div>
+          </div>
+          <div class="loc-subareas" id="ls-hunza">
+            <div class="sub-chip selected" data-region="hunza" data-sub="karimabad" onclick="toggleSub(this)">Karimabad</div>
+            <div class="sub-chip" data-region="hunza" data-sub="passu" onclick="toggleSub(this)">Passu</div>
+            <div class="sub-chip" data-region="hunza" data-sub="gulmit" onclick="toggleSub(this)">Gulmit</div>
+            <div class="sub-chip" data-region="hunza" data-sub="aliabad" onclick="toggleSub(this)">Aliabad</div>
+            <div class="sub-chip" data-region="hunza" data-sub="nagar" onclick="toggleSub(this)">Nagar</div>
+          </div>
+          <div class="loc-days-row" id="ld-hunza">
+            <div class="loc-days-label">Days here</div>
+            <div class="loc-days-stepper">
+              <button class="stepper-btn" onclick="changeDays('hunza',-1)">−</button>
+              <div><div class="stepper-val" id="dv-hunza">3</div></div>
+              <button class="stepper-btn" onclick="changeDays('hunza',1)">+</button>
+            </div>
+          </div>
+        </div>
+        <!-- Skardu -->
+        <div class="loc-card" id="loc-skardu">
+          <div class="loc-header" onclick="toggleLocation('skardu')">
+            <div class="loc-gradient" style="background:linear-gradient(145deg,#05101A,#0A2040)"></div>
+            <div class="loc-info">
+              <div class="loc-name">Skardu</div>
+              <div class="loc-meta">City · Shigar · Khaplu</div>
+            </div>
+            <div class="loc-toggle" id="lt-skardu">+</div>
+          </div>
+          <div class="loc-subareas" id="ls-skardu">
+            <div class="sub-chip selected" data-region="skardu" data-sub="skardu_city" onclick="toggleSub(this)">Skardu City</div>
+            <div class="sub-chip" data-region="skardu" data-sub="shigar" onclick="toggleSub(this)">Shigar</div>
+            <div class="sub-chip" data-region="skardu" data-sub="khaplu" onclick="toggleSub(this)">Khaplu</div>
+            <div class="sub-chip" data-region="skardu" data-sub="satpara" onclick="toggleSub(this)">Satpara</div>
+          </div>
+          <div class="loc-days-row" id="ld-skardu">
+            <div class="loc-days-label">Days here</div>
+            <div class="loc-days-stepper">
+              <button class="stepper-btn" onclick="changeDays('skardu',-1)">−</button>
+              <div><div class="stepper-val" id="dv-skardu">3</div></div>
+              <button class="stepper-btn" onclick="changeDays('skardu',1)">+</button>
+            </div>
+          </div>
+        </div>
+        <!-- Gilgit -->
+        <div class="loc-card" id="loc-gilgit">
+          <div class="loc-header" onclick="toggleLocation('gilgit')">
+            <div class="loc-gradient" style="background:linear-gradient(145deg,#0A0804,#2A1A08)"></div>
+            <div class="loc-info">
+              <div class="loc-name">Gilgit</div>
+              <div class="loc-meta">City · Naltar · Bagrot</div>
+            </div>
+            <div class="loc-toggle" id="lt-gilgit">+</div>
+          </div>
+          <div class="loc-subareas" id="ls-gilgit">
+            <div class="sub-chip selected" data-region="gilgit" data-sub="gilgit_city" onclick="toggleSub(this)">Gilgit City</div>
+            <div class="sub-chip" data-region="gilgit" data-sub="naltar" onclick="toggleSub(this)">Naltar</div>
+            <div class="sub-chip" data-region="gilgit" data-sub="bagrot" onclick="toggleSub(this)">Bagrot</div>
+          </div>
+          <div class="loc-days-row" id="ld-gilgit">
+            <div class="loc-days-label">Days here</div>
+            <div class="loc-days-stepper">
+              <button class="stepper-btn" onclick="changeDays('gilgit',-1)">−</button>
+              <div><div class="stepper-val" id="dv-gilgit">2</div></div>
+              <button class="stepper-btn" onclick="changeDays('gilgit',1)">+</button>
+            </div>
+          </div>
+        </div>
+        <!-- Fairy Meadows -->
+        <div class="loc-card" id="loc-fairy">
+          <div class="loc-header" onclick="toggleLocation('fairy')">
+            <div class="loc-gradient" style="background:linear-gradient(145deg,#051005,#0E2810)"></div>
+            <div class="loc-info">
+              <div class="loc-name">Fairy Meadows</div>
+              <div class="loc-meta">Tato · Meadow · Base Camp</div>
+            </div>
+            <div class="loc-toggle" id="lt-fairy">+</div>
+          </div>
+          <div class="loc-subareas" id="ls-fairy">
+            <div class="sub-chip selected" data-region="fairy" data-sub="meadow" onclick="toggleSub(this)">Fairy Meadows</div>
+            <div class="sub-chip" data-region="fairy" data-sub="tato" onclick="toggleSub(this)">Tato Village</div>
+            <div class="sub-chip" data-region="fairy" data-sub="basecamp" onclick="toggleSub(this)">Base Camp</div>
+          </div>
+          <div class="loc-days-row" id="ld-fairy">
+            <div class="loc-days-label">Days here</div>
+            <div class="loc-days-stepper">
+              <button class="stepper-btn" onclick="changeDays('fairy',-1)">−</button>
+              <div><div class="stepper-val" id="dv-fairy">2</div></div>
+              <button class="stepper-btn" onclick="changeDays('fairy',1)">+</button>
+            </div>
+          </div>
+        </div>
+        <!-- Chilas -->
+        <div class="loc-card" id="loc-chilas">
+          <div class="loc-header" onclick="toggleLocation('chilas')">
+            <div class="loc-gradient" style="background:linear-gradient(145deg,#0C0804,#281808)"></div>
+            <div class="loc-info">
+              <div class="loc-name">Chilas</div>
+              <div class="loc-meta">Town · Raikot Bridge</div>
+            </div>
+            <div class="loc-toggle" id="lt-chilas">+</div>
+          </div>
+          <div class="loc-subareas" id="ls-chilas">
+            <div class="sub-chip selected" data-region="chilas" data-sub="chilas_town" onclick="toggleSub(this)">Chilas Town</div>
+            <div class="sub-chip" data-region="chilas" data-sub="raikot" onclick="toggleSub(this)">Raikot Bridge</div>
+          </div>
+          <div class="loc-days-row" id="ld-chilas">
+            <div class="loc-days-label">Days here</div>
+            <div class="loc-days-stepper">
+              <button class="stepper-btn" onclick="changeDays('chilas',-1)">−</button>
+              <div><div class="stepper-val" id="dv-chilas">1</div></div>
+              <button class="stepper-btn" onclick="changeDays('chilas',1)">+</button>
+            </div>
+          </div>
+        </div>
+        <!-- Naran -->
+        <div class="loc-card" id="loc-naran">
+          <div class="loc-header" onclick="toggleLocation('naran')">
+            <div class="loc-gradient" style="background:linear-gradient(145deg,#051008,#0C2010)"></div>
+            <div class="loc-info">
+              <div class="loc-name">Naran–Kaghan</div>
+              <div class="loc-meta">Naran · Shogran · Babusar</div>
+            </div>
+            <div class="loc-toggle" id="lt-naran">+</div>
+          </div>
+          <div class="loc-subareas" id="ls-naran">
+            <div class="sub-chip selected" data-region="naran" data-sub="naran_town" onclick="toggleSub(this)">Naran</div>
+            <div class="sub-chip" data-region="naran" data-sub="shogran" onclick="toggleSub(this)">Shogran</div>
+            <div class="sub-chip" data-region="naran" data-sub="babusar" onclick="toggleSub(this)">Babusar Pass</div>
+          </div>
+          <div class="loc-days-row" id="ld-naran">
+            <div class="loc-days-label">Days here</div>
+            <div class="loc-days-stepper">
+              <button class="stepper-btn" onclick="changeDays('naran',-1)">−</button>
+              <div><div class="stepper-val" id="dv-naran">2</div></div>
+              <button class="stepper-btn" onclick="changeDays('naran',1)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="btn-cta" id="btnGenerate" onclick="generateItinerary()">Build My Itinerary →</button>
+        <button class="btn-secondary" onclick="goScreen(1)">← Back</button>
+      </div>
+    </div>
+
+    <!-- Screen 3: Generating -->
+    <div class="screen" id="s3">
+      <div class="generating-wrap">
+        <div class="gen-spinner"></div>
+        <div class="gen-title">Building your itinerary…</div>
+        <div class="gen-sub">Matching budget · Planning route · Checking travel days</div>
+      </div>
+    </div>
+
+    <!-- Screen 4: Itinerary -->
+    <div class="screen" id="s4">
+      <div id="itineraryOutput"></div>
+      <div class="cta-wrap" style="margin-top:0.5rem;">
+        <button class="btn-secondary" onclick="goScreen(2)">← Adjust Trip</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<div class="explore-wrap">
-
-  <!-- Step indicator -->
-  <div class="steps-bar" id="stepsBar">
-    <div class="step-pill active" id="pill1"><div class="sp-num">1</div><span>Pick Region</span></div>
-    <div class="step-sep"></div>
-    <div class="step-pill" id="pill2"><div class="sp-num">2</div><span>Your Area</span></div>
-    <div class="step-sep"></div>
-    <div class="step-pill" id="pill3"><div class="sp-num">3</div><span>Explore</span></div>
+<!-- ── EXPLORE VIEW ──────────────────────────────────── -->
+<div class="view" id="viewExplore">
+  <div class="explore-hero">
+    <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Explore Nearby</div>
+    <div class="explore-hero-title">Where are<br><em style="font-style:italic;color:var(--gold-lt)">you now?</em></div>
+    <p class="explore-hero-sub">Pick your region and exact area. Find hotels, restaurants, treks, and things to do right where you are.</p>
   </div>
 
-  <!-- STEP 1: Region selector -->
-  <div id="step1">
-    <span class="app-label">Step 1</span>
-    <div class="app-heading">Which region are you in?</div>
-    <div class="region-grid">
-      <div class="region-card hunza" data-region="hunza" onclick="selectRegion(this)">
-        <div class="rc-name">Hunza</div>
-        <div class="rc-sub">Karimabad · Passu · Gulmit</div>
-      </div>
-      <div class="region-card skardu" data-region="skardu" onclick="selectRegion(this)">
-        <div class="rc-name">Skardu</div>
-        <div class="rc-sub">City · Shigar · Khaplu</div>
-      </div>
-      <div class="region-card gilgit" data-region="gilgit" onclick="selectRegion(this)">
-        <div class="rc-name">Gilgit</div>
-        <div class="rc-sub">City · Naltar · Bagrot</div>
-      </div>
-      <div class="region-card fairy" data-region="fairy" onclick="selectRegion(this)">
-        <div class="rc-name">Fairy Meadows</div>
-        <div class="rc-sub">Tato · Meadow · Base Camp</div>
-      </div>
-      <div class="region-card chilas" data-region="chilas" onclick="selectRegion(this)">
-        <div class="rc-name">Chilas</div>
-        <div class="rc-sub">Town · Raikot · KKH</div>
-      </div>
-      <div class="region-card naran" data-region="naran" onclick="selectRegion(this)">
-        <div class="rc-name">Naran–Kaghan</div>
-        <div class="rc-sub">Naran · Shogran · Babusar</div>
-      </div>
+  <div class="explore-region-grid">
+    <div class="exp-reg-card hunza" onclick="expSelectRegion('hunza',this)">
+      <div class="exp-reg-name">Hunza</div>
+      <div class="exp-reg-sub">Karimabad · Passu</div>
+    </div>
+    <div class="exp-reg-card skardu" onclick="expSelectRegion('skardu',this)">
+      <div class="exp-reg-name">Skardu</div>
+      <div class="exp-reg-sub">City · Shigar</div>
+    </div>
+    <div class="exp-reg-card gilgit" onclick="expSelectRegion('gilgit',this)">
+      <div class="exp-reg-name">Gilgit</div>
+      <div class="exp-reg-sub">City · Naltar</div>
+    </div>
+    <div class="exp-reg-card fairy" onclick="expSelectRegion('fairy',this)">
+      <div class="exp-reg-name">Fairy Meadows</div>
+      <div class="exp-reg-sub">Tato · Meadow</div>
+    </div>
+    <div class="exp-reg-card chilas" onclick="expSelectRegion('chilas',this)">
+      <div class="exp-reg-name">Chilas</div>
+      <div class="exp-reg-sub">Town · Raikot</div>
+    </div>
+    <div class="exp-reg-card naran" onclick="expSelectRegion('naran',this)">
+      <div class="exp-reg-name">Naran–Kaghan</div>
+      <div class="exp-reg-sub">Naran · Babusar</div>
     </div>
   </div>
 
-  <!-- STEP 2: Sub-area -->
-  <div id="step2">
-    <div class="location-trail" id="locationTrail"></div>
-    <span class="app-label">Step 2</span>
-    <div class="app-heading" id="step2Heading">Where exactly?</div>
-    <div class="subarea-list" id="subareaList"></div>
+  <div id="expSubBar" class="exp-sub-bar" style="display:none"></div>
+  <div id="expFilterBar" class="exp-filter-bar" style="display:none">
+    <button class="exp-filter-btn active" data-cat="all" onclick="expFilter(this)">All</button>
+    <button class="exp-filter-btn" data-cat="hotel" onclick="expFilter(this)">🏨 Hotels</button>
+    <button class="exp-filter-btn" data-cat="restaurant" onclick="expFilter(this)">🍽 Restaurants</button>
+    <button class="exp-filter-btn" data-cat="trek" onclick="expFilter(this)">🥾 Treks</button>
+    <button class="exp-filter-btn" data-cat="todo" onclick="expFilter(this)">✦ Things To Do</button>
   </div>
+  <div id="expResults" class="exp-results"></div>
 
-  <!-- STEP 3: Results -->
-  <div id="step3">
-    <div class="location-trail" id="locationTrail3"></div>
-    <div class="filter-bar" id="filterBar">
-      <button class="filter-btn active" data-cat="all" onclick="filterResults(this)">All</button>
-      <button class="filter-btn" data-cat="hotel" onclick="filterResults(this)">🏨 Hotels</button>
-      <button class="filter-btn" data-cat="restaurant" onclick="filterResults(this)">🍽 Restaurants</button>
-      <button class="filter-btn" data-cat="trek" onclick="filterResults(this)">🥾 Treks</button>
-      <button class="filter-btn" data-cat="todo" onclick="filterResults(this)">✦ Things To Do</button>
-    </div>
-    <div class="results-grid" id="resultsGrid"></div>
+  <div class="exp-placeholder" id="expPlaceholder">
+    <div style="font-size:2.5rem">📍</div>
+    <p>Select your region above to find what's nearby.</p>
   </div>
-
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p><div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>
-      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit</a></li></ul></div>
-      <div><div class="footer-col-title">Explore</div><ul class="footer-links"><li><a href="../explore/index.html">Nearby Finder</a></li><li><a href="../trekking/index.html">All Treks</a></li></ul></div>
-      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
-  </div>
-</footer>
+<!-- ── Bottom nav ────────────────────────────────────── -->
+<div class="bot-nav">
+  <button class="bot-tab active" id="tabPlan" onclick="switchTab('plan')">
+    <span class="bot-tab-icon">🗺</span>Plan Trip
+  </button>
+  <button class="bot-tab" id="tabExplore" onclick="switchTab('explore')">
+    <span class="bot-tab-icon">📍</span>Explore
+  </button>
+</div>
 
 <script>
-/* ─────────────────────────────────────────────
-   DATA
-───────────────────────────────────────────── */
+/* ═══════════════════════════ DATA ══════════════════════════ */
 const DATA = {
   hunza: {
-    label: "Hunza Valley",
-    subareas: {
-      karimabad: {
-        label: "Karimabad",
-        items: [
-          { cat:"hotel", name:"Serena Hunza", desc:"The most established hotel in Karimabad. Rooms look directly onto Rakaposhi. Well-maintained, reliable hot water, good in-house restaurant. Book early in summer.", price:"Rs. 12,000–22,000/night", badges:["Mid-range","Mountain view","Restaurant"] },
-          { cat:"hotel", name:"Hunza Serena Inn (Old Fort Road)", desc:"Older property but great location on the ridge above the bazaar. Views from the terrace are exceptional at dawn. Simpler rooms, honest prices.", price:"Rs. 4,500–8,000/night", badges:["Budget-friendly","Terrace view"] },
-          { cat:"hotel", name:"Eagle's Nest Duikar", desc:"40-minute drive above Karimabad at 2,900m. The highest guesthouse in the valley. The view — Rakaposhi, Ladyfinger, Ultar, Diran in one frame — is unlike anything else. Basic rooms but the location is the point.", price:"Rs. 5,000–9,000/night", badges:["Best view in GB","Remote","Bring warm clothes"] },
-          { cat:"hotel", name:"Hidden Paradise Hotel", desc:"Mid-range guesthouse in central Karimabad. Family-run, clean rooms, good wifi. The rooftop is a good spot for evening apricot tea.", price:"Rs. 3,500–6,500/night", badges:["Family-run","Central"] },
-          { cat:"restaurant", name:"Café de Hunza", desc:"The most reliable sit-down restaurant in Karimabad. Chapshuro (meat-filled flatbread), daal, local apricot juice, and a surprisingly good coffee. Tourist-friendly without being a tourist trap.", price:"Rs. 400–900/meal", badges:["Local dishes","Good coffee","Views"] },
-          { cat:"restaurant", name:"Hunza Bazaar Dhabas", desc:"The row of dhabas along the lower bazaar road. Daal, karahi, fresh chapati, and hard-boiled eggs. No ambiance, no menu — point at what you want. Rs. 200–350 fills you up.", price:"Rs. 200–350/meal", badges:["Cheapest in town","Local only"] },
-          { cat:"restaurant", name:"Old Hunza Restaurant", desc:"Slightly uphill from the bazaar. Known for diram phitti (a traditional GB bread-and-soup dish) and mulberry preserves. The kind of place you'll return to every day.", price:"Rs. 350–700/meal", badges:["Traditional GB food","Authentic"] },
-          { cat:"trek", name:"Ultar Sar Base Camp", desc:"A strenuous day hike or easy overnight from Karimabad to the base of Ultar Sar (7,388m). The trail climbs steeply through juniper forest. Views of the Hunza valley from 3,500m are exceptional. No guide needed.", price:"Free · 6–8h return", badges:["Strenuous","No permit","Glacier views"] },
-          { cat:"trek", name:"Rakaposhi Base Camp", desc:"2–3 day trek from Minapin village (30 min from Karimabad). The approach trail is excellent — rhododendron forest, glacier moraine, and a mountain wall that fills the sky. Guide recommended (Rs. 2,500–3,500/day).", price:"Rs. 2,500–3,500/day guide", badges:["2–3 days","Guide recommended","Minapin start"] },
-          { cat:"todo", name:"Baltit Fort", desc:"The 700-year-old fort of the Mir of Hunza, restored by the Aga Khan Trust. Perched above Karimabad with a commanding view of the valley. The interior shows the evolution of the fort across centuries. Entry: Rs. 500. 1–2h visit.", price:"Rs. 500 entry", badges:["UNESCO heritage","1–2h","Essential visit"] },
-          { cat:"todo", name:"Altit Fort", desc:"Older than Baltit (900+ years), 5km down the valley. Less visited, better preserved in some sections, and the village below it is one of the most intact traditional Hunza settlements. Entry: Rs. 300.", price:"Rs. 300 entry", badges:["900 years old","Less crowded","Village walk"] },
-          { cat:"todo", name:"Eagle's Nest Sunrise Hike", desc:"Hike or take a jeep to Duikar above Karimabad for sunrise. The full panorama of 7,000m+ peaks at golden hour is the defining image of Hunza. Leave Karimabad by 4:30am. No guide needed.", price:"Free (hike) / Rs. 800 jeep", badges:["Pre-dawn start","Photography","No guide needed"] },
+    label:"Hunza Valley",
+    minDays:2, recommendedDays:4,
+    transit:{ gilgit:0.25, skardu:0.5, fairy:0.5, chilas:0.3, naran:1 },
+    costs:{ budget:2800, mid:7000, comfort:16000 },
+    subareas:{
+      karimabad:{
+        label:"Karimabad", items:[
+          {cat:"hotel",name:"Eagle's Nest Hotel, Duikar",desc:"Best view in GB — Rakaposhi, Ladyfinger, Ultar, Diran in one frame. 40 min above Karimabad. The location is the entire point.",price:"Rs. 5,000–9,000/night",badges:["Best view in GB","Remote","Cold nights"],costs:{budget:5000,mid:7000,comfort:9000}},
+          {cat:"hotel",name:"Hunza Serena Inn",desc:"Established mid-range hotel. Reliable hot water, good in-house restaurant, views onto Rakaposhi.",price:"Rs. 12,000–22,000/night",badges:["Mid-range","Mountain view"],costs:{budget:12000,mid:16000,comfort:22000}},
+          {cat:"hotel",name:"Hidden Paradise Hotel",desc:"Family-run guesthouse in central Karimabad. Good wifi, rooftop for evening tea, honest prices.",price:"Rs. 3,500–6,500/night",badges:["Family-run","Central","Good wifi"],costs:{budget:3500,mid:5000,comfort:6500}},
+          {cat:"restaurant",name:"Café de Hunza",desc:"Most reliable sit-down restaurant. Chapshuro, daal, local apricot juice, good coffee.",price:"Rs. 400–900/meal",badges:["Local dishes","Good coffee"],costs:{budget:400,mid:600,comfort:900}},
+          {cat:"restaurant",name:"Old Hunza Restaurant",desc:"Known for diram phitti and mulberry preserves. Traditional GB food done well.",price:"Rs. 350–700/meal",badges:["Traditional GB food"],costs:{budget:350,mid:500,comfort:700}},
+          {cat:"restaurant",name:"Hunza Bazaar Dhabas",desc:"Row of dhabas on the lower bazaar road. Daal, karahi, chapati. Rs. 200–350 fills you up.",price:"Rs. 200–350/meal",badges:["Cheapest","Local only"],costs:{budget:250,mid:250,comfort:350}},
+          {cat:"trek",name:"Ultar Sar Base Camp",desc:"Strenuous day hike from Karimabad to the base of 7,388m Ultar Sar. Exceptional views at 3,500m. No guide needed.",price:"Free · 6–8h return",badges:["Strenuous","Free","No permit"],costs:{budget:0,mid:0,comfort:0}},
+          {cat:"todo",name:"Baltit Fort",desc:"700-year-old fort of the Mir of Hunza, meticulously restored. Views of the full valley. Entry Rs. 500.",price:"Rs. 500 entry",badges:["UNESCO heritage","Essential"],costs:{budget:500,mid:500,comfort:500}},
+          {cat:"todo",name:"Eagle's Nest Sunrise",desc:"Hike or jeep to Duikar for sunrise. Full 7,000m+ panorama at golden hour. Leave Karimabad by 4:30am.",price:"Free / Rs. 800 jeep",badges:["Pre-dawn","Photography"],costs:{budget:0,mid:800,comfort:800}},
         ]
       },
-      passu: {
-        label: "Passu",
-        items: [
-          { cat:"hotel", name:"Passu Inn", desc:"Simple but clean guesthouse directly below the Passu Cones. The terrace has an unobstructed view of the spires. Reliable food, basic rooms. The best value stay in Upper Hunza.", price:"Rs. 2,500–5,000/night", badges:["Best location","Budget","Views of Cones"] },
-          { cat:"hotel", name:"Batura Inn", desc:"At the mouth of the Batura Glacier, 3km past Passu village. Completely isolated. If you want silence and a 7,700m+ glacier at your door, this is where to stay.", price:"Rs. 2,000–4,000/night", badges:["Isolated","Glacier access","Very basic"] },
-          { cat:"restaurant", name:"Passu Village Guesthouses", desc:"Every guesthouse in Passu serves simple home-cooked meals. Daal, rice, local bread, and apricot products. There are no standalone restaurants — eat where you sleep or ask a villager.", price:"Rs. 300–600/meal", badges:["Home cooked","Included with stay"] },
-          { cat:"trek", name:"Passu Glacier Day Hike", desc:"A 3–4 hour return hike from the village to the snout of the Passu Glacier. The approach crosses the iconic suspension bridge over the Hunza River. No guide needed. Easy to moderate.", price:"Free · 3–4h return", badges:["Easy-moderate","No guide","Suspension bridge"] },
-          { cat:"trek", name:"Shimshal Pass Trek", desc:"A multi-day expedition-level trek to Shimshal village — one of GB's most remote communities. 4–5 days each way through high mountain desert. Requires guide and permit. Not for beginners.", price:"Guide required · Rs. 4,000–6,000/day", badges:["Multi-day","Remote","Permit required"] },
-          { cat:"todo", name:"Passu Cones Viewpoint", desc:"The six jagged limestone spires are visible from the KKH but the best view is 20 minutes off the road across the suspension bridge. Free, takes 45 minutes round trip, and the photo from the bridge is the most iconic in Upper Hunza.", price:"Free · 45 min", badges:["Iconic view","Free","Short walk"] },
-          { cat:"todo", name:"Batura Glacier Walk", desc:"Walk to the terminal moraine of the Batura Glacier — one of the longest glaciers outside the polar regions at 57km. The scale is disorienting. Safe to walk on the lower moraine. 2–3h from the village.", price:"Free · 2–3h", badges:["Free","Glacier","Moderate walk"] },
+      passu:{
+        label:"Passu", items:[
+          {cat:"hotel",name:"Passu Inn",desc:"Simple guesthouse directly below the Passu Cones. Terrace with unobstructed view of the spires. Best value in Upper Hunza.",price:"Rs. 2,500–5,000/night",badges:["Views of Cones","Budget"],costs:{budget:2500,mid:3500,comfort:5000}},
+          {cat:"restaurant",name:"Passu Guesthouse Meals",desc:"Every guesthouse serves home-cooked meals. Daal, rice, local bread, apricot products.",price:"Rs. 300–600/meal",badges:["Home cooked"],costs:{budget:300,mid:450,comfort:600}},
+          {cat:"trek",name:"Passu Glacier Day Hike",desc:"3–4h return hike to the glacier snout across the iconic suspension bridge. No guide needed.",price:"Free · 3–4h return",badges:["Easy-moderate","Free","Suspension bridge"],costs:{budget:0,mid:0,comfort:0}},
+          {cat:"todo",name:"Passu Cones Viewpoint",desc:"Best view 20 minutes off the road across the bridge. Free, 45 min round trip. Most iconic photo in Upper Hunza.",price:"Free · 45 min",badges:["Iconic","Free"],costs:{budget:0,mid:0,comfort:0}},
         ]
       },
-      gulmit: {
-        label: "Gulmit",
-        items: [
-          { cat:"hotel", name:"Marco Polo Inn Gulmit", desc:"Long-running guesthouse that was once the main stop for Silk Road overlanders. Basic rooms, good hospitality, and a genuine old-world feel. The family has been hosting travellers since the KKH opened.", price:"Rs. 2,000–4,500/night", badges:["Historic","Family-run","Silk Road era"] },
-          { cat:"hotel", name:"Gulmit Tourist Inn", desc:"Clean mid-range option in the village centre. Good mountain views from the upper rooms. Reliable meals included.", price:"Rs. 3,000–5,500/night", badges:["Mid-range","Meals available"] },
-          { cat:"restaurant", name:"Village Guesthouse Kitchens", desc:"Gulmit has no standalone restaurants. Every guesthouse serves meals — typically daal, rice, chapati, omelettes, and seasonal local produce. Ask for local dishes specifically.", price:"Rs. 250–500/meal", badges:["Home cooked","Ask for local dishes"] },
-          { cat:"trek", name:"Ghulkin Glacier Trek", desc:"A 2–3 hour return trek from Gulmit village to the Ghulkin Glacier snout. The glacier has retreated significantly — the moraine walk is rough but the ice face at the end is striking.", price:"Free · 2–3h return", badges:["Easy-moderate","Free","Glacier"] },
-          { cat:"todo", name:"Gulmit Village Walk", desc:"One of the best-preserved traditional Hunza villages, with carved wooden houses, apricot orchards, and a small polo ground used on festival days. No entry fee, no guide needed. Wander freely and respectfully.", price:"Free", badges:["Cultural","Free","Polo ground"] },
-          { cat:"todo", name:"Attabad Lake Boat Ride", desc:"Attabad Lake is 15km south of Gulmit — formed by a 2010 landslide that drowned 5 villages. The turquoise water against the rock walls is extraordinary. Boat rides: Rs. 500–1,500 per person. Hire from Attabad village.", price:"Rs. 500–1,500 boat", badges:["15km from Gulmit","Unique landscape","Boat available"] },
-        ]
-      },
-      aliabad: {
-        label: "Aliabad",
-        items: [
-          { cat:"hotel", name:"Mountain Refuge Aliabad", desc:"Budget guesthouse in Aliabad town, the commercial centre of Hunza below Karimabad. Useful if Karimabad is full. 15 minutes uphill to the fort and bazaar.", price:"Rs. 1,800–3,500/night", badges:["Budget","Commercial centre"] },
-          { cat:"hotel", name:"Hunza Elites Hotel", desc:"One of the newer mid-range options in Aliabad with consistent hot water and wifi. Good restaurant on-site. More business-oriented than the mountain guesthouses above.", price:"Rs. 4,500–8,000/night", badges:["Reliable amenities","Restaurant"] },
-          { cat:"restaurant", name:"Aliabad Bazaar Restaurants", desc:"The bazaar has several proper restaurants serving northern Pakistani food — karahi, daal, nihari. More variety than Karimabad at lower prices. Good for a full meal before the drive north.", price:"Rs. 300–600/meal", badges:["More variety","Lower prices"] },
-          { cat:"restaurant", name:"Rakaposhi View Café", desc:"A small café on the main road with a clear view of Rakaposhi. Known for local apricot products, fresh walnut oil, and simple breakfasts. Good stop before an early start.", price:"Rs. 200–450/meal", badges:["Mountain view","Breakfast","Apricot products"] },
-          { cat:"todo", name:"Hunza Bazaar Shopping", desc:"Aliabad's bazaar is the best place to buy local products: dried apricots, walnut oil, apricot kernel oil, embroidered caps, and local honey. Prices are lower here than in Karimabad. No fixed prices — negotiate.", price:"Variable", badges:["Local produce","Better prices","Negotiable"] },
-        ]
-      },
-      nagar: {
-        label: "Nagar",
-        items: [
-          { cat:"hotel", name:"Nagar Inn", desc:"The main guesthouse in Nagar valley, on the south side of the Hunza River opposite Karimabad. Few tourists cross the river — Nagar is quieter, the views of the Hunza valley from here are different and excellent.", price:"Rs. 2,000–4,000/night", badges:["Quiet side","Different perspective","Value"] },
-          { cat:"trek", name:"Hispar Glacier Trek", desc:"The Hispar Glacier at Nagar's head is 53km long — one of the longest valley glaciers in the world outside the polar regions. The entry walk from Hispar village to the snout is a full day return. Multi-day expeditions continue to Snow Lake.", price:"Rs. 3,000–5,000/day guide", badges:["Major glacier","Multi-day option","Guide required"] },
-          { cat:"trek", name:"Rush Lake Trek", desc:"A 2-day trek from Minapin to Rush Lake (4,694m), one of the highest lakes in the world accessible without technical climbing. The views from the lake ridge — Rakaposhi, Diran, the Hunza valley — are extraordinary.", price:"Guide recommended · Rs. 2,500/day", badges:["2 days","4,694m","World's highest lakes"] },
-          { cat:"todo", name:"Hopper Glacier Walk", desc:"A 2–3 hour walk from Hopper village (Nagar) to the Hopper Glacier snout. The glacier is retreating rapidly — the scale of the remaining ice is still striking. Ask in the village for the current trail.", price:"Free · 2–3h", badges:["Free","Retreating glacier","Easy walk"] },
-        ]
-      }
+      gulmit:{ label:"Gulmit", items:[
+        {cat:"hotel",name:"Marco Polo Inn",desc:"Long-running guesthouse since KKH opened. Old-world feel, great hospitality.",price:"Rs. 2,000–4,500/night",badges:["Historic","Silk Road era"],costs:{budget:2000,mid:3000,comfort:4500}},
+        {cat:"trek",name:"Ghulkin Glacier Trek",desc:"2–3h return to Ghulkin Glacier snout from Gulmit. Ice face at the end is striking.",price:"Free · 2–3h return",badges:["Free","Glacier"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Attabad Lake Boat Ride",desc:"15km south — turquoise lake formed by 2010 landslide. Boat rides Rs. 500–1,500.",price:"Rs. 500–1,500 boat",badges:["15km away","Unique landscape"],costs:{budget:500,mid:1000,comfort:1500}},
+      ]},
+      aliabad:{ label:"Aliabad", items:[
+        {cat:"hotel",name:"Hunza Elites Hotel",desc:"Mid-range option with consistent hot water, wifi, and restaurant. More business-oriented.",price:"Rs. 4,500–8,000/night",badges:["Reliable amenities"],costs:{budget:4500,mid:6000,comfort:8000}},
+        {cat:"restaurant",name:"Aliabad Bazaar Restaurants",desc:"More variety than Karimabad at lower prices. Karahi, daal, nihari.",price:"Rs. 300–600/meal",badges:["More variety","Lower prices"],costs:{budget:300,mid:450,comfort:600}},
+        {cat:"todo",name:"Hunza Bazaar Shopping",desc:"Best place for local produce: dried apricots, walnut oil, embroidered caps, local honey.",price:"Variable",badges:["Local produce","Better prices"],costs:{budget:500,mid:1000,comfort:2000}},
+      ]},
+      nagar:{ label:"Nagar", items:[
+        {cat:"hotel",name:"Nagar Inn",desc:"Quieter south side of Hunza River. Different and excellent views of the valley.",price:"Rs. 2,000–4,000/night",badges:["Quiet side","Value"],costs:{budget:2000,mid:3000,comfort:4000}},
+        {cat:"trek",name:"Rush Lake Trek",desc:"2-day trek to Rush Lake (4,694m) — one of the highest lakes in the world reachable without climbing gear.",price:"Guide recommended · Rs. 2,500/day",badges:["2 days","4,694m"],costs:{budget:5000,mid:7000,comfort:10000}},
+      ]},
     }
   },
-
   skardu: {
-    label: "Skardu",
-    subareas: {
-      skardu_city: {
-        label: "Skardu City",
-        items: [
-          { cat:"hotel", name:"Mashabrum Hotel", desc:"One of Skardu's long-established mid-range hotels near the bazaar. Clean rooms, reliable staff, good food. The rooftop has views of Kharpocho Fort on the hill above.", price:"Rs. 5,000–10,000/night", badges:["Central","Mid-range","Fort views"] },
-          { cat:"hotel", name:"K2 Motel", desc:"Budget option near the bus stand. Functional, clean, and a good base for early morning departures. No frills but no problems either.", price:"Rs. 1,800–3,500/night", badges:["Budget","Near bus stand"] },
-          { cat:"hotel", name:"Concordia Motel", desc:"Popular with trekking groups staging for the Baltoro. Has a gear storage room, experienced staff who know the K2 approach, and a cook who makes a proper pre-trek breakfast at 4am.", price:"Rs. 4,000–8,000/night", badges:["Trekkers' base","4am breakfast","Gear storage"] },
-          { cat:"restaurant", name:"Skardu Bazaar Dhabas (Main Chowk)", desc:"The cluster of dhabas around Main Chowk serve some of the best karahi in the north. Order the mutton karahi with fresh naan. Rs. 400–600 for a full meal. Busy at lunch and dinner.", price:"Rs. 300–600/meal", badges:["Best karahi","Local only","No menu"] },
-          { cat:"restaurant", name:"Karakoram Bakery", desc:"The most popular bakery in Skardu. Opens early, closes when the bread runs out. Fresh samosas, buns, and local flatbreads. Critical for stocking up before a trek departure.", price:"Rs. 50–200/item", badges:["Bakery","Early opening","Pre-trek supply"] },
-          { cat:"restaurant", name:"Hunza Restaurant Skardu", desc:"A slightly upmarket option near the polo ground. Serves both local and Pakistani dishes. The daal makhni and chapati are reliable. Cleaner than the dhabas with a proper seating area.", price:"Rs. 450–850/meal", badges:["Sit-down","Clean","Local + Pakistani"] },
-          { cat:"trek", name:"Kharpocho Fort Hike", desc:"A 1.5–2 hour hike from the bazaar up to Kharpocho Fort at 2,800m. The fort dates from the 16th century. The view of the Skardu valley, the Indus, and the surrounding desert ranges from the top is one of the best accessible viewpoints in the region.", price:"Free · 1.5–2h return", badges:["Free","16th century fort","360° views"] },
-          { cat:"todo", name:"Katpana Desert (Cold Desert)", desc:"A sand desert at 2,500m — one of the world's highest cold deserts. 15 minutes from Skardu city. The dunes against the snowfields in the background is one of GB's most bizarre and photogenic landscapes.", price:"Free · 15 min from city", badges:["Unique landscape","Free","Photogenic"] },
-          { cat:"todo", name:"Satpara Lake", desc:"A blue glacial lake 10km from Skardu, source of the city's drinking water. The drive up follows the Satpara stream through a narrow gorge. Boats available: Rs. 800–1,500. The Buddha rock carving near the lake entrance is 1,500 years old.", price:"Free entry · boats Rs. 800–1,500", badges:["Glacial lake","Buddha carving","10km from city"] },
-          { cat:"todo", name:"Skardu Polo Ground", desc:"Matches happen most Sundays from April to September. Free entry. The polo here is the raw, unhelmeted, fast version — completely different from anything you'll see elsewhere. Ask your guesthouse for the upcoming schedule.", price:"Free", badges:["Free","Sunday matches","Unmissable"] },
-        ]
-      },
-      shigar: {
-        label: "Shigar Valley",
-        items: [
-          { cat:"hotel", name:"Serena Shigar Fort", desc:"A 17th-century fort converted into Pakistan's most atmospheric hotel by the Serena group. 20 rooms inside the original fort structure. Expensive but genuinely extraordinary. The garden and common areas are open to non-guests for tea.", price:"Rs. 25,000–45,000/night", badges:["Iconic","17th-century fort","Special occasion"] },
-          { cat:"hotel", name:"Shigar Valley Guesthouse", desc:"Budget option in Shigar town below the fort. Good base for valley exploration. The family runs a small orchard — fresh apricots in season are included at breakfast.", price:"Rs. 2,000–4,000/night", badges:["Budget","Orchard","Below the fort"] },
-          { cat:"restaurant", name:"Shigar Village Eateries", desc:"Small tea stalls and a couple of dhabas in Shigar town. Simple meals, cold drinks, and excellent locally grown apricots in season. Nothing formal.", price:"Rs. 200–450/meal", badges:["Simple","Local apricots","Tea stalls"] },
-          { cat:"trek", name:"Shigar Valley Walk", desc:"A full-day valley walk along the Shigar River through traditional villages, apricot orchards, and past carved wooden mosques. No guide needed. The villages of Chutron and Marko are the most intact.", price:"Free · full day", badges:["Cultural walk","Free","No guide needed"] },
-          { cat:"todo", name:"Shigar Fort Visit", desc:"Even if not staying, walk up to the Shigar Fort. The restoration work is meticulous — the carved wooden interiors, the inner garden, and the views down the valley are all exceptional. Rs. 500 entry for non-guests.", price:"Rs. 500 non-guests", badges:["Must-visit","Restored 17th-century","Gardens"] },
-          { cat:"todo", name:"Apricot Harvest (July–August)", desc:"Shigar grows some of the best apricots in the world. In July and August the whole valley is in harvest. Ask at any farmhouse if you can help pick — most families welcome it and will send you off with a bag.", price:"Free (seasonal)", badges:["July–August only","Cultural","Hands-on"] },
-        ]
-      },
-      khaplu: {
-        label: "Khaplu",
-        items: [
-          { cat:"hotel", name:"Khaplu Palace (Serena)", desc:"A 19th-century Balti palace converted into a boutique hotel by Serena. The palace is in better condition than the Shigar Fort and the surrounding Ghanche valley is less visited. A genuine hidden gem of the Serena properties.", price:"Rs. 20,000–38,000/night", badges:["19th-century palace","Less visited","Extraordinary"] },
-          { cat:"hotel", name:"Khaplu Grand Hotel", desc:"The main budget-to-mid option in Khaplu town. Clean rooms, roof terrace, and a kitchen that does a proper daal and rice. Good base for the Ghanche valley treks.", price:"Rs. 2,500–5,500/night", badges:["Good value","Roof terrace","Ghanche base"] },
-          { cat:"restaurant", name:"Khaplu Town Dhabas", desc:"A row of dhabas along the main road. The chai here is notably better than Skardu — made with local milk. Trout from the Shyok River occasionally appears on the menu.", price:"Rs. 250–500/meal", badges:["Good chai","Fresh trout occasional","Local"] },
-          { cat:"trek", name:"Ghanche Valley Trek", desc:"Several multi-day options from Khaplu into the high valleys above the Shyok River. The Hushe Valley is accessible from here — gateway to Masherbrum and Laila Peak base camps.", price:"Guide required · Rs. 3,500–5,000/day", badges:["Multi-day","Hushe Valley access","Guide required"] },
-          { cat:"todo", name:"Khaplu Palace Gardens", desc:"The Khaplu Palace gardens and outer walls can be visited even if not staying. The view from the palace terrace across the Ghanche valley — glaciers visible at three compass points — is worth the 2-hour drive from Skardu.", price:"Rs. 400 non-guests", badges:["2h from Skardu","Valley views","Heritage"] },
-        ]
-      },
-      satpara: {
-        label: "Satpara",
-        items: [
-          { cat:"hotel", name:"Satpara Lake Camping", desc:"No formal hotels at Satpara — the area is managed as a water catchment. Camping is allowed on the southern shore with permission from the local chowkidar. Extremely dark skies, very quiet.", price:"Rs. 500 camping fee", badges:["Camping only","Dark skies","Permission needed"] },
-          { cat:"trek", name:"Satpara Lake to Upper Satpara", desc:"Walk beyond the lake into the upper valley for 2–3 hours. The valley narrows into a gorge with a stream and wildflowers in season. No formal trail — follow the water. Return the same way.", price:"Free · 4–6h return", badges:["Free","Wild trail","No guide needed"] },
-          { cat:"todo", name:"Buddha Rock Carving", desc:"A 1,500-year-old seated Buddha carved into a boulder near the Satpara Lake entrance. Easy to miss — it's on the left side of the road 500m before the lake. One of several ancient Buddhist carvings in the Skardu region.", price:"Free", badges:["1,500 years old","Free","Easy to miss"] },
-          { cat:"todo", name:"Satpara Boat Ride", desc:"Rowboats available at the lake: Rs. 800–1,500 for 30–45 minutes. The lake is surrounded by the Satpara range on three sides. The reflection of the mountains in the still morning water is the main draw.", price:"Rs. 800–1,500", badges:["Boat available","Morning best","Mountain reflection"] },
-        ]
-      }
+    label:"Skardu", minDays:2, recommendedDays:4,
+    transit:{ hunza:0.5, gilgit:0.5, fairy:1, chilas:0.5, naran:1 },
+    costs:{ budget:3000, mid:7500, comfort:18000 },
+    subareas:{
+      skardu_city:{ label:"Skardu City", items:[
+        {cat:"hotel",name:"Mashabrum Hotel",desc:"Established mid-range near bazaar. Views of Kharpocho Fort from rooftop.",price:"Rs. 5,000–10,000/night",badges:["Central","Fort views"],costs:{budget:5000,mid:7500,comfort:10000}},
+        {cat:"hotel",name:"K2 Motel",desc:"Budget option near bus stand. Functional, clean. Good for early departures.",price:"Rs. 1,800–3,500/night",badges:["Budget","Bus stand"],costs:{budget:1800,mid:2500,comfort:3500}},
+        {cat:"restaurant",name:"Skardu Bazaar Dhabas (Main Chowk)",desc:"Best karahi in the north. Mutton karahi with fresh naan. Rs. 400–600 for a full meal.",price:"Rs. 300–600/meal",badges:["Best karahi","Local"],costs:{budget:350,mid:500,comfort:600}},
+        {cat:"restaurant",name:"Karakoram Bakery",desc:"Most popular bakery. Opens early, closes when bread runs out. Critical pre-trek supply stop.",price:"Rs. 50–200/item",badges:["Early opening","Pre-trek"],costs:{budget:200,mid:300,comfort:400}},
+        {cat:"trek",name:"Kharpocho Fort Hike",desc:"1.5–2h hike to 16th-century fort at 2,800m. Best accessible viewpoint in Skardu.",price:"Free · 1.5–2h return",badges:["Free","16th century","360° views"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Katpana Cold Desert",desc:"Sand desert at 2,500m — one of the world's highest. 15 min from city. Surreal landscape.",price:"Free · 15 min",badges:["Unique","Free"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Satpara Lake",desc:"Blue glacial lake 10km from Skardu. 1,500-year-old Buddha carving at entrance. Boats available.",price:"Free · boats Rs. 800–1,500",badges:["Glacial lake","Buddha carving"],costs:{budget:0,mid:800,comfort:1500}},
+      ]},
+      shigar:{ label:"Shigar Valley", items:[
+        {cat:"hotel",name:"Serena Shigar Fort",desc:"17th-century fort converted into Pakistan's most atmospheric hotel. 20 rooms inside the original fort.",price:"Rs. 25,000–45,000/night",badges:["Iconic","17th-century fort"],costs:{budget:25000,mid:35000,comfort:45000}},
+        {cat:"hotel",name:"Shigar Valley Guesthouse",desc:"Budget option in Shigar town. Fresh apricots from the family orchard at breakfast.",price:"Rs. 2,000–4,000/night",badges:["Budget","Orchard"],costs:{budget:2000,mid:3000,comfort:4000}},
+        {cat:"todo",name:"Shigar Fort Visit",desc:"Even without staying, visit the fort. Carved wooden interiors, inner garden, valley views. Rs. 500.",price:"Rs. 500 non-guests",badges:["Must-visit","Restored"],costs:{budget:500,mid:500,comfort:500}},
+      ]},
+      khaplu:{ label:"Khaplu", items:[
+        {cat:"hotel",name:"Khaplu Palace (Serena)",desc:"19th-century Balti palace hotel. Less visited than Shigar, equally extraordinary.",price:"Rs. 20,000–38,000/night",badges:["19th-century","Hidden gem"],costs:{budget:20000,mid:28000,comfort:38000}},
+        {cat:"hotel",name:"Khaplu Grand Hotel",desc:"Budget-to-mid option. Roof terrace, good daal and rice. Good Ghanche valley base.",price:"Rs. 2,500–5,500/night",badges:["Good value","Roof terrace"],costs:{budget:2500,mid:4000,comfort:5500}},
+      ]},
+      satpara:{ label:"Satpara", items:[
+        {cat:"hotel",name:"Satpara Lake Camping",desc:"No hotels — camping on southern shore with permission. Extremely dark skies.",price:"Rs. 500 camping fee",badges:["Camping only","Dark skies"],costs:{budget:500,mid:500,comfort:500}},
+        {cat:"todo",name:"Satpara Boat Ride",desc:"Rowboats on the glacial lake. Surrounded by peaks on three sides. Morning light is best.",price:"Rs. 800–1,500",badges:["Morning best","Mountain reflection"],costs:{budget:800,mid:1200,comfort:1500}},
+      ]},
     }
   },
-
   gilgit: {
-    label: "Gilgit",
-    subareas: {
-      gilgit_city: {
-        label: "Gilgit City",
-        items: [
-          { cat:"hotel", name:"Serena Gilgit", desc:"The most established hotel in Gilgit. Consistent quality, good restaurant, reliable hot water and wifi. The garden is one of the nicest outdoor spaces in the city. A genuine step up from the guesthouses.", price:"Rs. 8,000–16,000/night", badges:["Best in city","Garden","Restaurant"] },
-          { cat:"hotel", name:"Park Hotel", desc:"Mid-range stalwart on the main road. Popular with business travellers and trekking groups. The dining room has reliable food and the staff know the bus and flight schedules by heart.", price:"Rs. 3,500–7,000/night", badges:["Central","Reliable","Trekkers welcome"] },
-          { cat:"hotel", name:"Gilgit Guest Inn", desc:"Budget option near the bazaar. Functional rooms, shared bathrooms at the lower end, private at the higher. Good if you're only passing through for a night.", price:"Rs. 1,200–2,800/night", badges:["Budget","Central","Passing through"] },
-          { cat:"restaurant", name:"Madina Restaurant", desc:"One of Gilgit's longest-running restaurants. The nihari and paya in the morning and the karahi in the evening are both excellent. Seating is basic but the food is consistent.", price:"Rs. 350–700/meal", badges:["Local institution","Nihari breakfast","Karahi dinner"] },
-          { cat:"restaurant", name:"Gilgit Bazaar Dhabas", desc:"The dhabas along the main bazaar produce the best daal in the region. Order daal with fresh chapati and a hard-boiled egg. Rs. 200–300. Morning is busiest and freshest.", price:"Rs. 200–350/meal", badges:["Best daal","Cheapest option","Morning fresh"] },
-          { cat:"restaurant", name:"Café One (Airport Road)", desc:"A slightly newer café near the airport road with proper espresso, sandwiches, and a menu that acknowledges the existence of vegetables. Popular with younger locals and foreign travellers.", price:"Rs. 400–800/meal", badges:["Coffee","Modern","Near airport"] },
-          { cat:"trek", name:"Kargah Nullah Hike", desc:"A 2–3 hour return hike from the road to the 7th-century Kargah Buddha rock carving. The trail follows a stream gorge with willow trees. The carving is 3m tall and cut into orange rock — one of the most undervisited ancient sites in GB.", price:"Free · 2–3h return", badges:["Free","7th century carving","Easy"] },
-          { cat:"todo", name:"Gilgit Bazaar", desc:"The main market runs along the central road. Dried apricots, walnut oil, local embroidery, trekking gear, Chitrali caps. The fruit sellers at the outer lanes are the best in GB. Best in the morning before the heat.", price:"Free", badges:["Best fruit in GB","Trekking gear","Morning best"] },
-          { cat:"todo", name:"Sunday Polo Match", desc:"Gilgit polo ground hosts local matches most weekends. Free entry. The fastest, most physical polo you'll see — no helmets, no fouls, crowd of hundreds. Ask at your guesthouse for the schedule.", price:"Free", badges:["Free","Weekend","Unmissable"] },
-          { cat:"todo", name:"Gilgit–Hunza River Confluence", desc:"2km north of the city where the Gilgit and Hunza rivers meet between bare rock walls. Best at golden hour. Take a rickshaw (Rs. 100) or walk in 25 minutes.", price:"Free", badges:["Free","Golden hour","Rickshaw Rs.100"] },
-        ]
-      },
-      naltar: {
-        label: "Naltar Valley",
-        items: [
-          { cat:"hotel", name:"Naltar Lake Guesthouse", desc:"A basic but clean guesthouse near the three glacial lakes. Open June–September. The surrounding pine forest and lake reflections make this one of the most atmospheric stays in the Gilgit district.", price:"Rs. 2,500–5,000/night", badges:["Lake views","Pine forest","June–Sep only"] },
-          { cat:"hotel", name:"PAF Naltar Guesthouse", desc:"The Pakistan Air Force runs a small guesthouse at their Naltar facility (also home to the ski resort). Available to civilians with advance booking. Reliable and well-maintained.", price:"Rs. 3,000–5,500/night", badges:["PAF facility","Advance booking","Reliable"] },
-          { cat:"restaurant", name:"Naltar Village Chai Stalls", desc:"Small tea stalls in Naltar village serve chai, omelettes, and chapati. Nothing formal — bring your own supplies for anything more substantial.", price:"Rs. 100–300", badges:["Chai only","Simple","Bring supplies"] },
-          { cat:"trek", name:"Naltar Blue & Red Lakes", desc:"A 4–5 hour return hike from the upper road to the Blue and Red Lakes at 3,200m. The two lakes are adjacent and have different colours due to mineral content. One of the easiest rewarding treks from Gilgit — accessible to anyone reasonably fit.", price:"Free · 4–5h return", badges:["Easy-moderate","Two lakes","Free"] },
-          { cat:"todo", name:"Naltar Ski Resort (Winter)", desc:"Pakistan's only ski resort. Open January–February depending on snowfall. Basic facilities — a T-bar lift, a ski patrol hut, rental equipment of mixed quality. The powder snow on the upper slopes is genuinely world-class.", price:"Rs. 800–1,500/day", badges:["Jan–Feb only","Unique in Pakistan","Good powder"] },
-          { cat:"todo", name:"Naltar Autumn Colours", desc:"October in Naltar means larch trees turn gold across the entire valley floor. The reflection in the lakes is one of GB's best photographs. Visit the last week of October before the road closes.", price:"Free", badges:["October only","Best autumn in GB","Photography"] },
-        ]
-      },
-      bagrot: {
-        label: "Bagrot Valley",
-        items: [
-          { cat:"hotel", name:"Bagrot Valley Inn", desc:"Simple guesthouse at the valley's main village. Run by a local farming family. The valley is almost entirely off the tourist circuit — you'll have it largely to yourself.", price:"Rs. 1,500–3,000/night", badges:["Off-circuit","Family-run","Very quiet"] },
-          { cat:"trek", name:"Diran Peak Approach", desc:"Bagrot Valley provides one of the access routes to Diran Peak (7,257m). The approach walk through the valley and up to the base camp is a stunning 2-day trek, almost entirely unvisited.", price:"Guide recommended · Rs. 2,500–3,500/day", badges:["2 days","7,257m peak","Almost no tourists"] },
-          { cat:"todo", name:"Bagrot Valley Village Walk", desc:"A 4–5 hour walk through the traditional villages of the lower Bagrot Valley. Carved wooden mosques, terraced wheat fields, and views of Diran. No entry fees, no guides needed. The valley road ends after 30km — take a jeep from Gilgit (Rs. 1,500–2,500 return).", price:"Free · jeep Rs. 1,500–2,500", badges:["Cultural walk","Free","Jeep from Gilgit"] },
-        ]
-      }
+    label:"Gilgit", minDays:1, recommendedDays:2,
+    transit:{ hunza:0.25, skardu:0.5, fairy:0.25, chilas:0.25, naran:1 },
+    costs:{ budget:2500, mid:6000, comfort:14000 },
+    subareas:{
+      gilgit_city:{ label:"Gilgit City", items:[
+        {cat:"hotel",name:"Serena Gilgit",desc:"Most established hotel in Gilgit. Consistent quality, good restaurant, reliable wifi. Garden is exceptional.",price:"Rs. 8,000–16,000/night",badges:["Best in city","Garden"],costs:{budget:8000,mid:12000,comfort:16000}},
+        {cat:"hotel",name:"Park Hotel",desc:"Mid-range stalwart on main road. Popular with trekkers. Staff know bus and flight schedules.",price:"Rs. 3,500–7,000/night",badges:["Central","Trekkers welcome"],costs:{budget:3500,mid:5000,comfort:7000}},
+        {cat:"hotel",name:"Gilgit Guest Inn",desc:"Budget option near bazaar. Good if you're passing through for one night.",price:"Rs. 1,200–2,800/night",badges:["Budget","Central"],costs:{budget:1200,mid:2000,comfort:2800}},
+        {cat:"restaurant",name:"Madina Restaurant",desc:"Gilgit institution. Nihari in the morning, karahi in the evening. Both excellent.",price:"Rs. 350–700/meal",badges:["Local institution","Nihari"],costs:{budget:350,mid:500,comfort:700}},
+        {cat:"restaurant",name:"Café One",desc:"Espresso, sandwiches, a menu that knows vegetables exist. Popular with travellers.",price:"Rs. 400–800/meal",badges:["Good coffee","Modern"],costs:{budget:400,mid:600,comfort:800}},
+        {cat:"trek",name:"Kargah Buddha Hike",desc:"2–3h return to 7th-century rock carving in a gorge. Most undervisited ancient site in GB.",price:"Free · 2–3h return",badges:["Free","7th century"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Sunday Polo Match",desc:"Fastest, most physical polo you'll see. No helmets, huge crowd. Free entry. Weekends April–Sep.",price:"Free",badges:["Free","Unmissable"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Gilgit–Hunza Confluence",desc:"2km north, where the rivers meet between bare rock walls. Best at golden hour.",price:"Free · rickshaw Rs. 100",badges:["Free","Golden hour"],costs:{budget:100,mid:100,comfort:100}},
+      ]},
+      naltar:{ label:"Naltar Valley", items:[
+        {cat:"hotel",name:"Naltar Lake Guesthouse",desc:"Near the three glacial lakes. Open June–Sep. Pine forest and lake reflections.",price:"Rs. 2,500–5,000/night",badges:["Lake views","Pine forest"],costs:{budget:2500,mid:3500,comfort:5000}},
+        {cat:"trek",name:"Naltar Blue & Red Lakes",desc:"4–5h return to two adjacent lakes with different colours at 3,200m. Best easy trek from Gilgit.",price:"Free · 4–5h return",badges:["Easy-moderate","Two lakes"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Naltar Autumn Colours",desc:"October: larch trees turn gold across the valley. Reflection in lakes is spectacular.",price:"Free",badges:["October only","Photography"],costs:{budget:0,mid:0,comfort:0}},
+      ]},
+      bagrot:{ label:"Bagrot Valley", items:[
+        {cat:"hotel",name:"Bagrot Valley Inn",desc:"Off-circuit, family-run. Almost entirely untouched by tourism. Very quiet.",price:"Rs. 1,500–3,000/night",badges:["Off-circuit","Very quiet"],costs:{budget:1500,mid:2000,comfort:3000}},
+        {cat:"todo",name:"Bagrot Valley Walk",desc:"4–5h walk through traditional villages. Carved wooden mosques, terraced fields, Diran views.",price:"Free · jeep Rs. 1,500–2,500",badges:["Cultural walk","Free"],costs:{budget:1500,mid:2000,comfort:2500}},
+      ]},
     }
   },
-
   fairy: {
-    label: "Fairy Meadows",
-    subareas: {
-      tato: {
-        label: "Tato Village",
-        items: [
-          { cat:"hotel", name:"Tato Village Guesthouses", desc:"Several simple guesthouses at Tato (2,900m), the end of the jeep track. Useful for acclimatisation before the hike up. Some travellers prefer sleeping here and hiking up fresh in the morning.", price:"Rs. 1,000–2,500/night", badges:["Acclimatisation","End of jeep track","Simple"] },
-          { cat:"restaurant", name:"Tato Chai Stalls", desc:"A couple of tea stalls at the trailhead. Chai, boiled eggs, and chapati available. Stock up with water and snacks before the hike to the meadow.", price:"Rs. 100–250", badges:["Trailhead","Chai & eggs","Stock up here"] },
-          { cat:"todo", name:"Horse Hire to Fairy Meadows", desc:"Horses available at Tato for the 400m climb to the meadow. Rs. 1,500 each way. Worth considering for children, heavy bags, or anyone with altitude sensitivity. Horses return same day or can be kept overnight.", price:"Rs. 1,500 each way", badges:["Horse available","Good for families","Heavy bags"] },
-        ]
-      },
-      meadow: {
-        label: "Fairy Meadows",
-        items: [
-          { cat:"hotel", name:"Raikot Sarai (Wooden Huts)", desc:"The original and best-located hut camp at the meadow. The northeast-facing huts look directly up the Raikot Face of Nanga Parbat. Meals included. Book through the Chilas-based operators or on arrival.", price:"Rs. 2,000–3,500/night incl. meals", badges:["Best location","Meals included","Northeast facing"] },
-          { cat:"hotel", name:"Beyal Camp Guesthouses", desc:"A small cluster of huts above the main meadow at ~3,500m, 2–3h further up the trail. Better angle on the Nanga Parbat faces. Very basic. Only open July–August.", price:"Rs. 1,500–2,500/night", badges:["Higher viewpoint","July–Aug only","Very basic"] },
-          { cat:"hotel", name:"Camping (Own Tent)", desc:"Pitch your own tent anywhere on the meadow for Rs. 1,000 per night (includes shared toilet and water). The northeast-facing spots have the best Nanga Parbat views. Arrive early to claim them.", price:"Rs. 1,000/night", badges:["Bring own tent","Best value","Choose your spot"] },
-          { cat:"restaurant", name:"Meadow Hut Kitchens", desc:"All hut camps serve simple meals: daal, rice, chapati, eggs, potato curry. Food quality varies — ask fellow campers for the best kitchen. Prices are slightly inflated given the location.", price:"Rs. 400–700/meal", badges:["All huts serve food","Simple","Slightly inflated prices"] },
-          { cat:"trek", name:"Nanga Parbat Base Camp Hike", desc:"The essential hike from the meadow: 4–5 hours return to Raikot Base Camp (3,960m) across moraine and boulder fields. No technical equipment. The base camp sits under the 4,600m Rupal Face — the highest mountain face on earth. Do this hike. It's the entire point of coming here.", price:"Free · 4–5h return", badges:["Essential","No equipment","The whole point"] },
-          { cat:"trek", name:"Beyal Camp Hike", desc:"A 2–3 hour hike above the meadow to Beyal Camp at ~3,500m. Better and different angle on Nanga Parbat. The ridge walk between the meadow and Beyal is excellent. Guides available at the meadow: Rs. 2,000–3,000/day.", price:"Guide optional · Rs. 2,000–3,000", badges:["Half-day","Better views","Optional guide"] },
-          { cat:"todo", name:"Nanga Parbat Sunrise Alpenglow", desc:"Set an alarm for 5am. The first light hits the Raikot Face in shades of pink, orange, and gold before any other light reaches the meadow. It lasts 20–30 minutes. Stay at least two nights to catch both sunrise and sunset light.", price:"Free", badges:["5am start","2-night minimum","Best photo in Pakistan"] },
-          { cat:"todo", name:"Stargazing at 3,300m", desc:"The meadow has almost zero light pollution. On clear nights (most nights June–September) the Milky Way is directly overhead. The sky is one of the darkest you'll experience in Pakistan. Bring a warm layer — temperatures drop fast after 9pm.", price:"Free", badges:["Zero light pollution","Clear nights","Bring warm clothes"] },
-        ]
-      },
-      basecamp: {
-        label: "Nanga Parbat Base Camp",
-        items: [
-          { cat:"hotel", name:"Base Camp Camping Only", desc:"No permanent accommodation at Raikot Base Camp (3,960m). Tented expedition camps are set up by mountaineering groups in season. Independent travellers must carry their own tent and supplies from Fairy Meadows.", price:"Bring own tent", badges:["No facilities","Expedition only","Self-sufficient"] },
-          { cat:"trek", name:"Base Camp to Raikot Glacier", desc:"From Raikot Base Camp, a further 1–2h scramble takes you onto the lower Raikot Glacier moraine. Technical equipment not required for the moraine walk but crampons help on the glacier edge. Guide essential.", price:"Guide essential · Rs. 3,000–4,000", badges:["Glacier access","Guide essential","Technical option"] },
-          { cat:"todo", name:"Rupal Face Viewpoint", desc:"At 4,600m, the Rupal Face of Nanga Parbat is the highest mountain face on earth. From the base camp you're standing directly below it. The scale is genuinely incomprehensible at close range — the face rises 4,500m above you in a vertical wall of ice and rock.", price:"Free (with hike from meadow)", badges:["World's highest face","4,500m wall","Incomprehensible scale"] },
-        ]
-      }
+    label:"Fairy Meadows", minDays:2, recommendedDays:3,
+    transit:{ hunza:0.5, skardu:1, gilgit:0.25, chilas:0.25, naran:1 },
+    costs:{ budget:1800, mid:3500, comfort:6000 },
+    subareas:{
+      meadow:{ label:"Fairy Meadows", items:[
+        {cat:"hotel",name:"Raikot Sarai (Huts)",desc:"Original hut camp. Northeast-facing huts look directly up the Raikot Face. Meals included.",price:"Rs. 2,000–3,500/night incl. meals",badges:["Best location","Meals included"],costs:{budget:2000,mid:2800,comfort:3500}},
+        {cat:"hotel",name:"Own Tent Camping",desc:"Rs. 1,000/night including shared facilities. Northeast spots have best Nanga Parbat views.",price:"Rs. 1,000/night",badges:["Best value","Choose your spot"],costs:{budget:1000,mid:1000,comfort:1000}},
+        {cat:"restaurant",name:"Meadow Hut Kitchens",desc:"All hut camps serve daal, rice, chapati, eggs. Prices slightly inflated for the location.",price:"Rs. 400–700/meal",badges:["All huts serve food"],costs:{budget:400,mid:550,comfort:700}},
+        {cat:"trek",name:"Nanga Parbat Base Camp",desc:"The essential hike. 4–5h return to Raikot Base Camp under the highest mountain face on earth. This is why you came.",price:"Free · 4–5h return",badges:["Essential","No equipment"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Nanga Parbat Alpenglow",desc:"Alarm at 5am. First light hits the Raikot Face in pink and gold. 20 minutes. Stay 2 nights minimum.",price:"Free",badges:["5am start","Best photo in Pakistan"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Stargazing",desc:"Zero light pollution. Milky Way overhead. One of the darkest skies in Pakistan. Bring warm layers.",price:"Free",badges:["Zero light pollution","Clear nights"],costs:{budget:0,mid:0,comfort:0}},
+      ]},
+      tato:{ label:"Tato Village", items:[
+        {cat:"hotel",name:"Tato Village Guesthouses",desc:"Simple guesthouses at the end of the jeep track. Good for acclimatisation.",price:"Rs. 1,000–2,500/night",badges:["Acclimatisation","Simple"],costs:{budget:1000,mid:1500,comfort:2500}},
+        {cat:"todo",name:"Jeep Ride from Raikot",desc:"The 15km jeep track itself is an experience. Single-lane, vertical drops, white-knuckle.",price:"Rs. 3,000–5,000/jeep",badges:["White-knuckle","15km"],costs:{budget:3000,mid:4000,comfort:5000}},
+      ]},
+      basecamp:{ label:"Nanga Parbat Base Camp", items:[
+        {cat:"trek",name:"Base Camp to Raikot Glacier",desc:"From base camp, 1–2h scramble to glacier moraine. Guide essential.",price:"Guide: Rs. 3,000–4,000",badges:["Glacier access","Guide essential"],costs:{budget:3000,mid:3500,comfort:4000}},
+        {cat:"todo",name:"Rupal Face Viewpoint",desc:"The highest mountain face on earth rises 4,500m above you in a vertical wall. Incomprehensible scale.",price:"Free (with hike)",badges:["World's highest face"],costs:{budget:0,mid:0,comfort:0}},
+      ]},
     }
   },
-
   chilas: {
-    label: "Chilas",
-    subareas: {
-      chilas_town: {
-        label: "Chilas Town",
-        items: [
-          { cat:"hotel", name:"PTDC Motel Chilas", desc:"The Pakistan Tourism Development Corporation motel — reliable, government-run, and consistently maintained. The garden provides some respite from Chilas's considerable heat. Booking in advance recommended.", price:"Rs. 4,000–8,000/night", badges:["Reliable","Garden","Government-run"] },
-          { cat:"hotel", name:"Chilas Inn", desc:"Mid-range option on the main road. Popular with KKH travellers stopping overnight. Rooms are functional and clean. The generator runs 24h — a genuine selling point in Chilas.", price:"Rs. 2,500–5,000/night", badges:["24h generator","KKH travellers","Mid-range"] },
-          { cat:"hotel", name:"Paradise Hotel Chilas", desc:"Budget option near the bus stand. Basic rooms, shared facilities at the lower end. Good if you're transiting between Islamabad and Gilgit and need a night's sleep.", price:"Rs. 1,200–2,500/night", badges:["Budget","Bus stand","Transit stop"] },
-          { cat:"restaurant", name:"Chilas Main Road Dhabas", desc:"The dhabas along the main road serve the standard KKH menu: daal, karahi, chapati, omelettes. The ones nearer the river are cooler and slightly better ventilated. Rs. 250–500 for a full meal.", price:"Rs. 250–500/meal", badges:["KKH standard","Cooler near river","Functional"] },
-          { cat:"restaurant", name:"PTDC Motel Restaurant", desc:"The most reliable sit-down restaurant in Chilas. Open to non-guests. Simple Pakistani menu, cold drinks, and a shaded garden for eating. More expensive than the dhabas but significantly more comfortable.", price:"Rs. 500–900/meal", badges:["Sit-down","Cold drinks","Garden seating"] },
-          { cat:"todo", name:"Chilas Rock Carvings", desc:"Thousands of Buddhist petroglyphs along the KKH riverbank near Chilas, dating back 5,000 years. Buddhist stupas, Shiva worship motifs, hunting scenes. Usually skipped entirely by travellers — don't. Free entry. A guide from the site explains the iconography well.", price:"Free", badges:["5,000 years old","Usually skipped","Free"] },
-          { cat:"todo", name:"Indus River Views", desc:"Chilas sits directly on the Indus River where it passes through its deepest gorge. The river here is brown-grey with glacial silt, fast-moving, and flanked by bare rock walls 2,000m high. The bridge downstream offers the best vantage point.", price:"Free", badges:["Deepest Indus gorge","Free","Dramatic"] },
-        ]
-      },
-      raikot: {
-        label: "Raikot Bridge",
-        items: [
-          { cat:"hotel", name:"Raikot Bridge Rest House", desc:"A basic PTDC rest house at the Raikot Bridge junction — the turn-off for Fairy Meadows. Good if you're arriving late and need to start the jeep ride at first light.", price:"Rs. 1,500–3,000/night", badges:["Fairy Meadows staging","First light start","Basic"] },
-          { cat:"restaurant", name:"Raikot Chai Stalls", desc:"A handful of tea stalls and food stalls at the junction. Chai, boiled eggs, bread. The last food available before heading up to Fairy Meadows. Stock up here.", price:"Rs. 100–300", badges:["Last food before FM","Chai","Stock up"] },
-          { cat:"todo", name:"Jeep Ride to Tato Village", desc:"The 15km jeep track from Raikot Bridge to Tato Village is itself an experience. Single-lane, unpaved, with vertical drops on one side for most of the route. Hire at the junction: Rs. 3,000–5,000 per jeep. Holds 4–6 people.", price:"Rs. 3,000–5,000/jeep", badges:["White-knuckle","15km unpaved","4–6 per jeep"] },
-        ]
-      }
+    label:"Chilas", minDays:1, recommendedDays:1,
+    transit:{ hunza:0.3, skardu:0.5, gilgit:0.25, fairy:0.25, naran:0.5 },
+    costs:{ budget:2000, mid:4500, comfort:9000 },
+    subareas:{
+      chilas_town:{ label:"Chilas Town", items:[
+        {cat:"hotel",name:"PTDC Motel Chilas",desc:"Government motel. Reliable, well-maintained. Garden provides respite from the heat.",price:"Rs. 4,000–8,000/night",badges:["Reliable","Garden"],costs:{budget:4000,mid:6000,comfort:8000}},
+        {cat:"hotel",name:"Paradise Hotel",desc:"Budget option near bus stand. Good for a transit night.",price:"Rs. 1,200–2,500/night",badges:["Budget","Bus stand"],costs:{budget:1200,mid:1800,comfort:2500}},
+        {cat:"restaurant",name:"PTDC Motel Restaurant",desc:"Most reliable restaurant in Chilas. Cold drinks, shaded garden seating.",price:"Rs. 500–900/meal",badges:["Sit-down","Cold drinks"],costs:{budget:500,mid:700,comfort:900}},
+        {cat:"todo",name:"Chilas Rock Carvings",desc:"5,000 years of Buddhist petroglyphs along the KKH riverbank. Universally skipped. Don't skip it.",price:"Free",badges:["5,000 years old","Free","Usually skipped"],costs:{budget:0,mid:0,comfort:0}},
+      ]},
+      raikot:{ label:"Raikot Bridge", items:[
+        {cat:"hotel",name:"Raikot Bridge Rest House",desc:"Basic rest house at the Fairy Meadows turn-off. Good staging for an early start.",price:"Rs. 1,500–3,000/night",badges:["Fairy Meadows staging"],costs:{budget:1500,mid:2000,comfort:3000}},
+        {cat:"todo",name:"Jeep to Tato Village",desc:"Hire here for the 15km white-knuckle track up to Tato. Rs. 3,000–5,000 per jeep.",price:"Rs. 3,000–5,000/jeep",badges:["White-knuckle","Fairy Meadows access"],costs:{budget:3000,mid:4000,comfort:5000}},
+      ]},
     }
   },
-
   naran: {
-    label: "Naran–Kaghan",
-    subareas: {
-      naran_town: {
-        label: "Naran",
-        items: [
-          { cat:"hotel", name:"Pine Park Hotel Naran", desc:"One of Naran's better mid-range options on the main road. Mountain views from the upper floors, reliable hot water, and a restaurant that serves trout when available. Book 2 weeks ahead for July–August.", price:"Rs. 4,000–9,000/night", badges:["Mountain views","Trout on menu","Book ahead in summer"] },
-          { cat:"hotel", name:"PTDC Motel Naran", desc:"The government motel — reliable and well-located above the main road. The garden gives some separation from the traffic noise of peak season. Good mid-range benchmark for the valley.", price:"Rs. 5,000–10,000/night", badges:["Reliable","Garden","Above main road"] },
-          { cat:"hotel", name:"Valley View Guest House", desc:"Budget guesthouse run by a Kaghan family. Clean, simple rooms, good daal and eggs at breakfast. The family speaks some English and knows the valley well — good source of local information.", price:"Rs. 1,500–3,500/night", badges:["Budget","Local family","Good local info"] },
-          { cat:"restaurant", name:"Naran Bazaar Trout Restaurants", desc:"Several restaurants in Naran specialize in fresh Kunhar River trout. The fish is grilled or fried with local spices. Rs. 600–1,200 depending on size. Ask which ones are using fresh versus frozen — in July the fresh ones are obvious.", price:"Rs. 600–1,200/fish", badges:["Fresh trout","Ask for fresh","Speciality"] },
-          { cat:"restaurant", name:"Sarhad Restaurant", desc:"One of Naran's longer-running restaurants. Reliable karahi, daal, and local breads. Larger portion sizes than most. Good for dinner before an early Saiful Muluk departure.", price:"Rs. 400–800/meal", badges:["Reliable","Large portions","Good for groups"] },
-          { cat:"trek", name:"Ansoo Lake Trek", desc:"A 2-day trek from Saiful Muluk to Ansoo Lake (4,245m) — shaped like a teardrop. The trail is steep and requires a guide (available in Naran: Rs. 2,500–4,000/day). One of the most beautiful and rarely visited treks in Kaghan.", price:"Guide Rs. 2,500–4,000/day", badges:["2 days","4,245m","Rarely visited"] },
-          { cat:"todo", name:"Lake Saiful Muluk", desc:"10km from Naran by jeep (Rs. 2,000–3,000 return). Pakistan's most famous lake — glacial, turquoise-green, ringed by snow peaks including Malika Parbat (5,291m). Morning is calmer. Arrive before 9am to avoid the crowds.", price:"Jeep Rs. 2,000–3,000 return", badges:["Pakistan's most famous lake","Morning best","Before 9am"] },
-          { cat:"todo", name:"Kunhar River Fishing", desc:"Permits available in Naran town (Rs. 1,000–2,000/day). The Kunhar is a genuinely excellent trout river. Fish are most active at dawn and dusk. Some guesthouses have rods to rent.", price:"Permit Rs. 1,000–2,000/day", badges:["Trout fishing","Dawn and dusk","Rods available"] },
-        ]
-      },
-      shogran: {
-        label: "Shogran",
-        items: [
-          { cat:"hotel", name:"PTDC Shogran Hotel", desc:"A well-maintained government hotel on the Shogran ridge at 2,362m. The views of Musa Ka Musalla (4,080m) from the balconies are the best in the area. Book in advance.", price:"Rs. 6,000–12,000/night", badges:["Best views","Ridge location","PTDC"] },
-          { cat:"hotel", name:"Paye Heights Guesthouse", desc:"Simple rooms on the Shogran plateau, closer to the Paye meadows above. Good base for the meadow walks. Family-run with home cooking.", price:"Rs. 2,500–5,000/night", badges:["Paye access","Family-run","Home cooking"] },
-          { cat:"restaurant", name:"Shogran Tea Houses", desc:"Several small tea houses and stalls along the Shogran road. Fresh chai, local bread, and occasionally fresh milk from nearby farms. Bring your own substantial food.", price:"Rs. 100–300", badges:["Tea & bread","Fresh milk","Bring own food"] },
-          { cat:"trek", name:"Shogran to Paye Meadows", desc:"A 2–3 hour return hike from Shogran up to the Paye meadows at 3,000m. Clear views of the upper Kaghan peaks. Wildflowers in June–July. The trail is well-worn and easy to follow without a guide.", price:"Free · 2–3h return", badges:["Easy","Wildflowers","No guide needed"] },
-          { cat:"todo", name:"Shogran Sunrise View", desc:"The Shogran ridge faces directly east toward Musa Ka Musalla. At sunrise the peak catches gold light against a dark sky. Stay the night in Shogran specifically to catch this — it's the reason the place has its reputation.", price:"Free", badges:["Stay the night","East-facing","Sunrise only"] },
-        ]
-      },
-      babusar: {
-        label: "Babusar Pass",
-        items: [
-          { cat:"hotel", name:"Babusar Top Camping", desc:"No formal accommodation at the pass (4,173m). However, in summer a handful of small camps with tents are set up near the top. Very basic — a sleeping bag and sleeping mat in a canvas tent. Worth it for the experience.", price:"Rs. 1,000–2,000/night", badges:["Seasonal","Very basic","Canvas tents"] },
-          { cat:"restaurant", name:"Babusar Pass Chai Stalls", desc:"In July–August a few stalls set up at the pass selling chai, biscuits, and boiled eggs. Don't rely on them — bring your own food for the crossing.", price:"Rs. 50–200", badges:["Seasonal","July–August only","Bring your own"] },
-          { cat:"trek", name:"Babusar Pass Ridge Walk", desc:"From the pass, a 1–2 hour walk along the ridge east or west gives views of both the Himalaya to the south and the Karakoram to the north on a clear day. No trail — walk the ridge directly. Best on a calm morning.", price:"Free · 2–4h", badges:["Free","Ridge walk","Two ranges visible"] },
-          { cat:"todo", name:"Babusar–Chilas Drive", desc:"The descent from Babusar Pass to Chilas on the KKH is one of the great drives in Pakistan. The road drops 1,700m in 30km from alpine meadow to bare desert gorge. The landscape changes every 5 minutes. Hire a jeep from Naran: Rs. 8,000–12,000.", price:"Jeep Rs. 8,000–12,000", badges:["One of Pakistan's great drives","1,700m descent","GB gateway"] },
-        ]
-      }
+    label:"Naran–Kaghan", minDays:2, recommendedDays:3,
+    transit:{ hunza:1, skardu:1, gilgit:1, fairy:1, chilas:0.5 },
+    costs:{ budget:2500, mid:6000, comfort:12000 },
+    subareas:{
+      naran_town:{ label:"Naran", items:[
+        {cat:"hotel",name:"Pine Park Hotel",desc:"Good mid-range on main road. Mountain views, hot water, trout on the menu when available.",price:"Rs. 4,000–9,000/night",badges:["Mountain views","Trout menu"],costs:{budget:4000,mid:6500,comfort:9000}},
+        {cat:"hotel",name:"Valley View Guest House",desc:"Budget guesthouse, local family, good local info. Simple and honest.",price:"Rs. 1,500–3,500/night",badges:["Budget","Local family"],costs:{budget:1500,mid:2500,comfort:3500}},
+        {cat:"restaurant",name:"Naran Trout Restaurants",desc:"Fresh Kunhar River trout grilled or fried with local spices. Ask which are using fresh vs frozen.",price:"Rs. 600–1,200/fish",badges:["Fresh trout","Speciality"],costs:{budget:600,mid:900,comfort:1200}},
+        {cat:"todo",name:"Lake Saiful Muluk",desc:"10km by jeep. Pakistan's most famous lake. Turquoise-green, ringed by snow peaks. Morning before 9am.",price:"Jeep Rs. 2,000–3,000 return",badges:["Pakistan's most famous","Morning best"],costs:{budget:2000,mid:2500,comfort:3000}},
+        {cat:"todo",name:"Kunhar River Fishing",desc:"Permit Rs. 1,000–2,000/day. Excellent trout river. Dawn and dusk best.",price:"Permit Rs. 1,000–2,000/day",badges:["Trout fishing"],costs:{budget:1000,mid:1500,comfort:2000}},
+      ]},
+      shogran:{ label:"Shogran", items:[
+        {cat:"hotel",name:"PTDC Shogran Hotel",desc:"Ridge location at 2,362m. Best views of Musa Ka Musalla (4,080m) from balconies.",price:"Rs. 6,000–12,000/night",badges:["Best views","Ridge location"],costs:{budget:6000,mid:9000,comfort:12000}},
+        {cat:"trek",name:"Shogran to Paye Meadows",desc:"2–3h return hike to Paye at 3,000m. Wildflowers in June–July. No guide needed.",price:"Free · 2–3h return",badges:["Easy","Wildflowers"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Shogran Sunrise",desc:"East-facing ridge looks directly at Musa Ka Musalla. Gold light at sunrise is the reason to stay here.",price:"Free",badges:["Sunrise only","Stay the night"],costs:{budget:0,mid:0,comfort:0}},
+      ]},
+      babusar:{ label:"Babusar Pass", items:[
+        {cat:"trek",name:"Babusar Pass Ridge Walk",desc:"1–2h walk along the ridge from the pass. Views of both Himalaya and Karakoram on clear days.",price:"Free · 2–4h",badges:["Free","Two ranges visible"],costs:{budget:0,mid:0,comfort:0}},
+        {cat:"todo",name:"Babusar–Chilas Drive",desc:"One of Pakistan's great drives. 1,700m descent from alpine meadow to bare desert. Jeep hire: Rs. 8,000–12,000.",price:"Jeep Rs. 8,000–12,000",badges:["Great drive","GB gateway"],costs:{budget:8000,mid:10000,comfort:12000}},
+      ]},
     }
   }
 };
 
-/* ─────────────────────────────────────────────
-   STATE
-───────────────────────────────────────────── */
-let selectedRegion = null;
-let selectedSubarea = null;
-let activeFilter = 'all';
-
-/* ─────────────────────────────────────────────
-   STEP 1 → select region
-───────────────────────────────────────────── */
-function selectRegion(card) {
-  document.querySelectorAll('.region-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  selectedRegion = card.dataset.region;
-  selectedSubarea = null;
-  activeFilter = 'all';
-  renderStep2();
+/* ═══════════════════════════ BUDGET TIERS ══════════════════ */
+function getTier(dailyBudget) {
+  if (dailyBudget < 4000)  return { key:'budget',  icon:'🏕', label:'Shoestring',    desc:'Guesthouses, dhabas, shared jeeps — the way most locals travel' };
+  if (dailyBudget < 10000) return { key:'mid',     icon:'🏨', label:'Mid-range',     desc:'Solid guesthouses, sit-down restaurants, occasional private transport' };
+  return                          { key:'comfort', icon:'🏩', label:'Comfort',       desc:'Serena properties, private vehicles, guided activities' };
 }
 
-function renderStep2() {
-  const region = DATA[selectedRegion];
-  const step2 = document.getElementById('step2');
-  const step3 = document.getElementById('step3');
-  step3.style.display = 'none';
-  step2.style.display = 'block';
+/* ═══════════════════════════ STATE ════════════════════════ */
+const S = {
+  budgetType: 'total',
+  budgetAmount: 0,
+  covers: new Set(['accommodation','food','transport','activities']),
+  days: 7,
+  locations: {},   // { regionKey: { days, subareas:Set } }
+  expRegion: null,
+  expSubarea: null,
+  expFilter: 'all',
+};
 
-  // Trail
-  document.getElementById('locationTrail').innerHTML =
-    `<span class="lt-region">${region.label}</span>
-     <span class="lt-sep">/</span>
-     <span class="lt-change" onclick="resetToStep1()">Change region</span>`;
+/* ═══════════════════════════ TAB SWITCH ════════════════════ */
+function switchTab(tab) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.bot-tab').forEach(b => b.classList.remove('active'));
+  if (tab === 'plan') {
+    document.getElementById('viewPlan').classList.add('active');
+    document.getElementById('tabPlan').classList.add('active');
+  } else {
+    document.getElementById('viewExplore').classList.add('active');
+    document.getElementById('tabExplore').classList.add('active');
+  }
+  window.scrollTo(0,0);
+}
 
-  document.getElementById('step2Heading').textContent = `Where in ${region.label}?`;
+/* ═══════════════════════════ WIZARD SCREENS ════════════════ */
+let currentScreen = 0;
+function goScreen(n) {
+  const allScreens = document.getElementById('screens');
+  allScreens.style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll('.screen').forEach((s,i) => {
+    s.classList.toggle('visible', i === n);
+  });
+  const pcts = [20, 40, 65, 85, 100];
+  document.getElementById('progressFill').style.width = (pcts[n] || 100) + '%';
+  currentScreen = n;
+  window.scrollTo(0,0);
+}
 
-  const list = document.getElementById('subareaList');
-  list.innerHTML = '';
-  Object.entries(region.subareas).forEach(([key, sub]) => {
-    const btn = document.createElement('button');
-    btn.className = 'subarea-btn';
-    btn.textContent = sub.label;
-    btn.dataset.key = key;
-    btn.onclick = () => selectSubarea(key, btn);
-    list.appendChild(btn);
+/* ═══════════════════════════ BUDGET SCREEN ════════════════ */
+function setBudgetType(type) {
+  S.budgetType = type;
+  document.getElementById('btnTotal').classList.toggle('active', type === 'total');
+  document.getElementById('btnDaily').classList.toggle('active', type === 'daily');
+  onBudgetChange();
+}
+
+function onBudgetChange() {
+  const val = parseInt(document.getElementById('budgetInput').value) || 0;
+  S.budgetAmount = val;
+  const hint = document.getElementById('budgetTierHint');
+  const next  = document.getElementById('btnBudgetNext');
+  if (!val) { hint.style.display = 'none'; next.disabled = true; return; }
+  const daily = S.budgetType === 'daily' ? val : Math.round(val / S.days);
+  const tier  = getTier(daily);
+  document.getElementById('tierIcon').textContent  = tier.icon;
+  document.getElementById('tierLabel').textContent = tier.label;
+  document.getElementById('tierDesc').textContent  = tier.desc;
+  hint.style.display = 'block';
+  next.disabled = false;
+}
+
+function toggleCover(chip) {
+  const key = chip.dataset.cover;
+  if (S.covers.has(key)) { if (S.covers.size > 1) S.covers.delete(key); }
+  else S.covers.add(key);
+  chip.classList.toggle('selected', S.covers.has(key));
+  chip.querySelector('.cover-check').textContent = S.covers.has(key) ? '✓' : '';
+}
+
+/* ═══════════════════════════ DAYS & LOCATIONS ═════════════ */
+function onDaysChange(val) {
+  S.days = parseInt(val);
+  document.getElementById('daysNum').textContent = S.days;
+  validateDays();
+  onBudgetChange();
+}
+
+function validateDays() {
+  const selected = Object.keys(S.locations);
+  if (!selected.length) return;
+  const allocatedDays = selected.reduce((t,k) => t + (S.locations[k]?.days || 0), 0);
+  const transitDays = calcTransitDays(selected);
+  const needed = allocatedDays + transitDays;
+  const warn = document.getElementById('daysWarn');
+  if (needed > S.days) {
+    warn.innerHTML = `<strong>Not enough days ⚠️</strong>Your selected locations need ~${needed} days (including ~${transitDays.toFixed(1)} for travel between them) but you've set ${S.days}. Either add more days or reduce stops.`;
+    warn.classList.add('show');
+  } else if (selected.length > 3 && S.days < 8) {
+    warn.innerHTML = `<strong>Tight schedule ⚠️</strong>${selected.length} locations in ${S.days} days means a lot of moving. Consider focusing on 2–3 stops for a more relaxed trip.`;
+    warn.classList.add('show');
+  } else {
+    warn.classList.remove('show');
+  }
+}
+
+function calcTransitDays(regionKeys) {
+  if (regionKeys.length < 2) return 0;
+  const order = ['naran','chilas','fairy','gilgit','hunza','skardu'];
+  const sorted = [...regionKeys].sort((a,b) => order.indexOf(a) - order.indexOf(b));
+  let total = 0;
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const from = DATA[sorted[i]], to = sorted[i+1];
+    if (from?.transit?.[to] != null) total += from.transit[to];
+    else total += 0.5;
+  }
+  return total;
+}
+
+function toggleLocation(key) {
+  const card = document.getElementById('loc-' + key);
+  const toggle = document.getElementById('lt-' + key);
+  if (S.locations[key]) {
+    delete S.locations[key];
+    card.classList.remove('selected');
+    toggle.textContent = '+';
+  } else {
+    const defaultSubs = [...card.querySelectorAll('.sub-chip.selected')].map(c => c.dataset.sub);
+    S.locations[key] = { days: DATA[key].recommendedDays, subareas: new Set(defaultSubs) };
+    card.classList.add('selected');
+    toggle.textContent = '✓';
+  }
+  validateDays();
+}
+
+function toggleSub(chip) {
+  const region = chip.dataset.region;
+  const sub    = chip.dataset.sub;
+  if (!S.locations[region]) return;
+  const subs = S.locations[region].subareas;
+  if (subs.has(sub)) { if (subs.size > 1) subs.delete(sub); }
+  else subs.add(sub);
+  chip.classList.toggle('selected', subs.has(sub));
+}
+
+function changeDays(region, delta) {
+  if (!S.locations[region]) return;
+  const loc = DATA[region];
+  const cur = S.locations[region].days;
+  const next = Math.max(loc.minDays, Math.min(14, cur + delta));
+  S.locations[region].days = next;
+  document.getElementById('dv-' + region).textContent = next;
+  validateDays();
+}
+
+/* ═══════════════════════════ GENERATE ITINERARY ════════════ */
+function generateItinerary() {
+  const selected = Object.keys(S.locations);
+  if (!selected.length) {
+    alert('Please select at least one region first.');
+    return;
+  }
+  goScreen(3);
+  setTimeout(() => { buildItinerary(); goScreen(4); }, 1800);
+}
+
+function buildItinerary() {
+  const selected = Object.keys(S.locations);
+  const totalDays = S.days;
+  const totalBudget = S.budgetType === 'total' ? S.budgetAmount : S.budgetAmount * totalDays;
+  const dailyBudget = Math.round(totalBudget / totalDays);
+  const tier = getTier(dailyBudget);
+
+  // Sort by route order
+  const routeOrder = ['naran','chilas','fairy','gilgit','hunza','skardu'];
+  const route = [...selected].sort((a,b) => routeOrder.indexOf(a) - routeOrder.indexOf(b));
+
+  // Build days
+  const days = [];
+  const costBreakdown = { accommodation:0, food:0, transport:0, activities:0 };
+  let dayNum = 1;
+
+  route.forEach((regionKey, idx) => {
+    const region = DATA[regionKey];
+    const locState = S.locations[regionKey];
+    const locDays = locState.days;
+    const subareas = [...locState.subareas];
+    const tierKey = tier.key;
+
+    // Transit day between stops
+    if (idx > 0) {
+      const prevKey = route[idx - 1];
+      const transitTime = DATA[prevKey]?.transit?.[regionKey] || 0.5;
+      if (transitTime >= 0.4) {
+        const transitCost = tierKey === 'budget' ? 1200 : tierKey === 'mid' ? 2500 : 5000;
+        costBreakdown.transport += transitCost;
+        days.push({
+          num: dayNum++,
+          location: `${DATA[prevKey].label} → ${region.label}`,
+          isTransit: true,
+          transitHours: Math.round(transitTime * 24),
+          fromRegion: DATA[prevKey].label,
+          toRegion: region.label,
+          cost: transitCost,
+          items: [
+            { time:'Morning', type:'travel', name:`Depart ${DATA[prevKey].label}`, desc:`${transitTime >= 0.5 ? 'Full day' : 'Half day'} journey to ${region.label}. ${getTransitNote(prevKey, regionKey)}`, cost: `Rs. ${transitCost.toLocaleString()} transport` }
+          ]
+        });
+      }
+    }
+
+    // Gather all items for this region from selected subareas
+    let allItems = [];
+    subareas.forEach(subKey => {
+      if (region.subareas[subKey]) allItems.push(...region.subareas[subKey].items);
+    });
+
+    const hotels      = allItems.filter(i => i.cat === 'hotel');
+    const restaurants = allItems.filter(i => i.cat === 'restaurant');
+    const treks       = allItems.filter(i => i.cat === 'trek');
+    const todos       = allItems.filter(i => i.cat === 'todo');
+
+    // Pick best hotel for budget
+    const hotel = pickBestHotel(hotels, dailyBudget, tierKey);
+
+    for (let d = 0; d < locDays; d++) {
+      const dayItems = [];
+      let dayCost = 0;
+
+      // Hotel
+      if (hotel) {
+        const hotelCost = hotel.costs[tierKey] || hotel.costs.budget;
+        dayItems.push({ time:'Stay', type:'hotel', name:hotel.name, desc:hotel.desc, cost:`Rs. ${hotelCost.toLocaleString()}/night` });
+        if (S.covers.has('accommodation')) { costBreakdown.accommodation += hotelCost; dayCost += hotelCost; }
+      }
+
+      // Breakfast
+      const breakfast = restaurants[0];
+      if (breakfast) {
+        const foodCost = breakfast.costs[tierKey] || breakfast.costs.budget;
+        dayItems.push({ time:'Breakfast', type:'food', name:breakfast.name, desc:breakfast.desc, cost:`Rs. ${foodCost.toLocaleString()}` });
+        if (S.covers.has('food')) { costBreakdown.food += Math.round(foodCost * 0.3); dayCost += Math.round(foodCost * 0.3); }
+      }
+
+      // Morning activity
+      const activity = d < treks.length ? treks[d] : todos[d % Math.max(todos.length, 1)];
+      if (activity) {
+        const actCost = activity.costs ? (activity.costs[tierKey] || activity.costs.budget) : 0;
+        dayItems.push({ time:'Morning', type: activity.cat, name:activity.name, desc:activity.desc, cost:activity.price });
+        if (S.covers.has('activities') && actCost) { costBreakdown.activities += actCost; dayCost += actCost; }
+      }
+
+      // Lunch
+      const lunch = restaurants[1] || restaurants[0];
+      if (lunch) {
+        const lCost = lunch.costs[tierKey] || lunch.costs.budget;
+        dayItems.push({ time:'Lunch', type:'food', name:lunch.name, desc:'Lunch break.', cost:`Rs. ${lCost.toLocaleString()}` });
+        if (S.covers.has('food')) { costBreakdown.food += lCost; dayCost += lCost; }
+      }
+
+      // Afternoon
+      const aft = todos[d % Math.max(todos.length,1)];
+      if (aft && aft !== activity) {
+        const aftCost = aft.costs ? (aft.costs[tierKey] || aft.costs.budget) : 0;
+        dayItems.push({ time:'Afternoon', type:'todo', name:aft.name, desc:aft.desc, cost:aft.price });
+        if (S.covers.has('activities') && aftCost) { costBreakdown.activities += aftCost; dayCost += aftCost; }
+      }
+
+      days.push({ num:dayNum++, location:region.label, items:dayItems, cost:dayCost });
+    }
   });
 
-  setPills(2);
-  step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Render
+  const totalSpent = Object.values(costBreakdown).reduce((a,b)=>a+b,0);
+  const surplus = totalBudget - totalSpent;
+  const warns = buildWarnings(route, totalDays, totalBudget, dailyBudget, tier, totalSpent);
+
+  const html = `
+    <div class="itin-header">
+      <div class="itin-header-top">
+        <div>
+          <div class="itin-subtitle">Your Itinerary</div>
+          <div class="itin-title">${totalDays} Days<br>in GB</div>
+        </div>
+        <button class="itin-edit-btn" onclick="goScreen(2)">Edit</button>
+      </div>
+      <div class="budget-pills">
+        <span class="budget-pill gold">${tier.icon} ${tier.label}</span>
+        <span class="budget-pill">Rs. ${totalBudget.toLocaleString()} budget</span>
+        <span class="budget-pill">${route.map(k=>DATA[k].label).join(' → ')}</span>
+      </div>
+    </div>
+
+    ${warns}
+
+    <div class="budget-breakdown">
+      <div class="bb-title">Budget Breakdown</div>
+      ${S.covers.has('accommodation') ? `<div class="bb-row"><span class="bb-row-label">Accommodation</span><span class="bb-row-val">Rs. ${costBreakdown.accommodation.toLocaleString()}</span></div>` : ''}
+      ${S.covers.has('food') ? `<div class="bb-row"><span class="bb-row-label">Food & drinks</span><span class="bb-row-val">Rs. ${costBreakdown.food.toLocaleString()}</span></div>` : ''}
+      ${S.covers.has('transport') ? `<div class="bb-row"><span class="bb-row-label">Transport</span><span class="bb-row-val">Rs. ${(costBreakdown.transport + totalDays * 300).toLocaleString()}</span></div>` : ''}
+      ${S.covers.has('activities') ? `<div class="bb-row"><span class="bb-row-label">Activities & entries</span><span class="bb-row-val">Rs. ${costBreakdown.activities.toLocaleString()}</span></div>` : ''}
+      <div class="bb-row total">
+        <span class="bb-row-label">Estimated total</span>
+        <span class="bb-row-val">Rs. ${Math.min(totalSpent, totalBudget).toLocaleString()}</span>
+      </div>
+      <div class="bb-bar"><div class="bb-bar-fill" style="width:${Math.min(100, Math.round(totalSpent/totalBudget*100))}%;background:${surplus >= 0 ? 'var(--gold)' : '#E05040'}"></div></div>
+      <div style="display:flex;justify-content:space-between;margin-top:0.4rem;font-size:0.65rem;color:var(--cream-2);">
+        <span>Rs. 0</span>
+        <span style="color:${surplus>=0?'#90C870':'#F08070'}">${surplus >= 0 ? `Rs. ${surplus.toLocaleString()} remaining` : `Rs. ${Math.abs(surplus).toLocaleString()} over budget`}</span>
+        <span>Rs. ${totalBudget.toLocaleString()}</span>
+      </div>
+    </div>
+
+    ${days.map(day => renderDay(day)).join('')}
+  `;
+
+  document.getElementById('itineraryOutput').innerHTML = html;
 }
 
-/* ─────────────────────────────────────────────
-   STEP 2 → select sub-area
-───────────────────────────────────────────── */
-function selectSubarea(key, btn) {
-  document.querySelectorAll('.subarea-btn').forEach(b => b.classList.remove('selected'));
+function pickBestHotel(hotels, dailyBudget, tierKey) {
+  if (!hotels.length) return null;
+  // Find hotel whose cost is closest to but not above 40% of daily budget
+  const budget40 = dailyBudget * 0.4;
+  const sorted = [...hotels].sort((a,b) => {
+    const ca = a.costs[tierKey] || a.costs.budget;
+    const cb = b.costs[tierKey] || b.costs.budget;
+    return Math.abs(ca - budget40) - Math.abs(cb - budget40);
+  });
+  return sorted[0];
+}
+
+function renderDay(day) {
+  if (day.isTransit) {
+    return `
+      <div class="day-card" style="border-color:rgba(255,255,255,0.04)">
+        <div class="day-header">
+          <div class="day-num-badge" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1)">
+            <span style="color:var(--cream-2)">🚐</span>
+          </div>
+          <div class="day-header-info">
+            <div class="day-location" style="color:var(--cream-2);font-size:0.95rem;">Day ${day.num} — Travel Day</div>
+            <div class="day-date">${day.fromRegion} → ${day.toRegion}</div>
+          </div>
+        </div>
+        <div class="day-body">
+          ${day.items.map(item => `
+            <div class="day-item">
+              <div class="day-item-time">${item.time}</div>
+              <div class="day-item-content">
+                <div class="day-item-type type-travel">Transit</div>
+                <div class="day-item-name">${item.name}</div>
+                <div class="day-item-desc">${item.desc}</div>
+                <div class="day-item-cost">${item.cost}</div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  return `
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-num-badge"><span>${day.num}</span></div>
+        <div class="day-header-info">
+          <div class="day-location">${day.location}</div>
+          <div class="day-date">Day ${day.num} of ${S.days}</div>
+        </div>
+      </div>
+      <div class="day-body">
+        ${day.items.map(item => `
+          <div class="day-item">
+            <div class="day-item-time">${item.time}</div>
+            <div class="day-item-content">
+              <div class="day-item-type type-${item.type}">${{hotel:'Hotel',food:'Food',trek:'Trek',todo:'Do',travel:'Transit'}[item.type]||item.type}</div>
+              <div class="day-item-name">${item.name}</div>
+              <div class="day-item-desc">${item.desc}</div>
+              <div class="day-item-cost">${item.cost}</div>
+            </div>
+          </div>`).join('')}
+        <div class="day-total">
+          <span class="day-total-label">Est. day cost</span>
+          <span class="day-total-val">Rs. ${day.cost.toLocaleString()}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function buildWarnings(route, totalDays, totalBudget, dailyBudget, tier, totalSpent) {
+  const warns = [];
+  const transitDays = calcTransitDays(route);
+  const actDays = route.reduce((t,k) => t + S.locations[k].days, 0);
+
+  if (actDays + transitDays > totalDays) {
+    warns.push(`<div class="warn-banner"><strong>⚠️ Days don't add up</strong>Your stops need ~${actDays} days + ~${transitDays.toFixed(1)} transit days = ${(actDays+transitDays).toFixed(1)} days total, but you've set ${totalDays}. Some activities have been trimmed. Consider adding ${Math.ceil(actDays+transitDays-totalDays)} more days.</div>`);
+  }
+  if (totalSpent > totalBudget) {
+    warns.push(`<div class="warn-banner"><strong>⚠️ Over budget by Rs. ${(totalSpent-totalBudget).toLocaleString()}</strong>The recommended hotels and activities exceed your budget. Switch to guesthouses and dhabas, skip paid activities, or increase your budget by Rs. ${(totalSpent-totalBudget).toLocaleString()}.</div>`);
+  }
+  if (route.includes('skardu') && route.includes('hunza') && totalDays < 10) {
+    warns.push(`<div class="warn-banner"><strong>⚠️ Skardu + Hunza needs 10+ days</strong>The Skardu–Gilgit–Hunza route takes a full day each way by road. With ${totalDays} days you'll spend most of your trip travelling. Consider focusing on one region or adding more days.</div>`);
+  }
+  if (warns.length === 0 && totalSpent <= totalBudget) {
+    warns.push(`<div class="good-banner"><strong>✓ Plan looks good</strong>Your budget covers this itinerary with Rs. ${(totalBudget-totalSpent).toLocaleString()} to spare for extras, souvenirs, and the unexpected.</div>`);
+  }
+  return warns.join('');
+}
+
+function getTransitNote(from, to) {
+  const notes = {
+    'gilgit-hunza': 'Shared jeep from Gilgit bus stand: Rs. 400–700. 2.5h drive north on KKH.',
+    'hunza-gilgit': 'Shared jeep from Karimabad to Gilgit: Rs. 400–700.',
+    'gilgit-skardu': '8–9h drive east via Jaglot. Shared jeep Rs. 600–900 or fly 30 min.',
+    'skardu-gilgit': '8–9h drive west. Shared jeep or domestic flight.',
+    'gilgit-fairy':  'Drive south 3h on KKH to Raikot Bridge, then jeep to Tato + 1.5h hike.',
+    'fairy-gilgit':  'Hike down to Tato, jeep to Raikot Bridge, drive north to Gilgit.',
+    'chilas-fairy':  '40km east on KKH to Raikot Bridge. Jeep track to Tato. Hike to meadow.',
+    'naran-chilas':  'Cross Babusar Pass (4,173m) to Chilas. 3–4h by jeep. Open Jun–Oct only.',
+    'chilas-naran':  'Cross Babusar Pass back toward Naran. 3–4h jeep. Jun–Oct only.',
+  };
+  const key = `${from}-${to}`;
+  return notes[key] || `Allow half to full day depending on route and transport.`;
+}
+
+/* ═══════════════════════════ EXPLORE VIEW ══════════════════ */
+function expSelectRegion(key, el) {
+  S.expRegion = key; S.expSubarea = null; S.expFilter = 'all';
+  document.querySelectorAll('.exp-reg-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+
+  const region = DATA[key];
+  const subBar = document.getElementById('expSubBar');
+  subBar.style.display = 'flex';
+  subBar.innerHTML = Object.entries(region.subareas).map(([k,v]) =>
+    `<button class="exp-sub-chip ${k === Object.keys(region.subareas)[0] ? 'selected' : ''}" data-sub="${k}" onclick="expSelectSub('${k}',this)">${v.label}</button>`
+  ).join('');
+
+  S.expSubarea = Object.keys(region.subareas)[0];
+
+  document.getElementById('expFilterBar').style.display = 'flex';
+  document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+  document.getElementById('expPlaceholder').style.display = 'none';
+  renderExpResults();
+}
+
+function expSelectSub(key, btn) {
+  S.expSubarea = key; S.expFilter = 'all';
+  document.querySelectorAll('.exp-sub-chip').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
-  selectedSubarea = key;
-  activeFilter = 'all';
-  renderResults();
+  document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'all'));
+  renderExpResults();
 }
 
-/* ─────────────────────────────────────────────
-   STEP 3 → results
-───────────────────────────────────────────── */
-function renderResults() {
-  const region = DATA[selectedRegion];
-  const sub = region.subareas[selectedSubarea];
-  const step3 = document.getElementById('step3');
-  step3.style.display = 'block';
-
-  document.getElementById('locationTrail3').innerHTML =
-    `<span class="lt-region">${region.label}</span>
-     <span class="lt-sep">/</span>
-     <span>${sub.label}</span>
-     <span class="lt-sep">/</span>
-     <span class="lt-change" onclick="resetToStep1()">Change</span>`;
-
-  // Reset filter
-  document.querySelectorAll('.filter-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.cat === 'all');
-  });
-  activeFilter = 'all';
-  renderCards(sub.items);
-  setPills(3);
-  step3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function expFilter(btn) {
+  S.expFilter = btn.dataset.cat;
+  document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderExpResults();
 }
 
-function renderCards(items) {
-  const grid = document.getElementById('resultsGrid');
-  const filtered = activeFilter === 'all' ? items : items.filter(i => i.cat === activeFilter);
+function renderExpResults() {
+  if (!S.expRegion || !S.expSubarea) return;
+  const items = DATA[S.expRegion].subareas[S.expSubarea]?.items || [];
+  const filtered = S.expFilter === 'all' ? items : items.filter(i => i.cat === S.expFilter);
+  const grid = document.getElementById('expResults');
+
+  const catMeta = { hotel:{l:'Hotel',cls:'hotel'}, restaurant:{l:'Restaurant',cls:'restaurant'}, trek:{l:'Trek',cls:'trek'}, todo:{l:'Thing To Do',cls:'todo'} };
 
   if (!filtered.length) {
-    grid.innerHTML = `<div class="no-results" style="grid-column:1/-1"><strong>None here</strong>No ${activeFilter}s listed for this area yet.</div>`;
+    grid.innerHTML = `<div class="exp-empty">Nothing in this category for ${DATA[S.expRegion].subareas[S.expSubarea].label} yet.</div>`;
     return;
   }
 
-  const catMeta = {
-    hotel:      { label:'Hotel',       icon:'🏨', cls:'hotel' },
-    restaurant: { label:'Restaurant',  icon:'🍽', cls:'restaurant' },
-    trek:       { label:'Trek',        icon:'🥾', cls:'trek' },
-    todo:       { label:'Thing To Do', icon:'✦',  cls:'todo' },
-  };
-
   grid.innerHTML = filtered.map(item => {
-    const m = catMeta[item.cat];
-    const badges = (item.badges||[]).map(b => `<span class="rc-badge">${b}</span>`).join('');
-    return `
-      <div class="result-card">
-        <div class="rc-cat-tag ${m.cls}"><span class="rc-cat-icon">${m.icon}</span>${m.label}</div>
-        <div class="rc-title">${item.name}</div>
-        <div class="rc-desc">${item.desc}</div>
-        <div class="rc-footer">
-          <div class="rc-price">${item.price}</div>
-          <div class="rc-badges">${badges}</div>
-        </div>
-      </div>`;
+    const m = catMeta[item.cat] || {l:item.cat,cls:'todo'};
+    return `<div class="exp-card">
+      <div class="exp-card-top">
+        <span class="exp-cat-tag ${m.cls}">${m.l}</span>
+      </div>
+      <div class="exp-name">${item.name}</div>
+      <div class="exp-desc">${item.desc}</div>
+      <div class="exp-footer">
+        <span class="exp-price">${item.price}</span>
+        <div class="exp-badges">${(item.badges||[]).slice(0,2).map(b=>`<span class="exp-badge">${b}</span>`).join('')}</div>
+      </div>
+    </div>`;
   }).join('');
 }
-
-/* ─────────────────────────────────────────────
-   FILTER
-───────────────────────────────────────────── */
-function filterResults(btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activeFilter = btn.dataset.cat;
-  const sub = DATA[selectedRegion].subareas[selectedSubarea];
-  renderCards(sub.items);
-}
-
-/* ─────────────────────────────────────────────
-   RESET
-───────────────────────────────────────────── */
-function resetToStep1() {
-  selectedRegion = null;
-  selectedSubarea = null;
-  document.querySelectorAll('.region-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById('step2').style.display = 'none';
-  document.getElementById('step3').style.display = 'none';
-  setPills(1);
-  document.getElementById('step1').scrollIntoView({ behavior:'smooth', block:'start' });
-}
-
-/* ─────────────────────────────────────────────
-   STEP PILLS
-───────────────────────────────────────────── */
-function setPills(active) {
-  [1,2,3].forEach(n => {
-    const p = document.getElementById('pill'+n);
-    p.classList.remove('active','done');
-    if (n < active) p.classList.add('done');
-    else if (n === active) p.classList.add('active');
-  });
-}
-
-/* nav scroll */
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
 </script>
 </body>
 </html>
