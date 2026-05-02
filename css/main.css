@@ -519,3 +519,136 @@ footer {
 /* ─── KEYFRAMES ──────────────────────────────────────── */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE — Responsive Overrides
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── HAMBURGER MENU ─────────────────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cream);
+  transition: all 0.25s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile nav drawer */
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: rgba(7,8,13,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gold-border);
+  z-index: 999;
+  padding: 1.5rem 2rem 2rem;
+}
+.nav-drawer.open { display: block; }
+.nav-drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 1.5rem;
+}
+.nav-drawer ul a {
+  display: block;
+  padding: 0.9rem 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cream-2);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.2s;
+}
+.nav-drawer ul a:hover { color: var(--gold); }
+.nav-drawer .nav-cta {
+  width: 100%;
+  padding: 0.85rem;
+  text-align: center;
+}
+
+/* ─── TABLET & BELOW (900px) ─────────────────────────── */
+@media (max-width: 900px) {
+  .card-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { gap: 3rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+/* ─── MOBILE (680px) ─────────────────────────────────── */
+@media (max-width: 680px) {
+
+  /* Nav */
+  nav { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* Hero */
+  .page-hero { height: auto; min-height: 60vh; }
+  .page-hero-content { padding: 0 1.25rem 3rem; }
+  .page-hero-h1 { font-size: clamp(2.2rem, 9vw, 4rem); }
+  .page-hero-sub { font-size: 0.82rem; max-width: 100%; }
+  .page-hero-meta { gap: 0.75rem; }
+
+  /* Breadcrumb */
+  .breadcrumb { padding: 0.65rem 1.25rem; }
+
+  /* Sections */
+  .section { padding: 4rem 1.25rem; }
+  .section-bg .section-inner { padding: 0 1.25rem; }
+  .section-bg { padding: 4rem 0; }
+
+  /* Grids → single column */
+  .info-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .card-grid-3 { grid-template-columns: 1fr; }
+  .card-grid-2 { grid-template-columns: 1fr; }
+  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+  /* Stat row → 2 cols */
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .stat-cell { border-right: none; border-bottom: 1px solid var(--gold-border); }
+  .stat-cell:nth-child(odd) { border-right: 1px solid var(--gold-border); }
+  .stat-cell:last-child { border-bottom: none; }
+  .stat-cell-num { font-size: 2rem; }
+
+  /* Tables → readable */
+  .practical-table td { font-size: 0.78rem; padding: 0.7rem 0; }
+  .practical-table td:first-child { width: 40%; font-size: 0.62rem; padding-right: 0.75rem; }
+
+  /* Footer */
+  footer { padding: 3.5rem 1.25rem 2rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+  /* Section header split → stacked */
+  .section-header.split { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+  /* Notice */
+  .notice { font-size: 0.78rem; padding: 1rem 1.1rem; }
+
+  /* Buttons */
+  .btn-primary, .btn-ghost { padding: 0.8rem 1.5rem; font-size: 0.68rem; }
+}
+
+/* ─── SMALL MOBILE (400px) ───────────────────────────── */
+@media (max-width: 400px) {
+  .page-hero-h1 { font-size: clamp(1.9rem, 10vw, 2.8rem); }
+  .section-title { font-size: clamp(1.8rem, 9vw, 2.5rem); }
+  .card-grid-4 { grid-template-columns: 1fr; }
+}

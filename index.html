@@ -1271,7 +1271,20 @@ footer {
     <li><a href="blog/index.html">Blog</a></li>
   </ul>
   <a href="explore/index.html" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="./destinations/index.html">Destinations</a></li>
+    <li><a href="./trekking/index.html">Treks</a></li>
+    <li><a href="./travel/index.html">Things To Do</a></li>
+    <li><a href="./agencies/index.html">Agencies</a></li>
+    <li><a href="./blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='./explore/index.html'">Plan Your Trip</button>
+</div>
 
 <!-- ─── HERO ─────────────────────────────────────────── -->
 <section class="hero">
@@ -2020,6 +2033,23 @@ if (mountains) {
     mountains.style.transform = `translateY(${y * 0.25}px)`;
   }, { passive: true });
 }
+</script>
+<script id="navScript">
+(function(){
+  var btn = document.getElementById('navHamburger');
+  var drawer = document.getElementById('navDrawer');
+  if (!btn || !drawer) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e){
+    if (!btn.contains(e.target) && !drawer.contains(e.target)){
+      btn.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+  });
+})();
 </script>
 </body>
 </html>

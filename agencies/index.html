@@ -33,7 +33,20 @@
     <li><a href="../blog/index.html">Blog</a></li>
   </ul>
   <button class="nav-cta">Plan Your Trip</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
+</div>
 
 <section class="page-hero">
   <div class="page-hero-img agencies-hero-bg"></div>
@@ -195,6 +208,23 @@ const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
 const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { const s = [...e.target.parentElement.querySelectorAll('.reveal')]; setTimeout(() => e.target.classList.add('visible'), s.indexOf(e.target) * 90); obs.unobserve(e.target); } }), { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+<script id="navScript">
+(function(){
+  var btn = document.getElementById('navHamburger');
+  var drawer = document.getElementById('navDrawer');
+  if (!btn || !drawer) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e){
+    if (!btn.contains(e.target) && !drawer.contains(e.target)){
+      btn.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+  });
+})();
 </script>
 </body>
 </html>
