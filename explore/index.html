@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Nearby — Hotels, Restaurants & Things To Do in GB — LocalGB</title>
+<meta name="description" content="Find hotels, restaurants, treks, and things to do near you in Gilgit-Baltistan. Select your location and explore curated, honest recommendations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<style>
+/* ── App shell ───────────────────────────────────────────── */
+.explore-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+
+/* ── Step indicators ─────────────────────────────────────── */
+.steps-bar { display: flex; align-items: center; gap: 0; margin: 2.5rem 0 3rem; }
+.step-pill { display: flex; align-items: center; gap: 0.6rem; font-family: var(--fu); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-2); opacity: 0.4; transition: opacity 0.3s; }
+.step-pill.active { opacity: 1; color: var(--gold); }
+.step-pill.done { opacity: 0.6; color: var(--cream-2); }
+.step-pill .sp-num { width: 24px; height: 24px; border-radius: 50%; border: 1px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; flex-shrink: 0; }
+.step-pill.done .sp-num { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.step-pill.active .sp-num { border-color: var(--gold); }
+.step-sep { flex: 1; height: 1px; background: rgba(255,255,255,0.07); margin: 0 0.8rem; max-width: 60px; }
+
+/* ── Section label ───────────────────────────────────────── */
+.app-label { font-family: var(--fu); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+.app-heading { font-family: var(--fd); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; color: var(--cream); margin-bottom: 1.8rem; }
+
+/* ── Region grid (Step 1) ────────────────────────────────── */
+.region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (max-width: 600px) { .region-grid { grid-template-columns: repeat(2, 1fr); } }
+.region-card { position: relative; border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 1.4rem 1.2rem; cursor: pointer; transition: border-color 0.2s, background 0.2s; overflow: hidden; min-height: 110px; display: flex; flex-direction: column; justify-content: flex-end; }
+.region-card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; opacity: 0.55; transition: opacity 0.2s; }
+.region-card.hunza::before    { background: linear-gradient(145deg, #3A1A05, #7A3A0A); }
+.region-card.skardu::before   { background: linear-gradient(145deg, #05101A, #0A2040); }
+.region-card.gilgit::before   { background: linear-gradient(145deg, #0A0804, #2A1A08); }
+.region-card.fairy::before    { background: linear-gradient(145deg, #051005, #0E2810); }
+.region-card.chilas::before   { background: linear-gradient(145deg, #0C0804, #281808); }
+.region-card.naran::before    { background: linear-gradient(145deg, #051008, #0C2010); }
+.region-card:hover { border-color: var(--gold-border); }
+.region-card:hover::before { opacity: 0.75; }
+.region-card.selected { border-color: var(--gold); }
+.region-card.selected::before { opacity: 0.85; }
+.rc-name { font-family: var(--fd); font-size: 1.2rem; font-weight: 400; color: var(--cream); position: relative; z-index: 1; }
+.rc-sub  { font-family: var(--fu); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,232,213,0.55); position: relative; z-index: 1; margin-top: 0.2rem; }
+
+/* ── Sub-area picker (Step 2) ────────────────────────────── */
+#step2 { display: none; margin-top: 3rem; }
+.subarea-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.subarea-btn { font-family: var(--fu); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.55rem 1.3rem; border-radius: 3px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2); background: none; cursor: pointer; transition: all 0.2s; }
+.subarea-btn:hover { border-color: var(--gold-border); color: var(--gold); }
+.subarea-btn.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+
+/* ── Results (Step 3) ────────────────────────────────────── */
+#step3 { display: none; margin-top: 3rem; }
+.filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.filter-btn { font-family: var(--fu); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.1rem; border-radius: 3px; border: 1px solid rgba(255,255,255,0.1); color: var(--cream-2); background: none; cursor: pointer; transition: all 0.2s; }
+.filter-btn:hover { border-color: var(--gold-border); color: var(--gold); }
+.filter-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+
+.results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.result-card { border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 1.4rem; transition: border-color 0.2s; display: flex; flex-direction: column; }
+.result-card:hover { border-color: rgba(200,144,58,0.3); }
+.rc-cat-tag { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--fu); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.8rem; }
+.rc-cat-tag.hotel     { color: #C8903A; }
+.rc-cat-tag.restaurant{ color: #8DB87A; }
+.rc-cat-tag.trek      { color: #7AB8D4; }
+.rc-cat-tag.todo      { color: #B87AAA; }
+.rc-cat-icon { font-size: 0.8rem; }
+.rc-title { font-family: var(--fd); font-size: 1.2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.4rem; }
+.rc-desc  { font-size: 0.77rem; color: var(--cream-2); line-height: 1.75; flex: 1; margin-bottom: 0.9rem; }
+.rc-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.rc-price { font-family: var(--fu); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; color: var(--gold); }
+.rc-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.rc-badge { font-family: var(--fu); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 2px; background: rgba(255,255,255,0.05); color: var(--cream-2); }
+
+.no-results { text-align: center; padding: 3rem 1rem; color: var(--cream-2); font-size: 0.85rem; }
+.no-results strong { display: block; font-family: var(--fd); font-size: 1.4rem; color: var(--cream); margin-bottom: 0.5rem; }
+
+/* ── Breadcrumb trail ────────────────────────────────────── */
+.location-trail { display: flex; align-items: center; gap: 0.5rem; font-family: var(--fu); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream-2); margin-bottom: 1.5rem; flex-wrap: wrap; }
+.lt-sep { opacity: 0.3; }
+.lt-region { color: var(--gold); }
+.lt-change { color: var(--cream-2); text-decoration: underline; cursor: pointer; opacity: 0.6; }
+.lt-change:hover { opacity: 1; }
+
+/* ── Empty state ─────────────────────────────────────────── */
+.empty-hero { text-align: center; padding: 4rem 1rem 2rem; }
+.empty-hero p { font-size: 0.82rem; color: var(--cream-2); max-width: 380px; margin: 0.8rem auto 0; line-height: 1.75; }
+</style>
+</head>
+<body>
+
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../hunza/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Trip</button>
+</nav>
+
+<section class="page-hero" style="min-height:40vh;">
+  <div class="page-hero-img" style="background:linear-gradient(155deg, #06050A 0%, #0C0A14 40%, #141020 100%)"></div>
+  <div class="page-hero-overlay" style="background:linear-gradient(180deg,rgba(6,5,10,0.2) 0%,rgba(6,5,10,0.9) 100%)"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Explore Nearby</div>
+    <h1 class="page-hero-h1">Where Are<br><em>You Right Now?</em></h1>
+    <p class="page-hero-sub">Select your location and we'll show you the best hotels, restaurants, treks, and things to do nearby — curated, honest, no fluff.</p>
+  </div>
+</section>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Explore</span>
+  </div>
+</div>
+
+<div class="explore-wrap">
+
+  <!-- Step indicator -->
+  <div class="steps-bar" id="stepsBar">
+    <div class="step-pill active" id="pill1"><div class="sp-num">1</div><span>Pick Region</span></div>
+    <div class="step-sep"></div>
+    <div class="step-pill" id="pill2"><div class="sp-num">2</div><span>Your Area</span></div>
+    <div class="step-sep"></div>
+    <div class="step-pill" id="pill3"><div class="sp-num">3</div><span>Explore</span></div>
+  </div>
+
+  <!-- STEP 1: Region selector -->
+  <div id="step1">
+    <span class="app-label">Step 1</span>
+    <div class="app-heading">Which region are you in?</div>
+    <div class="region-grid">
+      <div class="region-card hunza" data-region="hunza" onclick="selectRegion(this)">
+        <div class="rc-name">Hunza</div>
+        <div class="rc-sub">Karimabad · Passu · Gulmit</div>
+      </div>
+      <div class="region-card skardu" data-region="skardu" onclick="selectRegion(this)">
+        <div class="rc-name">Skardu</div>
+        <div class="rc-sub">City · Shigar · Khaplu</div>
+      </div>
+      <div class="region-card gilgit" data-region="gilgit" onclick="selectRegion(this)">
+        <div class="rc-name">Gilgit</div>
+        <div class="rc-sub">City · Naltar · Bagrot</div>
+      </div>
+      <div class="region-card fairy" data-region="fairy" onclick="selectRegion(this)">
+        <div class="rc-name">Fairy Meadows</div>
+        <div class="rc-sub">Tato · Meadow · Base Camp</div>
+      </div>
+      <div class="region-card chilas" data-region="chilas" onclick="selectRegion(this)">
+        <div class="rc-name">Chilas</div>
+        <div class="rc-sub">Town · Raikot · KKH</div>
+      </div>
+      <div class="region-card naran" data-region="naran" onclick="selectRegion(this)">
+        <div class="rc-name">Naran–Kaghan</div>
+        <div class="rc-sub">Naran · Shogran · Babusar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Sub-area -->
+  <div id="step2">
+    <div class="location-trail" id="locationTrail"></div>
+    <span class="app-label">Step 2</span>
+    <div class="app-heading" id="step2Heading">Where exactly?</div>
+    <div class="subarea-list" id="subareaList"></div>
+  </div>
+
+  <!-- STEP 3: Results -->
+  <div id="step3">
+    <div class="location-trail" id="locationTrail3"></div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-cat="all" onclick="filterResults(this)">All</button>
+      <button class="filter-btn" data-cat="hotel" onclick="filterResults(this)">🏨 Hotels</button>
+      <button class="filter-btn" data-cat="restaurant" onclick="filterResults(this)">🍽 Restaurants</button>
+      <button class="filter-btn" data-cat="trek" onclick="filterResults(this)">🥾 Treks</button>
+      <button class="filter-btn" data-cat="todo" onclick="filterResults(this)">✦ Things To Do</button>
+    </div>
+    <div class="results-grid" id="resultsGrid"></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p><div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>
+      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit</a></li></ul></div>
+      <div><div class="footer-col-title">Explore</div><ul class="footer-links"><li><a href="../explore/index.html">Nearby Finder</a></li><li><a href="../trekking/index.html">All Treks</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────── */
+const DATA = {
+  hunza: {
+    label: "Hunza Valley",
+    subareas: {
+      karimabad: {
+        label: "Karimabad",
+        items: [
+          { cat:"hotel", name:"Serena Hunza", desc:"The most established hotel in Karimabad. Rooms look directly onto Rakaposhi. Well-maintained, reliable hot water, good in-house restaurant. Book early in summer.", price:"Rs. 12,000–22,000/night", badges:["Mid-range","Mountain view","Restaurant"] },
+          { cat:"hotel", name:"Hunza Serena Inn (Old Fort Road)", desc:"Older property but great location on the ridge above the bazaar. Views from the terrace are exceptional at dawn. Simpler rooms, honest prices.", price:"Rs. 4,500–8,000/night", badges:["Budget-friendly","Terrace view"] },
+          { cat:"hotel", name:"Eagle's Nest Duikar", desc:"40-minute drive above Karimabad at 2,900m. The highest guesthouse in the valley. The view — Rakaposhi, Ladyfinger, Ultar, Diran in one frame — is unlike anything else. Basic rooms but the location is the point.", price:"Rs. 5,000–9,000/night", badges:["Best view in GB","Remote","Bring warm clothes"] },
+          { cat:"hotel", name:"Hidden Paradise Hotel", desc:"Mid-range guesthouse in central Karimabad. Family-run, clean rooms, good wifi. The rooftop is a good spot for evening apricot tea.", price:"Rs. 3,500–6,500/night", badges:["Family-run","Central"] },
+          { cat:"restaurant", name:"Café de Hunza", desc:"The most reliable sit-down restaurant in Karimabad. Chapshuro (meat-filled flatbread), daal, local apricot juice, and a surprisingly good coffee. Tourist-friendly without being a tourist trap.", price:"Rs. 400–900/meal", badges:["Local dishes","Good coffee","Views"] },
+          { cat:"restaurant", name:"Hunza Bazaar Dhabas", desc:"The row of dhabas along the lower bazaar road. Daal, karahi, fresh chapati, and hard-boiled eggs. No ambiance, no menu — point at what you want. Rs. 200–350 fills you up.", price:"Rs. 200–350/meal", badges:["Cheapest in town","Local only"] },
+          { cat:"restaurant", name:"Old Hunza Restaurant", desc:"Slightly uphill from the bazaar. Known for diram phitti (a traditional GB bread-and-soup dish) and mulberry preserves. The kind of place you'll return to every day.", price:"Rs. 350–700/meal", badges:["Traditional GB food","Authentic"] },
+          { cat:"trek", name:"Ultar Sar Base Camp", desc:"A strenuous day hike or easy overnight from Karimabad to the base of Ultar Sar (7,388m). The trail climbs steeply through juniper forest. Views of the Hunza valley from 3,500m are exceptional. No guide needed.", price:"Free · 6–8h return", badges:["Strenuous","No permit","Glacier views"] },
+          { cat:"trek", name:"Rakaposhi Base Camp", desc:"2–3 day trek from Minapin village (30 min from Karimabad). The approach trail is excellent — rhododendron forest, glacier moraine, and a mountain wall that fills the sky. Guide recommended (Rs. 2,500–3,500/day).", price:"Rs. 2,500–3,500/day guide", badges:["2–3 days","Guide recommended","Minapin start"] },
+          { cat:"todo", name:"Baltit Fort", desc:"The 700-year-old fort of the Mir of Hunza, restored by the Aga Khan Trust. Perched above Karimabad with a commanding view of the valley. The interior shows the evolution of the fort across centuries. Entry: Rs. 500. 1–2h visit.", price:"Rs. 500 entry", badges:["UNESCO heritage","1–2h","Essential visit"] },
+          { cat:"todo", name:"Altit Fort", desc:"Older than Baltit (900+ years), 5km down the valley. Less visited, better preserved in some sections, and the village below it is one of the most intact traditional Hunza settlements. Entry: Rs. 300.", price:"Rs. 300 entry", badges:["900 years old","Less crowded","Village walk"] },
+          { cat:"todo", name:"Eagle's Nest Sunrise Hike", desc:"Hike or take a jeep to Duikar above Karimabad for sunrise. The full panorama of 7,000m+ peaks at golden hour is the defining image of Hunza. Leave Karimabad by 4:30am. No guide needed.", price:"Free (hike) / Rs. 800 jeep", badges:["Pre-dawn start","Photography","No guide needed"] },
+        ]
+      },
+      passu: {
+        label: "Passu",
+        items: [
+          { cat:"hotel", name:"Passu Inn", desc:"Simple but clean guesthouse directly below the Passu Cones. The terrace has an unobstructed view of the spires. Reliable food, basic rooms. The best value stay in Upper Hunza.", price:"Rs. 2,500–5,000/night", badges:["Best location","Budget","Views of Cones"] },
+          { cat:"hotel", name:"Batura Inn", desc:"At the mouth of the Batura Glacier, 3km past Passu village. Completely isolated. If you want silence and a 7,700m+ glacier at your door, this is where to stay.", price:"Rs. 2,000–4,000/night", badges:["Isolated","Glacier access","Very basic"] },
+          { cat:"restaurant", name:"Passu Village Guesthouses", desc:"Every guesthouse in Passu serves simple home-cooked meals. Daal, rice, local bread, and apricot products. There are no standalone restaurants — eat where you sleep or ask a villager.", price:"Rs. 300–600/meal", badges:["Home cooked","Included with stay"] },
+          { cat:"trek", name:"Passu Glacier Day Hike", desc:"A 3–4 hour return hike from the village to the snout of the Passu Glacier. The approach crosses the iconic suspension bridge over the Hunza River. No guide needed. Easy to moderate.", price:"Free · 3–4h return", badges:["Easy-moderate","No guide","Suspension bridge"] },
+          { cat:"trek", name:"Shimshal Pass Trek", desc:"A multi-day expedition-level trek to Shimshal village — one of GB's most remote communities. 4–5 days each way through high mountain desert. Requires guide and permit. Not for beginners.", price:"Guide required · Rs. 4,000–6,000/day", badges:["Multi-day","Remote","Permit required"] },
+          { cat:"todo", name:"Passu Cones Viewpoint", desc:"The six jagged limestone spires are visible from the KKH but the best view is 20 minutes off the road across the suspension bridge. Free, takes 45 minutes round trip, and the photo from the bridge is the most iconic in Upper Hunza.", price:"Free · 45 min", badges:["Iconic view","Free","Short walk"] },
+          { cat:"todo", name:"Batura Glacier Walk", desc:"Walk to the terminal moraine of the Batura Glacier — one of the longest glaciers outside the polar regions at 57km. The scale is disorienting. Safe to walk on the lower moraine. 2–3h from the village.", price:"Free · 2–3h", badges:["Free","Glacier","Moderate walk"] },
+        ]
+      },
+      gulmit: {
+        label: "Gulmit",
+        items: [
+          { cat:"hotel", name:"Marco Polo Inn Gulmit", desc:"Long-running guesthouse that was once the main stop for Silk Road overlanders. Basic rooms, good hospitality, and a genuine old-world feel. The family has been hosting travellers since the KKH opened.", price:"Rs. 2,000–4,500/night", badges:["Historic","Family-run","Silk Road era"] },
+          { cat:"hotel", name:"Gulmit Tourist Inn", desc:"Clean mid-range option in the village centre. Good mountain views from the upper rooms. Reliable meals included.", price:"Rs. 3,000–5,500/night", badges:["Mid-range","Meals available"] },
+          { cat:"restaurant", name:"Village Guesthouse Kitchens", desc:"Gulmit has no standalone restaurants. Every guesthouse serves meals — typically daal, rice, chapati, omelettes, and seasonal local produce. Ask for local dishes specifically.", price:"Rs. 250–500/meal", badges:["Home cooked","Ask for local dishes"] },
+          { cat:"trek", name:"Ghulkin Glacier Trek", desc:"A 2–3 hour return trek from Gulmit village to the Ghulkin Glacier snout. The glacier has retreated significantly — the moraine walk is rough but the ice face at the end is striking.", price:"Free · 2–3h return", badges:["Easy-moderate","Free","Glacier"] },
+          { cat:"todo", name:"Gulmit Village Walk", desc:"One of the best-preserved traditional Hunza villages, with carved wooden houses, apricot orchards, and a small polo ground used on festival days. No entry fee, no guide needed. Wander freely and respectfully.", price:"Free", badges:["Cultural","Free","Polo ground"] },
+          { cat:"todo", name:"Attabad Lake Boat Ride", desc:"Attabad Lake is 15km south of Gulmit — formed by a 2010 landslide that drowned 5 villages. The turquoise water against the rock walls is extraordinary. Boat rides: Rs. 500–1,500 per person. Hire from Attabad village.", price:"Rs. 500–1,500 boat", badges:["15km from Gulmit","Unique landscape","Boat available"] },
+        ]
+      },
+      aliabad: {
+        label: "Aliabad",
+        items: [
+          { cat:"hotel", name:"Mountain Refuge Aliabad", desc:"Budget guesthouse in Aliabad town, the commercial centre of Hunza below Karimabad. Useful if Karimabad is full. 15 minutes uphill to the fort and bazaar.", price:"Rs. 1,800–3,500/night", badges:["Budget","Commercial centre"] },
+          { cat:"hotel", name:"Hunza Elites Hotel", desc:"One of the newer mid-range options in Aliabad with consistent hot water and wifi. Good restaurant on-site. More business-oriented than the mountain guesthouses above.", price:"Rs. 4,500–8,000/night", badges:["Reliable amenities","Restaurant"] },
+          { cat:"restaurant", name:"Aliabad Bazaar Restaurants", desc:"The bazaar has several proper restaurants serving northern Pakistani food — karahi, daal, nihari. More variety than Karimabad at lower prices. Good for a full meal before the drive north.", price:"Rs. 300–600/meal", badges:["More variety","Lower prices"] },
+          { cat:"restaurant", name:"Rakaposhi View Café", desc:"A small café on the main road with a clear view of Rakaposhi. Known for local apricot products, fresh walnut oil, and simple breakfasts. Good stop before an early start.", price:"Rs. 200–450/meal", badges:["Mountain view","Breakfast","Apricot products"] },
+          { cat:"todo", name:"Hunza Bazaar Shopping", desc:"Aliabad's bazaar is the best place to buy local products: dried apricots, walnut oil, apricot kernel oil, embroidered caps, and local honey. Prices are lower here than in Karimabad. No fixed prices — negotiate.", price:"Variable", badges:["Local produce","Better prices","Negotiable"] },
+        ]
+      },
+      nagar: {
+        label: "Nagar",
+        items: [
+          { cat:"hotel", name:"Nagar Inn", desc:"The main guesthouse in Nagar valley, on the south side of the Hunza River opposite Karimabad. Few tourists cross the river — Nagar is quieter, the views of the Hunza valley from here are different and excellent.", price:"Rs. 2,000–4,000/night", badges:["Quiet side","Different perspective","Value"] },
+          { cat:"trek", name:"Hispar Glacier Trek", desc:"The Hispar Glacier at Nagar's head is 53km long — one of the longest valley glaciers in the world outside the polar regions. The entry walk from Hispar village to the snout is a full day return. Multi-day expeditions continue to Snow Lake.", price:"Rs. 3,000–5,000/day guide", badges:["Major glacier","Multi-day option","Guide required"] },
+          { cat:"trek", name:"Rush Lake Trek", desc:"A 2-day trek from Minapin to Rush Lake (4,694m), one of the highest lakes in the world accessible without technical climbing. The views from the lake ridge — Rakaposhi, Diran, the Hunza valley — are extraordinary.", price:"Guide recommended · Rs. 2,500/day", badges:["2 days","4,694m","World's highest lakes"] },
+          { cat:"todo", name:"Hopper Glacier Walk", desc:"A 2–3 hour walk from Hopper village (Nagar) to the Hopper Glacier snout. The glacier is retreating rapidly — the scale of the remaining ice is still striking. Ask in the village for the current trail.", price:"Free · 2–3h", badges:["Free","Retreating glacier","Easy walk"] },
+        ]
+      }
+    }
+  },
+
+  skardu: {
+    label: "Skardu",
+    subareas: {
+      skardu_city: {
+        label: "Skardu City",
+        items: [
+          { cat:"hotel", name:"Mashabrum Hotel", desc:"One of Skardu's long-established mid-range hotels near the bazaar. Clean rooms, reliable staff, good food. The rooftop has views of Kharpocho Fort on the hill above.", price:"Rs. 5,000–10,000/night", badges:["Central","Mid-range","Fort views"] },
+          { cat:"hotel", name:"K2 Motel", desc:"Budget option near the bus stand. Functional, clean, and a good base for early morning departures. No frills but no problems either.", price:"Rs. 1,800–3,500/night", badges:["Budget","Near bus stand"] },
+          { cat:"hotel", name:"Concordia Motel", desc:"Popular with trekking groups staging for the Baltoro. Has a gear storage room, experienced staff who know the K2 approach, and a cook who makes a proper pre-trek breakfast at 4am.", price:"Rs. 4,000–8,000/night", badges:["Trekkers' base","4am breakfast","Gear storage"] },
+          { cat:"restaurant", name:"Skardu Bazaar Dhabas (Main Chowk)", desc:"The cluster of dhabas around Main Chowk serve some of the best karahi in the north. Order the mutton karahi with fresh naan. Rs. 400–600 for a full meal. Busy at lunch and dinner.", price:"Rs. 300–600/meal", badges:["Best karahi","Local only","No menu"] },
+          { cat:"restaurant", name:"Karakoram Bakery", desc:"The most popular bakery in Skardu. Opens early, closes when the bread runs out. Fresh samosas, buns, and local flatbreads. Critical for stocking up before a trek departure.", price:"Rs. 50–200/item", badges:["Bakery","Early opening","Pre-trek supply"] },
+          { cat:"restaurant", name:"Hunza Restaurant Skardu", desc:"A slightly upmarket option near the polo ground. Serves both local and Pakistani dishes. The daal makhni and chapati are reliable. Cleaner than the dhabas with a proper seating area.", price:"Rs. 450–850/meal", badges:["Sit-down","Clean","Local + Pakistani"] },
+          { cat:"trek", name:"Kharpocho Fort Hike", desc:"A 1.5–2 hour hike from the bazaar up to Kharpocho Fort at 2,800m. The fort dates from the 16th century. The view of the Skardu valley, the Indus, and the surrounding desert ranges from the top is one of the best accessible viewpoints in the region.", price:"Free · 1.5–2h return", badges:["Free","16th century fort","360° views"] },
+          { cat:"todo", name:"Katpana Desert (Cold Desert)", desc:"A sand desert at 2,500m — one of the world's highest cold deserts. 15 minutes from Skardu city. The dunes against the snowfields in the background is one of GB's most bizarre and photogenic landscapes.", price:"Free · 15 min from city", badges:["Unique landscape","Free","Photogenic"] },
+          { cat:"todo", name:"Satpara Lake", desc:"A blue glacial lake 10km from Skardu, source of the city's drinking water. The drive up follows the Satpara stream through a narrow gorge. Boats available: Rs. 800–1,500. The Buddha rock carving near the lake entrance is 1,500 years old.", price:"Free entry · boats Rs. 800–1,500", badges:["Glacial lake","Buddha carving","10km from city"] },
+          { cat:"todo", name:"Skardu Polo Ground", desc:"Matches happen most Sundays from April to September. Free entry. The polo here is the raw, unhelmeted, fast version — completely different from anything you'll see elsewhere. Ask your guesthouse for the upcoming schedule.", price:"Free", badges:["Free","Sunday matches","Unmissable"] },
+        ]
+      },
+      shigar: {
+        label: "Shigar Valley",
+        items: [
+          { cat:"hotel", name:"Serena Shigar Fort", desc:"A 17th-century fort converted into Pakistan's most atmospheric hotel by the Serena group. 20 rooms inside the original fort structure. Expensive but genuinely extraordinary. The garden and common areas are open to non-guests for tea.", price:"Rs. 25,000–45,000/night", badges:["Iconic","17th-century fort","Special occasion"] },
+          { cat:"hotel", name:"Shigar Valley Guesthouse", desc:"Budget option in Shigar town below the fort. Good base for valley exploration. The family runs a small orchard — fresh apricots in season are included at breakfast.", price:"Rs. 2,000–4,000/night", badges:["Budget","Orchard","Below the fort"] },
+          { cat:"restaurant", name:"Shigar Village Eateries", desc:"Small tea stalls and a couple of dhabas in Shigar town. Simple meals, cold drinks, and excellent locally grown apricots in season. Nothing formal.", price:"Rs. 200–450/meal", badges:["Simple","Local apricots","Tea stalls"] },
+          { cat:"trek", name:"Shigar Valley Walk", desc:"A full-day valley walk along the Shigar River through traditional villages, apricot orchards, and past carved wooden mosques. No guide needed. The villages of Chutron and Marko are the most intact.", price:"Free · full day", badges:["Cultural walk","Free","No guide needed"] },
+          { cat:"todo", name:"Shigar Fort Visit", desc:"Even if not staying, walk up to the Shigar Fort. The restoration work is meticulous — the carved wooden interiors, the inner garden, and the views down the valley are all exceptional. Rs. 500 entry for non-guests.", price:"Rs. 500 non-guests", badges:["Must-visit","Restored 17th-century","Gardens"] },
+          { cat:"todo", name:"Apricot Harvest (July–August)", desc:"Shigar grows some of the best apricots in the world. In July and August the whole valley is in harvest. Ask at any farmhouse if you can help pick — most families welcome it and will send you off with a bag.", price:"Free (seasonal)", badges:["July–August only","Cultural","Hands-on"] },
+        ]
+      },
+      khaplu: {
+        label: "Khaplu",
+        items: [
+          { cat:"hotel", name:"Khaplu Palace (Serena)", desc:"A 19th-century Balti palace converted into a boutique hotel by Serena. The palace is in better condition than the Shigar Fort and the surrounding Ghanche valley is less visited. A genuine hidden gem of the Serena properties.", price:"Rs. 20,000–38,000/night", badges:["19th-century palace","Less visited","Extraordinary"] },
+          { cat:"hotel", name:"Khaplu Grand Hotel", desc:"The main budget-to-mid option in Khaplu town. Clean rooms, roof terrace, and a kitchen that does a proper daal and rice. Good base for the Ghanche valley treks.", price:"Rs. 2,500–5,500/night", badges:["Good value","Roof terrace","Ghanche base"] },
+          { cat:"restaurant", name:"Khaplu Town Dhabas", desc:"A row of dhabas along the main road. The chai here is notably better than Skardu — made with local milk. Trout from the Shyok River occasionally appears on the menu.", price:"Rs. 250–500/meal", badges:["Good chai","Fresh trout occasional","Local"] },
+          { cat:"trek", name:"Ghanche Valley Trek", desc:"Several multi-day options from Khaplu into the high valleys above the Shyok River. The Hushe Valley is accessible from here — gateway to Masherbrum and Laila Peak base camps.", price:"Guide required · Rs. 3,500–5,000/day", badges:["Multi-day","Hushe Valley access","Guide required"] },
+          { cat:"todo", name:"Khaplu Palace Gardens", desc:"The Khaplu Palace gardens and outer walls can be visited even if not staying. The view from the palace terrace across the Ghanche valley — glaciers visible at three compass points — is worth the 2-hour drive from Skardu.", price:"Rs. 400 non-guests", badges:["2h from Skardu","Valley views","Heritage"] },
+        ]
+      },
+      satpara: {
+        label: "Satpara",
+        items: [
+          { cat:"hotel", name:"Satpara Lake Camping", desc:"No formal hotels at Satpara — the area is managed as a water catchment. Camping is allowed on the southern shore with permission from the local chowkidar. Extremely dark skies, very quiet.", price:"Rs. 500 camping fee", badges:["Camping only","Dark skies","Permission needed"] },
+          { cat:"trek", name:"Satpara Lake to Upper Satpara", desc:"Walk beyond the lake into the upper valley for 2–3 hours. The valley narrows into a gorge with a stream and wildflowers in season. No formal trail — follow the water. Return the same way.", price:"Free · 4–6h return", badges:["Free","Wild trail","No guide needed"] },
+          { cat:"todo", name:"Buddha Rock Carving", desc:"A 1,500-year-old seated Buddha carved into a boulder near the Satpara Lake entrance. Easy to miss — it's on the left side of the road 500m before the lake. One of several ancient Buddhist carvings in the Skardu region.", price:"Free", badges:["1,500 years old","Free","Easy to miss"] },
+          { cat:"todo", name:"Satpara Boat Ride", desc:"Rowboats available at the lake: Rs. 800–1,500 for 30–45 minutes. The lake is surrounded by the Satpara range on three sides. The reflection of the mountains in the still morning water is the main draw.", price:"Rs. 800–1,500", badges:["Boat available","Morning best","Mountain reflection"] },
+        ]
+      }
+    }
+  },
+
+  gilgit: {
+    label: "Gilgit",
+    subareas: {
+      gilgit_city: {
+        label: "Gilgit City",
+        items: [
+          { cat:"hotel", name:"Serena Gilgit", desc:"The most established hotel in Gilgit. Consistent quality, good restaurant, reliable hot water and wifi. The garden is one of the nicest outdoor spaces in the city. A genuine step up from the guesthouses.", price:"Rs. 8,000–16,000/night", badges:["Best in city","Garden","Restaurant"] },
+          { cat:"hotel", name:"Park Hotel", desc:"Mid-range stalwart on the main road. Popular with business travellers and trekking groups. The dining room has reliable food and the staff know the bus and flight schedules by heart.", price:"Rs. 3,500–7,000/night", badges:["Central","Reliable","Trekkers welcome"] },
+          { cat:"hotel", name:"Gilgit Guest Inn", desc:"Budget option near the bazaar. Functional rooms, shared bathrooms at the lower end, private at the higher. Good if you're only passing through for a night.", price:"Rs. 1,200–2,800/night", badges:["Budget","Central","Passing through"] },
+          { cat:"restaurant", name:"Madina Restaurant", desc:"One of Gilgit's longest-running restaurants. The nihari and paya in the morning and the karahi in the evening are both excellent. Seating is basic but the food is consistent.", price:"Rs. 350–700/meal", badges:["Local institution","Nihari breakfast","Karahi dinner"] },
+          { cat:"restaurant", name:"Gilgit Bazaar Dhabas", desc:"The dhabas along the main bazaar produce the best daal in the region. Order daal with fresh chapati and a hard-boiled egg. Rs. 200–300. Morning is busiest and freshest.", price:"Rs. 200–350/meal", badges:["Best daal","Cheapest option","Morning fresh"] },
+          { cat:"restaurant", name:"Café One (Airport Road)", desc:"A slightly newer café near the airport road with proper espresso, sandwiches, and a menu that acknowledges the existence of vegetables. Popular with younger locals and foreign travellers.", price:"Rs. 400–800/meal", badges:["Coffee","Modern","Near airport"] },
+          { cat:"trek", name:"Kargah Nullah Hike", desc:"A 2–3 hour return hike from the road to the 7th-century Kargah Buddha rock carving. The trail follows a stream gorge with willow trees. The carving is 3m tall and cut into orange rock — one of the most undervisited ancient sites in GB.", price:"Free · 2–3h return", badges:["Free","7th century carving","Easy"] },
+          { cat:"todo", name:"Gilgit Bazaar", desc:"The main market runs along the central road. Dried apricots, walnut oil, local embroidery, trekking gear, Chitrali caps. The fruit sellers at the outer lanes are the best in GB. Best in the morning before the heat.", price:"Free", badges:["Best fruit in GB","Trekking gear","Morning best"] },
+          { cat:"todo", name:"Sunday Polo Match", desc:"Gilgit polo ground hosts local matches most weekends. Free entry. The fastest, most physical polo you'll see — no helmets, no fouls, crowd of hundreds. Ask at your guesthouse for the schedule.", price:"Free", badges:["Free","Weekend","Unmissable"] },
+          { cat:"todo", name:"Gilgit–Hunza River Confluence", desc:"2km north of the city where the Gilgit and Hunza rivers meet between bare rock walls. Best at golden hour. Take a rickshaw (Rs. 100) or walk in 25 minutes.", price:"Free", badges:["Free","Golden hour","Rickshaw Rs.100"] },
+        ]
+      },
+      naltar: {
+        label: "Naltar Valley",
+        items: [
+          { cat:"hotel", name:"Naltar Lake Guesthouse", desc:"A basic but clean guesthouse near the three glacial lakes. Open June–September. The surrounding pine forest and lake reflections make this one of the most atmospheric stays in the Gilgit district.", price:"Rs. 2,500–5,000/night", badges:["Lake views","Pine forest","June–Sep only"] },
+          { cat:"hotel", name:"PAF Naltar Guesthouse", desc:"The Pakistan Air Force runs a small guesthouse at their Naltar facility (also home to the ski resort). Available to civilians with advance booking. Reliable and well-maintained.", price:"Rs. 3,000–5,500/night", badges:["PAF facility","Advance booking","Reliable"] },
+          { cat:"restaurant", name:"Naltar Village Chai Stalls", desc:"Small tea stalls in Naltar village serve chai, omelettes, and chapati. Nothing formal — bring your own supplies for anything more substantial.", price:"Rs. 100–300", badges:["Chai only","Simple","Bring supplies"] },
+          { cat:"trek", name:"Naltar Blue & Red Lakes", desc:"A 4–5 hour return hike from the upper road to the Blue and Red Lakes at 3,200m. The two lakes are adjacent and have different colours due to mineral content. One of the easiest rewarding treks from Gilgit — accessible to anyone reasonably fit.", price:"Free · 4–5h return", badges:["Easy-moderate","Two lakes","Free"] },
+          { cat:"todo", name:"Naltar Ski Resort (Winter)", desc:"Pakistan's only ski resort. Open January–February depending on snowfall. Basic facilities — a T-bar lift, a ski patrol hut, rental equipment of mixed quality. The powder snow on the upper slopes is genuinely world-class.", price:"Rs. 800–1,500/day", badges:["Jan–Feb only","Unique in Pakistan","Good powder"] },
+          { cat:"todo", name:"Naltar Autumn Colours", desc:"October in Naltar means larch trees turn gold across the entire valley floor. The reflection in the lakes is one of GB's best photographs. Visit the last week of October before the road closes.", price:"Free", badges:["October only","Best autumn in GB","Photography"] },
+        ]
+      },
+      bagrot: {
+        label: "Bagrot Valley",
+        items: [
+          { cat:"hotel", name:"Bagrot Valley Inn", desc:"Simple guesthouse at the valley's main village. Run by a local farming family. The valley is almost entirely off the tourist circuit — you'll have it largely to yourself.", price:"Rs. 1,500–3,000/night", badges:["Off-circuit","Family-run","Very quiet"] },
+          { cat:"trek", name:"Diran Peak Approach", desc:"Bagrot Valley provides one of the access routes to Diran Peak (7,257m). The approach walk through the valley and up to the base camp is a stunning 2-day trek, almost entirely unvisited.", price:"Guide recommended · Rs. 2,500–3,500/day", badges:["2 days","7,257m peak","Almost no tourists"] },
+          { cat:"todo", name:"Bagrot Valley Village Walk", desc:"A 4–5 hour walk through the traditional villages of the lower Bagrot Valley. Carved wooden mosques, terraced wheat fields, and views of Diran. No entry fees, no guides needed. The valley road ends after 30km — take a jeep from Gilgit (Rs. 1,500–2,500 return).", price:"Free · jeep Rs. 1,500–2,500", badges:["Cultural walk","Free","Jeep from Gilgit"] },
+        ]
+      }
+    }
+  },
+
+  fairy: {
+    label: "Fairy Meadows",
+    subareas: {
+      tato: {
+        label: "Tato Village",
+        items: [
+          { cat:"hotel", name:"Tato Village Guesthouses", desc:"Several simple guesthouses at Tato (2,900m), the end of the jeep track. Useful for acclimatisation before the hike up. Some travellers prefer sleeping here and hiking up fresh in the morning.", price:"Rs. 1,000–2,500/night", badges:["Acclimatisation","End of jeep track","Simple"] },
+          { cat:"restaurant", name:"Tato Chai Stalls", desc:"A couple of tea stalls at the trailhead. Chai, boiled eggs, and chapati available. Stock up with water and snacks before the hike to the meadow.", price:"Rs. 100–250", badges:["Trailhead","Chai & eggs","Stock up here"] },
+          { cat:"todo", name:"Horse Hire to Fairy Meadows", desc:"Horses available at Tato for the 400m climb to the meadow. Rs. 1,500 each way. Worth considering for children, heavy bags, or anyone with altitude sensitivity. Horses return same day or can be kept overnight.", price:"Rs. 1,500 each way", badges:["Horse available","Good for families","Heavy bags"] },
+        ]
+      },
+      meadow: {
+        label: "Fairy Meadows",
+        items: [
+          { cat:"hotel", name:"Raikot Sarai (Wooden Huts)", desc:"The original and best-located hut camp at the meadow. The northeast-facing huts look directly up the Raikot Face of Nanga Parbat. Meals included. Book through the Chilas-based operators or on arrival.", price:"Rs. 2,000–3,500/night incl. meals", badges:["Best location","Meals included","Northeast facing"] },
+          { cat:"hotel", name:"Beyal Camp Guesthouses", desc:"A small cluster of huts above the main meadow at ~3,500m, 2–3h further up the trail. Better angle on the Nanga Parbat faces. Very basic. Only open July–August.", price:"Rs. 1,500–2,500/night", badges:["Higher viewpoint","July–Aug only","Very basic"] },
+          { cat:"hotel", name:"Camping (Own Tent)", desc:"Pitch your own tent anywhere on the meadow for Rs. 1,000 per night (includes shared toilet and water). The northeast-facing spots have the best Nanga Parbat views. Arrive early to claim them.", price:"Rs. 1,000/night", badges:["Bring own tent","Best value","Choose your spot"] },
+          { cat:"restaurant", name:"Meadow Hut Kitchens", desc:"All hut camps serve simple meals: daal, rice, chapati, eggs, potato curry. Food quality varies — ask fellow campers for the best kitchen. Prices are slightly inflated given the location.", price:"Rs. 400–700/meal", badges:["All huts serve food","Simple","Slightly inflated prices"] },
+          { cat:"trek", name:"Nanga Parbat Base Camp Hike", desc:"The essential hike from the meadow: 4–5 hours return to Raikot Base Camp (3,960m) across moraine and boulder fields. No technical equipment. The base camp sits under the 4,600m Rupal Face — the highest mountain face on earth. Do this hike. It's the entire point of coming here.", price:"Free · 4–5h return", badges:["Essential","No equipment","The whole point"] },
+          { cat:"trek", name:"Beyal Camp Hike", desc:"A 2–3 hour hike above the meadow to Beyal Camp at ~3,500m. Better and different angle on Nanga Parbat. The ridge walk between the meadow and Beyal is excellent. Guides available at the meadow: Rs. 2,000–3,000/day.", price:"Guide optional · Rs. 2,000–3,000", badges:["Half-day","Better views","Optional guide"] },
+          { cat:"todo", name:"Nanga Parbat Sunrise Alpenglow", desc:"Set an alarm for 5am. The first light hits the Raikot Face in shades of pink, orange, and gold before any other light reaches the meadow. It lasts 20–30 minutes. Stay at least two nights to catch both sunrise and sunset light.", price:"Free", badges:["5am start","2-night minimum","Best photo in Pakistan"] },
+          { cat:"todo", name:"Stargazing at 3,300m", desc:"The meadow has almost zero light pollution. On clear nights (most nights June–September) the Milky Way is directly overhead. The sky is one of the darkest you'll experience in Pakistan. Bring a warm layer — temperatures drop fast after 9pm.", price:"Free", badges:["Zero light pollution","Clear nights","Bring warm clothes"] },
+        ]
+      },
+      basecamp: {
+        label: "Nanga Parbat Base Camp",
+        items: [
+          { cat:"hotel", name:"Base Camp Camping Only", desc:"No permanent accommodation at Raikot Base Camp (3,960m). Tented expedition camps are set up by mountaineering groups in season. Independent travellers must carry their own tent and supplies from Fairy Meadows.", price:"Bring own tent", badges:["No facilities","Expedition only","Self-sufficient"] },
+          { cat:"trek", name:"Base Camp to Raikot Glacier", desc:"From Raikot Base Camp, a further 1–2h scramble takes you onto the lower Raikot Glacier moraine. Technical equipment not required for the moraine walk but crampons help on the glacier edge. Guide essential.", price:"Guide essential · Rs. 3,000–4,000", badges:["Glacier access","Guide essential","Technical option"] },
+          { cat:"todo", name:"Rupal Face Viewpoint", desc:"At 4,600m, the Rupal Face of Nanga Parbat is the highest mountain face on earth. From the base camp you're standing directly below it. The scale is genuinely incomprehensible at close range — the face rises 4,500m above you in a vertical wall of ice and rock.", price:"Free (with hike from meadow)", badges:["World's highest face","4,500m wall","Incomprehensible scale"] },
+        ]
+      }
+    }
+  },
+
+  chilas: {
+    label: "Chilas",
+    subareas: {
+      chilas_town: {
+        label: "Chilas Town",
+        items: [
+          { cat:"hotel", name:"PTDC Motel Chilas", desc:"The Pakistan Tourism Development Corporation motel — reliable, government-run, and consistently maintained. The garden provides some respite from Chilas's considerable heat. Booking in advance recommended.", price:"Rs. 4,000–8,000/night", badges:["Reliable","Garden","Government-run"] },
+          { cat:"hotel", name:"Chilas Inn", desc:"Mid-range option on the main road. Popular with KKH travellers stopping overnight. Rooms are functional and clean. The generator runs 24h — a genuine selling point in Chilas.", price:"Rs. 2,500–5,000/night", badges:["24h generator","KKH travellers","Mid-range"] },
+          { cat:"hotel", name:"Paradise Hotel Chilas", desc:"Budget option near the bus stand. Basic rooms, shared facilities at the lower end. Good if you're transiting between Islamabad and Gilgit and need a night's sleep.", price:"Rs. 1,200–2,500/night", badges:["Budget","Bus stand","Transit stop"] },
+          { cat:"restaurant", name:"Chilas Main Road Dhabas", desc:"The dhabas along the main road serve the standard KKH menu: daal, karahi, chapati, omelettes. The ones nearer the river are cooler and slightly better ventilated. Rs. 250–500 for a full meal.", price:"Rs. 250–500/meal", badges:["KKH standard","Cooler near river","Functional"] },
+          { cat:"restaurant", name:"PTDC Motel Restaurant", desc:"The most reliable sit-down restaurant in Chilas. Open to non-guests. Simple Pakistani menu, cold drinks, and a shaded garden for eating. More expensive than the dhabas but significantly more comfortable.", price:"Rs. 500–900/meal", badges:["Sit-down","Cold drinks","Garden seating"] },
+          { cat:"todo", name:"Chilas Rock Carvings", desc:"Thousands of Buddhist petroglyphs along the KKH riverbank near Chilas, dating back 5,000 years. Buddhist stupas, Shiva worship motifs, hunting scenes. Usually skipped entirely by travellers — don't. Free entry. A guide from the site explains the iconography well.", price:"Free", badges:["5,000 years old","Usually skipped","Free"] },
+          { cat:"todo", name:"Indus River Views", desc:"Chilas sits directly on the Indus River where it passes through its deepest gorge. The river here is brown-grey with glacial silt, fast-moving, and flanked by bare rock walls 2,000m high. The bridge downstream offers the best vantage point.", price:"Free", badges:["Deepest Indus gorge","Free","Dramatic"] },
+        ]
+      },
+      raikot: {
+        label: "Raikot Bridge",
+        items: [
+          { cat:"hotel", name:"Raikot Bridge Rest House", desc:"A basic PTDC rest house at the Raikot Bridge junction — the turn-off for Fairy Meadows. Good if you're arriving late and need to start the jeep ride at first light.", price:"Rs. 1,500–3,000/night", badges:["Fairy Meadows staging","First light start","Basic"] },
+          { cat:"restaurant", name:"Raikot Chai Stalls", desc:"A handful of tea stalls and food stalls at the junction. Chai, boiled eggs, bread. The last food available before heading up to Fairy Meadows. Stock up here.", price:"Rs. 100–300", badges:["Last food before FM","Chai","Stock up"] },
+          { cat:"todo", name:"Jeep Ride to Tato Village", desc:"The 15km jeep track from Raikot Bridge to Tato Village is itself an experience. Single-lane, unpaved, with vertical drops on one side for most of the route. Hire at the junction: Rs. 3,000–5,000 per jeep. Holds 4–6 people.", price:"Rs. 3,000–5,000/jeep", badges:["White-knuckle","15km unpaved","4–6 per jeep"] },
+        ]
+      }
+    }
+  },
+
+  naran: {
+    label: "Naran–Kaghan",
+    subareas: {
+      naran_town: {
+        label: "Naran",
+        items: [
+          { cat:"hotel", name:"Pine Park Hotel Naran", desc:"One of Naran's better mid-range options on the main road. Mountain views from the upper floors, reliable hot water, and a restaurant that serves trout when available. Book 2 weeks ahead for July–August.", price:"Rs. 4,000–9,000/night", badges:["Mountain views","Trout on menu","Book ahead in summer"] },
+          { cat:"hotel", name:"PTDC Motel Naran", desc:"The government motel — reliable and well-located above the main road. The garden gives some separation from the traffic noise of peak season. Good mid-range benchmark for the valley.", price:"Rs. 5,000–10,000/night", badges:["Reliable","Garden","Above main road"] },
+          { cat:"hotel", name:"Valley View Guest House", desc:"Budget guesthouse run by a Kaghan family. Clean, simple rooms, good daal and eggs at breakfast. The family speaks some English and knows the valley well — good source of local information.", price:"Rs. 1,500–3,500/night", badges:["Budget","Local family","Good local info"] },
+          { cat:"restaurant", name:"Naran Bazaar Trout Restaurants", desc:"Several restaurants in Naran specialize in fresh Kunhar River trout. The fish is grilled or fried with local spices. Rs. 600–1,200 depending on size. Ask which ones are using fresh versus frozen — in July the fresh ones are obvious.", price:"Rs. 600–1,200/fish", badges:["Fresh trout","Ask for fresh","Speciality"] },
+          { cat:"restaurant", name:"Sarhad Restaurant", desc:"One of Naran's longer-running restaurants. Reliable karahi, daal, and local breads. Larger portion sizes than most. Good for dinner before an early Saiful Muluk departure.", price:"Rs. 400–800/meal", badges:["Reliable","Large portions","Good for groups"] },
+          { cat:"trek", name:"Ansoo Lake Trek", desc:"A 2-day trek from Saiful Muluk to Ansoo Lake (4,245m) — shaped like a teardrop. The trail is steep and requires a guide (available in Naran: Rs. 2,500–4,000/day). One of the most beautiful and rarely visited treks in Kaghan.", price:"Guide Rs. 2,500–4,000/day", badges:["2 days","4,245m","Rarely visited"] },
+          { cat:"todo", name:"Lake Saiful Muluk", desc:"10km from Naran by jeep (Rs. 2,000–3,000 return). Pakistan's most famous lake — glacial, turquoise-green, ringed by snow peaks including Malika Parbat (5,291m). Morning is calmer. Arrive before 9am to avoid the crowds.", price:"Jeep Rs. 2,000–3,000 return", badges:["Pakistan's most famous lake","Morning best","Before 9am"] },
+          { cat:"todo", name:"Kunhar River Fishing", desc:"Permits available in Naran town (Rs. 1,000–2,000/day). The Kunhar is a genuinely excellent trout river. Fish are most active at dawn and dusk. Some guesthouses have rods to rent.", price:"Permit Rs. 1,000–2,000/day", badges:["Trout fishing","Dawn and dusk","Rods available"] },
+        ]
+      },
+      shogran: {
+        label: "Shogran",
+        items: [
+          { cat:"hotel", name:"PTDC Shogran Hotel", desc:"A well-maintained government hotel on the Shogran ridge at 2,362m. The views of Musa Ka Musalla (4,080m) from the balconies are the best in the area. Book in advance.", price:"Rs. 6,000–12,000/night", badges:["Best views","Ridge location","PTDC"] },
+          { cat:"hotel", name:"Paye Heights Guesthouse", desc:"Simple rooms on the Shogran plateau, closer to the Paye meadows above. Good base for the meadow walks. Family-run with home cooking.", price:"Rs. 2,500–5,000/night", badges:["Paye access","Family-run","Home cooking"] },
+          { cat:"restaurant", name:"Shogran Tea Houses", desc:"Several small tea houses and stalls along the Shogran road. Fresh chai, local bread, and occasionally fresh milk from nearby farms. Bring your own substantial food.", price:"Rs. 100–300", badges:["Tea & bread","Fresh milk","Bring own food"] },
+          { cat:"trek", name:"Shogran to Paye Meadows", desc:"A 2–3 hour return hike from Shogran up to the Paye meadows at 3,000m. Clear views of the upper Kaghan peaks. Wildflowers in June–July. The trail is well-worn and easy to follow without a guide.", price:"Free · 2–3h return", badges:["Easy","Wildflowers","No guide needed"] },
+          { cat:"todo", name:"Shogran Sunrise View", desc:"The Shogran ridge faces directly east toward Musa Ka Musalla. At sunrise the peak catches gold light against a dark sky. Stay the night in Shogran specifically to catch this — it's the reason the place has its reputation.", price:"Free", badges:["Stay the night","East-facing","Sunrise only"] },
+        ]
+      },
+      babusar: {
+        label: "Babusar Pass",
+        items: [
+          { cat:"hotel", name:"Babusar Top Camping", desc:"No formal accommodation at the pass (4,173m). However, in summer a handful of small camps with tents are set up near the top. Very basic — a sleeping bag and sleeping mat in a canvas tent. Worth it for the experience.", price:"Rs. 1,000–2,000/night", badges:["Seasonal","Very basic","Canvas tents"] },
+          { cat:"restaurant", name:"Babusar Pass Chai Stalls", desc:"In July–August a few stalls set up at the pass selling chai, biscuits, and boiled eggs. Don't rely on them — bring your own food for the crossing.", price:"Rs. 50–200", badges:["Seasonal","July–August only","Bring your own"] },
+          { cat:"trek", name:"Babusar Pass Ridge Walk", desc:"From the pass, a 1–2 hour walk along the ridge east or west gives views of both the Himalaya to the south and the Karakoram to the north on a clear day. No trail — walk the ridge directly. Best on a calm morning.", price:"Free · 2–4h", badges:["Free","Ridge walk","Two ranges visible"] },
+          { cat:"todo", name:"Babusar–Chilas Drive", desc:"The descent from Babusar Pass to Chilas on the KKH is one of the great drives in Pakistan. The road drops 1,700m in 30km from alpine meadow to bare desert gorge. The landscape changes every 5 minutes. Hire a jeep from Naran: Rs. 8,000–12,000.", price:"Jeep Rs. 8,000–12,000", badges:["One of Pakistan's great drives","1,700m descent","GB gateway"] },
+        ]
+      }
+    }
+  }
+};
+
+/* ─────────────────────────────────────────────
+   STATE
+───────────────────────────────────────────── */
+let selectedRegion = null;
+let selectedSubarea = null;
+let activeFilter = 'all';
+
+/* ─────────────────────────────────────────────
+   STEP 1 → select region
+───────────────────────────────────────────── */
+function selectRegion(card) {
+  document.querySelectorAll('.region-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedRegion = card.dataset.region;
+  selectedSubarea = null;
+  activeFilter = 'all';
+  renderStep2();
+}
+
+function renderStep2() {
+  const region = DATA[selectedRegion];
+  const step2 = document.getElementById('step2');
+  const step3 = document.getElementById('step3');
+  step3.style.display = 'none';
+  step2.style.display = 'block';
+
+  // Trail
+  document.getElementById('locationTrail').innerHTML =
+    `<span class="lt-region">${region.label}</span>
+     <span class="lt-sep">/</span>
+     <span class="lt-change" onclick="resetToStep1()">Change region</span>`;
+
+  document.getElementById('step2Heading').textContent = `Where in ${region.label}?`;
+
+  const list = document.getElementById('subareaList');
+  list.innerHTML = '';
+  Object.entries(region.subareas).forEach(([key, sub]) => {
+    const btn = document.createElement('button');
+    btn.className = 'subarea-btn';
+    btn.textContent = sub.label;
+    btn.dataset.key = key;
+    btn.onclick = () => selectSubarea(key, btn);
+    list.appendChild(btn);
+  });
+
+  setPills(2);
+  step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ─────────────────────────────────────────────
+   STEP 2 → select sub-area
+───────────────────────────────────────────── */
+function selectSubarea(key, btn) {
+  document.querySelectorAll('.subarea-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedSubarea = key;
+  activeFilter = 'all';
+  renderResults();
+}
+
+/* ─────────────────────────────────────────────
+   STEP 3 → results
+───────────────────────────────────────────── */
+function renderResults() {
+  const region = DATA[selectedRegion];
+  const sub = region.subareas[selectedSubarea];
+  const step3 = document.getElementById('step3');
+  step3.style.display = 'block';
+
+  document.getElementById('locationTrail3').innerHTML =
+    `<span class="lt-region">${region.label}</span>
+     <span class="lt-sep">/</span>
+     <span>${sub.label}</span>
+     <span class="lt-sep">/</span>
+     <span class="lt-change" onclick="resetToStep1()">Change</span>`;
+
+  // Reset filter
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === 'all');
+  });
+  activeFilter = 'all';
+  renderCards(sub.items);
+  setPills(3);
+  step3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderCards(items) {
+  const grid = document.getElementById('resultsGrid');
+  const filtered = activeFilter === 'all' ? items : items.filter(i => i.cat === activeFilter);
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="no-results" style="grid-column:1/-1"><strong>None here</strong>No ${activeFilter}s listed for this area yet.</div>`;
+    return;
+  }
+
+  const catMeta = {
+    hotel:      { label:'Hotel',       icon:'🏨', cls:'hotel' },
+    restaurant: { label:'Restaurant',  icon:'🍽', cls:'restaurant' },
+    trek:       { label:'Trek',        icon:'🥾', cls:'trek' },
+    todo:       { label:'Thing To Do', icon:'✦',  cls:'todo' },
+  };
+
+  grid.innerHTML = filtered.map(item => {
+    const m = catMeta[item.cat];
+    const badges = (item.badges||[]).map(b => `<span class="rc-badge">${b}</span>`).join('');
+    return `
+      <div class="result-card">
+        <div class="rc-cat-tag ${m.cls}"><span class="rc-cat-icon">${m.icon}</span>${m.label}</div>
+        <div class="rc-title">${item.name}</div>
+        <div class="rc-desc">${item.desc}</div>
+        <div class="rc-footer">
+          <div class="rc-price">${item.price}</div>
+          <div class="rc-badges">${badges}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* ─────────────────────────────────────────────
+   FILTER
+───────────────────────────────────────────── */
+function filterResults(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.cat;
+  const sub = DATA[selectedRegion].subareas[selectedSubarea];
+  renderCards(sub.items);
+}
+
+/* ─────────────────────────────────────────────
+   RESET
+───────────────────────────────────────────── */
+function resetToStep1() {
+  selectedRegion = null;
+  selectedSubarea = null;
+  document.querySelectorAll('.region-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step3').style.display = 'none';
+  setPills(1);
+  document.getElementById('step1').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ─────────────────────────────────────────────
+   STEP PILLS
+───────────────────────────────────────────── */
+function setPills(active) {
+  [1,2,3].forEach(n => {
+    const p = document.getElementById('pill'+n);
+    p.classList.remove('active','done');
+    if (n < active) p.classList.add('done');
+    else if (n === active) p.classList.add('active');
+  });
+}
+
+/* nav scroll */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+</script>
+</body>
+</html>
