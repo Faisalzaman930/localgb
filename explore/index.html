@@ -2,525 +2,277 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Plan Your GB Trip — LocalGB Journey Architect</title>
-<meta name="description" content="Plan your perfect Gilgit-Baltistan trip. Tell us how you're arriving, what kind of traveller you are, and how long you have — we'll build your itinerary.">
+<meta name="description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you're arriving, your style, and your budget.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
 <style>
+/* ─── APP SHELL ──────────────────────────────────────── */
+body { overflow-x: hidden; }
+.app { display: flex; flex-direction: column; min-height: 100vh; }
 
-/* ─── LAYOUT ─────────────────────────────────────────── */
-.planner { min-height: 100vh; display: flex; flex-direction: column; }
-.planner-inner { flex: 1; max-width: 780px; margin: 0 auto; width: 100%; padding: 0 1.5rem 8rem; }
+/* Desktop wrapper */
+.app-inner { max-width: 720px; margin: 0 auto; width: 100%; padding: 0 1.5rem 6rem; }
 
 /* ─── HERO ───────────────────────────────────────────── */
-.planner-hero {
-  padding: 7rem 0 4rem;
-  text-align: center;
+.app-hero { padding: 6rem 0 3rem; text-align: center; }
+.app-hero h1 { font-family: var(--fd); font-size: clamp(2.6rem,6vw,4.5rem); font-weight:300; color:var(--cream); line-height:1.06; margin-bottom:.75rem; }
+.app-hero p { font-size:.85rem; color:var(--cream-2); max-width:480px; margin:0 auto 2rem; line-height:1.8; }
+.app-hero .label { justify-content:center; }
+
+.already-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1px solid rgba(255,255,255,.12); border-radius: 4px;
+  padding: .65rem 1.4rem; font-family:var(--fu); font-size:.65rem;
+  font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--cream-2); background:none; cursor:pointer;
+  transition: border-color .2s, color .2s; margin-top:.5rem;
 }
-.planner-hero .label { justify-content: center; }
-.planner-hero h1 {
-  font-family: var(--fd);
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 300;
-  color: var(--cream);
-  line-height: 1.05;
-  margin-bottom: 1rem;
-}
-.planner-hero p {
-  font-size: 0.9rem;
-  color: var(--cream-2);
-  max-width: 520px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.75;
-}
+.already-btn:hover { border-color:var(--gold); color:var(--gold); }
 
 /* ─── PROGRESS ───────────────────────────────────────── */
-.progress-bar {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  margin-bottom: 3.5rem;
-}
-.progress-dot {
-  width: 28px; height: 3px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 2px;
-  transition: background 0.3s;
-}
-.progress-dot.active { background: var(--gold); }
-.progress-dot.done { background: rgba(200,144,58,0.4); }
+.progress { display:flex; gap:5px; justify-content:center; margin-bottom:3rem; }
+.progress-dot { width:24px; height:3px; border-radius:2px; background:rgba(255,255,255,.1); transition:background .3s; }
+.progress-dot.active { background:var(--gold); }
+.progress-dot.done { background:rgba(200,144,58,.35); }
 
 /* ─── STEP ───────────────────────────────────────────── */
-.step { display: none; }
-.step.active { display: block; animation: stepIn 0.35s var(--ease) both; }
-@keyframes stepIn {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.step { display:none; }
+.step.active { display:block; animation: sIn .3s var(--ease) both; }
+@keyframes sIn { from{opacity:0;transform:translateX(24px)} to{opacity:1;transform:none} }
 
-.step-q {
-  font-family: var(--fd);
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  font-weight: 300;
-  color: var(--cream);
-  line-height: 1.15;
-  margin-bottom: 0.4rem;
-  text-align: center;
-}
-.step-hint {
-  font-size: 0.78rem;
-  color: var(--cream-2);
-  text-align: center;
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
-}
+.step-q { font-family:var(--fd); font-size:clamp(1.7rem,4vw,2.6rem); font-weight:300; color:var(--cream); line-height:1.15; margin-bottom:.3rem; text-align:center; }
+.step-sub { font-size:.76rem; color:var(--cream-2); text-align:center; margin-bottom:2rem; line-height:1.65; }
 
 /* ─── CHOICE CARDS ───────────────────────────────────── */
-.choices {
-  display: grid;
-  gap: 0.75rem;
-}
-.choices.cols-2 { grid-template-columns: 1fr 1fr; }
-.choices.cols-3 { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 600px) {
-  .choices.cols-2 { grid-template-columns: 1fr; }
-  .choices.cols-3 { grid-template-columns: 1fr 1fr; }
-}
+.choices { display:grid; gap:.65rem; }
+.choices.c2 { grid-template-columns:1fr 1fr; }
+.choices.c3 { grid-template-columns:repeat(3,1fr); }
+@media(max-width:600px){ .choices.c2{grid-template-columns:1fr} .choices.c3{grid-template-columns:1fr 1fr} }
 
 .choice {
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 6px;
-  padding: 1.4rem 1.5rem;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, transform 0.15s;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
+  background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:6px;
+  padding:1.2rem 1.3rem; cursor:pointer; text-align:left; position:relative;
+  transition:border-color .2s, background .2s, transform .15s;
 }
-.choice::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(200,144,58,0.06) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.choice:hover { border-color: rgba(200,144,58,0.25); transform: translateY(-1px); }
-.choice:hover::before { opacity: 1; }
-.choice.selected {
-  border-color: rgba(200,144,58,0.55);
-  background: rgba(200,144,58,0.07);
-}
-.choice.selected::before { opacity: 1; }
+.choice:hover { border-color:rgba(200,144,58,.3); transform:translateY(-1px); }
+.choice.sel { border-color:rgba(200,144,58,.55); background:rgba(200,144,58,.07); }
+.choice-icon { font-size:1.5rem; display:block; margin-bottom:.5rem; line-height:1; }
+.choice-title { font-family:var(--fd); font-size:1.1rem; color:var(--cream); margin-bottom:.2rem; }
+.choice-desc { font-size:.7rem; color:var(--cream-2); line-height:1.6; }
+.choice-tag { display:inline-block; font-family:var(--fu); font-size:.52rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); background:rgba(200,144,58,.1); border:1px solid rgba(200,144,58,.2); padding:.18rem .45rem; border-radius:2px; margin-top:.4rem; }
+.choice-warn { font-size:.62rem; color:rgba(240,232,213,.4); margin-top:.3rem; }
 
-.choice-icon {
-  font-size: 1.8rem;
-  margin-bottom: 0.7rem;
-  display: block;
-  line-height: 1;
-}
-.choice-title {
-  font-family: var(--fd);
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: var(--cream);
-  margin-bottom: 0.25rem;
-  line-height: 1.2;
-}
-.choice-desc {
-  font-size: 0.72rem;
-  color: var(--cream-2);
-  line-height: 1.6;
-}
-.choice-tag {
-  display: inline-block;
-  font-family: var(--fu);
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(200,144,58,0.12);
-  border: 1px solid rgba(200,144,58,0.2);
-  padding: 0.2rem 0.5rem;
-  border-radius: 2px;
-  margin-top: 0.5rem;
-}
-.choice-warn {
-  font-size: 0.65rem;
-  color: rgba(240,232,213,0.45);
-  margin-top: 0.4rem;
-}
-
-/* ─── MULTI-SELECT ───────────────────────────────────── */
+/* Multi-select checkbox */
 .choices.multi .choice::after {
-  content: '';
-  position: absolute;
-  top: 1rem; right: 1rem;
-  width: 18px; height: 18px;
-  border-radius: 3px;
-  border: 1px solid rgba(255,255,255,0.15);
-  transition: all 0.2s;
+  content:''; position:absolute; top:.9rem; right:.9rem; width:16px; height:16px;
+  border-radius:3px; border:1px solid rgba(255,255,255,.15); transition:all .2s;
 }
-.choices.multi .choice.selected::after {
-  background: var(--gold);
-  border-color: var(--gold);
-  content: '✓';
-  font-size: 0.7rem;
-  color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--fu);
-  font-weight: 700;
+.choices.multi .choice.sel::after {
+  background:var(--gold); border-color:var(--gold); content:'✓';
+  font-size:.65rem; color:#000; display:flex; align-items:center; justify-content:center;
+  font-family:var(--fu); font-weight:700;
 }
 
-/* ─── DURATION SLIDER ────────────────────────────────── */
-.duration-wrap {
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 6px;
-  padding: 2.5rem;
-  text-align: center;
+/* ─── DURATION ───────────────────────────────────────── */
+.dur-wrap { background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:6px; padding:2.5rem; text-align:center; }
+.dur-num { font-family:var(--fd); font-size:5rem; color:var(--cream); line-height:1; margin-bottom:.2rem; }
+.dur-unit { font-family:var(--fu); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; }
+input[type=range] { width:100%; -webkit-appearance:none; background:transparent; cursor:pointer; }
+input[type=range]::-webkit-slider-runnable-track { height:3px; background:rgba(255,255,255,.12); border-radius:2px; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--gold); margin-top:-9.5px; box-shadow:0 2px 8px rgba(200,144,58,.4); transition:transform .15s; }
+input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
+.dur-ctx { font-size:.76rem; color:var(--cream-2); margin-top:1.2rem; line-height:1.7; min-height:2.8rem; }
+
+/* ─── BUDGET ALERT ───────────────────────────────────── */
+.budget-alert {
+  background:rgba(200,80,40,.08); border:1px solid rgba(200,80,40,.3);
+  border-left:3px solid #e06040; border-radius:4px;
+  padding:.9rem 1.1rem; font-size:.75rem; color:var(--cream-2);
+  line-height:1.65; margin-top:1rem;
 }
-.duration-num {
-  font-family: var(--fd);
-  font-size: 5rem;
-  color: var(--cream);
-  line-height: 1;
-  margin-bottom: 0.25rem;
+.budget-alert strong { color:#e08060; }
+.budget-ok {
+  background:rgba(80,200,100,.06); border:1px solid rgba(80,200,100,.2);
+  border-left:3px solid #50c870; border-radius:4px;
+  padding:.75rem 1rem; font-size:.73rem; color:var(--cream-2); margin-top:1rem;
 }
-.duration-unit {
-  font-family: var(--fu);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-}
-input[type=range] {
-  width: 100%;
-  -webkit-appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  height: 3px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 2px;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--gold);
-  margin-top: -9.5px;
-  box-shadow: 0 2px 8px rgba(200,144,58,0.4);
-  transition: transform 0.15s;
-}
-input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.15); }
-.duration-context {
-  font-size: 0.78rem;
-  color: var(--cream-2);
-  margin-top: 1.5rem;
-  line-height: 1.7;
-  min-height: 3rem;
+.budget-ok strong { color:#60d880; }
+
+/* ─── STEP NAV ───────────────────────────────────────── */
+.step-nav { display:flex; justify-content:space-between; align-items:center; margin-top:2rem; gap:1rem; }
+.btn-back { font-family:var(--fu); font-size:.65rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cream-2); background:none; border:1px solid rgba(255,255,255,.1); border-radius:4px; padding:.7rem 1.4rem; cursor:pointer; transition:all .2s; }
+.btn-back:hover { color:var(--cream); border-color:rgba(255,255,255,.25); }
+.btn-next { font-family:var(--fu); font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#000; background:var(--gold); border:none; border-radius:4px; padding:.85rem 2.2rem; cursor:pointer; transition:all .2s; flex:1; max-width:260px; margin-left:auto; }
+.btn-next:hover { background:#d9a048; transform:translateY(-1px); }
+.btn-next:disabled { opacity:.32; cursor:not-allowed; transform:none; }
+
+/* ─── RESULT ─────────────────────────────────────────── */
+#result { display:none; }
+#result.active { display:block; animation:sIn .4s var(--ease) both; }
+
+.result-hero { text-align:center; padding:3rem 0 2rem; border-bottom:1px solid rgba(255,255,255,.06); margin-bottom:2rem; }
+.result-title { font-family:var(--fd); font-size:clamp(2rem,5vw,3.2rem); color:var(--cream); font-weight:300; line-height:1.1; margin-bottom:.75rem; }
+.result-sub { font-size:.8rem; color:var(--cream-2); max-width:500px; margin:0 auto 1.2rem; line-height:1.75; }
+.result-pills { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-bottom:1.5rem; }
+.result-pill { font-family:var(--fu); font-size:.56rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); background:rgba(200,144,58,.1); border:1px solid rgba(200,144,58,.2); padding:.25rem .7rem; border-radius:2px; }
+
+.result-actions { display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; }
+.btn-pdf { font-family:var(--fu); font-size:.65rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cream-2); background:none; border:1px solid rgba(255,255,255,.12); border-radius:4px; padding:.65rem 1.4rem; cursor:pointer; transition:all .2s; }
+.btn-pdf:hover { border-color:var(--gold); color:var(--gold); }
+.btn-restart { font-family:var(--fu); font-size:.65rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cream-2); background:none; border:1px solid rgba(255,255,255,.12); border-radius:4px; padding:.65rem 1.4rem; cursor:pointer; transition:all .2s; }
+.btn-restart:hover { color:var(--cream); border-color:rgba(255,255,255,.3); }
+
+/* ─── ROUTE STRIP ────────────────────────────────────── */
+.route-strip { display:flex; align-items:center; overflow-x:auto; padding:1.2rem 0; margin-bottom:1.5rem; scrollbar-width:none; }
+.route-strip::-webkit-scrollbar { display:none; }
+.rn { flex-shrink:0; text-align:center; }
+.rn-dot { width:9px; height:9px; border-radius:50%; background:var(--gold); margin:0 auto .35rem; }
+.rn-dot.start,.rn-dot.end { background:var(--cream); }
+.rn-name { font-family:var(--fu); font-size:.55rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--cream-2); white-space:nowrap; }
+.rl { flex:1; min-width:24px; height:1px; background:linear-gradient(90deg,rgba(200,144,58,.5),rgba(200,144,58,.15)); flex-shrink:0; }
+
+/* ─── DAY CARD ───────────────────────────────────────── */
+.day-cards { display:flex; flex-direction:column; gap:.75rem; margin-bottom:2.5rem; }
+.day-card { background:var(--ink-3); border:1px solid rgba(255,255,255,.06); border-radius:6px; overflow:hidden; }
+.day-hd { display:grid; grid-template-columns:60px 1fr auto; align-items:center; gap:.75rem; padding:1rem 1.25rem; cursor:pointer; transition:background .15s; }
+.day-hd:hover { background:rgba(255,255,255,.02); }
+.day-n { font-family:var(--fd); font-size:2rem; color:rgba(200,144,58,.28); font-weight:300; line-height:1; }
+.day-t { font-family:var(--fd); font-size:1.15rem; color:var(--cream); font-weight:400; line-height:1.2; }
+.day-l { font-family:var(--fu); font-size:.57rem; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:var(--cream-2); margin-top:.2rem; }
+.day-cost { font-family:var(--fu); font-size:.62rem; font-weight:600; color:var(--gold); text-align:right; white-space:nowrap; }
+.day-bd { padding:0 1.25rem 1.25rem; border-top:1px solid rgba(255,255,255,.05); }
+
+/* Time blocks */
+.time-block { margin-top:1rem; }
+.time-block-label { font-family:var(--fu); font-size:.55rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:.5rem; display:flex; align-items:center; gap:.5rem; }
+.time-block-label::after { content:''; flex:1; height:1px; background:rgba(200,144,58,.15); }
+.activity-list { list-style:none; }
+.activity-list li { display:flex; gap:.75rem; padding:.45rem 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:.77rem; color:var(--cream-2); line-height:1.55; align-items:flex-start; }
+.activity-list li:last-child { border-bottom:none; }
+.act-time { font-family:var(--fu); font-size:.58rem; font-weight:600; color:rgba(200,144,58,.6); flex-shrink:0; width:38px; padding-top:.1rem; }
+.act-body { flex:1; }
+.act-body strong { color:var(--cream); font-weight:600; }
+.act-cost { font-size:.63rem; color:rgba(200,144,58,.7); flex-shrink:0; text-align:right; padding-top:.1rem; }
+
+.day-food { margin-top:1rem; background:rgba(255,255,255,.02); border-radius:4px; padding:.75rem 1rem; }
+.day-food-title { font-family:var(--fu); font-size:.55rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--cream-2); margin-bottom:.4rem; }
+.day-food-list { font-size:.73rem; color:var(--cream-2); line-height:1.7; }
+.day-food-list strong { color:var(--cream); }
+
+.day-stay { margin-top:.75rem; background:rgba(200,144,58,.04); border-radius:4px; padding:.65rem 1rem; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+.day-stay-label { font-family:var(--fu); font-size:.55rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+.day-stay-val { font-size:.73rem; color:var(--cream-2); text-align:right; line-height:1.5; }
+
+.day-tip { margin-top:.75rem; background:rgba(200,144,58,.05); border-left:2px solid rgba(200,144,58,.3); padding:.55rem .8rem; font-size:.71rem; color:var(--cream-2); line-height:1.65; border-radius:0 3px 3px 0; }
+.day-chevron { font-size:.6rem; color:var(--cream-2); transition:transform .2s; margin-left:.5rem; flex-shrink:0; }
+.day-card.open .day-chevron { transform:rotate(180deg); }
+
+/* ─── PRACTICAL GRID ─────────────────────────────────── */
+.prac-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; margin-bottom:2.5rem; }
+@media(max-width:580px){ .prac-grid{grid-template-columns:1fr} }
+.prac-card { background:var(--ink-3); border:1px solid rgba(255,255,255,.06); border-radius:6px; padding:1.3rem; }
+.prac-title { font-family:var(--fu); font-size:.57rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:.9rem; }
+.prac-card table { width:100%; border-collapse:collapse; }
+.prac-card td { font-size:.73rem; color:var(--cream-2); padding:.45rem 0; border-bottom:1px solid rgba(255,255,255,.04); line-height:1.55; vertical-align:top; }
+.prac-card td:last-child { border-bottom:none; }
+.prac-card td:first-child { color:var(--cream); font-weight:600; width:38%; padding-right:.65rem; font-size:.68rem; }
+
+/* ─── ALREADY IN GB ──────────────────────────────────── */
+#alreadyPanel { display:none; }
+#alreadyPanel.active { display:block; animation:sIn .3s var(--ease) both; }
+.here-grid { display:grid; grid-template-columns:1fr 1fr; gap:.65rem; margin-top:1.5rem; }
+@media(max-width:500px){ .here-grid{grid-template-columns:1fr} }
+.here-card { background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:6px; padding:1.2rem; cursor:pointer; transition:border-color .2s,transform .15s; }
+.here-card:hover,.here-card.sel { border-color:rgba(200,144,58,.45); transform:translateY(-1px); }
+.here-card h4 { font-family:var(--fd); font-size:1.2rem; color:var(--cream); margin-bottom:.2rem; }
+.here-card p { font-size:.68rem; color:var(--cream-2); line-height:1.55; }
+
+.here-content { margin-top:2rem; }
+.here-section { margin-bottom:1.75rem; }
+.here-section-title { font-family:var(--fu); font-size:.57rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; display:flex; align-items:center; gap:.5rem; }
+.here-section-title::after { content:''; flex:1; height:1px; background:rgba(200,144,58,.15); }
+.here-item { background:var(--ink-3); border:1px solid rgba(255,255,255,.06); border-radius:5px; padding:1rem 1.1rem; margin-bottom:.5rem; }
+.here-item h5 { font-family:var(--fd); font-size:1.05rem; color:var(--cream); margin-bottom:.2rem; }
+.here-item p { font-size:.72rem; color:var(--cream-2); line-height:1.6; }
+.here-item .tag { margin-top:.4rem; }
+
+/* ─── MOBILE APP LAYOUT ──────────────────────────────── */
+@media(max-width:680px){
+  .app-hero { padding:5rem 0 2rem; }
+  .app-hero h1 { font-size:clamp(2rem,9vw,3rem); }
+
+  /* Fixed wizard shell */
+  #wizardWrap {
+    position:fixed; top:68px; left:0; right:0; bottom:0;
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  #wizardWrap.hidden { display:none; }
+
+  .wizard-scroll {
+    flex:1; overflow-y:auto; padding:1.5rem 1.25rem 0;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .wizard-bottom {
+    flex-shrink:0; padding:.85rem 1.25rem;
+    background:var(--ink); border-top:1px solid rgba(255,255,255,.06);
+  }
+
+  .step { position:absolute; width:100%; }
+  .step.active { position:relative; }
+
+  .progress { margin-bottom:1.5rem; }
+
+  /* Result becomes scrollable */
+  #resultWrap {
+    position:fixed; top:68px; left:0; right:0; bottom:0;
+    overflow-y:auto; padding:1.5rem 1.25rem 2rem;
+    -webkit-overflow-scrolling:touch;
+    display:none;
+  }
+  #resultWrap.active { display:block; }
+
+  /* Already panel */
+  #alreadyWrap {
+    position:fixed; top:68px; left:0; right:0; bottom:0;
+    overflow-y:auto; padding:1.5rem 1.25rem 2rem;
+    -webkit-overflow-scrolling:touch;
+    display:none;
+  }
+  #alreadyWrap.active { display:block; }
+
+  .step-nav { margin-top:0; }
+  .btn-next { max-width:none; flex:1; }
+
+  .day-hd { grid-template-columns:48px 1fr auto; padding:.85rem 1rem; }
+  .day-bd { padding:0 1rem 1rem; }
 }
 
-/* ─── NAVIGATION ─────────────────────────────────────── */
-.step-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 2.5rem;
-  gap: 1rem;
+/* ─── PRINT / PDF ────────────────────────────────────── */
+@media print {
+  nav, footer, .result-actions, .btn-restart, .progress, #wizardWrap, .already-btn { display:none !important; }
+  body { background:#fff; color:#111; }
+  .result-title { color:#111; font-size:2rem; }
+  .result-sub, .result-pill { color:#444; border-color:#ccc; background:none; }
+  .day-card { border:1px solid #ddd; break-inside:avoid; margin-bottom:1rem; }
+  .day-hd { background:none; border-bottom:1px solid #eee; }
+  .day-n { color:#bbb; }
+  .day-t { color:#111; }
+  .day-l, .act-time { color:#888; }
+  .activity-list li { color:#333; border-bottom:1px solid #f0f0f0; }
+  .day-bd { display:block !important; }
+  .day-food, .day-stay { background:#f9f9f9; }
+  .day-tip { background:#fff7ee; }
+  .prac-card { border:1px solid #ddd; break-inside:avoid; }
+  .prac-card td { color:#333; border-bottom:1px solid #eee; }
+  .result-hero { border-bottom:1px solid #ddd; }
+  .route-strip { display:none; }
+  @page { margin:1.5cm; }
 }
-.btn-back {
-  font-family: var(--fu);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-  background: none;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-back:hover { color: var(--cream); border-color: rgba(255,255,255,0.25); }
-.btn-next {
-  font-family: var(--fu);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #000;
-  background: var(--gold);
-  border: none;
-  border-radius: 4px;
-  padding: 0.9rem 2.5rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  flex: 1;
-  max-width: 280px;
-  margin-left: auto;
-}
-.btn-next:hover { background: #d9a048; transform: translateY(-1px); }
-.btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
-
-/* ─── ITINERARY OUTPUT ───────────────────────────────── */
-#result { display: none; }
-#result.active { display: block; animation: stepIn 0.45s var(--ease) both; }
-
-.result-header {
-  text-align: center;
-  padding: 3rem 0 2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  margin-bottom: 2.5rem;
-}
-.result-header .label { justify-content: center; }
-.result-title {
-  font-family: var(--fd);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: var(--cream);
-  font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 0.75rem;
-}
-.result-sub {
-  font-size: 0.82rem;
-  color: var(--cream-2);
-  line-height: 1.7;
-  max-width: 520px;
-  margin: 0 auto 1.5rem;
-}
-.result-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-.result-pill {
-  font-family: var(--fu);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(200,144,58,0.1);
-  border: 1px solid rgba(200,144,58,0.25);
-  padding: 0.3rem 0.8rem;
-  border-radius: 2px;
-}
-
-/* ─── ROUTE VISUAL ───────────────────────────────────── */
-.route-visual {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  overflow-x: auto;
-  padding: 1.5rem 0;
-  margin-bottom: 2.5rem;
-  scrollbar-width: none;
-}
-.route-visual::-webkit-scrollbar { display: none; }
-.route-node {
-  flex-shrink: 0;
-  text-align: center;
-  position: relative;
-}
-.route-node-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  margin: 0 auto 0.4rem;
-}
-.route-node-dot.start { background: #fff; }
-.route-node-dot.end { background: #fff; }
-.route-node-name {
-  font-family: var(--fu);
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-  white-space: nowrap;
-}
-.route-line {
-  flex: 1;
-  min-width: 30px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(200,144,58,0.5), rgba(200,144,58,0.2));
-  flex-shrink: 0;
-}
-
-/* ─── DAY CARDS ──────────────────────────────────────── */
-.day-cards { display: flex; flex-direction: column; gap: 1px; }
-.day-card {
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 0.75rem;
-}
-.day-header {
-  display: grid;
-  grid-template-columns: 72px 1fr auto;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.2rem 1.5rem;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.day-header:hover { background: rgba(255,255,255,0.02); }
-.day-num {
-  font-family: var(--fd);
-  font-size: 2.2rem;
-  color: rgba(200,144,58,0.3);
-  font-weight: 300;
-  line-height: 1;
-}
-.day-title {
-  font-family: var(--fd);
-  font-size: 1.25rem;
-  color: var(--cream);
-  font-weight: 400;
-}
-.day-loc {
-  font-family: var(--fu);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-  margin-top: 0.2rem;
-}
-.day-cost {
-  font-family: var(--fu);
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--gold);
-  text-align: right;
-  white-space: nowrap;
-}
-.day-body {
-  padding: 0 1.5rem 1.5rem;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.day-activities {
-  list-style: none;
-  margin: 1rem 0;
-}
-.day-activities li {
-  font-size: 0.78rem;
-  color: var(--cream-2);
-  line-height: 1.65;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  display: flex;
-  gap: 0.6rem;
-}
-.day-activities li:last-child { border-bottom: none; }
-.day-activities li::before {
-  content: '—';
-  color: var(--gold);
-  flex-shrink: 0;
-  font-size: 0.7rem;
-  margin-top: 0.1rem;
-}
-.day-tip {
-  background: rgba(200,144,58,0.06);
-  border-left: 2px solid rgba(200,144,58,0.3);
-  padding: 0.6rem 0.8rem;
-  font-size: 0.72rem;
-  color: var(--cream-2);
-  line-height: 1.65;
-  border-radius: 0 3px 3px 0;
-  margin-top: 0.75rem;
-}
-
-/* ─── PRACTICAL SUMMARY ──────────────────────────────── */
-.practical-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-@media (max-width: 580px) { .practical-grid { grid-template-columns: 1fr; } }
-.practical-card {
-  background: var(--ink-3);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 6px;
-  padding: 1.5rem;
-}
-.practical-card-title {
-  font-family: var(--fu);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-.practical-card table { width: 100%; border-collapse: collapse; }
-.practical-card td {
-  font-size: 0.75rem;
-  color: var(--cream-2);
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  line-height: 1.5;
-  vertical-align: top;
-}
-.practical-card td:first-child {
-  color: var(--cream);
-  font-weight: 600;
-  width: 38%;
-  padding-right: 0.75rem;
-}
-
-/* ─── RESTART ────────────────────────────────────────── */
-.restart-wrap {
-  text-align: center;
-  padding: 3rem 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  margin-top: 3rem;
-}
-.btn-restart {
-  font-family: var(--fu);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cream-2);
-  background: none;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 4px;
-  padding: 0.85rem 2rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-restart:hover { color: var(--cream); border-color: rgba(255,255,255,0.3); }
-
-/* ─── WARNING BOX ────────────────────────────────────── */
-.warn-box {
-  background: rgba(200,100,40,0.08);
-  border: 1px solid rgba(200,100,40,0.25);
-  border-radius: 4px;
-  padding: 0.9rem 1.1rem;
-  font-size: 0.75rem;
-  color: var(--cream-2);
-  line-height: 1.65;
-  margin-top: 1.5rem;
-}
-.warn-box strong { color: #e07040; }
-
 </style>
 </head>
 <body>
@@ -534,7 +286,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.15); }
     <li><a href="../agencies/index.html">Agencies</a></li>
     <li><a href="../blog/index.html">Blog</a></li>
   </ul>
-  <button class="nav-cta">Plan Your Trip</button>
+  <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -550,884 +302,1094 @@ input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.15); }
   <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
 </div>
 
-<div class="planner">
-<div class="planner-inner">
+<div class="app">
 
-  <!-- HERO -->
-  <div class="planner-hero">
+<!-- DESKTOP: hero shown above wizard -->
+<div class="app-inner" id="heroWrap">
+  <div class="app-hero">
     <span class="label">Journey Architect</span>
-    <h1>Build Your<br><em>GB Itinerary</em></h1>
-    <p>Answer five questions. Get a route built around how you're arriving, how long you have, and what kind of trip you want.</p>
+    <h1>Plan Your<br><em>GB Trip</em></h1>
+    <p>Answer five questions. Get a detailed day-by-day itinerary built around your entry point, travel style, and budget.</p>
+    <button class="already-btn" onclick="showAlready()">📍 Already in GB? Find what's near you →</button>
   </div>
+</div>
 
-  <!-- PROGRESS -->
-  <div class="progress-bar" id="progressBar">
-    <div class="progress-dot" data-step="0"></div>
-    <div class="progress-dot" data-step="1"></div>
-    <div class="progress-dot" data-step="2"></div>
-    <div class="progress-dot" data-step="3"></div>
-    <div class="progress-dot" data-step="4"></div>
-  </div>
+<!-- ── WIZARD (desktop: inline, mobile: fixed) ── -->
+<div id="wizardWrap">
+  <div class="wizard-scroll" id="wizardScroll">
+  <div class="app-inner" id="wizardInner">
 
-  <!-- WIZARD -->
-  <div id="wizard">
+    <div class="progress" id="progressBar">
+      <div class="progress-dot" data-s="0"></div>
+      <div class="progress-dot" data-s="1"></div>
+      <div class="progress-dot" data-s="2"></div>
+      <div class="progress-dot" data-s="3"></div>
+      <div class="progress-dot" data-s="4"></div>
+    </div>
 
-    <!-- STEP 0: Entry point -->
+    <!-- STEP 0: Entry -->
     <div class="step active" id="step-0">
       <div class="step-q">How are you<br>getting to GB?</div>
-      <p class="step-hint">Your entry point determines your entire route — this is the most important question.</p>
-      <div class="choices cols-2" data-step="0" data-key="entry">
-        <div class="choice" data-val="fly-gilgit">
+      <p class="step-sub">Your entry point determines your entire route.</p>
+      <div class="choices c2" data-key="entry">
+        <div class="choice" data-v="fly-gilgit">
           <span class="choice-icon">✈️</span>
           <div class="choice-title">Fly into Gilgit</div>
-          <div class="choice-desc">PIA from Islamabad. 45 mins. Best start for Hunza and upper KKH.</div>
+          <div class="choice-desc">PIA from Islamabad. 45 min. Best start for Hunza and upper KKH.</div>
           <div class="choice-tag">Most common</div>
-          <div class="choice-warn">Cancellation rate 40–60%. Always have a road backup.</div>
+          <div class="choice-warn">40–60% cancellation rate — always have a road backup date.</div>
         </div>
-        <div class="choice" data-val="fly-skardu">
+        <div class="choice" data-v="fly-skardu">
           <span class="choice-icon">✈️</span>
           <div class="choice-title">Fly into Skardu</div>
-          <div class="choice-desc">PIA from Islamabad or Lahore. Gateway to K2, Deosai, and the Baltistan region.</div>
+          <div class="choice-desc">PIA from ISB or LHE. Gateway to K2, Deosai, and Baltistan.</div>
           <div class="choice-tag">K2 region</div>
-          <div class="choice-warn">Scenic mountain views on approach. Weather-dependent too.</div>
+          <div class="choice-warn">Mountain approach is spectacular. Weather-dependent.</div>
         </div>
-        <div class="choice" data-val="road-kkh">
+        <div class="choice" data-v="road-kkh">
           <span class="choice-icon">🚗</span>
           <div class="choice-title">Drive via KKH</div>
-          <div class="choice-desc">Islamabad → Besham → Chilas → Gilgit. 15–18h. The classic Karakoram Highway.</div>
+          <div class="choice-desc">Islamabad → Besham → Chilas → Gilgit. 15–18h. The classic route.</div>
           <div class="choice-tag">Classic route</div>
-          <div class="choice-warn">Kohistan section is rough. Drive in daylight only.</div>
+          <div class="choice-warn">Kohistan is rough. Drive in daylight only.</div>
         </div>
-        <div class="choice" data-val="road-babusar">
+        <div class="choice" data-v="road-babusar">
           <span class="choice-icon">🏔</span>
           <div class="choice-title">Via Babusar Pass</div>
-          <div class="choice-desc">Islamabad → Naran → Babusar Top → Chilas → GB. The scenic mountain alternative.</div>
+          <div class="choice-desc">ISB → Naran → Babusar Top → Chilas → GB. More dramatic than KKH.</div>
           <div class="choice-tag">Summer only · Jun–Oct</div>
-          <div class="choice-warn">4,173m pass. Jeep only above Naran. More dramatic than the KKH.</div>
+          <div class="choice-warn">4,173m pass. Jeep only above Naran.</div>
         </div>
-      </div>
-      <div class="step-nav">
-        <div></div>
-        <button class="btn-next" id="next-0" disabled onclick="nextStep(0)">Next →</button>
       </div>
     </div>
 
-    <!-- STEP 1: Travel style -->
+    <!-- STEP 1: Style -->
     <div class="step" id="step-1">
       <div class="step-q">What kind of<br>trip is this?</div>
-      <p class="step-hint">Be honest — this shapes everything from your accommodation tier to the pace of your itinerary.</p>
-      <div class="choices cols-3" data-step="1" data-key="style">
-        <div class="choice" data-val="adventure">
+      <p class="step-sub">This shapes your accommodation, pace, and activities.</p>
+      <div class="choices c3" data-key="style">
+        <div class="choice" data-v="adventure">
           <span class="choice-icon">🧗</span>
-          <div class="choice-title">Adventure & Trekking</div>
+          <div class="choice-title">Adventure</div>
           <div class="choice-desc">Base camps, high passes, multi-day treks. Comfort is secondary.</div>
+          <div class="choice-tag">~Rs 7,000/day</div>
         </div>
-        <div class="choice" data-val="photography">
+        <div class="choice" data-v="photography">
           <span class="choice-icon">📸</span>
-          <div class="choice-title">Scenic & Photography</div>
-          <div class="choice-desc">Chasing golden hour, viewpoints, blossom, and autumn colour.</div>
+          <div class="choice-title">Photography</div>
+          <div class="choice-desc">Golden hour, viewpoints, blossom, autumn colour. Private jeep.</div>
+          <div class="choice-tag">~Rs 11,000/day</div>
         </div>
-        <div class="choice" data-val="cultural">
+        <div class="choice" data-v="cultural">
           <span class="choice-icon">🏛</span>
-          <div class="choice-title">Culture & History</div>
-          <div class="choice-desc">Forts, ancient villages, local cuisine, Silk Road heritage.</div>
+          <div class="choice-title">Culture</div>
+          <div class="choice-desc">Forts, old villages, local cuisine, Silk Road heritage.</div>
+          <div class="choice-tag">~Rs 9,000/day</div>
         </div>
-        <div class="choice" data-val="luxury">
+        <div class="choice" data-v="luxury">
           <span class="choice-icon">🥂</span>
-          <div class="choice-title">Luxury & Comfort</div>
-          <div class="choice-desc">Premium lodges, private transport, curated experiences. No roughing it.</div>
+          <div class="choice-title">Luxury</div>
+          <div class="choice-desc">Serena hotels, private transfers, curated experiences.</div>
+          <div class="choice-tag">~Rs 35,000/day</div>
         </div>
-        <div class="choice" data-val="family">
+        <div class="choice" data-v="family">
           <span class="choice-icon">👨‍👩‍👧</span>
-          <div class="choice-title">Family Holiday</div>
-          <div class="choice-desc">Accessible sights, moderate hikes, comfortable accommodation, flexible pace.</div>
+          <div class="choice-title">Family</div>
+          <div class="choice-desc">Accessible sights, comfortable hotels, flexible pace.</div>
+          <div class="choice-tag">~Rs 12,000/day</div>
         </div>
-        <div class="choice" data-val="budget">
+        <div class="choice" data-v="budget">
           <span class="choice-icon">🎒</span>
-          <div class="choice-title">Budget Backpacker</div>
-          <div class="choice-desc">Guesthouses, shared transport, local food. Maximum distance per rupee.</div>
+          <div class="choice-title">Budget</div>
+          <div class="choice-desc">Guesthouses, shared jeeps, local food. Max distance per rupee.</div>
+          <div class="choice-tag">~Rs 4,000/day</div>
         </div>
-      </div>
-      <div class="step-nav">
-        <button class="btn-back" onclick="prevStep(1)">← Back</button>
-        <button class="btn-next" id="next-1" disabled onclick="nextStep(1)">Next →</button>
       </div>
     </div>
 
     <!-- STEP 2: Duration -->
     <div class="step" id="step-2">
       <div class="step-q">How many days<br>do you have?</div>
-      <p class="step-hint">Including travel days. Be realistic — GB rewards slow travel.</p>
-      <div class="duration-wrap">
-        <div class="duration-num" id="durNum">8</div>
-        <div class="duration-unit">Days</div>
-        <input type="range" min="4" max="21" value="8" id="durSlider" oninput="updateDuration(this.value)">
-        <div class="duration-context" id="durContext"></div>
+      <p class="step-sub">Including travel days. GB rewards slow travel — don't rush it.</p>
+      <div class="dur-wrap">
+        <div class="dur-num" id="durNum">8</div>
+        <div class="dur-unit">Days</div>
+        <input type="range" min="4" max="21" value="8" id="durSlider" oninput="onDur(this.value)">
+        <div class="dur-ctx" id="durCtx"></div>
       </div>
-      <div class="step-nav">
-        <button class="btn-back" onclick="prevStep(2)">← Back</button>
-        <button class="btn-next" onclick="nextStep(2)">Next →</button>
-      </div>
+      <div id="budgetAlert"></div>
     </div>
 
-    <!-- STEP 3: Regions -->
+    <!-- STEP 3: Regions (multi) -->
     <div class="step" id="step-3">
       <div class="step-q">Which regions<br>matter most?</div>
-      <p class="step-hint">Pick all that interest you. We'll fit them into your days — or note what to save for next time.</p>
-      <div class="choices cols-2 multi" data-step="3" data-key="regions">
-        <div class="choice" data-val="hunza">
+      <p class="step-sub">Pick all that interest you. We'll fit them into your days.</p>
+      <div class="choices c2 multi" data-key="regions">
+        <div class="choice" data-v="hunza">
           <span class="choice-icon">🏔</span>
           <div class="choice-title">Hunza Valley</div>
-          <div class="choice-desc">Karimabad, Baltit Fort, Attabad Lake, Passu, Khunjerab Pass. GB's most iconic valley.</div>
+          <div class="choice-desc">Baltit Fort, Attabad Lake, Passu Cones, Khunjerab. GB's most iconic.</div>
         </div>
-        <div class="choice" data-val="skardu">
+        <div class="choice" data-v="skardu">
           <span class="choice-icon">🗻</span>
-          <div class="choice-title">Skardu & K2 Region</div>
-          <div class="choice-desc">Deosai Plains, Shigar Fort, Kachura Lake, Katpana Desert. Gateway to K2.</div>
+          <div class="choice-title">Skardu & K2</div>
+          <div class="choice-desc">Deosai, Shigar Fort, Katpana Desert, Kachura Lake, Khaplu.</div>
         </div>
-        <div class="choice" data-val="fairy">
+        <div class="choice" data-v="fairy">
           <span class="choice-icon">🌄</span>
           <div class="choice-title">Fairy Meadows</div>
-          <div class="choice-desc">Nanga Parbat base. 2-night detour off the KKH. One of the great views in the world.</div>
+          <div class="choice-desc">Nanga Parbat base. 2-night detour off KKH. Jeep track + hike.</div>
         </div>
-        <div class="choice" data-val="hidden">
+        <div class="choice" data-v="hidden">
           <span class="choice-icon">🏕</span>
           <div class="choice-title">Hidden Valleys</div>
-          <div class="choice-desc">Shimshal, Chapursan, Bagrot, Naltar. For those who want zero other tourists.</div>
+          <div class="choice-desc">Shimshal, Chapursan, Naltar, Bagrot. Zero other tourists.</div>
         </div>
-      </div>
-      <div class="step-nav">
-        <button class="btn-back" onclick="prevStep(3)">← Back</button>
-        <button class="btn-next" id="next-3" disabled onclick="nextStep(3)">Next →</button>
       </div>
     </div>
 
     <!-- STEP 4: Season -->
     <div class="step" id="step-4">
       <div class="step-q">When are<br>you going?</div>
-      <p class="step-hint">The season completely changes what's possible — some passes close, some valleys are at their best.</p>
-      <div class="choices cols-2" data-step="4" data-key="season">
-        <div class="choice" data-val="spring">
+      <p class="step-sub">Season changes what's possible — some passes close, others bloom.</p>
+      <div class="choices c2" data-key="season">
+        <div class="choice" data-v="spring">
           <span class="choice-icon">🌸</span>
           <div class="choice-title">Spring</div>
-          <div class="choice-desc">March – May. Blossom season. Cool days, cold nights. Khunjerab opens in May. Peak photography.</div>
+          <div class="choice-desc">Mar–May. Blossom season. Cool days, cold nights. Khunjerab opens May.</div>
           <div class="choice-tag">Best for blossom</div>
         </div>
-        <div class="choice" data-val="summer">
+        <div class="choice" data-v="summer">
           <span class="choice-icon">☀️</span>
           <div class="choice-title">Summer</div>
-          <div class="choice-desc">June – August. All passes open. Hot in Gilgit (36°C). All treks accessible. Busiest season.</div>
+          <div class="choice-desc">Jun–Aug. All passes open. Hot in Gilgit (36°C). All treks accessible.</div>
           <div class="choice-tag">All passes open</div>
         </div>
-        <div class="choice" data-val="autumn">
+        <div class="choice" data-v="autumn">
           <span class="choice-icon">🍂</span>
           <div class="choice-title">Autumn</div>
-          <div class="choice-desc">September – October. Golden foliage. Crystal clarity. Khunjerab closing late Oct. Second peak.</div>
+          <div class="choice-desc">Sep–Oct. Golden foliage. Crystal clarity. Best overall season.</div>
           <div class="choice-tag">Best overall</div>
         </div>
-        <div class="choice" data-val="winter">
+        <div class="choice" data-v="winter">
           <span class="choice-icon">❄️</span>
           <div class="choice-title">Winter</div>
-          <div class="choice-desc">November – February. Cold and quiet. Hunza and Gilgit accessible. Naltar for skiing. Few tourists.</div>
+          <div class="choice-desc">Nov–Feb. Cold and quiet. Hunza + Gilgit open. Naltar skiing.</div>
           <div class="choice-tag">Off-season rates</div>
         </div>
       </div>
-      <div class="step-nav">
-        <button class="btn-back" onclick="prevStep(4)">← Back</button>
-        <button class="btn-next" id="next-4" disabled onclick="buildItinerary()">Build My Itinerary →</button>
+    </div>
+
+  </div><!-- /wizardInner -->
+  </div><!-- /wizardScroll -->
+
+  <!-- Mobile: fixed bottom nav -->
+  <div class="wizard-bottom" id="wizardBottom">
+    <div class="app-inner" style="padding:0">
+      <div class="step-nav" id="stepNav">
+        <div id="backSlot"></div>
+        <button class="btn-next" id="btnNext" disabled>Next →</button>
       </div>
     </div>
+  </div>
+</div><!-- /wizardWrap -->
 
-  </div><!-- /wizard -->
-
-  <!-- RESULT -->
+<!-- ── RESULT ── -->
+<div id="resultWrap">
+<div class="app-inner" id="resultInner">
   <div id="result">
-    <div class="result-header">
-      <span class="label">Your Itinerary</span>
-      <div class="result-title" id="resultTitle"></div>
-      <div class="result-sub" id="resultSub"></div>
-      <div class="result-pills" id="resultPills"></div>
+    <div class="result-hero">
+      <span class="label" style="justify-content:center">Your Itinerary</span>
+      <div class="result-title" id="rTitle"></div>
+      <div class="result-sub" id="rSub"></div>
+      <div class="result-pills" id="rPills"></div>
+      <div class="result-actions">
+        <button class="btn-pdf" onclick="window.print()">⬇ Download PDF</button>
+        <button class="btn-restart" onclick="doRestart()">← Start Over</button>
+      </div>
     </div>
-
-    <!-- Route visual -->
-    <div class="route-visual" id="routeVisual"></div>
-
-    <!-- Warning if applicable -->
-    <div id="resultWarning"></div>
-
-    <!-- Day cards -->
-    <div class="day-cards" id="dayCards"></div>
-
-    <!-- Practical summary -->
-    <div class="practical-grid" id="practicalGrid"></div>
-
-    <!-- Restart -->
-    <div class="restart-wrap">
-      <p style="font-size:0.78rem;color:var(--cream-2);margin-bottom:1rem;">Want to try a different trip configuration?</p>
-      <button class="btn-restart" onclick="restart()">Start Over</button>
-    </div>
-  </div><!-- /result -->
-
+    <div class="route-strip" id="rRoute"></div>
+    <div id="rWarn"></div>
+    <div class="day-cards" id="rDays"></div>
+    <div class="prac-grid" id="rPrac"></div>
+  </div>
 </div>
 </div>
+
+<!-- ── ALREADY IN GB ── -->
+<div id="alreadyWrap">
+<div class="app-inner">
+  <div id="alreadyPanel">
+    <div style="padding-top:1.5rem;margin-bottom:1.5rem;">
+      <button class="btn-back" onclick="hideAlready()">← Back</button>
+    </div>
+    <div class="step-q" style="text-align:left">Where are<br>you right now?</div>
+    <p class="step-sub" style="text-align:left">Pick your current location — we'll show nearby activities, food, and your next move.</p>
+    <div class="here-grid" id="hereGrid"></div>
+    <div class="here-content" id="hereContent"></div>
+  </div>
+</div>
+</div>
+
+</div><!-- /app -->
 
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p><div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>
+      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p></div>
       <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit</a></li></ul></div>
       <div><div class="footer-col-title">Trekking</div><ul class="footer-links"><li><a href="../trekking/index.html">All Treks</a></li></ul></div>
-      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../agencies/index.html">Agencies</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
   </div>
 </footer>
 
 <script>
-// ─── STATE ────────────────────────────────────────────────────────────
-const state = { entry: null, style: null, days: 8, regions: new Set(), season: null };
-let currentStep = 0;
+/* ════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════ */
+const S = { entry:null, style:null, days:8, regions:new Set(), season:null };
+let cur = 0;
+const STEPS = 5;
 
-// ─── PROGRESS ─────────────────────────────────────────────────────────
+const dailyCost = { budget:4000, adventure:7000, cultural:9000, photography:11000, family:12000, luxury:35000 };
+const styleLabel = { budget:'Budget Backpacker', adventure:'Adventure & Trekking', cultural:'Culture & History', photography:'Scenic Photography', family:'Family', luxury:'Luxury' };
+const entryLabel = { 'fly-gilgit':'Flying into Gilgit','fly-skardu':'Flying into Skardu','road-kkh':'Driving the KKH','road-babusar':'Via Babusar Pass' };
+
+/* ════════════════════════════════════════════════════════
+   MOBILE DETECTION & LAYOUT
+════════════════════════════════════════════════════════ */
+const isMobile = () => window.innerWidth <= 680;
+
+function initLayout() {
+  if (isMobile()) {
+    document.getElementById('heroWrap').style.display = 'none';
+    document.getElementById('wizardWrap').classList.remove('hidden');
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   PROGRESS
+════════════════════════════════════════════════════════ */
 function updateProgress(step) {
-  document.querySelectorAll('.progress-dot').forEach((dot, i) => {
-    dot.classList.toggle('active', i === step);
-    dot.classList.toggle('done', i < step);
+  document.querySelectorAll('.progress-dot').forEach((d,i) => {
+    d.classList.toggle('active', i===step);
+    d.classList.toggle('done', i<step);
   });
 }
 
-// ─── CHOICE SELECTION ─────────────────────────────────────────────────
+/* ════════════════════════════════════════════════════════
+   CHOICES
+════════════════════════════════════════════════════════ */
 document.querySelectorAll('.choices:not(.multi) .choice').forEach(card => {
   card.addEventListener('click', () => {
-    const group = card.closest('.choices');
-    group.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    const key = group.dataset.key;
-    const val = card.dataset.val;
-    state[key] = val;
-    const stepIdx = parseInt(group.dataset.step);
-    const nextBtn = document.getElementById(`next-${stepIdx}`);
-    if (nextBtn) nextBtn.disabled = false;
+    const g = card.closest('.choices');
+    g.querySelectorAll('.choice').forEach(c=>c.classList.remove('sel'));
+    card.classList.add('sel');
+    S[g.dataset.key] = card.dataset.v;
+    const si = getStepIdx(g);
+    enableNext(si);
+    if (g.dataset.key === 'style' || g.dataset.key === 'season') checkBudget();
   });
 });
 
 document.querySelectorAll('.choices.multi .choice').forEach(card => {
   card.addEventListener('click', () => {
-    card.classList.toggle('selected');
-    const val = card.dataset.val;
-    if (card.classList.contains('selected')) state.regions.add(val);
-    else state.regions.delete(val);
-    document.getElementById('next-3').disabled = state.regions.size === 0;
+    card.classList.toggle('sel');
+    const v = card.dataset.v;
+    if (card.classList.contains('sel')) S.regions.add(v); else S.regions.delete(v);
+    document.getElementById('btnNext').disabled = S.regions.size === 0;
   });
 });
 
-// ─── DURATION ─────────────────────────────────────────────────────────
-const durContexts = {
-  4:  "A long weekend. You'll need to focus: one destination, no wasted days.",
-  5:  "Enough for Hunza or Skardu, not both. Pick one and go deep.",
-  6:  "A solid week. Hunza in full, or Skardu with Deosai.",
-  7:  "Comfortable. You can do Gilgit + Hunza or Skardu properly.",
-  8:  "This is the sweet spot for a first GB trip. Two regions, no rush.",
-  9:  "Good flexibility. You can add a hidden valley or Fairy Meadows detour.",
-  10: "You can do Hunza and Skardu if you keep moving. Or do one region very slowly.",
-  11: "Excellent. GB at a proper pace — no compromise on what you see.",
-  12: "Enough for the full KKH arc plus Skardu and Deosai.",
-  13: "You can reach Shimshal or Chapursan without skipping the main sights.",
-  14: "Two weeks in GB. This is what most travellers wish they'd booked.",
-  15: "At this length you're building a serious expedition.",
-  16: "Enough for a Karakoram base camp trek plus the main sights.",
-  17: "Real depth is possible: trekking, hidden valleys, slow travel.",
-  18: "You could do the full KKH from Islamabad to Khunjerab and back.",
-  19: "Extended expedition territory.",
-  20: "Long-haul trip. Plan in a rest day every 4–5 days.",
-  21: "Three weeks. You'll see GB at a level most visitors never reach.",
-};
-
-function updateDuration(val) {
-  state.days = parseInt(val);
-  document.getElementById('durNum').textContent = val;
-  document.getElementById('durContext').textContent = durContexts[val] || '';
+function getStepIdx(el) {
+  const step = el.closest('.step');
+  return parseInt(step.id.split('-')[1]);
 }
-updateDuration(8);
 
-// ─── NAVIGATION ───────────────────────────────────────────────────────
-function nextStep(from) {
-  document.getElementById(`step-${from}`).classList.remove('active');
-  const to = from + 1;
+function enableNext(si) {
+  if (si === cur) document.getElementById('btnNext').disabled = false;
+}
+
+/* ════════════════════════════════════════════════════════
+   DURATION
+════════════════════════════════════════════════════════ */
+const durCtxMap = {
+  4:'Very tight — one destination only. No transit days to spare.',
+  5:'Enough for Hunza or Skardu. Not both. Pick one, go deep.',
+  6:'Solid. Hunza fully or Skardu with Deosai.',
+  7:'Good. Gilgit + Hunza, or Skardu properly.',
+  8:'The sweet spot for a first trip. Two regions without rushing.',
+  9:'You can add a hidden valley or proper Fairy Meadows detour.',
+  10:'Hunza and Skardu are both possible if you keep moving.',
+  11:'GB at a proper pace — no compromise on what you see.',
+  12:'The full KKH arc plus Skardu and Deosai.',
+  13:'Enough for Shimshal or Chapursan alongside the main sights.',
+  14:'Two weeks. What most travellers wish they had booked.',
+  15:'Expedition territory is opening up.',
+  16:'K2 Base Camp trek plus all main sights is achievable.',
+  17:'Real depth — trekking, hidden valleys, slow travel.',
+  18:'The full KKH from ISB to Khunjerab and back.',
+  19:'Extended expedition.',
+  20:'Long-haul. Build in a rest day every 4–5 days.',
+  21:'Three weeks. You\'ll see GB at a level most visitors never reach.',
+};
+function onDur(v) {
+  S.days = parseInt(v);
+  document.getElementById('durNum').textContent = v;
+  document.getElementById('durCtx').textContent = durCtxMap[v] || '';
+  checkBudget();
+}
+onDur(8);
+
+function checkBudget() {
+  if (!S.style) return;
+  const pd = dailyCost[S.style];
+  const total = pd * S.days;
+  const el = document.getElementById('budgetAlert');
+  const rec = Math.ceil(total/1000)*1000;
+  const maxDays = Math.floor(150000/pd);
+  if (total > 250000) {
+    el.innerHTML = `<div class="budget-alert"><strong>Heads up:</strong> ${styleLabel[S.style]} travel for ${S.days} days costs roughly <strong>Rs ${(total/1000).toFixed(0)}k–${(total*1.3/1000).toFixed(0)}k</strong>. If that's above your budget, either reduce to <strong>${Math.round(S.days*0.65)} days</strong> or switch to a more affordable tier (Family or Budget) to still see the highlights.</div>`;
+  } else if (S.style === 'budget' && S.days > 14) {
+    el.innerHTML = `<div class="budget-alert"><strong>Note:</strong> Budget travel for ${S.days} days means a lot of guesthouse nights in a row. Consider mid-range for at least the first and last nights — arriving exhausted to a very basic room is a bad start to a big trip.</div>`;
+  } else {
+    el.innerHTML = `<div class="budget-ok"><strong>Good fit:</strong> ${styleLabel[S.style]} for ${S.days} days is roughly <strong>Rs ${(total/1000).toFixed(0)}k–${(total*1.2/1000).toFixed(0)}k</strong> total. Achievable with reasonable planning.</div>`;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════════════ */
+document.getElementById('btnNext').addEventListener('click', () => {
+  if (cur < STEPS - 1) goStep(cur + 1);
+  else buildItinerary();
+});
+
+function goStep(to) {
+  document.getElementById(`step-${cur}`).classList.remove('active');
   document.getElementById(`step-${to}`).classList.add('active');
-  currentStep = to;
-  updateProgress(to);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function prevStep(from) {
-  document.getElementById(`step-${from}`).classList.remove('active');
-  const to = from - 1;
-  document.getElementById(`step-${to}`).classList.add('active');
-  currentStep = to;
-  updateProgress(to);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function restart() {
-  state.entry = null; state.style = null; state.days = 8; state.regions = new Set(); state.season = null;
-  document.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
-  document.querySelectorAll('.btn-next').forEach(b => { if (b.id) b.disabled = true; });
-  document.getElementById('next-2').disabled = false;
-  updateDuration(8); document.getElementById('durSlider').value = 8;
-  document.getElementById('result').classList.remove('active');
-  document.getElementById('wizard').style.display = '';
-  document.getElementById('progressBar').style.display = '';
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step-0').classList.add('active');
-  currentStep = 0; updateProgress(0);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  cur = to;
+  updateProgress(cur);
+  updateNav();
+  if (isMobile()) document.getElementById('wizardScroll').scrollTop = 0;
+  else window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ─── ITINERARY DATA ────────────────────────────────────────────────────
-// Day templates keyed by [entry][style][region]
-// Each day: { title, location, activities[], tip, cost }
+function updateNav() {
+  const back = document.getElementById('backSlot');
+  const next = document.getElementById('btnNext');
+  if (cur === 0) {
+    back.innerHTML = '';
+  } else {
+    back.innerHTML = `<button class="btn-back" onclick="goStep(${cur-1})">← Back</button>`;
+  }
+  // Determine if next should be enabled
+  const needsSelection = { 0:'entry', 1:'style', 3:'regions', 4:'season' };
+  if (cur === 2) {
+    next.disabled = false;
+    next.textContent = 'Next →';
+  } else if (cur === 4) {
+    next.disabled = !S[needsSelection[cur]];
+    next.textContent = 'Build My Itinerary →';
+  } else if (needsSelection[cur]) {
+    next.disabled = !S[needsSelection[cur]];
+    next.textContent = 'Next →';
+  } else if (cur === 3) {
+    next.disabled = S.regions.size === 0;
+    next.textContent = 'Next →';
+  }
+}
 
-const costs = {
-  budget:    { stay: 'Rs 1,500–3,000', food: 'Rs 500–800', local: 'Rs 300–600 shared' },
-  family:    { stay: 'Rs 5,000–10,000', food: 'Rs 1,200–2,000', local: 'Rs 800–1,500' },
-  cultural:  { stay: 'Rs 4,000–8,000', food: 'Rs 1,000–1,800', local: 'Rs 600–1,200' },
-  photography:{ stay: 'Rs 4,000–9,000', food: 'Rs 1,000–1,800', local: 'Rs 1,000–2,000 private' },
-  adventure: { stay: 'Rs 2,500–5,000', food: 'Rs 700–1,200', local: 'Rs 600–1,200' },
-  luxury:    { stay: 'Rs 18,000–45,000', food: 'Rs 3,000–6,000', local: 'Rs 3,500–6,000 private' },
+// Re-enable next on selection for step 4
+document.querySelectorAll('#step-4 .choice').forEach(c => {
+  c.addEventListener('click', () => {
+    if (cur === 4) { document.getElementById('btnNext').disabled = false; }
+  });
+});
+
+/* ════════════════════════════════════════════════════════
+   DETAILED ITINERARY DATA
+════════════════════════════════════════════════════════ */
+const PLACES = {
+  gilgit: {
+    activities: {
+      morning: [
+        { t:'08:00', a:'<strong>Kargah Buddha</strong> — 7th-century rock carving of the Buddha, 10km from town centre. Drive or taxi (Rs 300). Free entry. Allow 45 min.', c:'Free' },
+        { t:'09:30', a:'<strong>Old Gilgit Fort ruins</strong> on the hill above the main bazaar. Short steep climb (20 min), views over the entire Gilgit valley.', c:'Free' },
+      ],
+      afternoon: [
+        { t:'12:00', a:'<strong>Gilgit Main Bazaar</strong> — dried apricots (Rs 400–800/kg), local honey, polo sticks, Hunza toffee. Best bazaar in GB.', c:'Shopping' },
+        { t:'13:30', a:'<strong>Lunch at Café de Hunza</strong> or <strong>Hunza Kitchen</strong> on the main road — chapshoro (Hunza meat pastry, Rs 200–350), local bread.', c:'Rs 250–500' },
+        { t:'15:00', a:'<strong>Aga Khan Cultural Centre</strong> — modern building, good exhibition on GB history and Ismaili culture. Free.', c:'Free' },
+      ],
+      evening: [
+        { t:'17:30', a:'<strong>Gilgit River suspension bridges</strong> — old and new bridges side by side. Walk both. Golden hour light on the mountains.', c:'Free' },
+        { t:'19:00', a:'<strong>Street manti (dumplings)</strong> near the main chowk — Rs 200–350. Or PTDC Cafeteria for a sit-down meal.', c:'Rs 300–600' },
+        { t:'20:30', a:'<strong>Rooftop stargazing</strong> — Gilgit has almost zero light pollution. Ask your guesthouse for rooftop access.', c:'Free' },
+      ],
+    },
+    food: {
+      budget: 'Street chapshoro near the bus stand (Rs 150–250). Dhaba daal + roti (Rs 150–200).',
+      mid: '<strong>Café de Hunza</strong> — chapshoro, bolani, local bread, good tea. Rs 400–900/meal.',
+      luxury: '<strong>Serena Gilgit</strong> restaurant or <strong>Shangrila Mountain Resort</strong> dining room. Rs 2,500–5,000/person.',
+    },
+    stay: {
+      budget: 'Park Hotel or Madina Hotel — Rs 1,500–2,500',
+      mid: 'Tourist Cottage or PTDC Motel — Rs 4,000–6,000',
+      luxury: 'Serena Hotel Gilgit — Rs 18,000–28,000',
+    },
+  },
+
+  hunza: {
+    activities: {
+      morning: [
+        { t:'08:00', a:'<strong>Baltit Fort</strong> — 700-year-old Tibetan-influenced fort. Opens 9am. Entry Rs 500 (foreigners), Rs 200 (locals). Hire the in-house guide (Rs 500) — the history is exceptional. Allow 1.5h.', c:'Rs 500' },
+        { t:'10:00', a:'<strong>Altit Fort</strong> — Pakistan\'s oldest surviving fort (900+ years). 45-min walk downhill from Karimabad or shared jeep (Rs 200). Quieter than Baltit, more atmospheric.', c:'Rs 300' },
+      ],
+      afternoon: [
+        { t:'12:30', a:'<strong>Karimabad Bazaar</strong> — local honey (Hunza dark honey is famous), embroidered shawls, dried apricots, woollen socks. Prices honest compared to Islamabad.', c:'Shopping' },
+        { t:'14:00', a:'<strong>Eagle\'s Nest / Duikar viewpoint</strong> — 40-min hike uphill from Karimabad or jeep Rs 800 return. The full Karakoram panorama: Ultar, Rakaposhi, Diran, Lady Finger. Best in evening light.', c:'Rs 800 jeep' },
+        { t:'15:30', a:'<strong>Ultar Meadows hike</strong> — for the energetic: 4h return from Karimabad, gain 900m. Glacial stream, wildflowers in summer, views of Ultar II (7,388m) directly above.', c:'Free' },
+      ],
+      evening: [
+        { t:'18:00', a:'<strong>Eagle\'s Nest sunset</strong> — if you haven\'t gone yet, this is the unmissable shot: full mountain panorama at golden hour from the ridge above Karimabad.', c:'Free' },
+        { t:'19:30', a:'<strong>Dinner in Karimabad</strong> — Village restaurant near Baltit for local Hunzai food (harissa, chapshoro, butter tea). Or Café Diran.', c:'Rs 400–800' },
+      ],
+    },
+    food: {
+      budget: 'Local naan with daal and achar at tea stalls (Rs 150–250). Harissa (wheat + meat porridge) from local homes.',
+      mid: '<strong>Café Diran</strong> or <strong>Old Hunza Inn</strong> restaurant — Hunzai specialties, good portions. Rs 500–1,200/meal.',
+      luxury: '<strong>Serena Hunza</strong> (Eagle\'s Nest Hotel) dining — panoramic views, set menu Rs 3,000–5,000/person.',
+    },
+    stay: {
+      budget: 'Old Hunza Inn or Haider Inn — Rs 2,000–3,500',
+      mid: 'Hunza Heritage Hotel or Rakaposhi View Hotel — Rs 6,000–10,000',
+      luxury: 'Serena Hunza (Eagle\'s Nest Hotel) — Rs 24,000–40,000',
+    },
+  },
+
+  attabad: {
+    activities: {
+      morning: [
+        { t:'08:30', a:'<strong>Attabad Lake boat ride</strong> — hire a boat (Rs 500–800 for 30 min) through the turquoise water in the canyon formed by the 2010 landslide. The colour is genuinely surreal: deep emerald against red cliffs.', c:'Rs 500–800' },
+        { t:'10:00', a:'<strong>Tunnel gallery</strong> — five tunnels carved through the landslide debris, each with windows over the lake. Drive through slowly. Each window is a photograph.', c:'Free' },
+      ],
+      afternoon: [
+        { t:'11:30', a:'<strong>Gojal Viewpoint</strong> — turn off above the lake toward Shishkat village. A 15-min walk gets you above the water level for aerial lake views. Completely empty.', c:'Free' },
+        { t:'13:00', a:'<strong>Continue to Passu</strong> (30km north of Attabad, 45 min). Lunch at Passu Inn — local daal, fresh bread, sometimes trout. Rs 300–600.', c:'Rs 300–600' },
+      ],
+      evening: [
+        { t:'15:30', a:'<strong>Passu Cones from the KKH bridge</strong> — six limestone spires rising to 6,000m. Best photographed from the suspension bridge over the Hunza River, 1km south of Passu village.', c:'Free' },
+        { t:'17:00', a:'<strong>Hussaini Suspension Bridge</strong> — old rope-and-plank bridge over the Hunza River. Terrifying. Do it. 15 min walk from village.', c:'Free' },
+        { t:'18:30', a:'<strong>Batura Glacier viewpoint</strong> — the glacier terminus is 3km from Passu village. Walk or jeep. One of the most accessible glacier views in GB.', c:'Free' },
+      ],
+    },
+    food: {
+      budget: 'Passu Inn local food — daal, bread, eggs. Rs 200–400.',
+      mid: 'Glacier Breeze Guesthouse or Passu Tourist House — simple but fresh food. Rs 400–700.',
+      luxury: 'No luxury options in Passu. Base in Karimabad and day-trip.',
+    },
+    stay: {
+      budget: 'Passu Inn or Glacier Breeze — Rs 1,500–2,500',
+      mid: 'Passu Tourist House — Rs 3,000–5,000',
+      luxury: 'Stay in Karimabad (Serena) and day-trip to Passu and Attabad.',
+    },
+  },
+
+  skardu: {
+    activities: {
+      morning: [
+        { t:'08:00', a:'<strong>Kharpocho Fort</strong> — "King of Forts", perched on a rock 100m above the Indus. 20-min climb. Free. Built by Ali Sher Khan Anchan in the 16th century. Views over the entire Indus-Skardu valley are extraordinary.', c:'Free' },
+        { t:'10:00', a:'<strong>Satpara Lake</strong> — 15km from Skardu, a reservoir lake surrounded by rocky plateau. Entry Rs 200. Rowing boats available (Rs 400–600). Crystal clear water.', c:'Rs 200' },
+      ],
+      afternoon: [
+        { t:'12:30', a:'<strong>Katpana Desert</strong> — sand dunes at 2,226m, just 10 min from Skardu town. One of the coldest deserts in the world. The view of K2-range peaks behind the dunes is completely surreal. Camel rides Rs 300–500.', c:'Free' },
+        { t:'14:00', a:'<strong>Skardu Bazaar</strong> — dried fruit, Baltistani honey (dark and strong), local carpet sellers near the main chowk. More authentic than Karimabad.', c:'Shopping' },
+        { t:'15:30', a:'<strong>Old Skardu Town</strong> walk — stone lanes, traditional carved-wood houses, old mosque with carved cedar interior near the central square.', c:'Free' },
+      ],
+      evening: [
+        { t:'17:30', a:'<strong>Kharpocho Fort at sunset</strong> — the fort above the river glows amber. Best light in Skardu.', c:'Free' },
+        { t:'19:30', a:'<strong>Dinner at Mashabrum Restaurant</strong> or a local dhaba near the bazaar — Balti rice and meat dishes, fresh apricot juice.', c:'Rs 400–900' },
+      ],
+    },
+    food: {
+      budget: 'Local dhaba near the main bus stand — rice, daal, karahi. Rs 200–400.',
+      mid: '<strong>Mashabrum Restaurant</strong> or <strong>K2 Motel café</strong> — decent Pakistani menu plus Balti specialties. Rs 600–1,200.',
+      luxury: '<strong>Shangrila Resort</strong> restaurant (Rs 3,000–6,000) or the dining room at Serena Shigar Fort (if staying overnight).',
+    },
+    stay: {
+      budget: 'K2 Inn or New Al-Faisal Hotel — Rs 1,800–3,000',
+      mid: 'Mashabrum Hotel or Concordia Motel — Rs 5,000–9,000',
+      luxury: 'Shangrila Resort — Rs 18,000–30,000',
+    },
+  },
+
+  shigar: {
+    activities: {
+      morning: [
+        { t:'09:00', a:'<strong>Shigar Fort Residence</strong> — 17th-century Balti fort restored by the Aga Khan Trust. Now a heritage hotel. Visit even if not staying: the carved wood interiors and garden courtyard are the finest restoration in GB. Entry for non-guests: ask at reception, usually allowed for a tea.', c:'Free/tea' },
+        { t:'11:00', a:'<strong>Amburiq Mosque</strong> (Chaqchan Mosque) — one of the oldest mosques in the subcontinent. Built in 1370. The carved cedar columns and painted ceiling are extraordinary. No entry fee. Remove shoes.', c:'Free' },
+      ],
+      afternoon: [
+        { t:'12:30', a:'<strong>Shigar village lanes</strong> — stone walls, carved wooden balconies, apricot orchards. One of the most intact traditional settlements in GB. Walk without a guide.', c:'Free' },
+        { t:'14:00', a:'<strong>Shigar River walk</strong> — the valley floor orchards alongside the river. Apricots drying on rooftops in summer. Locals willing to share — ask permission before photographing.', c:'Free' },
+        { t:'15:30', a:'<strong>Upper Shigar Valley drive</strong> — the road continues 20km to Askole (K2 trekking base). Even just 10km in, the valley walls close to vertical rock and the scale becomes extraordinary.', c:'Jeep hire' },
+      ],
+      evening: [
+        { t:'18:00', a:'<strong>Return to Skardu</strong> (30km, 45 min). Or stay at Shigar Fort Residence for a genuine heritage experience.', c:'—' },
+      ],
+    },
+    food: {
+      budget: 'Simple teahouse in Shigar village — local bread, butter, tea. Rs 150–300.',
+      mid: 'Shigar Fort Residence café/restaurant — excellent food in a beautiful setting. Rs 1,500–2,500.',
+      luxury: 'Stay and dine at Shigar Fort Residence — one of the best dining experiences in all of GB.',
+    },
+    stay: {
+      budget: 'Stay in Skardu and day-trip.',
+      mid: 'Small guesthouses in Shigar village — Rs 2,500–4,000.',
+      luxury: 'Shigar Fort Residence — Rs 20,000–35,000. Worth every rupee.',
+    },
+  },
+
+  deosai: {
+    activities: {
+      morning: [
+        { t:'07:00', a:'<strong>Early start from Skardu</strong> — 1.5h drive to the plateau entry at Bara Pani checkpoint. Pay entry fee (Rs 500). Start early to maximise bear-sighting chances.', c:'Rs 500' },
+        { t:'08:30', a:'<strong>Bara Pani</strong> — the plateau entry point and ranger station. Ask rangers about recent Himalayan brown bear sightings and which direction they\'ve been seen.', c:'Free' },
+        { t:'09:30', a:'<strong>Bear watching</strong> — Deosai has one of Pakistan\'s last viable brown bear populations (~40 individuals). Drive slowly along the plateau tracks. Binoculars essential.', c:'Free' },
+      ],
+      afternoon: [
+        { t:'12:00', a:'<strong>Sheosar Lake</strong> — the large alpine lake at the centre of the plateau. At 4,142m, one of the highest lakes in Pakistan. Mirror-perfect reflections on calm mornings.', c:'Free' },
+        { t:'13:30', a:'<strong>Plateau walk</strong> — in June–July the entire plateau turns yellow with wildflowers. No trails needed — just walk. The silence at 4,000m is extreme.', c:'Free' },
+        { t:'15:00', a:'<strong>Panoramic viewpoint</strong> — the plateau edge on the south side gives views down into Kashmir. On clear days the line of peaks extends to the horizon in every direction.', c:'Free' },
+      ],
+      evening: [
+        { t:'17:00', a:'<strong>Return to Skardu</strong>. The light on the plateau at this hour is exceptional — the grass goes amber and the sky deepens. Stop for last photographs.', c:'—' },
+      ],
+    },
+    food: { budget:'Pack food from Skardu. Tea available at Bara Pani ranger station.', mid:'Pack food from Skardu — no restaurants on the plateau.', luxury:'Arrange packed lunch from Shangrila Resort or your hotel.' },
+    stay: { budget:'Camping on the plateau is allowed with permit (Rs 500). Sleeping bags essential.', mid:'Return to Skardu.', luxury:'Return to Shangrila or Shigar Fort.' },
+  },
+
+  fairy: {
+    activities: {
+      morning: [
+        { t:'07:00', a:'<strong>Raikot Bridge turnoff</strong> — 40km east of Chilas on the KKH. Easy to miss — look for the sign and the jeep track heading north.', c:'—' },
+        { t:'07:30', a:'<strong>Jeep to Tato Village</strong> — 15km of the most terrifying jeep track in Pakistan. The driver is local and does this daily. Don\'t look down. Rs 2,500–3,500 one way.', c:'Rs 2,500–3,500' },
+        { t:'09:30', a:'<strong>Hike Tato → Fairy Meadows</strong> — 4km, gain 600m elevation. 1.5–2h. Forest path through ancient pines. Nanga Parbat appears at the treeline.', c:'Free' },
+      ],
+      afternoon: [
+        { t:'11:30', a:'<strong>First view: Nanga Parbat (8,126m)</strong> — the mountain fills the entire northern horizon. At this proximity (8km) it\'s almost vertiginously large. Allow time to just sit with it.', c:'Free' },
+        { t:'14:00', a:'<strong>Meadow exploration</strong> — wildflowers in summer, clear streams, old shepherd shelters. Walk the perimeter of the main meadow. No trail needed.', c:'Free' },
+        { t:'15:30', a:'<strong>Nanga Parbat BC hike (optional)</strong> — for adventure travellers: 3h walk toward the base camp (elevation gain 800m). Full day commitment. The face looms larger with every hour.', c:'Free' },
+      ],
+      evening: [
+        { t:'18:00', a:'<strong>Sunset on Nanga Parbat</strong> — the west face turns pink, then orange, then red. This is what you came for. Stay until full dark.', c:'Free' },
+        { t:'20:00', a:'<strong>Stargazing</strong> — at 3,300m with no light pollution, the Milky Way is a physical object above you. The peak glows faintly with reflected moonlight.', c:'Free' },
+      ],
+    },
+    food: { budget:'Fairy Meadows tented camps provide basic meals (Rs 500–800). Bring snacks.', mid:'Stay at Raikot Sarai — included meals with a view of the peak.', luxury:'No luxury options. This is a wilderness destination.' },
+    stay: { budget:'Tented camps on the meadow — Rs 1,500–2,500 with meals', mid:'Raikot Sarai — Rs 4,000–7,000 with meals', luxury:'N/A — closest luxury is Chilas or Besham.' },
+  },
+
+  naran: {
+    activities: {
+      morning: [
+        { t:'08:00', a:'<strong>Lake Saiful Muluk</strong> — hire a jeep from Naran (Rs 2,500–3,000 return). 3,224m. Go early — the lake gets crowded and hazy by 10am. The colour is turquoise-green against white peaks.', c:'Rs 2,500–3,000' },
+        { t:'10:30', a:'<strong>Malika Parbat (5,291m)</strong> visible from the lake shore — the peak that makes Saiful Muluk famous. Reflected in calm morning water.', c:'Free' },
+      ],
+      afternoon: [
+        { t:'13:00', a:'<strong>Return to Naran</strong>. Lunch at a riverside spot — fresh trout from the Kunhar River (Rs 800–1,500).', c:'Rs 800–1,500' },
+        { t:'15:00', a:'<strong>Lulusar Lake</strong> (20km north, separate jeep Rs 1,500–2,000 return) — larger and quieter than Saiful Muluk. Almost nobody stops here. Perfect reflections.', c:'Rs 1,500–2,000' },
+        { t:'17:00', a:'<strong>Kunhar River walk</strong> — the riverside trail south of Naran town. Trout visible in the clear water. Locals fishing with traditional nets.', c:'Free' },
+      ],
+      evening: [
+        { t:'19:00', a:'<strong>Naran Bazaar</strong> — small but functional. Local honey, dried fruit, warm socks. The tourist strip is commercial but the side lanes are genuine.', c:'Shopping' },
+      ],
+    },
+    food: { budget:'Riverside dhabas — fresh trout and rice. Rs 400–800.', mid:'Several mid-range restaurants in Naran main strip. Trout is the thing to order. Rs 800–1,500.', luxury:'PTDC Motel Naran — reasonable food in a riverside setting.' },
+    stay: { budget:'Multiple guesthouses along the main road — Rs 1,500–3,000.', mid:'PTDC Motel or Al-Faisal Hotel — Rs 4,000–7,000.', luxury:'No luxury options in Naran. Islamabad the previous night.' },
+  },
 };
 
-const styleDescriptions = {
-  adventure:    'Adventure & Trekking',
-  photography:  'Scenic Photography',
-  cultural:     'Culture & History',
-  luxury:       'Luxury',
-  family:       'Family',
-  budget:       'Budget Backpacker',
-};
-
-const entryDescriptions = {
-  'fly-gilgit':   'Flying into Gilgit',
-  'fly-skardu':   'Flying into Skardu',
-  'road-kkh':     'Driving the KKH',
-  'road-babusar': 'Via Babusar Pass',
-};
-
-// Route nodes by entry
-const routesByEntry = {
-  'fly-gilgit':   ['Islamabad', 'Gilgit', 'Hunza', 'Upper Hunza', 'Khunjerab'],
-  'fly-skardu':   ['Islamabad', 'Skardu', 'Shigar', 'Deosai', 'Hunza'],
-  'road-kkh':     ['Islamabad', 'Besham', 'Chilas', 'Fairy Meadows', 'Gilgit', 'Hunza'],
-  'road-babusar': ['Islamabad', 'Naran', 'Babusar', 'Chilas', 'Fairy Meadows', 'Gilgit', 'Hunza'],
-};
-
-// ─── BUILD ITINERARY ──────────────────────────────────────────────────
+/* ════════════════════════════════════════════════════════
+   ITINERARY BUILDER
+════════════════════════════════════════════════════════ */
 function buildItinerary() {
-  // Validate step 4
-  if (!state.season) return;
+  // Hide wizard, show result
+  document.getElementById('wizardWrap').classList.add('hidden');
+  document.getElementById('heroWrap').style.display = 'none';
+  const rw = document.getElementById('resultWrap');
+  rw.classList.add('active');
+  rw.style.display = 'block';
+  document.getElementById('result').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 
-  document.getElementById('wizard').style.display = 'none';
-  document.getElementById('progressBar').style.display = 'none';
-  const result = document.getElementById('result');
-  result.classList.add('active');
-
-  const { entry, style, days, regions, season } = state;
-  const c = costs[style] || costs.family;
+  const { entry, style, days, regions, season } = S;
   const r = [...regions];
+  const pd = dailyCost[style];
+  const stayKey = style === 'luxury' ? 'luxury' : style === 'budget' ? 'budget' : 'mid';
+  const foodKey = stayKey;
 
-  // ─ Title & subtitle
-  const titles = {
-    'fly-gilgit':   'Gilgit & Hunza',
-    'fly-skardu':   'Skardu & Beyond',
-    'road-kkh':     'The KKH in Full',
-    'road-babusar': 'Naran to the Karakoram',
+  // Title
+  const titles = { 'fly-gilgit':'Gilgit & Hunza','fly-skardu':'Skardu & Baltistan','road-kkh':'The KKH','road-babusar':'Naran to Karakoram' };
+  document.getElementById('rTitle').innerHTML = `Your ${days}-Day<br><em>${titles[entry]}</em>`;
+  document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}.`;
+
+  const pills = [entryLabel[entry], styleLabel[style], `${days} days`, season.charAt(0).toUpperCase()+season.slice(1)];
+  r.forEach(reg => pills.push({hunza:'Hunza',skardu:'Skardu',fairy:'Fairy Meadows',hidden:'Hidden Valleys'}[reg]));
+  document.getElementById('rPills').innerHTML = pills.map(p=>`<div class="result-pill">${p}</div>`).join('');
+
+  // Route strip
+  const routeNodes = { 'fly-gilgit':['ISB','Gilgit','Hunza','Passu','Khunjerab'],'fly-skardu':['ISB','Skardu','Shigar','Deosai','Hunza'],'road-kkh':['ISB','Besham','Chilas','Fairy Meadows','Gilgit','Hunza'],'road-babusar':['ISB','Naran','Babusar','Chilas','Gilgit','Hunza'] };
+  const nodes = routeNodes[entry] || routeNodes['fly-gilgit'];
+  document.getElementById('rRoute').innerHTML = nodes.map((n,i)=>`${i>0?'<div class="rl"></div>':''}<div class="rn"><div class="rn-dot ${i===0?'start':i===nodes.length-1?'end':''}"></div><div class="rn-name">${n}</div></div>`).join('');
+
+  // Warnings
+  let warn = '';
+  if (entry==='road-babusar' && season==='winter') warn = `<div class="budget-alert" style="margin-bottom:1.5rem"><strong>Babusar Pass is closed in winter</strong> (Nov–May). Your itinerary has been adjusted to use the KKH via Chilas instead.</div>`;
+  if (r.includes('skardu') && r.includes('hunza') && days < 9) warn += `<div class="budget-alert" style="margin-bottom:1.5rem"><strong>Skardu + Hunza in under 9 days is very tight.</strong> We've prioritised based on your entry point. To do both properly, increase to at least 11 days.</div>`;
+  document.getElementById('rWarn').innerHTML = warn;
+
+  // Generate days
+  const itinerary = makeDays(entry, style, days, r, season, stayKey, foodKey);
+  const dc = document.getElementById('rDays');
+  dc.innerHTML = itinerary.map((d,i) => {
+    const bdHtml = buildDayBody(d, foodKey);
+    return `<div class="day-card" id="day-${i}">
+      <div class="day-hd" onclick="toggleDay(${i})">
+        <div class="day-n">${String(i+1).padStart(2,'0')}</div>
+        <div><div class="day-t">${d.title}</div><div class="day-l">${d.location}</div></div>
+        <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
+      </div>
+      <div class="day-bd" id="bd-${i}" style="display:${i===0?'block':'none'}">${bdHtml}</div>
+    </div>`;
+  }).join('');
+  if (document.getElementById('day-0')) document.getElementById('day-0').classList.add('open');
+
+  // Practical
+  const total = pd * days;
+  document.getElementById('rPrac').innerHTML = `
+    <div class="prac-card"><div class="prac-title">Budget Estimate</div><table>
+      <tr><td>Per day</td><td>Rs ${pd.toLocaleString()}–${Math.round(pd*1.25).toLocaleString()}</td></tr>
+      <tr><td>Total (${days}d)</td><td><strong>Rs ${(total/1000).toFixed(0)}k–${(total*1.25/1000).toFixed(0)}k</strong></td></tr>
+      <tr><td>Not included</td><td>Flights from Islamabad, major trek permits</td></tr>
+    </table></div>
+    <div class="prac-card"><div class="prac-title">Getting There</div><table>
+      ${getThereRows(entry)}</table></div>
+    <div class="prac-card"><div class="prac-title">What to Pack</div><table>${packRows(style,season)}</table></div>
+    <div class="prac-card"><div class="prac-title">Critical Notes</div><table>${critRows(entry,season,r)}</table></div>`;
+}
+
+function buildDayBody(d, foodKey) {
+  let html = '';
+  if (d.blocks) {
+    d.blocks.forEach(b => {
+      html += `<div class="time-block"><div class="time-block-label">${b.label}</div><ul class="activity-list">`;
+      b.items.forEach(it => {
+        html += `<li><span class="act-time">${it.t||''}</span><span class="act-body">${it.a}</span><span class="act-cost">${it.c||''}</span></li>`;
+      });
+      html += `</ul></div>`;
+    });
+  }
+  if (d.food) {
+    html += `<div class="day-food"><div class="day-food-title">🍽 Where to Eat</div><div class="day-food-list">${d.food}</div></div>`;
+  }
+  if (d.stay) {
+    html += `<div class="day-stay"><span class="day-stay-label">🛏 Stay</span><span class="day-stay-val">${d.stay}</span></div>`;
+  }
+  if (d.tip) {
+    html += `<div class="day-tip">💡 ${d.tip}</div>`;
+  }
+  return html;
+}
+
+function toggleDay(i) {
+  const bd = document.getElementById(`bd-${i}`);
+  const card = document.getElementById(`day-${i}`);
+  const chev = document.getElementById(`chev-${i}`);
+  const open = bd.style.display !== 'none';
+  bd.style.display = open ? 'none' : 'block';
+  card.classList.toggle('open', !open);
+}
+
+/* ════════════════════════════════════════════════════════
+   DAY FACTORY
+════════════════════════════════════════════════════════ */
+function mkDay(title, location, estCost, placeKey, foodKey, tip) {
+  const p = PLACES[placeKey];
+  if (!p) return { title, location, estCost, blocks:[{label:'Activities',items:[{t:'',a:'Explore the area',c:''}]}], food:'Ask your guesthouse for local recommendations.', stay:'See local options', tip };
+  return {
+    title, location, estCost,
+    blocks: [
+      { label:'Morning', items: p.activities.morning },
+      { label:'Afternoon', items: p.activities.afternoon },
+      { label:'Evening', items: p.activities.evening },
+    ],
+    food: p.food[foodKey] || p.food.mid,
+    stay: p.stay[foodKey] || p.stay.mid,
+    tip,
   };
-  document.getElementById('resultTitle').innerHTML = `Your ${days}-Day<br><em>${titles[entry]}</em>`;
-  document.getElementById('resultSub').textContent =
-    `Built for a ${styleDescriptions[style].toLowerCase()} traveller, arriving via ${entryDescriptions[entry].toLowerCase()}, travelling in ${season}.`;
-
-  // Pills
-  const pills = [
-    entryDescriptions[entry],
-    styleDescriptions[style],
-    `${days} days`,
-    season.charAt(0).toUpperCase() + season.slice(1),
-    ...r.map(reg => ({ hunza:'Hunza', skardu:'Skardu', fairy:'Fairy Meadows', hidden:'Hidden Valleys' }[reg])),
-  ];
-  document.getElementById('resultPills').innerHTML = pills.map(p => `<div class="result-pill">${p}</div>`).join('');
-
-  // Route visual
-  const nodes = routesByEntry[entry] || routesByEntry['fly-gilgit'];
-  const rv = document.getElementById('routeVisual');
-  rv.innerHTML = nodes.map((n, i) => `
-    ${i > 0 ? '<div class="route-line"></div>' : ''}
-    <div class="route-node">
-      <div class="route-node-dot ${i===0?'start':i===nodes.length-1?'end':''}"></div>
-      <div class="route-node-name">${n}</div>
-    </div>
-  `).join('');
-
-  // Season warnings
-  const warn = document.getElementById('resultWarning');
-  if (entry === 'road-babusar' && season === 'winter') {
-    warn.innerHTML = `<div class="warn-box"><strong>Babusar Pass is closed in winter.</strong> The pass is only open June–October. For a winter trip, you'll need to take the KKH via Besham and Chilas instead. Consider adjusting your entry point above.</div>`;
-  } else if (r.includes('fairy') && season === 'winter') {
-    warn.innerHTML = `<div class="warn-box"><strong>Fairy Meadows access is difficult in winter.</strong> The jeep track to Tato Village may be closed by snow. The hike to the meadow is possible with proper gear but the campsite is extremely cold.</div>`;
-  } else if (r.includes('skardu') && entry === 'fly-skardu' && r.includes('hunza') && days < 8) {
-    warn.innerHTML = `<div class="warn-box"><strong>Doing both Skardu and Hunza in under 8 days is tight.</strong> You'll spend significant time in transit (flying or 8h driving). We've prioritised Skardu below. Hunza is better saved for a second trip unless you fly between them.</div>`;
-  }
-
-  // ─ Generate days
-  const dayData = generateDays(entry, style, days, r, season);
-  const dc = document.getElementById('dayCards');
-  dc.innerHTML = dayData.map((d, i) => `
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <div class="day-num">${String(i+1).padStart(2,'0')}</div>
-        <div>
-          <div class="day-title">${d.title}</div>
-          <div class="day-loc">${d.location}</div>
-        </div>
-        <div class="day-cost">${d.cost}</div>
-      </div>
-      <div class="day-body" style="display:none">
-        <ul class="day-activities">${d.activities.map(a => `<li>${a}</li>`).join('')}</ul>
-        ${d.tip ? `<div class="day-tip">${d.tip}</div>` : ''}
-      </div>
-    </div>
-  `).join('');
-
-  // Open first day by default
-  const firstBody = dc.querySelector('.day-body');
-  if (firstBody) firstBody.style.display = 'block';
-
-  // Practical grid
-  const pg = document.getElementById('practicalGrid');
-  const budgetTotal = estimateBudget(style, days);
-  const flightNote = (entry === 'fly-gilgit' || entry === 'fly-skardu')
-    ? 'PIA from Islamabad (ISB). Book 3–4 weeks ahead. Cancellations are common — always have a road backup date.'
-    : (entry === 'road-kkh' ? 'Own car or hired from ISB (Rs. 25,000–40,000 one-way). NATCO bus: Rs. 1,200 to Gilgit.' : 'Own car to Naran, then jeep hire over Babusar (Rs. 4,000–6,000 Naran to Chilas).');
-
-  pg.innerHTML = `
-    <div class="practical-card">
-      <div class="practical-card-title">Budget Estimate</div>
-      <table>
-        <tr><td>Stay / night</td><td>${c.stay}</td></tr>
-        <tr><td>Food / day</td><td>${c.food}</td></tr>
-        <tr><td>Local transport</td><td>${c.local}</td></tr>
-        <tr><td>${days}-day total</td><td><strong>${budgetTotal}</strong></td></tr>
-      </table>
-    </div>
-    <div class="practical-card">
-      <div class="practical-card-title">Getting There</div>
-      <table>
-        <tr><td>Arrival</td><td>${flightNote}</td></tr>
-        <tr><td>On the ground</td><td>Shared jeeps between towns. Private hire available everywhere.</td></tr>
-        <tr><td>Fuel</td><td>Fill up at every opportunity north of Chilas.</td></tr>
-      </table>
-    </div>
-    <div class="practical-card">
-      <div class="practical-card-title">What to Bring</div>
-      <table>
-        ${packingList(style, season)}
-      </table>
-    </div>
-    <div class="practical-card">
-      <div class="practical-card-title">Critical Notes</div>
-      <table>
-        ${criticalNotes(entry, season, r)}
-      </table>
-    </div>
-  `;
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function toggleDay(header) {
-  const body = header.nextElementSibling;
-  body.style.display = body.style.display === 'none' ? 'block' : 'none';
-}
+function makeDays(entry, style, days, regions, season, stayKey, foodKey) {
+  const arr = [];
+  const pd = dailyCost[style];
+  const cost = style==='luxury' ? 'Rs 30,000–45,000' : style==='budget' ? 'Rs 3,000–5,000' : `Rs ${(pd/1000).toFixed(0)}k–${(pd*1.3/1000).toFixed(0)}k`;
 
-// ─── DAY GENERATOR ────────────────────────────────────────────────────
-function generateDays(entry, style, days, regions, season) {
-  const result = [];
-  const isAdventure = style === 'adventure';
-  const isLuxury    = style === 'luxury';
-  const isBudget    = style === 'budget';
-  const isPhoto     = style === 'photography';
-  const c = costs[style];
-  const cost = isLuxury ? 'Rs 25,000–45,000' : isBudget ? 'Rs 2,500–4,000' : 'Rs 6,000–12,000';
-
-  // Templates per entry point
   if (entry === 'fly-gilgit') {
-    result.push({
-      title: 'Arrive in Gilgit',
-      location: 'Gilgit City · 1,500m',
-      cost: 'Flight + arrival',
-      activities: [
-        'Morning flight from Islamabad (check in 2h early; bring a book — delays are common)',
-        'Arrive Gilgit Airport. Orientation walk through the bazaar.',
-        'Kargah Buddha — 7th century rock carving, 10 min from town centre',
-        'Gilgit River suspension bridges (old and new side by side)',
-        isLuxury ? 'Check in: Serena Hotel Gilgit or Shangrila Mountain Resort' : 'Check in: Madina Hotel, Tourist Cottage, or similar',
-        'Evening: Old bazaar, local food — chapshoro (Hunza meat pastry) is the thing to order',
+    arr.push(mkDay('Arrive in Gilgit','Gilgit City · 1,500m','Flight + day','gilgit',foodKey,'Gilgit airport is tiny. Immigration and bag collection take under 20 minutes. Taxis to town: Rs 200–400, negotiate before getting in.'));
+    if (days >= 2) arr.push(mkDay('Drive to Karimabad','Gilgit → Hunza · 100km · 2–3h',cost,'hunza',foodKey,'Stop at the Rakaposhi Viewpoint en route — the mountain dominates the entire horizon for 20 minutes of driving. Don\'t miss it.'));
+    if (days >= 3) arr.push(mkDay('Attabad Lake & Passu','Upper Hunza · 2,600–2,900m',cost,'attabad',foodKey,'The Attabad tunnel crossing is worth doing slowly — each window is a different angle on the lake. Don\'t rush it.'));
+    if (days >= 4 && regions.includes('hunza')) {
+      if (season !== 'winter') arr.push(mkDay('Khunjerab Pass','Upper Gojal · 4,693m',cost,'attabad',foodKey,'The Chinese border gate is literal: a painted arch across the road. You can walk to it but not through it without a visa. The view south into Pakistan from the top is extraordinary.'));
+    }
+    if (days >= 5 && regions.includes('fairy')) {
+      arr.push(mkDay('Fairy Meadows','Raikot Bridge → 3,300m',cost,'fairy',foodKey,'The jeep track terrifies every first-time visitor. This is normal. The driver does it daily. Look at the view, not the road.'));
+      arr.push(mkDay('Fairy Meadows Day 2','Nanga Parbat Base Camp area',cost,'fairy',foodKey,'If you only have one extra day at the meadow, the hike toward base camp is the one to do. Go as far as you can before turning back.'));
+    }
+    if (days >= 6 && regions.includes('hidden')) {
+      arr.push(mkDay('Shimshal Valley Day Trip','Shimshal · 3,100m',cost,'hunza',foodKey,'Shimshal has its own dialect (Wakhi), its own culture, and until 2003 had no road. The newly paved road makes it a day trip from Passu — but the valley still feels completely remote.'));
+    }
+  }
+  else if (entry === 'fly-skardu') {
+    arr.push(mkDay('Arrive in Skardu','Skardu · 2,228m','Flight + day','skardu',foodKey,'The flight approach over the Karakoram is one of the great aviation experiences. Sit on the right going to Skardu. Window seat is non-negotiable.'));
+    if (days >= 2) arr.push(mkDay('Shigar Valley','Shigar · 2,300m · 30km from Skardu',cost,'shigar',foodKey,'The Shigar Fort Residence is worth a visit even if you\'re not staying. Ask politely at reception — non-guests can usually look around.'));
+    if (days >= 3) arr.push(mkDay('Deosai Plains','Deosai · 4,114m avg',cost,'deosai',foodKey,'Altitude sickness at Deosai is common — you\'re at 4,000m+ for hours. Go slowly on arrival. If you feel serious headache or nausea, descend immediately.'));
+    if (days >= 4) arr.push(mkDay('Kachura Lakes & Katpana','Near Skardu',cost,'skardu',foodKey,'Katpana Desert is often skipped because it sounds too odd. Don\'t skip it — cold desert dunes with K2-range peaks is an image you won\'t find anywhere else on Earth.'));
+    if (days >= 5 && regions.includes('skardu')) {
+      arr.push(mkDay('Khaplu Valley','Khaplu · 2,600m · 100km east',cost,'skardu',foodKey,'The drive to Khaplu along the Shyok River is itself worth the trip. The valley walls close in and the river turns milky-white from glacier melt.'));
+    }
+    if (days >= 7 && regions.includes('hunza')) {
+      arr.push(mkDay('Fly or Drive to Gilgit','Skardu → Gilgit · Fly 45min or drive 8h',cost,'gilgit',foodKey,'The Skardu–Gilgit flight is one of Pakistan\'s most scenic mountain routes. If flying, sit on the left side going to Gilgit.'));
+      arr.push(mkDay('Hunza Valley','Gilgit → Karimabad',cost,'hunza',foodKey,'After Skardu, Hunza feels almost alpine in comparison — greener, more terraced, more cultivated. Different GB entirely.'));
+    }
+  }
+  else if (entry === 'road-kkh') {
+    arr.push({ title:'Islamabad to Chilas', location:'Chilas · 1,250m · ~500km · 9–11h', estCost:'Fuel/bus',
+      blocks:[
+        { label:'Morning', items:[{t:'06:00',a:'Leave Islamabad early — you want to cover Kohistan in daylight. Besham is your first real stop (4–5h in). Fuel and food.',c:'—'},{t:'09:00',a:'<strong>Besham</strong> — the gorge narrows dramatically here. The Indus runs fast and milky. Good fuel stop. Buddhist rock carvings at Komila just north.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'13:00',a:'<strong>Kohistan District</strong> — drive without unnecessary stops. Conservative area. Stay on the KKH.',c:'—'},{t:'16:00',a:'<strong>Arrive Chilas</strong>. Hotel check-in first, then the <strong>Chilas Rock Carvings</strong> — thousands of Buddhist petroglyphs along the Indus riverbank, 10 min from the bazaar. Almost no visitors.',c:'Free'}]},
+        { label:'Evening', items:[{t:'19:00',a:'<strong>Chilas Bazaar</strong> dinner — basic but filling. The town is conservative: women should cover fully here.',c:'Rs 300–500'}]},
       ],
-      tip: isPhoto ? 'The afternoon light on the surrounding peaks is exceptional. Walk south of town toward the airport road for clean mountain views.' : 'Gilgit is warmer than everywhere else in GB. Pack light layers here.',
+      food: 'Chilas has basic dhabas on the main road. Daal + roti + chai is the reliable order.',
+      stay: style==='luxury' ? 'PTDC Motel Chilas (best option) — Rs 6,000–9,000' : 'Chilas Inn or Al-Faisal Hotel — Rs 1,500–3,000',
+      tip: 'Chilas is a logistics stop, not a destination. Get there before dark, rest, leave at dawn.',
     });
-
-    result.push({
-      title: 'Drive to Hunza',
-      location: 'Gilgit → Karimabad · 100km',
-      cost,
-      activities: [
-        'Early start — the KKH north to Hunza is 2–3h (stop for nothing, save it for the return)',
-        'Rakaposhi Viewpoint: the standard stop between Gilgit and Hunza. The mountain fills the whole horizon.',
-        'Arrive Karimabad. Check in and acclimatise (you\'ve jumped 900m of elevation)',
-        'Afternoon: lower town walk, Old Hunza village lanes',
-        isLuxury ? 'Eagle\'s Nest Hotel for sunset — best view in Hunza, full mountain panorama' : 'Eagle\'s Nest Viewpoint (hike 40 min from Karimabad or Rs 800 jeep)',
+    if (regions.includes('fairy') && days >= 3) {
+      arr.push(mkDay('Fairy Meadows Detour','Raikot Bridge → 3,300m',cost,'fairy',foodKey,'The Raikot Bridge turnoff is 40km east of Chilas. Easy to miss — watch for the sign on the right heading toward Gilgit.'));
+      arr.push(mkDay('Fairy Meadows & Return KKH','Meadow → Raikot → Gilgit',cost,'fairy',foodKey,'Coming down from the meadow is harder on the knees than going up. Take it slowly.'));
+    }
+    arr.push(mkDay('Gilgit','Gilgit City · 1,500m',cost,'gilgit',foodKey,'After 1–2 days of hard driving/trekking, Gilgit feels like a city. The bazaar, the bridges, and a proper meal.'));
+    if (regions.includes('hunza')) arr.push(mkDay('Hunza Valley','Gilgit → Karimabad',cost,'hunza',foodKey,'The Rakaposhi viewpoint on the KKH between Gilgit and Hunza should not be missed. The mountain fills the horizon for a full 10 minutes of driving.'));
+  }
+  else if (entry === 'road-babusar') {
+    arr.push({ title:'Islamabad to Naran', location:'Naran · 2,409m · 230km · 5–6h', estCost:'Drive day',
+      blocks:[
+        { label:'Morning', items:[{t:'08:00',a:'Leave Islamabad. Abbottabad is a good breakfast stop (1.5h). The tandoor bread and halwa puri is worth the detour.',c:'Rs 200–400'},{t:'10:30',a:'<strong>Balakot</strong> — entry to the Kaghan Valley. The road narrows and the Kunhar River appears on your left.',c:'—'}]},
+        { label:'Afternoon', items:[{t:'13:00',a:'<strong>Arrive Naran</strong>. It\'s touristy. That\'s fine. The scenery starts 10km from town.',c:'—'},{t:'15:00',a:'<strong>Kunhar River walk</strong> south of town — trout visible in clear water, local fishermen.',c:'Free'}]},
+        { label:'Evening', items:[{t:'19:00',a:'<strong>Naran Bazaar dinner</strong>. Fresh trout is what Naran is known for. Rs 800–1,500/person.',c:'Rs 800–1,500'}]},
       ],
-      tip: 'Karimabad sits at 2,438m. Some people feel the elevation on day 2. Drink water and don\'t rush the first evening.',
+      food: PLACES.naran.food[foodKey], stay: PLACES.naran.stay[foodKey],
+      tip: 'Book accommodation ahead in July–August. Naran is overwhelmed in peak season — the main road becomes a car park.',
     });
-
-    if (days >= 5) result.push({
-      title: 'Baltit Fort & Hunza Deep',
-      location: 'Karimabad · 2,438m',
-      cost,
-      activities: [
-        'Baltit Fort: 700-year-old Tibetan-influenced fort. First entry at 9am. Hire the local guide inside (Rs 500) — the history is excellent.',
-        'Altit Fort: older than Baltit, quieter, more atmospheric. 45-min walk below Karimabad.',
-        isAdventure ? 'Ultar Meadows hike: 4h return, steep, excellent views, often snow above 3,500m' : 'Duikar village: the ridge above Karimabad with the most-photographed Hunza view',
-        season === 'spring' ? 'Apricot orchards in full bloom — walk through the lower terraces' : season === 'autumn' ? 'Poplar and apricot foliage is at peak — the valley glows amber from above' : 'Explore the Hunza village lanes and local homes',
+    arr.push(mkDay('Lake Saiful Muluk & Lulusar','Upper Kaghan · 3,224–3,440m',cost,'naran',foodKey,'Go to Saiful Muluk before 9am. The colour and the reflections are best in the first 2 hours after dawn. By 11am it can be crowded and slightly hazy.'));
+    arr.push({ title:'Babusar Pass into GB', location:'Babusar Top · 4,173m → Chilas', estCost:cost,
+      blocks:[
+        { label:'Morning', items:[{t:'06:00',a:'Early start from Naran. The road to Babusar Top takes 2–3h in good conditions.',c:'—'},{t:'08:30',a:'<strong>Babusar Pass (4,173m)</strong> — from the top you can see both the Himalayas (south) and Karakoram (north) simultaneously. Allow 1h at the top.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'10:30',a:'<strong>Descent to Chilas</strong> — 45 min. You drop from alpine meadow to desert gorge. The contrast is startling.',c:'—'},{t:'12:00',a:'<strong>Chilas Rock Carvings</strong> if energy allows. Otherwise straight to Gilgit.',c:'Free'},{t:'15:00',a:'<strong>Arrive Gilgit</strong>.',c:'—'}]},
+        { label:'Evening', items:[{t:'18:00',a:'<strong>Gilgit Bazaar</strong> exploration and recovery dinner.',c:'Rs 300–700'}]},
       ],
-      tip: 'Baltit Fort entry: Rs 500 foreigners, Rs 200 locals. Get there before 10am to beat tour groups.',
+      food: PLACES.gilgit.food[foodKey], stay: PLACES.gilgit.stay[foodKey],
+      tip: 'The Babusar road above Naran is jeep-only. If in a regular car, leave it in Naran and hire a jeep (Rs 4,000–6,000). Collect your car on return.',
     });
-
-    if (days >= 6) result.push({
-      title: 'Attabad Lake & Passu',
-      location: 'Gojal · 2,600–2,900m',
-      cost,
-      activities: [
-        'Attabad Lake: a turquoise canyon lake formed by a 2010 landslide. Boat hire Rs 500–800 for the tunnel section.',
-        'The lake\'s colour is genuinely surreal — deep emerald-blue against red canyon walls',
-        'Continue north 30km to Passu village',
-        'Passu Cones: six limestone spires reaching 6,000m — visible from the road, best from the KKH bridge',
-        isAdventure ? 'Passu Glacier walk: 1h from the village, on the ice by mid-morning' : 'Hussaini Suspension Bridge: old rope bridge over the Hunza River. Terrifying. Do it.',
-        'Evening back in Passu or return to Karimabad',
-      ],
-      tip: isPhoto ? 'Attabad is best photographed 9–11am before the canyon falls into shadow. Passu Cones: shoot late afternoon with side light.' : 'The 20km of road between Attabad and Passu is some of the best KKH scenery. Sit on the right side going north.',
-    });
-
-    if (days >= 8 && regions.includes('hunza')) result.push({
-      title: 'Khunjerab Pass',
-      location: 'Upper Gojal · 4,693m',
-      cost,
-      activities: [
-        'Drive north from Passu through Sost (last fuel stop) to Khunjerab Pass',
-        'The pass is at 4,693m — the world\'s highest international border crossing',
-        'Snow is present year-round. Yaks and Marco Polo sheep are commonly seen',
-        'The Pakistan–China border gate (you cannot cross without a Chinese visa)',
-        'Allow 2h at the top for photography and adjustment to the altitude',
-        'Return to Sost or Passu for the night',
-        season !== 'summer' && season !== 'autumn' ? '⚠ Khunjerab is only open May–October. This will not be accessible in your season.' : '',
-      ].filter(Boolean),
-      tip: 'Altitude sickness is real at 4,693m. If you feel serious headache or nausea, descend immediately. Most people are fine for a 2h visit.',
-    });
-
-    if (days >= 7 && regions.includes('hidden')) result.push({
-      title: 'Into a Hidden Valley',
-      location: isAdventure ? 'Shimshal Valley' : 'Naltar Valley',
-      cost,
-      activities: isAdventure ? [
-        'Shimshal: 4h drive from Passu on a newly paved road (was a 3-day walk until 2003)',
-        'One of the most remote inhabited valleys in the Karakoram',
-        'Shimshal village: 500 people, one school, stunning peaks including Shispare (7,611m) looming directly above',
-        'Shimshal Pass trek: only for the serious — 2-day walk to a 4,735m pass used by yak herders',
-        'Return to Hunza the same day or stay in Shimshal guesthouse',
-      ] : [
-        'Naltar Valley: 40km southwest of Gilgit, via a rough mountain road',
-        'Site of Pakistan\'s only alpine ski resort (open Feb–March)',
-        'Three glacier lakes (Upper, Lower, Middle Naltar) turn brilliant turquoise in summer',
-        'Almost no tourists despite being close to Gilgit',
-        'Naltar village is a Pakistani Air Force base area — register at the checkpoint',
-      ],
-      tip: isAdventure ? 'Shimshal requires a permit from Gilgit PTDC (Rs 200, same day). Guides available in Shimshal village for the high routes.' : 'Naltar road requires a jeep. Hire from Gilgit: Rs 4,000–6,000 return.',
-    });
-
-  } else if (entry === 'fly-skardu') {
-    result.push({
-      title: 'Arrive in Skardu',
-      location: 'Skardu · 2,228m',
-      cost: 'Flight + arrival',
-      activities: [
-        'Morning flight from Islamabad. The approach over the Karakoram is one of the great aviation experiences.',
-        'Settle in. Skardu is larger than it looks — allow 1h to orient.',
-        isLuxury ? 'Check in: Shangrila Resort or Mashabrum Hotel' : 'Check in: Mashabrum Hotel, K2 Inn, or similar',
-        'Kharpocho Fort: the old Skardu Fort on a rock above the river. Sunset view over the Indus.',
-        'Skardu bazaar: dried fruit, local honey, trekking gear shops',
-        'Satpara Lake: 8km from town, a reservoir lake surrounded by rocky plateaus — good evening walk',
-      ],
-      tip: 'Skardu is drier and more desert-like than Hunza. The Indus valley floor looks almost Tibetan. Give it a day to appreciate the landscape.',
-    });
-
-    result.push({
-      title: 'Shigar Valley',
-      location: 'Shigar · 2,300m · 30km from Skardu',
-      cost,
-      activities: [
-        'Shigar Fort: a 17th century Balti fort converted into one of Pakistan\'s best heritage hotels (visit or stay)',
-        'Shigar village: one of the most intact traditional settlements in GB — stone walls, carved wooden doors, old mosques',
-        'Amburiq Mosque: oldest mosque in Baltistan, extraordinary carved cedar interior',
-        'Walk the Shigar River apricot orchards',
-        isAdventure ? 'Hike above the village to the old watchtower ridge — 1.5h, view down the entire valley' : 'Drive the upper Shigar road to where it ends at Askole trailhead (K2 base camp starts here)',
-      ],
-      tip: 'The Shigar Fort Residence is worth a coffee or meal even if you\'re not staying. The restoration is exceptional and the setting is genuinely beautiful.',
-    });
-
-    if (days >= 5) result.push({
-      title: 'Deosai Plains',
-      location: 'Deosai · 4,114m average',
-      cost,
-      activities: [
-        'Early start from Skardu (1.5h drive to the plateau entry)',
-        'Deosai National Park entry fee: Rs 500',
-        'The world\'s second highest plateau — 3,000 sq km at 4,000m+, flat as a table',
-        'Himalayan brown bears: Deosai has one of Pakistan\'s last viable populations. Ask rangers about sighting locations.',
-        'Sheosar Lake: a large alpine lake at the centre of the plateau. Mirror reflections on calm mornings.',
-        season === 'summer' ? 'Wildflower season: June–July the plateau turns completely yellow with flowers' : 'Snow is possible even in September — check road status with rangers before going',
-      ],
-      tip: 'Altitude sickness at Deosai is common — you\'re spending hours at 4,000m+. Don\'t rush. If you feel bad, descend back to Skardu immediately.',
-    });
-
-    if (days >= 7) result.push({
-      title: 'Kachura & Katpana',
-      location: 'Near Skardu',
-      cost,
-      activities: [
-        'Upper Kachura Lake: the turquoise lake 35km from Skardu with Shangrila Resort on its shores',
-        'Lower Kachura (Shangrila Lake): smaller, greener, with the famous plane-turned-restaurant',
-        'Katpana Desert: a cold desert of sand dunes at 2,226m, just 10 min from Skardu town',
-        'The juxtaposition of desert dunes against snow peaks is legitimately surreal',
-        isPhoto ? 'The desert dunes are best photographed at golden hour — the light turns the sand amber against the white peaks' : 'Camel rides available at Katpana (Rs 300–500)',
-      ],
-      tip: 'Katpana is often skipped because it sounds too strange. Don\'t skip it — cold desert dunes with K2-range peaks behind them is a genuine once-in-a-trip experience.',
-    });
-
-    if (days >= 8 && regions.includes('skardu')) result.push({
-      title: 'Khaplu',
-      location: 'Khaplu Valley · 2,600m · 100km from Skardu',
-      cost,
-      activities: [
-        '2h drive east along the Shyok River to Khaplu town',
-        'Khaplu Palace: a Aga Khan-restored royal residence, now a heritage hotel. The most beautiful building in Baltistan.',
-        'Chaqchan Mosque: 700-year-old mosque with a carved wooden interior that rivals anything in GB',
-        'Khaplu bazaar: the last proper market before the Siachen Glacier zone',
-        isAdventure ? 'Trek above Khaplu to the high meadows: wildflowers in summer, total silence, no other tourists' : 'Drive the valley road above Khaplu — the terraced villages and peak views are exceptional',
-        'Return to Skardu or overnight in Khaplu',
-      ],
-      tip: 'Khaplu Palace is worth the Rs 3,000–5,000 per night if budget allows — the restored rooms inside a working Balti palace are unlike anywhere else.',
-    });
+    if (regions.includes('hunza') && days >= 4) arr.push(mkDay('Hunza Valley','Gilgit → Karimabad',cost,'hunza',foodKey,'After Babusar and Chilas, arriving in green-terraced Hunza feels like a different planet.'));
   }
 
-  // Road KKH entry
-  else if (entry === 'road-kkh') {
-    result.push({
-      title: 'Islamabad to Chilas',
-      location: 'Chilas · 1,250m · ~500km',
-      cost: 'Drive day',
-      activities: [
-        'Leave Islamabad at 6am sharp — you want to cover Kohistan before dark',
-        'Besham (4–5h): first real stop, fuel and food',
-        'The Indus gorge from Besham north is the most dramatic section — tight canyon, rushing river, sheer walls',
-        'Kohistan district: conservative, drive without stopping unnecessarily',
-        'Arrive Chilas by late afternoon (9–10h total)',
-        'Chilas Rock Carvings: 10 minutes from the main bazaar — thousands of Buddhist petroglyphs along the riverbank, almost no visitors',
-        isLuxury ? 'Stay: PTDC Motel or Shangrila Mountain Resort Chilas' : 'Stay: Chilas Inn or similar basic guesthouses',
-      ],
-      tip: 'Chilas is hot and conservative. This is a logistics stop, not a destination. Get there, rest, and leave at dawn for Fairy Meadows or Gilgit.',
-    });
-
-    if (regions.includes('fairy')) {
-      result.push({
-        title: 'Fairy Meadows',
-        location: 'Raikot → Fairy Meadows · 3,300m',
-        cost,
-        activities: [
-          'Raikot Bridge turnoff: 40km east of Chilas on the KKH',
-          '15km jeep track from Raikot to Tato Village: one of the most terrifying drives in Pakistan (hire locally, Rs 2,500–3,500)',
-          '1.5–2h hike from Tato to Fairy Meadows. Gain ~600m elevation. Not technical.',
-          'Arrive at the meadow: Nanga Parbat (8,126m) fills the entire northern horizon — the mountain is enormous from here',
-          'Stay overnight in tented camp or basic wooden cabin',
-          isAdventure ? 'Afternoon: walk toward Nanga Parbat Base Camp (3h one way). Serious trekking from here.' : 'Explore the meadow edge, wildflowers in summer, sunset on the peak',
+  // Pad with slow/rest days if needed
+  const used = arr.length;
+  if (days > used + 1) {
+    const extra = days - used - 1;
+    for (let i=0; i<extra && i<3; i++) {
+      const basePlace = (entry==='fly-skardu') ? 'Skardu region' : 'Hunza Valley';
+      arr.push({ title:`Rest Day — ${basePlace}`, location:basePlace, estCost:style==='budget'?'Rs 2,000–3,500':style==='luxury'?'Rs 15,000–25,000':'Rs 5,000–9,000',
+        blocks:[
+          { label:'Morning', items:[{t:'',a:`<strong>Slow morning</strong> — this is not laziness. Moving every day in GB is exhausting. A rest day lets you actually absorb where you are.`,c:''},{t:'',a:'Short walk to the nearest viewpoint or orchard. Ask your guesthouse host where locals go — not the spots in the guidebook.',c:'Free'}]},
+          { label:'Afternoon', items:[{t:'',a:'Local market exploration. Talk to shopkeepers (they speak some English). Local honey, dried apricot varieties, handmade items.',c:'Shopping'},{t:'',a:'If energy returns: an unplanned valley walk, local family visit (ask guesthouse), or a teahouse conversation.',c:'Free'}]},
+          { label:'Evening', items:[{t:'',a:'Long dinner. Try to eat somewhere you haven\'t been. Ask what\'s local today, not what\'s on the menu.',c:'Varies'}]},
         ],
-        tip: 'The jeep track terrifies even experienced mountain drivers. This is normal. The driver is local and does this daily. Look at the view, not the road.',
+        food: 'Ask your host what the household is cooking tonight. In most GB guesthouses this is an option and always the best meal.',
+        stay: 'Same as previous night.',
+        tip: 'The best GB memories are usually unplanned. Leave tomorrow\'s itinerary open.',
       });
     }
   }
 
-  // Babusar entry
-  else if (entry === 'road-babusar') {
-    result.push({
-      title: 'Islamabad to Naran',
-      location: 'Naran · 2,409m · 230km',
-      cost: 'Drive day',
-      activities: [
-        'Leave Islamabad by 8am. Abbottabad stopover for breakfast (Rs 200–400, the tandoor bread is excellent)',
-        'Balakot: entry to the Kaghan Valley, 2h from Islamabad. Valley narrows dramatically here.',
-        'The Kunhar River runs alongside the road the entire way',
-        'Arrive Naran late afternoon',
-        'Evening walk by the river — the town is built around tourism but the riverside is pleasant',
-        season === 'summer' ? 'Book accommodation in advance — Naran is overwhelmed in July–August' : '',
-      ].filter(Boolean),
-      tip: 'Naran is the gateway, not the destination. Two nights here is enough. Don\'t let the tourist-strip bazaar put you off — the scenery starts 10km outside town.',
-    });
-
-    result.push({
-      title: 'Lake Saiful Muluk & Lulusar',
-      location: 'Upper Kaghan · 3,224–3,440m',
-      cost,
-      activities: [
-        'Lake Saiful Muluk: jeep from Naran (Rs 2,500–3,000 return). 3,224m, glacial turquoise, ringed by snow peaks.',
-        'Go early — the lake gets haze by noon and crowds by 10am in peak season',
-        'Return to Naran for lunch',
-        'Afternoon: drive north to Lulusar Lake (20km from Naran). Larger, quieter, fewer visitors.',
-        'Lulusar sits in an open plateau — perfect mountain reflections on calm days',
-        'Return to Naran. This is your last night before crossing Babusar.',
-      ],
-      tip: isPhoto ? 'Lulusar is better for photography than Saiful Muluk — the crowds are minimal and the reflection shots are clean. Get there by 9am.' : 'Saiful Muluk is the famous one but Lulusar is the one you\'ll remember.',
-    });
-
-    result.push({
-      title: 'Babusar Pass into GB',
-      location: 'Babusar Top · 4,173m → Chilas',
-      cost,
-      activities: [
-        'Early start — the road from Naran to Babusar takes 2–3h in good conditions',
-        'The pass at 4,173m: from the top you can see both the Himalayas (south) and Karakoram (north) simultaneously',
-        'The descent into Chilas is sudden — you drop from alpine meadow to desert gorge in 45 minutes',
-        'Arrive Chilas by early afternoon',
-        regions.includes('fairy') ? 'Raikot Bridge turnoff (40km east of Chilas) for Fairy Meadows' : 'Continue north to Gilgit (1.5h from Chilas)',
-        'Check in Chilas or push on to Gilgit',
-      ],
-      tip: 'Babusar road is jeep-only. If you\'re in a regular car, leave it in Naran and hire a jeep for the pass crossing (Rs 4,000–6,000). Retrieve your car on return.',
-    });
-  }
-
-  // Add shared late-trip days if regions demand and days allow
-  const usedDays = result.length;
-  const remaining = days - usedDays;
-
-  if (remaining >= 2 && regions.includes('skardu') && entry !== 'fly-skardu') {
-    result.push({
-      title: 'Gilgit to Skardu',
-      location: 'Gilgit → Skardu · 8h drive or 45min flight',
-      cost,
-      activities: [
-        'Option A: Fly Gilgit–Skardu (PIA, 45min, Rs 3,000–5,000, weather-dependent)',
-        'Option B: Drive via the Karakoram Highway east — 8h through Indus gorge, spectacular but exhausting',
-        'Arrive Skardu. Kharpocho Fort at sunset.',
-        'Plan remaining days around: Shigar Valley, Deosai Plains (2 days needed), Katpana Desert',
-        days - result.length <= 2 ? 'With limited time: Shigar Fort is the must-see. Skip Deosai unless you have 2 full days.' : '',
-      ].filter(Boolean),
-      tip: 'The Gilgit–Skardu flight is one of Pakistan\'s most scenic. Window seat, right side going to Skardu.',
-    });
-  }
-
-  // Padding/return days
-  while (result.length < days - 1) {
-    const dayNum = result.length + 1;
-    const baseEntry = entry === 'fly-skardu' ? 'Skardu region' : 'Hunza region';
-    result.push({
-      title: `Slow Day in ${baseEntry}`,
-      location: baseEntry,
-      cost,
-      activities: [
-        'Rest day — GB is exhausting if you move every day. Take this seriously.',
-        'Morning: local market, guesthouse breakfast, sit and look at the peaks',
-        isAdventure ? 'Use the free time for a half-day valley hike — ask your guesthouse host where the locals go' : 'Short walk to the nearest viewpoint',
-        'Afternoon: read, plan remaining days, talk to other travellers',
-        'Explore whatever you felt you rushed through earlier',
-      ],
-      tip: 'The best days in GB are often the unplanned ones. A slow day with a good view and local food is better than rushing to tick another landmark.',
-    });
-  }
-
   // Last day: departure
-  const lastLocation = (entry === 'fly-skardu') ? 'Skardu Airport' : 'Gilgit Airport';
-  const lastDrive = (entry === 'road-kkh' || entry === 'road-babusar') ? 'Start the long drive back to Islamabad (leave before dawn)' : `Morning flight back to Islamabad from ${lastLocation}`;
-  result.push({
-    title: 'Departure Day',
-    location: lastLocation,
-    cost: 'Flight/drive',
-    activities: [
-      lastDrive,
-      'Pack the night before. Morning flights are early and often moved earlier without notice.',
-      'Last breakfast with a mountain view',
-      'Give yourself buffer time — GB works on its own schedule',
+  const lastLoc = (entry==='fly-skardu') ? 'Skardu Airport' : 'Gilgit Airport';
+  const departure = (entry==='road-kkh'||entry==='road-babusar') ? 'Long drive back to Islamabad (leave before dawn for 15–18h)' : `Morning flight from ${lastLoc} to Islamabad`;
+  arr.push({ title:'Departure Day', location:lastLoc, estCost:'Flight/drive',
+    blocks:[
+      { label:'Morning', items:[{t:'05:30',a:'Pack the night before. GB flights are early and often moved earlier without notice.',c:'—'},{t:'06:00',a:departure,c:'—'},{t:'07:00',a:'<strong>Last mountain breakfast</strong>. Look at the peaks one more time.',c:'Priceless'}]},
+      { label:'Before You Go', items:[{t:'',a:'<strong>Things to bring home</strong>: dried apricots (Rs 400–800/kg), Hunza dark honey (Rs 800–1,500/jar), Hunza toffee (Rs 200 a bag), local walnut oil.',c:''},{t:'',a:'All available in Karimabad bazaar or Skardu bazaar.',c:''}]},
     ],
-    tip: 'Dried apricots, local honey, and Hunza toffee are the things worth buying to take home. All available in Karimabad or Skardu bazaar.',
+    food: 'Light breakfast at your guesthouse. Skip the heavy meal before a flight.',
+    stay: 'Checkout.',
+    tip: 'If your flight cancels (common in Gilgit), you\'ll need the KKH backup. NATCO bus departs Gilgit ~5pm daily for Islamabad (Rs 1,200, 18–20h). Book on the day.',
   });
 
-  return result.slice(0, days);
+  return arr.slice(0, days);
 }
 
-// ─── BUDGET ESTIMATE ──────────────────────────────────────────────────
-function estimateBudget(style, days) {
-  const perDay = { budget: 4500, family: 14000, cultural: 11000, photography: 13000, adventure: 8000, luxury: 38000 };
-  const pd = perDay[style] || perDay.family;
-  const total = pd * days;
-  if (total < 50000) return `Rs ${Math.round(total/1000)}k total`;
-  return `Rs ${(total/1000).toFixed(0)}k–${(total*1.3/1000).toFixed(0)}k total`;
+function getThereRows(entry) {
+  const rows = {
+    'fly-gilgit':'<tr><td>Flight</td><td>PIA PK-571 from ISB (~08:00). Rs 8,000–15,000. Book 3–4 weeks ahead.</td></tr><tr><td>Backup</td><td>NATCO bus ISB→Gilgit: Rs 1,200, 18–20h. Departs Rawalpindi Pir Wadhai terminal ~5pm.</td></tr><tr><td>Airport taxi</td><td>Rs 200–400 to town. Negotiate before boarding.</td></tr>',
+    'fly-skardu':'<tr><td>Flight</td><td>PIA from ISB or Lahore. Rs 8,000–16,000. Mountain approach is spectacular.</td></tr><tr><td>Backup</td><td>NATCO to Gilgit then onward jeep to Skardu (8h, Rs 800–1,200).</td></tr>',
+    'road-kkh':'<tr><td>By car</td><td>Own vehicle or hired from ISB (Rs 25,000–40,000 one-way to Gilgit). 4WD recommended north of Chilas.</td></tr><tr><td>By bus</td><td>NATCO from Pir Wadhai terminal — Rs 1,200, 18–20h to Gilgit. Departs daily.</td></tr>',
+    'road-babusar':'<tr><td>ISB → Naran</td><td>Own car or hired. 4–5h. Road is paved throughout.</td></tr><tr><td>Babusar crossing</td><td>Jeep-only above Naran. Hire from Naran: Rs 4,000–6,000 to Chilas. Only open Jun–Oct.</td></tr>',
+  };
+  return rows[entry] || rows['fly-gilgit'];
 }
 
-// ─── PACKING LIST ─────────────────────────────────────────────────────
-function packingList(style, season) {
-  const base = [
-    ['Sunscreen', 'SPF 50+. UV at altitude is extreme even in overcast.'],
-    ['Layers', 'Temperature swings of 20°C between day and night are normal.'],
-    ['Water bottle', '2L minimum. Fill at every guesthouse.'],
-    ['Power bank', 'Electricity is unreliable outside main towns.'],
-  ];
-  const extra = season === 'winter' ? [['Down jacket', 'Mandatory. Nights below –10°C in Hunza.'], ['Thermal base layer', 'Merino or synthetic — not cotton.']] :
-                season === 'spring' ? [['Rain jacket', 'Spring showers, especially in April.'], ['Fleece', 'Mornings are cold even when days are warm.']] :
-                [['Light fleece', 'For evenings at altitude.'], ['Sun hat', 'The sun is very direct above 2,500m.']];
-  return [...base, ...extra].map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+function packRows(style, season) {
+  const base = [['Sunscreen','SPF 50+. UV at altitude is extreme even in cloud.'],['Layers','20°C swings between day and night are normal everywhere in GB.'],['Cash PKR','Limited ATMs north of Gilgit. Bring enough from Islamabad.'],['Offline maps','Download before you leave Gilgit. Signal drops fast outside towns.']];
+  const extra = season==='winter'?[['Down jacket','Mandatory. Nights below −10°C in Hunza.'],['Thermal base','Merino or synthetic only — no cotton.']] : season==='spring'?[['Rain jacket','April showers are real in GB.'],['Fleece','Mornings cold even when days are warm.']] : [['Light fleece','For evenings above 2,500m.'],['Sun hat','UV at altitude is very direct.']];
+  return [...base,...extra].map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('');
 }
 
-// ─── CRITICAL NOTES ───────────────────────────────────────────────────
-function criticalNotes(entry, season, regions) {
+function critRows(entry, season, regions) {
   const notes = [];
-  if (entry === 'fly-gilgit' || entry === 'fly-skardu') {
-    notes.push(['Flights', 'Book 3–4 weeks ahead. Cancellations are weather-dependent. Always have a road backup plan.']);
-  }
-  if (regions.includes('hunza')) {
-    notes.push(['Khunjerab Pass', season === 'winter' || season === 'spring' ? 'Closed in your season (open May–Oct only).' : 'Open in your season. Entry fee Rs 500.']);
-  }
-  notes.push(['Cash', 'Limited ATMs north of Gilgit. Take enough PKR from Islamabad.']);
-  notes.push(['SIM', 'Jazz has best coverage in GB. Download offline maps before you leave Gilgit.']);
-  notes.push(['Permits', 'No special permits for most GB travel. Trekking above 6,000m requires registration.']);
-  return notes.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+  if (entry==='fly-gilgit'||entry==='fly-skardu') notes.push(['Flights','40–60% cancellation rates. Always have a road backup date and budget.']);
+  if (regions.includes('hunza')) notes.push(['Khunjerab Pass',season==='winter'||season==='spring'?'Closed Nov–May. Not accessible in your season.':'Open. Entry fee Rs 500. Open May–Oct only.']);
+  notes.push(['Network','Jazz has best GB coverage. Download offline maps, WhatsApp works on WiFi most places.']);
+  notes.push(['Altitude','Karimabad 2,438m, Deosai 4,000m+. Go slowly, drink water, don\'t rush first day.']);
+  return notes.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('');
 }
 
-// ─── NAVBAR SCROLL ────────────────────────────────────────────────────
-const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+/* ════════════════════════════════════════════════════════
+   ALREADY IN GB
+════════════════════════════════════════════════════════ */
+const HERE_LOCATIONS = [
+  { id:'gilgit', name:'Gilgit', sub:'Capital city · 1,500m' },
+  { id:'hunza', name:'Hunza / Karimabad', sub:'Upper valley · 2,438m' },
+  { id:'passu', name:'Passu / Gojal', sub:'Upper KKH · 2,900m' },
+  { id:'skardu', name:'Skardu', sub:'Baltistan · 2,228m' },
+  { id:'fairy', name:'Fairy Meadows area', sub:'Nanga Parbat · 3,300m' },
+  { id:'chilas', name:'Chilas', sub:'KKH transit · 1,250m' },
+  { id:'naran', name:'Naran / Kaghan', sub:'KPK · 2,409m' },
+  { id:'shigar', name:'Shigar Valley', sub:'Near Skardu · 2,300m' },
+];
 
-// Set step 2 button always enabled (has default value)
-document.getElementById('next-2') && (document.getElementById('next-2').disabled = false);
-</script>
-<script id="navScript">
+const HERE_CONTENT = {
+  gilgit: {
+    today: [
+      { name:'Kargah Buddha', tag:'30 min · Free', desc:'7th-century rock carving 10km from town. Taxi Rs 300 return. Walk up the small hill for views over the Gilgit valley.' },
+      { name:'Gilgit Main Bazaar', tag:'1–2h · Shopping', desc:'The best bazaar in GB. Dried apricots, local honey, polo sticks, Hunza toffee. Honest prices. The lane off the main chowk has the best dried fruit vendors.' },
+      { name:'Suspension Bridges', tag:'1h · Free', desc:'Old and new suspension bridges over the Gilgit River. Walk both. Golden hour light on the surrounding peaks is excellent from the riverbank.' },
+      { name:'Gilgit Fort ruins', tag:'45 min · Free', desc:'The old fort on the hill above the bazaar. Steep 20-min climb, rewarded with views of the full Gilgit valley and surrounding mountains.' },
+    ],
+    daytrips: [
+      { name:'Naltar Valley', tag:'Full day · 40km', desc:'Alpine lakes (three glacier lakes: blue, green, turquoise). Almost no tourists. Rough jeep track. Hire from Gilgit: Rs 4,000–6,000.' },
+      { name:'Bagrot Valley', tag:'Half day · 20km', desc:'Short valley south of Gilgit. Traditional village, summer pastures, views of Diran (7,266m). Quiet and completely tourist-free.' },
+      { name:'Hunza Valley', tag:'Full day or overnight · 100km north', desc:'2–3h drive north. If you haven\'t been yet, this is the move. Karimabad, Baltit Fort, Eagle\'s Nest at sunset.' },
+    ],
+    eat: 'Café de Hunza (chapshoro, bolani) · PTDC Cafeteria (reliable) · Hunza Bakery near the bridge · Street manti near main chowk (evenings)',
+    next: 'Hunza Valley: 2–3h north on the KKH. Skardu: 8h east (fly 45 min, weather permitting). Chitral: full-day drive northwest over Shandur Pass.',
+  },
+  hunza: {
+    today: [
+      { name:'Baltit Fort', tag:'9am–5pm · Rs 500', desc:'700-year-old Tibetan-influenced fort above Karimabad. Hire the in-house guide (Rs 500) — the history is exceptional. Go before 10am to beat groups.' },
+      { name:'Eagle\'s Nest / Duikar', tag:'40 min hike or Rs 800 jeep', desc:'The ridge above Karimabad. Full Karakoram panorama: Ultar, Rakaposhi, Diran, Lady Finger. Best at golden hour (sunset or sunrise).' },
+      { name:'Altit Fort', tag:'45 min walk · Rs 300', desc:'Pakistan\'s oldest surviving fort, below Karimabad. Quieter than Baltit. The carved wooden gate dates to the 11th century.' },
+      { name:'Karimabad Bazaar', tag:'1h · Shopping', desc:'Hunza dark honey, embroidered shawls, dried apricots, walnut oil. The lane behind the main road has the real local shops.' },
+    ],
+    daytrips: [
+      { name:'Attabad Lake & Passu', tag:'Full day · 60km north', desc:'The turquoise landslide lake + Passu Cones + Hussaini bridge. Don\'t do this as a half-day.' },
+      { name:'Ultar Meadows Hike', tag:'Full day · From Karimabad', desc:'4h return, gain 900m. Glacial streams, wildflowers, views of Ultar II directly above. No guide needed.' },
+      { name:'Rakaposhi Base Camp', tag:'Full day · From Minapin', desc:'15km from Karimabad. 3h hike to the glacier moraine with Rakaposhi (7,788m) looming above. A serious hike.' },
+    ],
+    eat: 'Café Diran (Hunzai food, Rs 500–1,200) · Old Hunza Inn restaurant · Village restaurant near Baltit Fort · Street naan stalls below the bazaar',
+    next: 'Passu & Khunjerab: 1.5h north (open May–Oct). Gilgit: 2h south. Shimshal Valley: 4h drive from Passu (day trip or overnight).',
+  },
+  passu: {
+    today: [
+      { name:'Passu Cones viewpoint', tag:'1h · Free', desc:'Walk to the suspension bridge over the Hunza River (1km south of village). The six limestone spires rising to 6,000m are best photographed from here with the bridge in the foreground.' },
+      { name:'Hussaini Suspension Bridge', tag:'30 min · Free', desc:'Old rope-and-plank bridge over the Hunza River. Terrifying to cross. The planks have gaps. Do it anyway.' },
+      { name:'Batura Glacier', tag:'Half day · Free', desc:'3km walk from Passu village to the glacier terminus. One of the most accessible glacier walks in GB. Crampons not needed.' },
+      { name:'Borith Lake', tag:'1.5h walk · Free', desc:'Shallow lake 4km from Passu. Flamingos in season (rare but real). The Passu Cones reflect in the water when calm.' },
+    ],
+    daytrips: [
+      { name:'Khunjerab Pass', tag:'Full day · 4,693m', desc:'The world\'s highest international border. 2h drive north. Open May–Oct. Entry fee Rs 500 to Khunjerab National Park.' },
+      { name:'Chipurson Valley (Chapursan)', tag:'Full day · 40km north', desc:'Wakhi culture, yak herding, zero tourists, and the most remote inhabited valley on the Pakistani KKH. End of the road before Afghanistan.' },
+      { name:'Shimshal Valley', tag:'Full day · 4h drive', desc:'Newly paved road from Passu. The valley was only connected by road in 2003. Still feels completely remote.' },
+    ],
+    eat: 'Passu Inn (basic local food, Rs 200–500) · Glacier Breeze Guesthouse (ask for the daily meal) · Bring snacks from Karimabad if picky about food.',
+    next: 'Khunjerab Pass: 2h north. Karimabad: 1.5h south. Sost (last Pakistani town before China border): 1h north.',
+  },
+  skardu: {
+    today: [
+      { name:'Kharpocho Fort', tag:'1h · Free', desc:'The "King of Forts" on a rock 100m above the Indus. 20-min climb. Views over the entire Skardu valley and Indus river bend.' },
+      { name:'Katpana Desert', tag:'1h · Free', desc:'Sand dunes at 2,226m, 10 min from town. The juxtaposition of dunes against K2-range snow peaks is genuinely surreal. Camel rides Rs 300–500.' },
+      { name:'Satpara Lake', tag:'2h · Rs 200 entry', desc:'15km from town. A reservoir lake surrounded by rocky plateau. Rowing boats Rs 400–600. Crystal clear water.' },
+      { name:'Skardu Bazaar', tag:'1h · Shopping', desc:'Dried fruit, Baltistani honey (very dark and strong), traditional Balti carpet stalls, trekking gear at competitive prices.' },
+    ],
+    daytrips: [
+      { name:'Shigar Valley', tag:'Full day · 30km', desc:'Shigar Fort (now a heritage hotel), Amburiq Mosque (1370), traditional village walk. The most intact historic settlement in Baltistan.' },
+      { name:'Deosai Plains', tag:'Full day · Rs 500 entry', desc:'World\'s 2nd highest plateau. Himalayan brown bears, wildflowers (Jun–Jul), Sheosar Lake. Start early. At 4,000m+, altitude sickness is possible.' },
+      { name:'Khaplu Valley', tag:'Full day · 100km east', desc:'Khaplu Palace (Aga Khan restored), Chaqchan Mosque (700 years old), beautiful drive along the Shyok River.' },
+    ],
+    eat: 'Mashabrum Restaurant (Balti rice dishes, Rs 600–1,200) · Local dhaba near bus stand (daal + karahi, Rs 300–500) · Shangrila Resort restaurant if budget allows',
+    next: 'Gilgit: fly 45 min (PIA) or drive 8h. K2 Base Camp: drive to Skardu → Shigar → Askole (permits required). Deosai: 1.5h drive.',
+  },
+  fairy: {
+    today: [
+      { name:'Fairy Meadows walk', tag:'2h · Free', desc:'Explore the meadow perimeter. The meadow is about 1km across. Walk toward the treeline for views of the Nanga Parbat south face.' },
+      { name:'Nanga Parbat Base Camp hike', tag:'Full day · 6h return', desc:'3h hike from the meadow toward the base camp. Gain 800m. The face looms larger with every hour. Turn back at 2pm regardless of progress.' },
+      { name:'Raikot Glacier viewpoint', tag:'3h round trip · Free', desc:'The glacier is visible from the trail toward base camp. Ask at your camp for the quickest route to the glacier moraine.' },
+    ],
+    daytrips: [
+      { name:'Return to KKH via Raikot', tag:'Half day', desc:'The jeep down to Raikot Bridge + the KKH reconnects you to Gilgit (1.5h west) or Chilas (40min east).' },
+    ],
+    eat: 'Fairy Meadows tented camps provide meals (included in most packages). Basic but adequate. Bring snacks and chocolate.',
+    next: 'Raikot Bridge → Gilgit: 1.5h west. Raikot Bridge → Chilas: 40min east. Chilas → KKH north to Hunza: 2h.',
+  },
+  chilas: {
+    today: [
+      { name:'Chilas Rock Carvings', tag:'1.5h · Free', desc:'Thousands of Buddhist petroglyphs along the Indus riverbank, 10 min from the bazaar. Walk the marked trail. Among the largest concentration of rock art in the world.' },
+      { name:'Indus River viewpoint', tag:'30 min · Free', desc:'The suspension bridge over the Indus at Chilas gives views of the river gorge. The water is milky-turquoise from glacier melt.' },
+    ],
+    daytrips: [
+      { name:'Fairy Meadows', tag:'Full day or overnight · Raikot Bridge 40km east', desc:'Take the KKH east to Raikot Bridge, hire a jeep up the terrifying track to Tato, then hike 1.5h to the meadow.' },
+      { name:'Gilgit', tag:'1.5–2h north', desc:'The KKH from Chilas to Gilgit passes through dramatic gorge scenery. Gilgit is the first proper city heading north.' },
+    ],
+    eat: 'Basic dhabas on the main bazaar street. Daal + roti + chai. Conservative area — straightforward food only.',
+    next: 'Gilgit: 1.5–2h north on KKH. Raikot Bridge (Fairy Meadows): 40km east. Naran via Babusar: 3h south (Jun–Oct only).',
+  },
+  naran: {
+    today: [
+      { name:'Lake Saiful Muluk', tag:'Half day · Jeep Rs 2,500', desc:'Go before 9am. 3,224m. Turquoise glacial lake, ringed by snow peaks. The colour is best in early morning light before the haze builds.' },
+      { name:'Lulusar Lake', tag:'2h · Jeep Rs 1,500', desc:'20km north of Naran. Larger and quieter than Saiful Muluk. Almost nobody stops here — which means you often have it to yourself.' },
+      { name:'Kunhar River trout fishing', tag:'Half day · Rs 1,000 permit', desc:'One of Pakistan\'s best trout rivers. Fishing permits available in Naran town. Several spots on the south side of town.' },
+    ],
+    daytrips: [
+      { name:'Babusar Pass', tag:'Full day · Jun–Oct only', desc:'4,173m pass connecting Kaghan to the KKH. The drive across is one of the most scenic in Pakistan. Jeep required.' },
+      { name:'Ansoo Lake trek', tag:'2 days · 4,245m', desc:'A teardrop-shaped lake above Saiful Muluk. Requires a guide (Rs 2,500–4,000/day from Naran). One of the best treks in the Kaghan Valley.' },
+    ],
+    eat: 'Riverside dhabas: fresh trout + rice Rs 800–1,500 · Multiple mid-range restaurants on main strip · PTDC Motel restaurant',
+    next: 'Babusar Pass → Chilas → Gilgit: 6–8h total (Jun–Oct only). Islamabad: 5h south.',
+  },
+  shigar: {
+    today: [
+      { name:'Shigar Fort Residence', tag:'Must see · Free to visit', desc:'17th-century Balti fort restored by the Aga Khan Trust. Non-guests can usually look around. The carved wood interior and garden courtyard are the finest restoration in GB.' },
+      { name:'Amburiq Mosque', tag:'30 min · Free', desc:'Built in 1370. Carved cedar columns and painted ceiling. One of the oldest mosques in the subcontinent. Remove shoes, enter quietly.' },
+      { name:'Shigar village walk', tag:'1–2h · Free', desc:'Stone lanes, carved wooden balconies, apricot orchards. Walk without a guide. Ask locals for directions to the old watchtower above the village.' },
+    ],
+    daytrips: [
+      { name:'Skardu', tag:'30km · 45 min', desc:'The main base for everything in Baltistan. ATMs, fuel, proper food, onward connections.' },
+      { name:'Deosai (from Shigar road)', tag:'Full day · Entry Rs 500', desc:'An alternative route into Deosai from the Shigar side. Ask at Skardu or Shigar about current road conditions.' },
+    ],
+    eat: 'Shigar Fort Residence café (excellent, Rs 1,500–2,500) · Simple teahouse in the village (Rs 150–350).',
+    next: 'Skardu: 30km, 45 min. Askole (K2 Base Camp trailhead): 2h further east up the Shigar Valley.',
+  },
+};
+
+function showAlready() {
+  document.getElementById('heroWrap').style.display = 'none';
+  document.getElementById('wizardWrap').classList.add('hidden');
+  const aw = document.getElementById('alreadyWrap');
+  aw.classList.add('active');
+  aw.style.display = 'block';
+  document.getElementById('alreadyPanel').classList.add('active');
+
+  // Render location grid
+  document.getElementById('hereGrid').innerHTML = HERE_LOCATIONS.map(loc =>
+    `<div class="here-card" onclick="showHereContent('${loc.id}')">
+      <h4>${loc.name}</h4><p>${loc.sub}</p>
+    </div>`
+  ).join('');
+}
+
+function showHereContent(id) {
+  document.querySelectorAll('.here-card').forEach(c => c.classList.toggle('sel', c.onclick.toString().includes(id)));
+  const d = HERE_CONTENT[id];
+  if (!d) return;
+  const html = `
+    <div class="here-section">
+      <div class="here-section-title">Things to do today</div>
+      ${d.today.map(it=>`<div class="here-item"><div class="tag gold" style="margin-bottom:.5rem">${it.tag}</div><h5>${it.name}</h5><p>${it.desc}</p></div>`).join('')}
+    </div>
+    <div class="here-section">
+      <div class="here-section-title">Day trips from here</div>
+      ${d.daytrips.map(it=>`<div class="here-item"><div class="tag gold" style="margin-bottom:.5rem">${it.tag}</div><h5>${it.name}</h5><p>${it.desc}</p></div>`).join('')}
+    </div>
+    <div class="here-section">
+      <div class="here-section-title">Where to eat</div>
+      <div class="here-item"><p>${d.eat}</p></div>
+    </div>
+    <div class="here-section">
+      <div class="here-section-title">Getting to your next stop</div>
+      <div class="here-item"><p>${d.next}</p></div>
+    </div>
+  `;
+  document.getElementById('hereContent').innerHTML = html;
+  if (isMobile()) document.getElementById('alreadyWrap').scrollTop = document.getElementById('hereGrid').offsetHeight + 100;
+}
+
+function hideAlready() {
+  document.getElementById('alreadyWrap').classList.remove('active');
+  document.getElementById('alreadyWrap').style.display = 'none';
+  document.getElementById('alreadyPanel').classList.remove('active');
+  document.getElementById('heroWrap').style.display = '';
+  document.getElementById('wizardWrap').classList.remove('hidden');
+}
+
+/* ════════════════════════════════════════════════════════
+   RESTART
+════════════════════════════════════════════════════════ */
+function doRestart() {
+  S.entry=null; S.style=null; S.days=8; S.regions=new Set(); S.season=null; cur=0;
+  document.querySelectorAll('.choice').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('resultWrap').classList.remove('active');
+  document.getElementById('resultWrap').style.display='none';
+  document.getElementById('result').classList.remove('active');
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step-0').classList.add('active');
+  document.getElementById('wizardWrap').classList.remove('hidden');
+  document.getElementById('heroWrap').style.display = isMobile() ? 'none' : '';
+  onDur(8); document.getElementById('durSlider').value=8;
+  document.getElementById('budgetAlert').innerHTML='';
+  updateProgress(0); updateNav();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════ */
+updateProgress(0);
+updateNav();
+initLayout();
+window.addEventListener('resize', () => {
+  if (!isMobile()) {
+    document.getElementById('heroWrap').style.display = '';
+    document.getElementById('wizardWrap').classList.remove('hidden');
+  } else {
+    document.getElementById('heroWrap').style.display = 'none';
+  }
+});
+
+// Navbar
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+// Hamburger
 (function(){
   var btn = document.getElementById('navHamburger');
   var drawer = document.getElementById('navDrawer');
-  if (!btn || !drawer) return;
-  btn.addEventListener('click', function(){
-    btn.classList.toggle('open');
-    drawer.classList.toggle('open');
-  });
-  document.addEventListener('click', function(e){
-    if (!btn.contains(e.target) && !drawer.contains(e.target)){
-      btn.classList.remove('open');
-      drawer.classList.remove('open');
-    }
-  });
+  if (!btn||!drawer) return;
+  btn.addEventListener('click', function(){ btn.classList.toggle('open'); drawer.classList.toggle('open'); });
+  document.addEventListener('click', function(e){ if(!btn.contains(e.target)&&!drawer.contains(e.target)){ btn.classList.remove('open'); drawer.classList.remove('open'); }});
 })();
 </script>
 </body>

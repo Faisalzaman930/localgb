@@ -646,9 +646,21 @@ footer {
   .btn-primary, .btn-ghost { padding: 0.8rem 1.5rem; font-size: 0.68rem; }
 }
 
+/* ─── PAGE-SPECIFIC GRIDS (mobile collapse) ──────────── */
+@media (max-width: 680px) {
+  .attractions-grid { grid-template-columns: 1fr !important; }
+  .stay-grid        { grid-template-columns: 1fr !important; }
+  .treks-grid       { grid-template-columns: 1fr !important; }
+  .how-grid         { grid-template-columns: repeat(2, 1fr) !important; }
+  .dest-grid        { grid-template-columns: 1fr !important; }
+  .here-grid        { grid-template-columns: 1fr !important; }
+  .photo-credits    { padding: 1.2rem 1.25rem; }
+}
+
 /* ─── SMALL MOBILE (400px) ───────────────────────────── */
 @media (max-width: 400px) {
   .page-hero-h1 { font-size: clamp(1.9rem, 10vw, 2.8rem); }
   .section-title { font-size: clamp(1.8rem, 9vw, 2.5rem); }
   .card-grid-4 { grid-template-columns: 1fr; }
+  .how-grid     { grid-template-columns: 1fr !important; }
 }
