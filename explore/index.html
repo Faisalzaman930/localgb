@@ -1001,16 +1001,6 @@ function buildItinerary() {
       document.getElementById('rWeather').style.display='block';
     }).catch(()=>{});
 
-  // Exchange rates
-  fetchRates(total);
-
-  // Sunrise/sunset for entry point
-  fetchSunTimes(wlat, wlon, itinerary.length);
-
-  // Wikipedia snippets for each unique place
-  const seenPlaces = new Set();
-  itinerary.forEach((d,i) => { if(d.placeKey && !seenPlaces.has(d.placeKey)) { seenPlaces.add(d.placeKey); fetchWiki(d.placeKey, i); } });
-
   document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}.`;
 
   const pills = [entryLabel[entry], styleLabel[style], `${days} days`, season.charAt(0).toUpperCase()+season.slice(1)];
@@ -1058,6 +1048,17 @@ function buildItinerary() {
       ${getThereRows(entry)}</table></div>
     <div class="prac-card"><div class="prac-title">What to Pack</div><table>${packRows(style,season)}</table></div>
     <div class="prac-card"><div class="prac-title">Critical Notes</div><table>${critRows(entry,season,r)}</table></div>`;
+
+  // ── API calls — all vars now defined ──────────────────
+  fetchRates(total);
+  fetchSunTimes(wlat, wlon, itinerary.length);
+  const seenPlaces = new Set();
+  itinerary.forEach((d, i) => {
+    if (d.placeKey && !seenPlaces.has(d.placeKey)) {
+      seenPlaces.add(d.placeKey);
+      fetchWiki(d.placeKey, i);
+    }
+  });
 }
 
 function buildDayBody(d, foodKey) {
