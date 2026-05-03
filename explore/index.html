@@ -87,6 +87,38 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:22px; h
 input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 .dur-ctx { font-size:.76rem; color:var(--cream-2); margin-top:1.2rem; line-height:1.7; min-height:2.8rem; }
 
+/* ─── DATE TOGGLE & CALENDAR ─────────────────────────── */
+.dur-toggle { display:flex; gap:.5rem; margin-bottom:1.2rem; }
+.dur-tab { flex:1; padding:.55rem 1rem; border:1px solid rgba(255,255,255,.12); border-radius:4px; background:transparent; color:var(--cream-2); font-family:var(--fu); font-size:.7rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+.dur-tab.active { background:var(--gold); border-color:var(--gold); color:var(--ink); }
+.cal-hint { font-size:.7rem; color:var(--cream-2); margin-bottom:.9rem; text-align:center; }
+.cal-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:.8rem; }
+.cal-month-label { font-family:var(--fd); font-size:1.15rem; color:var(--cream); }
+.cal-arrow { background:transparent; border:1px solid rgba(255,255,255,.12); border-radius:4px; color:var(--cream); font-size:1.4rem; line-height:1; padding:.1rem .6rem; cursor:pointer; transition:background .15s; }
+.cal-arrow:hover { background:rgba(200,144,58,.15); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-dow { text-align:center; font-family:var(--fu); font-size:.58rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); padding:.3rem 0; }
+.cal-cell { text-align:center; padding:.45rem .2rem; border-radius:4px; font-size:.78rem; color:var(--cream); cursor:pointer; transition:background .15s; }
+.cal-cell:hover:not(.past):not(.empty) { background:rgba(200,144,58,.18); }
+.cal-cell.past { color:rgba(240,232,213,.25); cursor:default; }
+.cal-cell.empty { cursor:default; }
+.cal-cell.sel { background:var(--gold); color:var(--ink); font-weight:700; }
+.cal-cell.in-range { background:rgba(200,144,58,.18); }
+.cal-selected { margin-top:1rem; min-height:1.4rem; }
+.cal-sel-text { font-size:.75rem; color:var(--cream-2); }
+.cal-sel-text strong { color:var(--gold); }
+.cal-sel-text em { color:var(--cream); font-style:normal; text-transform:capitalize; }
+
+/* ─── DAY WEATHER STRIP & WARNINGS ───────────────────── */
+.day-date { font-size:.65rem; color:var(--gold); font-family:var(--fu); font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-top:.15rem; }
+.day-wx { padding:.5rem 1rem; border-bottom:1px solid rgba(255,255,255,.04); }
+.day-sun-strip { display:flex; flex-wrap:wrap; gap:.5rem 1.2rem; font-size:.68rem; color:var(--cream-2); padding:.3rem 0; }
+.day-sun-strip span strong { color:var(--cream); }
+.wx-warn { padding:.5rem .8rem; border-radius:4px; font-size:.73rem; font-weight:600; margin-bottom:.35rem; line-height:1.4; }
+.wx-danger { background:rgba(220,50,30,.12); border:1px solid rgba(220,50,30,.35); color:#e88; }
+.wx-amber  { background:rgba(200,140,30,.12); border:1px solid rgba(200,140,30,.35); color:#e8b060; }
+.wx-blue   { background:rgba(60,140,220,.12); border:1px solid rgba(60,140,220,.3); color:#80bfff; }
+
 /* ─── BUDGET ALERT ───────────────────────────────────── */
 .budget-alert {
   background:rgba(200,80,40,.08); border:1px solid rgba(200,80,40,.3);
@@ -483,12 +515,35 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     <div class="step" id="step-2">
       <div class="step-q">How many days<br>do you have?</div>
       <p class="step-sub">Including travel days. GB rewards slow travel — don't rush it.</p>
-      <div class="dur-wrap">
-        <div class="dur-num" id="durNum">8</div>
-        <div class="dur-unit">Days</div>
-        <input type="range" min="4" max="21" value="8" id="durSlider" oninput="onDur(this.value)">
-        <div class="dur-ctx" id="durCtx"></div>
+
+      <!-- Mode toggle -->
+      <div class="dur-toggle">
+        <button class="dur-tab active" id="tabFlex" onclick="setDurMode('flex')">Flexible</button>
+        <button class="dur-tab" id="tabDates" onclick="setDurMode('dates')">Specific Dates</button>
       </div>
+
+      <!-- Flexible (slider) -->
+      <div id="durFlex">
+        <div class="dur-wrap">
+          <div class="dur-num" id="durNum">8</div>
+          <div class="dur-unit">Days</div>
+          <input type="range" min="4" max="21" value="8" id="durSlider" oninput="onDur(this.value)">
+          <div class="dur-ctx" id="durCtx"></div>
+        </div>
+      </div>
+
+      <!-- Specific dates (inline calendar) -->
+      <div id="durCal" style="display:none">
+        <div class="cal-hint">Tap a start date, then an end date.</div>
+        <div class="cal-nav">
+          <button class="cal-arrow" onclick="calNav(-1)">&#8249;</button>
+          <span class="cal-month-label" id="calMonthLabel"></span>
+          <button class="cal-arrow" onclick="calNav(1)">&#8250;</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="cal-selected" id="calSelected"></div>
+      </div>
+
       <div id="budgetAlert"></div>
     </div>
 
@@ -633,7 +688,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 /* ════════════════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════════════════ */
-const S = { entry:null, style:null, days:8, regions:new Set(), season:null };
+const S = { entry:null, style:null, days:8, regions:new Set(), season:null, startDate:null, endDate:null, useSpecificDates:false };
 let cur = 0;
 const STEPS = 5;
 
@@ -747,11 +802,87 @@ function checkBudget() {
 }
 
 /* ════════════════════════════════════════════════════════
+   DATE RANGE CALENDAR
+════════════════════════════════════════════════════════ */
+let calYear, calMonth;
+(function() { const n = new Date(); calYear = n.getFullYear(); calMonth = n.getMonth(); })();
+
+function setDurMode(mode) {
+  S.useSpecificDates = mode === 'dates';
+  document.getElementById('tabFlex').classList.toggle('active', mode === 'flex');
+  document.getElementById('tabDates').classList.toggle('active', mode === 'dates');
+  document.getElementById('durFlex').style.display = mode === 'flex' ? '' : 'none';
+  document.getElementById('durCal').style.display = mode === 'dates' ? '' : 'none';
+  if (mode === 'dates') renderCal();
+  else { S.startDate = null; S.endDate = null; checkBudget(); updateCalSelected(); }
+}
+
+function calNav(dir) { calMonth += dir; if (calMonth > 11) { calMonth=0; calYear++; } if (calMonth < 0) { calMonth=11; calYear--; } renderCal(); }
+
+function renderCal() {
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const DAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  document.getElementById('calMonthLabel').textContent = `${MONTHS[calMonth]} ${calYear}`;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  let html = DAYS.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+  for (let i=0;i<firstDay;i++) html += `<div class="cal-cell empty"></div>`;
+  for (let d=1;d<=daysInMonth;d++) {
+    const dt = new Date(calYear, calMonth, d);
+    const iso = dt.toISOString().slice(0,10);
+    const past = dt < today;
+    let cls = 'cal-cell';
+    if (past) cls += ' past';
+    else if (S.startDate && S.endDate && iso > S.startDate && iso < S.endDate) cls += ' in-range';
+    else if (iso === S.startDate) cls += ' sel start';
+    else if (iso === S.endDate) cls += ' sel end';
+    html += `<div class="${cls}" data-iso="${iso}" ${past?'':'onclick="calClick(this)"'}>${d}</div>`;
+  }
+  document.getElementById('calGrid').innerHTML = html;
+}
+
+function calClick(el) {
+  const iso = el.dataset.iso;
+  if (!S.startDate || (S.startDate && S.endDate)) { S.startDate = iso; S.endDate = null; }
+  else if (iso < S.startDate) { S.endDate = S.startDate; S.startDate = iso; }
+  else if (iso === S.startDate) { S.startDate = null; }
+  else { S.endDate = iso; }
+  renderCal();
+  updateCalSelected();
+  if (S.startDate && S.endDate) {
+    const diff = Math.round((new Date(S.endDate)-new Date(S.startDate))/(86400000));
+    S.days = Math.max(1, diff);
+    // Auto-detect season from start month
+    const m = parseInt(S.startDate.slice(5,7));
+    S.season = m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=10?'autumn':'winter';
+    checkBudget();
+  }
+}
+
+function updateCalSelected() {
+  const el = document.getElementById('calSelected');
+  if (!el) return;
+  if (S.startDate && S.endDate) {
+    const diff = Math.round((new Date(S.endDate)-new Date(S.startDate))/(86400000));
+    el.innerHTML = `<span class="cal-sel-text">📅 ${S.startDate} → ${S.endDate} &nbsp;·&nbsp; <strong>${diff} days</strong> &nbsp;·&nbsp; Season auto-set to <em>${S.season}</em></span>`;
+  } else if (S.startDate) {
+    el.innerHTML = `<span class="cal-sel-text">📅 ${S.startDate} → pick end date</span>`;
+  } else {
+    el.innerHTML = '';
+  }
+  if (cur === 2) updateNav();
+}
+
+/* ════════════════════════════════════════════════════════
    NAVIGATION
 ════════════════════════════════════════════════════════ */
 document.getElementById('btnNext').addEventListener('click', () => {
-  if (cur < STEPS - 1) goStep(cur + 1);
-  else buildItinerary();
+  if (cur === STEPS - 1) { buildItinerary(); return; }
+  // Skip season step (step 4) if dates are specific — season is auto-detected
+  let next = cur + 1;
+  if (next === 4 && S.useSpecificDates && S.season) { buildItinerary(); return; }
+  if (next < STEPS) goStep(next); else buildItinerary();
 });
 
 function goStep(to) {
@@ -775,16 +906,18 @@ function updateNav() {
   // Determine if next should be enabled
   const needsSelection = { 0:'entry', 1:'style', 3:'regions', 4:'season' };
   if (cur === 2) {
-    next.disabled = false;
+    // Specific dates: need both start+end; flex: always ok
+    next.disabled = S.useSpecificDates ? !(S.startDate && S.endDate) : false;
     next.textContent = 'Next →';
   } else if (cur === 4) {
     next.disabled = !S[needsSelection[cur]];
     next.textContent = 'Build My Itinerary →';
-  } else if (needsSelection[cur]) {
-    next.disabled = !S[needsSelection[cur]];
-    next.textContent = 'Next →';
   } else if (cur === 3) {
     next.disabled = S.regions.size === 0;
+    // If dates chosen, next on step 3 goes straight to build
+    next.textContent = S.useSpecificDates && S.season ? 'Build My Itinerary →' : 'Next →';
+  } else if (needsSelection[cur]) {
+    next.disabled = !S[needsSelection[cur]];
     next.textContent = 'Next →';
   }
 }
@@ -1014,6 +1147,11 @@ function buildItinerary() {
   document.getElementById('result').classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 
+  // If specific dates chosen, season was auto-set; use it
+  if (S.useSpecificDates && !S.season) {
+    const m = parseInt(S.startDate.slice(5,7));
+    S.season = m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=10?'autumn':'winter';
+  }
   const { entry, style, days, regions, season } = S;
   const r = [...regions];
   const pd = dailyCost[style];
@@ -1040,7 +1178,8 @@ function buildItinerary() {
       document.getElementById('rWeather').style.display='block';
     }).catch(()=>{});
 
-  document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}.`;
+  const dateStr = S.useSpecificDates && S.startDate && S.endDate ? ` · ${S.startDate} → ${S.endDate}` : '';
+  document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}${dateStr}.`;
 
   const pills = [entryLabel[entry], styleLabel[style], `${days} days`, season.charAt(0).toUpperCase()+season.slice(1)];
   r.forEach(reg => pills.push({hunza:'Hunza',skardu:'Skardu',fairy:'Fairy Meadows',hidden:'Hidden Valleys'}[reg]));
@@ -1062,12 +1201,20 @@ function buildItinerary() {
   const dc = document.getElementById('rDays');
   dc.innerHTML = itinerary.map((d,i) => {
     const bdHtml = buildDayBody(d, foodKey);
+    let dateLabel = '';
+    if (S.useSpecificDates && S.startDate) {
+      const dt = new Date(S.startDate);
+      dt.setDate(dt.getDate() + i);
+      const opts = { weekday:'short', month:'short', day:'numeric' };
+      dateLabel = `<div class="day-date">${dt.toLocaleDateString('en-GB', opts)}</div>`;
+    }
     return `<div class="day-card" id="day-${i}" data-place="${d.placeKey||''}">
       <div class="day-hd" onclick="toggleDay(${i})">
         <div class="day-n">${String(i+1).padStart(2,'0')}</div>
-        <div><div class="day-t">${d.title}</div><div class="day-l">${d.location}</div><div class="day-wiki" id="wiki-${i}"></div></div>
+        <div><div class="day-t">${d.title}</div><div class="day-l">${d.location}</div>${dateLabel}<div class="day-wiki" id="wiki-${i}"></div></div>
         <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
       </div>
+      <div class="day-wx" id="wx-${i}"></div>
       <div class="day-sun" id="sun-${i}"></div>
       <div class="day-bd" id="bd-${i}" style="display:${i===0?'block':'none'}">${bdHtml}</div>
     </div>`;
@@ -1090,7 +1237,11 @@ function buildItinerary() {
 
   // ── API calls — all vars now defined ──────────────────
   fetchRates(total);
-  fetchSunTimes(wlat, wlon, itinerary.length);
+  if (S.useSpecificDates && S.startDate && S.endDate) {
+    fetchDailyWeather(wlat, wlon, S.startDate, S.endDate, itinerary.length);
+  } else {
+    fetchSunTimes(wlat, wlon, itinerary.length);
+  }
   const seenWiki = new Set();
   itinerary.forEach((d, i) => {
     if (!d.placeKey) return;
@@ -1661,6 +1812,55 @@ function fetchSunTimes(lat, lon, numDays) {
         if (el) el.innerHTML = strip;
       }
     }).catch(() => {});
+}
+
+// ── Per-day weather for specific date ranges ──────────
+const WX_WARN = [
+  { test: c => c >= 95, cls: 'wx-danger',  icon: '⛈️', msg: 'Thunderstorm forecast — avoid exposed ridges and river crossings.' },
+  { test: c => c >= 80, cls: 'wx-amber',   icon: '🌧️', msg: 'Heavy rain likely — river crossings may be hazardous.' },
+  { test: c => c >= 71, cls: 'wx-blue',    icon: '❄️', msg: 'Snow expected — high passes may close. Check conditions before setting off.' },
+];
+
+function fetchDailyWeather(lat, lon, startDate, endDate, numDays) {
+  const WMO_ICO = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
+  const WMO_LBL = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max,precipitation_sum&timezone=Asia%2FKarachi&start_date=${startDate}&end_date=${endDate}`;
+  fetch(url).then(r=>r.json()).then(d=>{
+    if (!d.daily) return;
+    const dy = d.daily;
+    for (let i = 0; i < numDays && i < dy.time.length; i++) {
+      const code = dy.weather_code[i];
+      const hi = Math.round(dy.temperature_2m_max[i]);
+      const lo = Math.round(dy.temperature_2m_min[i]);
+      const wind = Math.round(dy.wind_speed_10m_max[i]);
+      const precip = dy.precipitation_sum[i];
+      const icon = WMO_ICO[code] || '🌡️';
+      const label = WMO_LBL[code] || '';
+      const wxEl = document.getElementById(`wx-${i}`);
+      const sunEl = document.getElementById(`sun-${i}`);
+      if (wxEl) {
+        // Build weather strip
+        let strip = `<span>${icon} <strong>${label}</strong></span><span>↑${hi}° ↓${lo}°</span><span>💨 ${wind} km/h</span><span>🌧 ${precip} mm</span>`;
+        // Warning banner
+        const warn = WX_WARN.find(w => w.test(code)) || (wind > 60 ? { cls:'wx-amber', icon:'💨', msg:`Strong winds (${wind} km/h) forecast — high ridge and pass crossings not advised.` } : null);
+        if (warn) {
+          wxEl.innerHTML = `<div class="wx-warn ${warn.cls}">${warn.icon} ${warn.msg}</div><div class="day-sun-strip">${strip}</div>`;
+        } else {
+          wxEl.innerHTML = `<div class="day-sun-strip">${strip}</div>`;
+        }
+      }
+      // Also fetch per-day sunrise/sunset
+      if (sunEl) {
+        const dateStr = dy.time[i];
+        fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=Asia/Karachi&date=${dateStr}`)
+          .then(r=>r.json()).then(sd=>{
+            if (!sd.results) return;
+            const { sunrise, sunset, golden_hour, dawn } = sd.results;
+            sunEl.innerHTML = `<span>🌅 Sunrise <strong>${sunrise}</strong></span><span>🌇 Sunset <strong>${sunset}</strong></span><span>📷 Golden hour <strong>${golden_hour}</strong></span>`;
+          }).catch(()=>{});
+      }
+    }
+  }).catch(()=>{});
 }
 
 // ── Nominatim geolocation (OSM — free, no key) ──────
