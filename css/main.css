@@ -191,6 +191,7 @@ nav.solid {
   position: relative;
   height: 72vh;
   min-height: 480px;
+  margin-top: 68px;
   display: flex; align-items: flex-end;
   overflow: hidden;
 }
