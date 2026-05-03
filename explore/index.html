@@ -274,6 +274,42 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
   @page { margin:1.5cm; }
 }
 
+/* ─── OSM VENUE CARDS ────────────────────────────────── */
+.osm-section {
+  margin-top:1.2rem; padding:1rem 1.2rem;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:5px;
+}
+.osm-section-title {
+  font-size:.6rem; font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--cream-2);
+  margin-bottom:.75rem; display:flex; align-items:center; gap:.5rem;
+}
+.osm-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:.4rem;
+}
+.osm-place {
+  display:flex; flex-direction:column; gap:.15rem;
+  background:var(--ink-3); border-radius:3px; padding:.5rem .7rem;
+}
+.osm-place-name { font-size:.75rem; color:var(--cream); font-weight:500; }
+.osm-place-type { font-size:.58rem; color:var(--gold); text-transform:capitalize; letter-spacing:.08em; }
+.osm-rec {
+  margin-top:.4rem; font-size:.75rem; color:var(--cream-2); line-height:1.5;
+}
+.osm-rec strong { color:var(--cream); }
+.osm-src {
+  display:inline-block; font-size:.52rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase;
+  background:rgba(0,150,100,.12); color:#4db888;
+  border:1px solid rgba(0,150,100,.2);
+  padding:.1rem .35rem; border-radius:2px; margin-left:.3rem;
+}
+@media(max-width:680px){
+  .osm-grid { grid-template-columns:1fr; }
+}
+
 /* ─── GEO BUTTON ─────────────────────────────────────── */
 .geo-btn {
   display:inline-flex; align-items:center; gap:.5rem;
@@ -648,6 +684,9 @@ document.querySelectorAll('.choices.multi .choice').forEach(card => {
     const v = card.dataset.v;
     if (card.classList.contains('sel')) S.regions.add(v); else S.regions.delete(v);
     document.getElementById('btnNext').disabled = S.regions.size === 0;
+    // Pre-fetch OSM while user finishes wizard
+    const preKeys = { hunza:['hunza','attabad'], skardu:['skardu','shigar','deosai'], fairy:['fairy'], hidden:['gilgit'] };
+    (preKeys[v] || []).forEach(k => fetchOSM(k));
   });
 });
 
@@ -1052,12 +1091,15 @@ function buildItinerary() {
   // ── API calls — all vars now defined ──────────────────
   fetchRates(total);
   fetchSunTimes(wlat, wlon, itinerary.length);
-  const seenPlaces = new Set();
+  const seenWiki = new Set();
   itinerary.forEach((d, i) => {
-    if (d.placeKey && !seenPlaces.has(d.placeKey)) {
-      seenPlaces.add(d.placeKey);
-      fetchWiki(d.placeKey, i);
-    }
+    if (!d.placeKey) return;
+    // Wikipedia (first occurrence of each place)
+    if (!seenWiki.has(d.placeKey)) { seenWiki.add(d.placeKey); fetchWiki(d.placeKey, i); }
+    // Wikidata description fallback
+    fetchWikidata(d.placeKey, i);
+    // OSM: fetch then enhance day card with real venues
+    fetchOSM(d.placeKey).then(osmData => enhanceDayCard(i, d.placeKey, osmData, stayKey, foodKey));
   });
 }
 
@@ -1460,6 +1502,111 @@ window.addEventListener('resize', () => {
 /* ════════════════════════════════════════════════════════
    FREE API INTEGRATIONS
 ════════════════════════════════════════════════════════ */
+
+// ── OSM Overpass — real hotels, restaurants, attractions ──
+const OSM_BBOX = {
+  gilgit:  '35.6,73.8,36.2,74.8',
+  hunza:   '36.0,74.3,36.8,75.5',
+  attabad: '36.2,74.7,36.6,75.1',
+  skardu:  '34.9,75.1,35.7,76.2',
+  shigar:  '35.3,75.5,35.8,76.0',
+  deosai:  '34.8,75.1,35.3,75.9',
+  fairy:   '35.2,74.3,35.6,74.9',
+  naran:   '34.5,73.4,35.0,74.1',
+};
+const OSM_CACHE = {};
+
+async function fetchOSM(key) {
+  if (OSM_CACHE[key] !== undefined) return OSM_CACHE[key];
+  OSM_CACHE[key] = null; // mark as in-flight
+  const bbox = OSM_BBOX[key];
+  if (!bbox) return null;
+  const q = `[out:json][timeout:25];(
+    node["tourism"~"^(hotel|guest_house|hostel)$"]["name"](${bbox});
+    node["amenity"~"^(restaurant|cafe)$"]["name"](${bbox});
+    node["tourism"~"^(attraction|viewpoint|museum)$"]["name"](${bbox});
+    node["historic"]["name"](${bbox});
+    node["natural"~"^(peak|glacier|waterfall|lake)$"]["name"](${bbox});
+  );out 40;`;
+  try {
+    const res = await fetch('https://overpass-api.de/api/interpreter', { method:'POST', body:q });
+    const data = await res.json();
+    const result = { hotels:[], restaurants:[], attractions:[] };
+    data.elements.forEach(el => {
+      const n = el.tags.name; if (!n) return;
+      const t = el.tags.tourism, a = el.tags.amenity, h = el.tags.historic, nat = el.tags.natural;
+      if (t==='hotel'||t==='guest_house'||t==='hostel')
+        result.hotels.push({ name:n, stars:el.tags.stars||null, type:t.replace('_',' ') });
+      else if (a==='restaurant'||a==='cafe')
+        result.restaurants.push({ name:n, cuisine:el.tags.cuisine||'', type:a });
+      else
+        result.attractions.push({ name:n, type:t||h||nat||'place' });
+    });
+    OSM_CACHE[key] = result;
+    return result;
+  } catch(e) { return null; }
+}
+
+function enhanceDayCard(dayIdx, key, osmData, stayKey, foodKey) {
+  if (!osmData) return;
+  const bdEl = document.getElementById(`bd-${dayIdx}`);
+  if (!bdEl) return;
+
+  // Update stay recommendation with real hotel names
+  if (osmData.hotels.length) {
+    const stayEl = bdEl.querySelector('.day-stay-val');
+    if (stayEl) {
+      const tier = { budget:0, mid:1, luxury:2 }[stayKey] ?? 1;
+      const sorted = osmData.hotels.slice();
+      const pick = sorted[Math.min(tier * 2, sorted.length - 1)] || sorted[0];
+      const stars = pick.stars ? ` · ${'★'.repeat(Math.min(parseInt(pick.stars),5))}` : '';
+      stayEl.innerHTML += `<div class="osm-rec">📍 <strong>${pick.name}</strong>${stars} <span class="osm-src">OSM</span></div>`;
+    }
+  }
+
+  // Update food recommendation with real restaurant names
+  if (osmData.restaurants.length) {
+    const foodEl = bdEl.querySelector('.day-food-list');
+    if (foodEl) {
+      const picks = osmData.restaurants.slice(0, 2);
+      foodEl.innerHTML += picks.map(r =>
+        `<div class="osm-rec">📍 <strong>${r.name}</strong>${r.cuisine ? ` · ${r.cuisine}` : ''} <span class="osm-src">OSM</span></div>`
+      ).join('');
+    }
+  }
+
+  // Append real attractions section
+  if (osmData.attractions.length) {
+    const picks = osmData.attractions.slice(0, 6);
+    bdEl.insertAdjacentHTML('beforeend', `
+      <div class="osm-section">
+        <div class="osm-section-title">📍 Real places on the map <span class="osm-src">OpenStreetMap</span></div>
+        <div class="osm-grid">${picks.map(a =>
+          `<div class="osm-place"><span class="osm-place-name">${a.name}</span><span class="osm-place-type">${a.type}</span></div>`
+        ).join('')}</div>
+      </div>`);
+  }
+}
+
+// ── Wikidata structured descriptions ────────────────
+const WD_IDS = {
+  gilgit:'Q207616', hunza:'Q929210', attabad:'Q1392764',
+  skardu:'Q208942', shigar:'Q2273030', deosai:'Q1069816',
+  fairy:'Q1399561', naran:'Q2016218',
+};
+async function fetchWikidata(key, dayIdx) {
+  const qid = WD_IDS[key]; if (!qid) return;
+  try {
+    const r = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${qid}.json`);
+    const d = await r.json();
+    const entity = d.entities?.[qid]; if (!entity) return;
+    const desc = entity.descriptions?.en?.value;
+    if (!desc) return;
+    const el = document.getElementById(`wiki-${dayIdx}`);
+    // Only set if Wikipedia didn't already fill it
+    if (el && !el.textContent.trim()) el.textContent = desc;
+  } catch(e) {}
+}
 
 // ── Wikipedia snippets ───────────────────────────────
 const WIKI_TITLES = {
