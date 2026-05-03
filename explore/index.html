@@ -793,9 +793,6 @@ function onDur(v) {
   checkBudget();
 }
 onDur(8);
-// Initialize calendar as default mode
-renderCal();
-updateCalSelected();
 
 function checkBudget() {
   if (!S.style) return;
@@ -816,8 +813,12 @@ function checkBudget() {
 /* ════════════════════════════════════════════════════════
    DATE RANGE CALENDAR
 ════════════════════════════════════════════════════════ */
-let calYear, calMonth;
-(function() { const n = new Date(); calYear = n.getFullYear(); calMonth = n.getMonth(); })();
+const _now = new Date();
+let calYear = _now.getFullYear();
+let calMonth = _now.getMonth();
+// Initialize calendar (must be after calYear/calMonth are declared)
+renderCal();
+updateCalSelected();
 
 function setDurMode(mode) {
   S.useSpecificDates = mode === 'dates';
