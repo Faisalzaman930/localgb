@@ -273,6 +273,42 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
   .route-strip { display:none; }
   @page { margin:1.5cm; }
 }
+
+/* ─── GEO BUTTON ─────────────────────────────────────── */
+.geo-btn {
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:rgba(200,144,58,.1); border:1px solid rgba(200,144,58,.3);
+  border-radius:4px; padding:.7rem 1.3rem;
+  font-family:var(--fu); font-size:.65rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold); cursor:pointer; transition:all .2s;
+  margin-bottom:.75rem;
+}
+.geo-btn:hover:not(:disabled) { background:rgba(200,144,58,.18); }
+.geo-btn:disabled { opacity:.5; cursor:not-allowed; }
+
+/* ─── WIKI BLURB ─────────────────────────────────────── */
+.day-wiki {
+  font-size:.68rem; color:var(--cream-2); margin-top:.25rem;
+  font-style:italic; line-height:1.5; opacity:.8;
+  max-width:480px;
+}
+
+/* ─── SUN STRIP ──────────────────────────────────────── */
+.day-sun {
+  display:flex; flex-wrap:wrap; gap:.4rem 1.5rem;
+  padding:.55rem 1.5rem; background:rgba(200,144,58,.04);
+  border-bottom:1px solid rgba(200,144,58,.08);
+  font-size:.62rem; color:var(--cream-2);
+}
+.day-sun:empty { display:none; }
+.day-sun span { display:flex; align-items:center; gap:.3rem; }
+.day-sun strong { color:var(--cream); }
+
+@media(max-width:680px) {
+  .day-sun { gap:.35rem 1rem; padding:.5rem 1rem; }
+  .day-wiki { font-size:.65rem; }
+}
 </style>
 </head>
 <body>
@@ -535,6 +571,8 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     </div>
     <div class="step-q" style="text-align:left">Where are<br>you right now?</div>
     <p class="step-sub" style="text-align:left">Pick your current location — we'll show nearby activities, food, and your next move.</p>
+    <button class="geo-btn" id="geoBtn" onclick="detectLocation()">📍 Detect my location</button>
+    <div id="geoStatus" style="font-size:.7rem;color:var(--cream-2);margin-bottom:1rem;min-height:1.2rem;"></div>
     <div class="here-grid" id="hereGrid"></div>
     <div class="here-content" id="hereContent"></div>
   </div>
@@ -962,6 +1000,17 @@ function buildItinerary() {
       document.getElementById('rWxMeta').innerHTML = `${Math.round(c.wind_speed_10m)} km/h wind<br>${c.relative_humidity_2m}% humidity`;
       document.getElementById('rWeather').style.display='block';
     }).catch(()=>{});
+
+  // Exchange rates
+  fetchRates(total);
+
+  // Sunrise/sunset for entry point
+  fetchSunTimes(wlat, wlon, itinerary.length);
+
+  // Wikipedia snippets for each unique place
+  const seenPlaces = new Set();
+  itinerary.forEach((d,i) => { if(d.placeKey && !seenPlaces.has(d.placeKey)) { seenPlaces.add(d.placeKey); fetchWiki(d.placeKey, i); } });
+
   document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}.`;
 
   const pills = [entryLabel[entry], styleLabel[style], `${days} days`, season.charAt(0).toUpperCase()+season.slice(1)];
@@ -984,12 +1033,13 @@ function buildItinerary() {
   const dc = document.getElementById('rDays');
   dc.innerHTML = itinerary.map((d,i) => {
     const bdHtml = buildDayBody(d, foodKey);
-    return `<div class="day-card" id="day-${i}">
+    return `<div class="day-card" id="day-${i}" data-place="${d.placeKey||''}">
       <div class="day-hd" onclick="toggleDay(${i})">
         <div class="day-n">${String(i+1).padStart(2,'0')}</div>
-        <div><div class="day-t">${d.title}</div><div class="day-l">${d.location}</div></div>
+        <div><div class="day-t">${d.title}</div><div class="day-l">${d.location}</div><div class="day-wiki" id="wiki-${i}"></div></div>
         <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
       </div>
+      <div class="day-sun" id="sun-${i}"></div>
       <div class="day-bd" id="bd-${i}" style="display:${i===0?'block':'none'}">${bdHtml}</div>
     </div>`;
   }).join('');
@@ -1001,6 +1051,7 @@ function buildItinerary() {
     <div class="prac-card"><div class="prac-title">Budget Estimate</div><table>
       <tr><td>Per day</td><td>Rs ${pd.toLocaleString()}–${Math.round(pd*1.25).toLocaleString()}</td></tr>
       <tr><td>Total (${days}d)</td><td><strong>Rs ${(total/1000).toFixed(0)}k–${(total*1.25/1000).toFixed(0)}k</strong></td></tr>
+      <tr id="rFxRow"><td>In USD</td><td><span id="rFx" style="color:var(--cream-2)">fetching…</span></td></tr>
       <tr><td>Not included</td><td>Flights from Islamabad, major trek permits</td></tr>
     </table></div>
     <div class="prac-card"><div class="prac-title">Getting There</div><table>
@@ -1048,7 +1099,7 @@ function mkDay(title, location, estCost, placeKey, foodKey, tip) {
   const p = PLACES[placeKey];
   if (!p) return { title, location, estCost, blocks:[{label:'Activities',items:[{t:'',a:'Explore the area',c:''}]}], food:'Ask your guesthouse for local recommendations.', stay:'See local options', tip };
   return {
-    title, location, estCost,
+    title, location, estCost, placeKey,
     blocks: [
       { label:'Morning', items: p.activities.morning },
       { label:'Afternoon', items: p.activities.afternoon },
@@ -1404,6 +1455,108 @@ window.addEventListener('resize', () => {
     document.getElementById('heroWrap').style.display = 'none';
   }
 });
+
+/* ════════════════════════════════════════════════════════
+   FREE API INTEGRATIONS
+════════════════════════════════════════════════════════ */
+
+// ── Wikipedia snippets ───────────────────────────────
+const WIKI_TITLES = {
+  gilgit:'Gilgit', hunza:'Hunza_Valley', attabad:'Attabad_Lake',
+  skardu:'Skardu', shigar:'Shigar,_Gilgit-Baltistan',
+  deosai:'Deosai_National_Park', fairy:'Fairy_Meadows',
+  naran:'Naran,_Pakistan',
+};
+function fetchWiki(placeKey, dayIdx) {
+  const title = WIKI_TITLES[placeKey];
+  if (!title) return;
+  fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`)
+    .then(r => r.json())
+    .then(d => {
+      const el = document.getElementById(`wiki-${dayIdx}`);
+      if (!el || !d.extract) return;
+      // First sentence only
+      const sentence = d.extract.split('. ')[0] + '.';
+      el.textContent = sentence.length > 140 ? sentence.slice(0, 137) + '…' : sentence;
+    }).catch(() => {});
+}
+
+// ── Exchange rates (open.er-api.com — free, no key) ──
+function fetchRates(totalPkr) {
+  fetch('https://open.er-api.com/v6/latest/PKR')
+    .then(r => r.json())
+    .then(d => {
+      if (!d.rates) return;
+      const usd = d.rates.USD, eur = d.rates.EUR, gbp = d.rates.GBP;
+      const lo = Math.round(totalPkr * usd);
+      const hi = Math.round(totalPkr * 1.25 * usd);
+      const loE = Math.round(totalPkr * eur);
+      const loG = Math.round(totalPkr * gbp);
+      const el = document.getElementById('rFx');
+      if (el) el.innerHTML = `<strong style="color:var(--cream)">$${lo}–$${hi} USD</strong> · €${loE} · £${loG}`;
+    }).catch(() => {
+      const el = document.getElementById('rFx');
+      if (el) el.textContent = 'unavailable';
+    });
+}
+
+// ── Sunrise / Sunset (sunrisesunset.io — free, no key) ──
+function fetchSunTimes(lat, lon, numDays) {
+  fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}&timezone=Asia/Karachi&date=today`)
+    .then(r => r.json())
+    .then(d => {
+      if (!d.results) return;
+      const { sunrise, sunset, golden_hour, dawn } = d.results;
+      const strip = `<span>🌅 Sunrise <strong>${sunrise}</strong></span><span>🌇 Sunset <strong>${sunset}</strong></span><span>📷 Golden hour <strong>${golden_hour}</strong></span><span>🌄 Dawn <strong>${dawn}</strong></span>`;
+      for (let i = 0; i < numDays; i++) {
+        const el = document.getElementById(`sun-${i}`);
+        if (el) el.innerHTML = strip;
+      }
+    }).catch(() => {});
+}
+
+// ── Nominatim geolocation (OSM — free, no key) ──────
+const HERE_COORDS = {
+  gilgit:[35.9208,74.3083], hunza:[36.3167,74.6500],
+  passu:[36.4750,74.8600], skardu:[35.2971,75.6333],
+  fairy:[35.3833,74.5667], chilas:[35.4167,74.1000],
+  naran:[34.7000,73.7000], shigar:[35.5167,75.7167],
+};
+function detectLocation() {
+  const btn = document.getElementById('geoBtn');
+  const status = document.getElementById('geoStatus');
+  if (!navigator.geolocation) { status.textContent = 'Geolocation not supported on this device.'; return; }
+  btn.textContent = '⏳ Detecting…';
+  btn.disabled = true;
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude: la, longitude: lo } = pos.coords;
+    // Find nearest GB location
+    let nearest = 'gilgit', minDist = Infinity;
+    Object.entries(HERE_COORDS).forEach(([k,[clat,clon]]) => {
+      const d = Math.hypot(la - clat, lo - clon);
+      if (d < minDist) { minDist = d; nearest = k; }
+    });
+    // Reverse geocode for display
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${la}&lon=${lo}&format=json`, {headers:{'Accept-Language':'en'}})
+      .then(r => r.json())
+      .then(data => {
+        const place = data.address?.city || data.address?.town || data.address?.village || data.address?.county || 'your location';
+        status.textContent = `📍 Detected: ${place}`;
+        btn.style.display = 'none';
+        // Small delay then show content
+        setTimeout(() => showHereContent(nearest), 400);
+      }).catch(() => {
+        status.textContent = '';
+        btn.textContent = '📍 Detect my location';
+        btn.disabled = false;
+        showHereContent(nearest);
+      });
+  }, err => {
+    status.textContent = err.code === 1 ? 'Location access denied. Pick manually below.' : 'Could not detect location. Pick manually below.';
+    btn.textContent = '📍 Detect my location';
+    btn.disabled = false;
+  }, { timeout: 8000 });
+}
 
 // Navbar
 const nav = document.getElementById('navbar');
