@@ -503,6 +503,16 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       <div class="result-title" id="rTitle"></div>
       <div class="result-sub" id="rSub"></div>
       <div class="result-pills" id="rPills"></div>
+      <div id="rWeather" style="margin:1.2rem auto 0;max-width:420px;display:none;">
+        <div id="rWxInner" style="background:var(--ink-3);border:1px solid rgba(200,144,58,.2);border-radius:6px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+          <div id="rWxIcon" style="font-size:2.2rem;line-height:1;"></div>
+          <div>
+            <div id="rWxTemp" style="font-family:var(--fd);font-size:2.2rem;color:var(--cream);line-height:1;"></div>
+            <div id="rWxDesc" style="font-size:.7rem;color:var(--cream-2);margin-top:.2rem;"></div>
+          </div>
+          <div id="rWxMeta" style="margin-left:auto;font-size:.68rem;color:var(--cream-2);text-align:right;"></div>
+        </div>
+      </div>
       <div class="result-actions">
         <button class="btn-pdf" onclick="window.print()">⬇ Download PDF</button>
         <button class="btn-restart" onclick="doRestart()">← Start Over</button>
@@ -936,6 +946,22 @@ function buildItinerary() {
   // Title
   const titles = { 'fly-gilgit':'Gilgit & Hunza','fly-skardu':'Skardu & Baltistan','road-kkh':'The KKH','road-babusar':'Naran to Karakoram' };
   document.getElementById('rTitle').innerHTML = `Your ${days}-Day<br><em>${titles[entry]}</em>`;
+
+  // Live weather for entry point
+  const entryCoords = {'fly-gilgit':[35.9208,74.3083],'fly-skardu':[35.2971,75.6333],'road-kkh':[35.9208,74.3083],'road-babusar':[34.7000,73.7000]};
+  const entryCity = {'fly-gilgit':'Gilgit','fly-skardu':'Skardu','road-kkh':'Gilgit','road-babusar':'Naran'};
+  const WMO_ICON2 = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',95:'⛈️',96:'⛈️',99:'⛈️'};
+  const WMO2 = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',53:'Drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',80:'Showers',95:'Thunderstorm'};
+  const [wlat,wlon] = entryCoords[entry];
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${wlat}&longitude=${wlon}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m&timezone=Asia%2FKarachi`)
+    .then(r=>r.json()).then(d=>{
+      const c = d.current;
+      document.getElementById('rWxIcon').textContent = WMO_ICON2[c.weather_code]||'🌡️';
+      document.getElementById('rWxTemp').textContent = `${Math.round(c.temperature_2m)}°C`;
+      document.getElementById('rWxDesc').textContent = `${entryCity[entry]} · ${WMO2[c.weather_code]||''}`;
+      document.getElementById('rWxMeta').innerHTML = `${Math.round(c.wind_speed_10m)} km/h wind<br>${c.relative_humidity_2m}% humidity`;
+      document.getElementById('rWeather').style.display='block';
+    }).catch(()=>{});
   document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}.`;
 
   const pills = [entryLabel[entry], styleLabel[style], `${days} days`, season.charAt(0).toUpperCase()+season.slice(1)];

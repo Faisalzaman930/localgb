@@ -18,6 +18,8 @@
 .step-body p { font-size: 0.82rem; color: var(--cream-2); line-height: 1.75; }
 .step-body .meta { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
 </head>
 <body>
 
@@ -57,7 +59,69 @@
       <div class="page-hero-meta-item">📍 <strong>Diamer District, GB</strong></div>
       <div class="page-hero-meta-item">⛰ <strong>3,300m</strong> elevation</div>
       <div class="page-hero-meta-item">🥾 <strong>1.5–2h</strong> hike from road</div>
-      <div class="page-hero-meta-item">🌿 <strong>Best: May – Sep</strong></div>
+      <div c
+<!-- LIVE CONDITIONS -->
+<div class="live-conditions">
+  <div class="live-inner">
+    <div class="live-weather" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+    <div class="live-map"><div id="map"></div></div>
+  </div>
+</div>
+<script>
+
+const WMO = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Rain showers',82:'Heavy showers',85:'Snow showers',86:'Heavy snow showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
+const WMO_ICON = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat, lon) {
+  const el = document.getElementById('wxWidget');
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Asia%2FKarachi&forecast_days=5`;
+    const r = await fetch(url);
+    const d = await r.json();
+    const c = d.current;
+    const dy = d.daily;
+    const code = c.weather_code;
+    const icon = WMO_ICON[code] || '🌡️';
+    const desc = WMO[code] || 'Unknown';
+    const forecastHTML = dy.time.slice(1).map((t,i) => {
+      const dayName = DAYS[new Date(t).getDay()];
+      const ic = WMO_ICON[dy.weather_code[i+1]] || '🌡️';
+      return `<div class="wx-day"><div class="wx-day-name">${dayName}</div><div class="wx-day-icon">${ic}</div><div class="wx-day-hi">${Math.round(dy.temperature_2m_max[i+1])}°</div><div class="wx-day-lo">${Math.round(dy.temperature_2m_min[i+1])}°</div></div>`;
+    }).join('');
+    el.innerHTML = `
+      <div class="wx-label">Live Conditions</div>
+      <div class="wx-now"><div class="wx-temp">${Math.round(c.temperature_2m)}<sup>°C</sup></div><div class="wx-icon">${icon}</div></div>
+      <div class="wx-desc">${desc}</div>
+      <div class="wx-meta">
+        <div class="wx-meta-item"><strong>${Math.round(c.wind_speed_10m)} km/h</strong>Wind</div>
+        <div class="wx-meta-item"><strong>${c.relative_humidity_2m}%</strong>Humidity</div>
+        <div class="wx-meta-item"><strong>${Math.round(dy.temperature_2m_min[0])}° / ${Math.round(dy.temperature_2m_max[0])}°</strong>Today</div>
+      </div>
+      <div class="wx-forecast">${forecastHTML}</div>`;
+  } catch(e) {
+    el.innerHTML = '<div class="wx-loading">Weather unavailable</div>';
+  }
+}
+loadWeather(35.3833, 74.5667);
+(function(){
+  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([35.38,74.57], 11);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
+  const pinIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',
+    iconSize: [12,12], iconAnchor: [6,6], popupAnchor: [0,-10]
+  });
+  L.marker([35.3833,74.5667], {icon:pinIcon}).addTo(map).bindPopup('<strong>Fairy Meadows</strong>3,300m · main camp area · wildflowers Jun–Aug');
+    L.marker([35.2333,74.5833], {icon:pinIcon}).addTo(map).bindPopup('<strong>Nanga Parbat Base Camp</strong>3,600m · 3-4h hike from Fairy Meadows');
+    L.marker([35.4333,74.5], {icon:pinIcon}).addTo(map).bindPopup('<strong>Raikot Bridge</strong>KKH trailhead · jeep ride starts here');
+    L.marker([35.35,74.5333], {icon:pinIcon}).addTo(map).bindPopup('<strong>Beyal Camp</strong>3,500m · intermediate camp on the way to base camp');
+    L.marker([35.3667,74.55], {icon:pinIcon}).addTo(map).bindPopup('<strong>Pine Forest</strong>Dense conifer forest · best photography zone');
+})();
+</script>
+lass="page-hero-meta-item">🌿 <strong>Best: May – Sep</strong></div>
     </div>
   </div>
 </section>
