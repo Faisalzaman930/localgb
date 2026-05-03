@@ -59,7 +59,7 @@ body { overflow-x: hidden; }
 .choices { display:grid; gap:.65rem; }
 .choices.c2 { grid-template-columns:1fr 1fr; }
 .choices.c3 { grid-template-columns:repeat(3,1fr); }
-@media(max-width:600px){ .choices.c2{grid-template-columns:1fr} .choices.c3{grid-template-columns:1fr 1fr} }
+@media(max-width:680px){ .choices.c2{grid-template-columns:1fr} .choices.c3{grid-template-columns:1fr 1fr} }
 
 .choice {
   background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:6px;
@@ -87,7 +87,7 @@ body { overflow-x: hidden; }
 
 /* ─── DURATION ───────────────────────────────────────── */
 .dur-wrap { background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:6px; padding:2.5rem; text-align:center; }
-.dur-num { font-family:var(--fd); font-size:5rem; color:var(--cream); line-height:1; margin-bottom:.2rem; }
+.dur-num { font-family:var(--fd); font-size:clamp(2.8rem,12vw,5rem); color:var(--cream); line-height:1; margin-bottom:.2rem; }
 .dur-unit { font-family:var(--fu); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; }
 input[type=range] { width:100%; -webkit-appearance:none; background:transparent; cursor:pointer; }
 input[type=range]::-webkit-slider-runnable-track { height:3px; background:rgba(255,255,255,.12); border-radius:2px; }
@@ -106,7 +106,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 .cal-month-label { font-family:var(--fd); font-size:1.15rem; color:var(--cream); }
 .cal-arrow { background:transparent; border:1px solid rgba(255,255,255,.12); border-radius:4px; color:var(--cream); font-size:1.4rem; line-height:1; padding:.1rem .6rem; cursor:pointer; transition:background .15s; }
 .cal-arrow:hover { background:rgba(200,144,58,.15); }
-.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; min-height:180px; }
 .cal-dow { text-align:center; font-family:var(--fu); font-size:.58rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); padding:.3rem 0; }
 .cal-cell { text-align:center; padding:.45rem .2rem; border-radius:4px; font-size:.78rem; color:var(--cream); cursor:pointer; transition:background .15s; }
 .cal-cell:hover:not(.past):not(.empty) { background:rgba(200,144,58,.18); }
@@ -260,12 +260,12 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
   }
 
   .wizard-bottom {
-    flex-shrink:0; padding:.85rem 1.25rem;
+    flex-shrink:0; padding:.85rem 1.25rem calc(.85rem + env(safe-area-inset-bottom, 0px));
     background:var(--ink); border-top:1px solid rgba(255,255,255,.06);
   }
 
-  .step { position:absolute; width:100%; }
-  .step.active { position:relative; }
+  .step { display:none !important; }
+  .step.active { display:block !important; }
 
   .progress { margin-bottom:1.5rem; }
 
@@ -895,11 +895,21 @@ function updateCalSelected() {
    NAVIGATION
 ════════════════════════════════════════════════════════ */
 document.getElementById('btnNext').addEventListener('click', () => {
-  if (cur === STEPS - 1) { buildItinerary(); return; }
-  // Skip season step (step 4) if dates are specific — season is auto-detected
+  // Guard: don't proceed if button should be disabled (catches edge cases)
+  if (document.getElementById('btnNext').disabled) return;
+
+  // Step 4 (season) or final step → build
+  if (cur >= STEPS - 1) { buildItinerary(); return; }
+
   let next = cur + 1;
+
+  // Skip season step when dates are chosen (season auto-set)
   if (next === 4 && S.useSpecificDates && S.season) { buildItinerary(); return; }
-  if (next < STEPS) goStep(next); else buildItinerary();
+
+  // Step 3 (regions) in dates mode: next button already says "Build My Itinerary"
+  if (cur === 3 && S.useSpecificDates && S.season && S.regions.size > 0) { buildItinerary(); return; }
+
+  goStep(next);
 });
 
 function goStep(to) {
@@ -909,34 +919,35 @@ function goStep(to) {
   updateProgress(cur);
   updateNav();
   if (cur === 2 && S.useSpecificDates) renderCal();
+  // Scroll to top of wizard content on every step change
   const ws = document.getElementById('wizardScroll');
   if (ws) ws.scrollTop = 0;
+  window.scrollTo({top: document.getElementById('wizardWrap').offsetTop - 80, behavior:'smooth'});
 }
 
 function updateNav() {
   const back = document.getElementById('backSlot');
   const next = document.getElementById('btnNext');
+
+  // Back button
+  back.innerHTML = cur === 0 ? '' : `<button class="btn-back" onclick="goStep(${cur-1})">← Back</button>`;
+
+  // Next button state per step
   if (cur === 0) {
-    back.innerHTML = '';
-  } else {
-    back.innerHTML = `<button class="btn-back" onclick="goStep(${cur-1})">← Back</button>`;
-  }
-  // Determine if next should be enabled
-  const needsSelection = { 0:'entry', 1:'style', 3:'regions', 4:'season' };
-  if (cur === 2) {
-    // Specific dates: need both start+end; flex: always ok
+    next.disabled = !S.entry;
+    next.textContent = 'Next →';
+  } else if (cur === 1) {
+    next.disabled = !S.style;
+    next.textContent = 'Next →';
+  } else if (cur === 2) {
     next.disabled = S.useSpecificDates ? !(S.startDate && S.endDate) : false;
     next.textContent = 'Next →';
-  } else if (cur === 4) {
-    next.disabled = !S[needsSelection[cur]];
-    next.textContent = 'Build My Itinerary →';
   } else if (cur === 3) {
     next.disabled = S.regions.size === 0;
-    // If dates chosen, next on step 3 goes straight to build
-    next.textContent = S.useSpecificDates && S.season ? 'Build My Itinerary →' : 'Next →';
-  } else if (needsSelection[cur]) {
-    next.disabled = !S[needsSelection[cur]];
-    next.textContent = 'Next →';
+    next.textContent = (S.useSpecificDates && S.season) ? 'Build My Itinerary →' : 'Next →';
+  } else if (cur === 4) {
+    next.disabled = !S.season;
+    next.textContent = 'Build My Itinerary →';
   }
 }
 
@@ -1401,7 +1412,7 @@ function makeDays(entry, style, days, regions, season, stayKey, foodKey) {
   const used = arr.length;
   if (days > used + 1) {
     const extra = days - used - 1;
-    for (let i=0; i<extra && i<3; i++) {
+    for (let i=0; i<extra; i++) {
       const basePlace = (entry==='fly-skardu') ? 'Skardu region' : 'Hunza Valley';
       arr.push({ title:`Rest Day — ${basePlace}`, location:basePlace, estCost:style==='budget'?'Rs 2,000–3,500':style==='luxury'?'Rs 15,000–25,000':'Rs 5,000–9,000',
         blocks:[
@@ -1655,6 +1666,9 @@ function doRestart() {
   document.getElementById('durFlexToggle').textContent="Don't have dates yet? Use the day slider instead →";
   renderCal(); updateCalSelected();
   updateProgress(0); updateNav();
+  const ws2 = document.getElementById('wizardScroll');
+  if (ws2) ws2.scrollTop = 0;
+  window.scrollTo({top:0, behavior:'smooth'});
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1689,10 +1703,11 @@ const OSM_BBOX = {
   naran:   '34.5,73.4,35.0,74.1',
 };
 const OSM_CACHE = {};
+const OSM_INFLIGHT = {}; // key → Promise, prevents duplicate requests
 
 async function fetchOSM(key) {
-  if (OSM_CACHE[key] !== undefined) return OSM_CACHE[key];
-  OSM_CACHE[key] = null; // mark as in-flight
+  if (OSM_CACHE[key]) return OSM_CACHE[key]; // cached result
+  if (OSM_INFLIGHT[key]) return OSM_INFLIGHT[key]; // reuse in-flight promise
   const bbox = OSM_BBOX[key];
   if (!bbox) return null;
   const q = `[out:json][timeout:25];(
@@ -1702,23 +1717,27 @@ async function fetchOSM(key) {
     node["historic"]["name"](${bbox});
     node["natural"~"^(peak|glacier|waterfall|lake)$"]["name"](${bbox});
   );out 40;`;
-  try {
-    const res = await fetch('https://overpass-api.de/api/interpreter', { method:'POST', body:q });
-    const data = await res.json();
-    const result = { hotels:[], restaurants:[], attractions:[] };
-    data.elements.forEach(el => {
-      const n = el.tags.name; if (!n) return;
-      const t = el.tags.tourism, a = el.tags.amenity, h = el.tags.historic, nat = el.tags.natural;
-      if (t==='hotel'||t==='guest_house'||t==='hostel')
-        result.hotels.push({ name:n, stars:el.tags.stars||null, type:t.replace('_',' ') });
-      else if (a==='restaurant'||a==='cafe')
-        result.restaurants.push({ name:n, cuisine:el.tags.cuisine||'', type:a });
-      else
-        result.attractions.push({ name:n, type:t||h||nat||'place' });
-    });
-    OSM_CACHE[key] = result;
-    return result;
-  } catch(e) { return null; }
+  const promise = (async () => {
+    try {
+      const res = await fetch('https://overpass-api.de/api/interpreter', { method:'POST', body:q });
+      const data = await res.json();
+      const result = { hotels:[], restaurants:[], attractions:[] };
+      data.elements.forEach(el => {
+        const n = el.tags.name; if (!n) return;
+        const t = el.tags.tourism, a = el.tags.amenity, h = el.tags.historic, nat = el.tags.natural;
+        if (t==='hotel'||t==='guest_house'||t==='hostel')
+          result.hotels.push({ name:n, stars:el.tags.stars||null, type:t.replace('_',' ') });
+        else if (a==='restaurant'||a==='cafe')
+          result.restaurants.push({ name:n, cuisine:el.tags.cuisine||'', type:a });
+        else
+          result.attractions.push({ name:n, type:t||h||nat||'place' });
+      });
+      OSM_CACHE[key] = result;
+      return result;
+    } catch(e) { return null; }
+  })();
+  OSM_INFLIGHT[key] = promise;
+  return promise;
 }
 
 function enhanceDayCard(dayIdx, key, osmData, stayKey, foodKey) {
@@ -1845,6 +1864,18 @@ const WX_WARN = [
 ];
 
 function fetchDailyWeather(lat, lon, startDate, endDate, numDays) {
+  // Open-Meteo only forecasts 16 days ahead
+  const daysAhead = Math.round((new Date(startDate) - new Date()) / 86400000);
+  if (daysAhead > 16) {
+    const note = document.createElement('div');
+    note.className = 'wx-amber wx-warn';
+    note.style = 'margin:0 0 1rem';
+    note.innerHTML = `📅 Weather forecast not available yet — Open-Meteo only covers 16 days ahead. Check back closer to your departure date.`;
+    const dc = document.getElementById('rDays');
+    if (dc) dc.insertAdjacentElement('beforebegin', note);
+    fetchSunTimes(lat, lon, numDays); // fall back to today's sunrise/sunset
+    return;
+  }
   const WMO_ICO = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
   const WMO_LBL = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max,precipitation_sum&timezone=Asia%2FKarachi&start_date=${startDate}&end_date=${endDate}`;
