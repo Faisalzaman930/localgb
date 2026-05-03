@@ -739,10 +739,6 @@ document.querySelectorAll('.choices:not(.multi) .choice').forEach(card => {
     const si = getStepIdx(g);
     enableNext(si);
     if (g.dataset.key === 'style' || g.dataset.key === 'season') checkBudget();
-    // Auto-advance on entry and style steps after brief highlight
-    if ((g.dataset.key === 'entry' || g.dataset.key === 'style') && si === cur) {
-      setTimeout(() => { if (cur < STEPS - 1) goStep(cur + 1); }, 260);
-    }
   });
 });
 
@@ -912,8 +908,9 @@ function goStep(to) {
   cur = to;
   updateProgress(cur);
   updateNav();
-  if (isMobile()) document.getElementById('wizardScroll').scrollTop = 0;
-  else window.scrollTo({top:0,behavior:'smooth'});
+  if (cur === 2 && S.useSpecificDates) renderCal();
+  const ws = document.getElementById('wizardScroll');
+  if (ws) ws.scrollTop = 0;
 }
 
 function updateNav() {
