@@ -1409,22 +1409,77 @@ function makeDays(entry, style, days, regions, season, stayKey, foodKey) {
     if (regions.includes('hunza') && days >= 4) arr.push(mkDay('Hunza Valley','Gilgit → Karimabad',cost,'hunza',foodKey,'After Babusar and Chilas, arriving in green-terraced Hunza feels like a different planet.'));
   }
 
-  // Pad with slow/rest days if needed
+  // Pad with varied extra days if needed
+  const extraDayOptions = entry === 'fly-skardu' ? [
+    { title:'Satpara Lake & Kharpocho Fort', location:'Satpara · 2,636m · 12km from Skardu',
+      blocks:[
+        { label:'Morning', items:[{t:'08:00',a:'<strong>Satpara Lake</strong> — 12km south of Skardu. The lake is a reservoir now but still beautiful: clear turquoise water surrounded by rocky peaks.',c:'Free'},{t:'09:30',a:'<strong>Old Satpara</strong> — just past the lake dam, a small village with traditional Balti stone houses almost unchanged for centuries.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'13:00',a:'<strong>Kharpocho Fort</strong> — the rock fort above Skardu city. 20-minute climb from the bazaar. Views of the entire Skardu valley and the Indus.',c:'Free'},{t:'15:00',a:'<strong>Skardu Bazaar</strong> — the main commercial street. Gems and minerals from the surrounding mountains are sold here cheaply.',c:'Shopping'}]},
+        { label:'Evening', items:[{t:'19:00',a:'Dinner at a proper restaurant in Skardu. Try mamtu (Balti dumplings) if available.',c:'Rs 500–800'}]},
+      ],
+      food:'Skardu has the best restaurant options in Baltistan. This is the evening to try somewhere new.',
+      stay:'Same guesthouse as previous night.',
+      tip:'The gem shops in Skardu bazaar sell aquamarine, tourmaline, and topaz directly from local miners. Prices are a fraction of what they cost in Lahore or Karachi.',
+    },
+    { title:'Manthokha Waterfall & Kharmang', location:'Kharmang Valley · 2,800m · 80km from Skardu',
+      blocks:[
+        { label:'Morning', items:[{t:'07:30',a:'Early start for Kharmang Valley, south of Skardu along the Indus. The road follows the river through narrow gorge sections.',c:'—'},{t:'09:30',a:'<strong>Manthokha Waterfall</strong> — 70m high, crashing through a narrow canyon. A short walk from the road. Cold spray on a hot day is welcome.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'12:00',a:'<strong>Kharmang Bazaar</strong> lunch — small town with basic food, but the setting (valley surrounded by granite walls) is dramatic.',c:'Rs 300–600'},{t:'14:00',a:'Return drive to Skardu. Stop at the Indus viewpoint 30km before town — the river is widest here and the gravel bars are white.',c:'Free'}]},
+        { label:'Evening', items:[{t:'18:30',a:'Rest and sunset from your guesthouse rooftop or any high point near town.',c:'Free'}]},
+      ],
+      food:'Pack lunch from your guesthouse or eat in Kharmang — basic but authentic.',
+      stay:'Same guesthouse as previous night.',
+      tip:'Kharmang is 2h from Skardu on a reasonable road. It feels completely off-circuit — you won\'t see other tourists.',
+    },
+    { title:'Shangrila Resort & Lower Kachura', location:'Kachura · 2,344m · 30km from Skardu',
+      blocks:[
+        { label:'Morning', items:[{t:'09:00',a:'<strong>Shangrila Resort (Shangri-La)</strong> — the historic resort on Lower Kachura Lake. You don\'t need to stay here to walk the grounds. The famous DC-3 aircraft cafe is here.',c:'Entry free'},{t:'10:30',a:'<strong>Lower Kachura Lake</strong> — walk the shoreline. The water is cold even in summer. Early morning has the best light.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'13:00',a:'Drive to <strong>Upper Kachura Lake</strong> (5km further). Smaller, quieter, with less infrastructure and arguably better views.',c:'Free'},{t:'15:00',a:'<strong>Skardu Fort viewpoint</strong> on the return — the old fort visible from the road has a narrow path to the top.',c:'Free'}]},
+        { label:'Evening', items:[{t:'19:00',a:'Skardu town for dinner. Last chance for Balti cuisine before departure.',c:'Rs 500–900'}]},
+      ],
+      food:'The Shangrila restaurant is overpriced for tourists. Eat at the lake\'s edge with food from a dhaba on the main road instead.',
+      stay:'Same guesthouse as previous night.',
+      tip:'Upper Kachura is 5 minutes past Lower Kachura and almost always quieter. Worth the short detour.',
+    },
+  ] : [
+    { title:'Baltit Fort & Karimabad Lanes', location:'Karimabad · 2,438m',
+      blocks:[
+        { label:'Morning', items:[{t:'09:00',a:'<strong>Baltit Fort</strong> — the 700-year-old Hunza royal palace. The interior has been restored and is genuinely impressive. Guide on-site is worth hiring (Rs 500). Allow 1.5h.',c:'Rs 500 entry'},{t:'10:30',a:'<strong>Karimabad old lanes</strong> — below the fort, narrow alleys between dry stone walls and traditional wooden-framed houses. Largely empty of tourists.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'13:00',a:'<strong>Altit Village</strong> — 5km from Karimabad. Older than Karimabad, less visited. The fortified village walls and the Altit Fort are intact.',c:'Rs 300 entry'},{t:'15:00',a:'Karimabad bazaar — local dried apricots, walnuts, handmade hats (Hunza caps). This is the right place to buy souvenirs.',c:'Shopping'}]},
+        { label:'Evening', items:[{t:'19:00',a:'Dinner at a rooftop restaurant in Karimabad. Hunza trout (when available) or daal with chapati.',c:'Rs 600–1,200'}]},
+      ],
+      food:'Café de Hunza is the most consistent for Western food. For local, ask your guesthouse host to cook — most will for a fee.',
+      stay:'Same guesthouse as previous night.',
+      tip:'The Baltit Fort guides know the Mir family history in detail. The political stories they tell aren\'t in any guidebook.',
+    },
+    { title:'Eagle\'s Nest Viewpoint & Duikar', location:'Duikar · 2,900m · above Karimabad',
+      blocks:[
+        { label:'Morning', items:[{t:'06:30',a:'<strong>Eagle\'s Nest sunrise</strong> — hire a jeep from Karimabad the evening before (Rs 1,500–2,500 return). At dawn, the view takes in Rakaposhi, Ladyfinger Peak, Ultar Sar, and Golden Peak simultaneously.',c:'Jeep cost'},{t:'08:30',a:'<strong>Duikar village</strong> below Eagle\'s Nest — traditional apricot terraces, women harvesting (in season), old wooden homes.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'12:00',a:'Return to Karimabad. Late breakfast at a guesthouse cafe.',c:'Rs 300–700'},{t:'14:00',a:'<strong>Ganish Village</strong> — the oldest continuously inhabited village in Hunza. 900-year-old watchtowers still standing.',c:'Free'}]},
+        { label:'Evening', items:[{t:'18:30',a:'Rest evening. Sit outside. The Karakoram range turns pink at sunset from Karimabad.',c:'Free'}]},
+      ],
+      food:'Bring biscuits and water for the early morning. The Eagle\'s Nest hotel sells basic chai.',
+      stay:'Same guesthouse as previous night.',
+      tip:'Go to Eagle\'s Nest on a clear night too — the Milky Way above the peaks is accessible without any equipment from here.',
+    },
+    { title:'Borith Lake & Passu Cones Walk', location:'Passu · 2,600m · 30km above Karimabad',
+      blocks:[
+        { label:'Morning', items:[{t:'08:00',a:'Drive from Karimabad toward Passu (30km, 40min). The KKH north of Attabad Lake is the finest stretch of road in Pakistan.',c:'—'},{t:'09:00',a:'<strong>Passu Cones</strong> — the signature jagged peaks of upper Hunza. The classic view is from the suspension bridge at Hussaini. Walk the swaying bridge over the Hunza River.',c:'Free'}]},
+        { label:'Afternoon', items:[{t:'12:00',a:'<strong>Borith Lake</strong> — 2km walk from Passu village. A flat glacier-fed lake surrounded by open meadow and peaks. Migratory birds stop here.',c:'Free'},{t:'14:30',a:'Return to Karimabad via Attabad Lake. Stop at the tunnel viewpoint — the lake colour changes through the day.',c:'Free'}]},
+        { label:'Evening', items:[{t:'19:00',a:'Dinner in Karimabad.',c:'Rs 500–900'}]},
+      ],
+      food:'Passu has one or two basic guesthouses with food. Eat there for lunch — the view from the dining terrace is better than any Karimabad restaurant.',
+      stay:'Same guesthouse as previous night.',
+      tip:'The Hussaini suspension bridge sways significantly. If nervous, wait for a local to cross first and mirror their pace.',
+    },
+  ];
+
   const used = arr.length;
   if (days > used + 1) {
     const extra = days - used - 1;
     for (let i=0; i<extra; i++) {
-      const basePlace = (entry==='fly-skardu') ? 'Skardu region' : 'Hunza Valley';
-      arr.push({ title:`Rest Day — ${basePlace}`, location:basePlace, estCost:style==='budget'?'Rs 2,000–3,500':style==='luxury'?'Rs 15,000–25,000':'Rs 5,000–9,000',
-        blocks:[
-          { label:'Morning', items:[{t:'',a:`<strong>Slow morning</strong> — this is not laziness. Moving every day in GB is exhausting. A rest day lets you actually absorb where you are.`,c:''},{t:'',a:'Short walk to the nearest viewpoint or orchard. Ask your guesthouse host where locals go — not the spots in the guidebook.',c:'Free'}]},
-          { label:'Afternoon', items:[{t:'',a:'Local market exploration. Talk to shopkeepers (they speak some English). Local honey, dried apricot varieties, handmade items.',c:'Shopping'},{t:'',a:'If energy returns: an unplanned valley walk, local family visit (ask guesthouse), or a teahouse conversation.',c:'Free'}]},
-          { label:'Evening', items:[{t:'',a:'Long dinner. Try to eat somewhere you haven\'t been. Ask what\'s local today, not what\'s on the menu.',c:'Varies'}]},
-        ],
-        food: 'Ask your host what the household is cooking tonight. In most GB guesthouses this is an option and always the best meal.',
-        stay: 'Same as previous night.',
-        tip: 'The best GB memories are usually unplanned. Leave tomorrow\'s itinerary open.',
-      });
+      const opt = extraDayOptions[i % extraDayOptions.length];
+      arr.push({ ...opt, estCost: style==='budget'?'Rs 2,000–3,500':style==='luxury'?'Rs 15,000–25,000':'Rs 5,000–9,000' });
     }
   }
 
