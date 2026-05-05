@@ -296,24 +296,53 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 
 /* ─── PRINT / PDF ────────────────────────────────────── */
 @media print {
-  nav, footer, .result-actions, .btn-restart, .progress, #wizardWrap, .already-btn { display:none !important; }
-  body { background:#fff; color:#111; }
-  .result-title { color:#111; font-size:2rem; }
-  .result-sub, .result-pill { color:#444; border-color:#ccc; background:none; }
-  .day-card { border:1px solid #ddd; break-inside:avoid; margin-bottom:1rem; }
-  .day-hd { background:none; border-bottom:1px solid #eee; }
-  .day-n { color:#bbb; }
-  .day-t { color:#111; }
-  .day-l, .act-time { color:#888; }
-  .activity-list li { color:#333; border-bottom:1px solid #f0f0f0; }
-  .day-bd { display:block !important; }
-  .day-food, .day-stay { background:#f9f9f9; }
-  .day-tip { background:#fff7ee; }
-  .prac-card { border:1px solid #ddd; break-inside:avoid; }
-  .prac-card td { color:#333; border-bottom:1px solid #eee; }
-  .result-hero { border-bottom:1px solid #ddd; }
-  .route-strip { display:none; }
-  @page { margin:1.5cm; }
+  nav, footer, .result-actions, .btn-restart, .progress,
+  #wizardWrap, .already-btn, #restoreBanner, .route-strip,
+  .day-chevron, #rWeather, #rFlightStatus, #rLiveFlights,
+  .osm-section { display:none !important; }
+
+  * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body { background:#fff !important; color:#111 !important; font-size:11pt; }
+
+  .result-hero { border-bottom:2px solid #222; padding-bottom:1rem; margin-bottom:1.5rem; }
+  .result-title { color:#111 !important; font-size:22pt; line-height:1.1; }
+  .result-sub { color:#444 !important; font-size:10pt; }
+  .result-pill { color:#555 !important; border:1px solid #ccc !important; background:#f5f5f5 !important; font-size:8pt; }
+
+  .day-card { border:1px solid #ddd !important; background:#fff !important;
+    break-inside:avoid; page-break-inside:avoid; margin-bottom:1.2rem; border-radius:0; }
+  .day-hd { background:#f8f8f8 !important; border-bottom:1px solid #ddd; padding:.6rem .8rem; }
+  .day-n { color:#999 !important; font-size:9pt; }
+  .day-t { color:#111 !important; font-size:12pt; font-weight:700; }
+  .day-l { color:#666 !important; font-size:9pt; }
+  .day-cost { color:#444 !important; font-size:9pt; }
+  .day-bd { display:block !important; padding:.8rem; }
+
+  .time-block { break-inside:avoid; margin-bottom:.6rem; }
+  .time-block-label { color:#888 !important; font-size:8pt; text-transform:uppercase; letter-spacing:.08em; border-bottom:1px solid #eee; padding-bottom:.2rem; margin-bottom:.4rem; }
+  .activity-list li { color:#333 !important; border-bottom:1px solid #f5f5f5; padding:.25rem 0; font-size:9.5pt; }
+  .act-time { color:#999 !important; font-size:8.5pt; min-width:38px; }
+  .act-cost { color:#666 !important; font-size:8pt; }
+
+  .day-food { background:#fafafa !important; border:1px solid #eee; font-size:9pt; color:#333 !important; }
+  .day-stay { background:#f5f5f5 !important; font-size:9pt; color:#333 !important; }
+  .day-tip { background:#fffbf0 !important; border-left:3px solid #c8903a !important; font-size:9pt; color:#444 !important; }
+  .day-sun-strip { color:#666 !important; font-size:8.5pt; }
+
+  .prac-grid { grid-template-columns:1fr 1fr; gap:.8rem; }
+  .prac-card { border:1px solid #ddd !important; background:#fff !important; break-inside:avoid; }
+  .prac-title { color:#111 !important; font-size:10pt; border-bottom:1px solid #eee; }
+  .prac-card td { color:#333 !important; border-bottom:1px solid #f5f5f5; font-size:9pt; }
+
+  .budget-alert { background:#fff8e6 !important; border:1px solid #f0c040 !important; color:#555 !important; font-size:9pt; }
+
+  @page { margin:1.5cm 1.8cm; size:A4; }
+
+  /* Print header with site name */
+  .result-hero::before {
+    content: 'LocalGB · localgb.pk · Your GB Trip Planner';
+    display:block; font-size:8pt; color:#aaa; margin-bottom:.5rem; letter-spacing:.05em;
+  }
 }
 
 /* ─── OSM VENUE CARDS ────────────────────────────────── */
@@ -391,6 +420,10 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 /* ─── WHATSAPP BUTTON ────────────────────────────────── */
 .btn-whatsapp { background:#25D366; color:#fff; border:none; padding:.55rem 1.2rem; border-radius:4px; font-size:.75rem; font-weight:600; cursor:pointer; font-family:var(--fu); letter-spacing:.05em; }
 .btn-whatsapp:hover { background:#1ebe57; }
+
+/* ─── COPY BUTTON ────────────────────────────────────── */
+.btn-copy { background:var(--ink-3); color:var(--cream); border:1px solid rgba(255,255,255,.12); padding:.55rem 1.2rem; border-radius:4px; font-size:.75rem; font-weight:600; cursor:pointer; font-family:var(--fu); letter-spacing:.05em; }
+.btn-copy:hover { border-color:var(--gold); color:var(--gold); }
 
 /* ─── PACK CHECKLIST ─────────────────────────────────── */
 .prac-card table tr.packed { opacity:.4; text-decoration:line-through; }
@@ -669,6 +702,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       </div>
     </div>
 
+  <div id="stepFeedback" style="text-align:center;font-size:.75rem;color:var(--gold);min-height:1.2rem;margin-top:.5rem;opacity:.8;"></div>
   </div><!-- /wizardInner -->
   </div><!-- /wizardScroll -->
 
@@ -710,6 +744,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       <div class="result-actions">
         <button class="btn-pdf" onclick="window.print()">⬇ Download PDF</button>
         <button class="btn-whatsapp" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
+        <button class="btn-copy" onclick="copyItinerary()">📋 Copy as Text</button>
         <button class="btn-restart" onclick="doRestart()">← Start Over</button>
       </div>
     </div>
@@ -734,6 +769,15 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     <p class="step-sub" style="text-align:left">Pick your current location — we'll show nearby activities, food, and your next move.</p>
     <button class="geo-btn" id="geoBtn" onclick="detectLocation()">📍 Detect my location</button>
     <div id="geoStatus" style="font-size:.7rem;color:var(--cream-2);margin-bottom:1rem;min-height:1.2rem;"></div>
+    <div style="margin-bottom:1.5rem;">
+      <div style="position:relative;max-width:380px;">
+        <input type="text" id="placeSearch" placeholder="Search a place in GB…"
+          style="width:100%;background:var(--ink-3);border:1px solid rgba(255,255,255,.12);color:var(--cream);padding:.65rem 1rem .65rem 2.4rem;border-radius:5px;font-size:.85rem;outline:none;box-sizing:border-box;"
+          oninput="onPlaceSearch(this.value)" autocomplete="off">
+        <span style="position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:var(--cream-2);font-size:.9rem;">🔍</span>
+      </div>
+      <div id="placeSearchResults" style="background:var(--ink-3);border:1px solid rgba(255,255,255,.1);border-radius:5px;margin-top:.3rem;max-width:380px;display:none;max-height:200px;overflow-y:auto;"></div>
+    </div>
     <div class="here-grid" id="hereGrid"></div>
     <div class="here-content" id="hereContent"></div>
   </div>
@@ -985,6 +1029,18 @@ function goStep(to) {
   const ws = document.getElementById('wizardScroll');
   if (ws) ws.scrollTop = 0;
   window.scrollTo({top: document.getElementById('wizardWrap').offsetTop - 80, behavior:'smooth'});
+  // Step feedback micro-confirmations
+  const feedbacks = {
+    1: { 'fly-gilgit':'✈ Flying into Gilgit — Hunza route unlocked', 'fly-skardu':'✈ Flying into Skardu — K2 & Baltistan route', 'road-kkh':'🚗 KKH route — classic Pakistan road trip', 'road-babusar':'🏔 Babusar route — dramatic mountain crossing' },
+    2: { 'adventure':'🧗 Adventure mode — treks and base camps prioritised', 'photography':'📸 Photography mode — golden hour stops included', 'cultural':'🏛 Culture mode — forts, villages, Silk Road history', 'luxury':'🥂 Luxury mode — Serena-level accommodation', 'family':'👨‍👩‍👧 Family mode — accessible sights, no extreme altitude', 'budget':'🎒 Budget mode — max distance per rupee' },
+  };
+  const fb = document.getElementById('stepFeedback');
+  if (fb) {
+    if (to === 1 && S.entry) fb.textContent = feedbacks[1][S.entry] || '';
+    else if (to === 2 && S.style) fb.textContent = feedbacks[2][S.style] || '';
+    else if (to === 3 && S.days) fb.textContent = `📅 ${S.days} days planned`;
+    else fb.textContent = '';
+  }
 }
 
 function updateNav() {
@@ -1330,6 +1386,13 @@ function buildItinerary() {
   r.forEach(reg => pills.push({hunza:'Hunza',skardu:'Skardu',fairy:'Fairy Meadows',hidden:'Hidden Valleys'}[reg]));
   document.getElementById('rPills').innerHTML = pills.map(p=>`<div class="result-pill">${p}</div>`).join('');
 
+  // Best time outdoors note
+  const wakeStr = `${String(S.wakeHour).padStart(2,'0')}:${String(S.wakeMin).padStart(2,'0')}`;
+  const outdoorWindow = S.wakeHour <= 6 ? '06:00–12:00' : S.wakeHour <= 8 ? '07:00–13:00' : '09:00–14:00';
+  const uvNote = (season === 'summer' || season === 'spring') ? ' UV is extreme — cover up after 10am.' : '';
+  const rSub2 = document.getElementById('rSub');
+  if (rSub2) rSub2.textContent += ` Wake ${wakeStr} · Best outdoor hours: ${outdoorWindow}.${uvNote}`;
+
   // Route strip
   const routeNodes = { 'fly-gilgit':['ISB','Gilgit','Hunza','Passu','Khunjerab'],'fly-skardu':['ISB','Skardu','Shigar','Deosai','Hunza'],'road-kkh':['ISB','Besham','Chilas','Fairy Meadows','Gilgit','Hunza'],'road-babusar':['ISB','Naran','Babusar','Chilas','Gilgit','Hunza'] };
   const nodes = routeNodes[entry] || routeNodes['fly-gilgit'];
@@ -1377,6 +1440,7 @@ function buildItinerary() {
         <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
       </div>
       <div class="day-wx" id="wx-${i}"></div>
+      <div id="best-hours-${i}" style="padding:.2rem 1rem .3rem;"></div>
       <div class="day-sun" id="sun-${i}"></div>
       <div class="day-bd" id="bd-${i}" style="display:${i===0?'block':'none'}">${bdHtml}</div>
     </div>`;
@@ -2137,7 +2201,7 @@ function fetchDailyWeather(lat, lon, startDate, endDate, numDays) {
   }
   const WMO_ICO = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
   const WMO_LBL = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max,precipitation_sum&timezone=Asia%2FKarachi&start_date=${startDate}&end_date=${endDate}`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,weather_code,wind_speed_10m_max,precipitation_sum,uv_index_max,precipitation_probability_max&hourly=temperature_2m,precipitation_probability,uv_index&timezone=Asia%2FKarachi&start_date=${startDate}&end_date=${endDate}`;
   fetch(url).then(r=>r.json()).then(d=>{
     if (!d.daily) return;
     const dy = d.daily;
@@ -2149,17 +2213,44 @@ function fetchDailyWeather(lat, lon, startDate, endDate, numDays) {
       const precip = dy.precipitation_sum[i];
       const icon = WMO_ICO[code] || '🌡️';
       const label = WMO_LBL[code] || '';
+      const uv = dy.uv_index_max ? Math.round(dy.uv_index_max[i]) : null;
+      const rainProb = dy.precipitation_probability_max ? dy.precipitation_probability_max[i] : null;
+      const uvLabel = uv === null ? '' : uv <= 2 ? 'Low' : uv <= 5 ? 'Moderate' : uv <= 7 ? 'High' : uv <= 10 ? 'Very High' : 'Extreme';
+      const uvColor = uv === null ? '' : uv <= 2 ? '#4CAF50' : uv <= 5 ? '#FFC107' : uv <= 7 ? '#FF9800' : '#f44336';
+      const uvSpan = uv !== null ? `<span style="color:${uvColor}">☀️ UV ${uv} <em style="font-size:.65rem">${uvLabel}</em></span>` : '';
+      const rainSpan = rainProb !== null ? `<span>🌂 ${rainProb}% rain chance</span>` : '';
       const wxEl = document.getElementById(`wx-${i}`);
       const sunEl = document.getElementById(`sun-${i}`);
       if (wxEl) {
         // Build weather strip
-        let strip = `<span>${icon} <strong>${label}</strong></span><span>↑${hi}° ↓${lo}°</span><span>💨 ${wind} km/h</span><span>🌧 ${precip} mm</span>`;
+        let strip = `<span>${icon} <strong>${label}</strong></span><span>↑${hi}° ↓${lo}°</span><span>💨 ${wind} km/h</span><span>🌧 ${precip}mm</span>${uvSpan}${rainSpan}`;
         // Warning banner
-        const warn = WX_WARN.find(w => w.test(code)) || (wind > 60 ? { cls:'wx-amber', icon:'💨', msg:`Strong winds (${wind} km/h) forecast — high ridge and pass crossings not advised.` } : null);
+        let warn = WX_WARN.find(w => w.test(code)) || (wind > 60 ? { cls:'wx-amber', icon:'💨', msg:`Strong winds (${wind} km/h) forecast — high ridge and pass crossings not advised.` } : null);
+        if (uv > 7 && !warn) warn = { cls:'wx-amber', icon:'🕶️', msg:`UV index ${uv} (${uvLabel}) — sunscreen SPF 50+ mandatory. Cover exposed skin between 10am–3pm.` };
         if (warn) {
           wxEl.innerHTML = `<div class="wx-warn ${warn.cls}">${warn.icon} ${warn.msg}</div><div class="day-sun-strip">${strip}</div>`;
         } else {
           wxEl.innerHTML = `<div class="day-sun-strip">${strip}</div>`;
+        }
+      }
+      // Best outdoor hours from hourly data
+      if (d.hourly && d.hourly.time) {
+        const dayPrefix = dy.time[i];
+        const hourIndices = d.hourly.time.map((t,idx)=>t.startsWith(dayPrefix)?idx:-1).filter(x=>x>=0);
+        if (hourIndices.length) {
+          let bestScore = Infinity, bestHour = 8;
+          hourIndices.forEach(idx => {
+            const h = parseInt(d.hourly.time[idx].slice(11,13));
+            if (h < 6 || h > 18) return;
+            const rain = d.hourly.precipitation_probability[idx] || 0;
+            const temp = d.hourly.temperature_2m[idx] || 15;
+            const score = rain + (temp > 32 ? 20 : 0) + (temp < 5 ? 15 : 0);
+            if (score < bestScore) { bestScore = score; bestHour = h; }
+          });
+          const bestEnd = bestHour + 3;
+          const fmt = h => `${String(h).padStart(2,'0')}:00`;
+          const bestEl = document.getElementById(`best-hours-${i}`);
+          if (bestEl) bestEl.innerHTML = `<span style="font-size:.7rem;color:var(--gold)">🕐 Best outdoor window: <strong>${fmt(bestHour)}–${fmt(bestEnd)}</strong></span>`;
         }
       }
       // Also fetch per-day sunrise/sunset
@@ -2311,6 +2402,76 @@ function detectLocation() {
       fallbackToIP();
     }
   }, { timeout: 8000 });
+}
+
+/* ════════════════════════════════════════════════════════
+   COPY ITINERARY AS TEXT
+════════════════════════════════════════════════════════ */
+function copyItinerary() {
+  const title = document.getElementById('rTitle').textContent.replace(/\s+/g,' ').trim();
+  const sub = document.getElementById('rSub').textContent;
+  const days = [...document.querySelectorAll('.day-card')].map(card => {
+    const num = card.querySelector('.day-n')?.textContent || '';
+    const t = card.querySelector('.day-t')?.textContent || '';
+    const loc = card.querySelector('.day-l')?.textContent || '';
+    const cost = card.querySelector('.day-cost')?.textContent?.replace('▾','').trim() || '';
+    const activities = [...card.querySelectorAll('.act-body')].map(a => '  • ' + a.textContent).join('\n');
+    const tip = card.querySelector('.day-tip')?.textContent || '';
+    return `Day ${num} — ${t}\n${loc} · ${cost}\n${activities}${tip ? '\n  💡 ' + tip : ''}`;
+  }).join('\n\n');
+  const text = `${title}\n${sub}\n\nPlanned with LocalGB (localgb.pk)\n\n${days}`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = orig, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+/* ════════════════════════════════════════════════════════
+   NOMINATIM PLACE SEARCH
+════════════════════════════════════════════════════════ */
+let placeSearchTimer = null;
+function onPlaceSearch(val) {
+  const res = document.getElementById('placeSearchResults');
+  clearTimeout(placeSearchTimer);
+  if (val.length < 2) { res.style.display = 'none'; return; }
+  placeSearchTimer = setTimeout(() => {
+    fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(val+' Gilgit-Baltistan Pakistan')}&format=json&limit=5&addressdetails=1`, {headers:{'Accept-Language':'en'}})
+      .then(r=>r.json())
+      .then(data => {
+        if (!data.length) { res.innerHTML = '<div style="padding:.6rem 1rem;font-size:.8rem;color:var(--cream-2)">No results found</div>'; res.style.display='block'; return; }
+        res.innerHTML = data.map(p => {
+          const name = p.display_name.split(',').slice(0,3).join(', ');
+          return `<div onclick="selectPlace(${p.lat},${p.lon},'${name.replace(/'/g,"\\'")}',this)"
+            style="padding:.6rem 1rem;font-size:.8rem;color:var(--cream-2);cursor:pointer;border-bottom:1px solid rgba(255,255,255,.05);"
+            onmouseover="this.style.background='rgba(200,144,58,.1)'"
+            onmouseout="this.style.background=''">${name}</div>`;
+        }).join('');
+        res.style.display = 'block';
+      }).catch(()=>{});
+  }, 400);
+}
+
+function selectPlace(lat, lon, name, el) {
+  document.getElementById('placeSearch').value = name;
+  document.getElementById('placeSearchResults').style.display = 'none';
+  // Find nearest known location
+  let nearest = 'gilgit', minDist = Infinity;
+  Object.entries(HERE_COORDS).forEach(([k,[clat,clon]]) => {
+    const d = Math.hypot(lat - clat, lon - clon);
+    if (d < minDist) { minDist = d; nearest = k; }
+  });
+  document.getElementById('geoStatus').textContent = `📍 ${name}`;
+  showHereContent(nearest);
 }
 
 // Navbar
