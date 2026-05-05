@@ -656,6 +656,8 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     </div>
     <div class="route-strip" id="rRoute"></div>
     <div id="rWarn"></div>
+    <div id="rFlightStatus" style="display:none;margin-bottom:1.5rem;"></div>
+    <div id="rLiveFlights" style="display:none;margin-bottom:1.5rem;"></div>
     <div class="day-cards" id="rDays"></div>
     <div class="prac-grid" id="rPrac"></div>
   </div>
@@ -1267,6 +1269,11 @@ function buildItinerary() {
 
   // ── API calls — all vars now defined ──────────────────
   fetchRates(total);
+  if (entry === 'fly-gilgit' || entry === 'fly-skardu') {
+    const airport = entry === 'fly-gilgit' ? 'GIL' : 'KDU';
+    fetchFlightStatus(airport);
+    fetchLiveFlights(airport);
+  }
   if (S.useSpecificDates && S.startDate && S.endDate) {
     fetchDailyWeather(wlat, wlon, S.startDate, S.endDate, itinerary.length);
   } else {
@@ -1973,6 +1980,76 @@ function fetchDailyWeather(lat, lon, startDate, endDate, numDays) {
   }).catch(()=>{});
 }
 
+// ── Aviationstack — flight status for Gilgit/Skardu ──
+// Free tier: ~100 req/month. Key stored client-side (public, read-only).
+const AVIATION_KEY = 'YOUR_AVIATIONSTACK_KEY'; // replace with your free key from aviationstack.com
+async function fetchFlightStatus(iata) {
+  const el = document.getElementById('rFlightStatus');
+  if (!el) return;
+  const airportName = iata === 'GIL' ? 'Gilgit' : 'Skardu';
+  try {
+    const r = await fetch(`http://api.aviationstack.com/v1/flights?access_key=${AVIATION_KEY}&arr_iata=${iata}&limit=3`);
+    const d = await r.json();
+    if (!d.data || !d.data.length) throw new Error('no data');
+    const flights = d.data.slice(0, 3);
+    const rows = flights.map(f => {
+      const status = f.flight_status;
+      const dot = status === 'active' ? '🟢' : status === 'landed' ? '✅' : status === 'cancelled' ? '🔴' : '🟡';
+      const dep = f.departure?.scheduled ? new Date(f.departure.scheduled).toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'}) : '—';
+      const airline = f.airline?.name || 'Unknown airline';
+      const fn = f.flight?.iata || '';
+      return `<tr><td>${dot} ${fn}</td><td>${airline}</td><td>Dep ${dep}</td><td style="text-transform:capitalize">${status||'—'}</td></tr>`;
+    }).join('');
+    el.style.display = 'block';
+    el.innerHTML = `<div style="background:var(--ink-3);border:1px solid rgba(200,144,58,.2);border-radius:6px;padding:1.2rem 1.4rem;">
+      <div style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;">✈ Flights to ${airportName} Today</div>
+      <table style="width:100%;font-size:.75rem;color:var(--cream-2);border-collapse:collapse;">
+        <thead><tr style="color:var(--cream);opacity:.5;font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;"><th style="text-align:left;padding-bottom:.4rem">Flight</th><th style="text-align:left">Airline</th><th style="text-align:left">Time</th><th style="text-align:left">Status</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div style="font-size:.65rem;color:var(--cream-2);opacity:.5;margin-top:.8rem;">Mountain flights cancel frequently — always have a road backup date booked.</div>
+    </div>`;
+  } catch(e) {
+    // Silently fail — flight data is bonus, not critical
+  }
+}
+
+// ── ADS-B Exchange — live aircraft over GB airspace ──
+// Free community API. Shows wow-factor live flights over Karakoram.
+const ADSB_BBOX = { lat1: 34.5, lon1: 72.5, lat2: 37.2, lon2: 77.5 }; // GB airspace bounding box
+async function fetchLiveFlights(nearAirport) {
+  const el = document.getElementById('rLiveFlights');
+  if (!el) return;
+  try {
+    const { lat1, lon1, lat2, lon2 } = ADSB_BBOX;
+    const r = await fetch(`https://adsbexchange-com1.p.rapidapi.com/v2/lat/${((lat1+lat2)/2).toFixed(2)}/lon/${((lon1+lon2)/2).toFixed(2)}/dist/250/`, {
+      headers: {
+        'X-RapidAPI-Key': 'YOUR_RAPIDAPI_KEY', // free tier at rapidapi.com/adsbexchange
+        'X-RapidAPI-Host': 'adsbexchange-com1.p.rapidapi.com'
+      }
+    });
+    const d = await r.json();
+    const ac = (d.ac || []).filter(a => a.lat && a.lon && a.alt_baro > 5000);
+    if (!ac.length) throw new Error('no aircraft');
+    const count = ac.length;
+    const sample = ac.slice(0, 4).map(a => {
+      const call = a.flight?.trim() || a.r || 'Unknown';
+      const alt = typeof a.alt_baro === 'number' ? `${Math.round(a.alt_baro/1000)}k ft` : '';
+      const spd = a.gs ? `${Math.round(a.gs)} kts` : '';
+      return `<span style="background:rgba(200,144,58,.1);border:1px solid rgba(200,144,58,.2);border-radius:3px;padding:.2rem .5rem;font-size:.68rem;color:var(--cream)">${call} ${alt}</span>`;
+    }).join(' ');
+    el.style.display = 'block';
+    el.innerHTML = `<div style="background:var(--ink-3);border:1px solid rgba(200,144,58,.15);border-radius:6px;padding:1.2rem 1.4rem;">
+      <div style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;">🛩 Live Aircraft Over GB Airspace</div>
+      <div style="font-size:.8rem;color:var(--cream-2);margin-bottom:.7rem;">${count} aircraft currently over the Karakoram region</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;">${sample}${count > 4 ? `<span style="font-size:.68rem;color:var(--cream-2);padding:.2rem .3rem">+${count-4} more</span>` : ''}</div>
+      <div style="font-size:.65rem;color:var(--cream-2);opacity:.5;margin-top:.8rem;">Live ADS-B data · refreshed on page load</div>
+    </div>`;
+  } catch(e) {
+    // Silently fail
+  }
+}
+
 // ── Nominatim geolocation (OSM — free, no key) ──────
 const HERE_COORDS = {
   gilgit:[35.9208,74.3083], hunza:[36.3167,74.6500],
@@ -1980,39 +2057,63 @@ const HERE_COORDS = {
   fairy:[35.3833,74.5667], chilas:[35.4167,74.1000],
   naran:[34.7000,73.7000], shigar:[35.5167,75.7167],
 };
+
+// ── IP-API fallback geolocation (no key, fast) ───────
+async function getLocationViaIP() {
+  try {
+    const r = await fetch('http://ip-api.com/json/?fields=lat,lon,city,regionName,country,status');
+    const d = await r.json();
+    if (d.status === 'success') return { lat: d.lat, lon: d.lon, place: d.city || d.regionName };
+  } catch(e) {}
+  return null;
+}
+
 function detectLocation() {
   const btn = document.getElementById('geoBtn');
   const status = document.getElementById('geoStatus');
-  if (!navigator.geolocation) { status.textContent = 'Geolocation not supported on this device.'; return; }
   btn.textContent = '⏳ Detecting…';
   btn.disabled = true;
-  navigator.geolocation.getCurrentPosition(pos => {
-    const { latitude: la, longitude: lo } = pos.coords;
-    // Find nearest GB location
+
+  function resolveCoords(la, lo, placeName) {
     let nearest = 'gilgit', minDist = Infinity;
     Object.entries(HERE_COORDS).forEach(([k,[clat,clon]]) => {
       const d = Math.hypot(la - clat, lo - clon);
       if (d < minDist) { minDist = d; nearest = k; }
     });
-    // Reverse geocode for display
+    status.textContent = `📍 Detected: ${placeName}`;
+    btn.style.display = 'none';
+    setTimeout(() => showHereContent(nearest), 400);
+  }
+
+  function fallbackToIP() {
+    getLocationViaIP().then(loc => {
+      if (loc) {
+        resolveCoords(loc.lat, loc.lon, loc.place);
+      } else {
+        status.textContent = 'Could not detect location. Pick manually below.';
+        btn.textContent = '📍 Detect my location';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  if (!navigator.geolocation) { fallbackToIP(); return; }
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude: la, longitude: lo } = pos.coords;
     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${la}&lon=${lo}&format=json`, {headers:{'Accept-Language':'en'}})
       .then(r => r.json())
       .then(data => {
         const place = data.address?.city || data.address?.town || data.address?.village || data.address?.county || 'your location';
-        status.textContent = `📍 Detected: ${place}`;
-        btn.style.display = 'none';
-        // Small delay then show content
-        setTimeout(() => showHereContent(nearest), 400);
-      }).catch(() => {
-        status.textContent = '';
-        btn.textContent = '📍 Detect my location';
-        btn.disabled = false;
-        showHereContent(nearest);
-      });
+        resolveCoords(la, lo, place);
+      }).catch(() => resolveCoords(la, lo, 'your location'));
   }, err => {
-    status.textContent = err.code === 1 ? 'Location access denied. Pick manually below.' : 'Could not detect location. Pick manually below.';
-    btn.textContent = '📍 Detect my location';
-    btn.disabled = false;
+    if (err.code === 1) {
+      status.textContent = 'Location access denied. Trying IP location…';
+      fallbackToIP();
+    } else {
+      fallbackToIP();
+    }
   }, { timeout: 8000 });
 }
 
