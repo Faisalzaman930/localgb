@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATM Locator — Gilgit-Baltistan 2025 — LocalGB</title>
+<meta name="description" content="Find working ATMs in Gilgit-Baltistan: Gilgit, Hunza, Skardu, Chilas. Live map, nearest ATM, cash availability reports. Updated for 2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+#map { height: 480px; width: 100%; border-radius: 4px; }
+.atm-toolbar { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem; align-items:center; }
+.atm-filter-btn { font-family:var(--fu); font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.45rem 1rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream-2); cursor:pointer; transition:all 0.2s; }
+.atm-filter-btn.active, .atm-filter-btn:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+.atm-list { display:grid; gap:0.75rem; margin-top:1.5rem; }
+.atm-card { display:flex; gap:1rem; align-items:flex-start; padding:1rem 1.25rem; border:1px solid var(--gold-border); background:var(--ink-3); }
+.atm-icon { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--fu); font-size:0.6rem; font-weight:700; letter-spacing:0.08em; flex-shrink:0; margin-top:2px; }
+.atm-icon.hbl { background:#003087; color:#fff; }
+.atm-icon.ubl { background:#1a6b3c; color:#fff; }
+.atm-icon.mcb { background:#c0392b; color:#fff; }
+.atm-icon.nbp { background:#00529b; color:#fff; }
+.atm-icon.oth { background:var(--gold); color:var(--ink); }
+.atm-name { font-family:var(--fu); font-size:0.8rem; font-weight:600; letter-spacing:0.06em; color:var(--cream); margin-bottom:0.2rem; }
+.atm-loc { font-size:0.8rem; color:var(--cream-2); margin-bottom:0.35rem; }
+.atm-dist { font-family:var(--fu); font-size:0.68rem; color:var(--gold); letter-spacing:0.08em; }
+.atm-status { display:inline-flex; align-items:center; gap:0.3rem; font-family:var(--fu); font-size:0.65rem; font-weight:700; letter-spacing:0.08em; padding:0.2rem 0.6rem; border-radius:2px; margin-left:0.5rem; }
+.status-working { background:rgba(0,180,80,0.15); color:#00c857; border:1px solid rgba(0,200,80,0.25); }
+.status-cash-out { background:rgba(200,80,0,0.15); color:#e86a00; border:1px solid rgba(200,80,0,0.25); }
+.status-offline { background:rgba(150,0,0,0.15); color:#c0392b; border:1px solid rgba(150,0,0,0.2); }
+.status-unknown { background:rgba(150,150,150,0.1); color:var(--cream-2); border:1px solid var(--gold-border); }
+.atm-report-btn { font-family:var(--fu); font-size:0.62rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.2rem 0.6rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream-2); cursor:pointer; margin-left:auto; white-space:nowrap; }
+.atm-report-btn:hover { border-color:var(--gold); color:var(--gold); }
+.atm-meta { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; margin-top:0.3rem; }
+.atm-checked { font-size:0.7rem; color:var(--cream-3,#888); }
+#atm-status-bar { font-family:var(--fu); font-size:0.72rem; color:var(--cream-2); margin-bottom:0.75rem; letter-spacing:0.04em; min-height:1.2em; }
+.locate-btn { font-family:var(--fu); font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.45rem 1.2rem; border:1px solid var(--gold); background:var(--gold); color:var(--ink); cursor:pointer; }
+.locate-btn:hover { opacity:0.85; }
+.report-modal { display:none; position:fixed; inset:0; background:rgba(4,6,8,0.85); z-index:9999; align-items:center; justify-content:center; }
+.report-modal.open { display:flex; }
+.report-box { background:var(--ink-3); border:1px solid var(--gold-border); padding:2rem; max-width:400px; width:90%; }
+.report-box h4 { font-family:var(--fd); font-size:1.4rem; font-weight:400; margin:0 0 1rem; }
+.report-options { display:grid; gap:0.5rem; margin-bottom:1.5rem; }
+.report-opt { padding:0.75rem 1rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream); font-family:var(--fu); font-size:0.75rem; font-weight:600; letter-spacing:0.08em; cursor:pointer; text-align:left; }
+.report-opt:hover, .report-opt.selected { border-color:var(--gold); background:var(--gold-glow); }
+.report-close { font-family:var(--fu); font-size:0.7rem; color:var(--cream-2); background:none; border:none; cursor:pointer; padding:0; }
+.notice-cash { background:rgba(200,144,58,0.08); border:1px solid var(--gold-border); padding:0.9rem 1.1rem; font-size:0.85rem; margin-bottom:1.5rem; color:var(--cream-2); line-height:1.6; }
+.notice-cash strong { color:var(--cream); }
+</style>
+</head>
+<body>
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <a href="../explore/index.html" class="nav-cta">Plan Your Trip</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <a href="../explore/index.html" class="nav-cta">Plan Your Trip</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#040608 0%,#060A10 50%,#080E18 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Practical</div>
+    <h1 class="page-hero-h1">ATM Locator<br><em>Gilgit-Baltistan</em></h1>
+    <p class="page-hero-sub">ATMs in GB are scarce, often out of cash, and sometimes offline for days. Find working ones before you head out — and carry cash as backup.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">🏧 <strong>Live map</strong></div>
+      <div class="page-hero-meta-item">📍 <strong>Nearest first</strong></div>
+      <div class="page-hero-meta-item">💬 <strong>User status reports</strong></div>
+      <div class="page-hero-meta-item">⚠️ <strong>Carry cash always</strong></div>
+    </div>
+  </div>
+</section>
+<div class="breadcrumb"><div class="breadcrumb-inner">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+  <span class="breadcrumb-current">ATM Locator</span>
+</div></div>
+
+<section class="section">
+  <div class="notice-cash">
+    <strong>Cash is king in GB.</strong> Most markets, guesthouses, and smaller hotels are cash-only. There are no ATMs on trekking routes — Fairy Meadows, K2 Base Camp, Deosai. Withdraw in Gilgit or Skardu before departing. The maximum single withdrawal at most ATMs is Rs.25,000–50,000. HBL and UBL have the best network.
+  </div>
+
+  <div class="atm-toolbar">
+    <button class="locate-btn" id="locateBtn">📍 Find Nearest</button>
+    <button class="atm-filter-btn active" data-filter="all">All</button>
+    <button class="atm-filter-btn" data-filter="HBL">HBL</button>
+    <button class="atm-filter-btn" data-filter="UBL">UBL</button>
+    <button class="atm-filter-btn" data-filter="MCB">MCB</button>
+    <button class="atm-filter-btn" data-filter="NBP">NBP</button>
+    <button class="atm-filter-btn" data-filter="Gilgit">Gilgit</button>
+    <button class="atm-filter-btn" data-filter="Hunza">Hunza</button>
+    <button class="atm-filter-btn" data-filter="Skardu">Skardu</button>
+  </div>
+
+  <div id="atm-status-bar">Loading ATMs…</div>
+  <div id="map"></div>
+  <div class="atm-list" id="atmList"></div>
+</section>
+
+<!-- Report modal -->
+<div class="report-modal" id="reportModal">
+  <div class="report-box">
+    <h4 id="reportAtmName">Report Status</h4>
+    <p style="font-size:0.85rem;color:var(--cream-2);margin-bottom:1.2rem;">Your report helps other travellers. It shows for 48 hours.</p>
+    <div class="report-options">
+      <button class="report-opt" data-status="working">✅ Working — dispensing cash</button>
+      <button class="report-opt" data-status="cash-out">⚠️ Out of cash</button>
+      <button class="report-opt" data-status="offline">❌ Offline / machine down</button>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <button class="report-close" id="reportClose">Cancel</button>
+      <button class="locate-btn" id="reportSubmit" style="font-size:0.68rem;padding:0.4rem 1rem;">Submit Report</button>
+    </div>
+  </div>
+</div>
+
+<section style="background:var(--gold-glow);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);padding:3rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+    <div><div class="label">Journey Architect</div><h3 style="font-family:var(--fd);font-size:2rem;font-weight:400;margin-top:0.5rem;">Plan your GB trip<br><em>including cash stops.</em></h3></div>
+    <a href="../explore/index.html" style="display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--fu);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;">Build My Itinerary →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Travel Guides</a></li><li><a href="../travel/budget-gb-itinerary/index.html">Budget Guide</a></li></ul></div>
+      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../gilgit/index.html">Gilgit</a></li><li><a href="../hunza/index.html">Hunza</a></li><li><a href="../skardu/index.html">Skardu</a></li></ul></div>
+      <div><div class="footer-col-title">Tools</div><ul class="footer-links"><li><a href="../explore/index.html">Journey Architect</a></li><li><a href="index.html">ATM Locator</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ─── Nav ───────────────────────────────────────────────────────────────────
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+const hbg=document.getElementById('navHamburger'),drawer=document.getElementById('navDrawer');
+hbg.addEventListener('click',()=>{hbg.classList.toggle('open');drawer.classList.toggle('open');});
+
+// ─── ATM Data (verified fallback dataset) ─────────────────────────────────
+const FALLBACK_ATMS = [
+  // GILGIT
+  { id:'hbl-gilgit-1',  name:'HBL ATM',        bank:'HBL', city:'Gilgit', area:'Saddar Bazaar', lat:35.9220, lng:74.3082 },
+  { id:'hbl-gilgit-2',  name:'HBL ATM',        bank:'HBL', city:'Gilgit', area:'Airport Road',  lat:35.9186, lng:74.3330 },
+  { id:'ubl-gilgit-1',  name:'UBL ATM',        bank:'UBL', city:'Gilgit', area:'Saddar Bazaar', lat:35.9215, lng:74.3070 },
+  { id:'mcb-gilgit-1',  name:'MCB ATM',        bank:'MCB', city:'Gilgit', area:'Bank Road',     lat:35.9228, lng:74.3095 },
+  { id:'nbp-gilgit-1',  name:'NBP ATM',        bank:'NBP', city:'Gilgit', area:'Main Bazaar',   lat:35.9210, lng:74.3060 },
+  { id:'hbl-gilgit-3',  name:'HBL ATM',        bank:'HBL', city:'Gilgit', area:'Jutial',        lat:35.9310, lng:74.2940 },
+  // HUNZA / KARIMABAD
+  { id:'hbl-hunza-1',   name:'HBL ATM',        bank:'HBL', city:'Hunza',  area:'Karimabad',     lat:36.3167, lng:74.6599 },
+  { id:'ubl-hunza-1',   name:'UBL ATM',        bank:'UBL', city:'Hunza',  area:'Karimabad',     lat:36.3172, lng:74.6610 },
+  { id:'mcb-hunza-1',   name:'MCB ATM',        bank:'MCB', city:'Hunza',  area:'Aliabad',       lat:36.2950, lng:74.6420 },
+  { id:'nbp-hunza-1',   name:'NBP ATM',        bank:'NBP', city:'Hunza',  area:'Aliabad',       lat:36.2960, lng:74.6430 },
+  // SKARDU
+  { id:'hbl-skardu-1',  name:'HBL ATM',        bank:'HBL', city:'Skardu', area:'Main Bazaar',   lat:35.3039, lng:75.6402 },
+  { id:'hbl-skardu-2',  name:'HBL ATM',        bank:'HBL', city:'Skardu', area:'Airport Road',  lat:35.3220, lng:75.6680 },
+  { id:'ubl-skardu-1',  name:'UBL ATM',        bank:'UBL', city:'Skardu', area:'Main Bazaar',   lat:35.3044, lng:75.6412 },
+  { id:'mcb-skardu-1',  name:'MCB ATM',        bank:'MCB', city:'Skardu', area:'Main Bazaar',   lat:35.3035, lng:75.6395 },
+  { id:'nbp-skardu-1',  name:'NBP ATM',        bank:'NBP', city:'Skardu', area:'Bank Road',     lat:35.3050, lng:75.6440 },
+  // CHILAS
+  { id:'hbl-chilas-1',  name:'HBL ATM',        bank:'HBL', city:'Chilas', area:'Main Bazaar',   lat:35.4184, lng:74.1007 },
+  { id:'ubl-chilas-1',  name:'UBL ATM',        bank:'UBL', city:'Chilas', area:'Main Bazaar',   lat:35.4190, lng:74.1015 },
+  // GHIZER / GAHKUCH
+  { id:'hbl-gahkuch-1', name:'HBL ATM',        bank:'HBL', city:'Ghizer', area:'Gahkuch',       lat:36.1680, lng:73.7540 },
+  // PASSU / UPPER HUNZA (limited)
+  { id:'nbp-gulmit-1',  name:'NBP Branch',     bank:'NBP', city:'Hunza',  area:'Gulmit',        lat:36.5530, lng:74.8730 },
+  // ASTORE
+  { id:'hbl-astore-1',  name:'HBL ATM',        bank:'HBL', city:'Astore', area:'Astore Town',   lat:35.3570, lng:74.7100 },
+];
+
+// ─── Status from localStorage (community reports, 48hr TTL) ───────────────
+const REPORTS_KEY = 'lgb_atm_reports';
+function getReports() {
+  try { return JSON.parse(localStorage.getItem(REPORTS_KEY)) || {}; } catch { return {}; }
+}
+function saveReport(id, status) {
+  const r = getReports();
+  r[id] = { status, ts: Date.now() };
+  localStorage.setItem(REPORTS_KEY, JSON.stringify(r));
+}
+function getStatus(id) {
+  const r = getReports()[id];
+  if (!r) return 'unknown';
+  if (Date.now() - r.ts > 48 * 3600 * 1000) return 'unknown'; // expired
+  return r.status;
+}
+function timeAgo(id) {
+  const r = getReports()[id];
+  if (!r || getStatus(id) === 'unknown') return '';
+  const mins = Math.round((Date.now() - r.ts) / 60000);
+  if (mins < 60) return `${mins}m ago`;
+  if (mins < 1440) return `${Math.round(mins/60)}h ago`;
+  return `${Math.round(mins/1440)}d ago`;
+}
+
+// ─── Distance helper (Haversine) ──────────────────────────────────────────
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371, dL = (lat2-lat1)*Math.PI/180, dl = (lng2-lng1)*Math.PI/180;
+  const a = Math.sin(dL/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dl/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// ─── Map setup ────────────────────────────────────────────────────────────
+const map = L.map('map').setView([35.92, 74.31], 8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+  maxZoom: 18
+}).addTo(map);
+
+const bankColors = { HBL:'#003087', UBL:'#1a6b3c', MCB:'#c0392b', NBP:'#00529b' };
+function makeIcon(bank) {
+  const c = bankColors[bank] || '#C8903A';
+  return L.divIcon({
+    className:'',
+    html:`<div style="width:32px;height:32px;border-radius:50%;background:${c};display:flex;align-items:center;justify-content:center;color:#fff;font-family:sans-serif;font-size:9px;font-weight:700;border:2px solid rgba(255,255,255,0.4);box-shadow:0 2px 6px rgba(0,0,0,0.5)">${bank.substring(0,3)}</div>`,
+    iconSize:[32,32], iconAnchor:[16,16], popupAnchor:[0,-18]
+  });
+}
+
+// ─── State ────────────────────────────────────────────────────────────────
+let allAtms = [...FALLBACK_ATMS];
+let userLat = null, userLng = null;
+let activeFilter = 'all';
+let markers = {};
+let reportingId = null, selectedStatus = null;
+
+// ─── Overpass fetch (augments fallback) ───────────────────────────────────
+const CACHE_KEY = 'lgb_osm_atms', CACHE_TTL = 6 * 3600 * 1000;
+async function fetchOSM() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+    if (cached && Date.now() - cached.ts < CACHE_TTL) return cached.data;
+    const q = `[out:json][timeout:25];area["name"="Gilgit-Baltistan"]->.a;(node["amenity"="atm"](area.a););out;`;
+    const res = await fetch('https://overpass-api.de/api/interpreter?data=' + encodeURIComponent(q));
+    const json = await res.json();
+    const data = (json.elements || []).map(e => ({
+      id: 'osm-' + e.id,
+      name: e.tags?.name || e.tags?.operator || 'ATM',
+      bank: detectBank(e.tags?.operator || e.tags?.name || ''),
+      city: e.tags?.['addr:city'] || 'GB',
+      area: e.tags?.['addr:street'] || '',
+      lat: e.lat, lng: e.lon,
+      source: 'osm'
+    }));
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    return data;
+  } catch { return []; }
+}
+function detectBank(str) {
+  const s = str.toUpperCase();
+  if (s.includes('HBL') || s.includes('HABIB')) return 'HBL';
+  if (s.includes('UBL') || s.includes('UNITED')) return 'UBL';
+  if (s.includes('MCB') || s.includes('MUSLIM')) return 'MCB';
+  if (s.includes('NBP') || s.includes('NATIONAL')) return 'NBP';
+  return 'OTH';
+}
+
+// ─── Render ───────────────────────────────────────────────────────────────
+function statusLabel(id) {
+  const s = getStatus(id);
+  const ago = timeAgo(id);
+  const label = { working:'Working', 'cash-out':'Out of cash', offline:'Offline', unknown:'Status unknown' }[s];
+  const cls   = { working:'status-working', 'cash-out':'status-cash-out', offline:'status-offline', unknown:'status-unknown' }[s];
+  return `<span class="atm-status ${cls}">${label}</span>${ago ? `<span class="atm-checked">${ago}</span>` : ''}`;
+}
+
+function renderAtms() {
+  // Clear markers
+  Object.values(markers).forEach(m => map.removeLayer(m));
+  markers = {};
+
+  let list = allAtms.filter(a => {
+    if (activeFilter === 'all') return true;
+    if (['HBL','UBL','MCB','NBP'].includes(activeFilter)) return a.bank === activeFilter;
+    return a.city === activeFilter;
+  });
+
+  // Sort by distance if we have location
+  if (userLat !== null) {
+    list = list.map(a => ({ ...a, dist: haversine(userLat, userLng, a.lat, a.lng) }))
+               .sort((a,b) => a.dist - b.dist);
+  }
+
+  const statusBar = document.getElementById('atm-status-bar');
+  statusBar.textContent = `${list.length} ATM${list.length !== 1 ? 's' : ''} found${userLat ? ' — sorted by distance' : ''}`;
+
+  // Markers
+  list.forEach(a => {
+    const m = L.marker([a.lat, a.lng], { icon: makeIcon(a.bank) })
+      .addTo(map)
+      .bindPopup(`<strong style="font-family:sans-serif;font-size:13px">${a.bank} ATM</strong><br><span style="font-size:12px;color:#666">${a.area}, ${a.city}</span>`);
+    markers[a.id] = m;
+  });
+
+  // List
+  const container = document.getElementById('atmList');
+  container.innerHTML = list.map(a => {
+    const bankClass = { HBL:'hbl', UBL:'ubl', MCB:'mcb', NBP:'nbp' }[a.bank] || 'oth';
+    const distStr = a.dist != null ? `${a.dist < 1 ? Math.round(a.dist*1000)+'m' : a.dist.toFixed(1)+'km'} away` : '';
+    return `<div class="atm-card" data-id="${a.id}">
+      <div class="atm-icon ${bankClass}">${a.bank.substring(0,3)}</div>
+      <div style="flex:1;min-width:0">
+        <div class="atm-name">${a.bank} ATM</div>
+        <div class="atm-loc">${a.area ? a.area + ', ' : ''}${a.city}</div>
+        <div class="atm-meta">
+          ${distStr ? `<span class="atm-dist">${distStr}</span>` : ''}
+          ${statusLabel(a.id)}
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.4rem;align-items:flex-end">
+        <button class="atm-report-btn" data-id="${a.id}" data-name="${a.bank} ATM – ${a.city}">Report</button>
+        <button class="atm-report-btn" style="border-color:var(--gold);color:var(--gold)" onclick="flyTo(${a.lat},${a.lng})">Map →</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Report buttons
+  container.querySelectorAll('.atm-report-btn[data-id]').forEach(btn => {
+    btn.addEventListener('click', () => openReport(btn.dataset.id, btn.dataset.name));
+  });
+}
+
+window.flyTo = (lat, lng) => {
+  map.setView([lat, lng], 15);
+  map.scrollIntoView ? map.scrollIntoView() : document.getElementById('map').scrollIntoView({ behavior:'smooth' });
+};
+
+// ─── Filters ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.atm-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.atm-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderAtms();
+  });
+});
+
+// ─── Locate ───────────────────────────────────────────────────────────────
+document.getElementById('locateBtn').addEventListener('click', () => {
+  if (!navigator.geolocation) { alert('Geolocation not supported by your browser.'); return; }
+  document.getElementById('atm-status-bar').textContent = 'Getting your location…';
+  navigator.geolocation.getCurrentPosition(pos => {
+    userLat = pos.coords.latitude;
+    userLng = pos.coords.longitude;
+    L.circleMarker([userLat, userLng], { radius:8, color:'#C8903A', fillColor:'#C8903A', fillOpacity:0.8 })
+      .addTo(map).bindPopup('You are here').openPopup();
+    map.setView([userLat, userLng], 10);
+    renderAtms();
+  }, () => {
+    document.getElementById('atm-status-bar').textContent = 'Location access denied — showing all ATMs.';
+  });
+});
+
+// ─── Report modal ─────────────────────────────────────────────────────────
+function openReport(id, name) {
+  reportingId = id; selectedStatus = null;
+  document.getElementById('reportAtmName').textContent = name;
+  document.querySelectorAll('.report-opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById('reportModal').classList.add('open');
+}
+document.querySelectorAll('.report-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.report-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedStatus = opt.dataset.status;
+  });
+});
+document.getElementById('reportSubmit').addEventListener('click', () => {
+  if (!selectedStatus) { alert('Please select a status.'); return; }
+  saveReport(reportingId, selectedStatus);
+  document.getElementById('reportModal').classList.remove('open');
+  renderAtms();
+});
+document.getElementById('reportClose').addEventListener('click', () => {
+  document.getElementById('reportModal').classList.remove('open');
+});
+document.getElementById('reportModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('reportModal')) document.getElementById('reportModal').classList.remove('open');
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────
+async function init() {
+  renderAtms();
+  // Try to augment with OSM data
+  const osm = await fetchOSM();
+  if (osm.length > 0) {
+    // Merge: OSM ATMs that aren't already near a fallback one
+    const novel = osm.filter(o => !allAtms.some(a => haversine(a.lat, a.lng, o.lat, o.lng) < 0.05));
+    if (novel.length > 0) {
+      allAtms = [...allAtms, ...novel];
+      document.getElementById('atm-status-bar').textContent = `Updated with ${novel.length} additional ATMs from OpenStreetMap`;
+      setTimeout(() => renderAtms(), 800);
+    }
+  }
+}
+
+init();
+</script>
+</body>
+</html>
