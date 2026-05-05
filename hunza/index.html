@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hunza Valley Travel Guide 2025 — LocalGB</title>
-<meta name="description" content="Complete local guide to Hunza Valley: Karimabad, Attabad Lake, Eagle's Nest, Khunjerab Pass. Best time to visit, how to get there, budget, and honest guesthouse recommendations.">
+<meta name="description" content="Complete local guide to Hunza Valley: Karimabad, Attabad Lake, Eagle's Nest, Khunjerab Pass, Rush Lake, hidden gems and honest guesthouse recommendations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
 <style>
 .attractions-grid {
   display: grid;
@@ -17,7 +19,7 @@
   margin-top: 3rem;
 }
 .attraction-card {
-  height: 220px;
+  height: 240px;
   position: relative;
   border-radius: 5px;
   overflow: hidden;
@@ -27,10 +29,11 @@
 .attraction-card:hover { transform: scale(1.015); }
 .attraction-card .img-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .attraction-card:hover .img-card-bg { transform: scale(1.07); }
-.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.72) 100%); }
+.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
 .attraction-card .img-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
 .attraction-card .img-card-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: var(--cream); line-height: 1.1; }
 .attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .img-card-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
 
 .stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
 .stay-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
@@ -41,9 +44,41 @@
 .stay-items { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
 .stay-item { font-size: 0.78rem; color: var(--cream-2); display: flex; gap: 0.55rem; align-items: flex-start; line-height: 1.5; }
 .stay-item::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-top: 0.5em; flex-shrink: 0; }
+
+.itinerary-tabs { display: flex; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; }
+.itin-tab { padding: 0.45rem 1.1rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; font-family: var(--fu); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; color: var(--cream-2); background: transparent; transition: all 0.2s; }
+.itin-tab:hover, .itin-tab.active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.itin-plan { display: none; }
+.itin-plan.active { display: block; }
+.itin-days { display: flex; flex-direction: column; gap: 0; }
+.itin-day { display: grid; grid-template-columns: 90px 1fr; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.itin-day:last-child { border-bottom: none; }
+.itin-day-label { padding: 1.4rem 1rem 1.4rem 0; }
+.itin-day-num { font-family: var(--fd); font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; }
+.itin-day-name { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-2); margin-top: 0.2rem; }
+.itin-day-body { padding: 1.4rem 0; border-left: 1px solid rgba(255,255,255,0.06); padding-left: 1.5rem; }
+.itin-day-title { font-family: var(--fd); font-size: 1.1rem; color: var(--cream); margin-bottom: 0.4rem; }
+.itin-day-items { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.itin-day-items li { font-size: 0.78rem; color: var(--cream-2); padding-left: 1rem; position: relative; line-height: 1.5; }
+.itin-day-items li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+
+.hidden-gems-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 2.5rem; }
+.gem-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
+.gem-card:hover { border-color: var(--gold-border); }
+.gem-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.gem-name { font-family: var(--fd); font-size: 1.5rem; color: var(--cream); margin-bottom: 0.7rem; }
+.gem-body { font-size: 0.8rem; color: var(--cream-2); line-height: 1.65; }
+
+@media (max-width: 768px) {
+  .attractions-grid { grid-template-columns: 1fr 1fr; }
+  .stay-grid { grid-template-columns: 1fr; }
+  .hidden-gems-grid { grid-template-columns: 1fr; }
+  .itin-day { grid-template-columns: 70px 1fr; }
+}
+@media (max-width: 480px) {
+  .attractions-grid { grid-template-columns: 1fr; }
+}
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
 </head>
 <body>
 
@@ -74,7 +109,7 @@
 
 <!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero-img" style="background:url('../images/hunza-hero.jpg') center 45% / cover no-repeat;"></div>
+  <div class="page-hero-img" style="background:url('../images/hunza-hero.webp') center 45% / cover no-repeat;"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-tag">Destination Guide</div>
@@ -87,6 +122,7 @@
       <div class="page-hero-meta-item">🌸 <strong>Best: Apr – Oct</strong></div>
     </div>
   </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
 </section>
 
 <!-- BREADCRUMB -->
@@ -98,57 +134,84 @@
   </div>
 </div>
 
-<!-- LIVE CONDITIONS -->
-<div class="live-conditions">
-  <div class="live-inner">
-    <div class="live-weather" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
-    <div class="live-map"><div id="map"></div></div>
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Hunza Valley</h2>
+    <p class="map-section-sub">Tap markers to explore key sites, hidden spots, and day-trip distances</p>
   </div>
-</div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
 <script>
-const WMO = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Rain showers',82:'Heavy showers',85:'Snow showers',86:'Heavy snow showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
-const WMO_ICON = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
-const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-async function loadWeather(lat, lon) {
-  const el = document.getElementById('wxWidget');
-  try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Asia%2FKarachi&forecast_days=5`;
-    const r = await fetch(url);
-    const d = await r.json();
-    const c = d.current; const dy = d.daily;
-    const code = c.weather_code;
-    const icon = WMO_ICON[code] || '🌡️';
-    const desc = WMO[code] || 'Unknown';
-    const forecastHTML = dy.time.slice(1).map((t,i) => {
-      const dayName = DAYS[new Date(t).getDay()];
-      const ic = WMO_ICON[dy.weather_code[i+1]] || '🌡️';
-      return `<div class="wx-day"><div class="wx-day-name">${dayName}</div><div class="wx-day-icon">${ic}</div><div class="wx-day-hi">${Math.round(dy.temperature_2m_max[i+1])}°</div><div class="wx-day-lo">${Math.round(dy.temperature_2m_min[i+1])}°</div></div>`;
-    }).join('');
-    el.innerHTML = `
-      <div class="wx-label">Live Conditions — Hunza</div>
-      <div class="wx-now"><div class="wx-temp">${Math.round(c.temperature_2m)}<sup>°C</sup></div><div class="wx-icon">${icon}</div></div>
-      <div class="wx-desc">${desc}</div>
-      <div class="wx-meta">
-        <div class="wx-meta-item"><strong>${Math.round(c.wind_speed_10m)} km/h</strong>Wind</div>
-        <div class="wx-meta-item"><strong>${c.relative_humidity_2m}%</strong>Humidity</div>
-        <div class="wx-meta-item"><strong>${Math.round(dy.temperature_2m_min[0])}° / ${Math.round(dy.temperature_2m_max[0])}°</strong>Today</div>
-      </div>
-      <div class="wx-forecast">${forecastHTML}</div>`;
-  } catch(e) { el.innerHTML = '<div class="wx-loading">Weather unavailable</div>'; }
-}
-loadWeather(36.3167, 74.65);
 (function(){
-  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([36.35,74.72], 10);
+  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([36.42,74.78], 10);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
   }).addTo(map);
   const pinIcon = L.divIcon({className:'', html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[12,12], iconAnchor:[6,6], popupAnchor:[0,-10]});
-  L.marker([36.3178,74.6528],{icon:pinIcon}).addTo(map).bindPopup('<strong>Karimabad</strong><br>Main town · 2,438m');
-  L.marker([36.3494,74.8167],{icon:pinIcon}).addTo(map).bindPopup('<strong>Attabad Lake</strong><br>Turquoise glacial lake');
-  L.marker([36.3333,74.65],{icon:pinIcon}).addTo(map).bindPopup('<strong>Eagle\'s Nest</strong><br>Best sunrise viewpoint · 3,600m');
-  L.marker([36.2875,74.6458],{icon:pinIcon}).addTo(map).bindPopup('<strong>Altit Fort</strong><br>900+ year old fort');
-  L.marker([36.475,74.86],{icon:pinIcon}).addTo(map).bindPopup('<strong>Passu</strong><br>Passu Cones trailhead');
+  const hiddenIcon = L.divIcon({className:'', html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[10,10], iconAnchor:[5,5], popupAnchor:[0,-8]});
+  L.marker([36.3178,74.6528],{icon:pinIcon}).addTo(map).bindPopup('<strong>Karimabad</strong><br>Main town · 2,438m · base for all Hunza trips<br><em>Baltit Fort &amp; Altit Fort nearby</em>');
+  L.marker([36.3494,74.8167],{icon:pinIcon}).addTo(map).bindPopup('<strong>Attabad Lake</strong><br>Turquoise lake formed after 2010 landslide<br>21–24km long · boats PKR 500–4,000<br>5 CPEC tunnels cut through cliffs above');
+  L.marker([36.3050,74.6500],{icon:pinIcon}).addTo(map).bindPopup('<strong>Eagle\'s Nest / Duikar</strong><br>3,100m · best sunrise viewpoint in Hunza<br>Jeep from Karimabad PKR 1,500–4,000 return');
+  L.marker([36.2875,74.6458],{icon:pinIcon}).addTo(map).bindPopup('<strong>Altit Fort</strong><br>900+ years old · oldest continuously inhabited fort in GB<br>Entry PKR 300–800 · has original torture chamber');
+  L.marker([36.3220,74.6490],{icon:pinIcon}).addTo(map).bindPopup('<strong>Baltit Fort</strong><br>Mir\'s palace · UNESCO Asia-Pacific Heritage Award 2004<br>Restored by AKTC · Entry PKR 500–1,500');
+  L.marker([36.475,74.860],{icon:pinIcon}).addTo(map).bindPopup('<strong>Passu</strong><br>Tupopdan (Passu Cones) 6,106m<br>Hussaini Suspension Bridge 280m · Borith Lake nearby');
+  L.marker([36.8385,75.4133],{icon:pinIcon}).addTo(map).bindPopup('<strong>Khunjerab Pass</strong><br>4,693m · Pakistan-China border<br>Open May–Oct · CNIC/Passport only');
+  L.marker([36.3167,74.6333],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Ultar Meadow</strong><br>Hidden gem above Karimabad · 3,400m<br>Marmots, wildflowers, close-up Ultar Sar views<br>3–4h hike from Karimabad');
+  L.marker([36.2817,74.6500],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Ganish Heritage Village</strong><br>Oldest settlement in Hunza · 700–900 BCE<br>Unchanged vernacular architecture, rock carvings<br>Free to walk · 15 min drive from Karimabad');
+  L.marker([36.4800,74.8700],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Borith Lake</strong><br>Migratory bird sanctuary · best Sep–Oct<br>Walk from Passu village · 45 min');
+  L.marker([36.2200,74.8500],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Rush Lake</strong><br>4,694m · highest lake in Pakistan<br>2-day trek from Minapin · strenuous but spectacular');
+  L.marker([36.3400,74.6200],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Roni Kot</strong><br>Forgotten hillfort above Karimabad<br>Not on tourist maps · ask locals for trail');
 })();
+</script>
+
+<script>
+function wxIcon(code) {
+  if (code === 1000) return '☀️';
+  if (code <= 1009) return '⛅';
+  if ([1030,1135,1147].includes(code)) return '🌫️';
+  if (code >= 1273) return '⛈️';
+  if (code >= 1210) return '❄️';
+  if (code >= 1180) return '🌧️';
+  if (code >= 1150) return '🌦️';
+  if (code === 1087) return '⛈️';
+  if (code >= 1066) return '🌨️';
+  if (code >= 1063) return '🌦️';
+  return '🌡️';
+}
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat, lon) {
+  const el = document.getElementById('wxWidget');
+  const KEY = 'b29ce4cae8644fdab30143502260305';
+  try {
+    const r = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&days=3&aqi=no`);
+    const d = await r.json();
+    const c = d.current;
+    const fc = d.forecast.forecastday;
+    const forecastHTML = fc.slice(1).map(day => {
+      const dn = DAYS[new Date(day.date+'T00:00:00').getDay()];
+      return `<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;
+    }).join('');
+    el.innerHTML = `<div class="wx-bar-inner">
+  <div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div>
+  <div class="wx-current">
+    <span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span>
+    <span class="wx-icon-lg">${wxIcon(c.condition.code)}</span>
+    <span class="wx-cond-text">${c.condition.text}</span>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-stats-bar">
+    <div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div>
+    <div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div>
+    <div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-bar-fc">${forecastHTML}</div>
+</div>`;
+  } catch(e) { el.innerHTML = '<div class="wx-loading">Weather unavailable</div>'; }
+}
+loadWeather(36.3167, 74.65);
 </script>
 
 <!-- OVERVIEW -->
@@ -160,8 +223,8 @@ loadWeather(36.3167, 74.65);
     </div>
     <div class="info-body">
       <p>Hunza is the valley that makes people cancel their flight home. The combination of hanging glaciers, terrace-farmed apricot and cherry orchards, and the sheer scale of Rakaposhi and Ultar Sar overhead creates a landscape that doesn't feel real.</p>
-      <p>The main town is <strong>Karimabad</strong>, perched above the Hunza River at 2,438m. From here you can day-trip to Attabad Lake, drive up to Khunjerab Pass (the Chinese border), hike to Eagle's Nest for sunrise, or sit in a tea house and watch the light move across the mountains for four hours without noticing.</p>
-      <p>Most tourists spend 3–4 days but need at least a week. The valley is compact but the number of side trips — Passu, Gulmit, Shimshal, Hispar — could fill a month.</p>
+      <p>The main town is <strong>Karimabad</strong>, perched above the Hunza River at 2,438m. From here you can day-trip to Attabad Lake through five CPEC-built tunnels, drive up to Khunjerab Pass at the Chinese border, hike to Eagle's Nest for one of the most spectacular sunrises in Asia, or disappear into Ultar Meadow above town where few tourists go.</p>
+      <p>Most visitors spend 3–4 days and leave wishing they had more time. The valley is compact but the side trips — Passu, Gulmit, Shimshal, Hispar, Nagar — could fill a month. Budget at least 7 days to scratch the surface.</p>
     </div>
   </div>
 
@@ -171,7 +234,7 @@ loadWeather(36.3167, 74.65);
       <div class="stat-cell-label">Karimabad altitude</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-cell-num">4–5h</div>
+      <div class="stat-cell-num">3–4h</div>
       <div class="stat-cell-label">Drive from Gilgit</div>
     </div>
     <div class="stat-cell">
@@ -179,8 +242,8 @@ loadWeather(36.3167, 74.65);
       <div class="stat-cell-label">Khunjerab Pass</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-cell-num">Apr–Oct</div>
-      <div class="stat-cell-label">Best season</div>
+      <div class="stat-cell-num">4,694m</div>
+      <div class="stat-cell-label">Rush Lake (highest in Pakistan)</div>
     </div>
   </div>
 </section>
@@ -191,77 +254,408 @@ loadWeather(36.3167, 74.65);
     <div class="section-header reveal">
       <span class="label">Top Attractions</span>
       <h2 class="section-title">What to See<br>in Hunza Valley</h2>
+      <p class="section-lead">Six must-see sites — with entry fees, exact locations, and what no one tells you before you arrive.</p>
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #1E0800 0%, #4A1A05 30%, #7A3010 60%, #B85A1A 100%)"></div>
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #081418 0%, #0E2A38 40%, #1A4A60 75%, #2A7090 100%)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
-          <span class="img-card-tag">40km north of Karimabad</span>
+          <span class="img-card-tag">40km north · boat PKR 500–4,000</span>
           <div class="img-card-name">Attabad Lake</div>
+          <div class="img-card-desc">Formed in January 2010 when a landslide buried the village of Attabad and dammed the Hunza River. Now 21–24km of impossible turquoise. Boats depart from the east end. Five tunnels cut through the cliffs above it on the KKH.</div>
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #1E0800 0%, #4A1A05 30%, #7A3010 60%, #B85A1A 100%)"></div>
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #0A0A05 0%, #1A1A08 35%, #2E2A10 65%, #4A3E18 100%)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
-          <span class="img-card-tag">Above Duikar village</span>
-          <div class="img-card-name">Eagle's Nest</div>
+          <span class="img-card-tag">3,100m · jeep PKR 1,500–4,000 return</span>
+          <div class="img-card-name">Eagle's Nest / Duikar</div>
+          <div class="img-card-desc">The finest sunrise in Hunza. Arrive before 5:30am in summer — the Rakaposhi face lights up in orange before the valley wakes. The jeep road is steep and loose. Many hotels can arrange the jeep the night before.</div>
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #1E0800 0%, #4A1A05 30%, #7A3010 60%, #B85A1A 100%)"></div>
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #100808 0%, #281210 35%, #4A2218 65%, #7A3A28 100%)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
-          <span class="img-card-tag">1.5h north of Karimabad</span>
-          <div class="img-card-name">Passu Cones</div>
-        </div>
-      </div>
-      <div class="attraction-card" style="background:#0C0E16;">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#0C1018,#1A2A40)"></div>
-        <div class="img-card-overlay"></div>
-        <div class="img-card-body">
-          <span class="img-card-tag">Karimabad town centre</span>
+          <span class="img-card-tag">Entry PKR 500–1,500 · AKTC restored</span>
           <div class="img-card-name">Baltit Fort</div>
+          <div class="img-card-desc">The Mir of Hunza's palace — continuously occupied for 700 years, abandoned in 1945. Restored by the Aga Khan Trust for Culture and awarded the UNESCO Asia-Pacific Heritage Award in 2004. The top floor views over Karimabad are worth every rupee.</div>
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#050D04,#123010)"></div>
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #0A0A10 0%, #161828 40%, #22284A 70%, #303A6E 100%)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
-          <span class="img-card-tag">4,693m · Chinese border</span>
+          <span class="img-card-tag">Entry PKR 300–800 · 15 min from Karimabad</span>
+          <div class="img-card-name">Altit Fort</div>
+          <div class="img-card-desc">Older than Baltit, arguably more atmospheric. Occupied for 900+ years — the oldest continuously inhabited fort in Gilgit-Baltistan. The original prison room and torture chamber survive intact. The orchard terrace below is perfect at dusk.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #060A08 0%, #0C1810 40%, #162A1A 70%, #203A22 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">4,693m · Chinese border · open May–Oct</span>
           <div class="img-card-name">Khunjerab Pass</div>
+          <div class="img-card-desc">The highest paved international border crossing in the world. Marco Polo sheep, snow leopard territory, and a view from the roof of the KKH. Day-trip from Karimabad possible (190km return). You don't need a visa to stand at the gate.</div>
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#0A0808,#241410)"></div>
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #080410 0%, #160A28 40%, #2A1248 70%, #401A68 100%)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
-          <span class="img-card-tag">Minapin village</span>
-          <div class="img-card-name">Rakaposhi View</div>
+          <span class="img-card-tag">80km north · Tupopdan 6,106m</span>
+          <div class="img-card-name">Passu Cones</div>
+          <div class="img-card-desc">The five shark-fin peaks above Passu village are among the most photographed mountains on earth. Walk to the base in 30 minutes. Nearby: Hussaini Suspension Bridge (280m, terrifyingly swayable) and Borith Lake for migratory birds.</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PRACTICAL INFO -->
+<!-- HIDDEN GEMS -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Off the Beaten Path</span>
+    <h2 class="section-title">Hidden Gems<br>Most Tourists Miss</h2>
+    <p class="section-lead">These spots don't appear in standard itineraries. Locals go here. You should too.</p>
+  </div>
+  <div class="hidden-gems-grid reveal">
+    <div class="gem-card">
+      <div class="gem-label">Hidden · 3–4h hike from Karimabad</div>
+      <div class="gem-name">Ultar Meadow</div>
+      <div class="gem-body">A high alpine meadow above Karimabad at ~3,400m that sits directly under Ultar Sar (7,388m). Almost no tourists reach it — the trail begins behind the town and climbs steeply through walnut groves. At the top: marmots, summer wildflowers, Ladyfinger Peak overhead, and a completely unobstructed view of the Hunza Valley below. Bring water. No guide needed but ask for the trailhead at Baltit Fort — it's not signposted.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Free · 15 min drive south of Karimabad</div>
+      <div class="gem-name">Ganish Heritage Village</div>
+      <div class="gem-body">The oldest continuously inhabited settlement in Hunza, dating to around 700–900 BCE. The lanes are narrow, the wooden architecture is centuries old, and there are ancient Buddhist rock carvings at the edge of the village. No ticket booth, no tourist infrastructure, no crowds. A handful of families still live here. Walk it in an hour and you'll see more of actual Hunza history than the forts will show you.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">2-day trek · strenuous · depart Minapin</div>
+      <div class="gem-name">Rush Lake</div>
+      <div class="gem-body">At 4,694m, Rush Lake is the highest lake in Pakistan — higher than Attabad, higher than Sheosar in Deosai, higher than Saif-ul-Malook. It sits above Minapin village in Nagar Valley with a direct close-up view of Rakaposhi (7,788m). The trail is steep and requires a guide (PKR 2,000–3,500/day). Camp at 4,000m the first night, lake the second morning. Snow patches persist into July. Absolutely worth it for those who can handle altitude.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">45 min walk from Passu · September best</div>
+      <div class="gem-name">Borith Lake</div>
+      <div class="gem-body">A shallow lake behind Passu village that draws migratory waterfowl in autumn — bar-headed geese, common cranes, ruddy shelduck. In September and October the light on the Passu Cones reflected in the lake is extraordinary. Almost no infrastructure here: no boat rentals, no tea stall, just the lake. Walk from the main KKH road through apricot terraces. The trail is unmistakable once you leave the village.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Hidden fort · ask locals for trail</div>
+      <div class="gem-name">Roni Kot</div>
+      <div class="gem-body">An ancient hillfort above Karimabad that almost no foreign visitors find because it's not on any tourist map or signposted trail. Local children know it immediately. The walls are ruined but the position — on a rocky bluff with views down the Hunza Gorge — explains exactly why someone built a fort here. The walk up takes 40 minutes. Go in the late afternoon when the light comes from the west across the valley.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Day trip · 280m long · do not look down</div>
+      <div class="gem-name">Hussaini Suspension Bridge</div>
+      <div class="gem-body">One of the most precarious footbridges in the world. The 280m crossing above the Hunza River near Passu is made of wooden planks with gaps — in some seasons large gaps. The bridge sways. The river is far below. The old bridge next to it (now abandoned) is even more photogenic. Cross it early morning before the wind picks up. The newer bridge nearby is safer — cross the old one for the experience, use the newer one to come back.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARIES -->
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Trip Planning</span>
+      <h2 class="section-title">Hunza Itineraries<br>3, 5 &amp; 7 Days</h2>
+      <p class="section-lead">Built around actual travel times, not wishful thinking. All assume you're based in Karimabad.</p>
+    </div>
+    <div class="reveal">
+      <div class="itinerary-tabs">
+        <button class="itin-tab active" onclick="switchItin('d3')">3 Days</button>
+        <button class="itin-tab" onclick="switchItin('d5')">5 Days</button>
+        <button class="itin-tab" onclick="switchItin('d7')">7 Days</button>
+        <button class="itin-tab" onclick="switchItin('d10')">10 Days</button>
+      </div>
+
+      <div class="itin-plan active" id="itin-d3">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1</div><div class="itin-day-name">Arrive</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Karimabad Arrival &amp; Baltit Fort</div>
+              <ul class="itin-day-items">
+                <li>Arrive from Gilgit (3–4h by road) or fly into Gilgit Airport (45 min + 3h drive)</li>
+                <li>Check into guesthouse, settle in — don't rush</li>
+                <li>Afternoon: Baltit Fort (PKR 500–1,500, 1.5h) with panoramic valley views</li>
+                <li>Walk Karimabad Bazaar, buy dried apricots and apricot oil</li>
+                <li>Dinner: chapshuro at a local bakery (PKR 150–250 per piece)</li>
+                <li>Arrange jeep to Eagle's Nest for next morning (PKR 2,500–4,000 return)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">2</div><div class="itin-day-name">Sunrise</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Eagle's Nest Sunrise + Attabad Lake</div>
+              <ul class="itin-day-items">
+                <li>4:30–5:00am: Jeep up to Eagle's Nest (Duikar, 3,100m) for sunrise</li>
+                <li>Rakaposhi and Ultar Sar turn orange from the top — 30 minutes of magic</li>
+                <li>Return by 8am, breakfast, then head north toward Attabad</li>
+                <li>Attabad Lake (40km, 45 min): take a boat (PKR 500–4,000 depending on distance)</li>
+                <li>Notice the CPEC tunnels cut directly through the cliffs — the landslide is still visible</li>
+                <li>Return to Karimabad by 4pm. Altit Fort (PKR 300–800) if energy allows</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3</div><div class="itin-day-name">Depart</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Ganish Village + Depart</div>
+              <ul class="itin-day-items">
+                <li>Morning: walk Ganish Heritage Village (free, 1h) before the road gets busy</li>
+                <li>Stop at Altit Fort if you skipped it yesterday</li>
+                <li>Pick up provisions: dried apricots, walnut oil, gilgiti topi (local cap)</li>
+                <li>Depart for Gilgit or continue north to Passu/Sost</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itin-plan" id="itin-d5">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1</div><div class="itin-day-name">Arrive</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Karimabad Arrival &amp; Orientation</div>
+              <ul class="itin-day-items">
+                <li>Arrive and check in — settle altitude, don't overdo it day 1</li>
+                <li>Afternoon: Baltit Fort (1.5h), Karimabad Bazaar walk</li>
+                <li>Arrange Eagle's Nest jeep for next morning</li>
+                <li>Evening: tumuro (sea buckthorn) tea at a local teahouse</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">2</div><div class="itin-day-name">Sunrise</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Eagle's Nest + Altit Fort + Ganish Village</div>
+              <ul class="itin-day-items">
+                <li>Pre-dawn: Eagle's Nest sunrise (jeep PKR 2,500–4,000 return)</li>
+                <li>Breakfast back in town, then Altit Fort (PKR 300–800, 1.5h)</li>
+                <li>Afternoon: walk Ganish Heritage Village — rock carvings, vernacular lanes</li>
+                <li>Ask locals about the Roni Kot trail for the next morning</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3</div><div class="itin-day-name">Hike</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Ultar Meadow Hike</div>
+              <ul class="itin-day-items">
+                <li>Full day hike to Ultar Meadow — depart by 7am (3–4h up, 2.5h down)</li>
+                <li>Pass through walnut groves, then switchbacks onto open alpine terrain</li>
+                <li>Marmots, wildflowers, Ultar Sar directly overhead at 3,400m</li>
+                <li>Return by 4pm, rest legs, large dinner</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">4</div><div class="itin-day-name">North</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Attabad Lake + Passu Day Trip</div>
+              <ul class="itin-day-items">
+                <li>Depart early for Passu (80km north, 1.5h): Hussaini Bridge crossing</li>
+                <li>Walk to base of Passu Cones (30 min flat walk), attempt Borith Lake (45 min)</li>
+                <li>Return via Attabad Lake — take a boat, swim if brave (the water is glacial cold)</li>
+                <li>See the original landslide scar and the old KKH submerged under water</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">5</div><div class="itin-day-name">Depart</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Morning Free + Depart South</div>
+              <ul class="itin-day-items">
+                <li>Morning at leisure — sit in the apricot orchards, buy provisions</li>
+                <li>Depart for Gilgit or continue journey</li>
+                <li>If heading south: stop at Rakaposhi Viewpoint near Minapin (20 min off KKH)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itin-plan" id="itin-d7">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1</div><div class="itin-day-name">Arrive</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Karimabad Arrival</div>
+              <ul class="itin-day-items">
+                <li>Arrive, settle in, light afternoon walk through bazaar</li>
+                <li>Baltit Fort late afternoon (closing 5:30pm summer)</li>
+                <li>Arrange Eagle's Nest jeep for 4:30am pickup</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">2</div><div class="itin-day-name">Forts</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Eagle's Nest Sunrise + Both Forts</div>
+              <ul class="itin-day-items">
+                <li>Eagle's Nest sunrise, return by 8am</li>
+                <li>Baltit Fort (if not done day 1) and Altit Fort — both in one morning</li>
+                <li>Afternoon: Ganish Heritage Village + rock carvings</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3</div><div class="itin-day-name">Hidden</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Ultar Meadow Full Day</div>
+              <ul class="itin-day-items">
+                <li>Full day to Ultar Meadow — this needs a full day, don't combine</li>
+                <li>3,400m, marmots, direct under Ultar Sar (7,388m)</li>
+                <li>Bring lunch — no tea stall at top</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">4</div><div class="itin-day-name">North</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Attabad Lake + Passu</div>
+              <ul class="itin-day-items">
+                <li>Attabad Lake: boat trip, swim, explore the old KKH markers underwater</li>
+                <li>Continue to Passu: Hussaini Bridge + Passu Cones base walk</li>
+                <li>Borith Lake in late afternoon for bird watching</li>
+                <li>Stay overnight in Passu (guesthouses PKR 1,500–4,000) or return to Karimabad</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">5</div><div class="itin-day-name">Border</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Khunjerab Pass Day Trip</div>
+              <ul class="itin-day-items">
+                <li>Depart Passu or Karimabad by 7am — the pass is 110km from Karimabad</li>
+                <li>Stop at Sost for fuel and snacks — last services before the border</li>
+                <li>Khunjerab Pass (4,693m): stand at the China border, look for Marco Polo sheep</li>
+                <li>Return by 5pm. The road is paved and fast but altitude makes some people dizzy</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">6</div><div class="itin-day-name">Nagar</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Nagar Valley + Rakaposhi Viewpoint</div>
+              <ul class="itin-day-items">
+                <li>Nagar Valley (across the river from Hunza): Hopar Glacier and Nagar Khas village</li>
+                <li>Drive to Minapin for the classic Rakaposhi view — the mountain rises 5,500m directly above you</li>
+                <li>If you have energy: start the Rakaposhi Base Camp trek approach (Day 1 of that trek)</li>
+                <li>Back to Karimabad for last night</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">7</div><div class="itin-day-name">Depart</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Morning Market + Depart</div>
+              <ul class="itin-day-items">
+                <li>Morning: Karimabad Market — dried mulberries, apricot oil, local honey</li>
+                <li>Roni Kot walk (40 min) if not done yet</li>
+                <li>Depart. Say goodbye to the mountains. You will come back.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itin-plan" id="itin-d10">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1–2</div><div class="itin-day-name">Base</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">All Core Sites in Karimabad Area</div>
+              <ul class="itin-day-items">
+                <li>Day 1: Baltit Fort, Altit Fort, Ganish Village, Karimabad orientation</li>
+                <li>Day 2: Eagle's Nest sunrise, Ultar Meadow full day hike (3,400m)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3–4</div><div class="itin-day-name">Trek</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Rush Lake Trek (Minapin / Nagar)</div>
+              <ul class="itin-day-items">
+                <li>2-day trek to Rush Lake (4,694m) — highest lake in Pakistan</li>
+                <li>Guide required (PKR 2,000–3,500/day), camp at ~4,000m first night</li>
+                <li>Rakaposhi at close quarters from the lake — nothing else like it</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">5–6</div><div class="itin-day-name">North</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Passu + Khunjerab Pass</div>
+              <ul class="itin-day-items">
+                <li>Day 5: Attabad Lake + Passu (Hussaini Bridge, Cones, Borith Lake)</li>
+                <li>Day 6: Khunjerab Pass day trip from Passu or Sost — depart 6am</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">7–8</div><div class="itin-day-name">Shimshal</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Shimshal Valley (NOC Required)</div>
+              <ul class="itin-day-items">
+                <li>Shimshal is one of the most remote inhabited valleys in Hunza (NOC from DC office)</li>
+                <li>3–4h drive from Passu on a rough jeep track alongside the Shimshal River</li>
+                <li>The village at 3,100m: yak farming, ancient customs, extraordinary hospitality</li>
+                <li>Shimshal Pass (4,735m) trek possible for experienced trekkers</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">9</div><div class="itin-day-name">Slow</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Slow Day — Roni Kot + Orchards</div>
+              <ul class="itin-day-items">
+                <li>Roni Kot hidden fort (40 min walk, ask locals)</li>
+                <li>Sit in the apricot orchards below Karimabad — nothing to achieve, nowhere to be</li>
+                <li>Mulberry wine if you're curious (local shops near Baltit Fort, July–Aug only)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">10</div><div class="itin-day-name">Depart</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Final Morning + Depart</div>
+              <ul class="itin-day-items">
+                <li>Karimabad market: apricot oil, dried fruits, gilgiti topi, local honey</li>
+                <li>Depart for Gilgit, or continue to Skardu via Gilgit (6–8h total)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRACTICAL INFO: GETTING THERE -->
 <section class="section">
   <div class="info-grid reveal">
     <div>
       <span class="label">Getting There</span>
       <h2 class="section-title">How to Reach<br>Hunza Valley</h2>
       <div class="notice" style="margin-top:2rem;">
-        <strong>Local tip:</strong> The NATCO bus from Gilgit to Karimabad leaves at 7am daily (Rs. 350). It's slower than a private jeep but you see everything. Book a seat the night before.
+        <strong>Local tip:</strong> The NATCO bus from Gilgit to Karimabad departs daily around 7–8am (PKR 350–450). Slower than a private jeep but cheaper and sociable. Book a seat at the NATCO stand the evening before — it fills up. From Karimabad back to Gilgit, shared jeeps run throughout the day from the main bazaar.
       </div>
     </div>
     <div>
       <table class="practical-table">
-        <tr><td>By air</td><td>Fly to <strong>Gilgit Airport</strong> (GIL) from Islamabad (~45 min, Rs. 8,000–15,000). Flights are weather-dependent — always have a day buffer. Then 3–4h by road to Karimabad.</td></tr>
-        <tr><td>By road (KKH)</td><td>The <strong>Karakoram Highway</strong> from Islamabad to Karimabad takes 16–20h by NATCO bus or private car. Scenic but gruelling. Break the journey at Chilas.</td></tr>
-        <tr><td>From Gilgit</td><td>Shared jeep Rs. 400–600 (3–4h). Private jeep Rs. 5,000–8,000. NATCO bus Rs. 350.</td></tr>
-        <tr><td>Within Hunza</td><td>Shared jeeps run between Karimabad, Passu, Gulmit, and Sost. Expect Rs. 150–400 per leg. Renting a private jeep for a full day costs Rs. 6,000–10,000.</td></tr>
-        <tr><td>NOC permit</td><td>Not required for Karimabad, Attabad Lake, or Khunjerab Pass (CNIC/passport only at border). Required for <strong>Shimshal Valley</strong>.</td></tr>
+        <tr><td>By air</td><td>Fly <strong>Islamabad → Gilgit Airport (GIL)</strong> (~45 min, PKR 8,000–18,000). Flights are weather-dependent — book the morning flight (PIA/Serene Air) and always hold a day buffer. Then 3–4h by road to Karimabad via KKH.</td></tr>
+        <tr><td>By road (KKH)</td><td>Islamabad to Karimabad: 16–20h by NATCO coach or private car via the Karakoram Highway. Break the journey overnight at Besham or Chilas. The road is spectacular but long — don't rush it.</td></tr>
+        <tr><td>From Gilgit</td><td>Shared jeep PKR 400–600 (3–4h). Private jeep PKR 5,000–9,000 one-way. NATCO bus PKR 350–450. All depart from Gilgit's KKH intersection near the General Bus Stand.</td></tr>
+        <tr><td>Within Hunza</td><td>Shared jeeps run Karimabad–Passu–Sost (PKR 200–600 per leg). Full-day private jeep hire PKR 7,000–12,000. Cycle hire available in Karimabad (PKR 500–800/day) for the valley floor.</td></tr>
+        <tr><td>Khunjerab day trip</td><td>Private jeep return from Karimabad PKR 12,000–18,000. Shared van from Sost PKR 600–800. Bring CNIC or passport. The pass closes October–April.</td></tr>
+        <tr><td>Permits</td><td>No NOC required for Karimabad, Attabad, Passu, or Khunjerab (CNIC at checkposts). <strong>Shimshal Valley</strong> requires an NOC from the Deputy Commissioner's office in Aliabad (1–2 days to arrange).</td></tr>
       </table>
     </div>
   </div>
@@ -273,71 +667,81 @@ loadWeather(36.3167, 74.65);
     <div class="section-header">
       <span class="label">Accommodation</span>
       <h2 class="section-title">Where to Stay<br>in Hunza</h2>
-      <p class="section-lead">Prices are per room, per night. Family-run guesthouses offer better value and more honest hospitality than larger hotels.</p>
+      <p class="section-lead">Prices per room per night in peak season (May–Sep). Family-run guesthouses offer better value and more honest hospitality than larger hotels. Book ahead in July–August.</p>
     </div>
     <div class="stay-grid">
       <div class="stay-card">
         <div class="stay-tier">Budget</div>
-        <div class="stay-price">Rs. 1,500 – 3,000</div>
-        <div class="stay-per">per night · dormitory or shared room</div>
+        <div class="stay-price">PKR 1,500 – 4,000</div>
+        <div class="stay-per">per night · dormitory or double room</div>
         <ul class="stay-items">
-          <li class="stay-item">Old Hunza Inn (Karimabad) — honest, basic, great view</li>
-          <li class="stay-item">Dreamland Hostel — popular backpacker spot</li>
-          <li class="stay-item">Local homestays in Gulmit or Passu</li>
-          <li class="stay-item">Shared bathrooms, home-cooked meals available</li>
+          <li class="stay-item"><strong>Old Hunza Inn</strong> — basic, honest, genuinely good valley views, run by a local family</li>
+          <li class="stay-item"><strong>Dreamland Hostel</strong> — popular backpacker hub in Karimabad; dorms available</li>
+          <li class="stay-item"><strong>Guesthouses in Gulmit or Passu</strong> — PKR 1,000–2,500, homestay feel, home-cooked meals</li>
+          <li class="stay-item">Shared bathrooms common at this tier; hot water usually available</li>
+          <li class="stay-item">Meals: most guesthouses serve dinner for PKR 500–900 if requested at arrival</li>
         </ul>
       </div>
       <div class="stay-card" style="border-color:var(--gold-border);background:linear-gradient(160deg,rgba(200,144,58,0.07),var(--ink-3))">
         <div class="stay-tier">Mid-Range</div>
-        <div class="stay-price">Rs. 5,000 – 12,000</div>
+        <div class="stay-price">PKR 5,000 – 15,000</div>
         <div class="stay-per">per night · private en-suite room</div>
         <ul class="stay-items">
-          <li class="stay-item">Hunza Serena Inn — best views in Karimabad</li>
-          <li class="stay-item">Rakaposhi View Hotel — exactly as advertised</li>
-          <li class="stay-item">Diran Guest House — family-run, honest prices</li>
-          <li class="stay-item">Breakfast usually included</li>
+          <li class="stay-item"><strong>Hunza Serena Inn</strong> — best maintained mid-range property in Karimabad, rooftop terrace</li>
+          <li class="stay-item"><strong>Rakaposhi View Hotel</strong> — named exactly as advertised; mountain-facing rooms are worth the premium</li>
+          <li class="stay-item"><strong>Diran Guest House</strong> — family-run, reliable, within walking distance of Baltit Fort</li>
+          <li class="stay-item"><strong>Karimabad Continental</strong> — modern rooms, reliable Wi-Fi, good restaurant</li>
+          <li class="stay-item">Breakfast included at most properties in this tier</li>
         </ul>
       </div>
       <div class="stay-card">
         <div class="stay-tier">Splurge</div>
-        <div class="stay-price">Rs. 18,000 – 40,000</div>
-        <div class="stay-per">per night · luxury</div>
+        <div class="stay-price">PKR 18,000 – 50,000</div>
+        <div class="stay-per">per night · full-service hotels</div>
         <ul class="stay-items">
-          <li class="stay-item">Eagle's Nest Hotel — highest hotel in Hunza, panoramic terrace</li>
-          <li class="stay-item">Hunza Embassy Hotel — heritage building, rooftop views</li>
-          <li class="stay-item">Worth one night for a special occasion</li>
-          <li class="stay-item">Full board available</li>
+          <li class="stay-item"><strong>Eagle's Nest Hotel</strong> — at 3,100m above Karimabad; the highest hotel in Hunza; the panoramic terrace is worth one night regardless of price</li>
+          <li class="stay-item"><strong>Hunza Embassy Hotel</strong> — heritage building, rooftop dining with direct Rakaposhi views</li>
+          <li class="stay-item"><strong>PTDC Motel Karimabad</strong> — government-run, predictable, reliably clean</li>
+          <li class="stay-item">Full board (breakfast + dinner) available at Eagle's Nest and Embassy</li>
+          <li class="stay-item">Book 2–4 weeks ahead for July–August, especially Eagle's Nest</li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FOOD & SEASON -->
+<!-- FOOD -->
 <section class="section">
   <div class="info-grid reveal">
     <div class="info-body">
       <span class="label">What to Eat</span>
       <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.2rem;">Local Food<br>Worth Trying</h2>
       <h3>Chapshuro</h3>
-      <p>A flat bread stuffed with minced meat and onions, baked on a flat stone. The closest thing to a Hunzai pizza. Get it at the small bakeries off Karimabad's main bazaar — Rs. 150–250.</p>
+      <p>A flat bread stuffed with minced meat and onions, baked on a flat stone until slightly charred. The closest thing to a Hunzai pizza. Small bakeries off Karimabad's main bazaar — PKR 150–300. Eat it hot. It does not survive takeaway.</p>
       <h3>Diram Phitti</h3>
-      <p>Buckwheat flatbread cooked in walnut oil. Eaten with apricot kernels and butter. One of the oldest foods in the valley and genuinely unlike anything else.</p>
+      <p>Buckwheat flatbread cooked in walnut oil. Eaten with apricot kernels and local butter. One of the oldest foods in the valley — the same recipe for centuries — and genuinely unlike anything else you'll eat in Pakistan.</p>
+      <h3>Tumuro Tea (Sea Buckthorn)</h3>
+      <p>Served everywhere in Hunza, made from the bright orange sea buckthorn berry that grows wild on the valley slopes. Sour, warming, and supposedly the reason Hunzais live to 100. About PKR 80–150 a cup. Order it instead of chai at least once.</p>
       <h3>Mulberry Wine</h3>
-      <p>Hunza is one of very few places in Pakistan where local wine is made and sold openly. The mulberry harvest in July produces sweet, low-alcohol wine. Don't expect Bordeaux — expect something unique.</p>
-      <h3>Apricot products</h3>
-      <p>June–July is apricot season. Eat them fresh off the tree, dried, or as jam. The apricot oil is also sold everywhere and worth bringing home.</p>
+      <p>Hunza is one of the very few places in Pakistan where locally produced wine is made and sold openly. The mulberry harvest in July–August produces a sweet, low-alcohol wine. Small shops near Baltit Fort. Don't expect Bordeaux — expect something honest and singular.</p>
+      <h3>Apricot Products</h3>
+      <p>June–July is apricot season. Eat them fresh off trees on the terraces (ask first — most farmers don't mind). Dried apricots, apricot oil, and apricot jam are all worth buying to take home. The cold-pressed oil is used in Ismaili cooking and is genuinely good on bread.</p>
+      <h3>Hunzai Harisa</h3>
+      <p>A slow-cooked wheat and meat porridge (similar to haleem) eaten in winter but sometimes available year-round at local homes. If a family offers you this, accept.</p>
     </div>
     <div>
       <span class="label">Best Time to Visit</span>
       <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:2rem;">When to Go</h2>
       <table class="practical-table">
-        <tr><td>March – April</td><td><strong>Cherry & almond blossom.</strong> Cold nights, clear days. Fewer tourists. One of the most beautiful times visually.</td></tr>
-        <tr><td>May – June</td><td><strong>Peak trekking season begins.</strong> Passes open, wildflowers on glacial moraines. Best all-around time.</td></tr>
-        <tr><td>July – August</td><td><strong>Apricot & mulberry harvest.</strong> Warmest weather. Highest tourist numbers. Book guesthouses in advance.</td></tr>
-        <tr><td>September – October</td><td><strong>Autumn colours.</strong> Cooler, quieter, golden light. Second-best time. Khunjerab Pass closes late October.</td></tr>
-        <tr><td>November – February</td><td>Most roads open but very cold at altitude. Limited guesthouses. Only for serious winter visitors.</td></tr>
+        <tr><td>March – April</td><td><strong>Cherry &amp; almond blossom.</strong> Cold nights (0–5°C), clear skies. Tourist numbers low. Baltit and Altit orchards in flower — one of the most visually extraordinary times of year.</td></tr>
+        <tr><td>May – June</td><td><strong>Peak trekking season begins.</strong> Khunjerab Pass opens (May). Wildflowers on glacier moraines. Best overall balance of weather, access, and crowd levels.</td></tr>
+        <tr><td>July – August</td><td><strong>Apricot and mulberry harvest.</strong> Warmest weather (max 25–30°C in Karimabad). Highest visitor numbers — book guesthouses 2–4 weeks in advance. Eagle's Nest is spectacular in this light.</td></tr>
+        <tr><td>September – October</td><td><strong>Autumn gold.</strong> Cooler (5–18°C day), crowds thin, light is warm and long. Borith Lake fills with migratory birds in September. Khunjerab closes late October.</td></tr>
+        <tr><td>November – February</td><td>Karimabad stays accessible but cold (nights well below freezing). Khunjerab Pass closed. Limited guesthouses open. Some roads to Passu impassable in winter. For serious off-season visitors only.</td></tr>
       </table>
+      <div class="notice" style="margin-top:1.5rem;">
+        <strong>Blossom festival (April):</strong> Hunza hosts an annual Cherry Blossom Festival in Karimabad in late March or early April. Hotels fill for this one — book 6–8 weeks ahead if visiting during blossom season.
+      </div>
     </div>
   </div>
 </section>
@@ -359,20 +763,20 @@ loadWeather(36.3167, 74.65);
         <div class="trek-meta">
           <div class="trek-meta-item">⏱ <strong>2 days</strong></div>
           <div class="trek-meta-item">↑ <strong>3,500m</strong></div>
-          <div class="trek-meta-item">📍 <strong>Minapin, Hunza</strong></div>
+          <div class="trek-meta-item">📍 <strong>Minapin, Nagar</strong></div>
         </div>
-        <p class="trek-desc">The best short trek from Hunza. Orchards to glacier moraine. The close-up view of Rakaposhi (7,788m) at basecamp is one of the clearest views of a major peak anywhere in Pakistan.</p>
+        <p class="trek-desc">The best short trek accessible from Hunza. Orchards to glacier moraine in two days. The close-up of Rakaposhi's 5,500m south face from base camp is one of the clearest views of a major Himalayan peak you will ever find.</p>
         <a class="trek-link" href="../trekking/index.html">Read full guide &rarr;</a>
       </div>
       <div class="trek-card">
         <span class="diff diff-moderate">Moderate</span>
-        <div class="trek-name">Ultar Sar Base Camp</div>
+        <div class="trek-name">Rush Lake Trek</div>
         <div class="trek-meta">
-          <div class="trek-meta-item">⏱ <strong>1 day</strong></div>
-          <div class="trek-meta-item">↑ <strong>3,900m</strong></div>
-          <div class="trek-meta-item">📍 <strong>Karimabad</strong></div>
+          <div class="trek-meta-item">⏱ <strong>2 days</strong></div>
+          <div class="trek-meta-item">↑ <strong>4,694m</strong></div>
+          <div class="trek-meta-item">📍 <strong>Minapin, Nagar</strong></div>
         </div>
-        <p class="trek-desc">A steep but rewarding day hike directly above Karimabad. The glacier at the top sits under Ultar Sar (7,388m). Views of Hunza Valley below are extraordinary.</p>
+        <p class="trek-desc">The highest lake in Pakistan. A genuinely strenuous two-day climb above Minapin to a lake at 4,694m with Rakaposhi dominating the entire skyline. Guide required. Snow possible even in July. Worth every step.</p>
         <a class="trek-link" href="../trekking/index.html">Read full guide &rarr;</a>
       </div>
       <div class="trek-card">
@@ -383,7 +787,7 @@ loadWeather(36.3167, 74.65);
           <div class="trek-meta-item">↑ <strong>5,100m</strong></div>
           <div class="trek-meta-item">📍 <strong>Nagar, Hunza</strong></div>
         </div>
-        <p class="trek-desc">One of Pakistan's great glacier crossings. From Nagar across Hispar Pass to Askole in Skardu. Remote, physically demanding, and almost entirely off the tourist trail.</p>
+        <p class="trek-desc">One of Pakistan's great glacier crossings: from Nagar across Hispar Pass to Askole in Skardu district. Remote, physically demanding, and almost entirely off the tourist trail. Snow bridge crossings require experience and a reliable guide.</p>
         <a class="trek-link" href="../trekking/index.html">Read full guide &rarr;</a>
       </div>
     </div>
@@ -408,8 +812,8 @@ loadWeather(36.3167, 74.65);
           <li><a href="../hunza/index.html">Hunza Valley</a></li>
           <li><a href="../skardu/index.html">Skardu</a></li>
           <li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li>
-          <li><a href="../index.html">Gilgit City</a></li>
-          <li><a href="../index.html">Naran Kaghan</a></li>
+          <li><a href="../gilgit/index.html">Gilgit City</a></li>
+          <li><a href="../naran-kaghan/index.html">Naran Kaghan</a></li>
         </ul>
       </div>
       <div>
@@ -438,12 +842,15 @@ loadWeather(36.3167, 74.65);
     </div>
   </div>
 </footer>
-    <span class="photo-credit">Hunza Valley (Eagle's Nest): <a href="https://commons.wikimedia.org/wiki/File:Hunza_Valley,_Eagle_Nest,_Pakistan.JPG" target="_blank" rel="noopener">Maham4970</a> / Wikimedia Commons / CC BY-SA 3.0</span>
-    <span class="photo-credit">Attabad Lake: <a href="https://commons.wikimedia.org/wiki/File:Attabad_Lake,_Hunza_Pakistan.jpg" target="_blank" rel="noopener">Hassanzealous</a> / Wikimedia Commons / CC BY-SA 4.0</span>
-    <span class="photo-credit">Passu Cones: <a href="https://commons.wikimedia.org/wiki/Category:Passu_Cones" target="_blank" rel="noopener">Sakhiasif</a> / Wikimedia Commons / CC BY-SA 4.0</span>
-  </div>
-</div>
 
+<script>
+function switchItin(id) {
+  document.querySelectorAll('.itin-plan').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.itin-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('itin-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
 <script>
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });

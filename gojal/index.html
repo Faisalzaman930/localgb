@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gojal (Upper Hunza) Travel Guide 2025 — Shimshal, Gulmit, Misgar — LocalGB</title>
+<meta name="description" content="Complete guide to Gojal (Upper Hunza): Shimshal Valley, Gulmit, Misgar, Wakhi culture, Khunjerab National Park, snow leopard habitat. Beyond the tourist trail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
+<style>
+.attractions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:3rem;}
+.attraction-card{height:240px;position:relative;border-radius:5px;overflow:hidden;cursor:pointer;transition:transform 0.4s var(--ease);}
+.attraction-card:hover{transform:scale(1.015);}
+.attraction-card .img-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s ease;}
+.attraction-card:hover .img-card-bg{transform:scale(1.07);}
+.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(170deg,transparent 30%,rgba(0,0,0,0.78) 100%);}
+.attraction-card .img-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.5rem;z-index:2;}
+.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:var(--cream);line-height:1.1;}
+.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem;display:block;}
+.attraction-card .img-card-desc{font-size:0.72rem;color:rgba(240,232,213,0.75);margin-top:0.35rem;line-height:1.45;}
+.stay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:2.5rem;}
+.stay-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:1.8rem;transition:border-color 0.3s;}
+.stay-card:hover{border-color:var(--gold-border);}
+.stay-tier{font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.stay-price{font-family:var(--fd);font-size:2rem;font-weight:400;color:var(--cream);margin-bottom:0.2rem;}
+.stay-per{font-size:0.68rem;color:var(--cream-2);margin-bottom:1.2rem;}
+.stay-items{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
+.stay-item{font-size:0.78rem;color:var(--cream-2);display:flex;gap:0.55rem;align-items:flex-start;line-height:1.5;}
+.stay-item::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;margin-top:0.5em;flex-shrink:0;}
+.culture-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:2.5rem;}
+.culture-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.06);border-radius:5px;padding:1.8rem;}
+.culture-card:hover{border-color:var(--gold-border);}
+.culture-label{font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.culture-name{font-family:var(--fd);font-size:1.4rem;color:var(--cream);margin-bottom:0.7rem;}
+.culture-body{font-size:0.8rem;color:var(--cream-2);line-height:1.65;}
+@media(max-width:768px){.attractions-grid{grid-template-columns:1fr 1fr;}.stay-grid{grid-template-columns:1fr;}.culture-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.attractions-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Trip</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#030810 0%,#060F20 35%,#0A1A36 65%,#102840 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Destination Guide</div>
+    <h1 class="page-hero-h1">Gojal<br>&amp; Upper Hunza</h1>
+    <p class="page-hero-sub">Beyond Karimabad: Wakhi villages, the remotest road in Pakistan to Shimshal, the last settlement before the Chinese border at Misgar, and the world's highest wildlife reserve.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📍 <strong>Upper Hunza, GB</strong></div>
+      <div class="page-hero-meta-item">⛰ <strong>2,480–4,735m</strong> range</div>
+      <div class="page-hero-meta-item">🚗 <strong>80–200km</strong> from Karimabad</div>
+      <div class="page-hero-meta-item">🌿 <strong>Best: May – Oct</strong></div>
+    </div>
+  </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="../hunza/index.html">Hunza Valley</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Gojal &amp; Upper Hunza</span>
+  </div>
+</div>
+
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Gojal &amp; Upper Hunza</h2>
+    <p class="map-section-sub">From Gulmit to Misgar — the final 150km of Pakistan before the Chinese border</p>
+  </div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
+<script>
+(function(){
+  const map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([36.72,74.92],9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
+  const pin=L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
+  const gem=L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
+  L.marker([36.4667,74.8500],{icon:pin}).addTo(map).bindPopup('<strong>Gulmit</strong><br>2,480m · Upper Hunza cultural capital<br>Gojal Museum · Wakhi Heritage');
+  L.marker([36.4750,74.8600],{icon:pin}).addTo(map).bindPopup('<strong>Passu</strong><br>Passu Cones · Hussaini Bridge<br>Borith Lake · trekking base');
+  L.marker([36.5167,74.8667],{icon:pin}).addTo(map).bindPopup('<strong>Gulmit Glacier</strong><br>Walk from Gulmit village<br>Accessible in 1.5–2h on foot');
+  L.marker([37.1000,75.4333],{icon:pin}).addTo(map).bindPopup('<strong>Shimshal Village</strong><br>3,100m · Pakistan\'s most remote road village<br>NOC required · Wakhi community<br>Yak herding · Shimshal Pass 4,735m');
+  L.marker([36.9000,74.9833],{icon:pin}).addTo(map).bindPopup('<strong>Sost</strong><br>Last Pakistani town on KKH<br>Pakistan–China customs &amp; immigration<br>2,790m');
+  L.marker([37.1500,75.2167],{icon:pin}).addTo(map).bindPopup('<strong>Misgar</strong><br>Last Wakhi village before Khunjerab<br>Rarely visited · ancient trade post');
+  L.marker([36.8385,75.4133],{icon:pin}).addTo(map).bindPopup('<strong>Khunjerab Pass</strong><br>4,693m · Pakistan-China border<br>Khunjerab National Park · Marco Polo sheep');
+  L.marker([37.0500,75.3500],{icon:gem}).addTo(map).bindPopup('<strong>Kilik &amp; Mintaka Passes</strong><br>Ancient Silk Road passes to Central Asia<br>Now closed border · trekking access from Misgar<br>NOC required');
+  L.marker([36.4400,74.8200],{icon:gem}).addTo(map).bindPopup('<strong>Ghulkin Glacier</strong><br>Walk from Ghulkin village<br>Easier glacier access than Passu');
+})();
+</script>
+
+<script>
+function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat,lon){
+  const el=document.getElementById('wxWidget');
+  try{
+    const r=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b29ce4cae8644fdab30143502260305&q=${lat},${lon}&days=3&aqi=no`);
+    const d=await r.json();const c=d.current;const fc=d.forecast.forecastday;
+    const fh=fc.slice(1).map(day=>{const dn=DAYS[new Date(day.date+'T00:00:00').getDay()];return`<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;}).join('');
+    el.innerHTML=`<div class="wx-bar-inner"><div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div><div class="wx-current"><span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span><span class="wx-icon-lg">${wxIcon(c.condition.code)}</span><span class="wx-cond-text">${c.condition.text}</span></div><div class="wx-bar-div"></div><div class="wx-stats-bar"><div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div><div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div><div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div></div><div class="wx-bar-div"></div><div class="wx-bar-fc">${fh}</div></div>`;
+  }catch(e){el.innerHTML='<div class="wx-loading">Weather unavailable</div>';}
+}
+loadWeather(36.4667,74.8500);
+</script>
+
+<section class="section reveal">
+  <div class="info-grid">
+    <div>
+      <span class="label">Overview</span>
+      <h2 class="section-title">Upper Hunza —<br><em>The Road Continues</em></h2>
+    </div>
+    <div class="info-body">
+      <p>Most visitors to Hunza stop at Karimabad and turn back south. That's understandable — Karimabad is extraordinary. But the KKH continues north for another 150km through <strong>Gojal</strong>, the upper sub-region of Hunza inhabited by the Wakhi people, a distinct cultural group with their own language, music, and customs, more closely related to Tajik and Afghan Wakhan than to the Burusho culture of lower Hunza.</p>
+      <p><strong>Gulmit</strong> (2,480m) is the cultural capital of Gojal — it has a small but excellent museum of Wakhi culture and is the best base for glacier walks. <strong>Passu</strong>, 10km north, is famous for the Cones and the Hussaini Bridge. <strong>Sost</strong> is the last Pakistani town before China. And then there's <strong>Shimshal</strong> — accessible only by a 60km jeep track along a cliff edge, home to one of the most extraordinary mountain communities in Asia at 3,100m.</p>
+      <p>The entire Gojal region is also the core zone of <strong>Khunjerab National Park</strong> — the world's highest protected wildlife reserve, with Marco Polo sheep, snow leopard, brown bear, and blue sheep throughout the high terrain.</p>
+    </div>
+  </div>
+  <div class="stat-row reveal">
+    <div class="stat-cell"><div class="stat-cell-num">3,100m</div><div class="stat-cell-label">Shimshal village altitude</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,735m</div><div class="stat-cell-label">Shimshal Pass</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,693m</div><div class="stat-cell-label">Khunjerab Pass</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">60km</div><div class="stat-cell-label">Shimshal jeep track length</div></div>
+  </div>
+</section>
+
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Key Destinations</span>
+      <h2 class="section-title">Where to Go<br>in Upper Hunza</h2>
+    </div>
+    <div class="attractions-grid reveal">
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040808 0%,#0C1818 35%,#162828 65%,#223838 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">2,480m · Wakhi museum · glacier walk</span>
+          <div class="img-card-name">Gulmit</div>
+          <div class="img-card-desc">Upper Hunza's cultural centre. The Gojal Heritage Museum houses Wakhi artefacts, instruments, and clothing that document a culture largely invisible to outsiders. The Gulmit Glacier is accessible on foot in 1.5–2h from the village — a good alternative to the more crowded Passu glacier walk.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#060606 0%,#121010 35%,#201A18 65%,#302820 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,100m · NOC required · 3–4h from Passu</span>
+          <div class="img-card-name">Shimshal Valley</div>
+          <div class="img-card-desc">The most remote permanently inhabited valley accessible by road in Pakistan. 60km of single-lane cliff-edge track from the KKH. The Wakhi community here practises transhumance — moving yak herds to 5,000m+ summer pastures each year. Shimshal Pass (4,735m) is a major trekking objective. The village hospitality is extraordinary.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A0A 0%,#081A1A 35%,#102A2A 65%,#183C3A 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">4,693m · Khunjerab NP · Marco Polo sheep</span>
+          <div class="img-card-name">Khunjerab Pass &amp; NP</div>
+          <div class="img-card-desc">The pass itself (covered in the Hunza guide) is just the entry to Khunjerab National Park — a 2,200 km² reserve covering the high terrain north of Sost. Marco Polo sheep are regularly seen from the road between Sost and the pass. Snow leopard, Himalayan brown bear, and ibex also present but rarely visible.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#060804 0%,#101408 35%,#1C2010 65%,#2A2E18 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Last Pakistani village on Silk Road · ancient</span>
+          <div class="img-card-name">Misgar</div>
+          <div class="img-card-desc">The last Wakhi settlement before the Khunjerab range. Misgar was a major Silk Road waypoint — merchants rested here before or after crossing the passes to Central Asia. The Kilik and Mintaka passes above Misgar are now closed border crossings; they were historically busier than Khunjerab. Almost no tourists reach Misgar.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#050A08 0%,#0C1A10 35%,#142818 65%,#1E3A22 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Walk from Ghulkin · easier than Passu</span>
+          <div class="img-card-name">Ghulkin Glacier</div>
+          <div class="img-card-desc">The glacier at Ghulkin village (between Gulmit and Passu) is arguably the easiest glacier walk in the entire KKH corridor — 45 minutes from the road to active ice with clear crevasses and moraines. Far fewer visitors than Passu Glacier. The village of Ghulkin itself is small and traditional.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#050808 0%,#0C1618 35%,#142428 65%,#1E3438 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">2,790m · customs &amp; trade post</span>
+          <div class="img-card-name">Sost Dry Port</div>
+          <div class="img-card-desc">Sost is the Pakistan–China border customs facility — the last Pakistani town before you enter Chinese territory. The weekly cross-border market (when operating) draws Uyghur and Tajik traders from Xinjiang. The town itself is functional rather than scenic, but the surrounding mountains are wild, and the Karakul Lake (Chinese side) is visible from the pass.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Wakhi Culture</span>
+    <h2 class="section-title">The People of<br>Upper Hunza</h2>
+    <p class="section-lead">The Wakhi of Gojal are culturally distinct from the Burusho of Karimabad. Understanding the difference makes the journey more meaningful.</p>
+  </div>
+  <div class="culture-grid reveal">
+    <div class="culture-card">
+      <div class="culture-label">Language &amp; Origins</div>
+      <div class="culture-name">Wakhi People</div>
+      <div class="culture-body">The Wakhi speak Wakhi (Wakhani), an Eastern Iranian language related to the dialects of the Wakhan Corridor in Afghanistan and Tajikistan. They are the same ethnic group as the Wakhi of Tajikistan and Afghanistan, separated by modern borders. Ismaili Muslim, like the Burusho of lower Hunza, they follow the Aga Khan's guidance — which has historically driven high literacy rates and progressive gender norms throughout Gojal.</div>
+    </div>
+    <div class="culture-card">
+      <div class="culture-label">Transhumance · yak culture</div>
+      <div class="culture-name">Shimshal Pamir</div>
+      <div class="culture-body">The Shimshal community practises one of the last remaining large-scale transhumance cycles in South Asia. Each May–June, the community moves their yak herds up to the Pamir-i-Wakhan summer pastures at 4,500–5,000m — a tradition that has continued for centuries. Women manage the high pastures through summer while men work in the village. The return migration in September–October is a community event. If you visit Shimshal in May, you may witness the departure.</div>
+    </div>
+    <div class="culture-card">
+      <div class="culture-label">Music &amp; Dance</div>
+      <div class="culture-name">Wakhi Performing Arts</div>
+      <div class="culture-body">Wakhi music uses instruments not found in lower Hunza — the tanbur (long-necked lute), daf (frame drum), and ghichak (bowed instrument). The Gojal Heritage Museum in Gulmit has examples of all three. Traditional dances are performed at weddings and festivals, particularly the autumn harvest festivals in September–October. If you're in Gulmit during a wedding season, asking a local if visitors may observe is usually welcomed.</div>
+    </div>
+    <div class="culture-card">
+      <div class="culture-label">Food · Wakhi kitchen</div>
+      <div class="culture-name">What to Eat in Gojal</div>
+      <div class="culture-body">Wakhi cuisine is distinct from Hunzai cooking. Key dishes: <strong>Qurut</strong> — dried yogurt balls preserved for winter, eaten with bread; <strong>Kishk</strong> — a fermented grain and yogurt porridge eaten hot; <strong>Yak butter tea</strong> — richer and more pungent than the Baltistani version; <strong>Tarkhineh</strong> — a sour soup made from fermented grains. In Shimshal, home-produced yak cheese and dried yak meat are staples. Accept any food offered at a Wakhi home — refusal is a significant slight.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div>
+      <span class="label">Getting There</span>
+      <h2 class="section-title">How to Reach<br>Upper Hunza</h2>
+      <div class="notice" style="margin-top:2rem;">
+        <strong>Shimshal NOC:</strong> An NOC from the Deputy Commissioner's office in Aliabad (Hunza HQ) is required for Shimshal Valley. Allow 1–2 days to arrange it. Without it, the checkpoint before the Shimshal junction will turn you back. The NOC is a formality — it is issued readily to foreign and domestic tourists but cannot be skipped.
+      </div>
+    </div>
+    <div>
+      <table class="practical-table">
+        <tr><td>Karimabad to Gulmit</td><td>Shared jeep PKR 300–500 (1h). Private jeep PKR 2,500–4,000. The KKH is fully paved throughout.</td></tr>
+        <tr><td>Karimabad to Passu</td><td>Shared jeep PKR 400–700 (1.5h). Private jeep PKR 3,000–5,000.</td></tr>
+        <tr><td>Karimabad to Sost</td><td>Shared jeep PKR 600–900 (2.5h). Private jeep PKR 5,000–8,000.</td></tr>
+        <tr><td>To Shimshal</td><td>Private jeep only — no shared transport. PKR 8,000–14,000 return from Passu. The 60km track takes 2.5–3h. 4WD essential. NOC required (see above).</td></tr>
+        <tr><td>To Misgar</td><td>From Sost: private jeep PKR 3,000–5,000 return (1.5h). Almost no shared transport. A very rough road beyond the Sost checkpoint.</td></tr>
+        <tr><td>Khunjerab Pass</td><td>From Sost: shared van PKR 600–900 return. Private jeep PKR 4,000–7,000. CNIC/Passport required at checkpost. Pass open May–October.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-bg reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="label">Accommodation</span>
+      <h2 class="section-title">Where to Stay<br>in Gojal</h2>
+    </div>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <div class="stay-tier">Budget</div>
+        <div class="stay-price">PKR 1,000 – 3,000</div>
+        <div class="stay-per">per night · guesthouse or homestay</div>
+        <ul class="stay-items">
+          <li class="stay-item">Gulmit family guesthouses — PKR 1,500–2,500 including meals; Wakhi food served</li>
+          <li class="stay-item">Passu local lodges — PKR 1,000–2,000; basic but well-placed for Cones and bridge</li>
+          <li class="stay-item">Shimshal homestays — PKR 1,500–3,000 including meals; community-run; the only option in the valley</li>
+          <li class="stay-item">Sost guesthouses — PKR 1,200–2,500; functional; useful if crossing to/from China</li>
+        </ul>
+      </div>
+      <div class="stay-card" style="border-color:var(--gold-border);background:linear-gradient(160deg,rgba(200,144,58,0.07),var(--ink-3))">
+        <div class="stay-tier">Mid-Range</div>
+        <div class="stay-price">PKR 4,000 – 10,000</div>
+        <div class="stay-per">per night · en-suite</div>
+        <ul class="stay-items">
+          <li class="stay-item"><strong>Gulmit Tourist Inn</strong> — most established mid-range in Gojal; glacier views from upper rooms</li>
+          <li class="stay-item"><strong>Passu Inn</strong> — directly below the Cones; reliable and friendly</li>
+          <li class="stay-item"><strong>Sost guesthouses</strong> (upper tier) — PKR 3,000–6,000; some with en-suite and heating</li>
+        </ul>
+      </div>
+      <div class="stay-card">
+        <div class="stay-tier">Camping</div>
+        <div class="stay-price">PKR 500 – 1,500</div>
+        <div class="stay-per">per pitch or free</div>
+        <ul class="stay-items">
+          <li class="stay-item">Borith Lake shore — camp with Passu Cones directly above; bring own tent; no facilities</li>
+          <li class="stay-item">Ghulkin Glacier moraine — wild camping; accessible and surreal</li>
+          <li class="stay-item">Shimshal Pamir approaches — expedition camping above Shimshal; guide essential</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div class="info-body">
+      <span class="label">Trekking</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.2rem;">Treks from<br>Upper Hunza</h2>
+      <h3>Shimshal Pass (4,735m)</h3>
+      <p>The classic multi-day trek from Shimshal village to the high summer pastures and over the pass. 4–6 days return. Guide and camping gear essential. Best in July–August when the yak herds are at the summer pastures. NOC required for Shimshal. One of the truly wild treks in GB — no huts, no infrastructure above the village.</p>
+      <h3>Lupghar Sar Approach</h3>
+      <p>A multi-day trek from Shimshal toward the base of Lupghar Sar (7,200m). Only for experienced trekkers with full equipment. Permit required from Ministry of Tourism for peaks above 6,000m.</p>
+      <h3>Passu Glacier Trek</h3>
+      <p>1–2 days from Passu village across the Passu Glacier. Day 1: walk to the glacier tongue (2h). Day 2: traverse across the moraine to a viewpoint above. Guide recommended: PKR 2,000–3,500/day from Passu village. No technical equipment needed but glacier terrain requires caution.</p>
+    </div>
+    <div>
+      <span class="label">When to Go</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:2rem;">Season Guide</h2>
+      <table class="practical-table">
+        <tr><td>April – May</td><td>KKH open. Khunjerab Pass opens late April/May. Shimshal community begins yak drive to summer pastures. Wildflowers early in Gulmit orchards.</td></tr>
+        <tr><td>June – July</td><td>All roads open. Khunjerab National Park active with wildlife. Shimshal trek season begins. Best for Borith Lake birdwatching.</td></tr>
+        <tr><td>August</td><td>Peak. Warm days (20–25°C Gulmit). Shimshal Pamir summer pastures fully occupied — most interesting time to visit the village.</td></tr>
+        <tr><td>September</td><td><strong>Best month overall.</strong> Autumn light. Shimshal yak migration returning (September–October). Khunjerab still open. Quietest and most beautiful.</td></tr>
+        <tr><td>October – November</td><td>Khunjerab closes October. Shimshal track icy by November. Gulmit and Passu remain open year-round but infrastructure reduces.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
+        <div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div>
+      </div>
+      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../gojal/index.html">Gojal / Upper Hunza</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit City</a></li></ul></div>
+      <div><div class="footer-col-title">More Valleys</div><ul class="footer-links"><li><a href="../ghizer/index.html">Ghizer Valley</a></li><li><a href="../astore/index.html">Astore Valley</a></li><li><a href="../naltar/index.html">Naltar Valley</a></li><li><a href="../yasin-ishkoman/index.html">Yasin &amp; Ishkoman</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../travel/index.html">NOC &amp; Permits</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=[...e.target.parentElement.querySelectorAll('.reveal')];setTimeout(()=>e.target.classList.add('visible'),s.indexOf(e.target)*90);obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<script id="navScript">
+(function(){var btn=document.getElementById('navHamburger');var drawer=document.getElementById('navDrawer');if(!btn||!drawer)return;btn.addEventListener('click',function(){btn.classList.toggle('open');drawer.classList.toggle('open');});document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!drawer.contains(e.target)){btn.classList.remove('open');drawer.classList.remove('open');}});})();
+</script>
+</body>
+</html>

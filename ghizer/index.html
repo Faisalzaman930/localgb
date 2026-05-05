@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghizer Valley Travel Guide 2025 — Phander Lake, Shandur Pass — LocalGB</title>
+<meta name="description" content="Complete guide to Ghizer Valley: Phander Lake, Shandur Pass polo ground, Khalti Lake, Handrap. The most underrated valley in Gilgit-Baltistan — and the road to Chitral.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
+<style>
+.attractions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 3rem; }
+.attraction-card { height: 240px; position: relative; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform 0.4s var(--ease); }
+.attraction-card:hover { transform: scale(1.015); }
+.attraction-card .img-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+.attraction-card:hover .img-card-bg { transform: scale(1.07); }
+.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .img-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
+.attraction-card .img-card-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: var(--cream); line-height: 1.1; }
+.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .img-card-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
+.stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
+.stay-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
+.stay-card:hover { border-color: var(--gold-border); }
+.stay-tier { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.stay-price { font-family: var(--fd); font-size: 2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.2rem; }
+.stay-per { font-size: 0.68rem; color: var(--cream-2); margin-bottom: 1.2rem; }
+.stay-items { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.stay-item { font-size: 0.78rem; color: var(--cream-2); display: flex; gap: 0.55rem; align-items: flex-start; line-height: 1.5; }
+.stay-item::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-top: 0.5em; flex-shrink: 0; }
+.route-bar { display: flex; align-items: center; gap: 0; margin: 2.5rem 0; flex-wrap: wrap; }
+.route-stop { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+.route-stop-name { font-family: var(--fu); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); }
+.route-stop-km { font-size: 0.6rem; color: var(--gold); }
+.route-line { flex: 1; height: 1px; background: rgba(200,144,58,0.35); min-width: 20px; margin-bottom: 1rem; }
+@media (max-width: 768px) { .attractions-grid { grid-template-columns: 1fr 1fr; } .stay-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .attractions-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Trip</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#030C12 0%,#061828 35%,#0A2A40 65%,#102E3A 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Destination Guide</div>
+    <h1 class="page-hero-h1">Ghizer Valley</h1>
+    <p class="page-hero-sub">GB's most underrated valley — turquoise Phander Lake, the world's highest polo ground at Shandur, and the road west to Chitral. Almost no tourists.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📍 <strong>Ghizer District, GB</strong></div>
+      <div class="page-hero-meta-item">⛰ <strong>2,200–3,734m</strong> range</div>
+      <div class="page-hero-meta-item">🚗 <strong>4–5h</strong> from Gilgit</div>
+      <div class="page-hero-meta-item">🌿 <strong>Best: Jun – Sep</strong></div>
+    </div>
+  </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Ghizer Valley</span>
+  </div>
+</div>
+
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Ghizer Valley</h2>
+    <p class="map-section-sub">The full corridor from Gilgit to Shandur — tap markers for details</p>
+  </div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
+<script>
+(function(){
+  const map = L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([36.28,73.50],9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
+  const pin = L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
+  const gem = L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
+  L.marker([36.1744,73.2917],{icon:pin}).addTo(map).bindPopup('<strong>Gahkuch</strong><br>Ghizer district HQ · 1,800m<br>First major stop from Gilgit');
+  L.marker([36.2000,73.4500],{icon:pin}).addTo(map).bindPopup('<strong>Gupis</strong><br>2,100m · 160km from Gilgit<br>Khalti Lake nearby · Gupis Fort');
+  L.marker([36.1833,73.5833],{icon:pin}).addTo(map).bindPopup('<strong>Phander Lake</strong><br>3,100m · most scenic lake in Ghizer<br>Turquoise water, pine forest, no crowds');
+  L.marker([36.1167,73.7000],{icon:pin}).addTo(map).bindPopup('<strong>Teru</strong><br>2,800m · quiet village<br>Trout fishing in Ghizer River');
+  L.marker([36.0500,73.9500],{icon:pin}).addTo(map).bindPopup('<strong>Shandur Pass</strong><br>3,734m · world\'s highest polo ground<br>Annual polo festival July · connects to Chitral');
+  L.marker([36.2200,73.4200],{icon:gem}).addTo(map).bindPopup('<strong>Khalti Lake</strong><br>Near Gupis · small, quiet, rarely visited<br>Surrounded by red-rock cliffs');
+  L.marker([36.2100,73.6200],{icon:gem}).addTo(map).bindPopup('<strong>Handrap Lake</strong><br>Above Handrap village · alpine, remote<br>2-day trek · almost no visitors');
+  L.marker([36.1500,73.4800],{icon:gem}).addTo(map).bindPopup('<strong>Singal Pass area</strong><br>Above Phander · glacier views<br>Trek from Phander village · guide needed');
+})();
+</script>
+
+<script>
+function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat,lon){
+  const el=document.getElementById('wxWidget');
+  try{
+    const r=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b29ce4cae8644fdab30143502260305&q=${lat},${lon}&days=3&aqi=no`);
+    const d=await r.json();const c=d.current;const fc=d.forecast.forecastday;
+    const fh=fc.slice(1).map(day=>{const dn=DAYS[new Date(day.date+'T00:00:00').getDay()];return`<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;}).join('');
+    el.innerHTML=`<div class="wx-bar-inner"><div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div><div class="wx-current"><span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span><span class="wx-icon-lg">${wxIcon(c.condition.code)}</span><span class="wx-cond-text">${c.condition.text}</span></div><div class="wx-bar-div"></div><div class="wx-stats-bar"><div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div><div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div><div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div></div><div class="wx-bar-div"></div><div class="wx-bar-fc">${fh}</div></div>`;
+  }catch(e){el.innerHTML='<div class="wx-loading">Weather unavailable</div>';}
+}
+loadWeather(36.1833,73.5833);
+</script>
+
+<section class="section reveal">
+  <div class="info-grid">
+    <div>
+      <span class="label">Overview</span>
+      <h2 class="section-title">GB's Best-Kept<br><em>Secret</em></h2>
+    </div>
+    <div class="info-body">
+      <p>Ghizer is the westernmost district of Gilgit-Baltistan, running along the Ghizer River from Gilgit through a series of increasingly remote valleys to Shandur Pass — where the road crosses into Khyber Pakhtunkhwa and descends to Chitral. It is, collectively, the most undervisited major valley in GB.</p>
+      <p><strong>Phander Lake</strong> at 3,100m is the headline attraction: turquoise water, pine forests descending to the shore, and peaks above 5,000m on every horizon. Unlike Attabad or Saif-ul-Malook, there are no boat rental touts, no loudspeakers, and no traffic jams. You can sit at the shore for an hour without seeing another person.</p>
+      <p><strong>Shandur Pass</strong> (3,734m) is claimed to be the highest polo ground in the world. Each July, the annual Shandur Polo Festival draws teams from Chitral and Gilgit to play on the pass in one of the most unusual sporting settings on earth — at altitude, surrounded by glaciers, with no seats or stadium, just open mountain.</p>
+      <p>The Gilgit–Phander–Shandur–Chitral route is also one of the great road trips of Pakistan: a two-day drive combining the Karakoram, Hindu Kush, and Hindukush cultures into a single journey.</p>
+    </div>
+  </div>
+  <div class="stat-row reveal">
+    <div class="stat-cell"><div class="stat-cell-num">3,100m</div><div class="stat-cell-label">Phander Lake altitude</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">3,734m</div><div class="stat-cell-label">Shandur Pass</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">250km</div><div class="stat-cell-label">Gilgit to Shandur</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">July</div><div class="stat-cell-label">Polo festival month</div></div>
+  </div>
+</section>
+
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">The Route</span>
+      <h2 class="section-title">Gilgit to Chitral<br>via Shandur</h2>
+      <p class="section-lead">The classic two-day road trip. Every stop below is worth slowing down for.</p>
+    </div>
+    <div class="route-bar reveal">
+      <div class="route-stop"><div class="route-stop-name">Gilgit</div><div class="route-stop-km">0km</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="route-stop-name">Gahkuch</div><div class="route-stop-km">90km</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="route-stop-name">Gupis</div><div class="route-stop-km">160km</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="route-stop-name">Phander</div><div class="route-stop-km">210km</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="route-stop-name">Teru</div><div class="route-stop-km">235km</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="route-stop-name">Shandur</div><div class="route-stop-km">255km</div></div>
+      <div class="route-line"></div>
+      <div class="route-stop"><div class="route-stop-name">Chitral</div><div class="route-stop-km">375km</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Top Attractions</span>
+      <h2 class="section-title">What to See<br>in Ghizer</h2>
+    </div>
+    <div class="attractions-grid reveal">
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040C18 0%,#081A2E 40%,#0E2840 70%,#163448 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,100m · 210km from Gilgit · no crowds</span>
+          <div class="img-card-name">Phander Lake</div>
+          <div class="img-card-desc">The finest lake in Ghizer — turquoise water, pine forests, snow peaks. Unlike most famous GB lakes there is no tourist infrastructure here. Rowboats available from a local family for PKR 300–500. One of the most peaceful lake settings in the entire mountain north.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#060808 0%,#101410 35%,#1C241C 65%,#283428 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,734m · world's highest polo ground</span>
+          <div class="img-card-name">Shandur Pass</div>
+          <div class="img-card-desc">A wide, flat pass at 3,734m that sits between two small glacial lakes. The annual Shandur Polo Festival (usually first week of July) pits Gilgit against Chitral on this grass pitch at altitude — no stadium, no seats, just mountains on all sides. One of the most surreal sporting events in Asia.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#050A08 0%,#0C1A10 35%,#162C18 65%,#203C22 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Near Gupis · red cliffs · quiet</span>
+          <div class="img-card-name">Khalti Lake</div>
+          <div class="img-card-desc">A small lake near Gupis, less dramatic than Phander but beautiful in its own way — red rock cliffs reflect in still water, almost no tourists. Free to visit. The turnoff is signposted from the Gupis road. Walk the shore in 30 minutes.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#080606 0%,#181010 35%,#281818 65%,#382020 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Historic · above Gupis</span>
+          <div class="img-card-name">Gupis Fort</div>
+          <div class="img-card-desc">A British-era fort (later Pakistani army post) on a bluff above the Ghizer River at Gupis. Partially accessible — ask at the checkpoint. The view down the river valley is excellent even from the road below. The town of Gupis itself is a good lunch stop.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A0A 0%,#081818 35%,#102828 65%,#183838 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">2,800m · trout fishing · quiet village</span>
+          <div class="img-card-name">Teru</div>
+          <div class="img-card-desc">A small village in the upper Ghizer Valley, one of the last before the climb to Shandur. Good trout fishing in the Ghizer River here (PKR 500–1,000 for a day permit from the local fisheries office). Several basic guesthouses. The surrounding farmland and forest is unusually lush.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#060408 0%,#100C18 35%,#1C1428 65%,#2A1E3A 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">2-day trek · alpine · almost no visitors</span>
+          <div class="img-card-name">Handrap Lake</div>
+          <div class="img-card-desc">A high alpine lake above Handrap village in the upper Ghizer Valley. 2-day trek from the road. Requires a local guide (PKR 1,500–2,500/day, ask in Handrap village). No facilities at the lake — camp only. One of those places that feels genuinely undiscovered.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div>
+      <span class="label">Getting There</span>
+      <h2 class="section-title">How to Reach<br>Ghizer Valley</h2>
+      <div class="notice" style="margin-top:2rem;">
+        <strong>Road conditions:</strong> The Ghizer road from Gilgit is paved as far as Phander and mostly paved to Teru. Beyond Teru toward Shandur the road becomes a rough jeep track. 4WD essential from Teru onward. After heavy rain, sections near Shandur can be impassable for hours.
+      </div>
+    </div>
+    <div>
+      <table class="practical-table">
+        <tr><td>From Gilgit</td><td>Shared jeep to Gupis: PKR 500–800 (3h). Shared jeep to Phander: PKR 800–1,200 (4–5h). Private jeep to Phander: PKR 8,000–14,000. Departures from Gilgit's general transport stand near the old bridge.</td></tr>
+        <tr><td>Phander to Shandur</td><td>Private jeep required: PKR 6,000–10,000. No regular shared transport beyond Teru. Arrange in Phander the evening before. 3–4h on rough track.</td></tr>
+        <tr><td>Shandur to Chitral</td><td>Once over the pass, you're in KPK. Jeeps run the descent to Laspur and onwards to Mastuj and Chitral (3–4h from pass to Chitral town). This is the full Gilgit–Chitral crossing.</td></tr>
+        <tr><td>NATCO bus</td><td>NATCO runs a Gilgit–Chitral bus via Shandur (seasonal, June–Oct only). Ask at Gilgit NATCO terminal for the current schedule — it changes year to year. Journey 12–15h total.</td></tr>
+        <tr><td>Permits</td><td>No NOC required for Ghizer Valley, Phander, or Shandur Pass. Standard CNIC/Passport at checkposts. Ishkoman Valley (side valley) may require NOC near border areas.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-bg reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="label">Accommodation</span>
+      <h2 class="section-title">Where to Stay<br>in Ghizer</h2>
+      <p class="section-lead">Ghizer has limited but functional accommodation. Most travellers overnight at Phander (best base) or Teru. Book ahead in the polo festival week — every guesthouse within 50km of Shandur fills completely.</p>
+    </div>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <div class="stay-tier">Budget</div>
+        <div class="stay-price">PKR 1,000 – 2,500</div>
+        <div class="stay-per">per night · basic room + meals</div>
+        <ul class="stay-items">
+          <li class="stay-item">Local family guesthouses in Phander village — simple, clean, home-cooked food included</li>
+          <li class="stay-item">Basic lodges in Teru — PKR 1,000–1,800; meals on request</li>
+          <li class="stay-item">Camping at Shandur Pass (bring own tent) — PKR 300–500 pitch fee; basic facilities during festival</li>
+          <li class="stay-item">Gupis guesthouses — PKR 1,200–2,000; useful if breaking a long drive</li>
+        </ul>
+      </div>
+      <div class="stay-card" style="border-color:var(--gold-border);background:linear-gradient(160deg,rgba(200,144,58,0.07),var(--ink-3))">
+        <div class="stay-tier">Mid-Range</div>
+        <div class="stay-price">PKR 3,500 – 8,000</div>
+        <div class="stay-per">per night · private room</div>
+        <ul class="stay-items">
+          <li class="stay-item"><strong>Phander Lake Resort</strong> — best-located property, rooms facing the lake, en-suite available</li>
+          <li class="stay-item"><strong>PTDC Phander</strong> — government motel, reliable standard, breakfast included</li>
+          <li class="stay-item">Gahkuch guesthouses — better infrastructure than upper valley; good if base for day trips</li>
+          <li class="stay-item">Advance booking essential July (polo festival) — prices double during festival week</li>
+        </ul>
+      </div>
+      <div class="stay-card">
+        <div class="stay-tier">Camping</div>
+        <div class="stay-price">PKR 500 – 1,500</div>
+        <div class="stay-per">per pitch · bring own tent</div>
+        <ul class="stay-items">
+          <li class="stay-item">Phander Lake shore — camp with lake and mountain views; water from stream; ask permission from village</li>
+          <li class="stay-item">Shandur Pass plateau — open camping; spectacular but cold (0°C+ even in July at night)</li>
+          <li class="stay-item">Handrap approach — designated camping on the trek route</li>
+          <li class="stay-item">Bring a 3-season sleeping bag minimum; 4-season for Shandur</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div class="info-body">
+      <span class="label">Shandur Polo Festival</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.2rem;">The World's<br>Highest Polo</h2>
+      <p>The Shandur Polo Festival is held annually on the Shandur Pass plateau (3,734m) — usually in the first week of July, though dates vary by year. The tournament pits the traditional rival teams of Gilgit and Chitral against each other in a format that has remained essentially unchanged for centuries.</p>
+      <p>Unlike modern polo, Shandur polo uses no helmets, no mallets made to uniform specification, and allows physical contact that would be penalised in formal polo. The players ride small mountain ponies bred in the Chitral and Gilgit valleys, not larger thoroughbreds. The game is faster, wilder, and more dangerous.</p>
+      <p>The festival lasts 3 days. Musicians from both sides play traditional instruments (sitar, daf drum, surnai) between chukkers. There is no seating — spectators stand on the surrounding hillsides. Food stalls appear on the pass for the festival week only.</p>
+      <div class="notice" style="margin-top:1.5rem;"><strong>Getting there for the festival:</strong> Book transport and accommodation 4–6 weeks ahead. The NATCO festival bus from Gilgit fills days before departure. Arriving a day early guarantees you a spot and the views of the pass before crowds. The festival dates are announced by the GB Tourism Department, usually by April.</div>
+    </div>
+    <div>
+      <span class="label">Best Time to Visit</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:2rem;">When to Go</h2>
+      <table class="practical-table">
+        <tr><td>May – June</td><td>Snow clears from Shandur by mid-June. Phander and Khalti Lake accessible from May. Wildflowers early June. Quietest and most beautiful.</td></tr>
+        <tr><td>July (festival)</td><td>Shandur Polo Festival (first week). Only crowded time in Ghizer. Everything else in the valley still quiet — avoid Shandur itself unless attending.</td></tr>
+        <tr><td>August</td><td>Good weather, Shandur pass fully open, Phander wildflowers. Some weekend visitors from Gilgit but never crowded. Good month overall.</td></tr>
+        <tr><td>September</td><td>Best month. Clear skies, autumn colour beginning on lower slopes, almost no visitors. Shandur still open.</td></tr>
+        <tr><td>October</td><td>Shandur closes with first heavy snowfall (usually mid-Oct). Phander stays accessible. Lower valley year-round.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
+        <div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div>
+      </div>
+      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit City</a></li><li><a href="../ghizer/index.html">Ghizer Valley</a></li></ul></div>
+      <div><div class="footer-col-title">More Valleys</div><ul class="footer-links"><li><a href="../astore/index.html">Astore Valley</a></li><li><a href="../naltar/index.html">Naltar Valley</a></li><li><a href="../gojal/index.html">Gojal / Upper Hunza</a></li><li><a href="../yasin-ishkoman/index.html">Yasin &amp; Ishkoman</a></li><li><a href="../naran-kaghan/index.html">Naran Kaghan</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../travel/index.html">NOC &amp; Permits</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=[...e.target.parentElement.querySelectorAll('.reveal')];setTimeout(()=>e.target.classList.add('visible'),s.indexOf(e.target)*90);obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<script id="navScript">
+(function(){var btn=document.getElementById('navHamburger');var drawer=document.getElementById('navDrawer');if(!btn||!drawer)return;btn.addEventListener('click',function(){btn.classList.toggle('open');drawer.classList.toggle('open');});document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!drawer.contains(e.target)){btn.classList.remove('open');drawer.classList.remove('open');}});})();
+</script>
+</body>
+</html>

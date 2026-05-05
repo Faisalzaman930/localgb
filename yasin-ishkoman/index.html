@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasin &amp; Ishkoman Valley Guide 2025 — GB's Most Remote Valleys — LocalGB</title>
+<meta name="description" content="Complete guide to Yasin and Ishkoman valleys in Ghizer District: the most remote inhabited valleys in GB, barely visited, extraordinary landscapes. Permits, access, and what to expect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
+<style>
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.5rem;}
+.valley-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.06);border-radius:5px;padding:2rem;}
+.valley-card:hover{border-color:var(--gold-border);}
+.valley-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+.valley-name{font-family:var(--fd);font-size:2rem;color:var(--cream);margin-bottom:1rem;}
+.valley-body{font-size:0.82rem;color:var(--cream-2);line-height:1.7;}
+.valley-body h4{font-family:var(--fd);font-size:1.1rem;color:var(--cream);margin:1.2rem 0 0.4rem;}
+.highlights-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:2.5rem;}
+.highlight-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.06);border-radius:5px;padding:1.6rem;transition:border-color 0.3s;}
+.highlight-card:hover{border-color:var(--gold-border);}
+.hl-label{font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.hl-name{font-family:var(--fd);font-size:1.3rem;color:var(--cream);margin-bottom:0.6rem;}
+.hl-body{font-size:0.78rem;color:var(--cream-2);line-height:1.6;}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;}.highlights-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Trip</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#060808 0%,#0C1410 35%,#122018 65%,#1A2E20 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Remote Valleys Guide</div>
+    <h1 class="page-hero-h1">Yasin &amp;<br>Ishkoman</h1>
+    <p class="page-hero-sub">GB's least-visited valleys. No tourist infrastructure, no well-known lakes, no famous passes. Just mountains, old cultures, and roads that end at glaciers.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📍 <strong>Ghizer District, GB</strong></div>
+      <div class="page-hero-meta-item">🚗 <strong>5–7h</strong> from Gilgit</div>
+      <div class="page-hero-meta-item">⚠️ <strong>NOC required</strong> for upper valleys</div>
+      <div class="page-hero-meta-item">🌿 <strong>Best: Jun – Sep</strong></div>
+    </div>
+  </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="../ghizer/index.html">Ghizer Valley</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Yasin &amp; Ishkoman</span>
+  </div>
+</div>
+
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Yasin &amp; Ishkoman Valleys</h2>
+    <p class="map-section-sub">Two side valleys branching off the main Ghizer corridor</p>
+  </div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
+<script>
+(function(){
+  const map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([36.48,73.38],9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
+  const pin=L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
+  const gem=L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
+  L.marker([36.4833,73.3000],{icon:pin}).addTo(map).bindPopup('<strong>Yasin Town</strong><br>2,200m · Yasin Valley HQ<br>Turn off from main Ghizer road');
+  L.marker([36.6167,73.2667],{icon:pin}).addTo(map).bindPopup('<strong>Yasin upper valley</strong><br>Beautiful river gorge · traditional villages<br>Road ends at glacier approach');
+  L.marker([36.3000,73.1500],{icon:pin}).addTo(map).bindPopup('<strong>Chatorkhand</strong><br>Ishkoman Valley gateway<br>Turn off from main Ghizer road');
+  L.marker([36.4667,73.0833],{icon:pin}).addTo(map).bindPopup('<strong>Ishkoman town</strong><br>2,400m · Kho and Wakhi communities<br>Junction for upper Ishkoman and Afghan border area');
+  L.marker([36.6500,72.9000],{icon:gem}).addTo(map).bindPopup('<strong>Ishkoman Glacier</strong><br>Upper valley terminus<br>Trek from Ishkoman town · guide required');
+  L.marker([36.5500,73.2500],{icon:gem}).addTo(map).bindPopup('<strong>Sandhi Gol</strong><br>Side valley in Yasin<br>Alpine meadows · rarely visited even locally');
+  L.marker([36.5000,73.3000],{icon:gem}).addTo(map).bindPopup('<strong>Darkot Pass (5,704m)</strong><br>Ancient Silk Road crossing to Chitral<br>Extreme trek · guide essential · NOC required');
+})();
+</script>
+
+<script>
+function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat,lon){
+  const el=document.getElementById('wxWidget');
+  try{
+    const r=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b29ce4cae8644fdab30143502260305&q=${lat},${lon}&days=3&aqi=no`);
+    const d=await r.json();const c=d.current;const fc=d.forecast.forecastday;
+    const fh=fc.slice(1).map(day=>{const dn=DAYS[new Date(day.date+'T00:00:00').getDay()];return`<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;}).join('');
+    el.innerHTML=`<div class="wx-bar-inner"><div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div><div class="wx-current"><span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span><span class="wx-icon-lg">${wxIcon(c.condition.code)}</span><span class="wx-cond-text">${c.condition.text}</span></div><div class="wx-bar-div"></div><div class="wx-stats-bar"><div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div><div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div><div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div></div><div class="wx-bar-div"></div><div class="wx-bar-fc">${fh}</div></div>`;
+  }catch(e){el.innerHTML='<div class="wx-loading">Weather unavailable</div>';}
+}
+loadWeather(36.4833,73.3000);
+</script>
+
+<section class="section reveal">
+  <div class="info-grid">
+    <div>
+      <span class="label">Overview</span>
+      <h2 class="section-title">The Valleys<br><em>No One Goes To</em></h2>
+    </div>
+    <div class="info-body">
+      <p>Yasin and Ishkoman are two side valleys branching north from the main Ghizer corridor — collectively the least-visited inhabited valleys in all of Gilgit-Baltistan. They have no famous lakes, no polo festivals, no high-altitude passes accessible to casual tourists, and no accommodation infrastructure beyond family homestays. They also have some of the most genuine, unhurried mountain life you will find anywhere in Pakistan.</p>
+      <p>Both valleys are inhabited by communities that have had minimal contact with outside tourism. The Kho people of Ishkoman and the mixed Kho/Burusho/Wakhi communities of Yasin speak different languages, have distinct musical traditions, and live at the far edge of what roads connect. The hospitality is legendary even by GB standards.</p>
+      <p>These valleys are not for the casual visitor. They require time (minimum 2 days each to see anything meaningful), tolerance for very basic accommodation, 4WD transport, and an NOC for upper valley access near the Afghan border. But for travellers who have done Hunza and want to find something that feels genuinely undiscovered — this is it.</p>
+      <div class="notice"><strong>Honest assessment:</strong> If you've never been to GB before, do Hunza, Skardu, and Fairy Meadows first. Yasin and Ishkoman are for return visitors or those specifically seeking remoteness over scenery rankings. The valleys are beautiful but the experience is primarily cultural and experiential, not visual spectacle.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">The Two Valleys</span>
+      <h2 class="section-title">Yasin vs Ishkoman:<br>What to Expect</h2>
+    </div>
+    <div class="two-col reveal">
+      <div class="valley-card">
+        <div class="valley-tag">Ghizer District · 2,200m · 5h from Gilgit</div>
+        <div class="valley-name">Yasin Valley</div>
+        <div class="valley-body">
+          <p>Yasin is the more accessible and slightly more visited of the two. The valley runs north from the Ghizer main road at a junction before Gupis, climbing through terraced farmland to Yasin town at 2,200m, then continuing into a dramatic river gorge toward the Darkot Pass area.</p>
+          <h4>What's here</h4>
+          <p>The valley has traditional stone villages perched above the river, apricot and mulberry orchards in season (July–August), and a local bazaar in Yasin town that functions as a trading hub for surrounding communities. The upper valley approach to Darkot Pass (5,704m) — a historic Silk Road crossing to Chitral — is a serious high-altitude trek for experienced parties only.</p>
+          <h4>Sandhi Gol</h4>
+          <p>A side valley off Yasin, rarely visited even by local trekkers, with alpine meadows at 3,500m+. No formal trail but locals will guide you. 1-2 day walk from the road. The kind of place where you will not see another footprint.</p>
+          <h4>Culture</h4>
+          <p>The Kho and Burusho communities of Yasin have preserved musical traditions including the rubab (short-necked lute) and distinctive circle dances. Wednesday is the weekly market day in Yasin town — the best time to arrive.</p>
+        </div>
+      </div>
+      <div class="valley-card">
+        <div class="valley-tag">Ghizer District · 2,400m · 6–7h from Gilgit</div>
+        <div class="valley-name">Ishkoman Valley</div>
+        <div class="valley-body">
+          <p>Ishkoman branches west from Chatorkhand on the Ghizer road, running toward the Afghan border through one of the most isolated inhabited corridors in GB. The Kho people here are culturally distinct from the Wakhi of Gojal and the Shina-speakers of Astore — a community that maintained independence from external rule until the 19th century.</p>
+          <h4>What's here</h4>
+          <p>Ishkoman town sits at 2,400m, ringed by peaks above 6,000m. The Ishkoman Glacier at the valley's head is reachable by a 2-day trek from town. Upper Ishkoman near the Afghan border requires an NOC — the road beyond a certain checkpoint is restricted. The Chillinji Pass area (above Ishkoman) connects to the Chapursan Valley in upper Gojal for experienced trekkers.</p>
+          <h4>What it feels like</h4>
+          <p>Of all the valleys covered on this site, Ishkoman is the one where local children will stare openly at a tourist because they have genuinely never seen one. The hospitality is extreme — declining an invitation to stay the night is considered rude. If you have time for only one completely off-grid valley in GB, Ishkoman is the answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Highlights</span>
+    <h2 class="section-title">What to See<br>&amp; Do</h2>
+  </div>
+  <div class="highlights-grid reveal">
+    <div class="highlight-card">
+      <div class="hl-label">Yasin · Wednesday · farming community</div>
+      <div class="hl-name">Yasin Weekly Bazaar</div>
+      <div class="hl-body">Every Wednesday, farmers and traders from villages throughout the Yasin Valley converge on Yasin town. Livestock, local honey, dried mulberries and apricots, hand-spun wool, medicinal herbs. Almost no outside visitors. This is the most authentic market in Ghizer District — more agricultural than touristic, which is exactly its value. Arrive Tuesday evening and stay in a local guesthouse.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hl-label">Yasin · 2-day walk · 3,500m meadow</div>
+      <div class="hl-name">Sandhi Gol Alpine Meadow</div>
+      <div class="hl-body">A high alpine side-valley above Yasin with meadows at 3,500m that are completely unmarked on any tourist map and rarely visited even by local hikers. The walk from the road takes 5–6h and requires a local guide (ask in Yasin town — PKR 1,500–2,500/day). Camp overnight. The meadow has wildflowers in July and is surrounded by glaciated peaks above 5,000m. No fixed route, no infrastructure.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hl-label">Ishkoman · 2-day trek · guide required</div>
+      <div class="hl-name">Ishkoman Glacier</div>
+      <div class="hl-body">The glacier at the head of Ishkoman Valley is reached by a 2-day walk from Ishkoman town. The approach passes through small hamlets where visitors are extremely rare. The glacier itself is a classic hanging glacier with an impressive terminal face. No technical equipment needed for the approach but the terrain is rough and unmarked. Guide from Ishkoman town: PKR 2,000–3,000/day.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hl-label">Extreme trek · 5,704m · Silk Road history</div>
+      <div class="hl-name">Darkot Pass Approach</div>
+      <div class="hl-body">The Darkot Pass (5,704m) above Yasin was historically the main Silk Road crossing between Yasin and Chitral — used for centuries when Khunjerab Pass didn't exist as a formal route. The pass is now rarely crossed. The approach trek from Yasin is 4–5 days to the pass and back, through dramatic high-altitude terrain. NOC required, guide and full camping gear essential. For serious trekkers only.</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hl-label">Ishkoman · traditional Kho community</div>
+      <div class="hl-name">Kho Village Homestays</div>
+      <div class="hl-body">The Kho communities in the upper Ishkoman villages — Barset, Pakora, Chatibai — have received almost no outside visitors. Arriving in one of these villages and asking for accommodation will result in an overnight stay in a family home with home-cooked food, local music, and conversations that require a local translator unless you speak Khowar. These are not organised homestays — they are genuine hospitality. Bring a small gift (sugar, tea, biscuits).</div>
+    </div>
+    <div class="highlight-card">
+      <div class="hl-label">Both valleys · June–August</div>
+      <div class="hl-name">Apricot &amp; Mulberry Season</div>
+      <div class="hl-body">Both Yasin and Ishkoman valleys produce apricots and mulberries that are, arguably, better than those in Hunza — because they're not being farmed for the tourist market. The fruit is larger, less uniform, and eaten fresh from the tree or dried on flat rooftops in the sun. Visit in July for fresh fruit. The dried apricots from Yasin (sold at the Wednesday market) are among the finest in GB.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div>
+      <span class="label">Getting There</span>
+      <h2 class="section-title">Access &amp;<br>Permits</h2>
+      <div class="notice" style="margin-top:2rem;">
+        <strong>NOC for upper valleys:</strong> The upper reaches of both Yasin and Ishkoman (beyond certain checkposts, particularly near the Afghan border areas) require an NOC from the Deputy Commissioner's office in Gahkuch (Ghizer HQ). The lower and mid valleys — Yasin town, lower Ishkoman — are generally accessible with just CNIC/Passport. Ask at the first checkpoint about current restrictions.
+      </div>
+    </div>
+    <div>
+      <table class="practical-table">
+        <tr><td>Gilgit to Yasin</td><td>Shared jeep via Gahkuch: PKR 600–1,000 (4–5h). Private jeep: PKR 9,000–15,000. The Yasin turnoff is before Gupis on the Ghizer road.</td></tr>
+        <tr><td>Gilgit to Ishkoman</td><td>Shared jeep to Chatorkhand: PKR 700–1,200 (5–6h). Then local jeep to Ishkoman town: PKR 400–700. Private jeep Gilgit to Ishkoman: PKR 12,000–18,000.</td></tr>
+        <tr><td>Within valleys</td><td>Local jeeps (often the only shared transport for the day) connect villages. Expect to wait. Alternatively, walk — the valley floors are flat and the distances between villages are manageable on foot.</td></tr>
+        <tr><td>NOC process</td><td>Apply at DC office, Gahkuch (Ghizer district HQ). Takes 1–2 days. Bring CNIC (Pakistani nationals) or passport + visa (foreign visitors). State your itinerary clearly. The NOC is generally issued without difficulty for tourist purposes.</td></tr>
+        <tr><td>Mobile signal</td><td>Jazz has signal in Yasin town and lower Ishkoman. Signal drops entirely in upper valleys. Download offline maps (Maps.me or OsmAnd) before leaving Gilgit.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-bg reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="label">Practical Info</span>
+      <h2 class="section-title">What to Expect<br>on the Ground</h2>
+    </div>
+    <div class="info-body" style="max-width:780px;">
+      <h3>Accommodation</h3>
+      <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;">There is no formal hotel sector in either valley. Accommodation means family homestays (PKR 500–1,500 per person including meals) or camping. In Yasin town there are 2–3 small guesthouses (PKR 1,200–2,500). Announce your arrival at the local checkpost — they typically know which families take guests. In upper village areas, the tradition of offering shelter to travellers remains strong; you will not sleep outside.</p>
+      <h3>Food</h3>
+      <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;">Dal, chapati, rice, and eggs at guesthouses. In family homes: whatever the family is cooking — often more interesting. Local honey, fresh fruit in season, and hand-churned butter are genuine highlights. Bring supplementary snacks (dry fruit, nuts, biscuits) for treks where you won't pass a settlement.</p>
+      <h3>When to Go</h3>
+      <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;"><strong>June and September</strong> are ideal — roads open, crowds non-existent (they were already non-existent), and weather stable. July–August brings occasional rain in the lower Ghizer valleys. Avoid November–April when upper roads become impassable.</p>
+      <h3>Who Should Come</h3>
+      <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;">Travellers who want: genuine remoteness, cultural contact with communities untouched by tourism, and the particular satisfaction of being somewhere without a tourist infrastructure. Not suitable for those who need reliable accommodation, predictable schedules, or mobile signal. Suitable for those who've already done the main GB circuit and want to go further.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
+        <div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div>
+      </div>
+      <div><div class="footer-col-title">Remote Valleys</div><ul class="footer-links"><li><a href="../yasin-ishkoman/index.html">Yasin &amp; Ishkoman</a></li><li><a href="../ghizer/index.html">Ghizer Valley</a></li><li><a href="../gojal/index.html">Gojal / Upper Hunza</a></li><li><a href="../astore/index.html">Astore Valley</a></li><li><a href="../naltar/index.html">Naltar Valley</a></li></ul></div>
+      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit City</a></li><li><a href="../naran-kaghan/index.html">Naran Kaghan</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../travel/index.html">NOC &amp; Permits</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=[...e.target.parentElement.querySelectorAll('.reveal')];setTimeout(()=>e.target.classList.add('visible'),s.indexOf(e.target)*90);obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<script id="navScript">
+(function(){var btn=document.getElementById('navHamburger');var drawer=document.getElementById('navDrawer');if(!btn||!drawer)return;btn.addEventListener('click',function(){btn.classList.toggle('open');drawer.classList.toggle('open');});document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!drawer.contains(e.target)){btn.classList.remove('open');drawer.classList.remove('open');}});})();
+</script>
+</body>
+</html>

@@ -6,7 +6,10 @@
 ## Summary Stats from Keyword Research
 - **862 unique keywords** extracted from 3 competitor XLSX files
 - **1,835 total keyword rows** (cross-source duplicates included)
-- **Sources:** apricottours.pk (PK + US), natureadventureclub.pk (PK)
+- **Sources:** apricottours.pk (PK + US), natureadventureclub.pk (
+    
+    
+    PK)
 
 ---
 

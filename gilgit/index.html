@@ -40,7 +40,7 @@
 </div>
 
 <section class="page-hero">
-  <div class="page-hero-img" style="background:linear-gradient(155deg, #0A0604 0%, #1A0E06 35%, #2A1A0A 65%, #3C2610 100%)"></div>
+  <div class="page-hero-img" style="background:url('../images/gilgit-hero.webp') center 50% / cover no-repeat"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-tag">City Guide</div>
@@ -50,72 +50,58 @@
       <div class="page-hero-meta-item">📍 <strong>Gilgit District, GB</strong></div>
       <div class="page-hero-meta-item">⛰ <strong>1,500m</strong> elevation</div>
       <div class="page-hero-meta-item">✈ <strong>Daily flights</strong> from Islamabad</div>
-      <div c
-<!-- LIVE CONDITIONS -->
-<div class="live-conditions">
-  <div class="live-inner">
-    <div class="live-weather" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
-    <div class="live-map"><div id="map"></div></div>
+      <div class="page-hero-meta-item">🌤 <strong>Mar – Nov</strong> best weather</div>
+    </div>
   </div>
-</div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
 <script>
-
-const WMO = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Rain showers',82:'Heavy showers',85:'Snow showers',86:'Heavy snow showers',95:'Thunderstorm',96:'Thunderstorm',99:'Thunderstorm'};
-const WMO_ICON = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌦️',63:'🌧️',65:'🌧️',71:'🌨️',73:'❄️',75:'❄️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
+function wxIcon(code) {
+  if (code === 1000) return '☀️';
+  if (code <= 1009) return '⛅';
+  if ([1030,1135,1147].includes(code)) return '🌫️';
+  if (code >= 1273) return '⛈️';
+  if (code >= 1210) return '❄️';
+  if (code >= 1180) return '🌧️';
+  if (code >= 1150) return '🌦️';
+  if (code === 1087) return '⛈️';
+  if (code >= 1066) return '🌨️';
+  if (code >= 1063) return '🌦️';
+  return '🌡️';
+}
 const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 async function loadWeather(lat, lon) {
   const el = document.getElementById('wxWidget');
+  const KEY = 'b29ce4cae8644fdab30143502260305';
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Asia%2FKarachi&forecast_days=5`;
-    const r = await fetch(url);
+    const r = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&days=3&aqi=no`);
     const d = await r.json();
     const c = d.current;
-    const dy = d.daily;
-    const code = c.weather_code;
-    const icon = WMO_ICON[code] || '🌡️';
-    const desc = WMO[code] || 'Unknown';
-    const forecastHTML = dy.time.slice(1).map((t,i) => {
-      const dayName = DAYS[new Date(t).getDay()];
-      const ic = WMO_ICON[dy.weather_code[i+1]] || '🌡️';
-      return `<div class="wx-day"><div class="wx-day-name">${dayName}</div><div class="wx-day-icon">${ic}</div><div class="wx-day-hi">${Math.round(dy.temperature_2m_max[i+1])}°</div><div class="wx-day-lo">${Math.round(dy.temperature_2m_min[i+1])}°</div></div>`;
+    const fc = d.forecast.forecastday;
+    const forecastHTML = fc.slice(1).map(day => {
+      const dn = DAYS[new Date(day.date+'T00:00:00').getDay()];
+      return `<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;
     }).join('');
-    el.innerHTML = `
-      <div class="wx-label">Live Conditions</div>
-      <div class="wx-now"><div class="wx-temp">${Math.round(c.temperature_2m)}<sup>°C</sup></div><div class="wx-icon">${icon}</div></div>
-      <div class="wx-desc">${desc}</div>
-      <div class="wx-meta">
-        <div class="wx-meta-item"><strong>${Math.round(c.wind_speed_10m)} km/h</strong>Wind</div>
-        <div class="wx-meta-item"><strong>${c.relative_humidity_2m}%</strong>Humidity</div>
-        <div class="wx-meta-item"><strong>${Math.round(dy.temperature_2m_min[0])}° / ${Math.round(dy.temperature_2m_max[0])}°</strong>Today</div>
-      </div>
-      <div class="wx-forecast">${forecastHTML}</div>`;
-  } catch(e) {
-    el.innerHTML = '<div class="wx-loading">Weather unavailable</div>';
-  }
+    el.innerHTML = `<div class="wx-bar-inner">
+  <div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div>
+  <div class="wx-current">
+    <span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span>
+    <span class="wx-icon-lg">${wxIcon(c.condition.code)}</span>
+    <span class="wx-cond-text">${c.condition.text}</span>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-stats-bar">
+    <div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div>
+    <div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div>
+    <div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-bar-fc">${forecastHTML}</div>
+</div>`;
+  } catch(e) { el.innerHTML = '<div class="wx-loading">Weather unavailable</div>'; }
 }
 loadWeather(35.9208, 74.3083);
-(function(){
-  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([35.95,74.3], 10);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 18
-  }).addTo(map);
-  const pinIcon = L.divIcon({
-    className: '',
-    html: '<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',
-    iconSize: [12,12], iconAnchor: [6,6], popupAnchor: [0,-10]
-  });
-  L.marker([35.9208,74.3083], {icon:pinIcon}).addTo(map).bindPopup('<strong>Gilgit City</strong>Hub of GB · best banking & transport links');
-    L.marker([36.1833,74.2], {icon:pinIcon}).addTo(map).bindPopup('<strong>Naltar Valley</strong>3 coloured lakes · ski resort · Apr–Oct trekking');
-    L.marker([35.9333,74.2833], {icon:pinIcon}).addTo(map).bindPopup('<strong>Kargah Buddha</strong>7th century rock carving · 8km from city');
-    L.marker([35.9,74.35], {icon:pinIcon}).addTo(map).bindPopup('<strong>Gilgit River Confluence</strong>Where Gilgit meets Hunza River · scenic point');
-    L.marker([35.9167,74.3], {icon:pinIcon}).addTo(map).bindPopup('<strong>Polo Ground</strong>Historic ground · Pakistan's wildest polo games');
-})();
 </script>
-lass="page-hero-meta-item">🌤 <strong>Mar – Nov</strong> best weather</div>
-    </div>
-  </div>
-</section>
 
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
@@ -124,6 +110,30 @@ lass="page-hero-meta-item">🌤 <strong>Mar – Nov</strong> best weather</div>
     <span class="breadcrumb-current">Gilgit</span>
   </div>
 </div>
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Gilgit City & Valley</h2>
+    <p class="map-section-sub">Tap markers to explore key sites</p>
+  </div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
+<script>
+(function(){
+  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([35.95,74.3], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
+  }).addTo(map);
+  const pinIcon = L.divIcon({className:'', html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[12,12], iconAnchor:[6,6], popupAnchor:[0,-10]});
+  L.marker([35.9208,74.3083],{icon:pinIcon}).addTo(map).bindPopup('<strong>Gilgit City</strong><br>Hub of GB · best banking & transport links');
+  L.marker([36.1833,74.2],{icon:pinIcon}).addTo(map).bindPopup('<strong>Naltar Valley</strong><br>3 coloured lakes · ski resort · Apr–Oct trekking');
+  L.marker([35.9333,74.2833],{icon:pinIcon}).addTo(map).bindPopup('<strong>Kargah Buddha</strong><br>7th century rock carving · 8km from city');
+  L.marker([35.9,74.35],{icon:pinIcon}).addTo(map).bindPopup('<strong>Gilgit River Confluence</strong><br>Where Gilgit meets Hunza River · scenic point');
+  L.marker([35.9167,74.3],{icon:pinIcon}).addTo(map).bindPopup('<strong>Polo Ground</strong><br>Historic ground · Pakistan's wildest polo games');
+})();
+</script>
+
 
 <section class="section reveal">
   <div class="info-grid">

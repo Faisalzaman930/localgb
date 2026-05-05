@@ -986,7 +986,33 @@ function updateLivePreview() {
 const isMobile = () => window.innerWidth <= 680;
 
 function initLayout() {
-  // Sample gallery is the entry point — wizard hidden until user clicks "Build My Own"
+  // Handle pre-filled entry from URL params (e.g. ?entry=fly-gilgit)
+  const params = new URLSearchParams(window.location.search);
+  const entryParam = params.get('entry');
+  const regionParam = params.get('region');
+
+  if (entryParam && ['fly-gilgit','fly-skardu','road-kkh','road-babusar'].includes(entryParam)) {
+    S.entry = entryParam;
+    if (regionParam) S.regions.add(regionParam);
+    // Hide gallery, go straight to wizard at step 1
+    document.getElementById('sampleWrap').style.display = 'none';
+    document.getElementById('heroWrap').style.display = isMobile() ? 'none' : '';
+    document.getElementById('wizardWrap').classList.remove('hidden');
+    // Pre-select the entry choice visually
+    setTimeout(() => {
+      const choice = document.querySelector(`#step-0 .choice[data-v="${entryParam}"]`);
+      if (choice) {
+        choice.classList.add('sel');
+        document.getElementById('btnNext').disabled = false;
+        updateLivePreview();
+      }
+      // Auto-advance to step 1
+      setTimeout(() => goStep(1), 300);
+    }, 100);
+    return;
+  }
+
+  // Default: sample gallery is entry point — wizard hidden until user clicks "Build My Own"
   document.getElementById('wizardWrap').classList.add('hidden');
   if (isMobile()) {
     document.getElementById('heroWrap').style.display = 'none';

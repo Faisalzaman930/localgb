@@ -4,11 +4,69 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naran Kaghan Valley Guide 2025 — Lakes, Passes & How to Get There — LocalGB</title>
-<meta name="description" content="Complete guide to Naran Kaghan: Babusar Pass, Lake Saiful Muluk, Lulusar Lake, Ansoo Lake trek, when to go, how to get there, and practical costs.">
+<meta name="description" content="Complete guide to Naran Kaghan: Saif-ul-Malook, Ansoo Lake, Dudipatsar, Babusar Pass, Shogran. Hidden gems, accurate prices, honest accommodation and seasonal guide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
+<style>
+.attractions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 3rem; }
+.attraction-card { height: 240px; position: relative; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform 0.4s var(--ease); }
+.attraction-card:hover { transform: scale(1.015); }
+.attraction-card .img-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+.attraction-card:hover .img-card-bg { transform: scale(1.07); }
+.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .img-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
+.attraction-card .img-card-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: var(--cream); line-height: 1.1; }
+.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .img-card-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
+
+.stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
+.stay-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
+.stay-card:hover { border-color: var(--gold-border); }
+.stay-tier { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.stay-price { font-family: var(--fd); font-size: 2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.2rem; }
+.stay-per { font-size: 0.68rem; color: var(--cream-2); margin-bottom: 1.2rem; }
+.stay-items { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.stay-item { font-size: 0.78rem; color: var(--cream-2); display: flex; gap: 0.55rem; align-items: flex-start; line-height: 1.5; }
+.stay-item::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-top: 0.5em; flex-shrink: 0; }
+
+.itinerary-tabs { display: flex; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; }
+.itin-tab { padding: 0.45rem 1.1rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; font-family: var(--fu); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; color: var(--cream-2); background: transparent; transition: all 0.2s; }
+.itin-tab:hover, .itin-tab.active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.itin-plan { display: none; }
+.itin-plan.active { display: block; }
+.itin-days { display: flex; flex-direction: column; gap: 0; }
+.itin-day { display: grid; grid-template-columns: 90px 1fr; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.itin-day:last-child { border-bottom: none; }
+.itin-day-label { padding: 1.4rem 1rem 1.4rem 0; }
+.itin-day-num { font-family: var(--fd); font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; }
+.itin-day-name { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-2); margin-top: 0.2rem; }
+.itin-day-body { padding: 1.4rem 0; border-left: 1px solid rgba(255,255,255,0.06); padding-left: 1.5rem; }
+.itin-day-title { font-family: var(--fd); font-size: 1.1rem; color: var(--cream); margin-bottom: 0.4rem; }
+.itin-day-items { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.itin-day-items li { font-size: 0.78rem; color: var(--cream-2); padding-left: 1rem; position: relative; line-height: 1.5; }
+.itin-day-items li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+
+.hidden-gems-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 2.5rem; }
+.gem-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
+.gem-card:hover { border-color: var(--gold-border); }
+.gem-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.gem-name { font-family: var(--fd); font-size: 1.5rem; color: var(--cream); margin-bottom: 0.7rem; }
+.gem-body { font-size: 0.8rem; color: var(--cream-2); line-height: 1.65; }
+
+@media (max-width: 768px) {
+  .attractions-grid { grid-template-columns: 1fr 1fr; }
+  .stay-grid { grid-template-columns: 1fr; }
+  .hidden-gems-grid { grid-template-columns: 1fr; }
+  .itin-day { grid-template-columns: 70px 1fr; }
+}
+@media (max-width: 480px) {
+  .attractions-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
@@ -37,22 +95,25 @@
   <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
 </div>
 
+<!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero-img" style="background:linear-gradient(155deg, #040808 0%, #081210 35%, #0E2018 65%, #163226 100%)"></div>
+  <div class="page-hero-img" style="background:url('../images/naran-kaghan-hero.webp') center 50% / cover no-repeat;"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-tag">Valley Guide</div>
-    <h1 class="page-hero-h1">Naran &<br>Kaghan Valley</h1>
-    <p class="page-hero-sub">A glacial valley in KPK's Mansehra District with some of Pakistan's most accessible alpine scenery. Babusar Pass links it directly to GB and the Karakoram Highway.</p>
+    <h1 class="page-hero-h1">Naran &amp;<br>Kaghan Valley</h1>
+    <p class="page-hero-sub">Alpine lakes, glacial passes, and Pakistan's most dramatic KPK-to-Karakoram mountain corridor. The crowds are real — so are the rewards.</p>
     <div class="page-hero-meta">
       <div class="page-hero-meta-item">📍 <strong>Mansehra, KPK</strong></div>
       <div class="page-hero-meta-item">⛰ <strong>2,409m</strong> Naran town</div>
       <div class="page-hero-meta-item">🏔 <strong>4,173m</strong> Babusar Pass</div>
-      <div class="page-hero-meta-item">🌿 <strong>Best: Jun – Sep</strong></div>
+      <div class="page-hero-meta-item">🌿 <strong>Best: Jun &amp; Sep</strong></div>
     </div>
   </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
 </section>
 
+<!-- BREADCRUMB -->
 <div class="breadcrumb">
   <div class="breadcrumb-inner">
     <a href="../index.html">Home</a>
@@ -61,6 +122,85 @@
   </div>
 </div>
 
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Naran &amp; Kaghan Valley</h2>
+    <p class="map-section-sub">Tap markers to explore lakes, passes, meadows, and valley highlights</p>
+  </div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
+<script>
+(function(){
+  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([34.90,73.65], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
+  }).addTo(map);
+  const pinIcon = L.divIcon({className:'', html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[12,12], iconAnchor:[6,6], popupAnchor:[0,-10]});
+  const hiddenIcon = L.divIcon({className:'', html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[10,10], iconAnchor:[5,5], popupAnchor:[0,-8]});
+  L.marker([34.9075,73.6497],{icon:pinIcon}).addTo(map).bindPopup('<strong>Naran Town</strong><br>2,409m · main base for the valley<br>Jeep hire to all lakes from here');
+  L.marker([34.8667,73.6667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Lake Saif-ul-Malook</strong><br>3,224m · 10km from Naran<br>Jeep return PKR 2,000–3,500<br>Pakistan\'s most famous lake');
+  L.marker([35.0500,73.7167],{icon:pinIcon}).addTo(map).bindPopup('<strong>Lulusar Lake</strong><br>3,440m · 20km north of Naran<br>Larger &amp; quieter · en route to Babusar');
+  L.marker([35.1833,73.8667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Babusar Pass</strong><br>4,173m · connects to Chilas/KKH<br>Open June–October · jeep only');
+  L.marker([34.6000,73.4667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Balakot</strong><br>Valley gateway · 850m · 4h from Islamabad<br>Shogran turnoff just north of town');
+  L.marker([34.6833,73.5167],{icon:pinIcon}).addTo(map).bindPopup('<strong>Shogran</strong><br>2,362m · forested ridge with Malika Parbat views<br>Quieter alternative base · Siri Paye meadows above');
+  L.marker([34.9600,73.6900],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Ansoo Lake</strong><br>4,245m · teardrop-shaped remote lake<br>2-day trek from Saif-ul-Malook<br>Guide required PKR 2,500–4,000/day');
+  L.marker([35.0800,73.7400],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Dudipatsar Lake</strong><br>3,847m · "Queen of Lakes"<br>2-day trek · wildflowers June–Aug<br>Few tourists reach it');
+  L.marker([34.6600,73.5000],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Siri Paye Meadows</strong><br>3,000m above Shogran<br>Alpine meadow · Musa ka Musalla views<br>Horse trek or 2h walk');
+  L.marker([34.8667,73.5833],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Lalazar Plateau</strong><br>3,200m · forested flat plateau<br>Best wildflowers in lower Kaghan<br>20km from Naran · accessible by jeep');
+})();
+</script>
+
+<script>
+function wxIcon(code) {
+  if (code === 1000) return '☀️';
+  if (code <= 1009) return '⛅';
+  if ([1030,1135,1147].includes(code)) return '🌫️';
+  if (code >= 1273) return '⛈️';
+  if (code >= 1210) return '❄️';
+  if (code >= 1180) return '🌧️';
+  if (code >= 1150) return '🌦️';
+  if (code === 1087) return '⛈️';
+  if (code >= 1066) return '🌨️';
+  if (code >= 1063) return '🌦️';
+  return '🌡️';
+}
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat, lon) {
+  const el = document.getElementById('wxWidget');
+  const KEY = 'b29ce4cae8644fdab30143502260305';
+  try {
+    const r = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&days=3&aqi=no`);
+    const d = await r.json();
+    const c = d.current;
+    const fc = d.forecast.forecastday;
+    const forecastHTML = fc.slice(1).map(day => {
+      const dn = DAYS[new Date(day.date+'T00:00:00').getDay()];
+      return `<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;
+    }).join('');
+    el.innerHTML = `<div class="wx-bar-inner">
+  <div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div>
+  <div class="wx-current">
+    <span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span>
+    <span class="wx-icon-lg">${wxIcon(c.condition.code)}</span>
+    <span class="wx-cond-text">${c.condition.text}</span>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-stats-bar">
+    <div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div>
+    <div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div>
+    <div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-bar-fc">${forecastHTML}</div>
+</div>`;
+  } catch(e) { el.innerHTML = '<div class="wx-loading">Weather unavailable</div>'; }
+}
+loadWeather(34.9075, 73.6497);
+</script>
+
+<!-- OVERVIEW -->
 <section class="section reveal">
   <div class="info-grid">
     <div>
@@ -68,110 +208,447 @@
       <h2 class="section-title">Pakistan's Most<br><em>Visited Valley</em></h2>
     </div>
     <div class="info-body">
-      <p>Naran Kaghan is the most visited alpine destination in Pakistan, drawing over 1.5 million domestic tourists each summer. That number matters: in July and August, Naran town can feel overwhelmed. But the valley extends far beyond the tourist strip, and the surrounding lakes and passes are genuinely exceptional.</p>
-      <p>The valley follows the Kunhar River north from Balakot to Babusar Top. Lake Saiful Muluk at 3,224m is the jewel — a glacial lake ringed by snow peaks, accessible by jeep. Further north, Lulusar Lake and Babusar Pass (4,173m) mark the entry into Kaghan's wilder upper reaches and connect to Chilas on the KKH.</p>
-      <p>For travellers doing Gilgit-Baltistan, the Naran–Babusar–Chilas route is one of the great alternative approaches to GB: a full day of mountain driving that bypasses the Islamabad–Chilas KKH stretch and passes through dramatically different terrain.</p>
+      <p>Naran Kaghan is the most visited alpine destination in Pakistan, drawing over 1.5 million domestic tourists each summer. That number matters: in July and August, Naran town itself can feel overwhelmed, with gridlocked roads and overpriced guesthouses. But the valley extends far beyond the tourist strip, and the surrounding lakes, meadows, and passes are genuinely among the finest alpine scenery in the country.</p>
+      <p>The valley follows the Kunhar River north from Balakot (850m) to Babusar Pass (4,173m). Lake Saif-ul-Malook at 3,224m is the jewel — glacial, turquoise-green, ringed by snow peaks including Malika Parbat (5,291m), accessible by jeep in 30 minutes from Naran. Further north: Lulusar Lake, Dudipatsar (the "Queen of Lakes" at 3,847m), and the Babusar Pass crossing into Chilas and the Karakoram Highway.</p>
       <div class="notice">
-        <strong>Crowd management:</strong> Avoid Naran town the last two weeks of July and all of August if you can. Visit in June (just after snow clears) or September (cool, clear, empty). The scenery is identical; the experience is completely different.
+        <strong>Crowd management:</strong> Go in <strong>June</strong> (just after snow clears, cool, flowers everywhere) or <strong>September</strong> (clear, empty, golden light). The scenery is identical to August; the experience is completely different. In peak August, what should be a 2h valley drive can take 6h in traffic. This is not an exaggeration.
       </div>
     </div>
   </div>
+  <div class="stat-row reveal">
+    <div class="stat-cell"><div class="stat-cell-num">2,409m</div><div class="stat-cell-label">Naran town altitude</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">3,224m</div><div class="stat-cell-label">Lake Saif-ul-Malook</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,173m</div><div class="stat-cell-label">Babusar Pass</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">3,847m</div><div class="stat-cell-label">Dudipatsar "Queen of Lakes"</div></div>
+  </div>
 </section>
 
+<!-- ATTRACTIONS -->
 <div class="section-bg">
   <div class="section-inner">
     <div class="section-header reveal">
-      <span class="label">Key Attractions</span>
-      <h2 class="section-title">What to See<br>in the Valley</h2>
+      <span class="label">Top Attractions</span>
+      <h2 class="section-title">What to See<br>in Kaghan Valley</h2>
     </div>
-    <div class="card-grid-3 reveal">
-      <div class="std-card">
-        <div class="tag gold" style="margin-bottom:1rem;">Lake · 3,224m · 10km from Naran</div>
-        <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;">Lake Saiful Muluk</h3>
-        <p style="font-size:0.8rem;color:var(--cream-2);line-height:1.75;">Pakistan's most famous lake. Glacial, turquoise-green, ringed by snow peaks including Malika Parbat (5,291m). Jeep from Naran: Rs. 2,000–3,000 return. Morning is calmer and clearer. The Urdu folk legend of a prince falling in love with a fairy princess here is why it's culturally iconic.</p>
+    <div class="attractions-grid reveal">
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #040A14 0%, #081A28 40%, #102A40 70%, #183C58 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,224m · 10km from Naran · jeep PKR 2,000–3,500</span>
+          <div class="img-card-name">Lake Saif-ul-Malook</div>
+          <div class="img-card-desc">Pakistan's most famous lake. Glacial blue-green, ringed by snow peaks, with Malika Parbat (5,291m) directly above. Morning is calmer, clearer, and empty. The folk legend — a Mughal prince fell in love with a fairy princess here — is why the name is known across Pakistan.</div>
+        </div>
       </div>
-      <div class="std-card">
-        <div class="tag gold" style="margin-bottom:1rem;">Pass · 4,173m · Connects to KKH</div>
-        <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;">Babusar Pass</h3>
-        <p style="font-size:0.8rem;color:var(--cream-2);line-height:1.75;">The high pass connecting Kaghan Valley to Chilas on the KKH. Open June to late October (snow permitting). The drive across is one of the most scenic in Pakistan. From the top you can see both the Himalayas and Karakoram. Jeep only — no cars.</p>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #060808 0%, #101410 35%, #1A2018 65%, #283028 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">4,173m · open June–October · jeep only</span>
+          <div class="img-card-name">Babusar Pass</div>
+          <div class="img-card-desc">The high pass connecting Kaghan Valley to Chilas on the KKH. From the top you can see both the western Himalayas and the eastern Karakoram. This is also the route that connects Naran to Fairy Meadows, Gilgit, and Hunza without returning to Islamabad — one of the great mountain drives in Pakistan.</div>
+        </div>
       </div>
-      <div class="std-card">
-        <div class="tag gold" style="margin-bottom:1rem;">Lake · 3,440m · 20km from Naran</div>
-        <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;">Lulusar Lake</h3>
-        <p style="font-size:0.8rem;color:var(--cream-2);line-height:1.75;">Larger and quieter than Saiful Muluk. Sits in an open plateau below the Babusar Pass road. Reflects the surrounding peaks perfectly on calm mornings. Often visited en route to Babusar. Few tourists make the extra effort to stop — which means it's usually empty.</p>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #040A08 0%, #081808 35%, #102808 65%, #1C3C10 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,440m · 20km north of Naran · quieter</span>
+          <div class="img-card-name">Lulusar Lake</div>
+          <div class="img-card-desc">Larger and far quieter than Saif-ul-Malook. Sits in an open plateau below the Babusar Pass road, reflecting the surrounding peaks perfectly on calm mornings. Most tourists pass without stopping. Which is exactly why you should stop.</div>
+        </div>
       </div>
-      <div class="std-card">
-        <div class="tag gold" style="margin-bottom:1rem;">Trek · 2 days · 4,245m</div>
-        <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;">Ansoo Lake</h3>
-        <p style="font-size:0.8rem;color:var(--cream-2);line-height:1.75;">A remote lake shaped like a teardrop, at 4,245m above Saiful Muluk. Two-day trek with camping. The trail is steep and requires a guide (available in Naran: Rs. 2,500–4,000/day). One of the more demanding but rewarding treks in the Kaghan Valley.</p>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #070A04 0%, #141808 35%, #222C10 65%, #324020 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">2,362m · forested · views of Malika Parbat</span>
+          <div class="img-card-name">Shogran</div>
+          <div class="img-card-desc">A forested ridge in the lower Kaghan Valley — cooler, quieter, and more beautiful than Naran for those who don't want altitude. Cable car up (PKR 400 return) or drive. Siri Paye alpine meadows are a 2h walk above. Best base if visiting in non-peak season.</div>
+        </div>
       </div>
-      <div class="std-card">
-        <div class="tag gold" style="margin-bottom:1rem;">River · Lower valley</div>
-        <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;">Kunhar River & Trout</h3>
-        <p style="font-size:0.8rem;color:var(--cream-2);line-height:1.75;">The Kunhar is one of Pakistan's best trout rivers. Fishing permits available in Naran (Rs. 1,000–2,000/day). Several guesthouses serve fresh trout — it's genuinely good. The riverside camping sites below Naran are calmer alternatives to the town's guesthouses.</p>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #060808 0%, #101414 40%, #1A2828 70%, #2A4040 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,200m · forested plateau · 20km from Naran</span>
+          <div class="img-card-name">Lalazar Plateau</div>
+          <div class="img-card-desc">A wide, flat, forested plateau at 3,200m above Naran — one of the best wildflower sites in the lower valley. Accessible by jeep or a steep 3h walk. Very few tourists make it here relative to the lake. The forest of silver birch and alpine meadow combination is unique to this part of Kaghan.</div>
+        </div>
       </div>
-      <div class="std-card">
-        <div class="tag gold" style="margin-bottom:1rem;">Town · Lower valley gateway</div>
-        <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:0.5rem;">Balakot & Shogran</h3>
-        <p style="font-size:0.8rem;color:var(--cream-2);line-height:1.75;">Balakot is the entry point to the valley, 2h from Abbottabad. Shogran, above Balakot, is a forested ridge at 2,362m with views of Musa Ka Musalla (4,080m). Quieter and cooler than Naran. Good base for the lower valley exploration.</p>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #040608 0%, #080C14 40%, #0E1428 70%, #161E3C 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Trout fishing · river access from town</span>
+          <div class="img-card-name">Kunhar River</div>
+          <div class="img-card-desc">The Kunhar is one of Pakistan's finest trout rivers, running the full length of the valley. Fishing permits available in Naran (PKR 1,000–2,000/day). Riverside camping sites below Naran offer a quieter alternative to the town's guesthouses. The river is loudest and most dramatic in June when snowmelt is running.</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- HIDDEN GEMS -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Off the Beaten Path</span>
+    <h2 class="section-title">Hidden Gems<br>Most Tourists Miss</h2>
+  </div>
+  <div class="hidden-gems-grid reveal">
+    <div class="gem-card">
+      <div class="gem-label">2-day trek · 3,847m · "Queen of Lakes"</div>
+      <div class="gem-name">Dudipatsar Lake</div>
+      <div class="gem-body">Dudipatsar sits at 3,847m in the upper Kaghan Valley — known locally as the "Queen of Lakes" for its extraordinary setting surrounded by a ring of peaks. A 2-day trek from the Besal roadhead (accessible by jeep from Naran). The trail passes through dense pine and birch forest then emerges onto open alpine terrain. In July the slopes are covered in wildflowers. A guide is helpful but not strictly required (PKR 2,000–3,500/day). Far fewer tourists than Saif-ul-Malook — often completely empty on weekdays in June and September.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">2-day trek · 4,245m · teardrop shaped</div>
+      <div class="gem-name">Ansoo Lake</div>
+      <div class="gem-body">Ansoo Lake (meaning "teardrop" in Urdu) sits at 4,245m above Saif-ul-Malook and is shaped like a teardrop when viewed from the ridge above it. The trek from Saif-ul-Malook takes 4–5 hours of steep climbing. Camp at 3,800m the first night. The lake itself is fed by a small glacier and stays frozen into July. Few non-local trekkers have seen it. Guide strongly recommended (PKR 2,500–4,000/day, arrange in Naran). This is one of the most rewarding high-altitude treks in all of KPK.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Above Shogran · 3,000m · horse trek available</div>
+      <div class="gem-name">Siri Paye Meadows</div>
+      <div class="gem-body">The alpine meadows above Shogran at approximately 3,000m. Access by a 2h walk up from Shogran or a horse (PKR 800–1,500 one way, horses available at the Shogran cable car top). The meadow is open, wide, and has direct views of Musa ka Musalla (4,080m). In June and July the wildflowers are exceptional. Very few tourists make it up here relative to the cable car crowd at Shogran — 20 minutes of walking separates you from the crowds.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Lower valley · largely overlooked</div>
+      <div class="gem-name">Kawai &amp; Kiwai Villages</div>
+      <div class="gem-body">The Kaghan Valley between Balakot and Naran has several traditional villages — Kawai, Kiwai, Paras — that most visitors bypass entirely at speed. These are old Gujjar and Kaghan settlements with distinctive wooden architecture. Kawai is a small village with a Saturday market (Hafta Bazaar) where forest honey, walnuts, dried herbs, and local wool products are sold by mountain communities. Worth a stop if travelling on a Friday evening or Saturday morning.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Entry from Naran · 3h · no signage</div>
+      <div class="gem-name">Musa ka Musalla Base</div>
+      <div class="gem-body">Musa ka Musalla (4,080m) is a mountain above Shogran named after Moses — local legend holds he prayed here. The summit requires climbing experience, but the base approach from Shogran or Siri Paye is walkable by any fit trekker. The views from the base (around 3,500m) look down over the entire lower Kaghan Valley to Balakot and back toward Naran. Completely unsignposted — ask locally for "Musa ka Musalla trail."</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Via Babusar · 3h from Naran in morning</div>
+      <div class="gem-name">Babusar Top at Dawn</div>
+      <div class="gem-body">The view from Babusar Pass (4,173m) in the early morning — before the tour jeeps arrive — is completely different from the midday scene. The pass at 6–7am in July has golden light on both sides: Kaghan Valley to the south, the Indus gorge and Karakoram peaks to the north. Most people arrive after 10am. Staying overnight in Lulusar (basic guesthouses) and ascending early gives you an hour on the pass in complete quiet. The road from Naran to the top in morning is also when wildlife is most visible.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARIES -->
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Trip Planning</span>
+      <h2 class="section-title">Naran Itineraries<br>3, 5 &amp; 7 Days</h2>
+      <p class="section-lead">The 5-day version including the Babusar–GB connection is the best of all worlds. All assume Naran as base unless noted.</p>
+    </div>
+    <div class="reveal">
+      <div class="itinerary-tabs">
+        <button class="itin-tab active" onclick="switchItin('d3')">3 Days</button>
+        <button class="itin-tab" onclick="switchItin('d5')">5 Days</button>
+        <button class="itin-tab" onclick="switchItin('d7')">7 Days (to GB)</button>
+      </div>
+
+      <div class="itin-plan active" id="itin-d3">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1</div><div class="itin-day-name">Arrive</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Islamabad → Naran</div>
+              <ul class="itin-day-items">
+                <li>Depart Islamabad early (5–6am) to arrive Naran by 11am–12pm (4–5h drive via Abbottabad)</li>
+                <li>Check in, rest — Naran is at 2,409m, don't rush day 1</li>
+                <li>Afternoon: Walk Naran Bazaar, arrange jeep to Saif-ul-Malook for next morning</li>
+                <li>Evening: Fresh trout at a local restaurant (PKR 600–900 for a full fish)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">2</div><div class="itin-day-name">Lake</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Lake Saif-ul-Malook + Lalazar Plateau</div>
+              <ul class="itin-day-items">
+                <li>7am: Jeep to Saif-ul-Malook (30 min, PKR 2,000–3,500 return) — arrive before 8am for calm water</li>
+                <li>Walk the lake circuit (45 min) — the north shore is quieter</li>
+                <li>Return by 10am before the tour convoy arrives</li>
+                <li>Afternoon: Jeep to Lalazar Plateau (1h) — wildflowers, forest, valley views</li>
+                <li>Return to Naran for dinner</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3</div><div class="itin-day-name">Depart</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Lulusar Lake + Depart South</div>
+              <ul class="itin-day-items">
+                <li>Morning: Lulusar Lake (20km north, 40 min by jeep) — arrive early before tour traffic</li>
+                <li>Walk the lake shore (1h), photograph the mountain reflection</li>
+                <li>Return to Naran, collect bags, depart south to Islamabad via Abbottabad</li>
+                <li>Arrive Islamabad by 7–8pm</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itin-plan" id="itin-d5">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1</div><div class="itin-day-name">Arrive</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Islamabad → Shogran (Lower Valley Base)</div>
+              <ul class="itin-day-items">
+                <li>Drive to Shogran (2h from Balakot, 3h shorter than Naran) — 2,362m, forest, views</li>
+                <li>Check into Pine Park Hotel (PKR 6,000–12,000) or local guesthouse (PKR 2,500–5,000)</li>
+                <li>Afternoon: Cable car up to Shogran ridge, walk toward Siri Paye (1–2h)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">2</div><div class="itin-day-name">Meadow</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Siri Paye Meadows + Move to Naran</div>
+              <ul class="itin-day-items">
+                <li>Morning: Full walk to Siri Paye (3,000m) — 2h up from Shogran, horse available (PKR 800–1,500)</li>
+                <li>Wide alpine meadow, Musa ka Musalla views, usually empty</li>
+                <li>Return to Shogran, check out, drive north to Naran (1.5h)</li>
+                <li>Settle in Naran for the night</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3</div><div class="itin-day-name">Lakes</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Saif-ul-Malook + Lulusar</div>
+              <ul class="itin-day-items">
+                <li>7am: Jeep to Saif-ul-Malook — arrive early, walk the north shore</li>
+                <li>Return by 10am, head north to Lulusar (40 min past Naran)</li>
+                <li>Lulusar Lake: quieter, larger, calmer — few tourists stop here</li>
+                <li>Arrange overnight accommodation near Lulusar for early Babusar start tomorrow</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">4</div><div class="itin-day-name">Pass</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Babusar Pass + Lalazar Plateau</div>
+              <ul class="itin-day-items">
+                <li>Early morning: Babusar Pass (4,173m) — best light before 9am</li>
+                <li>Stand on the pass: Himalayas south, Karakoram north</li>
+                <li>Return to Naran via Lulusar</li>
+                <li>Afternoon: Lalazar Plateau (20km from Naran, jeep 1h) — silver birch, wildflowers</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">5</div><div class="itin-day-name">Depart</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Morning Free + Return to Islamabad</div>
+              <ul class="itin-day-items">
+                <li>Morning: Kunhar River walk — fishing permit if interested</li>
+                <li>Kawai Saturday market if it's a Saturday</li>
+                <li>Depart Naran by noon → Islamabad by 6–7pm</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itin-plan" id="itin-d7">
+        <div class="itin-days">
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">1–2</div><div class="itin-day-name">Kaghan</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Full Naran Kaghan Experience</div>
+              <ul class="itin-day-items">
+                <li>Day 1: Shogran → Siri Paye (arrive Shogran from Islamabad)</li>
+                <li>Day 2: Drive to Naran, Saif-ul-Malook morning, Lulusar afternoon</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">3</div><div class="itin-day-name">Pass</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Babusar Pass + Cross into Chilas</div>
+              <ul class="itin-day-items">
+                <li>Depart Naran 7am — Babusar Pass at 9–10am</li>
+                <li>Descend the north side to Chilas (3–4h total from Naran)</li>
+                <li>Overnight in Chilas (basic hotels PKR 2,000–5,000) — the gateway to GB</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">4–5</div><div class="itin-day-name">Fairy</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Fairy Meadows (2 Nights)</div>
+              <ul class="itin-day-items">
+                <li>From Chilas: 40km to Raikot Bridge (1h on KKH), then jeep to Tatta Pani (1h)</li>
+                <li>Trek up to Fairy Meadows (3–4h) or alternative jeep road</li>
+                <li>Two nights at Fairy Meadows — Nanga Parbat (8,126m) directly above</li>
+              </ul>
+            </div>
+          </div>
+          <div class="itin-day">
+            <div class="itin-day-label"><div class="itin-day-num">6–7</div><div class="itin-day-name">Gilgit</div></div>
+            <div class="itin-day-body">
+              <div class="itin-day-title">Gilgit + Continue to Hunza</div>
+              <ul class="itin-day-items">
+                <li>Descend from Fairy Meadows, continue north on KKH to Gilgit (1.5h from Raikot Bridge)</li>
+                <li>Overnight Gilgit or push to Hunza (3–4h from Gilgit)</li>
+                <li>This is the complete Pakistan mountain corridor: KPK → Nanga Parbat → Karakoram</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GETTING THERE + STAYING -->
 <section class="section">
   <div class="info-grid reveal">
-    <div class="info-body">
+    <div>
       <span class="label">Getting There</span>
-      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.5rem;">How to<br>Reach Naran</h2>
-      <table class="practical-table">
-        <tr><td>From Islamabad</td><td>4–5h by road via Abbottabad and Balakot. NATCO and private coaches from Rawalpindi's Pir Wadhai bus terminal (Rs. 600–1,200). Private car: Rs. 8,000–14,000. Road is paved throughout.</td></tr>
-        <tr><td>From Lahore</td><td>7–8h via the Motorway and Abbottabad. NATCO departs Lahore bus terminal daily in peak season (Rs. 1,000–1,800).</td></tr>
-        <tr><td>From GB (via Babusar)</td><td>From Chilas on the KKH, cross Babusar Pass to Naran (3–4h, June–October only). This is the scenic route for GB-to-Naran travellers. Jeep hire from Chilas: Rs. 8,000–12,000.</td></tr>
-        <tr><td>Within the valley</td><td>Local jeeps connect Naran to Saiful Muluk (Rs. 2,000–3,000 return), Lulusar (Rs. 3,000–4,000), and Babusar (Rs. 4,000–6,000). Share with other travellers to reduce cost.</td></tr>
-      </table>
+      <h2 class="section-title">How to<br>Reach Naran</h2>
+      <div class="notice" style="margin-top:2rem;">
+        <strong>Babusar Pass opens and closes without notice.</strong> Check with the Naran police checkpoint (they post updates on social media) before attempting to cross into Chilas. Heavy snowfall can close the pass overnight, even in July. Don't plan tight onwards connections that depend on this road.
+      </div>
     </div>
     <div>
-      <span class="label">Staying</span>
-      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.5rem;">Practical<br>Notes</h2>
       <table class="practical-table">
-        <tr><td>Accommodation</td><td>Naran has 50+ guesthouses at all price points. Budget: Rs. 1,500–3,000. Mid-range: Rs. 4,000–8,000. Book 2 weeks ahead for July–August. Hotels are severely overpriced at walk-in in peak season — book online.</td></tr>
-        <tr><td>Best months</td><td><strong>June & September</strong> strongly recommended over July–August. Babusar is accessible June–October. Saiful Muluk can have snow even in June — call ahead.</td></tr>
-        <tr><td>Altitude</td><td>Naran is at 2,409m. No acclimatisation needed for most visitors. Babusar Pass at 4,173m can cause mild altitude sickness — don't rush the ascent.</td></tr>
-        <tr><td>Connectivity</td><td>Jazz and Telenor have reasonable signal in Naran town and Saiful Muluk. Signal drops above Lulusar. Download offline maps.</td></tr>
-        <tr><td>Note on crowds</td><td>Naran's main road becomes gridlocked in peak August. What should be a 2h valley drive can take 6h. This is not an exaggeration. Go in June or September.</td></tr>
+        <tr><td>From Islamabad</td><td>4–5h via Abbottabad and Balakot. NATCO and private coaches from Rawalpindi Pir Wadhai terminal (PKR 600–1,200). Private car hire PKR 8,000–14,000. Road is fully paved throughout.</td></tr>
+        <tr><td>From Lahore</td><td>7–8h via the M2 Motorway and Abbottabad. NATCO departs Lahore terminal daily in peak season (PKR 1,000–1,800 one way).</td></tr>
+        <tr><td>From GB via Babusar</td><td>Chilas (KKH) to Naran via Babusar Pass: 3–4h, June–October only. Jeep hire from Chilas PKR 8,000–14,000. This is the scenic GB → Naran route used by experienced Pakistan travellers.</td></tr>
+        <tr><td>Within valley</td><td>Local jeeps: Naran → Saif-ul-Malook (PKR 2,000–3,500 return), Lulusar (PKR 3,000–4,500), Babusar (PKR 4,000–7,000), Lalazar (PKR 2,500–3,500). Share with other travellers to reduce cost.</td></tr>
+        <tr><td>Shogran access</td><td>Private car/jeep from Balakot: PKR 800–1,500 one way. Cable car at Shogran top: PKR 400 return. The cable car runs 8am–6pm in peak season.</td></tr>
       </table>
     </div>
   </div>
 </section>
 
+<!-- WHERE TO STAY -->
 <div class="section-bg reveal">
   <div class="section-inner">
-    <div class="section-header split">
-      <div>
-        <span class="label">The Connection</span>
-        <h2 class="section-title">Naran to<br>Gilgit-Baltistan</h2>
-      </div>
+    <div class="section-header">
+      <span class="label">Accommodation</span>
+      <h2 class="section-title">Where to Stay<br>in Kaghan Valley</h2>
+      <p class="section-lead">Peak season (July–Aug) prices are 50–100% higher than the prices below. Book 2 weeks ahead minimum. Shogran is the better base for those wanting to avoid the August rush.</p>
     </div>
-    <div style="max-width:720px;">
-      <p style="font-size:0.88rem;color:var(--cream-2);line-height:1.85;margin-bottom:1.5rem;">The Babusar Pass route is how many experienced Pakistan travellers connect Naran Kaghan to the Karakoram Highway and onward to Gilgit and Hunza. It adds genuine mountain drama to a journey that would otherwise spend 18 hours on the KKH lowlands.</p>
-      <p style="font-size:0.88rem;color:var(--cream-2);line-height:1.85;margin-bottom:1.5rem;">Typical itinerary: Islamabad → Naran (2 nights) → Babusar Pass → Chilas → Fairy Meadows (2 nights) → Gilgit → Hunza. This is approximately 10 days and covers the complete mountain corridor from KPK into the Karakoram.</p>
-      <div class="notice">The Babusar Pass road is open roughly June 15 – October 15, depending on snowfall. Check with the Naran police checkpoint (they post updates) before attempting the crossing. It closes without warning after early snowfall.</div>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <div class="stay-tier">Budget</div>
+        <div class="stay-price">PKR 1,500 – 3,500</div>
+        <div class="stay-per">per night · shared or basic double</div>
+        <ul class="stay-items">
+          <li class="stay-item"><strong>Local guesthouses, Naran Bazaar</strong> — dozens of options, walk-in in off-peak season</li>
+          <li class="stay-item"><strong>PTDC Motel, Naran</strong> — PKR 2,000–4,000, basic but reliable</li>
+          <li class="stay-item"><strong>Riverside camping spots</strong> below Naran — PKR 500–1,000 for a pitch; bring your own tent</li>
+          <li class="stay-item">Meals included at most local guesthouses at this tier (dinner + breakfast)</li>
+          <li class="stay-item">Hot water is generator-powered and limited — ask before booking</li>
+        </ul>
+      </div>
+      <div class="stay-card" style="border-color:var(--gold-border);background:linear-gradient(160deg,rgba(200,144,58,0.07),var(--ink-3))">
+        <div class="stay-tier">Mid-Range</div>
+        <div class="stay-price">PKR 4,500 – 12,000</div>
+        <div class="stay-per">per night · private en-suite</div>
+        <ul class="stay-items">
+          <li class="stay-item"><strong>Pine Park Hotel, Shogran</strong> — reliable, views of Malika Parbat, restaurant; PKR 6,000–12,000</li>
+          <li class="stay-item"><strong>Dream Land Hotel, Naran</strong> — mid-range standard, central, reliable Wi-Fi</li>
+          <li class="stay-item"><strong>Saif-ul-Malook area lodges</strong> — basic but worth one night to be at the lake at dawn (PKR 3,000–6,000)</li>
+          <li class="stay-item">Breakfast included at Pine Park and most Shogran properties</li>
+          <li class="stay-item">Reserve via phone in peak season — online booking lags reality here</li>
+        </ul>
+      </div>
+      <div class="stay-card">
+        <div class="stay-tier">Splurge</div>
+        <div class="stay-price">PKR 12,000 – 30,000</div>
+        <div class="stay-per">per night · full-service or heritage</div>
+        <ul class="stay-items">
+          <li class="stay-item"><strong>Lalazar Hotel, Naran</strong> — best-appointed hotel in Naran; river views, reliable heating</li>
+          <li class="stay-item"><strong>PTDC Log Huts, Shogran</strong> — government log cabins in the forest; PKR 10,000–18,000</li>
+          <li class="stay-item">Full board available at Lalazar and Pine Park</li>
+          <li class="stay-item">August prices are 80–100% higher than June/September at this tier — book very early</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- SEASON GUIDE -->
+<section class="section">
+  <div class="info-grid reveal">
+    <div class="info-body">
+      <span class="label">When to Go</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.2rem;">Month-by-Month<br>Season Guide</h2>
+      <table class="practical-table">
+        <tr><td>May</td><td>Snow still clearing. Babusar Pass closed. Saif-ul-Malook may have ice patches. Lower valley (Shogran, Balakot) is accessible and very green. Wildflowers beginning. Almost no tourists.</td></tr>
+        <tr><td>June</td><td><strong>Best month.</strong> Babusar opens. All lakes accessible. Wildflowers peak on Siri Paye and Lalazar. Clear skies, cool air, thin crowds. Strongly recommended over July or August.</td></tr>
+        <tr><td>July</td><td>Peak tourist season begins. Saif-ul-Malook fully accessible. Ansoo Lake trek possible. Weather warm but thunderstorms possible. Roads become congested from 3rd week onward.</td></tr>
+        <tr><td>August</td><td>Maximum crowds. Gridlock on the valley road. All lakes accessible. Babusar open. Dudipatsar wildflowers at best. <strong>Avoid unless you must come in August</strong> — book everything 4 weeks ahead.</td></tr>
+        <tr><td>September</td><td><strong>Second-best month.</strong> Crowds gone. Babusar still open. Cool, clear, excellent photography light. September has the best sky clarity of the year. Strongly recommended.</td></tr>
+        <tr><td>October</td><td>Babusar closes (usually mid-October). First snow on high passes. Valley is accessible but guesthouses begin closing. Lower valley stays open year-round.</td></tr>
+      </table>
+    </div>
+    <div>
+      <span class="label">The Connection</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.5rem;">Naran to<br>Gilgit-Baltistan</h2>
+      <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;">The Babusar Pass route is how experienced Pakistan travellers connect Naran Kaghan to the KKH and onward to Gilgit and Hunza. It adds genuine mountain drama to a journey that would otherwise spend 18+ hours on the Islamabad–Chilas KKH lowlands.</p>
+      <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;">Typical extended itinerary: <strong>Islamabad → Naran (2 nights) → Babusar Pass → Chilas → Fairy Meadows (2 nights) → Gilgit → Hunza.</strong> Approximately 10 days. This covers the full mountain corridor from KPK into the Karakoram without retracing a single km.</p>
+      <div class="notice">
+        <strong>Babusar open window:</strong> roughly June 15 – October 10, depending on snowfall. Early snow can close it with no warning. The Naran police checkpoint posts current conditions. If the pass is closed, the only alternative is to return to Islamabad and take the KKH north (adds a day and 300km of driving).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p><div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>
-      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit</a></li></ul></div>
-      <div><div class="footer-col-title">Trekking</div><ul class="footer-links"><li><a href="../trekking/index.html">All Treks</a></li></ul></div>
-      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+      <div>
+        <a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
+        <div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations</div>
+        <ul class="footer-links">
+          <li><a href="../hunza/index.html">Hunza Valley</a></li>
+          <li><a href="../skardu/index.html">Skardu</a></li>
+          <li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li>
+          <li><a href="../gilgit/index.html">Gilgit City</a></li>
+          <li><a href="../naran-kaghan/index.html">Naran Kaghan</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Trekking</div>
+        <ul class="footer-links">
+          <li><a href="../trekking/index.html">K2 Base Camp</a></li>
+          <li><a href="../trekking/index.html">Fairy Meadows</a></li>
+          <li><a href="../trekking/index.html">All Treks</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Practical</div>
+        <ul class="footer-links">
+          <li><a href="../travel/index.html">Budget Guide</a></li>
+          <li><a href="../travel/index.html">NOC &amp; Permits</a></li>
+          <li><a href="../travel/index.html">Best Time to Visit</a></li>
+          <li><a href="../agencies/index.html">Vetted Agencies</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span>
+      <span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span>
+    </div>
   </div>
 </footer>
+
+<script>
+function switchItin(id) {
+  document.querySelectorAll('.itin-plan').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.itin-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('itin-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
 <script>
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });

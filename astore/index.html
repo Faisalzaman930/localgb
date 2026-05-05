@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astore Valley Travel Guide 2025 — Rama Meadows, Rupal Face, Deosai — LocalGB</title>
+<meta name="description" content="Complete guide to Astore Valley: Rama Meadows, Rupal Valley (Nanga Parbat south face), Minimarg, Deosai access. The quieter side of Nanga Parbat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
+<style>
+.attractions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:3rem;}
+.attraction-card{height:240px;position:relative;border-radius:5px;overflow:hidden;cursor:pointer;transition:transform 0.4s var(--ease);}
+.attraction-card:hover{transform:scale(1.015);}
+.attraction-card .img-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s ease;}
+.attraction-card:hover .img-card-bg{transform:scale(1.07);}
+.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(170deg,transparent 30%,rgba(0,0,0,0.78) 100%);}
+.attraction-card .img-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.5rem;z-index:2;}
+.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:var(--cream);line-height:1.1;}
+.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem;display:block;}
+.attraction-card .img-card-desc{font-size:0.72rem;color:rgba(240,232,213,0.75);margin-top:0.35rem;line-height:1.45;}
+.stay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:2.5rem;}
+.stay-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:1.8rem;transition:border-color 0.3s;}
+.stay-card:hover{border-color:var(--gold-border);}
+.stay-tier{font-size:0.58rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.stay-price{font-family:var(--fd);font-size:2rem;font-weight:400;color:var(--cream);margin-bottom:0.2rem;}
+.stay-per{font-size:0.68rem;color:var(--cream-2);margin-bottom:1.2rem;}
+.stay-items{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
+.stay-item{font-size:0.78rem;color:var(--cream-2);display:flex;gap:0.55rem;align-items:flex-start;line-height:1.5;}
+.stay-item::before{content:'';width:4px;height:4px;background:var(--gold);border-radius:50%;margin-top:0.5em;flex-shrink:0;}
+.hidden-gems-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:2.5rem;}
+.gem-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.06);border-radius:5px;padding:1.8rem;transition:border-color 0.3s;}
+.gem-card:hover{border-color:var(--gold-border);}
+.gem-label{font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.gem-name{font-family:var(--fd);font-size:1.5rem;color:var(--cream);margin-bottom:0.7rem;}
+.gem-body{font-size:0.8rem;color:var(--cream-2);line-height:1.65;}
+@media(max-width:768px){.attractions-grid{grid-template-columns:1fr 1fr;}.stay-grid{grid-template-columns:1fr;}.hidden-gems-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.attractions-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Trip</button>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='../explore/index.html'">Plan Your Trip</button>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#040A06 0%,#081808 35%,#0E280E 65%,#182A10 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Destination Guide</div>
+    <h1 class="page-hero-h1">Astore Valley</h1>
+    <p class="page-hero-sub">Nanga Parbat from the other side — pine meadows, the world's highest mountain face, and a high-altitude plateau most travellers never reach.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📍 <strong>Astore District, GB</strong></div>
+      <div class="page-hero-meta-item">⛰ <strong>2,600m</strong> Astore town</div>
+      <div class="page-hero-meta-item">🚗 <strong>3h</strong> from Gilgit</div>
+      <div class="page-hero-meta-item">🌿 <strong>Best: Jun – Sep</strong></div>
+    </div>
+  </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
+
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Astore Valley</span>
+  </div>
+</div>
+
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Astore Valley</h2>
+    <p class="map-section-sub">Tap markers to explore meadows, base camps, and the Deosai access route</p>
+  </div>
+  <div class="map-wrap"><div id="map"></div></div>
+</section>
+<script>
+(function(){
+  const map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([35.28,74.85],10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
+  const pin=L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
+  const gem=L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
+  L.marker([35.3633,74.8533],{icon:pin}).addTo(map).bindPopup('<strong>Astore Town</strong><br>2,600m · district HQ<br>Base for all valley day trips');
+  L.marker([35.2500,74.7833],{icon:pin}).addTo(map).bindPopup('<strong>Rama Meadows</strong><br>3,500m · pine forest, wildflowers<br>PTDC Rama Hotel · Nanga Parbat east face views');
+  L.marker([35.1667,74.7000],{icon:pin}).addTo(map).bindPopup('<strong>Rupal Valley</strong><br>Nanga Parbat south face · 4,600m Rupal Face<br>Tallest mountain face on earth<br>Base camp 3,800m');
+  L.marker([35.4167,75.0000],{icon:pin}).addTo(map).bindPopup('<strong>Minimarg</strong><br>3,500m · alpine meadow<br>En route to Deosai from Astore<br>Wildflowers June–August');
+  L.marker([35.2000,75.1500],{icon:pin}).addTo(map).bindPopup('<strong>Deosai Plains (Astore side)</strong><br>4,114m · enter from Minimarg road<br>Brown bears, Sheosar Lake<br>Entry permit at gate');
+  L.marker([35.3167,74.8167],{icon:gem}).addTo(map).bindPopup('<strong>Gurais / Gurikot</strong><br>Ancient settlement · historic fort remains<br>Traditional Shina culture');
+  L.marker([35.2667,74.8500],{icon:gem}).addTo(map).bindPopup('<strong>Doian Village</strong><br>Hidden village en route to Rama<br>Traditional wooden architecture');
+})();
+</script>
+
+<script>
+function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat,lon){
+  const el=document.getElementById('wxWidget');
+  try{
+    const r=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b29ce4cae8644fdab30143502260305&q=${lat},${lon}&days=3&aqi=no`);
+    const d=await r.json();const c=d.current;const fc=d.forecast.forecastday;
+    const fh=fc.slice(1).map(day=>{const dn=DAYS[new Date(day.date+'T00:00:00').getDay()];return`<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;}).join('');
+    el.innerHTML=`<div class="wx-bar-inner"><div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div><div class="wx-current"><span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span><span class="wx-icon-lg">${wxIcon(c.condition.code)}</span><span class="wx-cond-text">${c.condition.text}</span></div><div class="wx-bar-div"></div><div class="wx-stats-bar"><div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div><div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div><div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div></div><div class="wx-bar-div"></div><div class="wx-bar-fc">${fh}</div></div>`;
+  }catch(e){el.innerHTML='<div class="wx-loading">Weather unavailable</div>';}
+}
+loadWeather(35.3633,74.8533);
+</script>
+
+<section class="section reveal">
+  <div class="info-grid">
+    <div>
+      <span class="label">Overview</span>
+      <h2 class="section-title">Nanga Parbat<br><em>from the South</em></h2>
+    </div>
+    <div class="info-body">
+      <p>Astore is a long, green valley south of Gilgit that runs toward the base of Nanga Parbat from the opposite side to Fairy Meadows. Where Fairy Meadows sees the Raikot (north) face, Astore leads to the <strong>Rupal Valley</strong> and the south face — the Rupal Face at 4,600m is the highest mountain face on earth, taller than the entire height of Mont Blanc.</p>
+      <p><strong>Rama Meadows</strong> (3,500m) is the accessible showpiece: a wide pine forest and alpine meadow above Astore town with direct views of Nanga Parbat's eastern ridges. The PTDC hotel here is basic but well-placed. The meadow is carpeted in wildflowers June–August and draws a fraction of the visitors Fairy Meadows receives.</p>
+      <p>The Astore–Minimarg–Deosai road is also the Astore approach to Deosai National Park — a completely different entry point than the Skardu side, with the advantage of seeing the Astore Valley en route. The drive from Astore town to Sheosar Lake via Minimarg is one of the finest day drives in all of GB.</p>
+      <div class="notice"><strong>NOC note:</strong> Parts of the Astore Valley near the Line of Control (particularly toward Gurais and Gurikot) may require an NOC from the Deputy Commissioner's office in Astore town. The core tourist sites — Rama Meadows, Rupal Valley, Minimarg, Deosai entry — do not.</div>
+    </div>
+  </div>
+  <div class="stat-row reveal">
+    <div class="stat-cell"><div class="stat-cell-num">2,600m</div><div class="stat-cell-label">Astore town</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">3,500m</div><div class="stat-cell-label">Rama Meadows</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,600m</div><div class="stat-cell-label">Rupal Face height</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,114m</div><div class="stat-cell-label">Deosai Plains entry</div></div>
+  </div>
+</section>
+
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Top Attractions</span>
+      <h2 class="section-title">What to See<br>in Astore</h2>
+    </div>
+    <div class="attractions-grid reveal">
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A06 0%,#081808 40%,#0E2810 70%,#163418 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,500m · pine forest · wildflowers Jun–Aug</span>
+          <div class="img-card-name">Rama Meadows</div>
+          <div class="img-card-desc">Wide alpine meadow above Astore with forest-framed views of Nanga Parbat's eastern ridges. Far quieter than Fairy Meadows. The PTDC hotel sits at the meadow edge. A 2h walk above the meadow leads to a high viewpoint (Rama Lake) with the full Nanga Parbat massif in view.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#080606 0%,#181010 35%,#281A18 65%,#3A2420 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,800m base camp · tallest mountain face on earth</span>
+          <div class="img-card-name">Rupal Valley</div>
+          <div class="img-card-desc">The Rupal face of Nanga Parbat rises 4,600m from valley floor to summit — the highest mountain face anywhere on earth. Base camp at 3,800m is reached by a full-day drive and hike from Astore. Reinhold Messner made the first solo ascent of this face in 1978. The base camp area is reachable without a permit.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040808 0%,#081818 35%,#102828 65%,#183C3C 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,500m · en route to Deosai · wildflowers</span>
+          <div class="img-card-name">Minimarg</div>
+          <div class="img-card-desc">A broad alpine meadow at 3,500m on the Astore-to-Deosai road. Often overlooked as a destination in its own right — most people just drive through. Stop for an hour. The meadow has rivers running through it, wildflowers in June–July, and an unobstructed view of the surrounding peaks. Camping possible (no facilities).</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#040608 0%,#080C18 35%,#101828 65%,#182638 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">4,114m · via Minimarg · brown bears</span>
+          <div class="img-card-name">Deosai (Astore Side)</div>
+          <div class="img-card-desc">The Astore approach to Deosai National Park via Minimarg is the less-used entry — and the more dramatic one. The Sheosar Lake (4,142m) is the same, but the approach road through alpine terrain is wilder. Himalayan brown bears more commonly sighted on this approach in July–August. Entry permit at park gate.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#060808 0%,#101414 40%,#1C2020 70%,#283030 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Above Rama · 2h walk · glacier</span>
+          <div class="img-card-name">Rama Lake</div>
+          <div class="img-card-desc">A small glacial lake above Rama Meadows at approximately 3,600m. The 2h walk from the PTDC hotel follows a clear path through pine forest then climbs to open terrain. The lake sits under permanent snow and has a small glacier feeding it. The view from the lake back over the meadow and valley is exceptional.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg,#060606 0%,#121010 35%,#201C18 65%,#302820 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Traditional Shina culture · rarely visited</span>
+          <div class="img-card-name">Astore Town &amp; Bazaar</div>
+          <div class="img-card-desc">Astore town itself is a traditional Shina-speaking settlement at 2,600m with a weekly bazaar (Thursday market) where farmers from surrounding villages sell livestock, local honey, walnut oil, and dried fruit. The town has genuine local life largely untouched by tourism — worth a full morning of wandering.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Off the Beaten Path</span>
+    <h2 class="section-title">Hidden Gems<br>in Astore</h2>
+  </div>
+  <div class="hidden-gems-grid reveal">
+    <div class="gem-card">
+      <div class="gem-label">Full day · drive + hike · permit-free</div>
+      <div class="gem-name">Rupal Base Camp</div>
+      <div class="gem-body">Most people who visit Astore go to Rama and stop there. The Rupal Valley — another 2h drive south from Astore — leads to the south face base camp and the most dramatic close-up of any mountain face in the world. Drive from Astore to Tarashing village (2h on a rough road), then a 3h walk to base camp. You are standing at the foot of 4,600m of vertical mountain. No permit required for the base camp approach. Bring camping gear for an overnight — sunrise on the face is extraordinary.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Astore town · Thursday · farm produce</div>
+      <div class="gem-name">Astore Thursday Bazaar</div>
+      <div class="gem-body">Every Thursday, farmers from villages throughout the Astore Valley come down to the district bazaar. Livestock, honey (Astore black bee honey is particularly prized), dried apricots, walnuts, local medicinal herbs. Almost no tourists attend this market — it's a functioning agricultural market, not a tourist one. If your timing allows, organise your Astore trip around arriving on a Wednesday night to attend Thursday morning.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Camping · no facilities · June–August</div>
+      <div class="gem-name">Minimarg Overnight</div>
+      <div class="gem-body">Nearly everyone uses Minimarg as a drive-through on the Astore-to-Deosai route. Staying overnight (wild camping — no infrastructure) gives you the meadow in the morning light before anyone else arrives. The Astore River runs through the meadow. At night the sky is completely dark. Bring full camping gear — there is no guesthouse here and no food. The reward is a 6am meadow with no other humans in it.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">3-day loop · Astore → Deosai → Skardu</div>
+      <div class="gem-name">The Astore–Deosai–Skardu Loop</div>
+      <div class="gem-body">The most complete way to do Astore is as a 3-day loop: Day 1 Gilgit to Astore (overnight), Day 2 Rama Meadows + Rama Lake, Day 3 drive Minimarg → Deosai → Sheosar Lake → exit Deosai on the Skardu side → Skardu overnight. This puts Deosai in the middle of the journey rather than as a day trip, maximises the wildlife window (dawn and dusk on the plateau), and connects Astore directly to the Skardu itinerary without backtracking.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div>
+      <span class="label">Getting There</span>
+      <h2 class="section-title">How to Reach<br>Astore Valley</h2>
+      <div class="notice" style="margin-top:2rem;">
+        <strong>Road note:</strong> The road from Gilgit to Astore via Jaglot on the KKH is fully paved. From Astore town to Rama the road is mostly paved (some rough sections). To Rupal Valley it becomes a 4WD track — a jeep is essential. The Minimarg–Deosai road requires 4WD throughout.
+      </div>
+    </div>
+    <div>
+      <table class="practical-table">
+        <tr><td>From Gilgit</td><td>Shared jeep to Astore town: PKR 400–700 (3h via Jaglot on KKH). Private jeep: PKR 5,000–9,000. Depart Gilgit transport stand early morning for best availability.</td></tr>
+        <tr><td>From Skardu</td><td>Via Deosai National Park: 4–5h (seasonal, June–October). Via road through Jaglot: 5–6h. The Deosai route is far more scenic but requires 4WD and Deosai entry permit.</td></tr>
+        <tr><td>Astore to Rama</td><td>Shared jeep: PKR 300–500 (45 min). Private jeep: PKR 2,000–4,000 return. Road is mostly manageable for regular cars in dry conditions.</td></tr>
+        <tr><td>Astore to Rupal</td><td>Private jeep only: PKR 5,000–8,000 to Tarashing village. 4WD essential. No shared transport. Arrange in Astore town the evening before.</td></tr>
+        <tr><td>Permits</td><td>No NOC for Rama, Minimarg, Rupal base camp approach, or standard Deosai entry. Deosai Park requires entry permit at gate (PKR 200–500). Areas near LoC may require DC-issued NOC.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-bg reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="label">Accommodation</span>
+      <h2 class="section-title">Where to Stay<br>in Astore</h2>
+    </div>
+    <div class="stay-grid">
+      <div class="stay-card">
+        <div class="stay-tier">Budget</div>
+        <div class="stay-price">PKR 1,200 – 3,000</div>
+        <div class="stay-per">per night · basic room + meals</div>
+        <ul class="stay-items">
+          <li class="stay-item">Local guesthouses in Astore town — simple but clean; home-cooked meals included</li>
+          <li class="stay-item">Basic lodges at Rama Meadows (non-PTDC) — PKR 1,500–2,500; bring warm layers</li>
+          <li class="stay-item">Camping at Minimarg, Rupal approach, or Rama Lake — free; no facilities</li>
+        </ul>
+      </div>
+      <div class="stay-card" style="border-color:var(--gold-border);background:linear-gradient(160deg,rgba(200,144,58,0.07),var(--ink-3))">
+        <div class="stay-tier">Mid-Range</div>
+        <div class="stay-price">PKR 3,500 – 8,000</div>
+        <div class="stay-per">per night · private room</div>
+        <ul class="stay-items">
+          <li class="stay-item"><strong>PTDC Motel Rama</strong> — the benchmark in the valley; at meadow edge, mountain views, reliable meals</li>
+          <li class="stay-item"><strong>Astore Inn</strong> — best mid-range in town; useful for an arrival night before Rama</li>
+          <li class="stay-item">Book PTDC Rama ahead in July–August — only a handful of rooms</li>
+        </ul>
+      </div>
+      <div class="stay-card">
+        <div class="stay-tier">Self-Sufficient</div>
+        <div class="stay-price">PKR 0 – 500</div>
+        <div class="stay-per">camping · bring all gear</div>
+        <ul class="stay-items">
+          <li class="stay-item">Rupal Valley approach — outstanding wild camping near Tarashing; no infrastructure</li>
+          <li class="stay-item">Minimarg plateau — wild camping at 3,500m; bring 3-season sleeping bag</li>
+          <li class="stay-item">Rama Lake area — camp above the meadow at ~3,600m for sunrise on Nanga Parbat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="info-grid reveal">
+    <div class="info-body">
+      <span class="label">Best Time to Visit</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:2rem;">When to Go</h2>
+      <table class="practical-table">
+        <tr><td>May</td><td>Snow clearing. Rama accessible by late May. Rupal Valley may still have snow on the approach road. Very quiet.</td></tr>
+        <tr><td>June</td><td><strong>Best month.</strong> Wildflowers at Rama and Minimarg. Deosai just opens. Rupal fully accessible. Almost no tourists.</td></tr>
+        <tr><td>July – August</td><td>Peak season for Deosai (brown bears). Wildflowers throughout valley. Warm days, cool nights at Rama. Some weekend visitors from Gilgit/Skardu.</td></tr>
+        <tr><td>September</td><td>Second-best month. Autumn colour, clear skies, empty trails. Deosai still open until mid-October.</td></tr>
+        <tr><td>October</td><td>Deosai closes. Minimarg road gets icy. Astore town and Rama stay accessible into November. Cold but beautiful.</td></tr>
+      </table>
+    </div>
+    <div class="info-body">
+      <span class="label">Trekking</span>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.2rem;">Treks from<br>Astore</h2>
+      <h3>Rupal Face Circuit</h3>
+      <p>A 5–7 day trek circling the south and west faces of Nanga Parbat via Rupal Base Camp, Mazeno Pass (5,377m), and Fairy Meadows. One of the great mountain circuit treks in Pakistan — technically challenging at the pass. Requires a registered guide and camping gear. PKR 3,000–5,000/day for a guide.</p>
+      <h3>Rama Lake to Nanga Parbat View</h3>
+      <p>A 2-day hike from Rama Meadows up to the high viewpoint above Rama Lake. No technical difficulty but good fitness required. The view at 4,000m looks directly at the east and south faces of Nanga Parbat. Camp at Rama Lake (first night), return second day.</p>
+      <h3>Minimarg to Deosai Trek</h3>
+      <p>A 3-day traverse from Minimarg across alpine terrain to Sheosar Lake on the Deosai plateau. No high passes — this is a plateau approach. Wildlife sighting probability highest on this approach. Guide recommended: PKR 2,000–3,500/day.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+        <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
+        <div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div>
+      </div>
+      <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../hunza/index.html">Hunza Valley</a></li><li><a href="../skardu/index.html">Skardu</a></li><li><a href="../fairy-meadows/index.html">Fairy Meadows</a></li><li><a href="../gilgit/index.html">Gilgit City</a></li><li><a href="../astore/index.html">Astore Valley</a></li></ul></div>
+      <div><div class="footer-col-title">More Valleys</div><ul class="footer-links"><li><a href="../ghizer/index.html">Ghizer Valley</a></li><li><a href="../naltar/index.html">Naltar Valley</a></li><li><a href="../gojal/index.html">Gojal / Upper Hunza</a></li><li><a href="../yasin-ishkoman/index.html">Yasin &amp; Ishkoman</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Budget Guide</a></li><li><a href="../travel/index.html">NOC &amp; Permits</a></li><li><a href="../agencies/index.html">Vetted Agencies</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=[...e.target.parentElement.querySelectorAll('.reveal')];setTimeout(()=>e.target.classList.add('visible'),s.indexOf(e.target)*90);obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<script id="navScript">
+(function(){var btn=document.getElementById('navHamburger');var drawer=document.getElementById('navDrawer');if(!btn||!drawer)return;btn.addEventListener('click',function(){btn.classList.toggle('open');drawer.classList.toggle('open');});document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!drawer.contains(e.target)){btn.classList.remove('open');drawer.classList.remove('open');}});})();
+</script>
+</body>
+</html>
