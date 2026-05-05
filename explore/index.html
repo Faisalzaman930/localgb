@@ -387,6 +387,13 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
   .day-sun { gap:.35rem 1rem; padding:.5rem 1rem; }
   .day-wiki { font-size:.65rem; }
 }
+
+/* ─── WHATSAPP BUTTON ────────────────────────────────── */
+.btn-whatsapp { background:#25D366; color:#fff; border:none; padding:.55rem 1.2rem; border-radius:4px; font-size:.75rem; font-weight:600; cursor:pointer; font-family:var(--fu); letter-spacing:.05em; }
+.btn-whatsapp:hover { background:#1ebe57; }
+
+/* ─── PACK CHECKLIST ─────────────────────────────────── */
+.prac-card table tr.packed { opacity:.4; text-decoration:line-through; }
 </style>
 </head>
 <body>
@@ -423,7 +430,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
   <div class="app-hero">
     <span class="label">Journey Architect</span>
     <h1>Plan Your<br><em>GB Trip</em></h1>
-    <p>Answer five questions. Get a detailed day-by-day itinerary built around your entry point, travel style, and budget.</p>
+    <p>Answer seven quick questions. Get a detailed day-by-day itinerary built around your entry point, travel style, wake-up time, and group.</p>
     <button class="already-btn" onclick="showAlready()">📍 Already in GB? Find what's near you →</button>
   </div>
 </div>
@@ -439,6 +446,8 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       <div class="progress-dot" data-s="2"></div>
       <div class="progress-dot" data-s="3"></div>
       <div class="progress-dot" data-s="4"></div>
+      <div class="progress-dot" data-s="5"></div>
+      <div class="progress-dot" data-s="6"></div>
     </div>
 
     <!-- STEP 0: Entry -->
@@ -616,6 +625,50 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       </div>
     </div>
 
+    <!-- STEP 5: Wake-up time -->
+    <div class="step" id="step-5">
+      <div class="step-q">What time do you<br>wake up on holiday?</div>
+      <p class="step-sub">This adjusts every time stamp in your itinerary — early risers unlock dawn experiences most travellers miss.</p>
+      <div style="text-align:center;margin:2rem 0 1rem;">
+        <input type="time" id="wakeInput" value="07:30" min="04:00" max="11:00"
+          style="font-family:var(--fd);font-size:3rem;color:var(--cream);background:var(--ink-3);border:1px solid rgba(200,144,58,.3);border-radius:8px;padding:.5rem 1.2rem;width:auto;outline:none;cursor:pointer;"
+          oninput="onWakeTime(this.value)">
+      </div>
+      <div id="wakeNote" style="text-align:center;font-size:.85rem;color:var(--cream-2);line-height:1.7;max-width:380px;margin:0 auto;min-height:3rem;"></div>
+    </div>
+
+    <!-- STEP 6: Group size -->
+    <div class="step" id="step-6">
+      <div class="step-q">Who are you<br>travelling with?</div>
+      <p class="step-sub">Affects jeep sharing costs, hotel room configuration, and trek recommendations.</p>
+      <div class="choices c2" data-key="groupSize">
+        <div class="choice" data-v="solo">
+          <span class="choice-icon">🧍</span>
+          <div class="choice-title">Solo</div>
+          <div class="choice-desc">Single traveller. Shared jeeps, guesthouse dorms or single rooms.</div>
+          <div class="choice-tag">Most flexible</div>
+        </div>
+        <div class="choice" data-v="couple">
+          <span class="choice-icon">👫</span>
+          <div class="choice-title">Couple</div>
+          <div class="choice-desc">Two people. Private room, jeep cost split two ways.</div>
+          <div class="choice-tag">Most common</div>
+        </div>
+        <div class="choice" data-v="family">
+          <span class="choice-icon">👨‍👩‍👧‍👦</span>
+          <div class="choice-title">Family</div>
+          <div class="choice-desc">With children. Accessible sights, no extreme altitude above 3,500m.</div>
+          <div class="choice-tag">Kid-friendly routing</div>
+        </div>
+        <div class="choice" data-v="group">
+          <span class="choice-icon">👥</span>
+          <div class="choice-title">Group (4+)</div>
+          <div class="choice-desc">Shared jeep costs, group discounts on hotels. More logistics.</div>
+          <div class="choice-tag">Best value/day</div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /wizardInner -->
   </div><!-- /wizardScroll -->
 
@@ -629,6 +682,11 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     </div>
   </div>
 </div><!-- /wizardWrap -->
+
+<div id="restoreBanner" style="display:none;background:var(--ink-3);border-bottom:1px solid rgba(200,144,58,.2);padding:.8rem 1.5rem;text-align:center;font-size:.8rem;color:var(--cream-2);">
+  📋 You have a saved itinerary. <button onclick="restoreItinerary()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:.8rem;text-decoration:underline;">Restore it →</button>
+  <button onclick="document.getElementById('restoreBanner').style.display='none'" style="background:none;border:none;color:var(--cream-2);cursor:pointer;margin-left:.5rem;font-size:.8rem;">✕</button>
+</div>
 
 <!-- ── RESULT ── -->
 <div id="resultWrap">
@@ -651,6 +709,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       </div>
       <div class="result-actions">
         <button class="btn-pdf" onclick="window.print()">⬇ Download PDF</button>
+        <button class="btn-whatsapp" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
         <button class="btn-restart" onclick="doRestart()">← Start Over</button>
       </div>
     </div>
@@ -699,9 +758,9 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 /* ════════════════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════════════════ */
-const S = { entry:null, style:null, days:8, regions:new Set(), season:null, startDate:null, endDate:null, useSpecificDates:true };
+const S = { entry:null, style:null, days:8, regions:new Set(), season:null, startDate:null, endDate:null, useSpecificDates:true, wakeHour:7, wakeMin:30, groupSize:'couple' };
 let cur = 0;
-const STEPS = 5;
+const STEPS = 7;
 
 const dailyCost = { budget:4000, adventure:7000, cultural:9000, photography:11000, family:12000, luxury:35000 };
 const styleLabel = { budget:'Budget Backpacker', adventure:'Adventure & Trekking', cultural:'Culture & History', photography:'Scenic Photography', family:'Family', luxury:'Luxury' };
@@ -906,11 +965,11 @@ document.getElementById('btnNext').addEventListener('click', () => {
 
   let next = cur + 1;
 
-  // Skip season step when dates are chosen (season auto-set)
-  if (next === 4 && S.useSpecificDates && S.season) { buildItinerary(); return; }
+  // Skip season step when dates are chosen (season auto-set) — but still go through steps 5 and 6
+  if (next === 4 && S.useSpecificDates && S.season) { goStep(5); return; }
 
-  // Step 3 (regions) in dates mode: next button already says "Build My Itinerary"
-  if (cur === 3 && S.useSpecificDates && S.season && S.regions.size > 0) { buildItinerary(); return; }
+  // Step 3 (regions) in dates mode: proceed to step 4 normally (then steps 5 and 6)
+  // (no early buildItinerary shortcut here anymore)
 
   goStep(next);
 });
@@ -947,9 +1006,15 @@ function updateNav() {
     next.textContent = 'Next →';
   } else if (cur === 3) {
     next.disabled = S.regions.size === 0;
-    next.textContent = (S.useSpecificDates && S.season) ? 'Build My Itinerary →' : 'Next →';
+    next.textContent = 'Next →';
   } else if (cur === 4) {
     next.disabled = !S.season;
+    next.textContent = 'Next →';
+  } else if (cur === 5) {
+    next.disabled = false; // time input always valid
+    next.textContent = 'Next →';
+  } else if (cur === 6) {
+    next.disabled = !S.groupSize;
     next.textContent = 'Build My Itinerary →';
   }
 }
@@ -960,6 +1025,33 @@ document.querySelectorAll('#step-4 .choice').forEach(c => {
     if (cur === 4) { document.getElementById('btnNext').disabled = false; }
   });
 });
+
+// Group size handler for step 6
+document.querySelectorAll('#step-6 .choice').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#step-6 .choice').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    S.groupSize = c.dataset.v;
+    if (cur === 6) document.getElementById('btnNext').disabled = false;
+  });
+});
+
+/* ════════════════════════════════════════════════════════
+   WAKE-UP TIME
+════════════════════════════════════════════════════════ */
+function onWakeTime(val) {
+  const [h, m] = val.split(':').map(Number);
+  S.wakeHour = h; S.wakeMin = m;
+  const note = document.getElementById('wakeNote');
+  if (!note) return;
+  if (h <= 5) note.textContent = '🌟 Extreme early bird — Deosai sunrise, Eagle\'s Nest at dawn, and Saiful Muluk before crowds all unlocked. Your itinerary will front-load everything before 1pm.';
+  else if (h <= 6) note.textContent = '🌄 Dawn chaser — you\'ll catch the best light at every viewpoint. Eagle\'s Nest and Attabad are yours at the perfect hour.';
+  else if (h <= 7) note.textContent = '☀️ Early riser — most dawn experiences are still accessible. A few will require one early push.';
+  else if (h <= 8) note.textContent = '🙂 Standard pace — you\'ll hit viewpoints in good morning light. Some dawn-only experiences will be swapped for mid-morning alternatives.';
+  else if (h <= 9) note.textContent = '😌 Relaxed — mornings are slower. We\'ll prioritise bazaars, forts, and afternoon valley drives over dawn viewpoints.';
+  else note.textContent = '🌙 Late starter — we\'ll design your days around late-morning starts. A few GB highlights (Eagle\'s Nest, Saiful Muluk) will include an honest note that you\'ll likely miss the best conditions.';
+  document.getElementById('btnNext').disabled = false;
+}
 
 /* ════════════════════════════════════════════════════════
    DETAILED ITINERARY DATA
@@ -1167,6 +1259,27 @@ const PLACES = {
 };
 
 /* ════════════════════════════════════════════════════════
+   TIME-SHIFTING UTILITIES
+════════════════════════════════════════════════════════ */
+// Shifts a time string like "06:30" by wakeOffset minutes
+function shiftTime(timeStr, wakeOffsetMinutes) {
+  if (!timeStr || !timeStr.match(/^\d{2}:\d{2}$/)) return timeStr;
+  const [h, m] = timeStr.split(':').map(Number);
+  const base = h * 60 + m;
+  const shifted = base + wakeOffsetMinutes;
+  const sh = Math.floor(shifted / 60) % 24;
+  const sm = shifted % 60;
+  return `${String(sh).padStart(2,'0')}:${String(sm).padStart(2,'0')}`;
+}
+
+function getWakeOffset() {
+  // Standard reference wake time is 06:30. Offset = user's wake time - 06:30
+  const refMinutes = 6 * 60 + 30;
+  const userMinutes = S.wakeHour * 60 + S.wakeMin;
+  return userMinutes - refMinutes;
+}
+
+/* ════════════════════════════════════════════════════════
    ITINERARY BUILDER
 ════════════════════════════════════════════════════════ */
 function buildItinerary() {
@@ -1226,6 +1339,23 @@ function buildItinerary() {
   let warn = '';
   if (entry==='road-babusar' && season==='winter') warn = `<div class="budget-alert" style="margin-bottom:1.5rem"><strong>Babusar Pass is closed in winter</strong> (Nov–May). Your itinerary has been adjusted to use the KKH via Chilas instead.</div>`;
   if (r.includes('skardu') && r.includes('hunza') && days < 9) warn += `<div class="budget-alert" style="margin-bottom:1.5rem"><strong>Skardu + Hunza in under 9 days is very tight.</strong> We've prioritised based on your entry point. To do both properly, increase to at least 11 days.</div>`;
+
+  // Late riser warning
+  const wakeOffset = getWakeOffset();
+  if (wakeOffset > 90) {
+    warn += `<div class="budget-alert" style="margin-bottom:1rem">⏰ <strong>Late start note:</strong> You wake at ${String(S.wakeHour).padStart(2,'0')}:${String(S.wakeMin).padStart(2,'0')}. Eagle's Nest, Saiful Muluk, and Deosai sunrise require a 05:30–06:00 start to catch the best conditions. Consider one early push on those days — or accept you'll see them in good (not perfect) light.</div>`;
+  }
+
+  // Feasibility checks
+  if (S.regions.size === 1 && days > 10) {
+    const reg = [...S.regions][0];
+    const regName = {hunza:'Hunza',skardu:'Skardu',fairy:'Fairy Meadows',hidden:'Hidden Valleys'}[reg];
+    warn += `<div class="budget-alert" style="margin-bottom:1rem">📍 <strong>Depth vs coverage:</strong> You've selected only ${regName} for ${days} days. You'll run out of structured activities around day 7–8. We've added rest days and side trips — but consider adding a second region for a more complete trip.</div>`;
+  }
+  if (r.includes('fairy') && days < 5) {
+    warn += `<div class="budget-alert" style="margin-bottom:1rem">⚠️ <strong>Fairy Meadows needs at least 5 days total</strong> — the jeep track + hike in, one night, hike out, and return journey consume 2 full days. With under 5 days, we've removed it from your itinerary.</div>`;
+  }
+
   document.getElementById('rWarn').innerHTML = warn;
 
   // Generate days
@@ -1255,17 +1385,37 @@ function buildItinerary() {
 
   // Practical
   const total = pd * days;
+  const groupNote = { solo:'Solo surcharge: single rooms cost 30–50% more per person than doubles. Budget accordingly.', couple:'Two people sharing all costs — most efficient setup for GB travel.', family:'Family rooms available at most guesthouses. Kids under 5 often free.', group:'Group of 4+ splits jeep hire equally — often the cheapest per-person transport option.' };
   document.getElementById('rPrac').innerHTML = `
     <div class="prac-card"><div class="prac-title">Budget Estimate</div><table>
       <tr><td>Per day</td><td>Rs ${pd.toLocaleString()}–${Math.round(pd*1.25).toLocaleString()}</td></tr>
       <tr><td>Total (${days}d)</td><td><strong>Rs ${(total/1000).toFixed(0)}k–${(total*1.25/1000).toFixed(0)}k</strong></td></tr>
       <tr id="rFxRow"><td>In USD</td><td><span id="rFx" style="color:var(--cream-2)">fetching…</span></td></tr>
       <tr><td>Not included</td><td>Flights from Islamabad, major trek permits</td></tr>
+      <tr><td>Group</td><td>${groupNote[S.groupSize]||''}</td></tr>
     </table></div>
     <div class="prac-card"><div class="prac-title">Getting There</div><table>
       ${getThereRows(entry)}</table></div>
-    <div class="prac-card"><div class="prac-title">What to Pack</div><table>${packRows(style,season)}</table></div>
+    <div class="prac-card"><div class="prac-title">What to Pack <span style="font-size:.65rem;color:var(--cream-2);font-weight:400">· tap to check off</span></div><table>${packRows(style,season)}</table></div>
     <div class="prac-card"><div class="prac-title">Critical Notes</div><table>${critRows(entry,season,r)}</table></div>`;
+
+  // Make pack rows interactive checkboxes
+  document.querySelectorAll('.prac-card table tr').forEach(row => {
+    row.style.cursor = 'pointer';
+    row.title = 'Click to mark as packed';
+    row.addEventListener('click', () => row.classList.toggle('packed'));
+  });
+
+  // Save itinerary to localStorage for offline/refresh recovery
+  try {
+    localStorage.setItem('lgb_itinerary', JSON.stringify({
+      title: document.getElementById('rTitle').innerHTML,
+      sub: document.getElementById('rSub').textContent,
+      pills: document.getElementById('rPills').innerHTML,
+      days: document.getElementById('rDays').innerHTML,
+      savedAt: new Date().toISOString(),
+    }));
+  } catch(e) {}
 
   // ── API calls — all vars now defined ──────────────────
   fetchRates(total);
@@ -1292,12 +1442,14 @@ function buildItinerary() {
 }
 
 function buildDayBody(d, foodKey) {
+  const offset = getWakeOffset();
   let html = '';
   if (d.blocks) {
     d.blocks.forEach(b => {
       html += `<div class="time-block"><div class="time-block-label">${b.label}</div><ul class="activity-list">`;
       b.items.forEach(it => {
-        html += `<li><span class="act-time">${it.t||''}</span><span class="act-body">${it.a}</span><span class="act-cost">${it.c||''}</span></li>`;
+        const t = shiftTime(it.t, offset);
+        html += `<li><span class="act-time">${t||''}</span><span class="act-body">${it.a}</span><span class="act-cost">${it.c||''}</span></li>`;
       });
       html += `</ul></div>`;
     });
@@ -1713,7 +1865,8 @@ function hideAlready() {
 ════════════════════════════════════════════════════════ */
 function doRestart() {
   S.entry=null; S.style=null; S.days=8; S.regions=new Set(); S.season=null;
-  S.startDate=null; S.endDate=null; S.useSpecificDates=true; cur=0;
+  S.startDate=null; S.endDate=null; S.useSpecificDates=true;
+  S.wakeHour=7; S.wakeMin=30; S.groupSize='couple'; cur=0;
   document.querySelectorAll('.choice').forEach(c=>c.classList.remove('sel'));
   document.getElementById('resultWrap').classList.remove('active');
   document.getElementById('resultWrap').style.display='none';
@@ -1736,11 +1889,43 @@ function doRestart() {
 }
 
 /* ════════════════════════════════════════════════════════
+   WHATSAPP SHARE
+════════════════════════════════════════════════════════ */
+function shareWhatsApp() {
+  const title = document.getElementById('rTitle').textContent.replace(/\n/g,' ');
+  const sub = document.getElementById('rSub').textContent;
+  const msg = `My GB trip plan: ${title} — ${sub}\n\nPlanned with LocalGB: https://localgb.pk/explore`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* ════════════════════════════════════════════════════════
+   LOCAL STORAGE RESTORE
+════════════════════════════════════════════════════════ */
+function restoreItinerary() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('lgb_itinerary'));
+    if (!saved) return;
+    document.getElementById('rTitle').innerHTML = saved.title;
+    document.getElementById('rSub').textContent = saved.sub;
+    document.getElementById('rPills').innerHTML = saved.pills;
+    document.getElementById('rDays').innerHTML = saved.days;
+    document.getElementById('wizardWrap').classList.add('hidden');
+    document.getElementById('heroWrap').style.display = 'none';
+    document.getElementById('restoreBanner').style.display = 'none';
+    const rw = document.getElementById('resultWrap');
+    rw.classList.add('active'); rw.style.display = 'block';
+    document.getElementById('result').classList.add('active');
+  } catch(e) {}
+}
+
+/* ════════════════════════════════════════════════════════
    INIT
 ════════════════════════════════════════════════════════ */
 updateProgress(0);
 updateNav();
 initLayout();
+// Initialize wake note on load
+onWakeTime('07:30');
 window.addEventListener('resize', () => {
   if (!isMobile()) {
     document.getElementById('heroWrap').style.display = '';
@@ -1748,6 +1933,17 @@ window.addEventListener('resize', () => {
   } else {
     document.getElementById('heroWrap').style.display = 'none';
   }
+});
+
+// On load: check for saved itinerary
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem('lgb_itinerary'));
+    if (saved && saved.savedAt) {
+      const age = (Date.now() - new Date(saved.savedAt)) / 3600000;
+      if (age < 72) document.getElementById('restoreBanner').style.display = 'block';
+    }
+  } catch(e) {}
 });
 
 /* ════════════════════════════════════════════════════════
