@@ -3,50 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATM Locator — Gilgit-Baltistan 2025 — LocalGB</title>
-<meta name="description" content="Find working ATMs in Gilgit-Baltistan: Gilgit, Hunza, Skardu, Chilas. Live map, nearest ATM, cash availability reports. Updated for 2025.">
+<title>ATM, Hospital, Pharmacy & Petrol Map — Gilgit-Baltistan — LocalGB</title>
+<meta name="description" content="Find ATMs, hospitals, pharmacies and petrol pumps in Gilgit-Baltistan. Live map with nearest-first search, cash availability reports. Essential for GB travel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
-#map { height: 480px; width: 100%; border-radius: 4px; }
-.atm-toolbar { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem; align-items:center; }
-.atm-filter-btn { font-family:var(--fu); font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.45rem 1rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream-2); cursor:pointer; transition:all 0.2s; }
-.atm-filter-btn.active, .atm-filter-btn:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
-.atm-list { display:grid; gap:0.75rem; margin-top:1.5rem; }
-.atm-card { display:flex; gap:1rem; align-items:flex-start; padding:1rem 1.25rem; border:1px solid var(--gold-border); background:var(--ink-3); }
-.atm-icon { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--fu); font-size:0.6rem; font-weight:700; letter-spacing:0.08em; flex-shrink:0; margin-top:2px; }
-.atm-icon.hbl { background:#003087; color:#fff; }
-.atm-icon.ubl { background:#1a6b3c; color:#fff; }
-.atm-icon.mcb { background:#c0392b; color:#fff; }
-.atm-icon.nbp { background:#00529b; color:#fff; }
-.atm-icon.oth { background:var(--gold); color:var(--ink); }
-.atm-name { font-family:var(--fu); font-size:0.8rem; font-weight:600; letter-spacing:0.06em; color:var(--cream); margin-bottom:0.2rem; }
-.atm-loc { font-size:0.8rem; color:var(--cream-2); margin-bottom:0.35rem; }
-.atm-dist { font-family:var(--fu); font-size:0.68rem; color:var(--gold); letter-spacing:0.08em; }
-.atm-status { display:inline-flex; align-items:center; gap:0.3rem; font-family:var(--fu); font-size:0.65rem; font-weight:700; letter-spacing:0.08em; padding:0.2rem 0.6rem; border-radius:2px; margin-left:0.5rem; }
-.status-working { background:rgba(0,180,80,0.15); color:#00c857; border:1px solid rgba(0,200,80,0.25); }
-.status-cash-out { background:rgba(200,80,0,0.15); color:#e86a00; border:1px solid rgba(200,80,0,0.25); }
-.status-offline { background:rgba(150,0,0,0.15); color:#c0392b; border:1px solid rgba(150,0,0,0.2); }
-.status-unknown { background:rgba(150,150,150,0.1); color:var(--cream-2); border:1px solid var(--gold-border); }
-.atm-report-btn { font-family:var(--fu); font-size:0.62rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.2rem 0.6rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream-2); cursor:pointer; margin-left:auto; white-space:nowrap; }
-.atm-report-btn:hover { border-color:var(--gold); color:var(--gold); }
-.atm-meta { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; margin-top:0.3rem; }
-.atm-checked { font-size:0.7rem; color:var(--cream-3,#888); }
-#atm-status-bar { font-family:var(--fu); font-size:0.72rem; color:var(--cream-2); margin-bottom:0.75rem; letter-spacing:0.04em; min-height:1.2em; }
-.locate-btn { font-family:var(--fu); font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.45rem 1.2rem; border:1px solid var(--gold); background:var(--gold); color:var(--ink); cursor:pointer; }
+#map { height:520px; width:100%; border-radius:4px; }
+
+/* category toggle pills */
+.cat-bar { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem; }
+.cat-btn { display:flex; align-items:center; gap:0.45rem; font-family:var(--fu); font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.5rem 1rem; border:2px solid transparent; cursor:pointer; transition:all 0.18s; }
+.cat-btn[data-cat="atm"]      { border-color:#1a4a8a; background:rgba(26,74,138,0.15); color:#6ba3e8; }
+.cat-btn[data-cat="hospital"] { border-color:#8a1a1a; background:rgba(138,26,26,0.15); color:#e87070; }
+.cat-btn[data-cat="pharmacy"] { border-color:#1a6b3c; background:rgba(26,107,60,0.15); color:#5ecf8a; }
+.cat-btn[data-cat="petrol"]   { border-color:#7a5a10; background:rgba(122,90,16,0.15); color:#c8a040; }
+.cat-btn.off { opacity:0.35; filter:grayscale(1); }
+.cat-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+
+/* sub-filter bar */
+.sub-bar { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.75rem; align-items:center; }
+.sub-btn { font-family:var(--fu); font-size:0.65rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.35rem 0.8rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream-2); cursor:pointer; transition:all 0.18s; }
+.sub-btn.active, .sub-btn:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+
+.locate-btn { font-family:var(--fu); font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.5rem 1.2rem; border:1px solid var(--gold); background:var(--gold); color:var(--ink); cursor:pointer; }
 .locate-btn:hover { opacity:0.85; }
-.report-modal { display:none; position:fixed; inset:0; background:rgba(4,6,8,0.85); z-index:9999; align-items:center; justify-content:center; }
-.report-modal.open { display:flex; }
-.report-box { background:var(--ink-3); border:1px solid var(--gold-border); padding:2rem; max-width:400px; width:90%; }
-.report-box h4 { font-family:var(--fd); font-size:1.4rem; font-weight:400; margin:0 0 1rem; }
-.report-options { display:grid; gap:0.5rem; margin-bottom:1.5rem; }
-.report-opt { padding:0.75rem 1rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream); font-family:var(--fu); font-size:0.75rem; font-weight:600; letter-spacing:0.08em; cursor:pointer; text-align:left; }
-.report-opt:hover, .report-opt.selected { border-color:var(--gold); background:var(--gold-glow); }
-.report-close { font-family:var(--fu); font-size:0.7rem; color:var(--cream-2); background:none; border:none; cursor:pointer; padding:0; }
-.notice-cash { background:rgba(200,144,58,0.08); border:1px solid var(--gold-border); padding:0.9rem 1.1rem; font-size:0.85rem; margin-bottom:1.5rem; color:var(--cream-2); line-height:1.6; }
+
+#status-bar { font-family:var(--fu); font-size:0.72rem; color:var(--cream-2); margin:0.6rem 0; letter-spacing:0.04em; min-height:1.2em; }
+
+/* result list */
+.poi-list { display:grid; gap:0.6rem; margin-top:1.25rem; }
+.poi-card { display:flex; gap:0.9rem; align-items:flex-start; padding:0.9rem 1.1rem; border:1px solid var(--gold-border); background:var(--ink-3); }
+.poi-badge { width:36px; height:36px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.poi-badge.atm      { background:#0d2a5a; }
+.poi-badge.hospital { background:#5a0d0d; }
+.poi-badge.pharmacy { background:#0d3d20; }
+.poi-badge.petrol   { background:#3d2d00; }
+.poi-name { font-family:var(--fu); font-size:0.78rem; font-weight:600; letter-spacing:0.05em; color:var(--cream); margin-bottom:0.15rem; }
+.poi-sub  { font-size:0.78rem; color:var(--cream-2); margin-bottom:0.3rem; }
+.poi-dist { font-family:var(--fu); font-size:0.65rem; color:var(--gold); letter-spacing:0.08em; }
+.poi-status { display:inline-flex; align-items:center; gap:0.25rem; font-family:var(--fu); font-size:0.62rem; font-weight:700; letter-spacing:0.07em; padding:0.18rem 0.5rem; border-radius:2px; margin-left:0.4rem; }
+.s-working  { background:rgba(0,180,80,0.15);  color:#00c857; border:1px solid rgba(0,200,80,0.25); }
+.s-cashout  { background:rgba(200,80,0,0.15);  color:#e86a00; border:1px solid rgba(200,80,0,0.25); }
+.s-offline  { background:rgba(150,0,0,0.15);   color:#c0392b; border:1px solid rgba(150,0,0,0.2); }
+.s-unknown  { background:rgba(150,150,150,0.08); color:var(--cream-2); border:1px solid var(--gold-border); }
+.poi-report-btn { font-family:var(--fu); font-size:0.6rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.18rem 0.55rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream-2); cursor:pointer; white-space:nowrap; }
+.poi-report-btn:hover { border-color:var(--gold); color:var(--gold); }
+.poi-map-btn { font-family:var(--fu); font-size:0.6rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.18rem 0.55rem; border:1px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer; white-space:nowrap; }
+.poi-actions { display:flex; flex-direction:column; gap:0.35rem; align-items:flex-end; }
+
+/* report modal */
+.r-modal { display:none; position:fixed; inset:0; background:rgba(4,6,8,0.88); z-index:9999; align-items:center; justify-content:center; }
+.r-modal.open { display:flex; }
+.r-box { background:var(--ink-3); border:1px solid var(--gold-border); padding:2rem; max-width:380px; width:90%; }
+.r-box h4 { font-family:var(--fd); font-size:1.35rem; font-weight:400; margin:0 0 0.75rem; }
+.r-opts { display:grid; gap:0.45rem; margin-bottom:1.25rem; }
+.r-opt { padding:0.65rem 0.9rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream); font-family:var(--fu); font-size:0.72rem; font-weight:600; letter-spacing:0.07em; cursor:pointer; text-align:left; }
+.r-opt:hover, .r-opt.sel { border-color:var(--gold); background:var(--gold-glow); }
+.r-close { font-family:var(--fu); font-size:0.68rem; color:var(--cream-2); background:none; border:none; cursor:pointer; padding:0; }
+
+.notice-cash { background:rgba(200,144,58,0.08); border:1px solid var(--gold-border); padding:0.9rem 1.1rem; font-size:0.84rem; margin-bottom:1.25rem; color:var(--cream-2); line-height:1.65; }
 .notice-cash strong { color:var(--cream); }
 </style>
 </head>
@@ -79,74 +97,86 @@
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-tag">Practical</div>
-    <h1 class="page-hero-h1">ATM Locator<br><em>Gilgit-Baltistan</em></h1>
-    <p class="page-hero-sub">ATMs in GB are scarce, often out of cash, and sometimes offline for days. Find working ones before you head out — and carry cash as backup.</p>
+    <h1 class="page-hero-h1">Essentials Map<br><em>Gilgit-Baltistan</em></h1>
+    <p class="page-hero-sub">ATMs, hospitals, pharmacies, and petrol pumps — everything you need to locate before heading into remote areas.</p>
     <div class="page-hero-meta">
-      <div class="page-hero-meta-item">🏧 <strong>Live map</strong></div>
-      <div class="page-hero-meta-item">📍 <strong>Nearest first</strong></div>
-      <div class="page-hero-meta-item">💬 <strong>User status reports</strong></div>
-      <div class="page-hero-meta-item">⚠️ <strong>Carry cash always</strong></div>
+      <div class="page-hero-meta-item">🏧 <strong>ATMs</strong></div>
+      <div class="page-hero-meta-item">🏥 <strong>Hospitals</strong></div>
+      <div class="page-hero-meta-item">💊 <strong>Pharmacies</strong></div>
+      <div class="page-hero-meta-item">⛽ <strong>Petrol Pumps</strong></div>
     </div>
   </div>
 </section>
 <div class="breadcrumb"><div class="breadcrumb-inner">
   <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
-  <span class="breadcrumb-current">ATM Locator</span>
+  <span class="breadcrumb-current">Essentials Map</span>
 </div></div>
 
 <section class="section">
   <div class="notice-cash">
-    <strong>Cash is king in GB.</strong> Most markets, guesthouses, and smaller hotels are cash-only. There are no ATMs on trekking routes — Fairy Meadows, K2 Base Camp, Deosai. Withdraw in Gilgit or Skardu before departing. The maximum single withdrawal at most ATMs is Rs.25,000–50,000. HBL and UBL have the best network.
+    <strong>Before you go remote:</strong> Withdraw cash in Gilgit or Skardu — there are no ATMs past Karimabad in Hunza or on any trekking route. Fill up petrol before Chilas northbound and before Skardu for Deosai. Carry basic medication; pharmacies thin out sharply after main towns.
   </div>
 
-  <div class="atm-toolbar">
-    <button class="locate-btn" id="locateBtn">📍 Find Nearest</button>
-    <button class="atm-filter-btn active" data-filter="all">All</button>
-    <button class="atm-filter-btn" data-filter="HBL">HBL</button>
-    <button class="atm-filter-btn" data-filter="UBL">UBL</button>
-    <button class="atm-filter-btn" data-filter="MCB">MCB</button>
-    <button class="atm-filter-btn" data-filter="NBP">NBP</button>
-    <button class="atm-filter-btn" data-filter="Gilgit">Gilgit</button>
-    <button class="atm-filter-btn" data-filter="Hunza">Hunza</button>
-    <button class="atm-filter-btn" data-filter="Skardu">Skardu</button>
+  <!-- Category toggles -->
+  <div class="cat-bar">
+    <button class="cat-btn" data-cat="atm">
+      <span class="cat-dot" style="background:#4a90d9"></span> ATMs
+    </button>
+    <button class="cat-btn" data-cat="hospital">
+      <span class="cat-dot" style="background:#e87070"></span> Hospitals
+    </button>
+    <button class="cat-btn" data-cat="pharmacy">
+      <span class="cat-dot" style="background:#5ecf8a"></span> Pharmacies
+    </button>
+    <button class="cat-btn" data-cat="petrol">
+      <span class="cat-dot" style="background:#c8a040"></span> Petrol Pumps
+    </button>
+    <button class="locate-btn" id="locateBtn" style="margin-left:auto">📍 Find Nearest</button>
   </div>
 
-  <div id="atm-status-bar">Loading ATMs…</div>
+  <!-- Sub-filters (city) -->
+  <div class="sub-bar" id="subBar">
+    <span style="font-family:var(--fu);font-size:0.65rem;color:var(--cream-2);letter-spacing:0.08em;">CITY:</span>
+    <button class="sub-btn active" data-city="all">All</button>
+    <button class="sub-btn" data-city="Gilgit">Gilgit</button>
+    <button class="sub-btn" data-city="Hunza">Hunza</button>
+    <button class="sub-btn" data-city="Skardu">Skardu</button>
+    <button class="sub-btn" data-city="Chilas">Chilas</button>
+    <button class="sub-btn" data-city="Ghizer">Ghizer</button>
+    <button class="sub-btn" data-city="Astore">Astore</button>
+  </div>
+
+  <div id="status-bar">Loading…</div>
   <div id="map"></div>
-  <div class="atm-list" id="atmList"></div>
+  <div class="poi-list" id="poiList"></div>
 </section>
 
 <!-- Report modal -->
-<div class="report-modal" id="reportModal">
-  <div class="report-box">
-    <h4 id="reportAtmName">Report Status</h4>
-    <p style="font-size:0.85rem;color:var(--cream-2);margin-bottom:1.2rem;">Your report helps other travellers. It shows for 48 hours.</p>
-    <div class="report-options">
-      <button class="report-opt" data-status="working">✅ Working — dispensing cash</button>
-      <button class="report-opt" data-status="cash-out">⚠️ Out of cash</button>
-      <button class="report-opt" data-status="offline">❌ Offline / machine down</button>
-    </div>
+<div class="r-modal" id="rModal">
+  <div class="r-box">
+    <h4 id="rName">Report Status</h4>
+    <p style="font-size:0.83rem;color:var(--cream-2);margin-bottom:1rem;">Helps other travellers. Shown for 48 hours.</p>
+    <div class="r-opts" id="rOpts"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;">
-      <button class="report-close" id="reportClose">Cancel</button>
-      <button class="locate-btn" id="reportSubmit" style="font-size:0.68rem;padding:0.4rem 1rem;">Submit Report</button>
+      <button class="r-close" id="rClose">Cancel</button>
+      <button class="locate-btn" id="rSubmit" style="font-size:0.66rem;padding:0.38rem 0.9rem;">Submit</button>
     </div>
   </div>
 </div>
 
 <section style="background:var(--gold-glow);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);padding:3rem 0;">
   <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
-    <div><div class="label">Journey Architect</div><h3 style="font-family:var(--fd);font-size:2rem;font-weight:400;margin-top:0.5rem;">Plan your GB trip<br><em>including cash stops.</em></h3></div>
+    <div><div class="label">Journey Architect</div><h3 style="font-family:var(--fd);font-size:2rem;font-weight:400;margin-top:0.5rem;">Plan your GB trip<br><em>cash stops included.</em></h3></div>
     <a href="../explore/index.html" style="display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--fu);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;">Build My Itinerary →</a>
   </div>
 </section>
-
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
       <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p></div>
-      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Travel Guides</a></li><li><a href="../travel/budget-gb-itinerary/index.html">Budget Guide</a></li></ul></div>
+      <div><div class="footer-col-title">Practical</div><ul class="footer-links"><li><a href="../travel/index.html">Travel Guides</a></li><li><a href="index.html">Essentials Map</a></li></ul></div>
       <div><div class="footer-col-title">Destinations</div><ul class="footer-links"><li><a href="../gilgit/index.html">Gilgit</a></li><li><a href="../hunza/index.html">Hunza</a></li><li><a href="../skardu/index.html">Skardu</a></li></ul></div>
-      <div><div class="footer-col-title">Tools</div><ul class="footer-links"><li><a href="../explore/index.html">Journey Architect</a></li><li><a href="index.html">ATM Locator</a></li></ul></div>
+      <div><div class="footer-col-title">Tools</div><ul class="footer-links"><li><a href="../explore/index.html">Journey Architect</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
   </div>
@@ -157,266 +187,265 @@
 // ─── Nav ───────────────────────────────────────────────────────────────────
 const nav=document.getElementById('navbar');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
-const hbg=document.getElementById('navHamburger'),drawer=document.getElementById('navDrawer');
-hbg.addEventListener('click',()=>{hbg.classList.toggle('open');drawer.classList.toggle('open');});
+document.getElementById('navHamburger').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('navDrawer').classList.toggle('open');});
 
-// ─── ATM Data (verified fallback dataset) ─────────────────────────────────
-const FALLBACK_ATMS = [
-  // GILGIT
-  { id:'hbl-gilgit-1',  name:'HBL ATM',        bank:'HBL', city:'Gilgit', area:'Saddar Bazaar', lat:35.9220, lng:74.3082 },
-  { id:'hbl-gilgit-2',  name:'HBL ATM',        bank:'HBL', city:'Gilgit', area:'Airport Road',  lat:35.9186, lng:74.3330 },
-  { id:'ubl-gilgit-1',  name:'UBL ATM',        bank:'UBL', city:'Gilgit', area:'Saddar Bazaar', lat:35.9215, lng:74.3070 },
-  { id:'mcb-gilgit-1',  name:'MCB ATM',        bank:'MCB', city:'Gilgit', area:'Bank Road',     lat:35.9228, lng:74.3095 },
-  { id:'nbp-gilgit-1',  name:'NBP ATM',        bank:'NBP', city:'Gilgit', area:'Main Bazaar',   lat:35.9210, lng:74.3060 },
-  { id:'hbl-gilgit-3',  name:'HBL ATM',        bank:'HBL', city:'Gilgit', area:'Jutial',        lat:35.9310, lng:74.2940 },
-  // HUNZA / KARIMABAD
-  { id:'hbl-hunza-1',   name:'HBL ATM',        bank:'HBL', city:'Hunza',  area:'Karimabad',     lat:36.3167, lng:74.6599 },
-  { id:'ubl-hunza-1',   name:'UBL ATM',        bank:'UBL', city:'Hunza',  area:'Karimabad',     lat:36.3172, lng:74.6610 },
-  { id:'mcb-hunza-1',   name:'MCB ATM',        bank:'MCB', city:'Hunza',  area:'Aliabad',       lat:36.2950, lng:74.6420 },
-  { id:'nbp-hunza-1',   name:'NBP ATM',        bank:'NBP', city:'Hunza',  area:'Aliabad',       lat:36.2960, lng:74.6430 },
-  // SKARDU
-  { id:'hbl-skardu-1',  name:'HBL ATM',        bank:'HBL', city:'Skardu', area:'Main Bazaar',   lat:35.3039, lng:75.6402 },
-  { id:'hbl-skardu-2',  name:'HBL ATM',        bank:'HBL', city:'Skardu', area:'Airport Road',  lat:35.3220, lng:75.6680 },
-  { id:'ubl-skardu-1',  name:'UBL ATM',        bank:'UBL', city:'Skardu', area:'Main Bazaar',   lat:35.3044, lng:75.6412 },
-  { id:'mcb-skardu-1',  name:'MCB ATM',        bank:'MCB', city:'Skardu', area:'Main Bazaar',   lat:35.3035, lng:75.6395 },
-  { id:'nbp-skardu-1',  name:'NBP ATM',        bank:'NBP', city:'Skardu', area:'Bank Road',     lat:35.3050, lng:75.6440 },
-  // CHILAS
-  { id:'hbl-chilas-1',  name:'HBL ATM',        bank:'HBL', city:'Chilas', area:'Main Bazaar',   lat:35.4184, lng:74.1007 },
-  { id:'ubl-chilas-1',  name:'UBL ATM',        bank:'UBL', city:'Chilas', area:'Main Bazaar',   lat:35.4190, lng:74.1015 },
-  // GHIZER / GAHKUCH
-  { id:'hbl-gahkuch-1', name:'HBL ATM',        bank:'HBL', city:'Ghizer', area:'Gahkuch',       lat:36.1680, lng:73.7540 },
-  // PASSU / UPPER HUNZA (limited)
-  { id:'nbp-gulmit-1',  name:'NBP Branch',     bank:'NBP', city:'Hunza',  area:'Gulmit',        lat:36.5530, lng:74.8730 },
-  // ASTORE
-  { id:'hbl-astore-1',  name:'HBL ATM',        bank:'HBL', city:'Astore', area:'Astore Town',   lat:35.3570, lng:74.7100 },
+// ─── Static dataset ────────────────────────────────────────────────────────
+const STATIC = [
+  // ATMs
+  {id:'hbl-g1',  cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Gilgit', area:'Saddar Bazaar',  lat:35.9220,lng:74.3082},
+  {id:'hbl-g2',  cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Gilgit', area:'Airport Road',   lat:35.9186,lng:74.3330},
+  {id:'ubl-g1',  cat:'atm', name:'UBL ATM',         bank:'UBL', city:'Gilgit', area:'Saddar Bazaar',  lat:35.9215,lng:74.3070},
+  {id:'mcb-g1',  cat:'atm', name:'MCB ATM',         bank:'MCB', city:'Gilgit', area:'Bank Road',      lat:35.9228,lng:74.3095},
+  {id:'nbp-g1',  cat:'atm', name:'NBP ATM',         bank:'NBP', city:'Gilgit', area:'Main Bazaar',    lat:35.9210,lng:74.3060},
+  {id:'hbl-h1',  cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Hunza',  area:'Karimabad',      lat:36.3167,lng:74.6599},
+  {id:'ubl-h1',  cat:'atm', name:'UBL ATM',         bank:'UBL', city:'Hunza',  area:'Karimabad',      lat:36.3172,lng:74.6610},
+  {id:'mcb-h1',  cat:'atm', name:'MCB ATM',         bank:'MCB', city:'Hunza',  area:'Aliabad',        lat:36.2950,lng:74.6420},
+  {id:'nbp-h1',  cat:'atm', name:'NBP ATM',         bank:'NBP', city:'Hunza',  area:'Aliabad',        lat:36.2960,lng:74.6430},
+  {id:'hbl-s1',  cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Skardu', area:'Main Bazaar',    lat:35.3039,lng:75.6402},
+  {id:'hbl-s2',  cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Skardu', area:'Airport Road',   lat:35.3220,lng:75.6680},
+  {id:'ubl-s1',  cat:'atm', name:'UBL ATM',         bank:'UBL', city:'Skardu', area:'Main Bazaar',    lat:35.3044,lng:75.6412},
+  {id:'mcb-s1',  cat:'atm', name:'MCB ATM',         bank:'MCB', city:'Skardu', area:'Main Bazaar',    lat:35.3035,lng:75.6395},
+  {id:'hbl-c1',  cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Chilas', area:'Main Bazaar',    lat:35.4184,lng:74.1007},
+  {id:'ubl-c1',  cat:'atm', name:'UBL ATM',         bank:'UBL', city:'Chilas', area:'Main Bazaar',    lat:35.4190,lng:74.1015},
+  {id:'hbl-gh1', cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Ghizer', area:'Gahkuch',        lat:36.1680,lng:73.7540},
+  {id:'nbp-gu1', cat:'atm', name:'NBP Branch',      bank:'NBP', city:'Hunza',  area:'Gulmit',         lat:36.5530,lng:74.8730},
+  {id:'hbl-as1', cat:'atm', name:'HBL ATM',         bank:'HBL', city:'Astore', area:'Astore Town',    lat:35.3570,lng:74.7100},
+
+  // Hospitals
+  {id:'dh-gilgit',   cat:'hospital', name:'DHQ Hospital Gilgit',         city:'Gilgit', area:'Hospital Road',     lat:35.9198,lng:74.3055},
+  {id:'aga-gilgit',  cat:'hospital', name:'Aga Khan Health Service',     city:'Gilgit', area:'Konodas',           lat:35.9240,lng:74.2990},
+  {id:'cmc-gilgit',  cat:'hospital', name:'CMC Hospital',                city:'Gilgit', area:'Jutial',            lat:35.9312,lng:74.2925},
+  {id:'dh-skardu',   cat:'hospital', name:'DHQ Hospital Skardu',         city:'Skardu', area:'Hospital Road',     lat:35.3010,lng:75.6380},
+  {id:'aga-skardu',  cat:'hospital', name:'Aga Khan Hospital Skardu',    city:'Skardu', area:'Main Road',         lat:35.3045,lng:75.6430},
+  {id:'dh-hunza',    cat:'hospital', name:'THQ Hospital Aliabad',        city:'Hunza',  area:'Aliabad',           lat:36.2942,lng:74.6408},
+  {id:'aga-hunza',   cat:'hospital', name:'Aga Khan Health Centre',      city:'Hunza',  area:'Karimabad',         lat:36.3155,lng:74.6590},
+  {id:'dh-chilas',   cat:'hospital', name:'DHQ Hospital Diamer',         city:'Chilas', area:'Main Bazaar',       lat:35.4160,lng:74.0990},
+  {id:'rh-ghizer',   cat:'hospital', name:'RHC Gahkuch',                 city:'Ghizer', area:'Gahkuch',           lat:36.1660,lng:73.7520},
+  {id:'dh-astore',   cat:'hospital', name:'THQ Hospital Astore',         city:'Astore', area:'Astore Town',       lat:35.3550,lng:74.7085},
+
+  // Pharmacies
+  {id:'ph-g1',   cat:'pharmacy', name:'Al-Shifa Medical Store',    city:'Gilgit', area:'Saddar Bazaar',     lat:35.9222,lng:74.3088},
+  {id:'ph-g2',   cat:'pharmacy', name:'Kashmir Medical Store',     city:'Gilgit', area:'Main Bazaar',       lat:35.9206,lng:74.3065},
+  {id:'ph-g3',   cat:'pharmacy', name:'Rakaposhi Pharmacy',        city:'Gilgit', area:'Airport Road',      lat:35.9190,lng:74.3295},
+  {id:'ph-h1',   cat:'pharmacy', name:'Hunza Medical Store',       city:'Hunza',  area:'Karimabad Bazaar',  lat:36.3161,lng:74.6605},
+  {id:'ph-h2',   cat:'pharmacy', name:'Aliabad Pharmacy',          city:'Hunza',  area:'Aliabad',           lat:36.2955,lng:74.6425},
+  {id:'ph-s1',   cat:'pharmacy', name:'Skardu Medical Hall',       city:'Skardu', area:'Main Bazaar',       lat:35.3042,lng:75.6408},
+  {id:'ph-s2',   cat:'pharmacy', name:'Al-Madina Pharmacy',        city:'Skardu', area:'Naya Bazaar',       lat:35.3033,lng:75.6390},
+  {id:'ph-c1',   cat:'pharmacy', name:'Chilas Medical Store',      city:'Chilas', area:'Main Bazaar',       lat:35.4175,lng:74.1000},
+  {id:'ph-as1',  cat:'pharmacy', name:'Astore Pharmacy',           city:'Astore', area:'Astore Town',       lat:35.3555,lng:74.7090},
+
+  // Petrol Pumps
+  {id:'pt-g1',   cat:'petrol', name:'PSO Pump',          city:'Gilgit', area:'Jutial Link Road',   lat:35.9295,lng:74.2960},
+  {id:'pt-g2',   cat:'petrol', name:'Shell Pump',        city:'Gilgit', area:'Airport Road',       lat:35.9175,lng:74.3310},
+  {id:'pt-g3',   cat:'petrol', name:'Attock Pump',       city:'Gilgit', area:'KKH Gilgit',         lat:35.9150,lng:74.3050},
+  {id:'pt-h1',   cat:'petrol', name:'PSO Pump',          city:'Hunza',  area:'Aliabad',            lat:36.2940,lng:74.6415},
+  {id:'pt-h2',   cat:'petrol', name:'Attock Pump',       city:'Hunza',  area:'Ganesh',             lat:36.2700,lng:74.6200},
+  {id:'pt-s1',   cat:'petrol', name:'PSO Pump',          city:'Skardu', area:'Main Road',          lat:35.3055,lng:75.6420},
+  {id:'pt-s2',   cat:'petrol', name:'Shell Pump',        city:'Skardu', area:'Naya Bazaar',        lat:35.3020,lng:75.6370},
+  {id:'pt-c1',   cat:'petrol', name:'PSO Pump',          city:'Chilas', area:'KKH Chilas',         lat:35.4170,lng:74.1020},
+  {id:'pt-c2',   cat:'petrol', name:'Attock Pump',       city:'Chilas', area:'South KKH',          lat:35.4100,lng:74.0950},
+  {id:'pt-gh1',  cat:'petrol', name:'Petrol Pump',       city:'Ghizer', area:'Gahkuch',            lat:36.1670,lng:73.7530},
+  {id:'pt-as1',  cat:'petrol', name:'PSO Pump',          city:'Astore', area:'Astore Town',        lat:35.3560,lng:74.7095},
+  {id:'pt-be1',  cat:'petrol', name:'Petrol Pump',       city:'Hunza',  area:'Besham (KKH)',       lat:34.9060,lng:72.8680},
 ];
 
-// ─── Status from localStorage (community reports, 48hr TTL) ───────────────
-const REPORTS_KEY = 'lgb_atm_reports';
-function getReports() {
-  try { return JSON.parse(localStorage.getItem(REPORTS_KEY)) || {}; } catch { return {}; }
-}
-function saveReport(id, status) {
-  const r = getReports();
-  r[id] = { status, ts: Date.now() };
-  localStorage.setItem(REPORTS_KEY, JSON.stringify(r));
-}
-function getStatus(id) {
-  const r = getReports()[id];
-  if (!r) return 'unknown';
-  if (Date.now() - r.ts > 48 * 3600 * 1000) return 'unknown'; // expired
-  return r.status;
-}
-function timeAgo(id) {
-  const r = getReports()[id];
-  if (!r || getStatus(id) === 'unknown') return '';
-  const mins = Math.round((Date.now() - r.ts) / 60000);
-  if (mins < 60) return `${mins}m ago`;
-  if (mins < 1440) return `${Math.round(mins/60)}h ago`;
-  return `${Math.round(mins/1440)}d ago`;
-}
+// ─── Config ────────────────────────────────────────────────────────────────
+const CAT_CFG = {
+  atm:      { color:'#4a90d9', emoji:'🏧', label:'ATM' },
+  hospital: { color:'#e87070', emoji:'🏥', label:'Hospital' },
+  pharmacy: { color:'#5ecf8a', emoji:'💊', label:'Pharmacy' },
+  petrol:   { color:'#c8a040', emoji:'⛽', label:'Petrol' },
+};
+const STATUS_OPTS = {
+  atm:      [['working','✅ Working — dispensing cash'],['cash-out','⚠️ Out of cash'],['offline','❌ Machine offline']],
+  hospital: [['open','✅ Open'],['closed','❌ Closed / emergency only'],['unknown','❓ Not sure']],
+  pharmacy: [['open','✅ Open'],['closed','❌ Closed'],['no-stock','⚠️ Limited stock']],
+  petrol:   [['available','✅ Fuel available'],['no-petrol','⚠️ No petrol (diesel only)'],['closed','❌ Closed / empty']],
+};
+const STATUS_LABELS = {
+  working:'Working', 'cash-out':'No cash', offline:'Offline',
+  open:'Open', closed:'Closed', 'no-stock':'Low stock', 'emergency only':'Emergency',
+  available:'Fuel OK', 'no-petrol':'No petrol', unknown:'Unknown',
+};
 
-// ─── Distance helper (Haversine) ──────────────────────────────────────────
-function haversine(lat1, lng1, lat2, lng2) {
-  const R = 6371, dL = (lat2-lat1)*Math.PI/180, dl = (lng2-lng1)*Math.PI/180;
-  const a = Math.sin(dL/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dl/2)**2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
+// ─── State ─────────────────────────────────────────────────────────────────
+let allPois = [...STATIC];
+let visibleCats = new Set(['atm','hospital','pharmacy','petrol']);
+let cityFilter = 'all';
+let userLat = null, userLng = null;
+let leafletMarkers = {};
+let reportingId = null, reportingCat = null, selectedStatus = null;
 
-// ─── Map setup ────────────────────────────────────────────────────────────
-const map = L.map('map').setView([35.92, 74.31], 8);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
-  maxZoom: 18
+// ─── Map ───────────────────────────────────────────────────────────────────
+const map = L.map('map').setView([35.92,74.31],8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
 }).addTo(map);
 
-const bankColors = { HBL:'#003087', UBL:'#1a6b3c', MCB:'#c0392b', NBP:'#00529b' };
-function makeIcon(bank) {
-  const c = bankColors[bank] || '#C8903A';
+function makeMarkerIcon(cat) {
+  const cfg = CAT_CFG[cat];
   return L.divIcon({
     className:'',
-    html:`<div style="width:32px;height:32px;border-radius:50%;background:${c};display:flex;align-items:center;justify-content:center;color:#fff;font-family:sans-serif;font-size:9px;font-weight:700;border:2px solid rgba(255,255,255,0.4);box-shadow:0 2px 6px rgba(0,0,0,0.5)">${bank.substring(0,3)}</div>`,
-    iconSize:[32,32], iconAnchor:[16,16], popupAnchor:[0,-18]
+    html:`<div style="width:30px;height:30px;border-radius:50%;background:${cfg.color};display:flex;align-items:center;justify-content:center;font-size:13px;border:2px solid rgba(255,255,255,0.35);box-shadow:0 2px 6px rgba(0,0,0,0.55)">${cfg.emoji}</div>`,
+    iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-18]
   });
 }
 
-// ─── State ────────────────────────────────────────────────────────────────
-let allAtms = [...FALLBACK_ATMS];
-let userLat = null, userLng = null;
-let activeFilter = 'all';
-let markers = {};
-let reportingId = null, selectedStatus = null;
+// ─── Reports (localStorage, 48hr) ─────────────────────────────────────────
+const R_KEY = 'lgb_poi_reports_v2';
+function getReports(){ try{ return JSON.parse(localStorage.getItem(R_KEY))||{}; }catch{ return {}; } }
+function saveReport(id, status){ const r=getReports(); r[id]={status,ts:Date.now()}; localStorage.setItem(R_KEY,JSON.stringify(r)); }
+function getStatus(id){ const r=getReports()[id]; if(!r||Date.now()-r.ts>48*3600*1000) return 'unknown'; return r.status; }
+function timeAgo(id){ const r=getReports()[id]; if(!r||getStatus(id)==='unknown') return ''; const m=Math.round((Date.now()-r.ts)/60000); return m<60?`${m}m ago`:m<1440?`${Math.round(m/60)}h ago`:`${Math.round(m/1440)}d ago`; }
 
-// ─── Overpass fetch (augments fallback) ───────────────────────────────────
-const CACHE_KEY = 'lgb_osm_atms', CACHE_TTL = 6 * 3600 * 1000;
-async function fetchOSM() {
-  try {
-    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-    if (cached && Date.now() - cached.ts < CACHE_TTL) return cached.data;
-    const q = `[out:json][timeout:25];area["name"="Gilgit-Baltistan"]->.a;(node["amenity"="atm"](area.a););out;`;
-    const res = await fetch('https://overpass-api.de/api/interpreter?data=' + encodeURIComponent(q));
-    const json = await res.json();
-    const data = (json.elements || []).map(e => ({
-      id: 'osm-' + e.id,
-      name: e.tags?.name || e.tags?.operator || 'ATM',
-      bank: detectBank(e.tags?.operator || e.tags?.name || ''),
-      city: e.tags?.['addr:city'] || 'GB',
-      area: e.tags?.['addr:street'] || '',
-      lat: e.lat, lng: e.lon,
-      source: 'osm'
-    }));
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    return data;
-  } catch { return []; }
-}
-function detectBank(str) {
-  const s = str.toUpperCase();
-  if (s.includes('HBL') || s.includes('HABIB')) return 'HBL';
-  if (s.includes('UBL') || s.includes('UNITED')) return 'UBL';
-  if (s.includes('MCB') || s.includes('MUSLIM')) return 'MCB';
-  if (s.includes('NBP') || s.includes('NATIONAL')) return 'NBP';
-  return 'OTH';
+function statusHTML(id) {
+  const s = getStatus(id), ago = timeAgo(id);
+  const label = STATUS_LABELS[s] || 'Unknown';
+  const cls = ['working','open','available'].includes(s)?'s-working':['cash-out','no-petrol','no-stock','emergency'].includes(s)?'s-cashout':s==='offline'||s==='closed'?'s-offline':'s-unknown';
+  return `<span class="poi-status ${cls}">${label}</span>${ago?`<span style="font-size:0.68rem;color:#888;margin-left:0.3rem">${ago}</span>`:''}`;
 }
 
-// ─── Render ───────────────────────────────────────────────────────────────
-function statusLabel(id) {
-  const s = getStatus(id);
-  const ago = timeAgo(id);
-  const label = { working:'Working', 'cash-out':'Out of cash', offline:'Offline', unknown:'Status unknown' }[s];
-  const cls   = { working:'status-working', 'cash-out':'status-cash-out', offline:'status-offline', unknown:'status-unknown' }[s];
-  return `<span class="atm-status ${cls}">${label}</span>${ago ? `<span class="atm-checked">${ago}</span>` : ''}`;
-}
+// ─── Distance ──────────────────────────────────────────────────────────────
+function dist(a,b,c,d){ const R=6371,dL=(c-a)*Math.PI/180,dl=(d-b)*Math.PI/180,x=Math.sin(dL/2)**2+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dl/2)**2; return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)); }
 
-function renderAtms() {
-  // Clear markers
-  Object.values(markers).forEach(m => map.removeLayer(m));
-  markers = {};
+// ─── Render ────────────────────────────────────────────────────────────────
+function render() {
+  // remove old markers
+  Object.values(leafletMarkers).forEach(m=>map.removeLayer(m));
+  leafletMarkers = {};
 
-  let list = allAtms.filter(a => {
-    if (activeFilter === 'all') return true;
-    if (['HBL','UBL','MCB','NBP'].includes(activeFilter)) return a.bank === activeFilter;
-    return a.city === activeFilter;
+  let list = allPois.filter(p => visibleCats.has(p.cat) && (cityFilter==='all'||p.city===cityFilter));
+  if (userLat!==null) list = list.map(p=>({...p,km:dist(userLat,userLng,p.lat,p.lng)})).sort((a,b)=>a.km-b.km);
+
+  // count by cat for status bar
+  const counts = {};
+  visibleCats.forEach(c=>counts[c]=list.filter(p=>p.cat===c).length);
+  const summary = [...visibleCats].map(c=>`${CAT_CFG[c].emoji} ${counts[c]} ${CAT_CFG[c].label}${counts[c]!==1?'s':''}`).join(' · ');
+  document.getElementById('status-bar').textContent = summary + (userLat?' — nearest first':'');
+
+  // add markers
+  list.forEach(p=>{
+    const m = L.marker([p.lat,p.lng],{icon:makeMarkerIcon(p.cat)}).addTo(map)
+      .bindPopup(`<strong style="font-family:sans-serif;font-size:12px">${p.name}</strong><br><span style="font-size:11px;color:#666">${p.area}, ${p.city}</span>`);
+    leafletMarkers[p.id]=m;
   });
 
-  // Sort by distance if we have location
-  if (userLat !== null) {
-    list = list.map(a => ({ ...a, dist: haversine(userLat, userLng, a.lat, a.lng) }))
-               .sort((a,b) => a.dist - b.dist);
-  }
-
-  const statusBar = document.getElementById('atm-status-bar');
-  statusBar.textContent = `${list.length} ATM${list.length !== 1 ? 's' : ''} found${userLat ? ' — sorted by distance' : ''}`;
-
-  // Markers
-  list.forEach(a => {
-    const m = L.marker([a.lat, a.lng], { icon: makeIcon(a.bank) })
-      .addTo(map)
-      .bindPopup(`<strong style="font-family:sans-serif;font-size:13px">${a.bank} ATM</strong><br><span style="font-size:12px;color:#666">${a.area}, ${a.city}</span>`);
-    markers[a.id] = m;
-  });
-
-  // List
-  const container = document.getElementById('atmList');
-  container.innerHTML = list.map(a => {
-    const bankClass = { HBL:'hbl', UBL:'ubl', MCB:'mcb', NBP:'nbp' }[a.bank] || 'oth';
-    const distStr = a.dist != null ? `${a.dist < 1 ? Math.round(a.dist*1000)+'m' : a.dist.toFixed(1)+'km'} away` : '';
-    return `<div class="atm-card" data-id="${a.id}">
-      <div class="atm-icon ${bankClass}">${a.bank.substring(0,3)}</div>
+  // list
+  document.getElementById('poiList').innerHTML = list.map(p=>{
+    const distStr = p.km!=null ? (p.km<1?Math.round(p.km*1000)+'m':p.km.toFixed(1)+'km')+' away' : '';
+    const sub = [p.area, p.city].filter(Boolean).join(', ');
+    return `<div class="poi-card">
+      <div class="poi-badge ${p.cat}">${CAT_CFG[p.cat].emoji}</div>
       <div style="flex:1;min-width:0">
-        <div class="atm-name">${a.bank} ATM</div>
-        <div class="atm-loc">${a.area ? a.area + ', ' : ''}${a.city}</div>
-        <div class="atm-meta">
-          ${distStr ? `<span class="atm-dist">${distStr}</span>` : ''}
-          ${statusLabel(a.id)}
+        <div class="poi-name">${p.name}</div>
+        <div class="poi-sub">${sub}</div>
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.3rem">
+          ${distStr?`<span class="poi-dist">${distStr}</span>`:''}
+          ${statusHTML(p.id)}
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:0.4rem;align-items:flex-end">
-        <button class="atm-report-btn" data-id="${a.id}" data-name="${a.bank} ATM – ${a.city}">Report</button>
-        <button class="atm-report-btn" style="border-color:var(--gold);color:var(--gold)" onclick="flyTo(${a.lat},${a.lng})">Map →</button>
+      <div class="poi-actions">
+        <button class="poi-report-btn" data-id="${p.id}" data-cat="${p.cat}" data-name="${p.name}">Report</button>
+        <button class="poi-map-btn" onclick="zoomTo(${p.lat},${p.lng},'${p.id}')">Map →</button>
       </div>
     </div>`;
   }).join('');
 
-  // Report buttons
-  container.querySelectorAll('.atm-report-btn[data-id]').forEach(btn => {
-    btn.addEventListener('click', () => openReport(btn.dataset.id, btn.dataset.name));
-  });
+  document.querySelectorAll('.poi-report-btn').forEach(b=>b.addEventListener('click',()=>openReport(b.dataset.id,b.dataset.cat,b.dataset.name)));
 }
 
-window.flyTo = (lat, lng) => {
-  map.setView([lat, lng], 15);
-  map.scrollIntoView ? map.scrollIntoView() : document.getElementById('map').scrollIntoView({ behavior:'smooth' });
+window.zoomTo = (lat,lng,id) => {
+  map.setView([lat,lng],15);
+  leafletMarkers[id]?.openPopup();
+  document.getElementById('map').scrollIntoView({behavior:'smooth'});
 };
 
-// ─── Filters ──────────────────────────────────────────────────────────────
-document.querySelectorAll('.atm-filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.atm-filter-btn').forEach(b => b.classList.remove('active'));
+// ─── Category toggles ──────────────────────────────────────────────────────
+document.querySelectorAll('.cat-btn').forEach(btn=>{
+  const cat = btn.dataset.cat;
+  btn.addEventListener('click',()=>{
+    visibleCats.has(cat) ? visibleCats.delete(cat) : visibleCats.add(cat);
+    btn.classList.toggle('off', !visibleCats.has(cat));
+    render();
+  });
+});
+
+// ─── City filter ───────────────────────────────────────────────────────────
+document.querySelectorAll('.sub-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.sub-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    renderAtms();
+    cityFilter = btn.dataset.city;
+    render();
   });
 });
 
-// ─── Locate ───────────────────────────────────────────────────────────────
-document.getElementById('locateBtn').addEventListener('click', () => {
-  if (!navigator.geolocation) { alert('Geolocation not supported by your browser.'); return; }
-  document.getElementById('atm-status-bar').textContent = 'Getting your location…';
-  navigator.geolocation.getCurrentPosition(pos => {
-    userLat = pos.coords.latitude;
-    userLng = pos.coords.longitude;
-    L.circleMarker([userLat, userLng], { radius:8, color:'#C8903A', fillColor:'#C8903A', fillOpacity:0.8 })
-      .addTo(map).bindPopup('You are here').openPopup();
-    map.setView([userLat, userLng], 10);
-    renderAtms();
-  }, () => {
-    document.getElementById('atm-status-bar').textContent = 'Location access denied — showing all ATMs.';
-  });
+// ─── Locate ────────────────────────────────────────────────────────────────
+document.getElementById('locateBtn').addEventListener('click',()=>{
+  if (!navigator.geolocation){ alert('Geolocation not supported.'); return; }
+  document.getElementById('status-bar').textContent = 'Getting your location…';
+  navigator.geolocation.getCurrentPosition(pos=>{
+    userLat=pos.coords.latitude; userLng=pos.coords.longitude;
+    L.circleMarker([userLat,userLng],{radius:9,color:'#C8903A',fillColor:'#C8903A',fillOpacity:0.85}).addTo(map).bindPopup('You are here').openPopup();
+    map.setView([userLat,userLng],11);
+    render();
+  },()=>{ document.getElementById('status-bar').textContent = 'Location denied — showing all results.'; });
 });
 
-// ─── Report modal ─────────────────────────────────────────────────────────
-function openReport(id, name) {
-  reportingId = id; selectedStatus = null;
-  document.getElementById('reportAtmName').textContent = name;
-  document.querySelectorAll('.report-opt').forEach(o => o.classList.remove('selected'));
-  document.getElementById('reportModal').classList.add('open');
+// ─── Report modal ──────────────────────────────────────────────────────────
+function openReport(id, cat, name) {
+  reportingId=id; reportingCat=cat; selectedStatus=null;
+  document.getElementById('rName').textContent = name;
+  const opts = STATUS_OPTS[cat] || STATUS_OPTS.atm;
+  document.getElementById('rOpts').innerHTML = opts.map(([val,label])=>`<button class="r-opt" data-status="${val}">${label}</button>`).join('');
+  document.querySelectorAll('.r-opt').forEach(o=>o.addEventListener('click',()=>{
+    document.querySelectorAll('.r-opt').forEach(x=>x.classList.remove('sel'));
+    o.classList.add('sel'); selectedStatus=o.dataset.status;
+  }));
+  document.getElementById('rModal').classList.add('open');
 }
-document.querySelectorAll('.report-opt').forEach(opt => {
-  opt.addEventListener('click', () => {
-    document.querySelectorAll('.report-opt').forEach(o => o.classList.remove('selected'));
-    opt.classList.add('selected');
-    selectedStatus = opt.dataset.status;
-  });
-});
-document.getElementById('reportSubmit').addEventListener('click', () => {
-  if (!selectedStatus) { alert('Please select a status.'); return; }
+document.getElementById('rSubmit').addEventListener('click',()=>{
+  if (!selectedStatus){ alert('Pick a status first.'); return; }
   saveReport(reportingId, selectedStatus);
-  document.getElementById('reportModal').classList.remove('open');
-  renderAtms();
+  document.getElementById('rModal').classList.remove('open');
+  render();
 });
-document.getElementById('reportClose').addEventListener('click', () => {
-  document.getElementById('reportModal').classList.remove('open');
-});
-document.getElementById('reportModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('reportModal')) document.getElementById('reportModal').classList.remove('open');
-});
+document.getElementById('rClose').addEventListener('click',()=>document.getElementById('rModal').classList.remove('open'));
+document.getElementById('rModal').addEventListener('click',e=>{ if(e.target===document.getElementById('rModal')) document.getElementById('rModal').classList.remove('open'); });
 
-// ─── Init ─────────────────────────────────────────────────────────────────
+// ─── Overpass augment ──────────────────────────────────────────────────────
+const OSM_KEY='lgb_osm_pois_v2', OSM_TTL=6*3600*1000;
+async function fetchOSM() {
+  try {
+    const cached=JSON.parse(localStorage.getItem(OSM_KEY)||'null');
+    if (cached&&Date.now()-cached.ts<OSM_TTL) return cached.data;
+    const tags = ['amenity"="atm','amenity"="hospital','amenity"="clinic','amenity"="pharmacy','amenity"="fuel'];
+    const nodeLines = tags.map(t=>`node["${t}"](area.a);`).join('');
+    const q=`[out:json][timeout:30];area["name"="Gilgit-Baltistan"]->.a;(${nodeLines});out;`;
+    const res=await fetch('https://overpass-api.de/api/interpreter?data='+encodeURIComponent(q));
+    const json=await res.json();
+    const data=(json.elements||[]).map(e=>{
+      const t=e.tags||{};
+      const amenity=t.amenity||'';
+      let cat='atm';
+      if (amenity==='hospital'||amenity==='clinic') cat='hospital';
+      else if (amenity==='pharmacy') cat='pharmacy';
+      else if (amenity==='fuel') cat='petrol';
+      return {id:'osm-'+e.id, cat, name:t.name||t.operator||CAT_CFG[cat].label, city:t['addr:city']||'GB', area:t['addr:street']||'', lat:e.lat, lng:e.lon, source:'osm'};
+    });
+    localStorage.setItem(OSM_KEY,JSON.stringify({ts:Date.now(),data}));
+    return data;
+  } catch { return []; }
+}
+
 async function init() {
-  renderAtms();
-  // Try to augment with OSM data
+  render();
   const osm = await fetchOSM();
-  if (osm.length > 0) {
-    // Merge: OSM ATMs that aren't already near a fallback one
-    const novel = osm.filter(o => !allAtms.some(a => haversine(a.lat, a.lng, o.lat, o.lng) < 0.05));
-    if (novel.length > 0) {
-      allAtms = [...allAtms, ...novel];
-      document.getElementById('atm-status-bar').textContent = `Updated with ${novel.length} additional ATMs from OpenStreetMap`;
-      setTimeout(() => renderAtms(), 800);
-    }
+  if (osm.length) {
+    const novel = osm.filter(o=>!allPois.some(a=>dist(a.lat,a.lng,o.lat,o.lng)<0.05));
+    if (novel.length) { allPois=[...allPois,...novel]; render(); }
   }
 }
-
 init();
 </script>
 </body>
