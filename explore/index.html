@@ -156,13 +156,15 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 #result { display:none; }
 #result.active { display:block; animation:sIn .4s var(--ease) both; }
 
-.result-hero { text-align:center; padding:3rem 0 2rem; border-bottom:1px solid rgba(255,255,255,.06); margin-bottom:2rem; }
-.result-title { font-family:var(--fd); font-size:clamp(2rem,5vw,3.2rem); color:var(--cream); font-weight:300; line-height:1.1; margin-bottom:.75rem; }
-.result-sub { font-size:.8rem; color:var(--cream-2); max-width:500px; margin:0 auto 1.2rem; line-height:1.75; }
-.result-pills { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-bottom:1.5rem; }
+.result-hero { text-align:center; padding:4rem 0 2.5rem; border-bottom:1px solid rgba(255,255,255,.06); margin-bottom:2rem; }
+.result-title { font-family:var(--fd); font-size:clamp(2.8rem,7vw,5rem); color:var(--cream); font-weight:300; line-height:1.05; margin-bottom:1rem; animation:titleReveal .8s var(--ease) both; }
+.result-sub { font-size:.82rem; color:var(--cream-2); max-width:520px; margin:0 auto .75rem; line-height:1.85; animation:fadeUp .6s .3s var(--ease) both; }
+.result-pills { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; margin-bottom:1.5rem; animation:fadeUp .6s .5s var(--ease) both; }
 .result-pill { font-family:var(--fu); font-size:.56rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); background:rgba(200,144,58,.1); border:1px solid rgba(200,144,58,.2); padding:.25rem .7rem; border-radius:2px; }
+@keyframes titleReveal { from { opacity:0; transform:translateY(20px) scale(.97); } to { opacity:1; transform:none; } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 
-.result-actions { display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; }
+.result-actions { display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; animation:fadeUp .6s .7s var(--ease) both; }
 .btn-pdf { font-family:var(--fu); font-size:.65rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cream-2); background:none; border:1px solid rgba(255,255,255,.12); border-radius:4px; padding:.65rem 1.4rem; cursor:pointer; transition:all .2s; }
 .btn-pdf:hover { border-color:var(--gold); color:var(--gold); }
 .btn-restart { font-family:var(--fu); font-size:.65rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cream-2); background:none; border:1px solid rgba(255,255,255,.12); border-radius:4px; padding:.65rem 1.4rem; cursor:pointer; transition:all .2s; }
@@ -427,6 +429,53 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 
 /* ─── PACK CHECKLIST ─────────────────────────────────── */
 .prac-card table tr.packed { opacity:.4; text-decoration:line-through; }
+
+/* ─── SAMPLE GALLERY ─────────────────────────────── */
+#sampleWrap { padding:0; }
+.sample-intro { text-align:center; padding:4rem 0 2rem; }
+.sample-intro h1 { font-family:var(--fd); font-size:clamp(2.6rem,6vw,4.5rem); font-weight:300; color:var(--cream); line-height:1.06; margin-bottom:.75rem; }
+.sample-intro p { font-size:.85rem; color:var(--cream-2); max-width:460px; margin:0 auto 1.5rem; line-height:1.8; }
+.sample-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; max-width:1000px; margin:0 auto 2.5rem; padding:0 2rem; }
+.sample-card { background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:8px; padding:1.5rem; cursor:pointer; transition:border-color .2s, transform .2s; position:relative; overflow:hidden; }
+.sample-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(200,144,58,.06),transparent); opacity:0; transition:opacity .2s; }
+.sample-card:hover { border-color:rgba(200,144,58,.4); transform:translateY(-2px); }
+.sample-card:hover::before { opacity:1; }
+.sample-card-tag { font-family:var(--fu); font-size:.56rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; }
+.sample-card-title { font-family:var(--fd); font-size:1.4rem; color:var(--cream); line-height:1.15; margin-bottom:.5rem; }
+.sample-card-meta { font-size:.72rem; color:var(--cream-2); line-height:1.7; margin-bottom:1rem; }
+.sample-card-stops { display:flex; flex-wrap:wrap; gap:.3rem; margin-bottom:1.2rem; }
+.sample-stop { font-size:.65rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:3px; padding:.2rem .5rem; color:var(--cream-2); }
+.sample-card-cta { font-family:var(--fu); font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+.sample-divider { text-align:center; padding:1.5rem 0 2rem; }
+.sample-divider-text { font-size:.75rem; color:var(--cream-2); }
+.sample-divider-line { display:inline-block; width:60px; height:1px; background:rgba(255,255,255,.1); vertical-align:middle; margin:0 1rem; }
+.build-own-btn { font-family:var(--fu); font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:none; border:1px solid rgba(200,144,58,.3); color:var(--gold); padding:.65rem 1.8rem; border-radius:4px; cursor:pointer; transition:all .2s; }
+.build-own-btn:hover { background:rgba(200,144,58,.1); border-color:var(--gold); }
+@media (max-width:680px) {
+  .sample-grid { grid-template-columns:1fr; padding:0 1.25rem; }
+  .sample-intro { padding:3rem 1.25rem 1.5rem; }
+}
+
+/* ─── LIVE PREVIEW ───────────────────────────────────── */
+.live-preview { min-height:2.5rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.4rem; transition:all .3s; }
+.lp-node { font-family:var(--fu); font-size:.6rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--cream-2); display:flex; align-items:center; gap:.4rem; animation:lpIn .3s ease both; }
+.lp-node.highlight { color:var(--gold); }
+.lp-arrow { color:rgba(200,144,58,.3); font-size:.7rem; }
+@keyframes lpIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+
+/* ─── DAY TYPE BADGES ────────────────────────────────── */
+.day-card.day-arrival { border-left:3px solid rgba(100,140,200,.4); }
+.day-card.day-peak { border-left:3px solid rgba(200,144,58,.6); }
+.day-card.day-rest { border-left:3px solid rgba(100,180,100,.3); opacity:.92; }
+.day-card.day-transit { border-left:3px solid rgba(160,160,160,.3); }
+.day-arrival .day-n { color:rgba(100,140,200,.7) !important; }
+.day-peak .day-n { color:var(--gold) !important; }
+.day-rest .day-n { color:rgba(100,180,100,.7) !important; }
+.day-type-badge { font-family:var(--fu); font-size:.5rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.15rem .4rem; border-radius:2px; margin-left:.4rem; vertical-align:middle; }
+.badge-arrival { background:rgba(100,140,200,.15); color:rgba(130,170,230,.8); }
+.badge-peak { background:rgba(200,144,58,.15); color:var(--gold); }
+.badge-rest { background:rgba(100,180,100,.12); color:rgba(120,200,120,.8); }
+.badge-transit { background:rgba(160,160,160,.1); color:rgba(180,180,180,.7); }
 </style>
 </head>
 <body>
@@ -458,6 +507,74 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 
 <div class="app">
 
+<!-- ── SAMPLE GALLERY ── -->
+<div id="sampleWrap">
+<div class="app-inner" style="padding:0">
+  <div class="sample-intro">
+    <span class="label" style="justify-content:center">Journey Architect</span>
+    <h1>Plan Your<br><em>GB Trip</em></h1>
+    <p>Real itineraries, built around how you actually travel. Pick one to start — or build your own from scratch.</p>
+    <button class="already-btn" onclick="showAlready()">📍 Already in GB? Find what's near you →</button>
+  </div>
+
+  <div class="sample-grid">
+
+    <div class="sample-card" onclick="loadSample('fly-gilgit','adventure',10,['hunza','fairy','hidden'],'autumn',6,30,'couple')">
+      <div class="sample-card-tag">Most Popular · Autumn</div>
+      <div class="sample-card-title">10 Days<br>Hunza & Beyond</div>
+      <div class="sample-card-meta">Flying into Gilgit · Adventure · Couple · Wake 06:30<br>The classic first-time north route done properly.</div>
+      <div class="sample-card-stops">
+        <span class="sample-stop">Gilgit</span>
+        <span class="sample-stop">Karimabad</span>
+        <span class="sample-stop">Attabad Lake</span>
+        <span class="sample-stop">Eagle's Nest</span>
+        <span class="sample-stop">Fairy Meadows</span>
+        <span class="sample-stop">Passu Cones</span>
+      </div>
+      <div class="sample-card-cta">Use this itinerary →</div>
+    </div>
+
+    <div class="sample-card" onclick="loadSample('fly-skardu','cultural',8,['skardu'],'summer',7,30,'family')">
+      <div class="sample-card-tag">Family · Summer</div>
+      <div class="sample-card-title">8 Days<br>Skardu & Baltistan</div>
+      <div class="sample-card-meta">Flying into Skardu · Culture & History · Family · Wake 07:30<br>K2 region without the extreme trekking. Forts, deserts, lakes.</div>
+      <div class="sample-card-stops">
+        <span class="sample-stop">Skardu</span>
+        <span class="sample-stop">Shigar Fort</span>
+        <span class="sample-stop">Deosai Plains</span>
+        <span class="sample-stop">Katpana Desert</span>
+        <span class="sample-stop">Kachura Lake</span>
+        <span class="sample-stop">Khaplu</span>
+      </div>
+      <div class="sample-card-cta">Use this itinerary →</div>
+    </div>
+
+    <div class="sample-card" onclick="loadSample('road-babusar','budget',14,['hunza','skardu','fairy'],'summer',7,0,'solo')">
+      <div class="sample-card-tag">Epic · Solo · Budget</div>
+      <div class="sample-card-title">14 Days<br>Full KKH Circuit</div>
+      <div class="sample-card-meta">Via Babusar Pass · Budget · Solo · Wake 07:00<br>Naran → Babusar → Chilas → Fairy Meadows → Hunza → Skardu.</div>
+      <div class="sample-card-stops">
+        <span class="sample-stop">Naran</span>
+        <span class="sample-stop">Babusar Pass</span>
+        <span class="sample-stop">Fairy Meadows</span>
+        <span class="sample-stop">Gilgit</span>
+        <span class="sample-stop">Hunza</span>
+        <span class="sample-stop">Skardu</span>
+      </div>
+      <div class="sample-card-cta">Use this itinerary →</div>
+    </div>
+
+  </div>
+
+  <div class="sample-divider">
+    <span class="sample-divider-line"></span>
+    <span class="sample-divider-text">or build your own</span>
+    <span class="sample-divider-line"></span><br><br>
+    <button class="build-own-btn" onclick="startWizard()">Build My Own Itinerary →</button>
+  </div>
+</div>
+</div>
+
 <!-- DESKTOP: hero shown above wizard -->
 <div class="app-inner" id="heroWrap">
   <div class="app-hero">
@@ -482,6 +599,8 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       <div class="progress-dot" data-s="5"></div>
       <div class="progress-dot" data-s="6"></div>
     </div>
+
+    <div class="live-preview" id="livePreview"></div>
 
     <!-- STEP 0: Entry -->
     <div class="step active" id="step-0">
@@ -745,7 +864,6 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
         <button class="btn-pdf" onclick="window.print()">⬇ Download PDF</button>
         <button class="btn-whatsapp" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
         <button class="btn-copy" onclick="copyItinerary()">📋 Copy as Text</button>
-        <button class="btn-restart" onclick="doRestart()">← Start Over</button>
       </div>
     </div>
     <div class="route-strip" id="rRoute"></div>
@@ -754,6 +872,13 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     <div id="rLiveFlights" style="display:none;margin-bottom:1.5rem;"></div>
     <div class="day-cards" id="rDays"></div>
     <div class="prac-grid" id="rPrac"></div>
+    <div id="rNextSteps" style="margin-top:3rem;padding:2rem;background:var(--ink-3);border:1px solid rgba(200,144,58,.15);border-radius:8px;text-align:center;">
+      <div style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;">What's next?</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;" id="rNextLinks"></div>
+      <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);">
+        <button class="btn-restart" onclick="doRestart()">← Build a different itinerary</button>
+      </div>
+    </div>
   </div>
 </div>
 </div>
@@ -811,14 +936,60 @@ const styleLabel = { budget:'Budget Backpacker', adventure:'Adventure & Trekking
 const entryLabel = { 'fly-gilgit':'Flying into Gilgit','fly-skardu':'Flying into Skardu','road-kkh':'Driving the KKH','road-babusar':'Via Babusar Pass' };
 
 /* ════════════════════════════════════════════════════════
+   SAMPLE GALLERY
+════════════════════════════════════════════════════════ */
+function loadSample(entry, style, days, regions, season, wakeH, wakeM, groupSize) {
+  S.entry = entry; S.style = style; S.days = days;
+  S.regions = new Set(regions); S.season = season;
+  S.wakeHour = wakeH; S.wakeMin = wakeM; S.groupSize = groupSize;
+  S.useSpecificDates = false;
+  document.getElementById('sampleWrap').style.display = 'none';
+  document.getElementById('heroWrap').style.display = 'none';
+  buildItinerary();
+}
+
+function startWizard() {
+  document.getElementById('sampleWrap').style.display = 'none';
+  if (isMobile()) {
+    document.getElementById('heroWrap').style.display = 'none';
+    document.getElementById('wizardWrap').classList.remove('hidden');
+  } else {
+    document.getElementById('heroWrap').style.display = '';
+    document.getElementById('wizardWrap').classList.remove('hidden');
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   LIVE PREVIEW
+════════════════════════════════════════════════════════ */
+function updateLivePreview() {
+  const el = document.getElementById('livePreview');
+  if (!el) return;
+  const nodes = [];
+  nodes.push('ISB');
+  if (S.entry === 'fly-gilgit' || S.entry === 'road-kkh') nodes.push('Gilgit');
+  if (S.entry === 'fly-skardu') nodes.push('Skardu');
+  if (S.entry === 'road-babusar') { nodes.push('Naran'); nodes.push('Babusar Pass'); nodes.push('Chilas'); }
+  if (S.entry === 'road-kkh') nodes.push('Chilas');
+  if (S.regions.has('fairy')) nodes.push('Fairy Meadows');
+  if (S.regions.has('hunza') || S.entry === 'fly-gilgit' || S.entry === 'road-kkh' || S.entry === 'road-babusar') nodes.push('Hunza');
+  if (S.regions.has('skardu')) nodes.push('Skardu');
+  if (S.regions.has('hidden')) nodes.push('Hidden Valleys');
+  if (S.days > 0) nodes.push(`${S.days}d`);
+  if (nodes.length <= 1) { el.innerHTML = ''; return; }
+  el.innerHTML = nodes.map((n,i) => `${i>0?'<span class="lp-arrow">→</span>':''}<span class="lp-node${i===nodes.length-1?' highlight':''}">${n}</span>`).join('');
+}
+
+/* ════════════════════════════════════════════════════════
    MOBILE DETECTION & LAYOUT
 ════════════════════════════════════════════════════════ */
 const isMobile = () => window.innerWidth <= 680;
 
 function initLayout() {
+  // Sample gallery is the entry point — wizard hidden until user clicks "Build My Own"
+  document.getElementById('wizardWrap').classList.add('hidden');
   if (isMobile()) {
     document.getElementById('heroWrap').style.display = 'none';
-    document.getElementById('wizardWrap').classList.remove('hidden');
   }
 }
 
@@ -844,6 +1015,7 @@ document.querySelectorAll('.choices:not(.multi) .choice').forEach(card => {
     const si = getStepIdx(g);
     enableNext(si);
     if (g.dataset.key === 'style' || g.dataset.key === 'season') checkBudget();
+    updateLivePreview();
   });
 });
 
@@ -853,6 +1025,7 @@ document.querySelectorAll('.choices.multi .choice').forEach(card => {
     const v = card.dataset.v;
     if (card.classList.contains('sel')) S.regions.add(v); else S.regions.delete(v);
     document.getElementById('btnNext').disabled = S.regions.size === 0;
+    updateLivePreview();
     // Pre-fetch OSM while user finishes wizard
     const preKeys = { hunza:['hunza','attabad'], skardu:['skardu','shigar','deosai'], fairy:['fairy'], hidden:['gilgit'] };
     (preKeys[v] || []).forEach(k => fetchOSM(k));
@@ -896,6 +1069,7 @@ function onDur(v) {
   document.getElementById('durNum').textContent = v;
   document.getElementById('durCtx').textContent = durCtxMap[v] || '';
   checkBudget();
+  updateLivePreview();
 }
 onDur(8);
 
@@ -976,6 +1150,7 @@ function calClick(el) {
     const m = parseInt(S.startDate.slice(5,7));
     S.season = m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=10?'autumn':'winter';
     checkBudget();
+    updateLivePreview();
   }
 }
 
@@ -1348,6 +1523,15 @@ function buildItinerary() {
   document.getElementById('result').classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 
+  // Entrance sweep
+  const sweep = document.createElement('div');
+  sweep.style.cssText = 'position:fixed;inset:0;background:var(--ink);z-index:9999;pointer-events:none;animation:sweepOut .6s .1s ease both;';
+  document.body.appendChild(sweep);
+  const styleEl = document.createElement('style');
+  styleEl.textContent = '@keyframes sweepOut{from{opacity:1}to{opacity:0}}';
+  document.head.appendChild(styleEl);
+  setTimeout(() => { sweep.remove(); styleEl.remove(); }, 800);
+
   // If specific dates chosen, season was auto-set; use it
   if (S.useSpecificDates && !S.season) {
     const m = parseInt(S.startDate.slice(5,7));
@@ -1378,6 +1562,14 @@ function buildItinerary() {
       document.getElementById('rWxMeta').innerHTML = `${Math.round(c.wind_speed_10m)} km/h wind<br>${c.relative_humidity_2m}% humidity`;
       document.getElementById('rWeather').style.display='block';
     }).catch(()=>{});
+
+  // Weather fallback timeout
+  setTimeout(() => {
+    if (document.getElementById('rWeather').style.display === 'none') {
+      const sub = document.getElementById('rWxDesc');
+      if (sub) sub.textContent = 'Weather data unavailable — check Open-Meteo.com for forecasts.';
+    }
+  }, 5000);
 
   const dateStr = S.useSpecificDates && S.startDate && S.endDate ? ` · ${S.startDate} → ${S.endDate}` : '';
   document.getElementById('rSub').textContent = `${styleLabel[style]} trip, ${entryLabel[entry].toLowerCase()}, ${season}${dateStr}.`;
@@ -1433,10 +1625,22 @@ function buildItinerary() {
       const opts = { weekday:'short', month:'short', day:'numeric' };
       dateLabel = `<div class="day-date">${dt.toLocaleDateString('en-GB', opts)}</div>`;
     }
-    return `<div class="day-card" id="day-${i}" data-place="${d.placeKey||''}">
+    // Determine day type
+    const titleLower = d.title.toLowerCase();
+    let dayType = 'normal';
+    if (i === 0 || titleLower.includes('arrive') || titleLower.includes('islamabad') || titleLower.includes('drive to')) dayType = 'arrival';
+    else if (titleLower.includes('departure') || titleLower.includes('return') || titleLower.includes('chilas to')) dayType = 'transit';
+    else if (titleLower.includes('rest') || titleLower.includes('slow') || titleLower.includes('free day')) dayType = 'rest';
+    else if (titleLower.includes('eagle') || titleLower.includes('khunjerab') || titleLower.includes('deosai') || titleLower.includes('fairy meadows') || titleLower.includes('k2') || titleLower.includes('base camp') || titleLower.includes('babusar')) dayType = 'peak';
+
+    const dayTypeClass = dayType !== 'normal' ? ` day-${dayType}` : '';
+    const badgeMap = { arrival:'<span class="day-type-badge badge-arrival">Arrival</span>', peak:'<span class="day-type-badge badge-peak">★ Highlight</span>', rest:'<span class="day-type-badge badge-rest">Rest day</span>', transit:'<span class="day-type-badge badge-transit">Transit</span>' };
+    const badge = badgeMap[dayType] || '';
+
+    return `<div class="day-card${dayTypeClass}" id="day-${i}" data-place="${d.placeKey||''}">
       <div class="day-hd" onclick="toggleDay(${i})">
         <div class="day-n">${String(i+1).padStart(2,'0')}</div>
-        <div><div class="day-t">${d.title}</div><div class="day-l">${d.location}</div>${dateLabel}<div class="day-wiki" id="wiki-${i}"></div></div>
+        <div><div class="day-t">${d.title}${badge}</div><div class="day-l">${d.location}</div>${dateLabel}<div class="day-wiki" id="wiki-${i}"></div></div>
         <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
       </div>
       <div class="day-wx" id="wx-${i}"></div>
@@ -1462,6 +1666,18 @@ function buildItinerary() {
       ${getThereRows(entry)}</table></div>
     <div class="prac-card"><div class="prac-title">What to Pack <span style="font-size:.65rem;color:var(--cream-2);font-weight:400">· tap to check off</span></div><table>${packRows(style,season)}</table></div>
     <div class="prac-card"><div class="prac-title">Critical Notes</div><table>${critRows(entry,season,r)}</table></div>`;
+
+  // Populate next steps links
+  const nextLinks = [
+    { label:`Explore ${r.includes('hunza') ? 'Hunza' : r.includes('skardu') ? 'Skardu' : 'GB'} in depth`, href: r.includes('skardu') && !r.includes('hunza') ? '../skardu/index.html' : '../hunza/index.html' },
+    { label:'Browse all treks', href:'../trekking/index.html' },
+    { label:'Vetted agencies', href:'../agencies/index.html' },
+    { label:'Budget guide', href:'../travel/index.html' },
+    { label:'Check the weather', href:'../weather/index.html' },
+  ];
+  document.getElementById('rNextLinks').innerHTML = nextLinks.map(l =>
+    `<a href="${l.href}" style="font-family:var(--fu);font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-2);background:var(--ink);border:1px solid rgba(255,255,255,.1);padding:.5rem 1rem;border-radius:4px;text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='rgba(200,144,58,.4)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='var(--cream-2)'">${l.label} →</a>`
+  ).join('');
 
   // Make pack rows interactive checkboxes
   document.querySelectorAll('.prac-card table tr').forEach(row => {
@@ -1503,6 +1719,16 @@ function buildItinerary() {
     // OSM: fetch then enhance day card with real venues
     fetchOSM(d.placeKey).then(osmData => enhanceDayCard(i, d.placeKey, osmData, stayKey, foodKey));
   });
+}
+
+/* ════════════════════════════════════════════════════════
+   EMPTY STATE HELPER
+════════════════════════════════════════════════════════ */
+function setEmptyState(elId, message) {
+  const el = document.getElementById(elId);
+  if (el && !el.textContent.trim()) {
+    el.innerHTML = `<div style="font-size:.7rem;color:rgba(240,232,213,.3);font-style:italic;padding:.3rem 0;">${message}</div>`;
+  }
 }
 
 function buildDayBody(d, foodKey) {
@@ -1875,6 +2101,7 @@ const HERE_CONTENT = {
 };
 
 function showAlready() {
+  document.getElementById('sampleWrap').style.display = 'none';
   document.getElementById('heroWrap').style.display = 'none';
   document.getElementById('wizardWrap').classList.add('hidden');
   const aw = document.getElementById('alreadyWrap');
@@ -1920,8 +2147,11 @@ function hideAlready() {
   document.getElementById('alreadyWrap').classList.remove('active');
   document.getElementById('alreadyWrap').style.display = 'none';
   document.getElementById('alreadyPanel').classList.remove('active');
-  document.getElementById('heroWrap').style.display = '';
-  document.getElementById('wizardWrap').classList.remove('hidden');
+  document.getElementById('sampleWrap').style.display = '';
+  if (!isMobile()) {
+    document.getElementById('heroWrap').style.display = 'none';
+  }
+  document.getElementById('wizardWrap').classList.add('hidden');
 }
 
 /* ════════════════════════════════════════════════════════
@@ -1937,8 +2167,9 @@ function doRestart() {
   document.getElementById('result').classList.remove('active');
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step-0').classList.add('active');
-  document.getElementById('wizardWrap').classList.remove('hidden');
+  document.getElementById('wizardWrap').classList.add('hidden');
   document.getElementById('heroWrap').style.display = isMobile() ? 'none' : '';
+  document.getElementById('sampleWrap').style.display = '';
   onDur(8); document.getElementById('durSlider').value=8;
   document.getElementById('budgetAlert').innerHTML='';
   document.getElementById('durFlex').style.display='none';
@@ -1991,11 +2222,14 @@ initLayout();
 // Initialize wake note on load
 onWakeTime('07:30');
 window.addEventListener('resize', () => {
-  if (!isMobile()) {
-    document.getElementById('heroWrap').style.display = '';
-    document.getElementById('wizardWrap').classList.remove('hidden');
-  } else {
-    document.getElementById('heroWrap').style.display = 'none';
+  // Only adjust if wizard is currently visible (i.e. user has clicked "Build My Own")
+  const wizardVisible = !document.getElementById('wizardWrap').classList.contains('hidden');
+  if (wizardVisible) {
+    if (!isMobile()) {
+      document.getElementById('heroWrap').style.display = '';
+    } else {
+      document.getElementById('heroWrap').style.display = 'none';
+    }
   }
 });
 
@@ -2064,7 +2298,16 @@ async function fetchOSM(key) {
 }
 
 function enhanceDayCard(dayIdx, key, osmData, stayKey, foodKey) {
-  if (!osmData) return;
+  if (!osmData) {
+    const bdEl = document.getElementById(`bd-${dayIdx}`);
+    if (bdEl) bdEl.insertAdjacentHTML('beforeend', `<div class="osm-section"><div class="osm-section-title">📍 Nearby places</div><div style="font-size:.7rem;color:rgba(240,232,213,.3);font-style:italic;">No venues found in OpenStreetMap for this area. Ask your guesthouse host for current recommendations.</div></div>`);
+    return;
+  }
+  if (!osmData.hotels.length && !osmData.restaurants.length && !osmData.attractions.length) {
+    const bdEl = document.getElementById(`bd-${dayIdx}`);
+    if (bdEl) bdEl.insertAdjacentHTML('beforeend', `<div class="osm-section"><div class="osm-section-title">📍 Nearby places</div><div style="font-size:.7rem;color:rgba(240,232,213,.3);font-style:italic;">No venues found in OpenStreetMap for this area. Ask your guesthouse host for current recommendations.</div></div>`);
+    return;
+  }
   const bdEl = document.getElementById(`bd-${dayIdx}`);
   if (!bdEl) return;
 
@@ -2297,7 +2540,9 @@ async function fetchFlightStatus(iata) {
       <div style="font-size:.65rem;color:var(--cream-2);opacity:.5;margin-top:.8rem;">Mountain flights cancel frequently — always have a road backup date booked.</div>
     </div>`;
   } catch(e) {
-    // Silently fail — flight data is bonus, not critical
+    // Show honest empty state for flight entry points
+    el.style.display = 'block';
+    el.innerHTML = `<div style="background:var(--ink-3);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem 1.4rem;font-size:.75rem;color:var(--cream-2)">✈ <strong>Flight data unavailable.</strong> PIA Gilgit/Skardu flights have 40–60% cancellation rates — check <a href="https://www.piac.com.pk" target="_blank" style="color:var(--gold)">piac.com.pk</a> directly and always book a road backup date.</div>`;
   }
 }
 
