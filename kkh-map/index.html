@@ -58,11 +58,29 @@
 .kkh-info-name { font-family:var(--fd); font-size:1.1rem; font-weight:400; color:var(--cream); margin-bottom:0.3rem; }
 .kkh-info-body { font-size:0.78rem; color:var(--cream-2); line-height:1.6; }
 
-/* ── Share strip ────────────────────────────────────── */
-.kkh-share { display:flex; gap:0.75rem; align-items:center; padding:0.75rem 0; }
+/* ── Share / locate strip ───────────────────────────── */
+.kkh-share { display:flex; gap:0.75rem; align-items:center; padding:0.75rem 0; flex-wrap:wrap; }
 .share-btn { font-family:var(--fu); font-size:0.68rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; padding:0.4rem 1rem; border:1px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer; }
 .share-btn:hover { background:var(--gold); color:var(--ink); }
 .share-copied { font-family:var(--fu); font-size:0.65rem; color:#4ecb7a; display:none; }
+
+/* Live location button */
+.live-btn { font-family:var(--fu); font-size:0.68rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; padding:0.4rem 1rem; border:1px solid #4ecb7a; background:transparent; color:#4ecb7a; cursor:pointer; display:flex; align-items:center; gap:0.4rem; }
+.live-btn.active { background:#4ecb7a; color:#040608; }
+.live-btn.active .live-dot { animation:pulse-dot 1.2s infinite; }
+.live-dot { width:8px; height:8px; border-radius:50%; background:currentColor; flex-shrink:0; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+/* Live status bar */
+.live-status { font-family:var(--fu); font-size:0.65rem; color:var(--cream-2); padding:0.45rem 0.8rem; background:rgba(78,203,122,0.08); border:1px solid rgba(78,203,122,0.2); display:none; }
+.live-status.visible { display:block; }
+.live-status strong { color:#4ecb7a; }
+
+/* Nearest stop highlight in list */
+.stop-item.nearest { border-left:3px solid #4ecb7a; background:rgba(78,203,122,0.06); }
+
+/* Pulsing user location ring on map */
+@keyframes loc-ring { 0%{transform:scale(0.5);opacity:1} 100%{transform:scale(3);opacity:0} }
 
 /* ── Leaflet popup override ─────────────────────────── */
 .leaflet-popup-content-wrapper { background:#0d1018; border:1px solid var(--gold-border,#3a2e1a); border-radius:4px; color:#f0e8d5; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
@@ -122,10 +140,12 @@
 <section class="section">
 
   <div class="kkh-share">
-    <button class="share-btn" id="shareBtn">🔗 Share This Map</button>
+    <button class="live-btn" id="liveBtn"><span class="live-dot"></span> Live Location</button>
+    <button class="share-btn" id="shareBtn">🔗 Share</button>
     <span class="share-copied" id="shareCopied">Link copied!</span>
-    <span style="font-family:var(--fu);font-size:0.65rem;color:var(--cream-2)">Click any stop to see details · Toggle layers above the list</span>
+    <span style="font-family:var(--fu);font-size:0.65rem;color:var(--cream-2);margin-left:auto">Click stops to see details · Toggle layers in sidebar</span>
   </div>
+  <div class="live-status" id="liveStatus"></div>
 
   <div class="kkh-layout">
     <!-- SIDEBAR -->
@@ -547,6 +567,142 @@ function selectStop(id) {
   map.setView([stop.lat,stop.lng], Math.max(map.getZoom(),9));
   leafletMarkers[id]?.openPopup();
 }
+
+// ── Live Location ──────────────────────────────────────────────────────────
+let watchId = null;
+let userMarker = null;
+let userRing = null;
+let userAccCircle = null;
+let autoFollow = true;
+let nearestStopId = null;
+
+function haversineKm(lat1,lng1,lat2,lng2){
+  const R=6371,dL=(lat2-lat1)*Math.PI/180,dl=(lng2-lng1)*Math.PI/180;
+  const a=Math.sin(dL/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dl/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
+function findNearestStop(lat,lng){
+  let best=null, bestDist=Infinity;
+  STOPS.forEach(s=>{
+    const d=haversineKm(lat,lng,s.lat,s.lng);
+    if(d<bestDist){bestDist=d;best=s;}
+  });
+  return {stop:best, distKm:bestDist};
+}
+
+function onPosition(pos){
+  const {latitude:lat, longitude:lng, accuracy, speed} = pos.coords;
+
+  // Draw / update user dot
+  if(!userMarker){
+    // Accuracy circle
+    userAccCircle = L.circle([lat,lng],{
+      radius:accuracy, color:'#4ecb7a', fillColor:'#4ecb7a',
+      fillOpacity:0.08, weight:1, opacity:0.4
+    }).addTo(map);
+
+    // Pulsing ring (CSS animation via divIcon)
+    userRing = L.marker([lat,lng],{
+      icon:L.divIcon({
+        className:'',
+        html:`<div style="width:40px;height:40px;border-radius:50%;border:2px solid #4ecb7a;animation:loc-ring 1.6s ease-out infinite;margin:-20px 0 0 -20px;pointer-events:none"></div>`,
+        iconSize:[0,0], iconAnchor:[0,0]
+      }),
+      zIndexOffset:1000, interactive:false
+    }).addTo(map);
+
+    // Solid dot
+    userMarker = L.marker([lat,lng],{
+      icon:L.divIcon({
+        className:'',
+        html:`<div style="width:14px;height:14px;border-radius:50%;background:#4ecb7a;border:2.5px solid #fff;box-shadow:0 0 8px rgba(78,203,122,0.8)"></div>`,
+        iconSize:[14,14], iconAnchor:[7,7]
+      }),
+      zIndexOffset:1001
+    }).addTo(map);
+
+    userMarker.bindPopup('<div style="font-family:sans-serif;font-size:12px;color:#f0e8d5"><strong style="color:#4ecb7a">You are here</strong></div>');
+
+    // Stop following map on manual drag
+    map.on('dragstart',()=>{ autoFollow=false; });
+  } else {
+    userMarker.setLatLng([lat,lng]);
+    userRing.setLatLng([lat,lng]);
+    userAccCircle.setLatLng([lat,lng]).setRadius(accuracy);
+  }
+
+  if(autoFollow) map.setView([lat,lng], Math.max(map.getZoom(),11));
+
+  // Nearest stop
+  const {stop, distKm} = findNearestStop(lat,lng);
+  const speedKmh = speed ? Math.round(speed*3.6) : null;
+  const accM = Math.round(accuracy);
+  const distStr = distKm<1 ? Math.round(distKm*1000)+'m' : distKm.toFixed(1)+'km';
+
+  // Status bar
+  const statusEl = document.getElementById('liveStatus');
+  statusEl.classList.add('visible');
+  statusEl.innerHTML = `📍 <strong>Live</strong> · Accuracy ±${accM}m`+
+    (speedKmh!==null ? ` · Speed <strong>${speedKmh} km/h</strong>` : '')+
+    ` &nbsp;|&nbsp; Nearest stop: <strong>${stop.name}</strong> (${distStr})`;
+
+  // Highlight nearest in list
+  if(stop.id !== nearestStopId){
+    nearestStopId = stop.id;
+    document.querySelectorAll('.stop-item').forEach(el=>{
+      el.classList.toggle('nearest', +el.dataset.id===nearestStopId);
+    });
+    // Scroll nearest into view in sidebar
+    const nearEl = document.querySelector(`.stop-item[data-id="${nearestStopId}"]`);
+    nearEl?.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  // Info panel update
+  if(distKm < 5){
+    document.getElementById('infoPanelName').textContent = `📍 Near: ${stop.name}`;
+    document.getElementById('infoPanelBody').textContent = stop.note;
+    document.getElementById('infoPanel').classList.add('visible');
+  }
+}
+
+function onPositionError(err){
+  document.getElementById('liveStatus').classList.add('visible');
+  document.getElementById('liveStatus').textContent =
+    err.code===1 ? '⚠️ Location access denied. Allow location in your browser to use this feature.' :
+    err.code===2 ? '⚠️ Location unavailable. Make sure GPS is enabled.' :
+    '⚠️ Location request timed out. Try again.';
+}
+
+document.getElementById('liveBtn').addEventListener('click',()=>{
+  if(!navigator.geolocation){
+    alert('Geolocation is not supported by your browser.');
+    return;
+  }
+  const btn = document.getElementById('liveBtn');
+  if(watchId !== null){
+    // Stop tracking
+    navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    btn.classList.remove('active');
+    btn.innerHTML='<span class="live-dot"></span> Live Location';
+    if(userMarker){ map.removeLayer(userMarker); userMarker=null; }
+    if(userRing){ map.removeLayer(userRing); userRing=null; }
+    if(userAccCircle){ map.removeLayer(userAccCircle); userAccCircle=null; }
+    document.getElementById('liveStatus').classList.remove('visible');
+    document.querySelectorAll('.stop-item.nearest').forEach(el=>el.classList.remove('nearest'));
+    autoFollow = true;
+  } else {
+    // Start tracking
+    btn.classList.add('active');
+    btn.innerHTML='<span class="live-dot"></span> Tracking…';
+    document.getElementById('liveStatus').classList.add('visible');
+    document.getElementById('liveStatus').textContent = 'Getting your location…';
+    watchId = navigator.geolocation.watchPosition(onPosition, onPositionError, {
+      enableHighAccuracy:true, maximumAge:5000, timeout:15000
+    });
+  }
+});
 
 // ── Share ──────────────────────────────────────────────────────────────────
 document.getElementById('shareBtn').addEventListener('click',()=>{
