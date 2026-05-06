@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karakoram Highway Map — KKH Route Guide Islamabad to Khunjerab — LocalGB</title>
+<meta name="description" content="Interactive KKH map: every stop from Islamabad to Khunjerab Pass. Distances, fuel points, food, accommodation, viewpoints and road conditions. Plan your KKH road trip.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+/* ── Layout ─────────────────────────────────────────── */
+.kkh-layout { display:grid; grid-template-columns:340px 1fr; gap:0; min-height:600px; border:1px solid var(--gold-border); }
+@media(max-width:860px){ .kkh-layout { grid-template-columns:1fr; } }
+#map { height:600px; width:100%; }
+@media(max-width:860px){ #map { height:420px; } }
+
+/* ── Sidebar ────────────────────────────────────────── */
+.kkh-sidebar { background:var(--ink-3); border-right:1px solid var(--gold-border); display:flex; flex-direction:column; overflow:hidden; }
+.kkh-sidebar-head { padding:1rem 1.1rem 0.75rem; border-bottom:1px solid var(--gold-border); flex-shrink:0; }
+.kkh-sidebar-title { font-family:var(--fd); font-size:1.35rem; font-weight:400; margin:0 0 0.5rem; }
+.kkh-stats { display:flex; gap:1rem; flex-wrap:wrap; }
+.kkh-stat { font-family:var(--fu); font-size:0.62rem; font-weight:700; letter-spacing:0.08em; color:var(--cream-2); }
+.kkh-stat strong { color:var(--gold); }
+
+/* ── Category filter ────────────────────────────────── */
+.cat-filters { display:flex; gap:0.35rem; flex-wrap:wrap; padding:0.65rem 1.1rem; border-bottom:1px solid var(--gold-border); flex-shrink:0; }
+.cf-btn { display:flex; align-items:center; gap:0.3rem; font-family:var(--fu); font-size:0.6rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:0.28rem 0.6rem; border:1px solid transparent; cursor:pointer; transition:all 0.15s; border-radius:2px; }
+.cf-btn.off { opacity:0.3; }
+
+/* ── Stop list ──────────────────────────────────────── */
+.stop-list { overflow-y:auto; flex:1; }
+.stop-item { display:flex; align-items:flex-start; gap:0.7rem; padding:0.7rem 1.1rem; border-bottom:1px solid rgba(200,144,58,0.08); cursor:pointer; transition:background 0.15s; }
+.stop-item:hover, .stop-item.active { background:rgba(200,144,58,0.07); }
+.stop-num { font-family:var(--fu); font-size:0.6rem; font-weight:700; color:var(--gold); min-width:1.6rem; padding-top:2px; }
+.stop-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+.stop-name { font-family:var(--fu); font-size:0.75rem; font-weight:600; letter-spacing:0.05em; color:var(--cream); line-height:1.3; }
+.stop-meta { font-size:0.72rem; color:var(--cream-2); margin-top:0.1rem; line-height:1.4; }
+.stop-tags { display:flex; gap:0.3rem; flex-wrap:wrap; margin-top:0.3rem; }
+.stag { font-family:var(--fu); font-size:0.56rem; font-weight:700; letter-spacing:0.06em; padding:0.12rem 0.4rem; border-radius:2px; }
+.stag-fuel    { background:rgba(200,80,0,0.18);   color:#e86a00; }
+.stag-food    { background:rgba(0,150,80,0.15);   color:#4ecb7a; }
+.stag-stay    { background:rgba(70,100,200,0.15); color:#7fa8e8; }
+.stag-view    { background:rgba(200,144,58,0.15); color:#c8903a; }
+.stag-danger  { background:rgba(180,0,0,0.15);    color:#e04040; }
+.stag-border  { background:rgba(150,0,200,0.15);  color:#c070e8; }
+.stag-turn    { background:rgba(0,150,200,0.15);  color:#40c8e8; }
+
+/* ── Distance bar ───────────────────────────────────── */
+.dist-bar { padding:0.65rem 1.1rem; border-top:1px solid var(--gold-border); background:var(--ink-3); flex-shrink:0; font-family:var(--fu); font-size:0.65rem; color:var(--cream-2); letter-spacing:0.05em; }
+.dist-bar strong { color:var(--gold); }
+
+/* ── Info panel (popup replacement on desktop) ──────── */
+.kkh-info { padding:1rem 1.1rem; background:rgba(200,144,58,0.06); border-bottom:1px solid var(--gold-border); flex-shrink:0; display:none; }
+.kkh-info.visible { display:block; }
+.kkh-info-name { font-family:var(--fd); font-size:1.1rem; font-weight:400; color:var(--cream); margin-bottom:0.3rem; }
+.kkh-info-body { font-size:0.78rem; color:var(--cream-2); line-height:1.6; }
+
+/* ── Share strip ────────────────────────────────────── */
+.kkh-share { display:flex; gap:0.75rem; align-items:center; padding:0.75rem 0; }
+.share-btn { font-family:var(--fu); font-size:0.68rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; padding:0.4rem 1rem; border:1px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer; }
+.share-btn:hover { background:var(--gold); color:var(--ink); }
+.share-copied { font-family:var(--fu); font-size:0.65rem; color:#4ecb7a; display:none; }
+
+/* ── Leaflet popup override ─────────────────────────── */
+.leaflet-popup-content-wrapper { background:#0d1018; border:1px solid var(--gold-border,#3a2e1a); border-radius:4px; color:#f0e8d5; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
+.leaflet-popup-tip { background:#0d1018; }
+.leaflet-popup-content { margin:10px 14px; font-family:'Syne',sans-serif; font-size:12px; line-height:1.6; min-width:180px; }
+.lp-name { font-weight:700; font-size:13px; color:#f0e8d5; margin-bottom:4px; }
+.lp-dist { color:#c8903a; font-size:11px; font-weight:700; margin-bottom:6px; }
+.lp-body { color:#b8a890; font-size:11.5px; }
+.lp-tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:6px; }
+</style>
+</head>
+<body>
+<nav id="navbar" class="solid">
+  <a href="../index.html" class="nav-logo"><span class="l1">Local</span><span class="l2">GB</span></a>
+  <ul class="nav-links">
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <a href="../explore/index.html" class="nav-cta">Plan Your Trip</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul>
+    <li><a href="../destinations/index.html">Destinations</a></li>
+    <li><a href="../trekking/index.html">Treks</a></li>
+    <li><a href="../travel/index.html">Things To Do</a></li>
+    <li><a href="../agencies/index.html">Agencies</a></li>
+    <li><a href="../blog/index.html">Blog</a></li>
+  </ul>
+  <a href="../explore/index.html" class="nav-cta">Plan Your Trip</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#040608 0%,#07100A 50%,#0A180C 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Karakoram Highway</div>
+    <h1 class="page-hero-h1">KKH Route Map<br><em>Islamabad to Khunjerab</em></h1>
+    <p class="page-hero-sub">Every stop on the world's highest international road — fuel, food, accommodation, viewpoints, turn-offs, and road warnings. 1,300km mapped in full.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">🛣 <strong>1,300km total</strong></div>
+      <div class="page-hero-meta-item">⏱ <strong>14–16hrs Islamabad–Gilgit</strong></div>
+      <div class="page-hero-meta-item">📍 <strong>30 mapped stops</strong></div>
+      <div class="page-hero-meta-item">🏔 <strong>4,693m at Khunjerab</strong></div>
+    </div>
+  </div>
+</section>
+<div class="breadcrumb"><div class="breadcrumb-inner">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+  <a href="../travel/index.html">Travel</a><span class="breadcrumb-sep">/</span>
+  <span class="breadcrumb-current">KKH Map</span>
+</div></div>
+
+<section class="section">
+
+  <div class="kkh-share">
+    <button class="share-btn" id="shareBtn">🔗 Share This Map</button>
+    <span class="share-copied" id="shareCopied">Link copied!</span>
+    <span style="font-family:var(--fu);font-size:0.65rem;color:var(--cream-2)">Click any stop to see details · Toggle layers above the list</span>
+  </div>
+
+  <div class="kkh-layout">
+    <!-- SIDEBAR -->
+    <div class="kkh-sidebar">
+      <div class="kkh-sidebar-head">
+        <div class="kkh-sidebar-title">KKH Stops</div>
+        <div class="kkh-stats">
+          <div class="kkh-stat">⛽ <strong id="fuelCount">0</strong> Fuel</div>
+          <div class="kkh-stat">🍽 <strong id="foodCount">0</strong> Food</div>
+          <div class="kkh-stat">🏨 <strong id="stayCount">0</strong> Stay</div>
+          <div class="kkh-stat">👁 <strong id="viewCount">0</strong> Views</div>
+        </div>
+      </div>
+      <div class="cat-filters" id="catFilters"></div>
+      <div class="kkh-info" id="infoPanel">
+        <div class="kkh-info-name" id="infoPanelName"></div>
+        <div class="kkh-info-body" id="infoPanelBody"></div>
+      </div>
+      <div class="stop-list" id="stopList"></div>
+      <div class="dist-bar" id="distBar">Click two stops to calculate distance</div>
+    </div>
+    <!-- MAP -->
+    <div id="map"></div>
+  </div>
+
+  <div style="margin-top:2rem" class="reveal">
+    <div class="info-grid">
+      <div><span class="label">Road Conditions</span><h2 class="section-title">What to<br><em>Know First</em></h2></div>
+      <div class="info-body">
+        <p>The KKH is fully paved from Islamabad to Khunjerab but conditions vary dramatically by section. The Besham–Chilas stretch through the Indus Gorge is the most technically demanding — narrow in places, rockfall-prone, and completely unlit. <strong>Do not drive this section at night.</strong></p>
+        <p>The Hunza section (Gilgit to Sost) is in excellent condition and is the scenic highlight of the entire highway. Road surfaces improve significantly north of Gilgit.</p>
+        <table class="practical-table">
+          <tr><td><strong>Islamabad → Abbottabad</strong></td><td>Motorway (M-1) then dual carriageway. Fast, easy. 2hrs.</td></tr>
+          <tr><td><strong>Abbottabad → Besham</strong></td><td>Good paved road, some narrow sections through hills. 3hrs.</td></tr>
+          <tr><td><strong>Besham → Chilas</strong></td><td>Most challenging section. Indus gorge, rockfall risk, narrow. 5–6hrs. No night driving.</td></tr>
+          <tr><td><strong>Chilas → Gilgit</strong></td><td>Good road, dramatic canyon, Raikot Bridge turn-off. 2–3hrs.</td></tr>
+          <tr><td><strong>Gilgit → Hunza</strong></td><td>Excellent. Rakaposhi views, terraced villages. 2hrs.</td></tr>
+          <tr><td><strong>Hunza → Sost</strong></td><td>Good road, Upper Hunza, Passu Cones. 2hrs.</td></tr>
+          <tr><td><strong>Sost → Khunjerab</strong></td><td>Open June–October only. Highest section, alpine. 2hrs.</td></tr>
+        </table>
+        <div class="notice"><strong>Fuel warning:</strong> Fill up at Besham before entering the gorge — there are limited reliable fuel stops between Besham and Gilgit. Always carry a jerry can for the Sost–Khunjerab section.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gold-glow);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);padding:3rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+    <div><div class="label">Journey Architect</div><h3 style="font-family:var(--fd);font-size:2rem;font-weight:400;margin-top:0.5rem;">Build a KKH road trip<br><em>itinerary for free.</em></h3></div>
+    <a href="../explore/index.html?entry=road-kkh" style="display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--fu);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;">Plan My Drive →</a>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div><a href="../index.html" class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p></div>
+      <div><div class="footer-col-title">KKH Stops</div><ul class="footer-links"><li><a href="../destinations/index.html">Destinations</a></li><li><a href="../gilgit/guide/index.html">Gilgit Guide</a></li><li><a href="../hunza/index.html">Hunza</a></li></ul></div>
+      <div><div class="footer-col-title">Side Trips</div><ul class="footer-links"><li><a href="../fairy-meadows/guide/index.html">Fairy Meadows</a></li><li><a href="../gilgit/naltar-valley/index.html">Naltar Valley</a></li></ul></div>
+      <div><div class="footer-col-title">Tools</div><ul class="footer-links"><li><a href="../atm-locator/index.html">Essentials Map</a></li><li><a href="../explore/index.html">Journey Architect</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 LocalGB</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── Nav ───────────────────────────────────────────────────────────────────
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+document.getElementById('navHamburger').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('navDrawer').classList.toggle('open');});
+
+// ── KKH Stop Data ─────────────────────────────────────────────────────────
+// tags: fuel | food | stay | view | danger | border | turn
+const STOPS = [
+  {
+    id:1, name:"Islamabad / Rawalpindi", km:0,
+    lat:33.6844, lng:73.0479,
+    tags:["fuel","food","stay"],
+    note:"Starting point. Fill tank completely — you won't get a proper motorway fuel stop until Havelian. ATMs everywhere. Last place for reliable mobile data until Besham.",
+    links:[]
+  },
+  {
+    id:2, name:"Hasan Abdal", km:48,
+    lat:33.8197, lng:72.6897,
+    tags:["food","fuel"],
+    note:"Rest stop on the M-1. Good dhabas for breakfast if you've done an early start. Hasan Abdal interchange is the last motorway exit — after here it's the GT Road to Abbottabad.",
+    links:[]
+  },
+  {
+    id:3, name:"Abbottabad", km:123,
+    lat:34.1463, lng:73.2117,
+    tags:["fuel","food","stay"],
+    note:"Last large city before the KKH proper begins. Good hotels, restaurants, fuel. If you're starting the Besham–Chilas stretch same day, leave Abbottabad by 7am at the latest.",
+    links:[]
+  },
+  {
+    id:4, name:"Mansehra", km:153,
+    lat:34.3333, lng:73.2000,
+    tags:["fuel","food"],
+    note:"Junction town — KKH continues north, the left fork goes to Naran and Babusar Pass. Stock up on snacks. PSO and Shell pumps. Road quality starts to narrow after Mansehra.",
+    links:[]
+  },
+  {
+    id:5, name:"Babusar Pass Turn-off (Naran Road)", km:165,
+    lat:34.4600, lng:73.3200,
+    tags:["turn"],
+    note:"If taking the summer Babusar Pass route to Chilas, turn left here toward Kaghan Valley and Naran. Open June–October only. Adds scenic 3hrs but cuts through alpine terrain.",
+    links:[]
+  },
+  {
+    id:6, name:"Besham", km:256,
+    lat:34.9060, lng:72.8680,
+    tags:["fuel","food","stay"],
+    note:"Last reliable fuel stop before the difficult Indus Gorge section. Fill tank completely here — do not skip this. Decent hotels for overnight stays. The KKH enters the gorge just north of Besham and the road becomes seriously demanding.",
+    links:[]
+  },
+  {
+    id:7, name:"Pattan", km:312,
+    lat:35.1330, lng:72.9130,
+    tags:["food"],
+    note:"Small town in the gorge. Simple dhabas for tea and dal. The 2005 Kashmir earthquake epicentre was near here — you'll see rebuilt villages along this stretch.",
+    links:[]
+  },
+  {
+    id:8, name:"Komila / Shatial", km:358,
+    lat:35.3200, lng:73.1500,
+    tags:["food","view"],
+    note:"Ancient rock carvings along the riverbank here — thousands of Buddhist and Hindu petroglyphs carved by Silk Road travellers. Worth a 20-minute stop. Look for the blue UNESCO sign.",
+    links:[]
+  },
+  {
+    id:9, name:"Indus–Gilgit River Confluence", km:420,
+    lat:35.6400, lng:73.8200,
+    tags:["view"],
+    note:"The point where the Gilgit River meets the Indus — two different coloured rivers visibly merging. One of the most striking natural features on the KKH. Pull over on the left.",
+    links:[]
+  },
+  {
+    id:10, name:"Chilas", km:450,
+    lat:35.4184, lng:74.1007,
+    tags:["fuel","food","stay"],
+    note:"Largest town between Besham and Gilgit. Hot, dusty, at 1,250m. Good hotels. Diamer District — conservative area, dress modestly. The road improves noticeably after Chilas. HBL and UBL ATMs in main bazaar.",
+    links:[]
+  },
+  {
+    id:11, name:"Raikot Bridge — Fairy Meadows Turn-off", km:530,
+    lat:35.3980, lng:74.5440,
+    tags:["turn","view"],
+    note:"Turn right here for Fairy Meadows and Nanga Parbat Base Camp. A narrow jeep track climbs from Raikot Bridge — you cannot drive a regular car up it. Jeep hire available at the bridge. Don't miss this.",
+    links:["../fairy-meadows/guide/index.html"]
+  },
+  {
+    id:12, name:"Jaglot Junction", km:567,
+    lat:35.7000, lng:74.4600,
+    tags:["turn","food"],
+    note:"Junction for the Skardu road. Turn right (east) for Skardu — 160km, 4hrs on a good road. Continue straight for Gilgit. A few tea stalls. Important decision point if you're splitting north and east.",
+    links:["../skardu/index.html"]
+  },
+  {
+    id:13, name:"Gilgit", km:600,
+    lat:35.9220, lng:74.3082,
+    tags:["fuel","food","stay","turn"],
+    note:"Regional capital and the main hub for all of GB. Stay at least one night. ATMs (HBL, UBL, MCB, NBP), pharmacies, hospitals, petrol. Gilgit Airport for flights to/from Islamabad. Junction for Naltar, Bagrot, Haramosh, and the road to Ghizer/Chitral.",
+    links:["../gilgit/guide/index.html"]
+  },
+  {
+    id:14, name:"Danyore Bridge", km:615,
+    lat:35.9800, lng:74.3600,
+    tags:["view"],
+    note:"Just north of Gilgit, the KKH crosses the Gilgit River on the Danyore Bridge. Excellent mountain views begin here as the Karakoram closes in. The road quality gets noticeably better from this point.",
+    links:[]
+  },
+  {
+    id:15, name:"Nomal Valley Turn-off", km:628,
+    lat:36.0200, lng:74.3900,
+    tags:["turn","view"],
+    note:"Right turn for Nomal Valley — a quiet green valley popular for picnics and short walks. The Nomal Fort ruins are worth a stop. 20km down a side road. Worth it if you have time.",
+    links:[]
+  },
+  {
+    id:16, name:"Chalt", km:650,
+    lat:36.1000, lng:74.4800,
+    tags:["food","fuel"],
+    note:"Small bazaar town. Fuel available. The Rakaposhi (7,788m) views start here and get progressively better as you continue north. On a clear morning the mountain fills the entire right-side windscreen.",
+    links:[]
+  },
+  {
+    id:17, name:"Minapin — Rakaposhi Base Camp Turn-off", km:665,
+    lat:36.1470, lng:74.5290,
+    tags:["turn","view","stay"],
+    note:"Turn right for Minapin village and the Rakaposhi Base Camp trek — 2 days, no permit, one of the best short treks in Hunza. Simple guesthouses in Minapin. The view of Rakaposhi from the KKH here is exceptional.",
+    links:["../trekking/rakaposhi-base-camp/index.html"]
+  },
+  {
+    id:18, name:"Aliabad — Hunza Valley", km:685,
+    lat:36.2960, lng:74.6430,
+    tags:["fuel","food","stay"],
+    note:"Aliabad is the commercial hub of Hunza — banks (MCB, NBP ATMs), petrol, pharmacies, bus stops. Most travellers continue to Karimabad (5km up the hill) for accommodation with views.",
+    links:["../hunza/index.html"]
+  },
+  {
+    id:19, name:"Karimabad — Hunza Valley", km:690,
+    lat:36.3167, lng:74.6599,
+    tags:["food","stay","view"],
+    note:"The tourist heart of Hunza. Baltit Fort, Altit Fort, cherry blossom orchards, Rakaposhi views, HBL and UBL ATMs. Stay at least 2 nights. Eagle's Nest viewpoint is 8km above town — sunrise there is extraordinary.",
+    links:["../hunza/index.html","../things-to-do/cherry-blossom-hunza/index.html"]
+  },
+  {
+    id:20, name:"Ganesh Village", km:695,
+    lat:36.2700, lng:74.6200,
+    tags:["view"],
+    note:"Ancient village with 700-year-old watchtowers. The KKH passes directly below — you can see the old stone towers from the road. One of the oldest continuously inhabited settlements in Hunza.",
+    links:[]
+  },
+  {
+    id:21, name:"Gulmit — Upper Hunza", km:750,
+    lat:36.5530, lng:74.8730,
+    tags:["food","stay","view"],
+    note:"Gateway to Upper Hunza. Good guesthouses, simpler than Karimabad. The Attabad Lake (created by 2010 landslide) begins shortly after. Passu Cones visible ahead. Cooler than lower Hunza at 2,800m.",
+    links:[]
+  },
+  {
+    id:22, name:"Attabad Lake", km:760,
+    lat:36.5900, lng:74.8900,
+    tags:["view","danger"],
+    note:"Turquoise lake formed by the 2010 Attabad landslide that blocked the Hunza River. The KKH tunnels through the mountain — five tunnels totalling 7km built after the slide. The lake itself is brilliant blue. Boat rides available.",
+    links:[]
+  },
+  {
+    id:23, name:"Passu", km:780,
+    lat:36.4770, lng:74.9930,
+    tags:["food","stay","view"],
+    note:"Passu Cones — the serrated cathedral peaks above the village — are one of the most photographed scenes in Pakistan. The Hussaini Suspension Bridge (terrifyingly narrow, boards missing) is a 10-min walk. Simple guesthouses.",
+    links:["../hunza/passu-cones/index.html"]
+  },
+  {
+    id:24, name:"Shimshal Turn-off", km:790,
+    lat:36.5300, lng:75.0600,
+    tags:["turn"],
+    note:"Right turn for Shimshal Valley — one of Pakistan's most remote inhabited valleys, only got a road in 2003. Exceptional for trekking (Shimshal Pass, Lupgar Sar). NOC required. The road is rough — jeep only.",
+    links:[]
+  },
+  {
+    id:25, name:"Sost — Last Major Town", km:840,
+    lat:36.7440, lng:75.1890,
+    tags:["fuel","food","stay","border"],
+    note:"Last town before the Chinese border. Pakistan Customs is here. Fill fuel, withdraw cash, buy food — nothing available between Sost and Khunjerab. PTDC motel and several guesthouses. Dry Port for China-bound cargo trucks.",
+    links:[]
+  },
+  {
+    id:26, name:"Khunjerab National Park Entry", km:870,
+    lat:36.8500, lng:75.2500,
+    tags:["view","danger"],
+    note:"Park entry gate. Fee required (Rs. 400–600). Road rises sharply from here through alpine meadows to above 4,000m. Marco Polo sheep and snow leopards inhabit this zone. Drive slowly — animals on road.",
+    links:[]
+  },
+  {
+    id:27, name:"Dih — Last Pakistan Village", km:890,
+    lat:36.9200, lng:75.3500,
+    tags:["view"],
+    note:"Last permanent settlement before the pass. A handful of summer yak herder camps. The landscape becomes high-altitude tundra — treeless, vast, cold even in July. Temperature can be 10°C lower than Sost.",
+    links:[]
+  },
+  {
+    id:28, name:"Khunjerab Pass — Pakistan–China Border", km:940,
+    lat:36.8400, lng:75.4300,
+    tags:["border","view","danger"],
+    note:"4,693m — the highest paved international border crossing in the world. Open to tourists May–October only. Pakistani and Chinese border posts are here. The scenery is extraordinary — flat plateau, permanent snow nearby, thin air. Altitude sickness is real at this elevation.",
+    links:[]
+  },
+];
+
+// ── Category config ────────────────────────────────────────────────────────
+const CATS = {
+  fuel:   { label:'Fuel',     emoji:'⛽', color:'#e86a00' },
+  food:   { label:'Food',     emoji:'🍽', color:'#4ecb7a' },
+  stay:   { label:'Stay',     emoji:'🏨', color:'#7fa8e8' },
+  view:   { label:'Views',    emoji:'👁', color:'#c8903a' },
+  turn:   { label:'Turn-offs',emoji:'↗',  color:'#40c8e8' },
+  danger: { label:'Warnings', emoji:'⚠️', color:'#e04040' },
+  border: { label:'Border',   emoji:'🛂', color:'#c070e8' },
+};
+
+// ── State ──────────────────────────────────────────────────────────────────
+let visibleCats = new Set(Object.keys(CATS));
+let selectedStops = [];
+let leafletMarkers = {};
+
+// ── Map setup ──────────────────────────────────────────────────────────────
+const map = L.map('map', { zoomControl:true }).setView([35.5, 73.5], 7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
+}).addTo(map);
+
+// KKH route polyline
+const routeCoords = STOPS.map(s=>[s.lat,s.lng]);
+const routeLine = L.polyline(routeCoords, {
+  color:'#C8903A', weight:3.5, opacity:0.85,
+  dashArray:null
+}).addTo(map);
+
+// ── Build category filter buttons ──────────────────────────────────────────
+const catFiltersEl = document.getElementById('catFilters');
+Object.entries(CATS).forEach(([key, cfg])=>{
+  const btn = document.createElement('button');
+  btn.className = 'cf-btn';
+  btn.dataset.cat = key;
+  btn.style.borderColor = cfg.color;
+  btn.style.color = cfg.color;
+  btn.style.background = cfg.color + '1a';
+  btn.innerHTML = `<span>${cfg.emoji}</span><span>${cfg.label}</span>`;
+  btn.addEventListener('click',()=>{
+    visibleCats.has(key) ? visibleCats.delete(key) : visibleCats.add(key);
+    btn.classList.toggle('off', !visibleCats.has(key));
+    renderMarkers();
+    renderList();
+  });
+  catFiltersEl.appendChild(btn);
+});
+
+// ── Marker icon ────────────────────────────────────────────────────────────
+function markerIcon(stop, highlight=false) {
+  const primaryTag = stop.tags[0];
+  const cfg = CATS[primaryTag] || CATS.food;
+  const size = highlight ? 38 : 30;
+  const border = highlight ? '3px solid #fff' : '2px solid rgba(255,255,255,0.3)';
+  return L.divIcon({
+    className:'',
+    html:`<div style="width:${size}px;height:${size}px;border-radius:50%;background:${cfg.color};display:flex;align-items:center;justify-content:center;font-size:${highlight?15:12}px;border:${border};box-shadow:0 2px 8px rgba(0,0,0,0.6);transition:all .2s">${cfg.emoji}</div>`,
+    iconSize:[size,size], iconAnchor:[size/2,size/2], popupAnchor:[0,-size/2]
+  });
+}
+
+// ── Pop-up HTML ────────────────────────────────────────────────────────────
+function popupHTML(stop) {
+  const tagHTML = stop.tags.map(t=>`<span style="background:${CATS[t].color}22;color:${CATS[t].color};padding:2px 6px;border-radius:2px;font-size:10px;font-weight:700;border:1px solid ${CATS[t].color}44">${CATS[t].emoji} ${CATS[t].label}</span>`).join(' ');
+  const linksHTML = stop.links?.length ? `<div style="margin-top:8px">${stop.links.map(l=>`<a href="${l}" style="color:#c8903a;font-size:11px">Guide →</a>`).join(' ')}</div>` : '';
+  return `<div class="lp-name">${stop.name}</div>
+    <div class="lp-dist">${stop.km} km from Islamabad</div>
+    <div class="lp-body">${stop.note}</div>
+    <div class="lp-tags" style="margin-top:6px">${tagHTML}</div>
+    ${linksHTML}`;
+}
+
+// ── Render markers ─────────────────────────────────────────────────────────
+function renderMarkers() {
+  Object.values(leafletMarkers).forEach(m=>map.removeLayer(m));
+  leafletMarkers = {};
+  const visible = STOPS.filter(s=>s.tags.some(t=>visibleCats.has(t)));
+  visible.forEach(s=>{
+    const m = L.marker([s.lat,s.lng],{icon:markerIcon(s)}).addTo(map);
+    m.bindPopup(popupHTML(s), {maxWidth:260});
+    m.on('click',()=>selectStop(s.id));
+    leafletMarkers[s.id]=m;
+  });
+}
+
+// ── Render sidebar list ────────────────────────────────────────────────────
+function renderList() {
+  const visible = STOPS.filter(s=>s.tags.some(t=>visibleCats.has(t)));
+  document.getElementById('fuelCount').textContent = visible.filter(s=>s.tags.includes('fuel')).length;
+  document.getElementById('foodCount').textContent = visible.filter(s=>s.tags.includes('food')).length;
+  document.getElementById('stayCount').textContent = visible.filter(s=>s.tags.includes('stay')).length;
+  document.getElementById('viewCount').textContent = visible.filter(s=>s.tags.includes('view')).length;
+
+  document.getElementById('stopList').innerHTML = visible.map(s=>{
+    const tagHTML = s.tags.map(t=>`<span class="stag stag-${t}">${CATS[t].emoji} ${CATS[t].label}</span>`).join('');
+    const isSelected = selectedStops.includes(s.id);
+    return `<div class="stop-item${isSelected?' active':''}" data-id="${s.id}">
+      <span class="stop-num">${s.km}<br><span style="font-size:0.5rem">km</span></span>
+      <div style="flex:1;min-width:0">
+        <div class="stop-name">${s.name}</div>
+        <div class="stop-meta">${s.note.substring(0,80)}${s.note.length>80?'…':''}</div>
+        <div class="stop-tags">${tagHTML}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.querySelectorAll('.stop-item').forEach(el=>{
+    el.addEventListener('click',()=>selectStop(+el.dataset.id));
+  });
+}
+
+// ── Select / distance calc ─────────────────────────────────────────────────
+function selectStop(id) {
+  const stop = STOPS.find(s=>s.id===id);
+  if (!stop) return;
+
+  // info panel
+  document.getElementById('infoPanelName').textContent = `${stop.name} · ${stop.km}km`;
+  document.getElementById('infoPanelBody').textContent = stop.note;
+  document.getElementById('infoPanel').classList.add('visible');
+
+  // distance selection (up to 2 stops)
+  if (!selectedStops.includes(id)) {
+    selectedStops.push(id);
+    if (selectedStops.length > 2) selectedStops.shift();
+  } else {
+    selectedStops = selectedStops.filter(x=>x!==id);
+  }
+  if (selectedStops.length===2) {
+    const a=STOPS.find(s=>s.id===selectedStops[0]), b=STOPS.find(s=>s.id===selectedStops[1]);
+    const km=Math.abs(b.km-a.km);
+    const hrs=Math.round(km/55*10)/10;
+    document.getElementById('distBar').innerHTML=`<strong>${a.name}</strong> → <strong>${b.name}</strong> &nbsp;|&nbsp; <strong style="color:var(--gold)">${km} km</strong> · ~${hrs}h drive`;
+  } else if (selectedStops.length===1) {
+    document.getElementById('distBar').innerHTML=`<strong>${stop.name}</strong> selected. Click a second stop to measure distance.`;
+  } else {
+    document.getElementById('distBar').textContent='Click two stops to calculate distance';
+  }
+
+  // update markers & list
+  Object.entries(leafletMarkers).forEach(([sid,m])=>{
+    m.setIcon(markerIcon(STOPS.find(s=>s.id===+sid), selectedStops.includes(+sid)));
+  });
+  renderList();
+
+  // fly to
+  map.setView([stop.lat,stop.lng], Math.max(map.getZoom(),9));
+  leafletMarkers[id]?.openPopup();
+}
+
+// ── Share ──────────────────────────────────────────────────────────────────
+document.getElementById('shareBtn').addEventListener('click',()=>{
+  navigator.clipboard.writeText(window.location.href).then(()=>{
+    const el=document.getElementById('shareCopied');
+    el.style.display='inline';
+    setTimeout(()=>el.style.display='none',2000);
+  });
+});
+
+// ── Reveal animation ───────────────────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=[...e.target.parentElement.querySelectorAll('.reveal')];setTimeout(()=>e.target.classList.add('visible'),s.indexOf(e.target)*90);obs.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── Init ───────────────────────────────────────────────────────────────────
+renderMarkers();
+renderList();
+map.fitBounds(routeLine.getBounds(), { padding:[20,20] });
+</script>
+</body>
+</html>
