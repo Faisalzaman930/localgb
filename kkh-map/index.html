@@ -82,6 +82,11 @@
 /* Pulsing user location ring on map */
 @keyframes loc-ring { 0%{transform:scale(0.5);opacity:1} 100%{transform:scale(3);opacity:0} }
 
+/* Nearby POI button */
+.poi-btn { font-family:var(--fu); font-size:0.68rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; padding:0.4rem 1rem; border:1px solid #7fa8e8; background:transparent; color:#7fa8e8; cursor:pointer; display:flex; align-items:center; gap:0.4rem; }
+.poi-btn:hover, .poi-btn.active { background:#7fa8e8; color:#040608; }
+.poi-btn:disabled { opacity:0.4; cursor:not-allowed; }
+
 /* ── Leaflet popup override ─────────────────────────── */
 .leaflet-popup-content-wrapper { background:#0d1018; border:1px solid var(--gold-border,#3a2e1a); border-radius:4px; color:#f0e8d5; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
 .leaflet-popup-tip { background:#0d1018; }
@@ -141,6 +146,7 @@
 
   <div class="kkh-share">
     <button class="live-btn" id="liveBtn"><span class="live-dot"></span> Live Location</button>
+    <button class="poi-btn" id="poiBtn" disabled title="Enable Live Location first">🔍 Nearby POIs</button>
     <button class="share-btn" id="shareBtn">🔗 Share</button>
     <span class="share-copied" id="shareCopied">Link copied!</span>
     <span style="font-family:var(--fu);font-size:0.65rem;color:var(--cream-2);margin-left:auto">Click stops to see details · Toggle layers in sidebar</span>
@@ -436,8 +442,9 @@ let leafletMarkers = {};
 
 // ── Map setup ──────────────────────────────────────────────────────────────
 const map = L.map('map', { zoomControl:true }).setView([35.5, 73.5], 7);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains:'abcd', maxZoom:19
 }).addTo(map);
 
 // KKH route polyline
@@ -691,16 +698,129 @@ document.getElementById('liveBtn').addEventListener('click',()=>{
     if(userAccCircle){ map.removeLayer(userAccCircle); userAccCircle=null; }
     document.getElementById('liveStatus').classList.remove('visible');
     document.querySelectorAll('.stop-item.nearest').forEach(el=>el.classList.remove('nearest'));
+    clearPOIs();
+    const poiBtn = document.getElementById('poiBtn');
+    poiBtn.disabled = true; poiBtn.classList.remove('active'); poiBtn.textContent = '🔍 Nearby POIs';
+    poiFetchLat = null;
     autoFollow = true;
   } else {
     // Start tracking
     btn.classList.add('active');
     btn.innerHTML='<span class="live-dot"></span> Tracking…';
+    document.getElementById('poiBtn').disabled = false;
     document.getElementById('liveStatus').classList.add('visible');
     document.getElementById('liveStatus').textContent = 'Getting your location…';
     watchId = navigator.geolocation.watchPosition(onPosition, onPositionError, {
       enableHighAccuracy:true, maximumAge:5000, timeout:15000
     });
+  }
+});
+
+// ── Nearby POIs (Overpass) ─────────────────────────────────────────────────
+const POI_CFG = {
+  restaurant: { emoji:'🍽', label:'Restaurant', color:'#4ecb7a' },
+  cafe:        { emoji:'☕', label:'Café',       color:'#c8a040' },
+  fast_food:   { emoji:'🍟', label:'Fast Food',  color:'#e8a040' },
+  fuel:        { emoji:'⛽', label:'Fuel',        color:'#e86a00' },
+  pharmacy:    { emoji:'💊', label:'Pharmacy',   color:'#70e890' },
+  hospital:    { emoji:'🏥', label:'Hospital',   color:'#e87070' },
+  hotel:       { emoji:'🏨', label:'Hotel',      color:'#7fa8e8' },
+  guest_house: { emoji:'🏠', label:'Guesthouse', color:'#9ab8e8' },
+  atm:         { emoji:'🏧', label:'ATM',        color:'#4a90d9' },
+  bank:        { emoji:'🏦', label:'Bank',       color:'#3a78c8' },
+};
+
+let poiMarkers = [];
+let poiFetchLat = null, poiFetchLng = null;
+const POI_RADIUS = 3000; // metres
+
+function poiIcon(amenity) {
+  const cfg = POI_CFG[amenity] || { emoji:'📍', color:'#888' };
+  return L.divIcon({
+    className:'',
+    html:`<div style="width:26px;height:26px;border-radius:6px;background:${cfg.color};display:flex;align-items:center;justify-content:center;font-size:12px;border:1.5px solid rgba(255,255,255,0.3);box-shadow:0 2px 6px rgba(0,0,0,0.5)">${cfg.emoji}</div>`,
+    iconSize:[26,26], iconAnchor:[13,13], popupAnchor:[0,-16]
+  });
+}
+
+function clearPOIs() {
+  poiMarkers.forEach(m => map.removeLayer(m));
+  poiMarkers = [];
+}
+
+async function fetchNearbyPOIs(lat, lng) {
+  const btn = document.getElementById('poiBtn');
+  btn.textContent = '⏳ Loading…';
+  btn.disabled = true;
+
+  // Don't re-fetch if we haven't moved >500m from last fetch
+  if (poiFetchLat !== null && haversineKm(lat, lng, poiFetchLat, poiFetchLng) * 1000 < 500 && poiMarkers.length > 0) {
+    btn.textContent = '🔍 Nearby POIs';
+    btn.disabled = false;
+    return;
+  }
+
+  clearPOIs();
+  poiFetchLat = lat; poiFetchLng = lng;
+
+  const amenities = Object.keys(POI_CFG).join('|');
+  const q = `[out:json][timeout:20];
+(
+  node["amenity"~"${amenities}"](around:${POI_RADIUS},${lat},${lng});
+  node["tourism"="hotel"](around:${POI_RADIUS},${lat},${lng});
+  node["tourism"="guest_house"](around:${POI_RADIUS},${lat},${lng});
+);out body;`;
+
+  try {
+    const res = await fetch('https://overpass-api.de/api/interpreter?data=' + encodeURIComponent(q));
+    const json = await res.json();
+    const elements = json.elements || [];
+
+    elements.forEach(e => {
+      const amenity = e.tags?.amenity || e.tags?.tourism || 'other';
+      const cfg = POI_CFG[amenity] || { emoji:'📍', label:'Place', color:'#888' };
+      const name = e.tags?.name || cfg.label;
+      const distKm = haversineKm(lat, lng, e.lat, e.lon);
+      const distStr = distKm < 1 ? Math.round(distKm * 1000) + 'm' : distKm.toFixed(1) + 'km';
+
+      const m = L.marker([e.lat, e.lon], { icon: poiIcon(amenity) }).addTo(map);
+      m.bindPopup(`
+        <div class="lp-name">${cfg.emoji} ${name}</div>
+        <div class="lp-dist">${distStr} from you</div>
+        <div class="lp-body" style="color:#9ab890;font-size:10.5px;text-transform:capitalize">${cfg.label}</div>
+      `, { maxWidth: 220 });
+      poiMarkers.push(m);
+    });
+
+    const statusEl = document.getElementById('liveStatus');
+    const existing = statusEl.innerHTML;
+    statusEl.innerHTML = existing.split('·').slice(0,3).join('·') +
+      ` · <strong style="color:#7fa8e8">${elements.length} nearby POIs loaded</strong>`;
+
+    btn.classList.add('active');
+    btn.textContent = `✓ ${elements.length} POIs`;
+
+  } catch(err) {
+    document.getElementById('liveStatus').innerHTML += ' · <span style="color:#e04040">POI fetch failed — check connection</span>';
+    btn.textContent = '🔍 Retry POIs';
+  }
+
+  btn.disabled = false;
+}
+
+document.getElementById('poiBtn').addEventListener('click', () => {
+  if (poiMarkers.length > 0) {
+    // Toggle off
+    clearPOIs();
+    const btn = document.getElementById('poiBtn');
+    btn.classList.remove('active');
+    btn.textContent = '🔍 Nearby POIs';
+    poiFetchLat = null;
+    return;
+  }
+  if (userMarker) {
+    const ll = userMarker.getLatLng();
+    fetchNearbyPOIs(ll.lat, ll.lng);
   }
 });
 
