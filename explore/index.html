@@ -582,7 +582,6 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       <div class="progress-dot" data-s="1"></div>
       <div class="progress-dot" data-s="2"></div>
       <div class="progress-dot" data-s="3"></div>
-      <div class="progress-dot" data-s="4"></div>
       <span id="progressLabel" style="font-family:var(--fu);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,213,.35);margin-left:.5rem;">Step 1 of 5</span>
     </div>
 
@@ -747,67 +746,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       </div>
     </div>
 
-    <!-- STEP 4: Season + Who (combined) -->
-    <div class="step" id="step-4">
-      <div class="step-q">When & who?</div>
-      <p class="step-sub">Season changes what's possible. Your group affects costs and routing.</p>
-
-      <p style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem" id="seasonLabel">Season</p>
-      <div class="choices c2" data-key="season" style="margin-bottom:1.75rem">
-        <div class="choice" data-v="spring">
-          <span class="choice-icon">🌸</span>
-          <div class="choice-title">Spring</div>
-          <div class="choice-desc">Mar–May. Blossom season. Cool days, cold nights. Khunjerab opens May.</div>
-          <div class="choice-tag">Best for blossom</div>
-        </div>
-        <div class="choice" data-v="summer">
-          <span class="choice-icon">☀️</span>
-          <div class="choice-title">Summer</div>
-          <div class="choice-desc">Jun–Aug. All passes open. Hot in Gilgit (36°C). All treks accessible.</div>
-          <div class="choice-tag">All passes open</div>
-        </div>
-        <div class="choice" data-v="autumn">
-          <span class="choice-icon">🍂</span>
-          <div class="choice-title">Autumn</div>
-          <div class="choice-desc">Sep–Oct. Golden foliage. Crystal clarity. Best overall season.</div>
-          <div class="choice-tag">Best overall</div>
-        </div>
-        <div class="choice" data-v="winter">
-          <span class="choice-icon">❄️</span>
-          <div class="choice-title">Winter</div>
-          <div class="choice-desc">Nov–Feb. Cold and quiet. Hunza + Gilgit open. Naltar skiing.</div>
-          <div class="choice-tag">Off-season rates</div>
-        </div>
-      </div>
-
-      <p style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem">Who's travelling?</p>
-      <div class="choices c2" data-key="groupSize">
-        <div class="choice" data-v="solo">
-          <span class="choice-icon">🧍</span>
-          <div class="choice-title">Solo</div>
-          <div class="choice-desc">Single traveller. Shared jeeps, guesthouse dorms or single rooms.</div>
-          <div class="choice-tag">Most flexible</div>
-        </div>
-        <div class="choice" data-v="couple">
-          <span class="choice-icon">👫</span>
-          <div class="choice-title">Couple</div>
-          <div class="choice-desc">Two people. Private room, jeep cost split two ways.</div>
-          <div class="choice-tag">Most common</div>
-        </div>
-        <div class="choice" data-v="family">
-          <span class="choice-icon">👨‍👩‍👧‍👦</span>
-          <div class="choice-title">Family</div>
-          <div class="choice-desc">With children. Accessible sights, no extreme altitude above 3,500m.</div>
-          <div class="choice-tag">Kid-friendly routing</div>
-        </div>
-        <div class="choice" data-v="group">
-          <span class="choice-icon">👥</span>
-          <div class="choice-title">Group (4+)</div>
-          <div class="choice-desc">Shared jeep costs, group discounts on hotels.</div>
-          <div class="choice-tag">Best value/day</div>
-        </div>
-      </div>
-    </div>
+    <!-- Season & group moved to the result as live toggles (generate-first UX) -->
 
   <div id="stepFeedback" style="text-align:center;font-size:.75rem;color:var(--gold);min-height:1.2rem;margin-top:.5rem;opacity:.8;"></div>
   </div><!-- /wizardInner -->
@@ -838,6 +777,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       <div class="result-title" id="rTitle"></div>
       <div class="result-sub" id="rSub"></div>
       <div class="result-pills" id="rPills"></div>
+      <div id="rAdjust" style="margin:1.1rem auto 0;max-width:560px;"></div>
       <div id="rWeather" style="margin:1.2rem auto 0;max-width:420px;display:none;">
         <div id="rWxInner" style="background:var(--ink-3);border:1px solid rgba(200,144,58,.2);border-radius:6px;padding:1rem 1.4rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
           <div id="rWxIcon" style="font-size:2.2rem;line-height:1;"></div>
@@ -926,7 +866,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 ════════════════════════════════════════════════════════ */
 const S = { origin:null, entry:null, style:null, days:8, regions:new Set(), season:null, startDate:null, endDate:null, useSpecificDates:true, wakeHour:7, wakeMin:0, groupSize:'couple' };
 let cur = 0;
-const STEPS = 5;
+const STEPS = 4;
 
 const dailyCost = { budget:4000, adventure:7000, cultural:9000, photography:11000, family:12000, luxury:35000 };
 
@@ -1206,18 +1146,10 @@ document.getElementById('btnNext').addEventListener('click', () => {
   // Guard: don't proceed if button should be disabled (catches edge cases)
   if (document.getElementById('btnNext').disabled) return;
 
-  // Step 4 (season) or final step → build
+  // Final step (regions) → build the itinerary
   if (cur >= STEPS - 1) { buildItinerary(); return; }
 
-  let next = cur + 1;
-
-  // Skip season step when dates are chosen (season auto-set) — but still go through steps 5 and 6
-  if (next === 4 && S.useSpecificDates && S.season) { goStep(5); return; }
-
-  // Step 3 (regions) in dates mode: proceed to step 4 normally (then steps 5 and 6)
-  // (no early buildItinerary shortcut here anymore)
-
-  goStep(next);
+  goStep(cur + 1);
 });
 
 function goStep(to) {
@@ -1264,35 +1196,9 @@ function updateNav() {
     next.textContent = 'Next →';
   } else if (cur === 3) {
     next.disabled = S.regions.size === 0;
-    next.textContent = 'Next →';
-  } else if (cur === 4) {
-    next.disabled = !S.season;
-    next.textContent = 'Next →';
-  } else if (cur === 5) {
-    next.disabled = false; // time input always valid
-    next.textContent = 'Next →';
-  } else if (cur === 6) {
-    next.disabled = !S.groupSize;
     next.textContent = 'Build My Itinerary →';
   }
 }
-
-// Re-enable next on selection for step 4
-document.querySelectorAll('#step-4 .choice').forEach(c => {
-  c.addEventListener('click', () => {
-    if (cur === 4) { document.getElementById('btnNext').disabled = false; }
-  });
-});
-
-// Group size handler for step 6
-document.querySelectorAll('#step-6 .choice').forEach(c => {
-  c.addEventListener('click', () => {
-    document.querySelectorAll('#step-6 .choice').forEach(x => x.classList.remove('sel'));
-    c.classList.add('sel');
-    S.groupSize = c.dataset.v;
-    if (cur === 6) document.getElementById('btnNext').disabled = false;
-  });
-});
 
 /* ════════════════════════════════════════════════════════
    WAKE-UP TIME
@@ -1540,7 +1446,7 @@ function getWakeOffset() {
 /* ════════════════════════════════════════════════════════
    ITINERARY BUILDER
 ════════════════════════════════════════════════════════ */
-function buildItinerary() {
+function buildItinerary(opts = {}) {
   // Hide wizard, show result
   document.getElementById('wizardWrap').classList.add('hidden');
   document.getElementById('heroWrap').style.display = 'none';
@@ -1548,22 +1454,26 @@ function buildItinerary() {
   rw.classList.add('active');
   rw.style.display = 'block';
   document.getElementById('result').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
 
-  // Entrance sweep
-  const sweep = document.createElement('div');
-  sweep.style.cssText = 'position:fixed;inset:0;background:var(--ink);z-index:9999;pointer-events:none;animation:sweepOut .6s .1s ease both;';
-  document.body.appendChild(sweep);
-  const styleEl = document.createElement('style');
-  styleEl.textContent = '@keyframes sweepOut{from{opacity:1}to{opacity:0}}';
-  document.head.appendChild(styleEl);
-  setTimeout(() => { sweep.remove(); styleEl.remove(); }, 800);
+  // Intro animation + scroll only on first build, not on a live re-flow from a toggle
+  if (!opts.skipIntro) {
+    window.scrollTo({top:0,behavior:'smooth'});
+    const sweep = document.createElement('div');
+    sweep.style.cssText = 'position:fixed;inset:0;background:var(--ink);z-index:9999;pointer-events:none;animation:sweepOut .6s .1s ease both;';
+    document.body.appendChild(sweep);
+    const styleEl = document.createElement('style');
+    styleEl.textContent = '@keyframes sweepOut{from{opacity:1}to{opacity:0}}';
+    document.head.appendChild(styleEl);
+    setTimeout(() => { sweep.remove(); styleEl.remove(); }, 800);
+  }
 
-  // If specific dates chosen, season was auto-set; use it
-  if (S.useSpecificDates && !S.season) {
+  // Season: derive from dates if chosen, else default to autumn (best overall)
+  if (S.useSpecificDates && S.startDate && !S.season) {
     const m = parseInt(S.startDate.slice(5,7));
     S.season = m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=10?'autumn':'winter';
   }
+  if (!S.season) S.season = 'autumn';
+  if (!S.groupSize) S.groupSize = 'couple';
   const { entry, style, days, regions, season } = S;
   const r = [...regions];
   const pd = dailyCost[style];
@@ -1604,6 +1514,7 @@ function buildItinerary() {
   const pills = [entryLabel[entry], styleLabel[style], `${days} days`, season.charAt(0).toUpperCase()+season.slice(1)];
   r.forEach(reg => pills.push({hunza:'Hunza',skardu:'Skardu',fairy:'Fairy Meadows',hidden:'Hidden Valleys'}[reg]));
   document.getElementById('rPills').innerHTML = pills.map(p=>`<div class="result-pill">${p}</div>`).join('');
+  renderAdjust();
 
   // Best time outdoors note
   const wakeStr = `${String(S.wakeHour).padStart(2,'0')}:${String(S.wakeMin).padStart(2,'0')}`;
@@ -1735,6 +1646,35 @@ function toggleDay(i) {
   const open = bd.style.display !== 'none';
   bd.style.display = open ? 'none' : 'block';
   card.classList.toggle('open', !open);
+}
+
+/* ════════════════════════════════════════════════════════
+   RESULT-SIDE TOGGLES — season & group re-flow the live plan
+════════════════════════════════════════════════════════ */
+const SEASON_OPTS = [['spring','🌸 Spring'],['summer','☀️ Summer'],['autumn','🍂 Autumn'],['winter','❄️ Winter']];
+const GROUP_OPTS  = [['solo','🧍 Solo'],['couple','👫 Couple'],['family','👨‍👩‍👧 Family'],['group','👥 Group']];
+const ADJ_PILL = 'font-family:var(--fu);font-size:.6rem;font-weight:600;letter-spacing:.05em;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:.4rem .8rem;cursor:pointer;color:var(--cream-2);transition:all .15s;white-space:nowrap;';
+const ADJ_PILL_ON = 'background:var(--gold);border-color:var(--gold);color:#000;';
+
+function adjRow(label, key, opts, cur) {
+  const pills = opts.map(([v,txt]) =>
+    `<button onclick="setAdjust('${key}','${v}')" style="${ADJ_PILL}${v===cur?ADJ_PILL_ON:''}">${txt}</button>`).join('');
+  return `<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem">
+    <span style="font-size:.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);min-width:3.2rem;text-align:right">${label}</span>
+    ${pills}</div>`;
+}
+
+function renderAdjust() {
+  const el = document.getElementById('rAdjust');
+  if (!el) return;
+  el.innerHTML = adjRow('Season', 'season', SEASON_OPTS, S.season) +
+                 adjRow('Who', 'groupSize', GROUP_OPTS, S.groupSize);
+}
+
+function setAdjust(key, val) {
+  if (S[key] === val) return;
+  S[key] = val;
+  buildItinerary({ skipIntro: true });  // re-flow the whole plan with the new value
 }
 
 /* ════════════════════════════════════════════════════════
