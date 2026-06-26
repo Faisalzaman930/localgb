@@ -929,6 +929,10 @@ let cur = 0;
 const STEPS = 5;
 
 const dailyCost = { budget:4000, adventure:7000, cultural:9000, photography:11000, family:12000, luxury:35000 };
+
+/* Live, editable plan state — the generated itinerary is a draft the user can reshape */
+let currentItinerary = [];
+let currentCtx = null;
 const styleLabel = { budget:'Budget Backpacker', adventure:'Adventure & Trekking', cultural:'Culture & History', photography:'Scenic Photography', family:'Family', luxury:'Luxury' };
 const entryLabel = { 'fly-gilgit':'Flying into Gilgit','fly-skardu':'Flying into Skardu','road-kkh':'Driving the KKH','road-babusar':'Via Babusar Pass' };
 
@@ -1636,43 +1640,10 @@ function buildItinerary() {
 
   document.getElementById('rWarn').innerHTML = warn;
 
-  // Generate days
-  const itinerary = makeDays(entry, style, days, r, season, stayKey, foodKey);
-  const dc = document.getElementById('rDays');
-  dc.innerHTML = itinerary.map((d,i) => {
-    const bdHtml = buildDayBody(d, foodKey);
-    let dateLabel = '';
-    if (S.useSpecificDates && S.startDate) {
-      const dt = new Date(S.startDate);
-      dt.setDate(dt.getDate() + i);
-      const opts = { weekday:'short', month:'short', day:'numeric' };
-      dateLabel = `<div class="day-date">${dt.toLocaleDateString('en-GB', opts)}</div>`;
-    }
-    // Determine day type
-    const titleLower = d.title.toLowerCase();
-    let dayType = 'normal';
-    if (i === 0 || titleLower.includes('arrive') || titleLower.includes('islamabad') || titleLower.includes('drive to')) dayType = 'arrival';
-    else if (titleLower.includes('departure') || titleLower.includes('return') || titleLower.includes('chilas to')) dayType = 'transit';
-    else if (titleLower.includes('rest') || titleLower.includes('slow') || titleLower.includes('free day')) dayType = 'rest';
-    else if (titleLower.includes('eagle') || titleLower.includes('khunjerab') || titleLower.includes('deosai') || titleLower.includes('fairy meadows') || titleLower.includes('k2') || titleLower.includes('base camp') || titleLower.includes('babusar')) dayType = 'peak';
-
-    const dayTypeClass = dayType !== 'normal' ? ` day-${dayType}` : '';
-    const badgeMap = { arrival:'<span class="day-type-badge badge-arrival">Arrival</span>', peak:'<span class="day-type-badge badge-peak">★ Highlight</span>', rest:'<span class="day-type-badge badge-rest">Rest day</span>', transit:'<span class="day-type-badge badge-transit">Transit</span>' };
-    const badge = badgeMap[dayType] || '';
-
-    return `<div class="day-card${dayTypeClass}" id="day-${i}" data-place="${d.placeKey||''}">
-      <div class="day-hd" onclick="toggleDay(${i})">
-        <div class="day-n">${String(i+1).padStart(2,'0')}</div>
-        <div><div class="day-t">${d.title}${badge}</div><div class="day-l">${d.location}</div>${dateLabel}<div class="day-wiki" id="wiki-${i}"></div></div>
-        <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
-      </div>
-      <div class="day-wx" id="wx-${i}"></div>
-      <div id="best-hours-${i}" style="padding:.2rem 1rem .3rem;"></div>
-      <div class="day-sun" id="sun-${i}"></div>
-      <div class="day-bd" id="bd-${i}" style="display:${i===0?'block':'none'}">${bdHtml}</div>
-    </div>`;
-  }).join('');
-  if (document.getElementById('day-0')) document.getElementById('day-0').classList.add('open');
+  // Generate days into the live, editable plan state
+  currentCtx = { entry, style, days, regions:r, season, stayKey, foodKey, wlat, wlon, pd, total: pd*days };
+  currentItinerary = makeDays(entry, style, days, r, season, stayKey, foodKey);
+  renderDays();
 
   // Practical
   const total = pd * days;
@@ -1709,16 +1680,8 @@ function buildItinerary() {
     row.addEventListener('click', () => row.classList.toggle('packed'));
   });
 
-  // Save itinerary to localStorage for offline/refresh recovery
-  try {
-    localStorage.setItem('lgb_itinerary', JSON.stringify({
-      title: document.getElementById('rTitle').innerHTML,
-      sub: document.getElementById('rSub').textContent,
-      pills: document.getElementById('rPills').innerHTML,
-      days: document.getElementById('rDays').innerHTML,
-      savedAt: new Date().toISOString(),
-    }));
-  } catch(e) {}
+  // Save itinerary (data + snapshot) to localStorage for offline/refresh recovery
+  persistItinerary();
 
   // ── API calls — all vars now defined ──────────────────
   fetchRates(total);
@@ -1727,21 +1690,7 @@ function buildItinerary() {
     fetchFlightStatus(airport);
     fetchLiveFlights(airport);
   }
-  if (S.useSpecificDates && S.startDate && S.endDate) {
-    fetchDailyWeather(wlat, wlon, S.startDate, S.endDate, itinerary.length);
-  } else {
-    fetchSunTimes(wlat, wlon, itinerary.length);
-  }
-  const seenWiki = new Set();
-  itinerary.forEach((d, i) => {
-    if (!d.placeKey) return;
-    // Wikipedia (first occurrence of each place)
-    if (!seenWiki.has(d.placeKey)) { seenWiki.add(d.placeKey); fetchWiki(d.placeKey, i); }
-    // Wikidata description fallback
-    fetchWikidata(d.placeKey, i);
-    // OSM: fetch then enhance day card with real venues
-    fetchOSM(d.placeKey).then(osmData => enhanceDayCard(i, d.placeKey, osmData, stayKey, foodKey));
-  });
+  enrichDays();
 }
 
 /* ════════════════════════════════════════════════════════
@@ -1786,6 +1735,145 @@ function toggleDay(i) {
   const open = bd.style.display !== 'none';
   bd.style.display = open ? 'none' : 'block';
   card.classList.toggle('open', !open);
+}
+
+/* ════════════════════════════════════════════════════════
+   EDITABLE PLAN — render, enrich, persist, reshape
+════════════════════════════════════════════════════════ */
+const EDIT_BTN = 'font-family:var(--fu);font-size:.58rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--cream-2);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.35rem .6rem;cursor:pointer;line-height:1;transition:all .15s;';
+
+function placeLabel(key) {
+  return ({gilgit:'Gilgit',hunza:'Hunza / Karimabad',attabad:'Attabad & Passu',skardu:'Skardu',shigar:'Shigar Valley',deosai:'Deosai Plains',fairy:'Fairy Meadows'}[key]) || key.charAt(0).toUpperCase()+key.slice(1);
+}
+
+function swapOptionsHtml(selected) {
+  return '<option value="">Swap this day for…</option>' + Object.keys(PLACES).map(k =>
+    `<option value="${k}"${k===selected?' selected':''}>${placeLabel(k)}</option>`).join('');
+}
+
+function dayEditBar(i, d) {
+  const last = currentItinerary.length - 1;
+  const up = i === 0 ? '' : `<button onclick="event.stopPropagation();moveDay(${i},-1)" title="Move earlier" style="${EDIT_BTN}">↑</button>`;
+  const down = i === last ? '' : `<button onclick="event.stopPropagation();moveDay(${i},1)" title="Move later" style="${EDIT_BTN}">↓</button>`;
+  const del = currentItinerary.length <= 1 ? '' : `<button onclick="event.stopPropagation();deleteDay(${i})" title="Remove day" style="${EDIT_BTN}border-color:rgba(199,89,63,.4);color:#E8836B">✕ Remove</button>`;
+  return `<div class="day-edit" style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;padding:.55rem 1rem .7rem;border-top:1px solid rgba(255,255,255,.04)">
+    ${up}${down}
+    <button onclick="event.stopPropagation();swapDay(${i})" title="Swap place" style="${EDIT_BTN}">⇄ Swap</button>
+    ${del}
+    <select id="swap-${i}" onclick="event.stopPropagation()" onchange="applySwap(${i},this.value)" style="display:none;${EDIT_BTN}text-transform:none;letter-spacing:0;padding:.35rem .5rem">${swapOptionsHtml(d.placeKey)}</select>
+  </div>`;
+}
+
+function renderDays() {
+  const foodKey = (currentCtx && currentCtx.foodKey) || 'mid';
+  const dc = document.getElementById('rDays');
+  dc.innerHTML = currentItinerary.map((d,i) => {
+    const bdHtml = buildDayBody(d, foodKey);
+    let dateLabel = '';
+    if (S.useSpecificDates && S.startDate) {
+      const dt = new Date(S.startDate);
+      dt.setDate(dt.getDate() + i);
+      const opts = { weekday:'short', month:'short', day:'numeric' };
+      dateLabel = `<div class="day-date">${dt.toLocaleDateString('en-GB', opts)}</div>`;
+    }
+    const titleLower = d.title.toLowerCase();
+    let dayType = 'normal';
+    if (i === 0 || titleLower.includes('arrive') || titleLower.includes('islamabad') || titleLower.includes('drive to')) dayType = 'arrival';
+    else if (titleLower.includes('departure') || titleLower.includes('return') || titleLower.includes('chilas to')) dayType = 'transit';
+    else if (titleLower.includes('rest') || titleLower.includes('slow') || titleLower.includes('free day')) dayType = 'rest';
+    else if (titleLower.includes('eagle') || titleLower.includes('khunjerab') || titleLower.includes('deosai') || titleLower.includes('fairy meadows') || titleLower.includes('k2') || titleLower.includes('base camp') || titleLower.includes('babusar')) dayType = 'peak';
+
+    const dayTypeClass = dayType !== 'normal' ? ` day-${dayType}` : '';
+    const badgeMap = { arrival:'<span class="day-type-badge badge-arrival">Arrival</span>', peak:'<span class="day-type-badge badge-peak">★ Highlight</span>', rest:'<span class="day-type-badge badge-rest">Rest day</span>', transit:'<span class="day-type-badge badge-transit">Transit</span>' };
+    const badge = badgeMap[dayType] || '';
+
+    return `<div class="day-card${dayTypeClass}" id="day-${i}" data-place="${d.placeKey||''}">
+      <div class="day-hd" onclick="toggleDay(${i})">
+        <div class="day-n">${String(i+1).padStart(2,'0')}</div>
+        <div><div class="day-t">${d.title}${badge}</div><div class="day-l">${d.location}</div>${dateLabel}<div class="day-wiki" id="wiki-${i}"></div></div>
+        <div class="day-cost">${d.estCost}<span class="day-chevron" id="chev-${i}">▾</span></div>
+      </div>
+      ${dayEditBar(i, d)}
+      <div class="day-wx" id="wx-${i}"></div>
+      <div id="best-hours-${i}" style="padding:.2rem 1rem .3rem;"></div>
+      <div class="day-sun" id="sun-${i}"></div>
+      <div class="day-bd" id="bd-${i}" style="display:${i===0?'block':'none'}">${bdHtml}</div>
+    </div>`;
+  }).join('') +
+  `<button onclick="addDay()" style="${EDIT_BTN}width:100%;padding:.9rem;margin-top:.8rem;border-style:dashed;border-color:var(--gold-border);color:var(--gold);font-size:.65rem">+ Add a day</button>`;
+  if (document.getElementById('day-0')) document.getElementById('day-0').classList.add('open');
+}
+
+function enrichDays() {
+  if (!currentCtx) return;
+  const { wlat, wlon, stayKey, foodKey } = currentCtx;
+  if (S.useSpecificDates && S.startDate && S.endDate) {
+    fetchDailyWeather(wlat, wlon, S.startDate, S.endDate, currentItinerary.length);
+  } else {
+    fetchSunTimes(wlat, wlon, currentItinerary.length);
+  }
+  const seenWiki = new Set();
+  currentItinerary.forEach((d, i) => {
+    if (!d.placeKey) return;
+    if (!seenWiki.has(d.placeKey)) { seenWiki.add(d.placeKey); fetchWiki(d.placeKey, i); }
+    fetchWikidata(d.placeKey, i);
+    fetchOSM(d.placeKey).then(osmData => enhanceDayCard(i, d.placeKey, osmData, stayKey, foodKey));
+  });
+}
+
+function persistItinerary() {
+  try {
+    localStorage.setItem('lgb_itinerary', JSON.stringify({
+      v: 2,
+      itinerary: currentItinerary,
+      ctx: currentCtx,
+      title: document.getElementById('rTitle').innerHTML,
+      sub: document.getElementById('rSub').textContent,
+      pills: document.getElementById('rPills').innerHTML,
+      days: document.getElementById('rDays').innerHTML,
+      savedAt: new Date().toISOString(),
+    }));
+  } catch(e) {}
+}
+
+// Re-render + re-enrich + persist after any structural edit
+function refreshPlan() { renderDays(); enrichDays(); persistItinerary(); }
+
+function moveDay(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= currentItinerary.length) return;
+  const [d] = currentItinerary.splice(i, 1);
+  currentItinerary.splice(j, 0, d);
+  refreshPlan();
+}
+
+function deleteDay(i) {
+  if (currentItinerary.length <= 1) return;
+  currentItinerary.splice(i, 1);
+  refreshPlan();
+}
+
+function swapDay(i) {
+  const sel = document.getElementById(`swap-${i}`);
+  if (sel) sel.style.display = sel.style.display === 'none' ? 'inline-block' : 'none';
+}
+
+function applySwap(i, key) {
+  if (!key) return;
+  const prev = currentItinerary[i];
+  const foodKey = (currentCtx && currentCtx.foodKey) || 'mid';
+  currentItinerary[i] = mkDay(placeLabel(key), placeLabel(key), prev.estCost, key, foodKey, prev.tip || '');
+  refreshPlan();
+}
+
+function addDay() {
+  const foodKey = (currentCtx && currentCtx.foodKey) || 'mid';
+  const cost = (currentCtx && currentCtx.pd) ? `Rs ${(currentCtx.pd/1000).toFixed(0)}k–${(currentCtx.pd*1.3/1000).toFixed(0)}k` : 'Flexible';
+  const key = Object.keys(PLACES)[0] || 'hunza';
+  currentItinerary.push(mkDay('Free / Explore Day', 'Your choice — tap Swap to pick a place', cost, key, foodKey, 'Use this day to revisit a favourite spot, rest, or add a side trip. Tap “Swap” to load a place’s activities.'));
+  refreshPlan();
+  const last = document.getElementById(`day-${currentItinerary.length-1}`);
+  if (last) last.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 /* ════════════════════════════════════════════════════════
@@ -2226,13 +2314,22 @@ function restoreItinerary() {
     document.getElementById('rTitle').innerHTML = saved.title;
     document.getElementById('rSub').textContent = saved.sub;
     document.getElementById('rPills').innerHTML = saved.pills;
-    document.getElementById('rDays').innerHTML = saved.days;
     document.getElementById('wizardWrap').classList.add('hidden');
     document.getElementById('heroWrap').style.display = 'none';
     document.getElementById('restoreBanner').style.display = 'none';
     const rw = document.getElementById('resultWrap');
     rw.classList.add('active'); rw.style.display = 'block';
     document.getElementById('result').classList.add('active');
+    // v2: rebuild the live, editable plan from data (so saved edits stay editable)
+    if (saved.v === 2 && Array.isArray(saved.itinerary)) {
+      currentItinerary = saved.itinerary;
+      currentCtx = saved.ctx;
+      renderDays();
+      enrichDays();
+    } else {
+      // legacy snapshot — render as static HTML
+      document.getElementById('rDays').innerHTML = saved.days;
+    }
   } catch(e) {}
 }
 
