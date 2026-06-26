@@ -76,22 +76,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gilgitbaltistanguide.com/fairy-meadows/guide</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.gilgitbaltistanguide.com/fairy-meadows/how-to-reach</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/fairy-meadows/nanga-parbat-base-camp</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/fairy-meadows/trekking</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -99,11 +84,6 @@
     <loc>https://www.gilgitbaltistanguide.com/ghizer</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/ghizer/guide</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/ghizer/hotels</loc>
@@ -136,11 +116,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gilgitbaltistanguide.com/gilgit/guide</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.gilgitbaltistanguide.com/gilgit/haramosh-valley</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
@@ -152,11 +127,6 @@
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/gilgit/kargah-buddha</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/gilgit/naltar-valley</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -231,11 +201,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gilgitbaltistanguide.com/hunza/guide</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.gilgitbaltistanguide.com/hunza/gulmit</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
@@ -287,11 +252,6 @@
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/hunza/things-to-do</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/hunza/tour-packages</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -371,11 +331,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.gilgitbaltistanguide.com/naltar/guide</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.gilgitbaltistanguide.com/naltar/how-to-reach</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
@@ -402,16 +357,6 @@
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/skardu/chunda-valley</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/skardu/deosai-plains</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/skardu/guide</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -492,11 +437,6 @@
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/skardu/things-to-do</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/skardu/tour-packages</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -602,11 +542,6 @@
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/tours/hunza</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/tours/k2-base-camp</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.7</priority>
   </url>
@@ -819,16 +754,6 @@
     <loc>https://www.gilgitbaltistanguide.com/yasin</loc>
     <lastmod>2026-06-27</lastmod>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/yasin-ishkoman</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/yasin/guide</loc>
-    <lastmod>2026-06-27</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/yasin/how-to-reach</loc>
