@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-P0 SEO injector for LocalGB.
+P0 SEO injector for GB Guide.
 
 Idempotently injects into every <page>/index.html, just before </head>:
   - <link rel="canonical">
@@ -22,7 +22,7 @@ import json
 import datetime
 from pathlib import Path
 
-DOMAIN = "https://gilgitbaltistanguide.com"
+DOMAIN = "https://www.gilgitbaltistanguide.com"
 ROOT = Path(__file__).resolve().parent
 DEFAULT_OG = f"{DOMAIN}/images/hunza-hero.webp"
 TODAY = datetime.date.today().isoformat()
@@ -79,13 +79,13 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
     og_url = f"{DOMAIN}/images/{og_img}" if og_img else DEFAULT_OG
 
     # Clean OG title: drop the trailing brand suffix if present.
-    og_title = re.sub(r"\s*[—|-]\s*LocalGB.*$", "", title).strip() or title
+    og_title = re.sub(r"\s*[—|-]\s*GB Guide.*$", "", title).strip() or title
 
     tags = [
         START,
         f'<link rel="canonical" href="{url}">',
         '<meta property="og:type" content="website">',
-        '<meta property="og:site_name" content="LocalGB">',
+        '<meta property="og:site_name" content="GB Guide">',
         f'<meta property="og:title" content="{esc(og_title)}">',
         f'<meta property="og:description" content="{esc(desc)}">',
         f'<meta property="og:url" content="{url}">',
@@ -103,7 +103,7 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
         graph.append({
             "@type": "Organization",
             "@id": f"{DOMAIN}/#org",
-            "name": "LocalGB",
+            "name": "GB Guide",
             "url": DOMAIN,
             "logo": og_url,
             "description": "Honest, on-the-ground travel guides to Gilgit-Baltistan, "
@@ -113,7 +113,7 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
             "@type": "WebSite",
             "@id": f"{DOMAIN}/#website",
             "url": DOMAIN,
-            "name": "LocalGB",
+            "name": "GB Guide",
             "publisher": {"@id": f"{DOMAIN}/#org"},
         })
     else:
@@ -144,7 +144,7 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
                 "headline": og_title,
                 "description": desc,
                 "image": og_url,
-                "author": {"@type": "Organization", "name": "LocalGB", "@id": f"{DOMAIN}/#org"},
+                "author": {"@type": "Organization", "name": "GB Guide", "@id": f"{DOMAIN}/#org"},
                 "publisher": {"@id": f"{DOMAIN}/#org"},
                 "dateModified": TODAY,
                 "mainEntityOfPage": url,
@@ -174,8 +174,8 @@ def inject(path: Path) -> bool:
     desc = dm.group(2).strip() if dm else ""
     if not desc:
         # Derive a serviceable description from the title.
-        base = re.sub(r"\s*[—|-]\s*LocalGB.*$", "", title).strip() or "Gilgit-Baltistan"
-        desc = f"{base} — honest local travel guide for Gilgit-Baltistan from LocalGB."
+        base = re.sub(r"\s*[—|-]\s*GB Guide.*$", "", title).strip() or "Gilgit-Baltistan"
+        desc = f"{base} — honest local travel guide for Gilgit-Baltistan from GB Guide."
 
     block = build_block(rel_dir, title, desc)
 
@@ -217,7 +217,7 @@ def gen_sitemap(dirs):
 
 
 def main():
-    pages = sorted(ROOT.glob("*/index.html")) + [ROOT / "index.html"]
+    pages = sorted(ROOT.rglob("index.html"))
     seen_dirs = []
     for p in pages:
         rel = inject(p)

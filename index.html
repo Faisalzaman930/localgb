@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LocalGB — Gilgit-Baltistan, As Locals Tell It</title>
+<title>GB Guide — Gilgit-Baltistan, As Locals Tell It</title>
+<link rel="preload" as="image" href="images/hunza-hero.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,300;1,6..96,400;1,6..96,500;1,6..96,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -170,11 +171,15 @@ nav.scrolled {
   inset: 0;
   background: url('images/hunza-hero.webp') center 30% / cover no-repeat;
   transform: scale(1.04);
+  will-change: transform;
   animation: heroZoom 18s ease-in-out infinite alternate;
 }
 @keyframes heroZoom {
   from { transform: scale(1.04); }
   to   { transform: scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo { animation: none; transform: none; }
 }
 /* Multi-layer overlay: dark ink bottom, gold tint top-right, vignette */
 .hero-bg-glow {
@@ -1573,37 +1578,37 @@ footer {
 
 </style>
 <!-- SEO:START -->
-<link rel="canonical" href="https://gilgitbaltistanguide.com">
+<link rel="canonical" href="https://www.gilgitbaltistanguide.com">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="LocalGB">
-<meta property="og:title" content="LocalGB — Gilgit-Baltistan, As Locals Tell It">
-<meta property="og:description" content="LocalGB — Gilgit-Baltistan, As Locals Tell It — honest local travel guide for Gilgit-Baltistan from LocalGB.">
-<meta property="og:url" content="https://gilgitbaltistanguide.com">
-<meta property="og:image" content="https://gilgitbaltistanguide.com/images/hunza-hero.webp">
+<meta property="og:site_name" content="GB Guide">
+<meta property="og:title" content="GB Guide — Gilgit-Baltistan, As Locals Tell It">
+<meta property="og:description" content="GB Guide — Gilgit-Baltistan, As Locals Tell It — honest local travel guide for Gilgit-Baltistan from GB Guide.">
+<meta property="og:url" content="https://www.gilgitbaltistanguide.com">
+<meta property="og:image" content="https://www.gilgitbaltistanguide.com/images/hunza-hero.webp">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LocalGB — Gilgit-Baltistan, As Locals Tell It">
-<meta name="twitter:description" content="LocalGB — Gilgit-Baltistan, As Locals Tell It — honest local travel guide for Gilgit-Baltistan from LocalGB.">
-<meta name="twitter:image" content="https://gilgitbaltistanguide.com/images/hunza-hero.webp">
+<meta name="twitter:title" content="GB Guide — Gilgit-Baltistan, As Locals Tell It">
+<meta name="twitter:description" content="GB Guide — Gilgit-Baltistan, As Locals Tell It — honest local travel guide for Gilgit-Baltistan from GB Guide.">
+<meta name="twitter:image" content="https://www.gilgitbaltistanguide.com/images/hunza-hero.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://gilgitbaltistanguide.com/#org",
-      "name": "LocalGB",
-      "url": "https://gilgitbaltistanguide.com",
-      "logo": "https://gilgitbaltistanguide.com/images/hunza-hero.webp",
+      "@id": "https://www.gilgitbaltistanguide.com/#org",
+      "name": "GB Guide",
+      "url": "https://www.gilgitbaltistanguide.com",
+      "logo": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
       "description": "Honest, on-the-ground travel guides to Gilgit-Baltistan, written by a local — plus a free trip planner."
     },
     {
       "@type": "WebSite",
-      "@id": "https://gilgitbaltistanguide.com/#website",
-      "url": "https://gilgitbaltistanguide.com",
-      "name": "LocalGB",
+      "@id": "https://www.gilgitbaltistanguide.com/#website",
+      "url": "https://www.gilgitbaltistanguide.com",
+      "name": "GB Guide",
       "publisher": {
-        "@id": "https://gilgitbaltistanguide.com/#org"
+        "@id": "https://www.gilgitbaltistanguide.com/#org"
       }
     }
   ]
@@ -1616,7 +1621,7 @@ footer {
 <!-- ─── NAV ─────────────────────────────────────────── -->
 <nav id="navbar">
   <div class="nav-logo">
-    <span class="l1">Local</span><span class="l2">GB</span>
+    <span class="l1">GB</span><span class="l2">Guide</span>
   </div>
   <ul class="nav-links">
     <li><a href="destinations/index.html">Destinations</a></li>
@@ -2402,7 +2407,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-logo"><span class="l1">Local</span><span class="l2">GB</span></div>
+        <div class="footer-logo"><span class="l1">GB</span><span class="l2">Guide</span></div>
         <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
         <div class="footer-socials">
           <div class="social-btn">Y</div>
@@ -2446,7 +2451,7 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2025 LocalGB · Built from the mountains, for the mountains.</span>
+      <span class="footer-copy">&copy; 2025 GB Guide · Built from the mountains, for the mountains.</span>
       <span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span>
     </div>
   </div>
