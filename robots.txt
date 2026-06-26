@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://localgb.pk/sitemap.xml
+Sitemap: https://gilgitbaltistanguide.com/sitemap.xml

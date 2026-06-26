@@ -22,7 +22,7 @@ import json
 import datetime
 from pathlib import Path
 
-DOMAIN = "https://localgb.pk"
+DOMAIN = "https://gilgitbaltistanguide.com"
 ROOT = Path(__file__).resolve().parent
 DEFAULT_OG = f"{DOMAIN}/images/hunza-hero.webp"
 TODAY = datetime.date.today().isoformat()
