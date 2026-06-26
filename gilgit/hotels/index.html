@@ -98,7 +98,7 @@
   <a href="../../explore/index.html" class="nav-cta">Plan Your Trip</a>
 </div>
 <section class="page-hero">
-  <div class="page-hero-img" style="background:linear-gradient(155deg,#07080D 0%,#0E1018 100%);"></div>
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#07080D 0%,#0E1018 100%);" role="img" aria-label="Hotels in Gilgit — Gilgit-Baltistan"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="page-hero-tag">Hotels</div>
@@ -152,6 +152,36 @@
     <a href="../../explore/index.html?entry=fly-gilgit" style="display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--fu);font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;">Build My Itinerary →</a>
   </div>
 </section>
+<section class="section">
+  <div class="info-grid reveal">
+    <div><span class="label">Choosing an Area</span><h2 class="section-title">Where in the City<br><em>to Base Yourself</em></h2></div>
+    <div class="info-body">
+<p>In a city the size of Gilgit, the neighbourhood you stay in matters more than the star rating. The Saddar Bazaar area is the most practical base for most travellers: it puts you within walking distance of restaurants, banks, the bus stand, and the spots where jeeps and taxis are hired for onward trips. If you're arranging transport into the valleys, being central saves a lot of back-and-forth.</p>
+<p>The Jutial area, on the city's residential ridge, is quieter and a little greener, and works well if you want calm over convenience. What's generally not worth it is staying out near the airport — those places lean on the proximity for a price premium, but you end up far from anything useful. Wherever you land, breakfast is usually included, and the better-run guesthouses are noticeably more hospitable than equivalent budgets elsewhere in the country.</p>
+</div>
+  </div>
+</section>
+<section class="section">
+  <div class="info-grid reveal">
+    <div><span class="label">Booking Smart</span><h2 class="section-title">When to Book<br><em>Ahead</em></h2></div>
+    <div class="info-body">
+<p>Timing is the main thing to get right. Gilgit fills up during the July–August peak, and it fills up fast whenever flights from Islamabad are cancelled and a planeload of travellers suddenly needs a bed. If you're flying in and know your dates, book ahead — especially for the limited mid-range and upscale options, which sell out first.</p>
+<p>In shoulder season, walking in and choosing a room on the spot is usually fine, and can even get you a better rate than an online listing. One local quirk worth planning around is electricity: Gilgit has scheduled power cuts that stretch to several hours a day, longer in winter. The better guesthouses run generators, so if you depend on reliable charging or heating, ask specifically about backup power before you commit.</p>
+</div>
+  </div>
+</section>
+<section class="section">
+  <div class="info-grid reveal">
+    <div><span class="label">FAQ</span><h2 class="section-title">Common<br><em>Questions</em></h2></div>
+    <div class="info-body faq">
+<details><summary>What's the best area to stay in Gilgit?</summary><p>The Saddar Bazaar area is the most practical, within walking distance of restaurants, banks, the bus stand, and the jeep and taxi hiring spots. The Jutial ridge is quieter if you prefer calm over convenience.</p></details>
+<details><summary>How much do hotels in Gilgit cost?</summary><p>Roughly Rs.1,500–3,000 for budget guesthouses, Rs.4,000–7,000 for mid-range, and Rs.12,000–20,000 for the city's single upscale option. Breakfast is often included.</p></details>
+<details><summary>Do I need to book in advance?</summary><p>In peak season (July–August), and whenever flights from Islamabad are cancelled, yes — the city fills up quickly. In shoulder season, walking in is usually fine.</p></details>
+<details><summary>Is there reliable electricity?</summary><p>Gilgit has scheduled load shedding of several hours a day, longer in winter. Better guesthouses run generators, so ask about backup power if you have critical charging or heating needs.</p></details>
+<details><summary>Should I stay near the airport?</summary><p>Generally no. Hotels near the airport charge a premium for the location but leave you far from restaurants, transport, and everything else useful.</p></details>
+</div>
+  </div>
+</section>
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -170,5 +200,6 @@ hbg.addEventListener('click',()=>{hbg.classList.toggle('open');drawer.classList.
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const s=[...e.target.parentElement.querySelectorAll('.reveal')];setTimeout(()=>e.target.classList.add('visible'),s.indexOf(e.target)*90);obs.unobserve(e.target);}}),{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the best area to stay in Gilgit?","acceptedAnswer":{"@type":"Answer","text":"The Saddar Bazaar area is the most practical, within walking distance of restaurants, banks, the bus stand, and the jeep and taxi hiring spots. The Jutial ridge is quieter if you prefer calm over convenience."}},{"@type":"Question","name":"How much do hotels in Gilgit cost?","acceptedAnswer":{"@type":"Answer","text":"Roughly Rs.1,500–3,000 for budget guesthouses, Rs.4,000–7,000 for mid-range, and Rs.12,000–20,000 for the city's single upscale option. Breakfast is often included."}},{"@type":"Question","name":"Do I need to book in advance?","acceptedAnswer":{"@type":"Answer","text":"In peak season (July–August), and whenever flights from Islamabad are cancelled, yes — the city fills up quickly. In shoulder season, walking in is usually fine."}},{"@type":"Question","name":"Is there reliable electricity?","acceptedAnswer":{"@type":"Answer","text":"Gilgit has scheduled load shedding of several hours a day, longer in winter. Better guesthouses run generators, so ask about backup power if you have critical charging or heating needs."}},{"@type":"Question","name":"Should I stay near the airport?","acceptedAnswer":{"@type":"Answer","text":"Generally no. Hotels near the airport charge a premium for the location but leave you far from restaurants, transport, and everything else useful."}}]}</script>
 </body>
 </html>
