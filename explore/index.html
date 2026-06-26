@@ -482,13 +482,13 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LocalGB">
 <meta property="og:title" content="Plan Your GB Trip">
-<meta property="og:description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you">
+<meta property="og:description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you're arriving, your style, and your budget.">
 <meta property="og:url" content="https://gilgitbaltistanguide.com/explore">
 <meta property="og:image" content="https://gilgitbaltistanguide.com/images/hunza-hero.webp">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plan Your GB Trip">
-<meta name="twitter:description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you">
+<meta name="twitter:description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you're arriving, your style, and your budget.">
 <meta name="twitter:image" content="https://gilgitbaltistanguide.com/images/hunza-hero.webp">
 <script type="application/ld+json">
 {
@@ -514,7 +514,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
     {
       "@type": "Article",
       "headline": "Plan Your GB Trip",
-      "description": "Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you",
+      "description": "Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you're arriving, your style, and your budget.",
       "image": "https://gilgitbaltistanguide.com/images/hunza-hero.webp",
       "author": {
         "@type": "Organization",
@@ -1575,6 +1575,7 @@ function buildItinerary(opts = {}) {
   // Populate next steps links
   const nextLinks = [
     { label:`Explore ${r.includes('hunza') ? 'Hunza' : r.includes('skardu') ? 'Skardu' : 'GB'} in depth`, href: r.includes('skardu') && !r.includes('hunza') ? '../skardu/index.html' : '../hunza/index.html' },
+    { label:'Is the road open? Pass status', href:'../status/index.html' },
     { label:'Browse all treks', href:'../trekking/index.html' },
     { label:'Vetted agencies', href:'../agencies/index.html' },
     { label:'Budget guide', href:'../travel/index.html' },

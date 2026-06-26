@@ -168,7 +168,10 @@ def inject(path: Path) -> bool:
     rel_dir = "" if rel_dir == "." else rel_dir
 
     title = extract(r"<title>(.*?)</title>", html)
-    desc = extract(r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']', html)
+    # Quote-aware: capture the opening quote and match to the same closing quote,
+    # so an apostrophe inside a double-quoted description doesn't truncate it.
+    dm = re.search(r'<meta\s+name=["\']description["\']\s+content=(["\'])(.*?)\1', html, re.I | re.S)
+    desc = dm.group(2).strip() if dm else ""
     if not desc:
         # Derive a serviceable description from the title.
         base = re.sub(r"\s*[—|-]\s*LocalGB.*$", "", title).strip() or "Gilgit-Baltistan"
