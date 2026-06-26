@@ -477,6 +477,60 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 .badge-rest { background:rgba(100,180,100,.12); color:rgba(120,200,120,.8); }
 .badge-transit { background:rgba(160,160,160,.1); color:rgba(180,180,180,.7); }
 </style>
+<!-- SEO:START -->
+<link rel="canonical" href="https://localgb.pk/explore">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LocalGB">
+<meta property="og:title" content="Plan Your GB Trip">
+<meta property="og:description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you">
+<meta property="og:url" content="https://localgb.pk/explore">
+<meta property="og:image" content="https://localgb.pk/images/hunza-hero.webp">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plan Your GB Trip">
+<meta name="twitter:description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you">
+<meta name="twitter:image" content="https://localgb.pk/images/hunza-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://localgb.pk"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Explore",
+          "item": "https://localgb.pk/explore"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Plan Your GB Trip",
+      "description": "Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you",
+      "image": "https://localgb.pk/images/hunza-hero.webp",
+      "author": {
+        "@type": "Organization",
+        "name": "LocalGB",
+        "@id": "https://localgb.pk/#org"
+      },
+      "publisher": {
+        "@id": "https://localgb.pk/#org"
+      },
+      "dateModified": "2026-06-27",
+      "mainEntityOfPage": "https://localgb.pk/explore"
+    }
+  ]
+}
+</script>
+<!-- SEO:END -->
 </head>
 <body>
 
@@ -507,80 +561,12 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 
 <div class="app">
 
-<!-- ── SAMPLE GALLERY ── -->
-<div id="sampleWrap">
-<div class="app-inner" style="padding:0">
-  <div class="sample-intro">
-    <span class="label" style="justify-content:center">Journey Architect</span>
-    <h1>Plan Your<br><em>GB Trip</em></h1>
-    <p>Real itineraries, built around how you actually travel. Pick one to start — or build your own from scratch.</p>
-    <button class="already-btn" onclick="showAlready()">📍 Already in GB? Find what's near you →</button>
-  </div>
-
-  <div class="sample-grid">
-
-    <div class="sample-card" onclick="loadSample('fly-gilgit','adventure',10,['hunza','fairy','hidden'],'autumn',6,30,'couple')">
-      <div class="sample-card-tag">Most Popular · Autumn</div>
-      <div class="sample-card-title">10 Days<br>Hunza & Beyond</div>
-      <div class="sample-card-meta">Flying into Gilgit · Adventure · Couple · Wake 06:30<br>The classic first-time north route done properly.</div>
-      <div class="sample-card-stops">
-        <span class="sample-stop">Gilgit</span>
-        <span class="sample-stop">Karimabad</span>
-        <span class="sample-stop">Attabad Lake</span>
-        <span class="sample-stop">Eagle's Nest</span>
-        <span class="sample-stop">Fairy Meadows</span>
-        <span class="sample-stop">Passu Cones</span>
-      </div>
-      <div class="sample-card-cta">Use this itinerary →</div>
-    </div>
-
-    <div class="sample-card" onclick="loadSample('fly-skardu','cultural',8,['skardu'],'summer',7,30,'family')">
-      <div class="sample-card-tag">Family · Summer</div>
-      <div class="sample-card-title">8 Days<br>Skardu & Baltistan</div>
-      <div class="sample-card-meta">Flying into Skardu · Culture & History · Family · Wake 07:30<br>K2 region without the extreme trekking. Forts, deserts, lakes.</div>
-      <div class="sample-card-stops">
-        <span class="sample-stop">Skardu</span>
-        <span class="sample-stop">Shigar Fort</span>
-        <span class="sample-stop">Deosai Plains</span>
-        <span class="sample-stop">Katpana Desert</span>
-        <span class="sample-stop">Kachura Lake</span>
-        <span class="sample-stop">Khaplu</span>
-      </div>
-      <div class="sample-card-cta">Use this itinerary →</div>
-    </div>
-
-    <div class="sample-card" onclick="loadSample('road-babusar','budget',14,['hunza','skardu','fairy'],'summer',7,0,'solo')">
-      <div class="sample-card-tag">Epic · Solo · Budget</div>
-      <div class="sample-card-title">14 Days<br>Full KKH Circuit</div>
-      <div class="sample-card-meta">Via Babusar Pass · Budget · Solo · Wake 07:00<br>Naran → Babusar → Chilas → Fairy Meadows → Hunza → Skardu.</div>
-      <div class="sample-card-stops">
-        <span class="sample-stop">Naran</span>
-        <span class="sample-stop">Babusar Pass</span>
-        <span class="sample-stop">Fairy Meadows</span>
-        <span class="sample-stop">Gilgit</span>
-        <span class="sample-stop">Hunza</span>
-        <span class="sample-stop">Skardu</span>
-      </div>
-      <div class="sample-card-cta">Use this itinerary →</div>
-    </div>
-
-  </div>
-
-  <div class="sample-divider">
-    <span class="sample-divider-line"></span>
-    <span class="sample-divider-text">or build your own</span>
-    <span class="sample-divider-line"></span><br><br>
-    <button class="build-own-btn" onclick="startWizard()">Build My Own Itinerary →</button>
-  </div>
-</div>
-</div>
-
-<!-- DESKTOP: hero shown above wizard -->
+<!-- ── COMPACT HERO ── -->
 <div class="app-inner" id="heroWrap">
-  <div class="app-hero">
-    <span class="label">Journey Architect</span>
-    <h1>Plan Your<br><em>GB Trip</em></h1>
-    <p>Answer seven quick questions. Get a detailed day-by-day itinerary built around your entry point, travel style, wake-up time, and group.</p>
+  <div class="app-hero" style="padding:3.5rem 0 1.5rem">
+    <span class="label" style="justify-content:center">Journey Architect</span>
+    <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Plan Your<br><em>GB Trip</em></h1>
+    <p style="margin-bottom:1rem">Answer 5 questions. Get a detailed day-by-day itinerary for Gilgit-Baltistan.</p>
     <button class="already-btn" onclick="showAlready()">📍 Already in GB? Find what's near you →</button>
   </div>
 </div>
@@ -590,65 +576,89 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
   <div class="wizard-scroll" id="wizardScroll">
   <div class="app-inner" id="wizardInner">
 
-    <div class="progress" id="progressBar">
+    <!-- Progress: Step X of 5 -->
+    <div class="progress" id="progressBar" style="align-items:center;gap:6px;">
       <div class="progress-dot" data-s="0"></div>
       <div class="progress-dot" data-s="1"></div>
       <div class="progress-dot" data-s="2"></div>
       <div class="progress-dot" data-s="3"></div>
       <div class="progress-dot" data-s="4"></div>
-      <div class="progress-dot" data-s="5"></div>
-      <div class="progress-dot" data-s="6"></div>
+      <span id="progressLabel" style="font-family:var(--fu);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,232,213,.35);margin-left:.5rem;">Step 1 of 5</span>
     </div>
 
     <div class="live-preview" id="livePreview"></div>
 
-    <!-- STEP 0: Entry -->
+    <!-- STEP 0: Origin + entry (revealed inline) -->
     <div class="step active" id="step-0">
-      <div class="step-q">How are you<br>getting to GB?</div>
-      <p class="step-sub">Your entry point determines your entire route.</p>
-      <button class="already-btn-inline" onclick="showAlready()">📍 Already in GB? Find what's near you →</button>
-      <div class="choices c2" data-key="entry">
-        <div class="choice" data-v="fly-gilgit">
-          <span class="choice-icon">✈️</span>
-          <div class="choice-title">Fly into Gilgit</div>
-          <div class="choice-desc">PIA from Islamabad. 45 min. Best start for Hunza and upper KKH.</div>
-          <div class="choice-tag">Most common</div>
-          <div class="choice-warn">40–60% cancellation rate — always have a road backup date.</div>
+      <div class="step-q">Where are you<br>travelling from?</div>
+      <p class="step-sub">This shapes your entry point and entire route into GB.</p>
+      <div class="choices c2" id="originChoices">
+        <div class="choice" data-v="international" onclick="selectOrigin('international')">
+          <span class="choice-icon">🌍</span>
+          <div class="choice-title">International</div>
+          <div class="choice-desc">Flying from outside Pakistan. You'll land in Islamabad first, then connect to GB.</div>
+          <div class="choice-tag">All entry routes</div>
         </div>
-        <div class="choice" data-v="fly-skardu">
-          <span class="choice-icon">✈️</span>
-          <div class="choice-title">Fly into Skardu</div>
-          <div class="choice-desc">PIA from ISB or LHE. Gateway to K2, Deosai, and Baltistan.</div>
-          <div class="choice-tag">K2 region</div>
-          <div class="choice-warn">Mountain approach is spectacular. Weather-dependent.</div>
+        <div class="choice" data-v="pakistan" onclick="selectOrigin('pakistan')">
+          <span class="choice-icon">🇵🇰</span>
+          <div class="choice-title">From Pakistan</div>
+          <div class="choice-desc">Travelling from Lahore, Islamabad, Karachi or another city.</div>
+          <div class="choice-tag">Domestic traveller</div>
         </div>
-        <div class="choice" data-v="road-kkh">
-          <span class="choice-icon">🚗</span>
-          <div class="choice-title">Drive via KKH</div>
-          <div class="choice-desc">Islamabad → Besham → Chilas → Gilgit. 15–18h. The classic route.</div>
-          <div class="choice-tag">Classic route</div>
-          <div class="choice-warn">Kohistan is rough. Drive in daylight only.</div>
-        </div>
-        <div class="choice" data-v="road-babusar">
-          <span class="choice-icon">🏔</span>
-          <div class="choice-title">Via Babusar Pass</div>
-          <div class="choice-desc">ISB → Naran → Babusar Top → Chilas → GB. More dramatic than KKH.</div>
-          <div class="choice-tag">Summer only · Jun–Oct</div>
-          <div class="choice-warn">4,173m pass. Jeep only above Naran.</div>
+      </div>
+
+      <!-- Entry options — revealed after origin picked -->
+      <div id="entryReveal" style="display:none;margin-top:1.75rem;">
+        <p style="font-family:var(--fu);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;">How are you getting to GB?</p>
+        <div class="choices c2" data-key="entry">
+          <div class="choice" data-v="fly-gilgit">
+            <span class="choice-icon">✈️</span>
+            <div class="choice-title">Fly into Gilgit</div>
+            <div class="choice-desc">PIA from Islamabad. 45 min. Best start for Hunza and upper KKH.</div>
+            <div class="choice-tag">Most popular</div>
+            <div class="choice-warn">40–60% cancellation rate — always have a road backup.</div>
+          </div>
+          <div class="choice" data-v="fly-skardu">
+            <span class="choice-icon">✈️</span>
+            <div class="choice-title">Fly into Skardu</div>
+            <div class="choice-desc">PIA from Islamabad or Lahore. Gateway to K2, Deosai, and Baltistan.</div>
+            <div class="choice-tag">K2 region</div>
+            <div class="choice-warn">Mountain approach is spectacular. Weather-dependent.</div>
+          </div>
+          <div class="choice" data-v="road-kkh">
+            <span class="choice-icon">🚗</span>
+            <div class="choice-title">Drive via KKH</div>
+            <div class="choice-desc">Islamabad → Besham → Chilas → Gilgit. 15–18h. The classic road trip.</div>
+            <div class="choice-tag">Classic route</div>
+            <div class="choice-warn">Drive Kohistan in daylight only.</div>
+          </div>
+          <div class="choice" data-v="road-babusar">
+            <span class="choice-icon">🏔</span>
+            <div class="choice-title">Via Babusar Pass</div>
+            <div class="choice-desc">ISB → Naran → Babusar Top → Chilas → GB. More dramatic than KKH.</div>
+            <div class="choice-tag">Summer only · Jun–Oct</div>
+            <div class="choice-warn">4,173m pass. Jeep only above Naran.</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- STEP 1: Style -->
+    <!-- STEP 1: Trip style -->
     <div class="step" id="step-1">
       <div class="step-q">What kind of<br>trip is this?</div>
       <p class="step-sub">This shapes your accommodation, pace, and activities.</p>
-      <div class="choices c3" data-key="style">
+      <div class="choices c2" data-key="style">
         <div class="choice" data-v="adventure">
           <span class="choice-icon">🧗</span>
           <div class="choice-title">Adventure</div>
           <div class="choice-desc">Base camps, high passes, multi-day treks. Comfort is secondary.</div>
           <div class="choice-tag">~Rs 7,000/day</div>
+        </div>
+        <div class="choice" data-v="cultural">
+          <span class="choice-icon">🏛</span>
+          <div class="choice-title">Culture & History</div>
+          <div class="choice-desc">Forts, old villages, Silk Road heritage, local cuisine.</div>
+          <div class="choice-tag">~Rs 9,000/day</div>
         </div>
         <div class="choice" data-v="photography">
           <span class="choice-icon">📸</span>
@@ -656,23 +666,17 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
           <div class="choice-desc">Golden hour, viewpoints, blossom, autumn colour. Private jeep.</div>
           <div class="choice-tag">~Rs 11,000/day</div>
         </div>
-        <div class="choice" data-v="cultural">
-          <span class="choice-icon">🏛</span>
-          <div class="choice-title">Culture</div>
-          <div class="choice-desc">Forts, old villages, local cuisine, Silk Road heritage.</div>
-          <div class="choice-tag">~Rs 9,000/day</div>
+        <div class="choice" data-v="family">
+          <span class="choice-icon">👨‍👩‍👧</span>
+          <div class="choice-title">Family</div>
+          <div class="choice-desc">Accessible sights, comfortable hotels, flexible pace for kids.</div>
+          <div class="choice-tag">~Rs 12,000/day</div>
         </div>
         <div class="choice" data-v="luxury">
           <span class="choice-icon">🥂</span>
           <div class="choice-title">Luxury</div>
           <div class="choice-desc">Serena hotels, private transfers, curated experiences.</div>
           <div class="choice-tag">~Rs 35,000/day</div>
-        </div>
-        <div class="choice" data-v="family">
-          <span class="choice-icon">👨‍👩‍👧</span>
-          <div class="choice-title">Family</div>
-          <div class="choice-desc">Accessible sights, comfortable hotels, flexible pace.</div>
-          <div class="choice-tag">~Rs 12,000/day</div>
         </div>
         <div class="choice" data-v="budget">
           <span class="choice-icon">🎒</span>
@@ -683,12 +687,11 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       </div>
     </div>
 
-    <!-- STEP 2: Duration -->
+    <!-- STEP 2: Duration / dates -->
     <div class="step" id="step-2">
       <div class="step-q">When are you travelling?</div>
       <p class="step-sub">Pick your exact dates — we'll show real weather forecasts, road conditions, and sunrise times for every day of your trip.</p>
 
-      <!-- Specific dates (inline calendar) — DEFAULT -->
       <div id="durCal">
         <div class="cal-nav">
           <button class="cal-arrow" onclick="calNav(-1)">&#8249;</button>
@@ -700,7 +703,6 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
         <div class="cal-wx-note" id="calWxNote" style="display:none">✅ Dates selected — live weather forecast will load for each day of your trip.</div>
       </div>
 
-      <!-- Flexible fallback -->
       <div class="dur-flex-toggle">
         <button class="dur-flex-link" onclick="setDurMode(S.useSpecificDates ? 'flex' : 'dates')" id="durFlexToggle">Don't have dates yet? Use the day slider instead →</button>
       </div>
@@ -719,8 +721,8 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 
     <!-- STEP 3: Regions (multi) -->
     <div class="step" id="step-3">
-      <div class="step-q">Which regions<br>matter most?</div>
-      <p class="step-sub">Pick all that interest you. We'll fit them into your days.</p>
+      <div class="step-q">Which regions<br>interest you?</div>
+      <p class="step-sub">Pick all that appeal. We'll fit them into your days.</p>
       <div class="choices c2 multi" data-key="regions">
         <div class="choice" data-v="hunza">
           <span class="choice-icon">🏔</span>
@@ -745,11 +747,13 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
       </div>
     </div>
 
-    <!-- STEP 4: Season -->
+    <!-- STEP 4: Season + Who (combined) -->
     <div class="step" id="step-4">
-      <div class="step-q">When are<br>you going?</div>
-      <p class="step-sub">Season changes what's possible — some passes close, others bloom.</p>
-      <div class="choices c2" data-key="season">
+      <div class="step-q">When & who?</div>
+      <p class="step-sub">Season changes what's possible. Your group affects costs and routing.</p>
+
+      <p style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem" id="seasonLabel">Season</p>
+      <div class="choices c2" data-key="season" style="margin-bottom:1.75rem">
         <div class="choice" data-v="spring">
           <span class="choice-icon">🌸</span>
           <div class="choice-title">Spring</div>
@@ -775,24 +779,8 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
           <div class="choice-tag">Off-season rates</div>
         </div>
       </div>
-    </div>
 
-    <!-- STEP 5: Wake-up time -->
-    <div class="step" id="step-5">
-      <div class="step-q">What time do you<br>wake up on holiday?</div>
-      <p class="step-sub">This adjusts every time stamp in your itinerary — early risers unlock dawn experiences most travellers miss.</p>
-      <div style="text-align:center;margin:2rem 0 1rem;">
-        <input type="time" id="wakeInput" value="07:30" min="04:00" max="11:00"
-          style="font-family:var(--fd);font-size:3rem;color:var(--cream);background:var(--ink-3);border:1px solid rgba(200,144,58,.3);border-radius:8px;padding:.5rem 1.2rem;width:auto;outline:none;cursor:pointer;"
-          oninput="onWakeTime(this.value)">
-      </div>
-      <div id="wakeNote" style="text-align:center;font-size:.85rem;color:var(--cream-2);line-height:1.7;max-width:380px;margin:0 auto;min-height:3rem;"></div>
-    </div>
-
-    <!-- STEP 6: Group size -->
-    <div class="step" id="step-6">
-      <div class="step-q">Who are you<br>travelling with?</div>
-      <p class="step-sub">Affects jeep sharing costs, hotel room configuration, and trek recommendations.</p>
+      <p style="font-family:var(--fu);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem">Who's travelling?</p>
       <div class="choices c2" data-key="groupSize">
         <div class="choice" data-v="solo">
           <span class="choice-icon">🧍</span>
@@ -815,7 +803,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
         <div class="choice" data-v="group">
           <span class="choice-icon">👥</span>
           <div class="choice-title">Group (4+)</div>
-          <div class="choice-desc">Shared jeep costs, group discounts on hotels. More logistics.</div>
+          <div class="choice-desc">Shared jeep costs, group discounts on hotels.</div>
           <div class="choice-tag">Best value/day</div>
         </div>
       </div>
@@ -864,6 +852,15 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
         <button class="btn-pdf" onclick="window.print()">⬇ Download PDF</button>
         <button class="btn-whatsapp" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
         <button class="btn-copy" onclick="copyItinerary()">📋 Copy as Text</button>
+      </div>
+
+      <!-- Agency CTA -->
+      <div style="margin-top:1.5rem;background:rgba(200,144,58,.06);border:1px solid rgba(200,144,58,.25);border-radius:8px;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:var(--fu);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem">Don't want to plan logistics yourself?</div>
+          <div style="font-size:.82rem;color:var(--cream-2);line-height:1.5">Get a free quote from a verified GB agency — they'll handle jeeps, hotels, and permits for you.</div>
+        </div>
+        <a href="../agencies/index.html" style="flex-shrink:0;font-family:var(--fu);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#000;border:none;border-radius:4px;padding:.75rem 1.5rem;text-decoration:none;white-space:nowrap;transition:background .2s;" onmouseover="this.style.background='#d9a048'" onmouseout="this.style.background='var(--gold)'">Book with an Agency →</a>
       </div>
     </div>
     <div class="route-strip" id="rRoute"></div>
@@ -927,9 +924,9 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 /* ════════════════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════════════════ */
-const S = { entry:null, style:null, days:8, regions:new Set(), season:null, startDate:null, endDate:null, useSpecificDates:true, wakeHour:7, wakeMin:30, groupSize:'couple' };
+const S = { origin:null, entry:null, style:null, days:8, regions:new Set(), season:null, startDate:null, endDate:null, useSpecificDates:true, wakeHour:7, wakeMin:0, groupSize:'couple' };
 let cur = 0;
-const STEPS = 7;
+const STEPS = 5;
 
 const dailyCost = { budget:4000, adventure:7000, cultural:9000, photography:11000, family:12000, luxury:35000 };
 const styleLabel = { budget:'Budget Backpacker', adventure:'Adventure & Trekking', cultural:'Culture & History', photography:'Scenic Photography', family:'Family', luxury:'Luxury' };
