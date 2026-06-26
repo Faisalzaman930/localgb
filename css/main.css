@@ -893,3 +893,12 @@ footer {
 .faq summary::after { content: "+"; color: var(--gold); font-size: 1.3rem; line-height: 1; flex-shrink: 0; transition: transform 0.2s; }
 .faq details[open] summary::after { transform: rotate(45deg); }
 .faq details p { padding: 0 1.2rem 1.1rem; margin: 0; color: var(--cream-2); font-size: 0.86rem; line-height: 1.65; }
+
+/* ── Related links (internal-linking cluster blocks) ──────── */
+.related-links { background: var(--ink-2, #0C0E16); border-top: 1px solid rgba(200,144,58,0.12); padding: clamp(2.5rem,5vw,4rem) 0; }
+.related-inner { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+.related-title { font-family: var(--fu); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; }
+.related-grid a { display: block; padding: 0.85rem 1.1rem; background: var(--ink-3, #12151F); border: 1px solid rgba(255,255,255,0.06); border-radius: 7px; color: var(--cream); font-size: 0.85rem; line-height: 1.4; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+.related-grid a:hover { border-color: var(--gold-border, rgba(200,144,58,0.3)); transform: translateY(-2px); }
+.related-grid a span { display: block; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; }
