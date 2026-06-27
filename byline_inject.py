@@ -16,8 +16,7 @@ def main():
         h = open(f, encoding="utf-8").read()
         if "byline" in h and START not in h:
             pass
-        p = "../" * (d.count("/") + 1)
-        byline = (f'{START}\n<div class="byline">By <a href="{p}about/index.html">Faisal Zaman</a>'
+        byline = (f'{START}\n<div class="byline">By <a href="/about">Faisal Zaman</a>'
                   f'<span class="sep">·</span>Local from Gilgit-Baltistan'
                   f'<span class="sep">·</span>Updated June 2026</div>\n{END}')
         if START in h:

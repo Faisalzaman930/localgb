@@ -105,11 +105,10 @@ def main():
         rel = related_for(p)
         if len(rel) < 2:   # skip pages with too little to relate
             continue
-        prefix = "../" * (p.count("/") + 1)
         cards = ""
         for t in rel:
             sub = EYEBROW.get(t.split("/")[0], "Guide")
-            cards += f'<a href="{prefix}{t}/index.html">{titles[t]}<span>{sub}</span></a>'
+            cards += f'<a href="/{t}">{titles[t]}<span>{sub}</span></a>'
         block = (f"{START}\n<section class=\"related-links\"><div class=\"related-inner\">"
                  f"<h2 class=\"related-title\">Related guides &amp; nearby</h2>"
                  f"<div class=\"related-grid\">{cards}</div></div></section>\n{END}")
