@@ -48,11 +48,11 @@ nav.scrolled .logo .l2,nav.scrolled .nav-links a{color:var(--ink)}
 /* hero */
 .hero{position:relative;min-height:94vh;display:flex;align-items:flex-end;color:#fff}
 .hero-img{position:absolute;inset:0;background:url('/images/hunza-hero.webp') center 35%/cover no-repeat}
-.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,12,.45) 0%,rgba(20,17,12,.12) 35%,rgba(20,17,12,.78) 100%)}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,12,.5) 0%,rgba(20,17,12,.28) 38%,rgba(20,17,12,.72) 72%,rgba(20,17,12,.92) 100%)}
 .hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 1.5rem 5rem}
-.hero h1{font-size:clamp(2.8rem,7vw,5.5rem);color:#fff;max-width:16ch;font-weight:500}
-.hero h1 em{font-style:italic;color:#F2D9A8}
-.hero p{font-size:1.12rem;max-width:46ch;margin:1.3rem 0 2rem;color:rgba(255,255,255,.9);line-height:1.6}
+.hero h1{font-size:clamp(2.8rem,7vw,5.5rem);color:#fff;max-width:16ch;font-weight:500;text-shadow:0 2px 24px rgba(20,17,12,.45)}
+.hero h1 em{font-style:italic;color:#F4DBA6}
+.hero p{font-size:1.12rem;max-width:46ch;margin:1.3rem 0 2rem;color:rgba(255,255,255,.94);line-height:1.6;text-shadow:0 1px 12px rgba(20,17,12,.5)}
 .hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap}
 .hero .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
 .hero .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
@@ -90,7 +90,7 @@ section{padding:clamp(3.5rem,7vw,6.5rem) 0}
 /* region cards */
 .regions{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .rc{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;display:flex;align-items:flex-end;color:#fff;box-shadow:0 14px 40px -24px rgba(26,23,18,.4)}
-.rc.big{grid-row:span 2;aspect-ratio:auto}
+.rc.big{grid-row:auto;aspect-ratio:4/5}
 .rc-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s var(--ease)}
 .rc:hover .rc-img{transform:scale(1.06)}
 .rc-scrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(20,17,12,.82) 100%)}
