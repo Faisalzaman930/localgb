@@ -356,11 +356,11 @@ nav.solid {
 
 /* ─── INFO GRID ──────────────────────────────────────── */
 .info-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 6rem; align-items: start;
+  display: grid; grid-template-columns: minmax(200px, 0.62fr) minmax(0, 1.7fr);
+  gap: 3.25rem; align-items: start;
 }
 .info-body {
-  font-size: 0.9rem; line-height: 1.9; color: var(--cream-2);
+  font-size: 1.02rem; line-height: 1.75; color: var(--cream-2);
 }
 .info-body strong { color: var(--cream); }
 .info-body p + p { margin-top: 1rem; }
@@ -379,12 +379,12 @@ nav.solid {
 }
 .practical-table tr:last-child { border-bottom: none; }
 .practical-table td {
-  padding: 0.9rem 0;
-  font-size: 0.82rem; vertical-align: top;
+  padding: 1rem 0;
+  font-size: 0.95rem; line-height: 1.6; vertical-align: top;
 }
 .practical-table td:first-child {
-  width: 36%; font-weight: 600; letter-spacing: 0.06em;
-  text-transform: uppercase; font-size: 0.68rem;
+  width: 28%; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; font-size: 0.72rem;
   color: var(--gold); padding-right: 1.5rem;
 }
 .practical-table td:last-child { color: var(--cream-2); }
