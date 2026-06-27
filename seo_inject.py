@@ -60,6 +60,20 @@ CRUMB_LABELS = {
     "yasin-ishkoman": "Yasin & Ishkoman",
 }
 
+# Approx geo coordinates for place pages (lat, lon) — feeds schema.org geo.
+COORDS = {
+    "hunza": (36.3167, 74.65), "skardu": (35.2971, 75.6333), "gilgit": (35.9208, 74.3083),
+    "fairy-meadows": (35.3897, 74.5786), "deosai": (34.9667, 75.4), "naltar": (36.1667, 74.1833),
+    "astore": (35.3667, 74.8667), "ghizer": (36.1667, 73.75), "gojal": (36.4333, 74.8667),
+    "yasin": (36.4, 73.3), "ishkoman": (36.45, 73.7833), "naran-kaghan": (34.9089, 73.65),
+    "karakoram-highway": (35.9, 74.3),
+    "mountains/k2": (35.8825, 76.5133), "mountains/nanga-parbat": (35.2375, 74.5892),
+    "mountains/rakaposhi": (36.1442, 74.4894), "mountains/broad-peak": (35.81, 76.57),
+    "mountains/gasherbrum": (35.7239, 76.6964), "mountains/masherbrum": (35.6411, 76.3047),
+    "mountains/spantik": (36.05, 75.0), "mountains/haramosh-peak": (35.9419, 74.8994),
+    "mountains/laila-peak": (35.62, 76.32), "mountains/trango-towers": (35.86, 76.31),
+}
+
 START, END = "<!-- SEO:START -->", "<!-- SEO:END -->"
 
 
@@ -128,7 +142,7 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
 
         top = seg.split("/")[0]
         if top in DESTINATION_DIRS:
-            graph.append({
+            dest = {
                 "@type": "TouristDestination",
                 "name": og_title,
                 "description": desc,
@@ -137,7 +151,12 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
                 "touristType": ["Adventure travel", "Sightseeing", "Trekking"],
                 "includesAttraction": {"@type": "TouristAttraction", "name": og_title},
                 "isPartOf": {"@type": "Place", "name": "Gilgit-Baltistan, Pakistan"},
-            })
+                "dateModified": TODAY,
+            }
+            if seg in COORDS:
+                lat, lon = COORDS[seg]
+                dest["geo"] = {"@type": "GeoCoordinates", "latitude": lat, "longitude": lon}
+            graph.append(dest)
         else:
             graph.append({
                 "@type": "Article",

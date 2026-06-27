@@ -20,7 +20,7 @@ PLAN = [("Trip Planner","explore/"),("Best Time to Visit","travel/best-time-to-v
         ("How to Reach","travel/islamabad-to-hunza/"),("What to Pack","travel/what-to-pack/"),
         ("NOC & Permits","travel/noc-permits-gb/"),("Budget Guide","travel/budget-gb-itinerary/"),
         ("Road & Pass Status","status/"),("Weather","weather/"),("Tours","tours/"),
-        ("Choosing an Operator","agencies/"),("Blog","blog/")]
+        ("Choosing an Operator","agencies/"),("About GB Guide","about/"),("Blog","blog/")]
 
 def li(items, p): return "".join(f'<li><a href="{p}{u}index.html">{t}</a></li>' for t,u in items)
 def nav_li(p): return "".join(f'<li><a href="{p}{u}index.html">{t}</a></li>' for t,u in NAV)
@@ -48,7 +48,7 @@ def build_footer(p):
         f'      <div><div class="footer-col-title">Treks &amp; Peaks</div><ul class="footer-links">{li(TREKS,p)}</ul></div>\n'
         f'      <div><div class="footer-col-title">Plan Your Trip</div><ul class="footer-links">{li(PLAN,p)}</ul></div>\n'
         f'    </div>\n'
-        f'    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 GB Guide</span>'
+        f'    <div class="footer-bottom"><span class="footer-copy">&copy; 2025 GB Guide · Last updated June 2026</span>'
         f'<span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>\n'
         f'  </div>\n</footer>')
 
