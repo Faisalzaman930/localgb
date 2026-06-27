@@ -20,7 +20,7 @@ PLAN = [("Trip Planner","explore/"),("Best Time to Visit","travel/best-time-to-v
         ("How to Reach","travel/islamabad-to-hunza/"),("What to Pack","travel/what-to-pack/"),
         ("NOC & Permits","travel/noc-permits-gb/"),("Budget Guide","travel/budget-gb-itinerary/"),
         ("Road & Pass Status","status/"),("Weather","weather/"),("Tours","tours/"),
-        ("Choosing an Operator","agencies/"),("About GB Guide","about/"),("Blog","blog/")]
+        ("Choosing an Operator","agencies/"),("About GB Guide","about/"),("Contact","contact/"),("Blog","blog/")]
 
 def li(items, p): return "".join(f'<li><a href="/{u.rstrip("/")}">{t}</a></li>' for t,u in items)
 def nav_li(p): return "".join(f'<li><a href="/{u.rstrip("/")}">{t}</a></li>' for t,u in NAV)
