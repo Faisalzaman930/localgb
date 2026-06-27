@@ -4,17 +4,22 @@
 
 /* ─── TOKENS ─────────────────────────────────────────── */
 :root {
-  --ink:         #07080D;
-  --ink-2:       #0C0E16;
-  --ink-3:       #111420;
-  --ink-4:       #1A1F2C;
-  --gold:        #C8903A;
-  --gold-lt:     #DEAD68;
+  /* Light, image-forward theme (2026 redesign).
+     Token NAMES kept (--ink* = surfaces, --cream* = text) so the ~190 var()
+     refs across 156 pages flip cleanly; values inverted to light. */
+  --ink:         #FBFAF6;   /* page background        */
+  --ink-2:       #FFFFFF;   /* cards / surfaces       */
+  --ink-3:       #F5F1E9;   /* subtle fills (tags…)   */
+  --ink-4:       #ECE6D9;   /* hover fills            */
+  --gold:        #B07D2B;   /* gold for text/labels (AA on white) */
+  --gold-lt:     #C8903A;   /* gold for fills/accents */
   --gold-dk:     #8B621A;
-  --gold-glow:   rgba(200,144,58,0.10);
-  --gold-border: rgba(200,144,58,0.20);
-  --cream:       #F0E8D5;
-  --cream-2:     #AAA296;
+  --gold-glow:   rgba(176,125,43,0.08);
+  --gold-border: rgba(176,125,43,0.22);
+  --cream:       #1A1712;   /* primary ink text       */
+  --cream-2:     #6B6458;   /* muted / stone text     */
+  --line:        #E7E1D4;   /* hairline borders       */
+  --on-gold:     #1A1712;   /* text on gold buttons   */
   --fd:          'Fraunces', Georgia, serif;
   --fu:          'Manrope', system-ui, sans-serif;
   --ease:        cubic-bezier(0.16, 1, 0.3, 1);
@@ -93,7 +98,7 @@ body::before {
   align-items: center;
   gap: 0.4rem;
   background: var(--gold);
-  color: var(--ink);
+  color: var(--on-gold);
   font-family: var(--fu);
   font-size: 0.7rem;
   font-weight: 700;
@@ -916,6 +921,67 @@ footer {
 
 /* ── Author byline ───────────────────────────────────────── */
 .byline { max-width: 1080px; margin: 0 auto; padding: 0.9rem 1.5rem 0; font-size: 0.78rem; color: var(--cream-2); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-.byline a { color: var(--gold); border-bottom: 1px solid rgba(200,144,58,0.3); }
-.byline a:hover { color: var(--gold-lt, #DEAD68); }
+.byline a { color: var(--gold); border-bottom: 1px solid rgba(176,125,43,0.35); }
+.byline a:hover { color: var(--gold-dk); }
 .byline .sep { opacity: 0.4; }
+
+/* ═══════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES (2026 redesign)
+   Token flip above turns surfaces light + text dark site-wide.
+   Below: (a) keep text LIGHT where it sits over genuinely dark
+   surfaces (the hero photo overlay + the weather bar), and
+   (b) replace the old light-on-dark hairlines with light-theme
+   lines + soft card shadows for depth.
+   ═══════════════════════════════════════════════════════ */
+
+/* Grain: subtler over a light ground */
+body::before { opacity: 0.022; }
+
+/* ── NAV — light bar (sits over light body bg, not the hero) ── */
+nav.scrolled { background: rgba(251,250,246,0.86); border-color: var(--line); box-shadow: 0 1px 0 rgba(20,17,12,0.04); }
+nav.solid    { background: rgba(251,250,246,0.97); border-color: var(--line); }
+.nav-drawer  { background: rgba(251,250,246,0.98); border-bottom-color: var(--line); }
+.nav-drawer ul a { border-bottom-color: var(--line); }
+
+/* ── PAGE HERO — light text over the dark photo/gradient + scrim ── */
+.page-hero-overlay { background: linear-gradient(180deg, rgba(7,8,13,0.28) 0%, rgba(7,8,13,0.18) 38%, rgba(7,8,13,0.82) 100%); }
+.page-hero-tag { color: #E6BD7B; }
+.page-hero-tag::before { background: #E6BD7B; }
+.page-hero-h1 { color: #FCFBF7; text-shadow: 0 2px 24px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.45); }
+.page-hero-h1 em { color: #E6BD7B; }
+.page-hero-sub { color: rgba(252,251,247,0.88); text-shadow: 0 1px 10px rgba(0,0,0,0.45); }
+.page-hero-meta-item { color: rgba(252,251,247,0.82); }
+.page-hero-meta-item strong { color: #FCFBF7; }
+
+/* ── IMAGE CARDS — text over photo stays light ── */
+.img-card-name { color: #FFFFFF; }
+.img-card-tag  { color: #E6BD7B; }
+.img-card-meta { color: rgba(255,255,255,0.78); }
+
+/* ── WEATHER BAR — translucent-dark island over the hero ── */
+.wx-temp-lg,
+.wx-stat-item strong,
+.wx-bar-day .wd-temp { color: #FCFBF7; }
+
+/* ── BORDERS — light-theme hairlines (old ones were white-on-dark) ── */
+.breadcrumb   { border-bottom-color: var(--line); }
+.tag          { border-color: var(--line); }
+.practical-table tr { border-bottom-color: var(--line); }
+.photo-credits { border-top-color: var(--line); }
+.map-section  { border-top-color: var(--line); }
+.map-wrap     { border-top-color: var(--line); }
+.faq details  { border-color: var(--line); }
+.related-grid a { border-color: var(--line); }
+.footer-top   { border-bottom-color: var(--line); }
+
+/* ── CARDS — light surfaces + soft depth ── */
+.std-card, .trek-card, .agency-card, .blog-card { border-color: var(--line); box-shadow: 0 1px 2px rgba(20,17,12,0.04), 0 8px 24px rgba(20,17,12,0.05); }
+.std-card:hover, .trek-card:hover, .agency-card:hover, .blog-card:hover { box-shadow: 0 4px 12px rgba(20,17,12,0.07), 0 16px 40px rgba(20,17,12,0.09); }
+
+/* ── SECTIONS / FOOTER — warm-tinted light bands so white cards pop ── */
+.section-bg { background: #F4F1EA; }
+footer { background: #F4F1EA; border-top-color: var(--gold-border); }
+
+/* ── GHOST BUTTON — dark-readable on a light ground ── */
+.btn-ghost { color: var(--cream-2); border-color: var(--line); }
+.btn-ghost:hover { color: var(--cream); border-color: var(--gold-border); }
