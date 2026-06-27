@@ -5,7 +5,7 @@ on every article, matching the Person author in each page's schema."""
 import re, os, glob
 
 START, END = "<!-- BYLINE:START -->", "<!-- BYLINE:END -->"
-SKIP = {"about", "explore", "kkh-map", "atm-locator", "status"}  # self/tool pages
+SKIP = {"about", "planner", "kkh-map", "atm-locator", "status"}  # self/tool pages
 
 def main():
     n = 0

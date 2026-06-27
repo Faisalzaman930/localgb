@@ -16,7 +16,7 @@ TREKS = [("All Treks","trekking/"),("K2 Base Camp","trekking/k2-base-camp/"),
          ("Concordia","trekking/concordia/"),("Rakaposhi BC","trekking/rakaposhi-base-camp/"),
          ("Rush Lake","trekking/rush-lake/"),("Mountains","mountains/"),
          ("K2","mountains/k2/"),("Nanga Parbat","mountains/nanga-parbat/"),("Rakaposhi","mountains/rakaposhi/")]
-PLAN = [("Trip Planner","explore/"),("Best Time to Visit","travel/best-time-to-visit-gb/"),
+PLAN = [("Trip Planner","planner/"),("Best Time to Visit","travel/best-time-to-visit-gb/"),
         ("How to Reach","travel/islamabad-to-hunza/"),("What to Pack","travel/what-to-pack/"),
         ("NOC & Permits","travel/noc-permits-gb/"),("Budget Guide","travel/budget-gb-itinerary/"),
         ("Road & Pass Status","status/"),("Weather","weather/"),("Tours","tours/"),
@@ -34,14 +34,14 @@ def build_nav(p):
     return (f'<nav id="navbar" class="solid">\n'
         f'  <a href="/" class="nav-logo">{MARK}<span class="l1">GB</span><span class="l2">Guide</span></a>\n'
         f'  <ul class="nav-links">{nav_li(p)}</ul>\n'
-        f'  <a href="/explore" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
+        f'  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
         f'  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>\n'
         f'</nav>')
 
 def build_drawer(p):
     return (f'<div class="nav-drawer" id="navDrawer">\n'
         f'  <ul>{nav_li(p)}</ul>\n'
-        f'  <a href="/explore" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
+        f'  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
         f'</div>')
 
 def build_footer(p):

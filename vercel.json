@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/explore", "destination": "/planner", "permanent": true },
     { "source": "/hunza/guide", "destination": "/hunza", "permanent": true },
     { "source": "/skardu/guide", "destination": "/skardu", "permanent": true },
     { "source": "/gilgit/guide", "destination": "/gilgit", "permanent": true },
