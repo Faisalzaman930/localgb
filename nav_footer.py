@@ -60,7 +60,9 @@ def main():
         p='../'*(d.count('/')+1)
         h=open(f,encoding='utf-8').read(); orig=h
         h2=re.sub(r'<nav id="navbar".*?</nav>', lambda m: build_nav(p), h, count=1, flags=re.S)
-        h2=re.sub(r'<div class="nav-drawer".*?</button>\s*</div>', lambda m: build_drawer(p), h2, count=1, flags=re.S)
+        # drawer has no nested <div>, so the first </div> closes it — anchor there
+        # (the old </button></div> pattern over-matched into the hero on some pages)
+        h2=re.sub(r'<div class="nav-drawer".*?</div>', lambda m: build_drawer(p), h2, count=1, flags=re.S)
         h2=re.sub(r'<footer>.*?</footer>', lambda m: build_footer(p), h2, count=1, flags=re.S)
         if ('<nav id="navbar"' not in h) or ('nav-drawer' not in h) or ('<footer>' not in h):
             skipped.append(f); continue

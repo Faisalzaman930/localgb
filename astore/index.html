@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <style>
 .attractions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:3rem;}
 .attraction-card{height:240px;position:relative;border-radius:5px;overflow:hidden;cursor:pointer;transition:transform 0.4s var(--ease);}
@@ -152,24 +150,9 @@
     <h2 class="map-section-title">Explore Astore Valley</h2>
     <p class="map-section-sub">Tap markers to explore meadows, base camps, and the Deosai access route</p>
   </div>
-  <div class="map-wrap"><div id="map"></div></div>
+  <div class="map-wrap"><iframe title="Map of Astore Valley, Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=74.55,35.10,75.15,35.46&layer=mapnik&marker=35.28,74.85" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </section>
-<script>
-(function(){
-  if(typeof L==='undefined'){var mw=document.querySelector('.map-wrap');if(mw){mw.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;color:rgba(240,232,213,.6);font-size:.9rem">Interactive map couldn\'t load right now. <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener" style="color:#C8903A;margin-left:.4rem">Open in OpenStreetMap &rarr;</a></div>';}return;}
-  const map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([35.28,74.85],10);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
-  const pin=L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
-  const gem=L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
-  L.marker([35.3633,74.8533],{icon:pin}).addTo(map).bindPopup('<strong>Astore Town</strong><br>2,600m · district HQ<br>Base for all valley day trips');
-  L.marker([35.2500,74.7833],{icon:pin}).addTo(map).bindPopup('<strong>Rama Meadows</strong><br>3,500m · pine forest, wildflowers<br>PTDC Rama Hotel · Nanga Parbat east face views');
-  L.marker([35.1667,74.7000],{icon:pin}).addTo(map).bindPopup('<strong>Rupal Valley</strong><br>Nanga Parbat south face · 4,600m Rupal Face<br>Tallest mountain face on earth<br>Base camp 3,800m');
-  L.marker([35.4167,75.0000],{icon:pin}).addTo(map).bindPopup('<strong>Minimarg</strong><br>3,500m · alpine meadow<br>En route to Deosai from Astore<br>Wildflowers June–August');
-  L.marker([35.2000,75.1500],{icon:pin}).addTo(map).bindPopup('<strong>Deosai Plains (Astore side)</strong><br>4,114m · enter from Minimarg road<br>Brown bears, Sheosar Lake<br>Entry permit at gate');
-  L.marker([35.3167,74.8167],{icon:gem}).addTo(map).bindPopup('<strong>Gurais / Gurikot</strong><br>Ancient settlement · historic fort remains<br>Traditional Shina culture');
-  L.marker([35.2667,74.8500],{icon:gem}).addTo(map).bindPopup('<strong>Doian Village</strong><br>Hidden village en route to Rama<br>Traditional wooden architecture');
-})();
-</script>
+
 
 <script>
 function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}

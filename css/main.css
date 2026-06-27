@@ -356,8 +356,8 @@ nav.solid {
 
 /* ─── INFO GRID ──────────────────────────────────────── */
 .info-grid {
-  display: grid; grid-template-columns: minmax(200px, 0.62fr) minmax(0, 1.7fr);
-  gap: 3.25rem; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 3rem; align-items: start;
 }
 .info-body {
   font-size: 1.02rem; line-height: 1.75; color: var(--cream-2);

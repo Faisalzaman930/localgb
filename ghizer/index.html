@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <style>
 .attractions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 3rem; }
 .attraction-card { height: 240px; position: relative; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform 0.4s var(--ease); }
@@ -151,25 +149,9 @@
     <h2 class="map-section-title">Explore Ghizer Valley</h2>
     <p class="map-section-sub">The full corridor from Gilgit to Shandur — tap markers for details</p>
   </div>
-  <div class="map-wrap"><div id="map"></div></div>
+  <div class="map-wrap"><iframe title="Map of Ghizer Valley, Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=73.20,36.10,73.80,36.46&layer=mapnik&marker=36.28,73.5" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </section>
-<script>
-(function(){
-  if(typeof L==='undefined'){var mw=document.querySelector('.map-wrap');if(mw){mw.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;color:rgba(240,232,213,.6);font-size:.9rem">Interactive map couldn\'t load right now. <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener" style="color:#C8903A;margin-left:.4rem">Open in OpenStreetMap &rarr;</a></div>';}return;}
-  const map = L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([36.28,73.50],9);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
-  const pin = L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
-  const gem = L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
-  L.marker([36.1744,73.2917],{icon:pin}).addTo(map).bindPopup('<strong>Gahkuch</strong><br>Ghizer district HQ · 1,800m<br>First major stop from Gilgit');
-  L.marker([36.2000,73.4500],{icon:pin}).addTo(map).bindPopup('<strong>Gupis</strong><br>2,100m · 160km from Gilgit<br>Khalti Lake nearby · Gupis Fort');
-  L.marker([36.1833,73.5833],{icon:pin}).addTo(map).bindPopup('<strong>Phander Lake</strong><br>~2,800m · most scenic lake in Ghizer<br>Turquoise water, pine forest, no crowds');
-  L.marker([36.1167,73.7000],{icon:pin}).addTo(map).bindPopup('<strong>Teru</strong><br>2,800m · quiet village<br>Trout fishing in Ghizer River');
-  L.marker([36.0500,73.9500],{icon:pin}).addTo(map).bindPopup('<strong>Shandur Pass</strong><br>3,734m · world\'s highest polo ground<br>Annual polo festival July · connects to Chitral');
-  L.marker([36.2200,73.4200],{icon:gem}).addTo(map).bindPopup('<strong>Khalti Lake</strong><br>Near Gupis · small, quiet, rarely visited<br>Surrounded by red-rock cliffs');
-  L.marker([36.2100,73.6200],{icon:gem}).addTo(map).bindPopup('<strong>Handrap Lake</strong><br>Above Handrap village · alpine, remote<br>2-day trek · almost no visitors');
-  L.marker([36.1500,73.4800],{icon:gem}).addTo(map).bindPopup('<strong>Singal Pass area</strong><br>Above Phander · glacier views<br>Trek from Phander village · guide needed');
-})();
-</script>
+
 
 <script>
 function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}

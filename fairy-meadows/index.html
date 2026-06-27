@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <style>
 .steps { display: flex; flex-direction: column; gap: 0; margin-top: 2.5rem; }
 .step { display: grid; grid-template-columns: 48px 1fr; gap: 1.5rem; padding: 1.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: start; }
@@ -18,8 +18,6 @@
 .step-body p { font-size: 0.82rem; color: var(--cream-2); line-height: 1.75; }
 .step-body .meta { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- SEO:START -->
 <link rel="canonical" href="https://www.gilgitbaltistanguide.com/fairy-meadows">
 <meta property="og:type" content="website">
@@ -179,22 +177,9 @@ loadWeather(35.3833, 74.5667);
     <h2 class="map-section-title">Explore Fairy Meadows</h2>
     <p class="map-section-sub">Tap markers to explore key sites</p>
   </div>
-  <div class="map-wrap"><div id="map"></div></div>
+  <div class="map-wrap"><iframe title="Map of Fairy Meadows, Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=74.27,35.20,74.87,35.56&layer=mapnik&marker=35.38,74.57" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </section>
-<script>
-(function(){
-  if(typeof L==='undefined'){var mw=document.querySelector('.map-wrap');if(mw){mw.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;color:rgba(240,232,213,.6);font-size:.9rem">Interactive map couldn\'t load right now. <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener" style="color:#C8903A;margin-left:.4rem">Open in OpenStreetMap &rarr;</a></div>';}return;}
-  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([35.38,74.57], 11);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
-  }).addTo(map);
-  const pinIcon = L.divIcon({className:'', html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[12,12], iconAnchor:[6,6], popupAnchor:[0,-10]});
-  L.marker([35.3833,74.5667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Fairy Meadows</strong><br>3,300m · main camp area · wildflowers Jun–Aug');
-  L.marker([35.2333,74.5833],{icon:pinIcon}).addTo(map).bindPopup('<strong>Nanga Parbat Base Camp</strong><br>~3,900m · Raikot side · half/full-day hike from Fairy Meadows');
-  L.marker([35.4333,74.5],{icon:pinIcon}).addTo(map).bindPopup('<strong>Raikot Bridge</strong><br>KKH trailhead · jeep ride starts here');
-  L.marker([35.35,74.5333],{icon:pinIcon}).addTo(map).bindPopup('<strong>Beyal Camp</strong><br>~3,500m · intermediate camp en route to base camp');
-})();
-</script>
+
 
 
 <section class="section reveal">

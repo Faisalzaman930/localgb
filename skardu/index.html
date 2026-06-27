@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <style>
 .attractions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 3rem; }
 .attraction-card { height: 240px; position: relative; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform 0.4s var(--ease); }
@@ -144,6 +142,241 @@
   <ul><li><a href="/destinations">Destinations</a></li><li><a href="/mountains">Mountains</a></li><li><a href="/trekking">Treks</a></li><li><a href="/things-to-do">Things to Do</a></li><li><a href="/tours">Tours</a></li><li><a href="/travel">Travel Tips</a></li><li><a href="/status">Road Status</a></li><li><a href="/agencies">Agencies</a></li></ul>
   <a href="/explore" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>
 </div>
+
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-img" style="background:url('/images/skardu-hero.webp') center 45% / cover no-repeat;" role="img" aria-label="Skardu — Gilgit-Baltistan"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Destination Guide</div>
+    <h1 class="page-hero-h1">Skardu</h1>
+    <p class="page-hero-sub">Gateway to K2 and the world's greatest concentration of high peaks. Ancient forts, cold desert, and the Deosai plateau above the clouds.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📍 <strong>Baltistan, GB</strong></div>
+      <div class="page-hero-meta-item">⛰ <strong>2,228m</strong> elevation</div>
+      <div class="page-hero-meta-item">✈ <strong>1h 15min</strong> direct flight from Islamabad</div>
+      <div class="page-hero-meta-item">🌿 <strong>Best: May – Sep</strong></div>
+    </div>
+  </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="/">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Skardu</span>
+  </div>
+</div>
+<!-- BYLINE:START -->
+<div class="byline">By <a href="/about">Faisal Zaman</a><span class="sep">·</span>Local from Gilgit-Baltistan<span class="sep">·</span>Updated June 2026</div>
+<!-- BYLINE:END -->
+
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Skardu &amp; Baltistan</h2>
+    <p class="map-section-sub">Tap markers to explore key sites, day-trip distances, and hidden spots</p>
+  </div>
+  <div class="map-wrap"><iframe title="Map of Skardu, Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=75.40,35.14,76.00,35.50&layer=mapnik&marker=35.32,75.7" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</section>
+
+
+<script>
+function wxIcon(code) {
+  if (code === 1000) return '☀️';
+  if (code <= 1009) return '⛅';
+  if ([1030,1135,1147].includes(code)) return '🌫️';
+  if (code >= 1273) return '⛈️';
+  if (code >= 1210) return '❄️';
+  if (code >= 1180) return '🌧️';
+  if (code >= 1150) return '🌦️';
+  if (code === 1087) return '⛈️';
+  if (code >= 1066) return '🌨️';
+  if (code >= 1063) return '🌦️';
+  return '🌡️';
+}
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat, lon) {
+  const el = document.getElementById('wxWidget');
+  const KEY = 'b29ce4cae8644fdab30143502260305';
+  try {
+    const r = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&days=3&aqi=no`);
+    const d = await r.json();
+    const c = d.current;
+    const fc = d.forecast.forecastday;
+    const forecastHTML = fc.slice(1).map(day => {
+      const dn = DAYS[new Date(day.date+'T00:00:00').getDay()];
+      return `<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;
+    }).join('');
+    el.innerHTML = `<div class="wx-bar-inner">
+  <div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div>
+  <div class="wx-current">
+    <span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span>
+    <span class="wx-icon-lg">${wxIcon(c.condition.code)}</span>
+    <span class="wx-cond-text">${c.condition.text}</span>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-stats-bar">
+    <div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div>
+    <div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div>
+    <div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-bar-fc">${forecastHTML}</div>
+</div>`;
+  } catch(e) { el.innerHTML = '<div class="wx-loading">Weather unavailable</div>'; }
+}
+loadWeather(35.2971, 75.6333);
+</script>
+
+<!-- OVERVIEW -->
+<section class="section reveal">
+  <div class="info-grid">
+    <div>
+      <span class="label">Overview</span>
+      <h2 class="section-title">The Capital of<br><em>Baltistan</em></h2>
+    </div>
+    <div class="info-body">
+      <p>Skardu sits at the confluence of the Indus and Shigar rivers at 2,228m. It's the largest town in Baltistan and the administrative gateway for all K2 expeditions. But Skardu is far more than a staging post — the district itself contains one of the most varied landscapes in Pakistan.</p>
+      <p>The <strong>Katpana Cold Desert</strong> — sand dunes at 2,200m — sits 5km east of town. The <strong>Deosai Plains</strong>, two hours south by jeep, are a 3,000 km² high-altitude plateau at 4,114m, carpeted in wildflowers in July and patrolled by the rare Himalayan brown bear. <strong>Shigar Fort</strong>, restored by the Aga Khan Trust and now a heritage hotel, is the finest surviving example of Baltistani architecture. And the <strong>Satpara Buddha Rock Carving</strong> from the 5th–7th century stands roadside, unguarded, mostly overlooked.</p>
+      <p>Most trekkers pass through Skardu quickly on the way to K2. That is a mistake. Give it three days minimum, five if you can afford it.</p>
+    </div>
+  </div>
+  <div class="stat-row reveal">
+    <div class="stat-cell"><div class="stat-cell-num">2,228m</div><div class="stat-cell-label">Town elevation</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,114m</div><div class="stat-cell-label">Deosai Plains</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">4,142m</div><div class="stat-cell-label">Sheosar Lake altitude</div></div>
+    <div class="stat-cell"><div class="stat-cell-num">8,611m</div><div class="stat-cell-label">K2 — highest in Pakistan</div></div>
+  </div>
+</section>
+
+<!-- ATTRACTIONS -->
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Top Attractions</span>
+      <h2 class="section-title">What to See<br>Around Skardu</h2>
+      <p class="section-lead">Six sites that make Skardu worth slowing down for — with honest descriptions, entry fees, and what most guides skip.</p>
+    </div>
+    <div class="attractions-grid reveal">
+      <div class="attraction-card">
+        <div class="bg" style="background:linear-gradient(155deg, #010610 0%, #061222 40%, #0C2040 70%, #143070 100%)"></div>
+        <div class="ov"></div>
+        <div class="bd">
+          <span class="bd-tag">15km from Skardu · boating PKR 500–2,000</span>
+          <div class="bd-name">Shangrila Resort</div>
+          <div class="bd-desc">Lower Kachura Lake — famous for its PIA plane fuselage converted into a lakeside restaurant in the 1980s. The lake itself is genuinely beautiful. Entry to the resort grounds is PKR 100. Skip the overpriced restaurant, walk the lake shore instead.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="bg" style="background:linear-gradient(155deg, #040A06 0%, #0C1C0A 40%, #162C10 70%, #244018 100%)"></div>
+        <div class="ov"></div>
+        <div class="bd">
+          <span class="bd-tag">4,114m · 2h from Skardu · July–Aug best</span>
+          <div class="bd-name">Deosai Plains</div>
+          <div class="bd-desc">South Asia's largest high-altitude plateau. In July it's a carpet of wildflowers at 4,114m. Himalayan brown bears are sighted regularly — the park has one of Pakistan's healthiest remaining populations. Sheosar Lake at 4,142m is inside the park. Entry permit required at the gate.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="bg" style="background:linear-gradient(155deg, #080408 0%, #161010 35%, #2A1A18 65%, #402820 100%)"></div>
+        <div class="ov"></div>
+        <div class="bd">
+          <span class="bd-tag">45km · heritage hotel PKR 30,000–60,000/night</span>
+          <div class="bd-name">Shigar Fort</div>
+          <div class="bd-desc">17th-century palace of the Raja of Shigar, restored by the Aga Khan Trust for Culture and now a heritage hotel. Even if you can't afford to stay, visiting the fort is free during day hours. The carved wood screens and garden courtyard are extraordinary. Drive through Shigar Valley apricot orchards on the way.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="bg" style="background:linear-gradient(155deg, #080808 0%, #181510 40%, #2A2218 70%, #403228 100%)"></div>
+        <div class="ov"></div>
+        <div class="bd">
+          <span class="bd-tag">Above Skardu · free · 30 min climb</span>
+          <div class="bd-name">Kharpocho Fort</div>
+          <div class="bd-desc">The 16th-century fort of Ali Sher Khan Anchan sits on a rocky bluff directly above the Indus. The ruins are extensive and the view — Skardu town, the Indus valley, and the dunes of Katpana — is one of the best free vistas in Baltistan. Free entry. The path begins just past the stadium.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="bg" style="background:linear-gradient(155deg, #050A10 0%, #0C1828 40%, #162840 70%, #243A58 100%)"></div>
+        <div class="ov"></div>
+        <div class="bd">
+          <span class="bd-tag">5km east of Skardu · free</span>
+          <div class="bd-name">Katpana Cold Desert</div>
+          <div class="bd-desc">One of the highest cold deserts in the world: sand dunes at 2,226m with snowcapped peaks immediately behind them. The visual contrast is startling. Best in the morning light. No facilities — bring water. Easy to combine with an Skardu town day.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="bg" style="background:linear-gradient(155deg, #040808 0%, #0A1818 40%, #121F20 70%, #1A2E2E 100%)"></div>
+        <div class="ov"></div>
+        <div class="bd">
+          <span class="bd-tag">8km from Skardu · kayaking available</span>
+          <div class="bd-name">Satpara Lake</div>
+          <div class="bd-desc">Skardu's water reservoir and a genuinely beautiful lake with cold blue-green water. Kayaking and trout fishing available (PKR 500–1,500). The Satpara Buddha rock carving — a 5th–7th century CE Silk Road inscription — is just before the lake turnoff on the main road. Don't miss it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN GEMS -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Off the Beaten Path</span>
+    <h2 class="section-title">Hidden Gems<br>Most Tourists Miss</h2>
+  </div>
+  <div class="hidden-gems-grid reveal">
+    <div class="gem-card">
+      <div class="gem-label">5km from Shangrila · quieter &amp; wilder</div>
+      <div class="gem-name">Upper Kachura Lake</div>
+      <div class="gem-body">Five kilometres beyond Shangrila Resort (Lower Kachura Lake) is Upper Kachura Lake — the same glacial water, the same mountain backdrop, but without the resort infrastructure, tour groups, or rowdy paddleboat rentals. The water is clearer and the banks are accessible on foot. Most day-trippers never make it this far. A short walk from the road leads to the shore. Bring a picnic.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Roadside · 5th–7th century CE · widely ignored</div>
+      <div class="gem-name">Satpara Buddha Rock Carving</div>
+      <div class="gem-body">On the road from Skardu to Satpara Lake, a large boulder on the roadside bears a carved Buddha figure and an inscription in Kharosthi script dating to the 5th–7th century CE. This is a Silk Road waypoint — Buddhist pilgrims carved it while passing through Baltistan. There's no sign, no fence, no ticket booth. Ask any local for "Buddha wali pathar" and they'll point you right to it. The carving is surprisingly detailed and completely exposed to the weather.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">100km east · Serena heritage hotel</div>
+      <div class="gem-name">Khaplu Palace</div>
+      <div class="gem-body">The 19th-century palace of the Raja of Khaplu — now restored by the Aga Khan Trust and operated as a Serena Heritage hotel (PKR 20,000–40,000/night). The drive from Skardu along the Shyok Valley is spectacular in itself. Even if you don't stay, Khaplu town is a destination — an ancient Balti settlement at 2,600m with wooden mosques, apricot orchards, and no tourist development. The Chaqchan Mosque (600 years old) is the oldest in Baltistan.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Bear sightings July–August · permit required</div>
+      <div class="gem-name">Sheosar Lake, Deosai</div>
+      <div class="gem-body">Inside Deosai National Park, Sheosar Lake sits at 4,142m and is one of the highest lakes in the world accessible by jeep. The reflection of the sky in the lake at dawn is extraordinary. July and August give the best chance of seeing Himalayan brown bears grazing on the plateau — the park has approximately 50–60 individuals. Wildlife sightings are not guaranteed but the scenery alone justifies the drive. The park entry permit (PKR 200–500) is obtained at the main gate on the Skardu side.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Old Skardu town · vernacular architecture</div>
+      <div class="gem-name">Old Bazaar &amp; Baltistani Wood-Carved Mosques</div>
+      <div class="gem-body">Skardu's old bazaar area, away from the KKH strip, has tea houses and traditional apothecaries that haven't changed visually in decades. Ask to see the old Jama Masjid with its carved wood interior — a style specific to Baltistan and distinct from the architecture of Hunza or Gilgit. The bazaar is also the place to buy hand-knitted wool caps, dried apricots, and local honey. Go in the morning before the heat.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">45km north · Balti vernacular villages</div>
+      <div class="gem-name">Shigar Valley Villages</div>
+      <div class="gem-body">The Shigar Valley beyond the fort has several small villages — Arandu, Chiktan, Braldo confluence — where the traditional Baltistani wooden architecture survives largely intact. These are not on any tourist itinerary. The valley is also the starting point for the Baltoro Glacier and K2 trek approach route. In late summer (August) the apricot trees are heavy with fruit and the terraces are golden. Drive the full length of the valley — it dead-ends at the Braldo River gorge, where the trekking begins.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARIES -->
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Trip Planning</span>
+      <h2 class="section-title">Skardu Itineraries<br>3, 5 &amp; 7 Days</h2>
+      <p class="section-lead">Built around real driving times and actual opening hours. All assume Skardu as your base.</p>
+    </div>
+    <div class="reveal">
+      <div class="itinerary-tabs">
+        <button class="itin-tab active" onclick="switchItin('d3')">3 Days</button>
+        <button class="itin-tab" onclick="switchItin('d5')">5 Days</button>
+        <button class="itin-tab" onclick="switchItin('d7')">7 Days</button>
+      </div>
+
+      
 
       <div class="itin-plan active" id="itin-d3">
         <div class="itin-days">

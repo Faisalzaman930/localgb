@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <style>
 .attractions-grid {
   display: grid;
@@ -156,6 +154,256 @@
   <ul><li><a href="/destinations">Destinations</a></li><li><a href="/mountains">Mountains</a></li><li><a href="/trekking">Treks</a></li><li><a href="/things-to-do">Things to Do</a></li><li><a href="/tours">Tours</a></li><li><a href="/travel">Travel Tips</a></li><li><a href="/status">Road Status</a></li><li><a href="/agencies">Agencies</a></li></ul>
   <a href="/explore" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>
 </div>
+
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-img" style="background:url('/images/hunza-hero.webp') center 45% / cover no-repeat;" role="img" aria-label="Hunza Valley — Gilgit-Baltistan"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Destination Guide</div>
+    <h1 class="page-hero-h1">Hunza Valley</h1>
+    <p class="page-hero-sub">The golden valley of the Karakoram — apricot orchards, turquoise lakes, and peaks that stop you mid-sentence.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">📍 <strong>Gilgit-Baltistan</strong></div>
+      <div class="page-hero-meta-item">⛰ <strong>2,438m</strong> elevation (Karimabad)</div>
+      <div class="page-hero-meta-item">✈ <strong>45 min</strong> from Gilgit airport</div>
+      <div class="page-hero-meta-item">🌸 <strong>Best: Apr – Oct</strong></div>
+    </div>
+  </div>
+  <div class="wx-bar" id="wxWidget"><div class="wx-loading">Fetching conditions…</div></div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="/">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Hunza Valley</span>
+  </div>
+</div>
+<!-- BYLINE:START -->
+<div class="byline">By <a href="/about">Faisal Zaman</a><span class="sep">·</span>Local from Gilgit-Baltistan<span class="sep">·</span>Updated June 2026</div>
+<!-- BYLINE:END -->
+
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="map-section-hdr">
+    <div class="map-section-tag">Interactive Map</div>
+    <h2 class="map-section-title">Explore Hunza Valley</h2>
+    <p class="map-section-sub">Tap markers to explore key sites, hidden spots, and day-trip distances</p>
+  </div>
+  <div class="map-wrap"><iframe title="Map of Hunza Valley, Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=74.48,36.24,75.08,36.60&layer=mapnik&marker=36.42,74.78" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</section>
+
+
+<script>
+function wxIcon(code) {
+  if (code === 1000) return '☀️';
+  if (code <= 1009) return '⛅';
+  if ([1030,1135,1147].includes(code)) return '🌫️';
+  if (code >= 1273) return '⛈️';
+  if (code >= 1210) return '❄️';
+  if (code >= 1180) return '🌧️';
+  if (code >= 1150) return '🌦️';
+  if (code === 1087) return '⛈️';
+  if (code >= 1066) return '🌨️';
+  if (code >= 1063) return '🌦️';
+  return '🌡️';
+}
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+async function loadWeather(lat, lon) {
+  const el = document.getElementById('wxWidget');
+  const KEY = 'b29ce4cae8644fdab30143502260305';
+  try {
+    const r = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${lat},${lon}&days=3&aqi=no`);
+    const d = await r.json();
+    const c = d.current;
+    const fc = d.forecast.forecastday;
+    const forecastHTML = fc.slice(1).map(day => {
+      const dn = DAYS[new Date(day.date+'T00:00:00').getDay()];
+      return `<div class="wx-bar-day"><span class="wd-name">${dn}</span><span class="wd-icon">${wxIcon(day.day.condition.code)}</span><span class="wd-temp">${Math.round(day.day.maxtemp_c)}°<span>/${Math.round(day.day.mintemp_c)}°</span></span></div>`;
+    }).join('');
+    el.innerHTML = `<div class="wx-bar-inner">
+  <div class="wx-live-badge"><span class="wx-pulse-dot"></span>Live Conditions</div>
+  <div class="wx-current">
+    <span class="wx-temp-lg">${Math.round(c.temp_c)}<sup>°C</sup></span>
+    <span class="wx-icon-lg">${wxIcon(c.condition.code)}</span>
+    <span class="wx-cond-text">${c.condition.text}</span>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-stats-bar">
+    <div class="wx-stat-item"><strong>${Math.round(c.wind_kph)} km/h</strong>Wind</div>
+    <div class="wx-stat-item"><strong>${c.humidity}%</strong>Humidity</div>
+    <div class="wx-stat-item"><strong>${Math.round(fc[0].day.mintemp_c)}° / ${Math.round(fc[0].day.maxtemp_c)}°</strong>Today</div>
+  </div>
+  <div class="wx-bar-div"></div>
+  <div class="wx-bar-fc">${forecastHTML}</div>
+</div>`;
+  } catch(e) { el.innerHTML = '<div class="wx-loading">Weather unavailable</div>'; }
+}
+loadWeather(36.3167, 74.65);
+</script>
+
+<!-- OVERVIEW -->
+<section class="section reveal">
+  <div class="info-grid">
+    <div>
+      <span class="label">Overview</span>
+      <h2 class="section-title">Pakistan's Most<br>Photographed Valley</h2>
+    </div>
+    <div class="info-body">
+      <p>Hunza is the valley that makes people cancel their flight home. The combination of hanging glaciers, terrace-farmed apricot and cherry orchards, and the sheer scale of Rakaposhi and Ultar Sar overhead creates a landscape that doesn't feel real.</p>
+      <p>The main town is <strong>Karimabad</strong>, perched above the Hunza River at 2,438m. From here you can day-trip to Attabad Lake through five CPEC-built tunnels, drive up to Khunjerab Pass at the Chinese border, hike to Eagle's Nest for one of the most spectacular sunrises in Asia, or disappear into Ultar Meadow above town where few tourists go.</p>
+      <p>Most visitors spend 3–4 days and leave wishing they had more time. The valley is compact but the side trips — Passu, Gulmit, Shimshal, Hispar, Nagar — could fill a month. Budget at least 7 days to scratch the surface.</p>
+    </div>
+  </div>
+
+  <div class="stat-row reveal">
+    <div class="stat-cell">
+      <div class="stat-cell-num">2,438m</div>
+      <div class="stat-cell-label">Karimabad altitude</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-num">3–4h</div>
+      <div class="stat-cell-label">Drive from Gilgit</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-num">4,693m</div>
+      <div class="stat-cell-label">Khunjerab Pass</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-cell-num">4,694m</div>
+      <div class="stat-cell-label">Rush Lake (highest in Pakistan)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTRACTIONS -->
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Top Attractions</span>
+      <h2 class="section-title">What to See<br>in Hunza Valley</h2>
+      <p class="section-lead">Six must-see sites — with entry fees, exact locations, and what no one tells you before you arrive.</p>
+    </div>
+    <div class="attractions-grid reveal">
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #081418 0%, #0E2A38 40%, #1A4A60 75%, #2A7090 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">40km north · boat PKR 500–4,000</span>
+          <div class="img-card-name">Attabad Lake</div>
+          <div class="img-card-desc">Formed in January 2010 when a landslide buried the village of Attabad and dammed the Hunza River. Now 21–24km of impossible turquoise. Boats depart from the east end. Five tunnels cut through the cliffs above it on the KKH.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #0A0A05 0%, #1A1A08 35%, #2E2A10 65%, #4A3E18 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">3,100m · jeep PKR 1,500–4,000 return</span>
+          <div class="img-card-name">Eagle's Nest / Duikar</div>
+          <div class="img-card-desc">The finest sunrise in Hunza. Arrive before 5:30am in summer — the Rakaposhi face lights up in orange before the valley wakes. The jeep road is steep and loose. Many hotels can arrange the jeep the night before.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #100808 0%, #281210 35%, #4A2218 65%, #7A3A28 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Entry PKR 500–1,500 · AKTC restored</span>
+          <div class="img-card-name">Baltit Fort</div>
+          <div class="img-card-desc">The Mir of Hunza's palace — continuously occupied for 700 years, abandoned in 1945. Restored by the Aga Khan Trust for Culture and awarded the UNESCO Asia-Pacific Heritage Award in 2004. The top floor views over Karimabad are worth every rupee.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #0A0A10 0%, #161828 40%, #22284A 70%, #303A6E 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">Entry PKR 300–800 · 15 min from Karimabad</span>
+          <div class="img-card-name">Altit Fort</div>
+          <div class="img-card-desc">Older than Baltit, arguably more atmospheric. Occupied for 900+ years — the oldest continuously inhabited fort in Gilgit-Baltistan. The original prison room and torture chamber survive intact. The orchard terrace below is perfect at dusk.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #060A08 0%, #0C1810 40%, #162A1A 70%, #203A22 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">4,693m · Chinese border · open May–Oct</span>
+          <div class="img-card-name">Khunjerab Pass</div>
+          <div class="img-card-desc">The highest paved international border crossing in the world. Marco Polo sheep, snow leopard territory, and a view from the roof of the KKH. Day-trip from Karimabad possible (190km return). You don't need a visa to stand at the gate.</div>
+        </div>
+      </div>
+      <div class="attraction-card">
+        <div class="img-card-bg" style="background:linear-gradient(155deg, #080410 0%, #160A28 40%, #2A1248 70%, #401A68 100%)"></div>
+        <div class="img-card-overlay"></div>
+        <div class="img-card-body">
+          <span class="img-card-tag">80km north · Tupopdan 6,106m</span>
+          <div class="img-card-name">Passu Cones</div>
+          <div class="img-card-desc">The five shark-fin peaks above Passu village are among the most photographed mountains on earth. Walk to the base in 30 minutes. Nearby: Hussaini Suspension Bridge (280m, terrifyingly swayable) and Borith Lake for migratory birds.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN GEMS -->
+<section class="section">
+  <div class="section-header reveal">
+    <span class="label">Off the Beaten Path</span>
+    <h2 class="section-title">Hidden Gems<br>Most Tourists Miss</h2>
+    <p class="section-lead">These spots don't appear in standard itineraries. Locals go here. You should too.</p>
+  </div>
+  <div class="hidden-gems-grid reveal">
+    <div class="gem-card">
+      <div class="gem-label">Hidden · 3–4h hike from Karimabad</div>
+      <div class="gem-name">Ultar Meadow</div>
+      <div class="gem-body">A high alpine meadow above Karimabad at ~3,400m that sits directly under Ultar Sar (7,388m). Almost no tourists reach it — the trail begins behind the town and climbs steeply through walnut groves. At the top: marmots, summer wildflowers, Ladyfinger Peak overhead, and a completely unobstructed view of the Hunza Valley below. Bring water. No guide needed but ask for the trailhead at Baltit Fort — it's not signposted.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Free · 15 min drive south of Karimabad</div>
+      <div class="gem-name">Ganish Heritage Village</div>
+      <div class="gem-body">The oldest continuously inhabited settlement in Hunza, dating to around 700–900 BCE. The lanes are narrow, the wooden architecture is centuries old, and there are ancient Buddhist rock carvings at the edge of the village. No ticket booth, no tourist infrastructure, no crowds. A handful of families still live here. Walk it in an hour and you'll see more of actual Hunza history than the forts will show you.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">2-day trek · strenuous · depart Minapin</div>
+      <div class="gem-name">Rush Lake</div>
+      <div class="gem-body">At 4,694m, Rush Lake is the highest lake in Pakistan — higher than Attabad, higher than Sheosar in Deosai, higher than Saif-ul-Malook. It sits above Minapin village in Nagar Valley with a direct close-up view of Rakaposhi (7,788m). The trail is steep and requires a guide (PKR 2,000–3,500/day). Camp at 4,000m the first night, lake the second morning. Snow patches persist into July. Absolutely worth it for those who can handle altitude.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">45 min walk from Passu · September best</div>
+      <div class="gem-name">Borith Lake</div>
+      <div class="gem-body">A shallow lake behind Passu village that draws migratory waterfowl in autumn — bar-headed geese, common cranes, ruddy shelduck. In September and October the light on the Passu Cones reflected in the lake is extraordinary. Almost no infrastructure here: no boat rentals, no tea stall, just the lake. Walk from the main KKH road through apricot terraces. The trail is unmistakable once you leave the village.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Hidden fort · ask locals for trail</div>
+      <div class="gem-name">Roni Kot</div>
+      <div class="gem-body">An ancient hillfort above Karimabad that almost no foreign visitors find because it's not on any tourist map or signposted trail. Local children know it immediately. The walls are ruined but the position — on a rocky bluff with views down the Hunza Gorge — explains exactly why someone built a fort here. The walk up takes 40 minutes. Go in the late afternoon when the light comes from the west across the valley.</div>
+    </div>
+    <div class="gem-card">
+      <div class="gem-label">Day trip · 280m long · do not look down</div>
+      <div class="gem-name">Hussaini Suspension Bridge</div>
+      <div class="gem-body">One of the most precarious footbridges in the world. The 280m crossing above the Hunza River near Passu is made of wooden planks with gaps — in some seasons large gaps. The bridge sways. The river is far below. The old bridge next to it (now abandoned) is even more photogenic. Cross it early morning before the wind picks up. The newer bridge nearby is safer — cross the old one for the experience, use the newer one to come back.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARIES -->
+<div class="section-bg">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="label">Trip Planning</span>
+      <h2 class="section-title">Hunza Itineraries<br>3, 5 &amp; 7 Days</h2>
+      <p class="section-lead">Built around actual travel times, not wishful thinking. All assume you're based in Karimabad.</p>
+    </div>
+    <div class="reveal">
+      <div class="itinerary-tabs">
+        <button class="itin-tab active" onclick="switchItin('d3')">3 Days</button>
+        <button class="itin-tab" onclick="switchItin('d5')">5 Days</button>
+        <button class="itin-tab" onclick="switchItin('d7')">7 Days</button>
+        <button class="itin-tab" onclick="switchItin('d10')">10 Days</button>
+      </div>
+
+      
 
       <div class="itin-plan active" id="itin-d3">
         <div class="itin-days">

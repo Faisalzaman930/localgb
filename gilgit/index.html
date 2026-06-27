@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <!-- SEO:START -->
 <link rel="canonical" href="https://www.gilgitbaltistanguide.com/gilgit">
 <meta property="og:type" content="website">
@@ -170,23 +168,9 @@ loadWeather(35.9208, 74.3083);
     <h2 class="map-section-title">Explore Gilgit City & Valley</h2>
     <p class="map-section-sub">Tap markers to explore key sites</p>
   </div>
-  <div class="map-wrap"><div id="map"></div></div>
+  <div class="map-wrap"><iframe title="Map of Gilgit, Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=74.00,35.77,74.60,36.13&layer=mapnik&marker=35.95,74.3" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </section>
-<script>
-(function(){
-  if(typeof L==='undefined'){var mw=document.querySelector('.map-wrap');if(mw){mw.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;color:rgba(240,232,213,.6);font-size:.9rem">Interactive map couldn\'t load right now. <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener" style="color:#C8903A;margin-left:.4rem">Open in OpenStreetMap &rarr;</a></div>';}return;}
-  const map = L.map('map', {zoomControl:true, scrollWheelZoom:false}).setView([35.95,74.3], 10);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom:18
-  }).addTo(map);
-  const pinIcon = L.divIcon({className:'', html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>', iconSize:[12,12], iconAnchor:[6,6], popupAnchor:[0,-10]});
-  L.marker([35.9208,74.3083],{icon:pinIcon}).addTo(map).bindPopup('<strong>Gilgit City</strong><br>Hub of GB · best banking & transport links');
-  L.marker([36.1833,74.2],{icon:pinIcon}).addTo(map).bindPopup('<strong>Naltar Valley</strong><br>3 coloured lakes · ski resort · ~40km, 2–3h (4×4)');
-  L.marker([35.9333,74.2833],{icon:pinIcon}).addTo(map).bindPopup('<strong>Kargah Buddha</strong><br>7th century rock carving · ~10km from city');
-  L.marker([35.9,74.35],{icon:pinIcon}).addTo(map).bindPopup('<strong>Gilgit River Confluence</strong><br>Where Gilgit meets Hunza River · scenic point');
-  L.marker([35.9167,74.3],{icon:pinIcon}).addTo(map).bindPopup('<strong>Polo Ground</strong><br>Historic ground · Pakistan's wildest polo games');
-})();
-</script>
+
 
 
 <section class="section reveal">

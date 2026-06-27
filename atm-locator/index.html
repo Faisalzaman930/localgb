@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 #map { height:520px; width:100%; border-radius:4px; }
@@ -133,6 +133,63 @@
   <ul><li><a href="/destinations">Destinations</a></li><li><a href="/mountains">Mountains</a></li><li><a href="/trekking">Treks</a></li><li><a href="/things-to-do">Things to Do</a></li><li><a href="/tours">Tours</a></li><li><a href="/travel">Travel Tips</a></li><li><a href="/status">Road Status</a></li><li><a href="/agencies">Agencies</a></li></ul>
   <a href="/explore" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>
 </div>
+
+
+<section class="page-hero">
+  <div class="page-hero-img" style="background:linear-gradient(155deg,#040608 0%,#060A10 50%,#080E18 100%);" role="img" aria-label="Essentials Map Gilgit-Baltistan"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Practical</div>
+    <h1 class="page-hero-h1">Essentials Map<br><em>Gilgit-Baltistan</em></h1>
+    <p class="page-hero-sub">ATMs, hospitals, pharmacies, and petrol pumps — everything you need to locate before heading into remote areas.</p>
+    <div class="page-hero-meta">
+      <div class="page-hero-meta-item">🏧 <strong>ATMs</strong></div>
+      <div class="page-hero-meta-item">🏥 <strong>Hospitals</strong></div>
+      <div class="page-hero-meta-item">💊 <strong>Pharmacies</strong></div>
+      <div class="page-hero-meta-item">⛽ <strong>Petrol Pumps</strong></div>
+    </div>
+  </div>
+</section>
+<div class="breadcrumb"><div class="breadcrumb-inner">
+  <a href="/">Home</a><span class="breadcrumb-sep">/</span>
+  <span class="breadcrumb-current">Essentials Map</span>
+</div></div>
+
+<section class="section">
+  <div class="notice-cash">
+    <strong>Before you go remote:</strong> Withdraw cash in Gilgit or Skardu — there are no ATMs past Karimabad in Hunza or on any trekking route. Fill up petrol before Chilas northbound and before Skardu for Deosai. Carry basic medication; pharmacies thin out sharply after main towns.
+  </div>
+
+  <!-- Category toggles -->
+  <div class="cat-bar">
+    <button class="cat-btn" data-cat="atm">
+      <span class="cat-dot" style="background:#4a90d9"></span> ATMs
+    </button>
+    <button class="cat-btn" data-cat="hospital">
+      <span class="cat-dot" style="background:#e87070"></span> Hospitals
+    </button>
+    <button class="cat-btn" data-cat="pharmacy">
+      <span class="cat-dot" style="background:#5ecf8a"></span> Pharmacies
+    </button>
+    <button class="cat-btn" data-cat="petrol">
+      <span class="cat-dot" style="background:#c8a040"></span> Petrol Pumps
+    </button>
+    <button class="locate-btn" id="locateBtn" style="margin-left:auto">📍 Find Nearest</button>
+  </div>
+
+  <!-- Sub-filters (city) -->
+  <div class="sub-bar" id="subBar">
+    <span style="font-family:var(--fu);font-size:0.65rem;color:var(--cream-2);letter-spacing:0.08em;">CITY:</span>
+    <button class="sub-btn active" data-city="all">All</button>
+    <button class="sub-btn" data-city="Gilgit">Gilgit</button>
+    <button class="sub-btn" data-city="Hunza">Hunza</button>
+    <button class="sub-btn" data-city="Skardu">Skardu</button>
+    <button class="sub-btn" data-city="Chilas">Chilas</button>
+    <button class="sub-btn" data-city="Ghizer">Ghizer</button>
+    <button class="sub-btn" data-city="Astore">Astore</button>
+  </div>
+
+  
 
   <div id="status-bar">Loading…</div>
   <div id="map"></div>

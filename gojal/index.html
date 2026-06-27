@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260629">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/css/main.css?v=20260630">
 <style>
 .attractions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:3rem;}
 .attraction-card{height:240px;position:relative;border-radius:5px;overflow:hidden;cursor:pointer;transition:transform 0.4s var(--ease);}
@@ -154,26 +152,9 @@
     <h2 class="map-section-title">Explore Gojal &amp; Upper Hunza</h2>
     <p class="map-section-sub">From Gulmit to Misgar — the final 150km of Pakistan before the Chinese border</p>
   </div>
-  <div class="map-wrap"><div id="map"></div></div>
+  <div class="map-wrap"><iframe title="Map of Gojal (Upper Hunza), Gilgit-Baltistan" src="https://www.openstreetmap.org/export/embed.html?bbox=74.62,36.54,75.22,36.90&layer=mapnik&marker=36.72,74.92" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </section>
-<script>
-(function(){
-  if(typeof L==='undefined'){var mw=document.querySelector('.map-wrap');if(mw){mw.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;color:rgba(240,232,213,.6);font-size:.9rem">Interactive map couldn\'t load right now. <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener" style="color:#C8903A;margin-left:.4rem">Open in OpenStreetMap &rarr;</a></div>';}return;}
-  const map=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([36.72,74.92],9);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18}).addTo(map);
-  const pin=L.divIcon({className:'',html:'<div style="width:12px;height:12px;background:#C8903A;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-10]});
-  const gem=L.divIcon({className:'',html:'<div style="width:10px;height:10px;background:#5C9E6F;border-radius:50%;border:2px solid #F0E8D5;box-shadow:0 2px 8px rgba(0,0,0,0.6);"></div>',iconSize:[10,10],iconAnchor:[5,5],popupAnchor:[0,-8]});
-  L.marker([36.4667,74.8500],{icon:pin}).addTo(map).bindPopup('<strong>Gulmit</strong><br>2,480m · Upper Hunza cultural capital<br>Gojal Museum · Wakhi Heritage');
-  L.marker([36.4750,74.8600],{icon:pin}).addTo(map).bindPopup('<strong>Passu</strong><br>Passu Cones · Hussaini Bridge<br>Borith Lake · trekking base');
-  L.marker([36.5167,74.8667],{icon:pin}).addTo(map).bindPopup('<strong>Gulmit Glacier</strong><br>Walk from Gulmit village<br>Accessible in 1.5–2h on foot');
-  L.marker([37.1000,75.4333],{icon:pin}).addTo(map).bindPopup('<strong>Shimshal Village</strong><br>3,100m · Pakistan\'s most remote road village<br>NOC required · Wakhi community<br>Yak herding · Shimshal Pass 4,735m');
-  L.marker([36.9000,74.9833],{icon:pin}).addTo(map).bindPopup('<strong>Sost</strong><br>Last Pakistani town on KKH<br>Pakistan–China customs &amp; immigration<br>2,790m');
-  L.marker([37.1500,75.2167],{icon:pin}).addTo(map).bindPopup('<strong>Misgar</strong><br>Last Wakhi village before Khunjerab<br>Rarely visited · ancient trade post');
-  L.marker([36.8385,75.4133],{icon:pin}).addTo(map).bindPopup('<strong>Khunjerab Pass</strong><br>4,693m · Pakistan-China border<br>Khunjerab National Park · Marco Polo sheep');
-  L.marker([37.0500,75.3500],{icon:gem}).addTo(map).bindPopup('<strong>Kilik &amp; Mintaka Passes</strong><br>Ancient Silk Road passes to Central Asia<br>Now closed border · trekking access from Misgar<br>NOC required');
-  L.marker([36.4400,74.8200],{icon:gem}).addTo(map).bindPopup('<strong>Ghulkin Glacier</strong><br>Walk from Ghulkin village<br>Easier glacier access than Passu');
-})();
-</script>
+
 
 <script>
 function wxIcon(c){if(c===1000)return'☀️';if(c<=1009)return'⛅';if([1030,1135,1147].includes(c))return'🌫️';if(c>=1273)return'⛈️';if(c>=1210)return'❄️';if(c>=1180)return'🌧️';if(c>=1150)return'🌦️';if(c===1087)return'⛈️';if(c>=1066)return'🌨️';if(c>=1063)return'🌦️';return'🌡️';}
