@@ -1791,30 +1791,6 @@ footer {
   </div>
 </div>
 
-<!-- ─── SEASON STRIP ─────────────────────────────────── -->
-<div class="season-strip">
-  <div class="season-inner">
-    <span class="season-heading">When to Visit</span>
-    <div class="season-items">
-      <div class="season-item">
-        <span class="season-item-range peak">May – September</span>
-        <span class="season-item-label">Peak season · all routes open</span>
-      </div>
-      <div class="season-item">
-        <span class="season-item-range">March – April · October</span>
-        <span class="season-item-label">Shoulder · quieter, cooler</span>
-      </div>
-      <div class="season-item">
-        <span class="season-item-range">April – September</span>
-        <span class="season-item-label">K2 trekking permits valid</span>
-      </div>
-    </div>
-    <div class="season-cta">
-      <a href="/weather">Full season guide &rarr;</a>
-    </div>
-  </div>
-</div>
-
 <!-- ─── PLAN YOUR TRIP APP ───────────────────────────── -->
 <section class="planner-section">
   <div class="planner-inner">
@@ -1849,6 +1825,39 @@ footer {
           <div style="font-size:1.4rem;margin-bottom:0.6rem;">🔓</div>
           <div style="font-family:var(--fu);font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Free. No Login. No Catch.</div>
           <div style="font-size:0.78rem;color:var(--cream-2);line-height:1.6;">No account, no upsell, no commission. Built by someone who lives here and earns nothing from your choices.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOCAL ANGLE ──────────────────────────────────────── -->
+<section class="local-section">
+  <div class="local-inner">
+    <div class="reveal">
+      <blockquote class="local-quote">
+        "Agencies show you<br>the mountains.<br><span>I'll show you how<br>to afford them."</span>
+      </blockquote>
+    </div>
+    <div class="reveal">
+      <span class="label">Why Trust a Local</span>
+      <h2 class="section-title" style="font-size:clamp(2rem,3vw,3rem);margin-bottom:1.5rem;">Not an agency.<br>A neighbour.</h2>
+      <p class="local-body">
+        I grew up 40km from Fairy Meadows. I know which guesthouses are honest and which ones overcharge tourists by 300%. I know the jeep driver who won't take you on a shortcut that washed out last monsoon. I know which agencies have guides who speak Shina and which ones send someone who's never done K2 base camp.<br><br>
+        <strong>This site has no packages to sell you.</strong> I earn only when I recommend something I'd send my own family to.
+      </p>
+      <div class="local-stats">
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years living here</div>
+        </div>
+        <div>
+          <div class="stat-num">47</div>
+          <div class="stat-label">Vetted agencies</div>
+        </div>
+        <div>
+          <div class="stat-num">140+</div>
+          <div class="stat-label">Destination guides</div>
         </div>
       </div>
     </div>
@@ -2009,49 +2018,101 @@ footer {
   </div>
 </div>
 
-<!-- ─── LOCAL ANGLE ──────────────────────────────────────── -->
-<section class="local-section">
-  <div class="local-inner">
-    <div class="reveal">
-      <blockquote class="local-quote">
-        "Agencies show you<br>the mountains.<br><span>I'll show you how<br>to afford them."</span>
-      </blockquote>
+<!-- ─── SEO PILLAR CONTENT ─────────────────────────────── -->
+<style>
+.gb-pillar { background: var(--ink); padding: clamp(3rem,7vw,6rem) 0; border-top: 1px solid rgba(200,144,58,0.12); }
+.gb-pillar-inner { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+.gb-pillar .eyebrow { font-family: var(--fu); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.gb-pillar h2 { font-family: var(--fd); font-weight: 400; font-size: clamp(1.9rem,4vw,2.8rem); line-height: 1.08; color: var(--cream); margin: 0.6rem 0 1.4rem; }
+.gb-pillar h2 em { font-style: italic; color: var(--gold-lt); }
+.gb-pillar .lead { color: var(--cream-2); font-size: 1.05rem; line-height: 1.75; margin: 0 0 2.6rem; max-width: 70ch; }
+.gb-pillar .lead a, .gb-tile a, .gb-region-more a { color: var(--gold-lt); text-decoration: none; border-bottom: 1px solid rgba(200,144,58,0.3); }
+.gb-pillar .lead a:hover { color: var(--gold); }
+.gb-sub { font-family: var(--fu); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.1rem; }
+/* region cards */
+.gb-regions { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px,1fr)); gap: 0.85rem; margin-bottom: 3rem; }
+.gb-region-card { display: block; background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06); border-radius: 9px; padding: 1.25rem 1.35rem; text-decoration: none; transition: border-color .2s, transform .2s; }
+.gb-region-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
+.gb-region-card .rn { font-family: var(--fd); font-size: 1.35rem; color: var(--cream); line-height: 1.1; }
+.gb-region-card .rd { font-size: 0.82rem; color: var(--cream-2); line-height: 1.5; margin-top: 0.45rem; }
+.gb-region-card .ra { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.8rem; display: inline-block; }
+/* essentials tiles */
+.gb-essentials { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px,1fr)); gap: 0.85rem; margin-bottom: 2.6rem; }
+.gb-tile { background: linear-gradient(180deg, rgba(200,144,58,0.05), transparent 70%); border: 1px solid rgba(255,255,255,0.07); border-radius: 9px; padding: 1.4rem; }
+.gb-tile .ti { font-size: 1.3rem; line-height: 1; }
+.gb-tile h4 { font-family: var(--fu); font-size: 0.95rem; font-weight: 600; color: var(--cream); margin: 0.7rem 0 0.5rem; }
+.gb-tile p { font-size: 0.84rem; color: var(--cream-2); line-height: 1.6; margin: 0 0 0.7rem; }
+.gb-tile .links { font-size: 0.72rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; }
+.gb-faq { margin-top: 2.6rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.gb-faq details { border: 1px solid rgba(255,255,255,0.09); border-radius: 7px; background: var(--ink-3); overflow: hidden; }
+.gb-faq details[open] { border-color: var(--gold-border); }
+.gb-faq summary { cursor: pointer; list-style: none; padding: 1.05rem 1.3rem; font-family: var(--fu); font-weight: 600; font-size: 0.95rem; color: var(--cream); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.gb-faq summary::-webkit-details-marker { display: none; }
+.gb-faq summary::after { content: "+"; color: var(--gold); font-size: 1.4rem; line-height: 1; transition: transform .2s; flex-shrink: 0; }
+.gb-faq details[open] summary::after { transform: rotate(45deg); }
+.gb-faq details p { padding: 0 1.3rem 1.2rem; margin: 0; color: var(--cream-2); font-size: 0.9rem; line-height: 1.7; }
+</style>
+<section class="gb-pillar">
+  <div class="gb-pillar-inner">
+    <span class="eyebrow">Planning Guide</span>
+    <h2>How to plan a trip to <em>Gilgit-Baltistan</em></h2>
+    <p class="lead"><strong>Gilgit-Baltistan</strong> is the mountainous far north of Pakistan, where the <strong>Karakoram</strong>, <strong>Himalaya</strong> and <strong>Hindu Kush</strong> ranges collide — holding five of the world's fourteen 8,000-metre peaks, including <a href="/mountains/k2">K2</a> and <a href="/mountains/nanga-parbat">Nanga Parbat</a>. Glaciers, turquoise lakes, apricot-blossom valleys and Silk Road towns, threaded by the <a href="/karakoram-highway">Karakoram Highway</a>. Here's where to go, when, and how — or jump straight into the free <a href="/explore">trip planner</a>.</p>
+
+    <div class="gb-sub">Where to go</div>
+    <div class="gb-regions">
+      <a class="gb-region-card" href="/hunza"><div class="rn">Hunza Valley</div><div class="rd">Karimabad, Baltit &amp; Altit forts, Attabad Lake, Passu Cones, Khunjerab.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/skardu"><div class="rn">Skardu &amp; Baltistan</div><div class="rd">Gateway to K2, Shigar &amp; Khaplu forts, cold deserts and alpine lakes.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/deosai"><div class="rn">Deosai Plains</div><div class="rd">The second-highest plateau on earth — wildflowers, marmots, Sheosar Lake.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/fairy-meadows"><div class="rn">Fairy Meadows</div><div class="rd">The classic front-row view of Nanga Parbat, the world's 9th-highest peak.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/gilgit"><div class="rn">Gilgit</div><div class="rd">The regional hub — Kargah Buddha, bazaars, and the turn-off for Naltar.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/naltar"><div class="rn">Naltar Valley</div><div class="rd">Ski slopes and the famous three coloured lakes, a jeep ride from Gilgit.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/ghizer"><div class="rn">Ghizer</div><div class="rd">Off-beat west — Phander Lake, the road to Shandur, and quiet trout valleys.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/astore"><div class="rn">Astore &amp; Rama</div><div class="rd">Rama Lake and meadows, and the southern Rupal side of Nanga Parbat.</div><span class="ra">Explore →</span></a>
+      <a class="gb-region-card" href="/destinations" style="display:flex;align-items:center;justify-content:center;background:rgba(200,144,58,0.06);border-style:dashed;"><div><div class="ra" style="margin:0;font-size:0.7rem;">All destinations →</div></div></a>
     </div>
-    <div class="reveal">
-      <span class="label">Why Trust a Local</span>
-      <h2 class="section-title" style="font-size:clamp(2rem,3vw,3rem);margin-bottom:1.5rem;">Not an agency.<br>A neighbour.</h2>
-      <p class="local-body">
-        I grew up 40km from Fairy Meadows. I know which guesthouses are honest and which ones overcharge tourists by 300%. I know the jeep driver who won't take you on a shortcut that washed out last monsoon. I know which agencies have guides who speak Shina and which ones send someone who's never done K2 base camp.<br><br>
-        <strong>This site has no packages to sell you.</strong> I earn only when I recommend something I'd send my own family to.
-      </p>
-      <div class="local-stats">
-        <div>
-          <div class="stat-num">12+</div>
-          <div class="stat-label">Years living here</div>
-        </div>
-        <div>
-          <div class="stat-num">47</div>
-          <div class="stat-label">Vetted agencies</div>
-        </div>
-        <div>
-          <div class="stat-num">140+</div>
-          <div class="stat-label">Destination guides</div>
-        </div>
-      </div>
+
+    <div class="gb-sub">Plan the essentials</div>
+    <div class="gb-essentials">
+      <div class="gb-tile"><div class="ti">🗓️</div><h4>Best time to visit</h4><p>April–October. Blossom in April, all high passes open June–August, golden colour Sep–Oct. Winter is quiet; high passes and Deosai close.</p><div class="links"><a href="/travel/best-time-to-visit-gb">Month-by-month</a><a href="/weather">Weather</a></div></div>
+      <div class="gb-tile"><div class="ti">✈️</div><h4>Getting there</h4><p>Fly Islamabad→Gilgit/Skardu (scenic but weather-dependent and often cancelled), or drive the Karakoram Highway. Always keep a road plan-B.</p><div class="links"><a href="/travel/islamabad-to-hunza">Routes</a><a href="/status">Road status</a></div></div>
+      <div class="gb-tile"><div class="ti">🧭</div><h4>How long &amp; budget</h4><p>7–10 days for a first trip; two weeks to add Skardu and Deosai. Doable on a backpacker or mid-range budget — build your own with real costs.</p><div class="links"><a href="/explore">Trip planner</a><a href="/travel/budget-gb-itinerary">Budget guide</a></div></div>
+      <div class="gb-tile"><div class="ti">🛡️</div><h4>Safe &amp; permits</h4><p>Among Pakistan's safest, most welcoming regions — a favourite for solo and female travellers. The country-wide NOC was abolished in 2019; some border zones still need permits.</p><div class="links"><a href="/travel/noc-permits-gb">NOC &amp; permits</a><a href="/agencies">Vetted operators</a></div></div>
+    </div>
+
+    <div class="gb-faq">
+      <details><summary>Is Gilgit-Baltistan safe for tourists?</summary><p>Yes — it is widely regarded as one of the safest regions in Pakistan, with a strong tradition of hospitality. Hunza is especially popular with solo and female travellers. As anywhere in the mountains, the real risks are practical: weather, altitude, and road conditions rather than security. Check current advisories and our live road &amp; pass status before travelling.</p></details>
+      <details><summary>What is the best time to visit Gilgit-Baltistan?</summary><p>April to October. April brings blossom to Hunza, June–August opens all the high passes (Khunjerab, Babusar, Deosai), and September–October offers golden autumn colour with the clearest skies. Winter is cold and quiet — Hunza and Gilgit remain accessible, but high passes and Deosai close.</p></details>
+      <details><summary>How many days do you need in Gilgit-Baltistan?</summary><p>Plan at least 7–10 days for a first trip focused on Hunza and the Karakoram Highway. Two weeks lets you add Skardu, the Deosai Plains and a quieter valley such as Ghizer or Astore without rushing the long mountain drives.</p></details>
+      <details><summary>Do I need a permit or NOC to visit Gilgit-Baltistan?</summary><p>For most open tourist areas — Hunza, Skardu, Gilgit, Fairy Meadows — no. The country-wide NOC requirement was abolished in 2019 and foreigners generally travel freely. Some sensitive border zones and major mountaineering treks still require permits or registration, so confirm before you go.</p></details>
+      <details><summary>Should I fly or drive to Gilgit-Baltistan?</summary><p>Flying from Islamabad to Gilgit or Skardu saves a long day but is weather-dependent and often cancelled — always keep a road backup. The Karakoram Highway by road takes around 14–16 hours to Hunza but is reliable and scenic. Many travellers fly one way and drive the other.</p></details>
+      <details><summary>What is Gilgit-Baltistan famous for?</summary><p>It is home to K2 and four other 8,000-metre peaks, the Karakoram Highway, Hunza's forts and apricot blossom, Skardu and the route to K2 Base Camp, the Deosai Plains, Fairy Meadows below Nanga Parbat, and a string of turquoise glacial lakes — all set where the Karakoram, Himalaya and Hindu Kush meet.</p></details>
     </div>
   </div>
 </section>
 
-<!-- ─── DISPATCH ──────────────────────────────────────── -->
-<section class="dispatch-section reveal">
-  <div class="dispatch-inner">
-    <div class="dispatch-rule"></div>
-    <p class="dispatch-quote">
-      "The best thing about K2 is that<br>it doesn't care <em>who you are.</em><br>The worst thing about GB tourism is<br>that some agencies do."
-    </p>
-    <span class="dispatch-attr">Field Note · Concordia, 4,600m · August 2023</span>
+<!-- ─── SEASON STRIP ─────────────────────────────────── -->
+<div class="season-strip">
+  <div class="season-inner">
+    <span class="season-heading">When to Visit</span>
+    <div class="season-items">
+      <div class="season-item">
+        <span class="season-item-range peak">May – September</span>
+        <span class="season-item-label">Peak season · all routes open</span>
+      </div>
+      <div class="season-item">
+        <span class="season-item-range">March – April · October</span>
+        <span class="season-item-label">Shoulder · quieter, cooler</span>
+      </div>
+      <div class="season-item">
+        <span class="season-item-range">April – September</span>
+        <span class="season-item-label">K2 trekking permits valid</span>
+      </div>
+    </div>
+    <div class="season-cta">
+      <a href="/weather">Full season guide &rarr;</a>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- ─── THINGS TO DO ─────────────────────────────────── -->
 <section class="todo-section">
@@ -2261,6 +2322,17 @@ footer {
   </div>
 </section>
 
+<!-- ─── DISPATCH ──────────────────────────────────────── -->
+<section class="dispatch-section reveal">
+  <div class="dispatch-inner">
+    <div class="dispatch-rule"></div>
+    <p class="dispatch-quote">
+      "The best thing about K2 is that<br>it doesn't care <em>who you are.</em><br>The worst thing about GB tourism is<br>that some agencies do."
+    </p>
+    <span class="dispatch-attr">Field Note · Concordia, 4,600m · August 2023</span>
+  </div>
+</section>
+
 <!-- ─── AGENCIES ──────────────────────────────────────── -->
 <section class="agencies-section">
   <div class="agencies-inner">
@@ -2427,78 +2499,6 @@ footer {
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ─── SEO PILLAR CONTENT ─────────────────────────────── -->
-<style>
-.gb-pillar { background: var(--ink); padding: clamp(3rem,7vw,6rem) 0; border-top: 1px solid rgba(200,144,58,0.12); }
-.gb-pillar-inner { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
-.gb-pillar .eyebrow { font-family: var(--fu); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
-.gb-pillar h2 { font-family: var(--fd); font-weight: 400; font-size: clamp(1.9rem,4vw,2.8rem); line-height: 1.08; color: var(--cream); margin: 0.6rem 0 1.4rem; }
-.gb-pillar h2 em { font-style: italic; color: var(--gold-lt); }
-.gb-pillar .lead { color: var(--cream-2); font-size: 1.05rem; line-height: 1.75; margin: 0 0 2.6rem; max-width: 70ch; }
-.gb-pillar .lead a, .gb-tile a, .gb-region-more a { color: var(--gold-lt); text-decoration: none; border-bottom: 1px solid rgba(200,144,58,0.3); }
-.gb-pillar .lead a:hover { color: var(--gold); }
-.gb-sub { font-family: var(--fu); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.1rem; }
-/* region cards */
-.gb-regions { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px,1fr)); gap: 0.85rem; margin-bottom: 3rem; }
-.gb-region-card { display: block; background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06); border-radius: 9px; padding: 1.25rem 1.35rem; text-decoration: none; transition: border-color .2s, transform .2s; }
-.gb-region-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
-.gb-region-card .rn { font-family: var(--fd); font-size: 1.35rem; color: var(--cream); line-height: 1.1; }
-.gb-region-card .rd { font-size: 0.82rem; color: var(--cream-2); line-height: 1.5; margin-top: 0.45rem; }
-.gb-region-card .ra { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.8rem; display: inline-block; }
-/* essentials tiles */
-.gb-essentials { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px,1fr)); gap: 0.85rem; margin-bottom: 2.6rem; }
-.gb-tile { background: linear-gradient(180deg, rgba(200,144,58,0.05), transparent 70%); border: 1px solid rgba(255,255,255,0.07); border-radius: 9px; padding: 1.4rem; }
-.gb-tile .ti { font-size: 1.3rem; line-height: 1; }
-.gb-tile h4 { font-family: var(--fu); font-size: 0.95rem; font-weight: 600; color: var(--cream); margin: 0.7rem 0 0.5rem; }
-.gb-tile p { font-size: 0.84rem; color: var(--cream-2); line-height: 1.6; margin: 0 0 0.7rem; }
-.gb-tile .links { font-size: 0.72rem; display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; }
-.gb-faq { margin-top: 2.6rem; display: flex; flex-direction: column; gap: 0.6rem; }
-.gb-faq details { border: 1px solid rgba(255,255,255,0.09); border-radius: 7px; background: var(--ink-3); overflow: hidden; }
-.gb-faq details[open] { border-color: var(--gold-border); }
-.gb-faq summary { cursor: pointer; list-style: none; padding: 1.05rem 1.3rem; font-family: var(--fu); font-weight: 600; font-size: 0.95rem; color: var(--cream); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.gb-faq summary::-webkit-details-marker { display: none; }
-.gb-faq summary::after { content: "+"; color: var(--gold); font-size: 1.4rem; line-height: 1; transition: transform .2s; flex-shrink: 0; }
-.gb-faq details[open] summary::after { transform: rotate(45deg); }
-.gb-faq details p { padding: 0 1.3rem 1.2rem; margin: 0; color: var(--cream-2); font-size: 0.9rem; line-height: 1.7; }
-</style>
-<section class="gb-pillar">
-  <div class="gb-pillar-inner">
-    <span class="eyebrow">Planning Guide</span>
-    <h2>How to plan a trip to <em>Gilgit-Baltistan</em></h2>
-    <p class="lead"><strong>Gilgit-Baltistan</strong> is the mountainous far north of Pakistan, where the <strong>Karakoram</strong>, <strong>Himalaya</strong> and <strong>Hindu Kush</strong> ranges collide — holding five of the world's fourteen 8,000-metre peaks, including <a href="/mountains/k2">K2</a> and <a href="/mountains/nanga-parbat">Nanga Parbat</a>. Glaciers, turquoise lakes, apricot-blossom valleys and Silk Road towns, threaded by the <a href="/karakoram-highway">Karakoram Highway</a>. Here's where to go, when, and how — or jump straight into the free <a href="/explore">trip planner</a>.</p>
-
-    <div class="gb-sub">Where to go</div>
-    <div class="gb-regions">
-      <a class="gb-region-card" href="/hunza"><div class="rn">Hunza Valley</div><div class="rd">Karimabad, Baltit &amp; Altit forts, Attabad Lake, Passu Cones, Khunjerab.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/skardu"><div class="rn">Skardu &amp; Baltistan</div><div class="rd">Gateway to K2, Shigar &amp; Khaplu forts, cold deserts and alpine lakes.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/deosai"><div class="rn">Deosai Plains</div><div class="rd">The second-highest plateau on earth — wildflowers, marmots, Sheosar Lake.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/fairy-meadows"><div class="rn">Fairy Meadows</div><div class="rd">The classic front-row view of Nanga Parbat, the world's 9th-highest peak.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/gilgit"><div class="rn">Gilgit</div><div class="rd">The regional hub — Kargah Buddha, bazaars, and the turn-off for Naltar.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/naltar"><div class="rn">Naltar Valley</div><div class="rd">Ski slopes and the famous three coloured lakes, a jeep ride from Gilgit.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/ghizer"><div class="rn">Ghizer</div><div class="rd">Off-beat west — Phander Lake, the road to Shandur, and quiet trout valleys.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/astore"><div class="rn">Astore &amp; Rama</div><div class="rd">Rama Lake and meadows, and the southern Rupal side of Nanga Parbat.</div><span class="ra">Explore →</span></a>
-      <a class="gb-region-card" href="/destinations" style="display:flex;align-items:center;justify-content:center;background:rgba(200,144,58,0.06);border-style:dashed;"><div><div class="ra" style="margin:0;font-size:0.7rem;">All destinations →</div></div></a>
-    </div>
-
-    <div class="gb-sub">Plan the essentials</div>
-    <div class="gb-essentials">
-      <div class="gb-tile"><div class="ti">🗓️</div><h4>Best time to visit</h4><p>April–October. Blossom in April, all high passes open June–August, golden colour Sep–Oct. Winter is quiet; high passes and Deosai close.</p><div class="links"><a href="/travel/best-time-to-visit-gb">Month-by-month</a><a href="/weather">Weather</a></div></div>
-      <div class="gb-tile"><div class="ti">✈️</div><h4>Getting there</h4><p>Fly Islamabad→Gilgit/Skardu (scenic but weather-dependent and often cancelled), or drive the Karakoram Highway. Always keep a road plan-B.</p><div class="links"><a href="/travel/islamabad-to-hunza">Routes</a><a href="/status">Road status</a></div></div>
-      <div class="gb-tile"><div class="ti">🧭</div><h4>How long &amp; budget</h4><p>7–10 days for a first trip; two weeks to add Skardu and Deosai. Doable on a backpacker or mid-range budget — build your own with real costs.</p><div class="links"><a href="/explore">Trip planner</a><a href="/travel/budget-gb-itinerary">Budget guide</a></div></div>
-      <div class="gb-tile"><div class="ti">🛡️</div><h4>Safe &amp; permits</h4><p>Among Pakistan's safest, most welcoming regions — a favourite for solo and female travellers. The country-wide NOC was abolished in 2019; some border zones still need permits.</p><div class="links"><a href="/travel/noc-permits-gb">NOC &amp; permits</a><a href="/agencies">Vetted operators</a></div></div>
-    </div>
-
-    <div class="gb-faq">
-      <details><summary>Is Gilgit-Baltistan safe for tourists?</summary><p>Yes — it is widely regarded as one of the safest regions in Pakistan, with a strong tradition of hospitality. Hunza is especially popular with solo and female travellers. As anywhere in the mountains, the real risks are practical: weather, altitude, and road conditions rather than security. Check current advisories and our live road &amp; pass status before travelling.</p></details>
-      <details><summary>What is the best time to visit Gilgit-Baltistan?</summary><p>April to October. April brings blossom to Hunza, June–August opens all the high passes (Khunjerab, Babusar, Deosai), and September–October offers golden autumn colour with the clearest skies. Winter is cold and quiet — Hunza and Gilgit remain accessible, but high passes and Deosai close.</p></details>
-      <details><summary>How many days do you need in Gilgit-Baltistan?</summary><p>Plan at least 7–10 days for a first trip focused on Hunza and the Karakoram Highway. Two weeks lets you add Skardu, the Deosai Plains and a quieter valley such as Ghizer or Astore without rushing the long mountain drives.</p></details>
-      <details><summary>Do I need a permit or NOC to visit Gilgit-Baltistan?</summary><p>For most open tourist areas — Hunza, Skardu, Gilgit, Fairy Meadows — no. The country-wide NOC requirement was abolished in 2019 and foreigners generally travel freely. Some sensitive border zones and major mountaineering treks still require permits or registration, so confirm before you go.</p></details>
-      <details><summary>Should I fly or drive to Gilgit-Baltistan?</summary><p>Flying from Islamabad to Gilgit or Skardu saves a long day but is weather-dependent and often cancelled — always keep a road backup. The Karakoram Highway by road takes around 14–16 hours to Hunza but is reliable and scenic. Many travellers fly one way and drive the other.</p></details>
-      <details><summary>What is Gilgit-Baltistan famous for?</summary><p>It is home to K2 and four other 8,000-metre peaks, the Karakoram Highway, Hunza's forts and apricot blossom, Skardu and the route to K2 Base Camp, the Deosai Plains, Fairy Meadows below Nanga Parbat, and a string of turquoise glacial lakes — all set where the Karakoram, Himalaya and Hindu Kush meet.</p></details>
     </div>
   </div>
 </section>
