@@ -256,7 +256,7 @@ def gen_sitemap(dirs):
 
 
 def main():
-    pages = sorted(ROOT.rglob("index.html"))
+    pages = sorted(p for p in ROOT.rglob("index.html") if "preview" not in p.parts)
     seen_dirs = []
     for p in pages:
         rel = inject(p)

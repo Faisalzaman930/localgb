@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GB Guide — Light Redesign Preview</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBFAF6; --surface:#FFFFFF; --ink:#1A1712; --stone:#6F695C; --faint:#9A9384;
+  --gold:#B07D2B; --gold-fill:#C8903A; --gold-soft:#F2E7D0; --line:#ECE7DC;
+  --fd:'Fraunces',Georgia,serif; --fu:'Manrope',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fu);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem}
+.eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.5rem}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--gold)}
+h1,h2,h3{font-family:var(--fd);font-weight:500;letter-spacing:-.01em;line-height:1.07;text-wrap:balance}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.82rem;letter-spacing:.02em;padding:.95rem 1.6rem;border-radius:8px;transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer;border:1px solid transparent}
+.btn-pri{background:var(--gold-fill);color:#fff;box-shadow:0 6px 20px rgba(176,125,43,.28)}
+.btn-pri:hover{transform:translateY(-2px);background:var(--gold)}
+.btn-ghost{background:transparent;border-color:rgba(26,23,18,.18);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;transition:background .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(251,250,246,.9);backdrop-filter:blur(14px);border-color:var(--line)}
+.logo{display:flex;align-items:center;gap:.5rem;font-family:var(--fd);font-size:1.5rem;font-weight:600}
+.logo .l1{color:var(--gold)} .logo .l2{color:var(--ink)}
+.logo svg{height:1.3em;width:auto}
+nav.on-photo .logo .l2,nav.on-photo .nav-links a{color:#fff}
+nav.scrolled .logo .l2,nav.scrolled .nav-links a{color:var(--ink)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--ink);transition:color .2s;opacity:.85}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+@media(max-width:860px){.nav-links{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:94vh;display:flex;align-items:flex-end;color:#fff}
+.hero-img{position:absolute;inset:0;background:url('/images/hunza-hero.webp') center 35%/cover no-repeat}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,12,.45) 0%,rgba(20,17,12,.12) 35%,rgba(20,17,12,.78) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 1.5rem 5rem}
+.hero h1{font-size:clamp(2.8rem,7vw,5.5rem);color:#fff;max-width:16ch;font-weight:500}
+.hero h1 em{font-style:italic;color:#F2D9A8}
+.hero p{font-size:1.12rem;max-width:46ch;margin:1.3rem 0 2rem;color:rgba(255,255,255,.9);line-height:1.6}
+.hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
+.hero .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.hero-trust{margin-top:2.2rem;font-size:.82rem;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.hero-trust .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5)}
+
+/* trust strip */
+.strip{background:var(--ink);color:#EDE8DC;font-size:.8rem}
+.strip .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem 2.2rem;padding:1rem 1.5rem;text-align:center}
+.strip b{color:#F2D9A8;font-weight:700}
+
+/* sections */
+section{padding:clamp(3.5rem,7vw,6.5rem) 0}
+.sec-head{max-width:640px;margin-bottom:2.6rem}
+.sec-head h2{font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 .8rem}
+.sec-head p{color:var(--stone);font-size:1.05rem}
+
+/* planner band */
+.planner{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.planner-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
+.steps{display:flex;flex-direction:column;gap:1.1rem;margin:1.6rem 0 2rem}
+.step{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--gold-soft);color:var(--gold);font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step b{font-weight:700} .step p{color:var(--stone);font-size:.9rem}
+/* sample itinerary card */
+.itin{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.4rem;box-shadow:0 20px 50px -28px rgba(26,23,18,.3)}
+.itin-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:.9rem;margin-bottom:.9rem}
+.itin-h .t{font-family:var(--fd);font-size:1.3rem}
+.itin-h .c{font-size:.72rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.itin-day{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.itin-day:last-child{border-bottom:0}
+.itin-day .d{font-weight:700;color:var(--gold)} .itin-day .x{color:var(--stone);font-size:.8rem}
+@media(max-width:780px){.planner-grid{grid-template-columns:1fr;gap:2.2rem}}
+
+/* region cards */
+.regions{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.rc{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;display:flex;align-items:flex-end;color:#fff;box-shadow:0 14px 40px -24px rgba(26,23,18,.4)}
+.rc.big{grid-row:span 2;aspect-ratio:auto}
+.rc-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s var(--ease)}
+.rc:hover .rc-img{transform:scale(1.06)}
+.rc-scrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(20,17,12,.82) 100%)}
+.rc-body{position:relative;z-index:2;padding:1.3rem}
+.rc-body .n{font-family:var(--fd);font-size:1.5rem;line-height:1.1}
+.rc-body .s{font-size:.78rem;color:rgba(255,255,255,.82);margin-top:.3rem}
+@media(max-width:780px){.regions{grid-template-columns:1fr 1fr}.rc.big{grid-row:span 1;aspect-ratio:4/5}}
+@media(max-width:480px){.regions{grid-template-columns:1fr}}
+
+/* why GB split */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.why-img{min-height:440px;background:url('/images/fairymeadows-hero.webp') center/cover}
+.why-txt{padding:clamp(2.5rem,5vw,5rem)}
+.why-stats{display:flex;gap:2rem;margin-top:1.8rem;flex-wrap:wrap}
+.why-stats .st .num{font-family:var(--fd);font-size:2.2rem;color:var(--gold);line-height:1}
+.why-stats .st .lab{font-size:.74rem;color:var(--stone);margin-top:.3rem}
+@media(max-width:780px){.why{grid-template-columns:1fr}.why-img{min-height:280px;order:-1}}
+
+/* essentials */
+.ess{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.ec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.5rem}
+.ec .ic{font-size:1.5rem}
+.ec h3{font-family:var(--fu);font-size:1rem;font-weight:700;margin:.8rem 0 .5rem}
+.ec p{font-size:.85rem;color:var(--stone)}
+.ec a{display:inline-block;margin-top:.8rem;font-size:.78rem;font-weight:700;color:var(--gold)}
+@media(max-width:780px){.ess{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.ess{grid-template-columns:1fr}}
+
+/* local */
+.local{background:var(--gold-soft)}
+.local .wrap{display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center}
+.local-photo{width:180px;height:220px;border-radius:14px;background:url('/images/hunza-hero.webp') center/cover;flex-shrink:0;box-shadow:0 16px 40px -22px rgba(26,23,18,.4)}
+.local h2{font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:1rem}
+.local p{color:#5c5340;max-width:55ch;margin-bottom:.9rem}
+@media(max-width:680px){.local .wrap{grid-template-columns:1fr}.local-photo{width:140px;height:170px}}
+
+/* email */
+.email{text-align:center}
+.email .wrap{max-width:620px}
+.email h2{font-size:clamp(1.8rem,3.5vw,2.6rem);margin:.6rem 0 .8rem}
+.email p{color:var(--stone);margin-bottom:1.6rem}
+.email form{display:flex;gap:.6rem;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.email input{flex:1;min-width:200px;padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:8px;font-family:var(--fu);font-size:.95rem;background:var(--surface)}
+.email input:focus{outline:none;border-color:var(--gold)}
+
+footer{background:var(--ink);color:#C9C2B2;padding:3.5rem 0 2.5rem;font-size:.85rem}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+footer h4{font-family:var(--fu);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#F2D9A8;margin-bottom:1rem}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+footer a{color:#C9C2B2}footer a:hover{color:#fff}
+footer .bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:#8E887A;font-size:.78rem}
+@media(max-width:680px){footer .cols{grid-template-columns:1fr 1fr}}
+
+.note{background:#1A1712;color:#F2D9A8;text-align:center;font-size:.78rem;padding:.6rem 1rem;font-weight:600;letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<div class="note">PREVIEW — proposed light, image-forward direction. Photos shown are placeholders; your own GB photography drops straight in.</div>
+
+<nav id="nav" class="on-photo">
+  <a href="/" class="logo">
+    <svg viewBox="0 0 64 50" aria-hidden="true"><path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/><path d="M38 12 L33.5 23 L43 23 Z" fill="#fff"/></svg>
+    <span class="l1">GB</span><span class="l2">Guide</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/destinations">Destinations</a></li>
+    <li><a href="/trekking">Treks</a></li>
+    <li><a href="/things-to-do">Things to Do</a></li>
+    <li><a href="/travel">Travel Tips</a></li>
+    <li><a href="/status">Road Status</a></li>
+  </ul>
+  <div class="nav-right"><a href="/planner" class="btn btn-pri" style="padding:.6rem 1.2rem">Plan your trip</a></div>
+</nav>
+
+<header class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <div class="eyebrow" style="color:#F2D9A8">Gilgit-Baltistan · Northern Pakistan</div>
+    <h1>The mountains, <em>planned properly.</em></h1>
+    <p>Honest, on-the-ground guides to Hunza, Skardu, Fairy Meadows and beyond — plus a free day-by-day trip planner that knows the real costs, roads, and risks.</p>
+    <div class="hero-ctas">
+      <a href="/planner" class="btn btn-pri">Build my free itinerary →</a>
+      <a href="/destinations" class="btn btn-ghost">Browse destinations</a>
+    </div>
+    <div class="hero-trust">
+      <span>Written by Faisal, a local from Hunza</span><span class="dot"></span>
+      <span>Free</span><span class="dot"></span><span>No login</span><span class="dot"></span><span>No agency markup</span>
+    </div>
+  </div>
+</header>
+
+<div class="strip"><div class="wrap">
+  <span><b>169</b> honest guides</span>
+  <span><b>Free</b> day-by-day planner</span>
+  <span><b>Live</b> road &amp; pass status</span>
+  <span>Written <b>on the ground</b>, not in a call-centre</span>
+</div></div>
+
+<!-- PLANNER -->
+<section class="planner"><div class="wrap planner-grid">
+  <div>
+    <div class="eyebrow">The free planner</div>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 1rem">A full itinerary in under a minute</h2>
+    <p style="color:var(--stone)">No agency, no login, no upsell. Tell it how you're getting in and how you travel — get a day-by-day plan with real costs, drive times, altitude warnings and live weather. Fully editable.</p>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><div><b>How are you getting to GB?</b><p>Fly into Gilgit or Skardu, or drive the Karakoram Highway.</p></div></div>
+      <div class="step"><span class="n">2</span><div><b>Your style, days &amp; regions</b><p>Budget to comfort, 4–21 days, the valleys you care about.</p></div></div>
+      <div class="step"><span class="n">3</span><div><b>Your itinerary, ready to tweak</b><p>Reorder days, swap places, share or download as PDF.</p></div></div>
+    </div>
+    <a href="/planner" class="btn btn-pri">Try the planner →</a>
+  </div>
+  <div class="itin">
+    <div class="itin-h"><span class="t">Your 7-Day Hunza</span><span class="c">≈ Rs 9k/day</span></div>
+    <div class="itin-day"><span class="d">D1</span><span>Arrive Gilgit → drive to Karimabad</span><span class="x">2–3h</span></div>
+    <div class="itin-day"><span class="d">D2</span><span>Baltit Fort, Eagle's Nest sunrise</span><span class="x">Karimabad</span></div>
+    <div class="itin-day"><span class="d">D3</span><span>Attabad Lake &amp; Passu Cones</span><span class="x">Upper Hunza</span></div>
+    <div class="itin-day"><span class="d">D4</span><span>Khunjerab Pass — the China border</span><span class="x">4,693m</span></div>
+    <div class="itin-day"><span class="d">D5</span><span>Hidden valley day trip</span><span class="x">Shimshal</span></div>
+    <div class="itin-day" style="color:var(--faint)"><span class="d">···</span><span>+ food, stays, packing, warnings</span><span class="x"></span></div>
+  </div>
+</div></section>
+
+<!-- REGIONS -->
+<section><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Where to go</div><h2>Start with a valley</h2><p>Every region, photographed and explained the way a local would — not a brochure.</p></div>
+  <div class="regions">
+    <a class="rc big" href="/hunza"><div class="rc-img" style="background-image:url('/images/hunza-hero.webp')"></div><div class="rc-scrim"></div><div class="rc-body"><div class="n">Hunza Valley</div><div class="s">Forts, Attabad Lake, Passu Cones, Khunjerab</div></div></a>
+    <a class="rc" href="/skardu"><div class="rc-img" style="background-image:url('/images/skardu-hero.webp')"></div><div class="rc-scrim"></div><div class="rc-body"><div class="n">Skardu</div><div class="s">Gateway to K2 &amp; Deosai</div></div></a>
+    <a class="rc" href="/fairy-meadows"><div class="rc-img" style="background-image:url('/images/fairymeadows-hero.webp')"></div><div class="rc-scrim"></div><div class="rc-body"><div class="n">Fairy Meadows</div><div class="s">Below Nanga Parbat</div></div></a>
+    <a class="rc" href="/gilgit"><div class="rc-img" style="background-image:url('/images/gilgit-hero.webp')"></div><div class="rc-scrim"></div><div class="rc-body"><div class="n">Gilgit</div><div class="s">The regional hub</div></div></a>
+    <a class="rc" href="/naran-kaghan"><div class="rc-img" style="background-image:url('/images/naran-kaghan-hero.webp')"></div><div class="rc-scrim"></div><div class="rc-body"><div class="n">Naran-Kaghan</div><div class="s">Lakes &amp; Babusar Pass</div></div></a>
+  </div>
+  <div style="margin-top:1.4rem"><a href="/destinations" class="btn btn-ghost">All destinations →</a></div>
+</div></section>
+
+<!-- WHY GB -->
+<div class="why">
+  <div class="why-txt">
+    <div class="eyebrow">Why Gilgit-Baltistan</div>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 1rem">Where three great ranges collide</h2>
+    <p style="color:var(--stone)">The Karakoram, Himalaya and Hindu Kush meet here — holding five of the world's fourteen 8,000-metre peaks, glaciers, turquoise lakes and Silk Road valleys. It's also one of the safest, most hospitable corners of Pakistan, and a favourite for solo and female travellers.</p>
+    <div class="why-stats">
+      <div class="st"><div class="num">5</div><div class="lab">of the 14 eight-thousanders</div></div>
+      <div class="st"><div class="num">K2</div><div class="lab">2nd-highest on Earth</div></div>
+      <div class="st"><div class="num">Apr–Oct</div><div class="lab">best season</div></div>
+    </div>
+  </div>
+  <div class="why-img"></div>
+</div>
+
+<!-- ESSENTIALS -->
+<section><div class="wrap">
+  <div class="sec-head"><div class="eyebrow">Plan the essentials</div><h2>The questions everyone asks</h2></div>
+  <div class="ess">
+    <div class="ec"><div class="ic">🗓️</div><h3>Best time to visit</h3><p>April–October. Blossom in April, all passes open June–August, golden autumn Sep–Oct.</p><a href="/travel/best-time-to-visit-gb">Month by month →</a></div>
+    <div class="ec"><div class="ic">✈️</div><h3>Getting there</h3><p>Fly to Gilgit or Skardu (weather-dependent) or drive the KKH. Always keep a road plan-B.</p><a href="/status">Road &amp; pass status →</a></div>
+    <div class="ec"><div class="ic">🧭</div><h3>How long &amp; budget</h3><p>7–10 days for a first trip. Doable on a backpacker or mid-range budget.</p><a href="/travel/budget-gb-itinerary">Budget guide →</a></div>
+    <div class="ec"><div class="ic">🛡️</div><h3>Safe &amp; permits</h3><p>Among Pakistan's safest regions. NOC abolished 2019 for most tourist areas.</p><a href="/travel/noc-permits-gb">NOC &amp; permits →</a></div>
+  </div>
+</div></section>
+
+<!-- LOCAL -->
+<section class="local"><div class="wrap">
+  <div class="local-photo" role="img" aria-label="Faisal at Rakaposhi Base Camp"></div>
+  <div>
+    <div class="eyebrow">Not an agency. A neighbour.</div>
+    <h2>Written by someone who actually lives here</h2>
+    <p>I'm Faisal — from Misgar, at the top of Hunza, raised in Gilgit. I've driven the KKH in monsoon, sat through cancelled Skardu flights, and haggled for jeeps at Raikot Bridge. This site is the honest, on-the-ground version, so you arrive prepared and spend your money with the local families who make this place what it is.</p>
+    <a href="/about" class="btn btn-ghost" style="border-color:rgba(26,23,18,.25)">More about me →</a>
+  </div>
+</div></section>
+
+<!-- EMAIL -->
+<section class="email"><div class="wrap">
+  <div class="eyebrow" style="justify-content:center">Before you go</div>
+  <h2>Honest updates, a few times a year</h2>
+  <p>Road closures, new trek permits, budget tips, and the guesthouses that opened (or closed) this season. No spam.</p>
+  <form action="https://c6537506.sibforms.com/serve/MUIFAK8yJbLxsFElkY0C1v0yLuiUPjtHjkOAmt6_9DQ9ohQiZUHNqRU_44hHoTvwEdpB_XvQ9RV-GXxozbokI5Os5ThAO9oHIyxc0UwD35_-R8Okw7Xnj8mjjHOmvcVDDTK9dGD0C0wPOeiCK6G68Mue3ghnyrcSaw6hDPYbdkGEj634xhOax9Bmth019jb_t4LzofEirF4UytoR" method="POST">
+    <input type="email" name="EMAIL" placeholder="your@email.com" required>
+    <button class="btn btn-pri" type="submit">Subscribe</button>
+    <input type="text" name="email_address_check" value="" tabindex="-1" style="position:absolute;left:-9999px" aria-hidden="true">
+    <input type="hidden" name="locale" value="en">
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div>
+      <a href="/" class="logo" style="font-size:1.4rem"><svg viewBox="0 0 64 50" style="height:1.2em" aria-hidden="true"><path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/><path d="M38 12 L33.5 23 L43 23 Z" fill="#F2D9A8"/></svg><span class="l1">GB</span><span style="color:#fff">Guide</span></a>
+      <p style="margin-top:1rem;color:#8E887A;max-width:30ch">Gilgit-Baltistan, as only a local can tell it.</p>
+    </div>
+    <div><h4>Regions</h4><ul><li><a href="/hunza">Hunza</a></li><li><a href="/skardu">Skardu</a></li><li><a href="/fairy-meadows">Fairy Meadows</a></li><li><a href="/deosai">Deosai</a></li></ul></div>
+    <div><h4>Plan</h4><ul><li><a href="/planner">Trip Planner</a></li><li><a href="/status">Road Status</a></li><li><a href="/travel/best-time-to-visit-gb">Best Time</a></li><li><a href="/travel/noc-permits-gb">NOC &amp; Permits</a></li></ul></div>
+    <div><h4>More</h4><ul><li><a href="/trekking">Treks</a></li><li><a href="/agencies">Operators</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li></ul></div>
+  </div>
+  <div class="bottom"><span>© 2026 GB Guide</span><span>Made with honesty, from Gilgit-Baltistan.</span></div>
+</div></footer>
+
+<script>
+const nav=document.getElementById('nav');
+const onScroll=()=>{const s=window.scrollY>60;nav.classList.toggle('scrolled',s);nav.classList.toggle('on-photo',!s);};
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+</script>
+</body>
+</html>
