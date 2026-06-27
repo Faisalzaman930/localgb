@@ -177,7 +177,7 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
                 "headline": og_title,
                 "description": desc,
                 "image": og_url,
-                "author": {"@type": "Organization", "name": "GB Guide", "@id": f"{DOMAIN}/#org"},
+                "author": {"@type": "Person", "name": "Faisal Zaman", "@id": f"{DOMAIN}/#faisal"},
                 "publisher": {"@id": f"{DOMAIN}/#org"},
                 "dateModified": TODAY,
                 "mainEntityOfPage": url,
