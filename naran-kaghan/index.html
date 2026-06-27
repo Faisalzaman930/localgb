@@ -186,7 +186,7 @@
   L.marker([34.9075,73.6497],{icon:pinIcon}).addTo(map).bindPopup('<strong>Naran Town</strong><br>2,409m · main base for the valley<br>Jeep hire to all lakes from here');
   L.marker([34.8667,73.6667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Lake Saif-ul-Malook</strong><br>3,224m · 10km from Naran<br>Jeep return PKR 2,000–3,500<br>Pakistan\'s most famous lake');
   L.marker([35.0500,73.7167],{icon:pinIcon}).addTo(map).bindPopup('<strong>Lulusar Lake</strong><br>3,440m · 20km north of Naran<br>Larger &amp; quieter · en route to Babusar');
-  L.marker([35.1833,73.8667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Babusar Pass</strong><br>4,173m · connects to Chilas/KKH<br>Open June–October · jeep only');
+  L.marker([35.1833,73.8667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Babusar Pass</strong><br>4,173m · connects to Chilas/KKH<br>Open ~late Jun–early Oct · daylight only · jeep');
   L.marker([34.6000,73.4667],{icon:pinIcon}).addTo(map).bindPopup('<strong>Balakot</strong><br>Valley gateway · 850m · 4h from Islamabad<br>Shogran turnoff just north of town');
   L.marker([34.6833,73.5167],{icon:pinIcon}).addTo(map).bindPopup('<strong>Shogran</strong><br>2,362m · forested ridge with Malika Parbat views<br>Quieter alternative base · Siri Paye meadows above');
   L.marker([34.9600,73.6900],{icon:hiddenIcon}).addTo(map).bindPopup('<strong>Ansoo Lake</strong><br>4,245m · teardrop-shaped remote lake<br>2-day trek from Saif-ul-Malook<br>Guide required PKR 2,500–4,000/day');
@@ -288,7 +288,7 @@ loadWeather(34.9075, 73.6497);
         <div class="img-card-bg" style="background:linear-gradient(155deg, #060808 0%, #101410 35%, #1A2018 65%, #283028 100%)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
-          <span class="img-card-tag">4,173m · open June–October · jeep only</span>
+          <span class="img-card-tag">4,173m · open ~late Jun–early Oct · jeep only</span>
           <div class="img-card-name">Babusar Pass</div>
           <div class="img-card-desc">The high pass connecting Kaghan Valley to Chilas on the KKH. From the top you can see both the western Himalayas and the eastern Karakoram. This is also the route that connects Naran to Fairy Meadows, Gilgit, and Hunza without returning to Islamabad — one of the great mountain drives in Pakistan.</div>
         </div>
@@ -510,8 +510,8 @@ loadWeather(34.9075, 73.6497);
             <div class="itin-day-body">
               <div class="itin-day-title">Babusar Pass + Cross into Chilas</div>
               <ul class="itin-day-items">
-                <li>Depart Naran 7am — Babusar Pass at 9–10am</li>
-                <li>Descend the north side to Chilas (3–4h total from Naran)</li>
+                <li>Depart Naran 7am — Babusar Top in about 2–2.5h (~65–70km)</li>
+                <li>Descend the north side to Chilas (~110km, 3–4h) — roughly 5–6h Naran to Chilas in total</li>
                 <li>Overnight in Chilas (basic hotels PKR 2,000–5,000) — the gateway to GB</li>
               </ul>
             </div>
@@ -558,7 +558,7 @@ loadWeather(34.9075, 73.6497);
       <table class="practical-table">
         <tr><td>From Islamabad</td><td>4–5h via Abbottabad and Balakot. NATCO and private coaches from Rawalpindi Pir Wadhai terminal (PKR 600–1,200). Private car hire PKR 8,000–14,000. Road is fully paved throughout.</td></tr>
         <tr><td>From Lahore</td><td>7–8h via the M2 Motorway and Abbottabad. NATCO departs Lahore terminal daily in peak season (PKR 1,000–1,800 one way).</td></tr>
-        <tr><td>From GB via Babusar</td><td>Chilas (KKH) to Naran via Babusar Pass: 3–4h, June–October only. Jeep hire from Chilas PKR 8,000–14,000. This is the scenic GB → Naran route used by experienced Pakistan travellers.</td></tr>
+        <tr><td>From GB via Babusar</td><td>Chilas (KKH) to Naran via Babusar Pass: Chilas to Babusar Top is ~110km (3–4h), then Babusar Top to Naran is ~65–70km (about 2–2.5h) — roughly 5–6h end to end. Open ~mid/late June to September/early October only (confirm before travel). Jeep hire from Chilas PKR 8,000–14,000. This is the scenic GB → Naran route used by experienced Pakistan travellers.</td></tr>
         <tr><td>Within valley</td><td>Local jeeps: Naran → Saif-ul-Malook (PKR 2,000–3,500 return), Lulusar (PKR 3,000–4,500), Babusar (PKR 4,000–7,000), Lalazar (PKR 2,500–3,500). Share with other travellers to reduce cost.</td></tr>
         <tr><td>Shogran access</td><td>Private car/jeep from Balakot: PKR 800–1,500 one way. Cable car at Shogran top: PKR 400 return. The cable car runs 8am–6pm in peak season.</td></tr>
       </table>
@@ -635,7 +635,7 @@ loadWeather(34.9075, 73.6497);
       <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;">The Babusar Pass route is how experienced Pakistan travellers connect Naran Kaghan to the KKH and onward to Gilgit and Hunza. It adds genuine mountain drama to a journey that would otherwise spend 18+ hours on the Islamabad–Chilas KKH lowlands.</p>
       <p style="font-size:0.85rem;color:var(--cream-2);line-height:1.8;margin-bottom:1.2rem;">Typical extended itinerary: <strong>Islamabad → Naran (2 nights) → Babusar Pass → Chilas → Fairy Meadows (2 nights) → Gilgit → Hunza.</strong> Approximately 10 days. This covers the full mountain corridor from KPK into the Karakoram without retracing a single km.</p>
       <div class="notice">
-        <strong>Babusar open window:</strong> roughly June 15 – October 10, depending on snowfall. Early snow can close it with no warning. The Naran police checkpoint posts current conditions. If the pass is closed, the only alternative is to return to Islamabad and take the KKH north (adds a day and 300km of driving).
+        <strong>Babusar open window:</strong> roughly mid/late June to September/early October, depending on snowfall — confirm before travelling. The pass is daylight-only (gate hours vary). Early snow can close it with no warning. The Naran police checkpoint posts current conditions. If the pass is closed, the only alternative is to return to Islamabad and take the KKH north (adds a day and 300km of driving).
       </div>
     </div>
   </div>
