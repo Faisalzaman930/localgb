@@ -122,6 +122,20 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
             "logo": og_url,
             "description": "Honest, on-the-ground travel guides to Gilgit-Baltistan, "
                            "written by a local — plus a free trip planner.",
+            "founder": {
+                "@type": "Person",
+                "@id": f"{DOMAIN}/#faisal",
+                "name": "Faisal Zaman",
+                "url": f"{DOMAIN}/about",
+                "image": f"{DOMAIN}/images/faisal-zaman.jpg",
+                "jobTitle": "Founder & local travel writer",
+                "homeLocation": {"@type": "Place", "name": "Misgar, Hunza, Gilgit-Baltistan, Pakistan"},
+                "sameAs": [
+                    "https://www.linkedin.com/in/faisal-seo-analyst/",
+                    "https://www.instagram.com/imfaysalzaman",
+                    "https://www.facebook.com/share/17jDnUoeAN/",
+                ],
+            },
         })
         graph.append({
             "@type": "WebSite",
