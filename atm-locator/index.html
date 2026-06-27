@@ -7,8 +7,8 @@
 <meta name="description" content="Find ATMs, hospitals, pharmacies and petrol pumps in Gilgit-Baltistan. Live map with nearest-first search, cash availability reports. Essential for GB travel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260702">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v=20260703">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 #map { height:520px; width:100%; border-radius:4px; }
@@ -58,7 +58,7 @@
 .r-modal { display:none; position:fixed; inset:0; background:rgba(4,6,8,0.88); z-index:9999; align-items:center; justify-content:center; }
 .r-modal.open { display:flex; }
 .r-box { background:var(--ink-3); border:1px solid var(--gold-border); padding:2rem; max-width:380px; width:90%; }
-.r-box h4 { font-family:var(--fd); font-size:1.35rem; font-weight:400; margin:0 0 0.75rem; }
+.r-box h2 { font-family:var(--fd); font-size:1.35rem; font-weight:400; margin:0 0 0.75rem; }
 .r-opts { display:grid; gap:0.45rem; margin-bottom:1.25rem; }
 .r-opt { padding:0.65rem 0.9rem; border:1px solid var(--gold-border); background:transparent; color:var(--cream); font-family:var(--fu); font-size:0.72rem; font-weight:600; letter-spacing:0.07em; cursor:pointer; text-align:left; }
 .r-opt:hover, .r-opt.sel { border-color:var(--gold); background:var(--gold-glow); }
@@ -205,7 +205,7 @@
 <!-- Report modal -->
 <div class="r-modal" id="rModal">
   <div class="r-box">
-    <h4 id="rName">Report Status</h4>
+    <h2 id="rName">Report Status</h2>
     <p style="font-size:0.83rem;color:var(--cream-2);margin-bottom:1rem;">Helps other travellers. Shown for 48 hours.</p>
     <div class="r-opts" id="rOpts"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;">

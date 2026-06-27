@@ -7,8 +7,8 @@
 <meta name="description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you're arriving, your style, and your budget.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260702">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v=20260703">
 <style>
 /* ─── APP SHELL ──────────────────────────────────────── */
 body { overflow-x: hidden; }
@@ -232,7 +232,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 @media(max-width:500px){ .here-grid{grid-template-columns:1fr} }
 .here-card { background:var(--ink-3); border:1px solid rgba(255,255,255,.07); border-radius:6px; padding:1.2rem; cursor:pointer; transition:border-color .2s,transform .15s; }
 .here-card:hover,.here-card.sel { border-color:rgba(200,144,58,.45); transform:translateY(-1px); }
-.here-card h4 { font-family:var(--fd); font-size:1.2rem; color:var(--cream); margin-bottom:.2rem; }
+.here-card h2 { font-family:var(--fd); font-size:1.2rem; color:var(--cream); margin-bottom:.2rem; }
 .here-card p { font-size:.68rem; color:var(--cream-2); line-height:1.55; }
 
 .here-content { margin-top:2rem; }
@@ -240,7 +240,7 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 .here-section-title { font-family:var(--fu); font-size:.57rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; display:flex; align-items:center; gap:.5rem; }
 .here-section-title::after { content:''; flex:1; height:1px; background:rgba(200,144,58,.15); }
 .here-item { background:var(--ink-3); border:1px solid rgba(255,255,255,.06); border-radius:5px; padding:1rem 1.1rem; margin-bottom:.5rem; }
-.here-item h5 { font-family:var(--fd); font-size:1.05rem; color:var(--cream); margin-bottom:.2rem; }
+.here-item h3 { font-family:var(--fd); font-size:1.05rem; color:var(--cream); margin-bottom:.2rem; }
 .here-item p { font-size:.72rem; color:var(--cream-2); line-height:1.6; }
 .here-item .tag { margin-top:.4rem; }
 
@@ -2159,7 +2159,7 @@ function showAlready() {
   // Render location grid
   document.getElementById('hereGrid').innerHTML = HERE_LOCATIONS.map(loc =>
     `<div class="here-card" onclick="showHereContent('${loc.id}')">
-      <h4>${loc.name}</h4><p>${loc.sub}</p>
+      <h2>${loc.name}</h2><p>${loc.sub}</p>
     </div>`
   ).join('');
 }
@@ -2171,11 +2171,11 @@ function showHereContent(id) {
   const html = `
     <div class="here-section">
       <div class="here-section-title">Things to do today</div>
-      ${d.today.map(it=>`<div class="here-item"><div class="tag gold" style="margin-bottom:.5rem">${it.tag}</div><h5>${it.name}</h5><p>${it.desc}</p></div>`).join('')}
+      ${d.today.map(it=>`<div class="here-item"><div class="tag gold" style="margin-bottom:.5rem">${it.tag}</div><h3>${it.name}</h3><p>${it.desc}</p></div>`).join('')}
     </div>
     <div class="here-section">
       <div class="here-section-title">Day trips from here</div>
-      ${d.daytrips.map(it=>`<div class="here-item"><div class="tag gold" style="margin-bottom:.5rem">${it.tag}</div><h5>${it.name}</h5><p>${it.desc}</p></div>`).join('')}
+      ${d.daytrips.map(it=>`<div class="here-item"><div class="tag gold" style="margin-bottom:.5rem">${it.tag}</div><h3>${it.name}</h3><p>${it.desc}</p></div>`).join('')}
     </div>
     <div class="here-section">
       <div class="here-section-title">Where to eat</div>
