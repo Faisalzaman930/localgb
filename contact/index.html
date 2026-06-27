@@ -101,24 +101,24 @@
 
 <div class="contact-wrap">
   <div class="reveal">
-    <!-- WEB3FORMS: replace the access_key value with your free key from https://web3forms.com
-         (enter your email there, they email you a key instantly — your address stays private). -->
-    <form action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-ACCESS-KEY">
-      <input type="hidden" name="subject" value="New message from GB Guide contact form">
-      <input type="hidden" name="from_name" value="GB Guide website">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
+    <!-- BREVO CONTACT FORM: replace the action URL with YOUR Brevo "Contact" form URL
+         (Brevo → Contacts → Forms → Contact → Share → copy the <form action="...sibforms.com/serve/..."> URL).
+         Field names must match your Brevo form attributes: EMAIL, FIRSTNAME, MESSAGE. -->
+    <form action="https://c6537506.sibforms.com/serve/REPLACE-WITH-CONTACT-FORM-URL" method="POST">
+      <input type="hidden" name="locale" value="en">
+      <!-- Brevo anti-bot honeypot (must stay empty) -->
+      <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
       <div class="contact-field">
         <label for="cf-name">Your name</label>
-        <input id="cf-name" type="text" name="name" required autocomplete="name">
+        <input id="cf-name" type="text" name="FIRSTNAME" required autocomplete="name">
       </div>
       <div class="contact-field">
         <label for="cf-email">Your email</label>
-        <input id="cf-email" type="email" name="email" required autocomplete="email" placeholder="your@email.com">
+        <input id="cf-email" type="email" name="EMAIL" required autocomplete="email" placeholder="your@email.com">
       </div>
       <div class="contact-field">
         <label for="cf-msg">Message</label>
-        <textarea id="cf-msg" name="message" required placeholder="What can I help with?"></textarea>
+        <textarea id="cf-msg" name="MESSAGE" required placeholder="What can I help with?"></textarea>
       </div>
       <button class="contact-submit" type="submit">Send message</button>
     </form>
