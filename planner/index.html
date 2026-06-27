@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plan Your GB Trip — GB Guide Journey Architect</title>
 <meta name="description" content="Plan your Gilgit-Baltistan itinerary. Detailed day-by-day guide built around how you're arriving, your style, and your budget.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/main.css?v=20260701">
+<link rel="stylesheet" href="/css/main.css?v=20260702">
 <style>
 /* ─── APP SHELL ──────────────────────────────────────── */
 body { overflow-x: hidden; }
@@ -476,6 +476,23 @@ input[type=range]:hover::-webkit-slider-thumb { transform:scale(1.15); }
 .badge-peak { background:rgba(200,144,58,.15); color:var(--gold); }
 .badge-rest { background:rgba(100,180,100,.12); color:rgba(120,200,120,.8); }
 .badge-transit { background:rgba(160,160,160,.1); color:rgba(180,180,180,.7); }
+/* ── Readability pass (Jun 2026): bigger, less-cramped result text ── */
+.result-sub { font-size:.96rem; line-height:1.65; }
+.day-t { font-size:1.32rem; }
+.day-l { font-size:.7rem; }
+.day-cost { font-size:.74rem; }
+.activity-list li { font-size:.94rem; line-height:1.65; padding:.6rem 0; gap:.9rem; }
+.act-time { font-size:.72rem; }
+.act-cost { font-size:.82rem; }
+.time-block { margin-top:1.5rem; }
+.time-block-label { font-size:.62rem; }
+.day-food-list, .day-stay-val { font-size:.9rem; line-height:1.65; }
+.day-food-title, .day-stay-label { font-size:.62rem; }
+.day-tip { font-size:.88rem; line-height:1.65; padding:.75rem 1rem; }
+.prac-card td { font-size:.92rem; line-height:1.6; padding:.55rem 0; }
+.prac-card td:first-child { font-size:.72rem; }
+.result-pill { font-size:.64rem; }
+.day-hd { padding:1.1rem 1.25rem; }
 </style>
 <!-- SEO:START -->
 <meta name="google-site-verification" content="HHV6xWXi_fzm-W0Xq6RMXIilDC7sHeEU4yH0mpGkqAk">
@@ -1451,7 +1468,8 @@ function buildItinerary(opts = {}) {
 
   // Intro animation + scroll only on first build, not on a live re-flow from a toggle
   if (!opts.skipIntro) {
-    window.scrollTo({top:0,behavior:'smooth'});
+    window.scrollTo(0, 0);   // page top (desktop)
+    rw.scrollTop = 0;        // reset the fixed result panel scroll (mobile)
     const sweep = document.createElement('div');
     sweep.style.cssText = 'position:fixed;inset:0;background:var(--ink);z-index:9999;pointer-events:none;animation:sweepOut .6s .1s ease both;';
     document.body.appendChild(sweep);
