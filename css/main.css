@@ -149,10 +149,14 @@ nav.solid {
   font-size: 1.55rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  display: flex; align-items: baseline; gap: 0.05em;
+  display: flex; align-items: center; gap: 0.45rem;
 }
 .nav-logo .l1 { color: var(--gold); }
 .nav-logo .l2 { color: var(--cream); }
+.nav-logo-mark, .footer-logo-mark { width: auto; flex-shrink: 0; }
+.nav-logo-mark { height: 1.25em; }
+.footer-logo-mark { height: 1.1em; }
+.footer-logo { display: inline-flex; align-items: center; gap: 0.5rem; }
 .nav-links {
   display: flex; align-items: center; gap: 2.2rem;
   list-style: none;

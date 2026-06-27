@@ -106,11 +106,14 @@ nav.scrolled {
   font-weight: 500;
   letter-spacing: 0.01em;
   display: flex;
-  align-items: baseline;
-  gap: 0.05em;
+  align-items: center;
+  gap: 0.45rem;
 }
 .nav-logo .l1 { color: var(--gold); }
 .nav-logo .l2 { color: var(--cream); }
+.nav-logo-mark { height: 1.25em; width: auto; flex-shrink: 0; }
+.footer-logo { display: inline-flex; align-items: center; gap: 0.5rem; }
+.footer-logo-mark { height: 1.1em; width: auto; flex-shrink: 0; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -1580,6 +1583,12 @@ footer {
 
 </style>
 <!-- SEO:START -->
+<meta name="google-site-verification" content="HHV6xWXi_fzm-W0Xq6RMXIilDC7sHeEU4yH0mpGkqAk">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0E1117">
 <link rel="canonical" href="https://www.gilgitbaltistanguide.com">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GB Guide">
@@ -1639,9 +1648,9 @@ footer {
 
 <!-- ─── NAV ─────────────────────────────────────────── -->
 <nav id="navbar">
-  <div class="nav-logo">
-    <span class="l1">GB</span><span class="l2">Guide</span>
-  </div>
+  <a href="/" class="nav-logo" style="text-decoration:none">
+    <svg class="nav-logo-mark" viewBox="0 0 64 50" aria-hidden="true"><path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/><path d="M38 12 L33.5 23 L43 23 Z" fill="#F0E8D5"/></svg><span class="l1">GB</span><span class="l2">Guide</span>
+  </a>
   <ul class="nav-links">
     <li><a href="/destinations">Destinations</a></li>
     <li><a href="/mountains">Mountains</a></li>
@@ -2506,7 +2515,7 @@ footer {
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-logo"><span class="l1">GB</span><span class="l2">Guide</span></div>
+        <div class="footer-logo"><svg class="footer-logo-mark" viewBox="0 0 64 50" aria-hidden="true"><path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/><path d="M38 12 L33.5 23 L43 23 Z" fill="#F0E8D5"/></svg><span class="l1">GB</span><span class="l2">Guide</span></div>
         <p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>
         <div class="footer-socials">
           <div class="social-btn">Y</div>

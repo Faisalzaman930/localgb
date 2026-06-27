@@ -22,12 +22,17 @@ PLAN = [("Trip Planner","explore/"),("Best Time to Visit","travel/best-time-to-v
         ("Road & Pass Status","status/"),("Weather","weather/"),("Tours","tours/"),
         ("Choosing an Operator","agencies/"),("About GB Guide","about/"),("Contact","contact/"),("Blog","blog/")]
 
+MARK = ('<svg class="nav-logo-mark" viewBox="0 0 64 50" aria-hidden="true">'
+        '<path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/>'
+        '<path d="M38 12 L33.5 23 L43 23 Z" fill="#F0E8D5"/></svg>')
+MARK_F = MARK.replace('nav-logo-mark', 'footer-logo-mark')
+
 def li(items, p): return "".join(f'<li><a href="/{u.rstrip("/")}">{t}</a></li>' for t,u in items)
 def nav_li(p): return "".join(f'<li><a href="/{u.rstrip("/")}">{t}</a></li>' for t,u in NAV)
 
 def build_nav(p):
     return (f'<nav id="navbar" class="solid">\n'
-        f'  <a href="/" class="nav-logo"><span class="l1">GB</span><span class="l2">Guide</span></a>\n'
+        f'  <a href="/" class="nav-logo">{MARK}<span class="l1">GB</span><span class="l2">Guide</span></a>\n'
         f'  <ul class="nav-links">{nav_li(p)}</ul>\n'
         f'  <a href="/explore" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
         f'  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>\n'
@@ -41,7 +46,7 @@ def build_drawer(p):
 
 def build_footer(p):
     return (f'<footer>\n  <div class="footer-inner">\n    <div class="footer-top">\n'
-        f'      <div><a href="/" class="footer-logo"><span class="l1">GB</span><span class="l2">Guide</span></a>'
+        f'      <div><a href="/" class="footer-logo">{MARK_F}<span class="l1">GB</span><span class="l2">Guide</span></a>'
         f'<p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p>'
         f'<div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>\n'
         f'      <div><div class="footer-col-title">Regions</div><ul class="footer-links">{li(REGIONS,p)}</ul></div>\n'
