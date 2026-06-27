@@ -1822,7 +1822,7 @@ footer {
       <div class="reveal">
         <span class="label">Journey Architect</span>
         <h2 class="section-title" style="margin-bottom:1.5rem;">The GB Planner<br><em>Agencies Don't Want You Using</em></h2>
-        <p style="font-size:0.9rem;color:var(--cream-2);line-height:1.85;margin-bottom:1.2rem;">Answer 7 questions. Get a complete day-by-day itinerary with real hotel names, transit times, altitude warnings, live weather, and honest cost breakdowns — built around your exact travel style.</p>
+        <p style="font-size:0.9rem;color:var(--cream-2);line-height:1.85;margin-bottom:1.2rem;">Answer a few quick questions. Get a complete day-by-day itinerary with real hotel names, transit times, altitude warnings, live weather, and honest cost breakdowns — built around your exact travel style, and fully editable.</p>
         <p style="font-size:0.9rem;color:var(--cream-2);line-height:1.85;margin-bottom:2rem;">Also includes <strong style="color:var(--cream)">Explore Nearby</strong> — tell us where you are in GB right now and see what's around you: hotels, food, treks, and things to do.</p>
         <div class="planner-ctas">
           <a href="/explore" class="btn-primary" style="text-decoration:none">Plan My Trip &rarr;</a>
@@ -2223,7 +2223,7 @@ footer {
           <li class="budget-item">No guided treks — self-navigate</li>
           <li class="budget-item">Free camping at Fairy Meadows</li>
         </ul>
-        <button class="btn-ghost" style="width:100%;text-align:center;">View Budget Itinerary</button>
+        <a href="/travel/budget-gb-itinerary" class="btn-ghost" style="width:100%;text-align:center;display:block;text-decoration:none;">View Budget Itinerary</a>
       </div>
 
       <div class="budget-card featured">
@@ -2239,7 +2239,7 @@ footer {
           <li class="budget-item">Day guides for major treks</li>
           <li class="budget-item">1–2 night hotel upgrade in Hunza</li>
         </ul>
-        <button class="btn-primary" style="width:100%;text-align:center;">View Mid-Range Itinerary</button>
+        <a href="/explore" class="btn-primary" style="width:100%;text-align:center;display:block;text-decoration:none;">Build a Mid-Range Plan</a>
       </div>
 
       <div class="budget-card">
@@ -2254,7 +2254,7 @@ footer {
           <li class="budget-item">Full-time certified mountain guide</li>
           <li class="budget-item">Porter support on all treks</li>
         </ul>
-        <button class="btn-ghost" style="width:100%;text-align:center;">View Comfort Itinerary</button>
+        <a href="/travel/14-day-itinerary" class="btn-ghost" style="width:100%;text-align:center;display:block;text-decoration:none;">View 14-Day Itinerary</a>
       </div>
 
     </div>
@@ -2270,7 +2270,7 @@ footer {
         <h2 class="section-title">Agencies I<br>Actually Trust</h2>
         <p style="color:var(--cream-2);font-size:0.83rem;margin-top:1rem;max-width:420px;line-height:1.8;">I've personally contacted, visited, or trekked with every agency listed here. No paid listings. No fake reviews.</p>
       </div>
-      <button class="btn-ghost">See All 47 Agencies &rarr;</button>
+      <a href="/agencies" class="btn-ghost" style="text-decoration:none;">How I vet operators &rarr;</a>
     </div>
     <div class="agencies-grid reveal">
 
@@ -2356,11 +2356,17 @@ footer {
     <span class="label" style="justify-content:center;">Stay Informed</span>
     <h2 class="email-title">Get <em>honest</em> updates<br>before you go.</h2>
     <p class="email-sub">Road closures, new trek permits, budget tips, and the guesthouses that opened (or closed) this season. No spam — just things that actually help you plan.</p>
-    <form class="email-form" onsubmit="return false">
-      <input class="email-input" type="email" placeholder="your@email.com">
+    <!-- BREVO: replace the action URL with YOUR Brevo form URL
+         (Brevo → Contacts → Forms → your form → Share → copy the <form action="..."> URL,
+         e.g. https://sibforms.com/serve/MUIFxxxxxxxxxxxx). Field name must stay EMAIL. -->
+    <form class="email-form" action="https://YOUR-BREVO-FORM-URL.sibforms.com/serve/REPLACE-ME" method="POST">
+      <input class="email-input" type="email" name="EMAIL" placeholder="your@email.com" required autocomplete="email">
       <button class="btn-primary" type="submit">Subscribe</button>
+      <!-- Brevo anti-bot honeypot (must stay empty) -->
+      <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+      <input type="hidden" name="locale" value="en">
     </form>
-    <p class="email-note">~1,200 travellers already subscribed. Unsubscribe anytime.</p>
+    <p class="email-note">No spam — unsubscribe anytime, and we never share your email.</p>
   </div>
 </section>
 
