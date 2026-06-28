@@ -38,6 +38,16 @@ OG_IMAGES = {
     "mountains": "hero-nanga-parbat.jpg",
     "trekking": "hero-k2.jpg",
     "things-to-do": "hero-stargazing.jpg",
+    "deosai": "deosai-hero.webp",
+    "naltar": "naltar-hero.webp",
+    "astore": "astore-hero.webp",
+    "gojal": "gojal-hero.webp",
+    "ghizer": "ghizer-hero.webp",
+    "yasin": "yasin-hero.webp",
+    "trekking/concordia": "concordia-hero.webp",
+    "trekking/rakaposhi-base-camp": "rakaposhi-hero.webp",
+    "mountains/rakaposhi": "rakaposhi-hero.webp",
+    "hunza/attabad-lake": "attabad-hero.webp",
 }
 
 # Pages that describe a place -> emit TouristDestination. Everything else that
