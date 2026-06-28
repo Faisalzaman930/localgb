@@ -2,40 +2,118 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/explore", "destination": "/planner", "permanent": true },
-    { "source": "/hunza/guide", "destination": "/hunza", "permanent": true },
-    { "source": "/skardu/guide", "destination": "/skardu", "permanent": true },
-    { "source": "/gilgit/guide", "destination": "/gilgit", "permanent": true },
-    { "source": "/ghizer/guide", "destination": "/ghizer", "permanent": true },
-    { "source": "/naltar/guide", "destination": "/naltar", "permanent": true },
-    { "source": "/yasin/guide", "destination": "/yasin", "permanent": true },
-    { "source": "/fairy-meadows/guide", "destination": "/fairy-meadows", "permanent": true },
-    { "source": "/yasin-ishkoman", "destination": "/yasin", "permanent": true },
-    { "source": "/gilgit/naltar-valley", "destination": "/naltar", "permanent": true },
-    { "source": "/skardu/deosai-plains", "destination": "/deosai", "permanent": true },
-    { "source": "/hunza/tour-packages", "destination": "/tours/hunza", "permanent": true },
-    { "source": "/skardu/tour-packages", "destination": "/tours/skardu", "permanent": true },
-    { "source": "/tours/k2-base-camp", "destination": "/trekking/k2-base-camp", "permanent": true },
-    { "source": "/fairy-meadows/nanga-parbat-base-camp", "destination": "/trekking/nanga-parbat-base-camp", "permanent": true },
-    { "source": "/fairy-meadows/trekking", "destination": "/fairy-meadows", "permanent": true }
+    {
+      "source": "/explore",
+      "destination": "/planner",
+      "permanent": true
+    },
+    {
+      "source": "/hunza/guide",
+      "destination": "/hunza",
+      "permanent": true
+    },
+    {
+      "source": "/skardu/guide",
+      "destination": "/skardu",
+      "permanent": true
+    },
+    {
+      "source": "/gilgit/guide",
+      "destination": "/gilgit",
+      "permanent": true
+    },
+    {
+      "source": "/ghizer/guide",
+      "destination": "/ghizer",
+      "permanent": true
+    },
+    {
+      "source": "/naltar/guide",
+      "destination": "/naltar",
+      "permanent": true
+    },
+    {
+      "source": "/yasin/guide",
+      "destination": "/yasin",
+      "permanent": true
+    },
+    {
+      "source": "/fairy-meadows/guide",
+      "destination": "/fairy-meadows",
+      "permanent": true
+    },
+    {
+      "source": "/yasin-ishkoman",
+      "destination": "/yasin",
+      "permanent": true
+    },
+    {
+      "source": "/gilgit/naltar-valley",
+      "destination": "/naltar",
+      "permanent": true
+    },
+    {
+      "source": "/skardu/deosai-plains",
+      "destination": "/deosai",
+      "permanent": true
+    },
+    {
+      "source": "/hunza/tour-packages",
+      "destination": "/tours/hunza",
+      "permanent": true
+    },
+    {
+      "source": "/skardu/tour-packages",
+      "destination": "/tours/skardu",
+      "permanent": true
+    },
+    {
+      "source": "/tours/k2-base-camp",
+      "destination": "/trekking/k2-base-camp",
+      "permanent": true
+    },
+    {
+      "source": "/fairy-meadows/nanga-parbat-base-camp",
+      "destination": "/trekking/nanga-parbat-base-camp",
+      "permanent": true
+    },
+    {
+      "source": "/fairy-meadows/trekking",
+      "destination": "/fairy-meadows",
+      "permanent": true
+    },
+    {
+      "source": "/tours/northern-areas",
+      "destination": "/tours/gilgit-baltistan",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(webp|jpg|jpeg|png|svg|woff2|ico)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

@@ -76,6 +76,7 @@ OG_IMAGES = {
     "tours/skardu": "skardu-hero.webp",
     "tours/naran-kaghan": "naran-kaghan-hero.webp",
     "tours/hunza": "hunza-hero.webp",
+    "tours/gilgit-baltistan": "hunza-hero.webp",
 }
 
 # Pages that describe a place -> emit TouristDestination. Everything else that
