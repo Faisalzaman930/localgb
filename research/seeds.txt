@@ -1,32 +1,12 @@
-# ─────────────────────────────────────────────────────────────
-# GB Guide scraper — operator seed URLs (one per line)
-#
-# REVIEW BEFORE RUNNING:
-#  1. Remove any operator that is one of your TOP-5 SERP rivals
-#     (and add their domain to EXCLUDE at the top of scrape.js).
-#  2. For best results, swap a homepage for its /tours or /packages
-#     listing URL if you know it (the crawler will find package pages
-#     either way, but a listing page yields more).
-#  3. findmyadventure.pk is a big aggregator/portal — decide if you
-#     consider it a competitor before scraping it.
-#
-# All URLs below were verified live + confirmed as real tour operators
-# on 2026-06-29. None are your two known top-5 (apricot / natureadventure,
-# already excluded in scrape.js).
-# ─────────────────────────────────────────────────────────────
-
-# Local Baltistan / GB operators (best for Skardu + GB pages)
+# Booking platforms — rich JSON-LD schema (prices + ratings/reviews)
+https://www.tourradar.com/d/pakistan
+https://www.bookmundi.com/t/pakistan-tours
+https://www.viator.com/Pakistan/d4-ttd
+https://www.tripadvisor.com/Attractions-g293959-Activities-Pakistan.html
+# Operators (non-top-5; top-5 go in EXCLUDE in scrape.js)
 https://www.baltistantours.com/
 https://hunzaadventuretours.com/
-https://hunzaexplorers.com/
-
-# Naran-Kaghan + origin-city focused (Islamabad/Lahore/Karachi)
 https://narankaghantours.com/
-
-# General Pakistan operators with GB packages
+https://pakistantravelplaces.com/
 https://atp.com.pk/
 https://pakistanguidedtours.com/
-https://pakistantravelplaces.com/
-
-# Aggregator / marketplace (many packages + prices) — review first
-https://www.findmyadventure.pk/
