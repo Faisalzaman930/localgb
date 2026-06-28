@@ -48,6 +48,15 @@ OG_IMAGES = {
     "trekking/rakaposhi-base-camp": "rakaposhi-hero.webp",
     "mountains/rakaposhi": "rakaposhi-hero.webp",
     "hunza/attabad-lake": "attabad-hero.webp",
+    "hunza/baltit-fort": "baltit-fort-hero.webp",
+    "hunza/altit-fort": "altit-fort-hero.webp",
+    "hunza/borith-lake": "borith-lake-hero.webp",
+    "hunza/gulmit": "gulmit-hero.webp",
+    "hunza/shimshal-valley": "shimshal-hero.webp",
+    "mountains/spantik": "spantik-hero.webp",
+    "mountains/masherbrum": "masherbrum-hero.webp",
+    "mountains/k2": "k2-hero.webp",
+    "trekking/k2-base-camp": "k2-hero.webp",
 }
 
 # Pages that describe a place -> emit TouristDestination. Everything else that
