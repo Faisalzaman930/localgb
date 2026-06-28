@@ -15,7 +15,7 @@ const path = require('path');
 const CONFIG = {
   chrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   seeds: 'seeds.txt',
-  maxPagesPerSeed: 25,        // safety cap
+  maxPagesPerSeed: 15,        // safety cap
   navTimeoutMs: 45000,
   politenessMs: 1200,         // delay between page loads
   // Domains to skip entirely (your top-5 SERP competitors). Substring match.
