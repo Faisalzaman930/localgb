@@ -4,9 +4,12 @@ with depth-correct relative paths, so all section hubs + key pages are linked
 sitewide (kills orphans). Homepage is handled separately (different chrome)."""
 import re, os, glob
 
-NAV = [("Destinations","destinations/"),("Mountains","mountains/"),("Treks","trekking/"),
-       ("Things to Do","things-to-do/"),("Tours","tours/"),("Travel Tips","travel/"),
-       ("Road Status","status/"),("Agencies","agencies/")]
+# Primary nav: kept tight + identical to the homepage (the approved redesign).
+# Secondary sections (Mountains, Tours, Agencies) live in the mega-footer, which
+# links them sitewide, so trimming the nav doesn't orphan them.
+NAV = [("Destinations","destinations/"),("Treks","trekking/"),
+       ("Things to Do","things-to-do/"),("Travel Tips","travel/"),
+       ("Road Status","status/")]
 
 REGIONS = [("Hunza Valley","hunza/"),("Skardu","skardu/"),("Gilgit","gilgit/"),
            ("Fairy Meadows","fairy-meadows/"),("Naltar","naltar/"),("Deosai","deosai/"),
@@ -24,7 +27,7 @@ PLAN = [("Trip Planner","planner/"),("Best Time to Visit","travel/best-time-to-v
 
 MARK = ('<svg class="nav-logo-mark" viewBox="0 0 64 50" aria-hidden="true">'
         '<path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/>'
-        '<path d="M38 12 L33.5 23 L43 23 Z" fill="#F0E8D5"/></svg>')
+        '<path d="M38 12 L33.5 23 L43 23 Z" fill="#fff"/></svg>')
 MARK_F = MARK.replace('nav-logo-mark', 'footer-logo-mark')
 
 def li(items, p): return "".join(f'<li><a href="/{u.rstrip("/")}">{t}</a></li>' for t,u in items)
@@ -34,14 +37,14 @@ def build_nav(p):
     return (f'<nav id="navbar" class="solid">\n'
         f'  <a href="/" class="nav-logo">{MARK}<span class="l1">GB</span><span class="l2">Guide</span></a>\n'
         f'  <ul class="nav-links">{nav_li(p)}</ul>\n'
-        f'  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
+        f'  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan your trip</a>\n'
         f'  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>\n'
         f'</nav>')
 
 def build_drawer(p):
     return (f'<div class="nav-drawer" id="navDrawer">\n'
         f'  <ul>{nav_li(p)}</ul>\n'
-        f'  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan Your Trip</a>\n'
+        f'  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan your trip</a>\n'
         f'</div>')
 
 def build_footer(p):
@@ -51,7 +54,7 @@ def build_footer(p):
         f'<div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>\n'
         f'      <div><div class="footer-col-title">Regions</div><ul class="footer-links">{li(REGIONS,p)}</ul></div>\n'
         f'      <div><div class="footer-col-title">Treks &amp; Peaks</div><ul class="footer-links">{li(TREKS,p)}</ul></div>\n'
-        f'      <div><div class="footer-col-title">Plan Your Trip</div><ul class="footer-links">{li(PLAN,p)}</ul></div>\n'
+        f'      <div><div class="footer-col-title">Plan your trip</div><ul class="footer-links">{li(PLAN,p)}</ul></div>\n'
         f'    </div>\n'
         f'    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 GB Guide · Last updated June 2026</span>'
         f'<span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>\n'

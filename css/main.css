@@ -151,10 +151,10 @@ nav.solid {
 }
 .nav-logo {
   font-family: var(--fd);
-  font-size: 1.55rem;
+  font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  display: flex; align-items: center; gap: 0.45rem;
+  display: flex; align-items: center; gap: 0.5rem;
 }
 .nav-logo .l1 { color: var(--gold); }
 .nav-logo .l2 { color: var(--cream); }
@@ -167,33 +167,26 @@ nav.solid {
   list-style: none;
 }
 .nav-links a {
-  font-size: 0.7rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--cream-2);
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cream);
   transition: color 0.2s;
   position: relative;
 }
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0; right: 0;
-  height: 1px;
-  background: var(--gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.25s var(--ease);
-}
-.nav-links a:hover, .nav-links a.active { color: var(--cream); }
-.nav-links a.active::after, .nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+/* Filled gold CTA — matches the homepage "Plan your trip" button. */
 .nav-cta {
-  font-family: var(--fu); font-size: 0.68rem; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid var(--gold-border);
-  color: var(--gold-lt); border-radius: 3px;
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
-  cursor: pointer; background: none;
+  font-family: var(--fu); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.6rem 1.3rem;
+  border: 1px solid transparent;
+  color: #fff; border-radius: 6px;
+  background: var(--gold-lt);
+  box-shadow: 0 6px 20px rgba(176,125,43,0.25);
+  transition: background 0.25s, transform 0.2s;
+  cursor: pointer;
 }
-.nav-cta:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.nav-cta:hover { background: var(--gold); transform: translateY(-2px); color: #fff; }
 
 /* ─── PAGE HERO ──────────────────────────────────────── */
 .page-hero {
@@ -577,11 +570,10 @@ footer {
 .nav-drawer ul a {
   display: block;
   padding: 0.9rem 0;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cream-2);
+  letter-spacing: 0.01em;
+  color: var(--cream);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   transition: color 0.2s;
 }
