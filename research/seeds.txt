@@ -1,12 +1,9 @@
-# Booking platforms — rich JSON-LD schema (prices + ratings/reviews)
+# Marketplaces (schema detail pages have ratings)
 https://www.tourradar.com/d/pakistan
 https://www.bookmundi.com/t/pakistan-tours
-https://www.viator.com/Pakistan/d4-ttd
-https://www.tripadvisor.com/Attractions-g293959-Activities-Pakistan.html
-# Operators (non-top-5; top-5 go in EXCLUDE in scrape.js)
+# Operators (non-top-5; sitemap-fed)
 https://www.baltistantours.com/
 https://hunzaadventuretours.com/
 https://narankaghantours.com/
 https://pakistantravelplaces.com/
 https://atp.com.pk/
-https://pakistanguidedtours.com/

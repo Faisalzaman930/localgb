@@ -1,33 +1,39 @@
-# Real GB/Pakistan tour-package prices — scraped June 2026
+# Real GB/Pakistan tour-package prices — scraped June 2026 (v2, sitemap-fed)
 
-Source: JSON-LD schema + rendered text from non-top-5 operators and TourRadar,
-captured 2026-06-29 with research/scrape.js. Excludes noise (listing-page price
-bleed, one Rs 803,940 expedition outlier). Confirm before publishing — prices move.
+Source: JSON-LD schema from operator tour-detail pages (via sitemaps) + TourRadar,
+captured 2026-06-29 with research/scrape.js. PKR, per person, ex-Islamabad unless noted.
 
-## Domestic operators (PKR, per person, ex-Islamabad unless noted)
-| Trip | Days | Price (from) | Source |
-|---|---|---|---|
-| Naran/Kaghan short | 2–3 d | Rs 9,500 – 16,000 | narankaghantours, pakistantravelplaces |
-| Naran/Kaghan + couple | 4 d | Rs 18,500 | narankaghantours |
-| Northern combo (Naran/Hunza/Khunjerab) | 5 d | ~Rs 25,000 | narankaghantours |
-| Hunza (autumn / cherry blossom) | 5 d | Rs 17,500 – 23,000 | pakistantravelplaces (schema) |
-| Hunza tour | 7 d | from Rs 32,000 | narankaghantours |
-| Skardu/Shangrila/Khaplu/Shigar/Deosai (private/honeymoon) | 8 d | Rs 160,000 – 200,000 | pakistantravelplaces |
-| Economical Pakistan tour | 3–4 d | Rs 7,500 – 15,500 | pakistantravelplaces |
+## ⚠️ Accuracy caveats (read before publishing)
+- Schema `offer.price` is **not always the headline price** — it can be a deposit/
+  teaser. Confirmed anomaly: pakistantravelplaces lists "8 Days Skardu & Deosai" with
+  a schema price of Rs 25,500 but a page headline of Rs 160k–190k. **Always cross-check
+  one number against the page before quoting it.**
+- Treat everything below as *real but indicative ranges*, not fixed quotes.
 
-## International / foreigner-facing (USD, TourRadar marketplace)
-| Trip | Days | Price range | 
+## Domestic operator packages (clean schema, pakistantravelplaces.com)
+| Trip | Days | Price | 
 |---|---|---|
-| Pakistan tour | 7 d | ~$1,450 – 2,000 |
-| Pakistan tour | 10 d | ~$1,900 – 2,800 |
-| Hiking & trekking | 5–11 d | ~$1,750 – 2,900 |
-| Overall Pakistan range | — | $1,140 – $3,800 |
+| 1-day local (Soon Valley, Khanpur, Mukshpuri) | 1 d | Rs 3,500 – 4,500 |
+| Murree / Tolipeer / Shogran short | 2 d | Rs 7,000 – 7,500 |
+| Neelum / Naran / Swat / Kumrat | 3 d | Rs 10,500 – 12,500 |
+| Kalash & Chitral | 4 d | Rs 14,500 |
+| Saral–Dudipatsar trek | — | Rs 16,500 |
+| Hunza + Khunjerab | 5 d | Rs 17,500 |
+| Hunza + Naltar | 6 d | Rs 19,500 |
+| Luxury Autumn Hunza | 5 d | Rs 22,000 |
+| **Hunza honeymoon (luxury/private)** | 5 d | **Rs 160,000** |
+| **Skardu honeymoon (luxury/private)** | 8 d | **Rs 190,000** |
+| Skardu + Deosai (group; see caveat) | 8 d | headline Rs 160k–175k (schema showed 25.5k = likely deposit) |
 
-## Ratings (the trust signal) — NOT captured
-Viator, TripAdvisor and GetYourGuide block headless scraping (403/captcha);
-TourRadar exposes only listing-level data, not per-tour aggregateRating. Reliable
-ways to get operator ratings: (1) 2-min manual Google/TripAdvisor lookup per
-operator, or (2) a stealth scrape (puppeteer-extra-stealth) — may still fail, or
-(3) Google Places API with a key. NOTE: under the lead-gen model (route inquiries
-to Faisal, don't feature top-5), competitor ratings aren't needed on-page — the
-trust signal is Faisal's own track record + his travelers' reviews.
+## Cross-checked banding (use these on pages)
+- **Budget group, by road:** short trips Rs 3.5k–16k; multi-day northern (Naran/Hunza) Rs 17k–25k.
+- **Mid Hunza/Naran:** Rs 17k–25k (5–6 d).
+- **Premium / private / honeymoon:** Rs 160,000–200,000 (5–8 d, Hunza or Skardu).
+
+## International / foreigner-facing (USD, TourRadar)
+7-day ~$1,450–2,000 · 10-day ~$1,900–2,800 · trekking ~$1,750–2,900 · overall $1,140–3,800.
+
+## Ratings — NOT available via scraping
+Pakistan tours carry too few reviews for `aggregateRating` schema; Viator/TripAdvisor
+block headless. Reliable options: Google Places API (needs key) or 2-min manual lookup.
+Under the lead-gen model, competitor ratings aren't needed on-page anyway.
