@@ -935,14 +935,21 @@ nav.solid    { background: rgba(251,250,246,0.97); border-color: var(--line); }
 .nav-drawer  { background: rgba(251,250,246,0.98); border-bottom-color: var(--line); }
 .nav-drawer ul a { border-bottom-color: var(--line); }
 
-/* ── PAGE HERO — light text over the dark photo/gradient + scrim ── */
-.page-hero-overlay { background: linear-gradient(180deg, rgba(7,8,13,0.28) 0%, rgba(7,8,13,0.18) 38%, rgba(7,8,13,0.82) 100%); }
-.page-hero-tag { color: #E6BD7B; }
+/* ── PAGE HERO — light text over the dark photo/gradient + scrim ──
+   Two-layer scrim: a bottom-heavy vertical fade PLUS a left-biased fade
+   (hero text is left-aligned), so the title stays readable even over bright
+   sky/snow. Mirrors the homepage hero treatment. */
+.page-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(7,8,13,0.34) 0%, rgba(7,8,13,0.20) 30%, rgba(7,8,13,0.58) 66%, rgba(7,8,13,0.93) 100%),
+    linear-gradient(80deg, rgba(7,8,13,0.74) 0%, rgba(7,8,13,0.40) 40%, rgba(7,8,13,0.06) 72%, transparent 86%);
+}
+.page-hero-tag { color: #E6BD7B; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
 .page-hero-tag::before { background: #E6BD7B; }
-.page-hero-h1 { color: #FCFBF7; text-shadow: 0 2px 24px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.45); }
+.page-hero-h1 { color: #FCFBF7; text-shadow: 0 2px 28px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.55); }
 .page-hero-h1 em { color: #E6BD7B; }
-.page-hero-sub { color: rgba(252,251,247,0.88); text-shadow: 0 1px 10px rgba(0,0,0,0.45); }
-.page-hero-meta-item { color: rgba(252,251,247,0.82); }
+.page-hero-sub { color: rgba(252,251,247,0.92); text-shadow: 0 1px 14px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5); }
+.page-hero-meta-item { color: rgba(252,251,247,0.85); text-shadow: 0 1px 8px rgba(0,0,0,0.55); }
 .page-hero-meta-item strong { color: #FCFBF7; }
 
 /* ── IMAGE CARDS — text over photo stays light ── */
