@@ -57,6 +57,22 @@ OG_IMAGES = {
     "mountains/masherbrum": "masherbrum-hero.webp",
     "mountains/k2": "k2-hero.webp",
     "trekking/k2-base-camp": "k2-hero.webp",
+    "gilgit/bagrot-valley": "bagrot-valley-hero.webp",
+    "gilgit/kargah-buddha": "kargah-buddha-hero.webp",
+    "skardu/khaplu": "khaplu-hero.webp",
+    "skardu/khaplu-palace": "khaplu-hero.webp",
+    "skardu/satpara-lake": "satpara-lake-hero.webp",
+    "skardu/sheosar-lake": "sheosar-lake-hero.webp",
+    "skardu/shigar-valley": "shigar-valley-hero.webp",
+    "mountains/nanga-parbat": "nanga-parbat-hero.webp",
+    "mountains/masherbrum": "masherbrum-hero.webp",
+    "mountains/spantik": "spantik-hero.webp",
+    "karakoram-highway": "karakoram-highway-hero.webp",
+    "trekking/nanga-parbat-base-camp": "nanga-parbat-hero.webp",
+    "trekking/nanga-parbat-rupal-face": "nanga-parbat-hero.webp",
+    "trekking/masherbrum-base-camp": "masherbrum-hero.webp",
+    "trekking/spantik-base-camp": "spantik-hero.webp",
+    "trekking/naltar-lakes": "naltar-hero.webp",
 }
 
 # Pages that describe a place -> emit TouristDestination. Everything else that
