@@ -4,3 +4,5 @@ cprofile/
 *.err
 packages.csv
 packages.json
+.key
+ratings.csv
