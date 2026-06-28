@@ -73,6 +73,7 @@ OG_IMAGES = {
     "trekking/masherbrum-base-camp": "masherbrum-hero.webp",
     "trekking/spantik-base-camp": "spantik-hero.webp",
     "trekking/naltar-lakes": "naltar-hero.webp",
+    "tours/skardu": "skardu-hero.webp",
 }
 
 # Pages that describe a place -> emit TouristDestination. Everything else that
