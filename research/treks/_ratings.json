@@ -1,69 +1,172 @@
 {
  "hunzaguidespakistan.com": {
-  "platform": "Tripadvisor",
-  "rating": 5.0,
-  "reviews": 77,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g293960-d15841054-Reviews-Hunza_Guides_Pakistan_Tours_Trekking_Expeditions-Islamabad_Islamabad_Capital_Ter.html"
+  "platform": "Google",
+  "rating": 4.6,
+  "reviews": 29,
+  "url": "https://www.google.com/maps/search/?api=1&query=Hunza%20Guides%20Pakistan"
  },
  "chogoriadventure.com": {
-  "platform": "Tripadvisor",
-  "rating": 4.8,
-  "reviews": 4,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g317119-d23941888-Reviews-Chogori_Adventure_Pakistan-Skardu_Gilgit_Baltistan.html"
- },
- "trangoadventure.com": {
-  "platform": "Tripadvisor",
-  "rating": 4.8,
-  "reviews": 105,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g317119-d17189223-Reviews-Trango_Adventure-Skardu_Gilgit_Baltistan.html"
- },
- "epicexpeditions.co": {
-  "platform": "Tripadvisor",
+  "platform": "Google",
   "rating": 5.0,
+  "reviews": 31,
+  "url": "https://www.google.com/maps/search/?api=1&query=Chogori%20Adventure%20Pakistan"
+ },
+ "skardutrekkers.com": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 56,
+  "url": "https://www.google.com/maps/search/?api=1&query=Skardu%20Trekkers"
+ },
+ "saltorosummits.com": {
+  "platform": "Google",
+  "rating": 4.9,
   "reviews": 49,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g469409-d20871641-Reviews-Epic_Expeditions-Hunza_Gilgit_Baltistan.html"
+  "url": "https://www.google.com/maps/search/?api=1&query=Saltoro%20Summits%20Pakistan"
  },
  "hunzaexplorers.com": {
-  "platform": "Tripadvisor",
+  "platform": "Google",
+  "rating": 4.5,
+  "reviews": 22,
+  "url": "https://www.google.com/maps/search/?api=1&query=Hunza%20Explorers%20Treks%20%26%20Tours%20Pakistan"
+ },
+ "chogholingsa.com": {
+  "platform": "Google",
   "rating": 4.9,
-  "reviews": 117,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g469409-d12664220-Reviews-Hunza_Explorers-Hunza_Gilgit_Baltistan.html"
+  "reviews": 7,
+  "url": "https://www.google.com/maps/search/?api=1&query=Chogholingsa%20Treks%20%26%20Tours%20Pakistan"
  },
- "iantaylortrekking.com": {
-  "platform": "Tripadvisor",
-  "rating": 4.8,
-  "reviews": 36,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g293890-d19807852-Reviews-Ian_Taylor_Trekking-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region.html"
- },
- "themountaincompany.co.uk": {
-  "platform": "Trustpilot",
-  "rating": 5.0,
-  "reviews": 119,
-  "url": "https://uk.trustpilot.com/review/themountaincompany.co.uk"
+ "baltistantours.com": {
+  "platform": "Google",
+  "rating": 4.3,
+  "reviews": 56,
+  "url": "https://www.google.com/maps/search/?api=1&query=Baltistan%20Tours%20Pakistan"
  },
  "10adventures.com": {
   "platform": "Google",
   "rating": 5.0,
-  "reviews": 109,
-  "url": "https://www.top-rated.online/cities/Calgary/place/p/?q=10Adventures"
+  "reviews": 111,
+  "url": "https://www.google.com/maps/search/?api=1&query=10Adventures",
+  "origin": "Calgary, Canada"
  },
  "summitclimb.com": {
-  "platform": "Tripadvisor",
+  "platform": "Google",
+  "rating": 4.0,
+  "reviews": 1,
+  "url": "https://www.google.com/maps/search/?api=1&query=SummitClimb",
+  "origin": "USA (international)"
+ },
+ "hunzaadventuretours.com": {
+  "platform": "Google",
   "rating": 4.7,
-  "reviews": 102,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g293890-d12559068-Reviews-Summitclimb_and_Summittrek-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region.html"
+  "reviews": 12,
+  "url": "https://www.google.com/maps/search/?api=1&query=Hunza%20Adventure%20Tours"
+ },
+ "trangoadventure.com": {
+  "platform": "Google",
+  "rating": 4.8,
+  "reviews": 79,
+  "url": "https://www.google.com/maps/search/?api=1&query=Trango%20Adventure"
+ },
+ "epicexpeditions.co": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 156,
+  "url": "https://www.google.com/maps/search/?api=1&query=Epic%20Expeditions"
+ },
+ "tourrangers.pk": {
+  "platform": "Google",
+  "rating": 4.6,
+  "reviews": 5,
+  "url": "https://www.google.com/maps/search/?api=1&query=TourRangers"
+ },
+ "8kexpeditions.com": {
+  "platform": "Google",
+  "rating": 4.8,
+  "reviews": 141,
+  "url": "https://www.google.com/maps/search/?api=1&query=8K%20Expeditions",
+  "origin": "Kathmandu, Nepal"
+ },
+ "baltoroadventures.com": {
+  "platform": "Google",
+  "rating": 4.6,
+  "reviews": 5,
+  "url": "https://www.google.com/maps/search/?api=1&query=Baltoro%20Adventures%20Pakistan"
+ },
+ "broadpeakadventures.com": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 1,
+  "url": "https://www.google.com/maps/search/?api=1&query=Broad%20Peak%20Adventures"
+ },
+ "iantaylortrekking.com": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 409,
+  "url": "https://www.google.com/maps/search/?api=1&query=Ian%20Taylor%20Trekking",
+  "origin": "Dublin, Ireland"
+ },
+ "k2climbers.com": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 198,
+  "url": "https://www.google.com/maps/search/?api=1&query=K2%20Climbers"
+ },
+ "machulo.com.pk": {
+  "platform": "Google",
+  "rating": 4.9,
+  "reviews": 79,
+  "url": "https://www.google.com/maps/search/?api=1&query=Machulo%20Treks%20%26%20Tours%20Pakistan"
+ },
+ "missionsummittreks.com": {
+  "platform": "Google",
+  "rating": 4.9,
+  "reviews": 56,
+  "url": "https://www.google.com/maps/search/?api=1&query=Mission%20Summit%20Treks%20%26%20Expedition",
+  "origin": "Kathmandu, Nepal"
  },
  "movingmntns.com": {
-  "platform": "Tripadvisor",
+  "platform": "Google",
   "rating": 5.0,
-  "reviews": 6,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g469409-d33004700-Reviews-Moving_Mountains_Adventure-Hunza_Gilgit_Baltistan.html"
+  "reviews": 11,
+  "url": "https://www.google.com/maps/search/?api=1&query=Moving%20Mountains"
  },
  "namasadventure.com": {
-  "platform": "Reviews.io",
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 45,
+  "url": "https://www.google.com/maps/search/?api=1&query=NAMAS%20Adventure",
+  "origin": "United Kingdom"
+ },
+ "pakvoyager.com": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 4,
+  "url": "https://www.google.com/maps/search/?api=1&query=Pak%20Voyager"
+ },
+ "summitkarakoram.com": {
+  "platform": "Google",
   "rating": 4.9,
-  "reviews": 22,
-  "url": "https://www.reviews.io/company-reviews/store/namas-adventure-ltd"
+  "reviews": 12,
+  "url": "https://www.google.com/maps/search/?api=1&query=Summit%20Karakoram"
+ },
+ "themountaincompany.co.uk": {
+  "platform": "Google",
+  "rating": 5.0,
+  "reviews": 31,
+  "url": "https://www.google.com/maps/search/?api=1&query=The%20Mountain%20Company",
+  "origin": "United Kingdom"
+ },
+ "travel-culture.com": {
+  "platform": "Google",
+  "rating": 4.1,
+  "reviews": 25,
+  "url": "https://www.google.com/maps/search/?api=1&query=Travel%20%26%20Culture%20Services"
+ },
+ "trips.pk": {
+  "platform": "Google",
+  "rating": 4.5,
+  "reviews": 263,
+  "url": "https://www.google.com/maps/search/?api=1&query=Trips.pk"
  },
  "pakistantravelplaces.com": {
   "platform": "Tripadvisor",
@@ -71,58 +174,16 @@
   "reviews": 4,
   "url": "https://www.tripadvisor.com/Attraction_Review-g295413-d15613456-Reviews-Pakistan_Travel_Places-Lahore_Punjab_Province.html"
  },
- "travel-culture.com": {
-  "platform": "Trustpilot",
-  "rating": 4.0,
-  "reviews": 9,
-  "url": "https://www.trustpilot.com/review/www.travel-culture.com"
- },
- "baltistantours.com": {
-  "platform": "Tripadvisor",
-  "rating": 4.5,
-  "reviews": 10,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g317119-d4573574-Reviews-Baltistan_Tours_Pakistan-Skardu_Gilgit_Baltistan.html"
- },
- "hunzaadventuretours.com": {
-  "platform": "Tripadvisor",
-  "rating": 4.8,
-  "reviews": 113,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g293960-d7187964-Reviews-Hunza_Adventure_Tours-Islamabad_Islamabad_Capital_Territory.html"
- },
- "missionsummittreks.com": {
-  "platform": "Tripadvisor",
-  "rating": 5.0,
-  "reviews": 176,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g293890-d17189222-Reviews-Mission_Summit_Treks_And_Expedition-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Cent.html"
- },
- "summitkarakoram.com": {
-  "platform": "GuidedPeaks",
-  "rating": 4.8,
-  "reviews": 7,
-  "url": "https://www.guidedpeaks.com/guides/summit-karakoram"
- },
- "btvadventures.com": {
-  "platform": "Tripadvisor",
-  "rating": 5.0,
-  "reviews": 16,
-  "url": "https://www.tripadvisor.com/Attraction_Review-g317119-d24137673-Reviews-Beyond_the_Valley-Skardu_Gilgit_Baltistan.html"
- },
- "pakvoyager.com": {
-  "platform": "Trustpilot",
-  "rating": 4.7,
-  "reviews": 24,
-  "url": "https://www.trustpilot.com/review/pakvoyager.com"
- },
  "visitinpakistan.com": {
   "platform": "Trustpilot",
   "rating": 3.9,
   "reviews": 6,
   "url": "https://www.trustpilot.com/review/visitinpakistan.com"
  },
- "trips.pk": {
-  "platform": "Google",
-  "rating": 4.6,
-  "reviews": 231,
-  "url": "https://www.top-rated.online/cities/Lahore/place/p/9057667/Trips.pk"
+ "btvadventures.com": {
+  "platform": "Tripadvisor",
+  "rating": 5.0,
+  "reviews": 16,
+  "url": "https://www.tripadvisor.com/Attraction_Review-g317119-d24137673-Reviews-Beyond_the_Valley-Skardu_Gilgit_Baltistan.html"
  }
 }

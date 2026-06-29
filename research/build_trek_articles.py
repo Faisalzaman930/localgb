@@ -27,6 +27,18 @@ def rating_span(home):
     return (f'<span>&#9733; <strong>{r["rating"]:.1f}</strong> '
             f'<a href="{r["url"]}" target="_blank" rel="nofollow noopener">{r["platform"]} ({r["reviews"]})</a></span>')
 
+def origin_of(home):
+    r = rating_obj(home)
+    return r.get('origin') if r else None
+
+def origin_inline(home):
+    o = origin_of(home)
+    return f' <span style="color:var(--cream-2);font-weight:400">&middot; {o}</span>' if o else ''
+
+def origin_span(home):
+    o = origin_of(home)
+    return f'<span>🌍 <strong>{o}</strong></span>' if o else ''
+
 def esc(s):
     if s is None: return ''
     return re.sub(r'&(?!amp;|lt;|gt;|#\d+;|quot;)', '&amp;', str(s))
@@ -236,7 +248,7 @@ def build_body(route, pkgs):
     rows = []
     for p in pkgs:
         link = f'<a href="{esc(p["pkg_url"])}" target="_blank" rel="nofollow noopener">link</a>'
-        op = f'<a href="{esc(p["home"])}" target="_blank" rel="nofollow noopener">{esc(p["operator"])}</a>'
+        op = f'<a href="{esc(p["home"])}" target="_blank" rel="nofollow noopener">{esc(p["operator"])}</a>{origin_inline(p["home"])}'
         rows.append(f'<tr><td>{op}</td><td>{esc(p.get("days",""))}</td><td>{price_str(p)}</td>'
                     f'<td>{rating_cell(p["home"])}</td><td>{link}</td></tr>')
     table = ('<h2>At a glance - operators compared</h2>\n<table class="cmp-table"><thead><tr><th>Operator</th><th>Length</th>'
@@ -264,7 +276,7 @@ def build_body(route, pkgs):
         op = f'<a href="{esc(p["home"])}" target="_blank" rel="nofollow noopener">{esc(p["operator"])}</a>'
         meta = f'<span>🗓 <strong>{esc(p.get("days",""))}</strong></span><span>💷 <strong>{price_str(p)}</strong></span>'
         if p.get('meals'): meta += f'<span>🍽 <strong>{esc(p["meals"])}</strong></span>'
-        meta += rating_span(p['home'])
+        meta += rating_span(p['home']) + origin_span(p['home'])
         inc = f'<p style="font-size:.9rem;line-height:1.62;color:#2E2A22;margin:.2rem 0 .5rem"><strong>Includes:</strong> {esc(p.get("includes",""))}</p>' if p.get('includes') else ''
         tiers = f'<div class="rev-verdict">Group-size pricing: {esc(p["tiers"])}.</div>' if p.get('tiers') else ''
         cards.append(
