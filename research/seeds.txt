@@ -1,9 +1,9 @@
-# 8 operators (top-3 SERP excluded via EXCLUDE in deep.js: apricot/natureadventure/pakistantours)
+# operators (top-3 SERP excluded in deep.js EXCLUDE). Re-crawl w/ text-price fix.
 https://www.pakistantravelplaces.com/
 https://narankaghantours.com/
 https://baltistantours.com/
 https://hunzaadventuretours.com/
 https://hunzaexplorers.com/
-https://atp.com.pk/
-https://pakistanguidedtours.com/
-https://travelpakistani.com/
+https://hunzaholidays.com/
+https://skarduholidays.com/
+https://hindukushheights.com/

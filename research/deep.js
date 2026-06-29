@@ -32,6 +32,20 @@ function section(t,startRe,endRe){
   return (e>0?rest.slice(0,e):rest).replace(/\s+/g,' ').trim();
 }
 function bullets(s){return [...new Set(s.split(/[•·▪►|]|(?<=[a-z])\.(?=\s+[A-Z])|\n/).map(x=>x.replace(/\s+/g,' ').trim()).filter(x=>x.length>3&&x.length<90))].slice(0,12);}
+function textPrice(t){
+  // package's own price: prefer the earliest "from Rs X"; else earliest Rs/PKR in range
+  const ms=[...t.matchAll(/(from\s+)?(?:Rs\.?|PKR|₨)\s*([0-9][0-9,]{3,})/gi)];
+  let best=null;
+  for(const m of ms){
+    const v=parseInt(m[2].replace(/,/g,''),10);
+    if(v<5000||v>600000) continue;
+    const hasFrom=!!m[1];
+    if(!best) best={v,pos:m.index,hasFrom};
+    else if(hasFrom&&!best.hasFrom) best={v,pos:m.index,hasFrom};   // 'from' beats no-from
+    else if(hasFrom===best.hasFrom&&m.index<best.pos) best={v,pos:m.index,hasFrom};
+  }
+  return best?String(best.v):'';
+}
 async function extract(page,url){
   const d=await page.evaluate(()=>({
     ld:[...document.querySelectorAll('script[type="application/ld+json"]')].map(s=>s.textContent),
@@ -39,6 +53,7 @@ async function extract(page,url){
     text:(()=>{let c=document.body.cloneNode(true);c.querySelectorAll('script,style,noscript,nav,footer,header').forEach(e=>e.remove());return (c.textContent||'').replace(/\r/g,' ');})()}));
   const flatText=d.text.replace(/\s+/g,' ');
   const pr=schemaPrice(d.ld);
+  if(!pr.price){const tp=textPrice(flatText); if(tp){pr.price=tp; pr.currency=pr.currency||'PKR';}}
   const dm=flatText.match(/(\d{1,2})\s*days?(?:\s*[\/&\-]\s*(\d{1,2})\s*nights?)?/i);
   const incRaw=section(flatText,/(price includes?|tour includes?|package includes?|cost includes?|what'?s included|inclusions?)\s*[:\-]?/i,/(exclusion|not includ|what'?s not|excludes?|itinerary|\bday\s*0?1\b|payment|cancellation|book now)/i);
   const excRaw=section(flatText,/(exclusions?|not included|what'?s not included|excludes?)\s*[:\-]?/i,/(payment|cancellation|terms|policy|faq|note:|book now|itinerary|map\b)/i);
