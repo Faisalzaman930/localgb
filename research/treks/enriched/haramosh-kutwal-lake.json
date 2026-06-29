@@ -1,15 +1,7 @@
 [
  {
-  "operator": "TourRangers",
-  "home": "https://tourrangers.pk",
-  "pkg_url": "https://tourrangers.pk/tours/haramosh-valley/",
-  "days": "6 days / 5 nights",
-  "price_usd": 750,
-  "price_pkr": 60000,
-  "includes": "private transport from Islamabad, 4x4 jeep for mountain segments, hotel + camping (sharing), professional guide, road tolls, basic first aid",
-  "meals": "standard meals per itinerary (not itemised)",
-  "good": "Publishes both a local PKR price (Rs 60,000) and a clear foreigner USD price ($750); duration and nights stated",
-  "could_be_better": "Meal/inclusion detail is vague; no day-by-day breakdown",
+  "domain": "tourrangers.pk",
+  "operator": "Tour Rangers",
   "itinerary": [
    "Day 0: Depart I-8 Markaz Islamabad 11:30 PM via Hazara Motorway",
    "Day 1: Overnight drive; Lulusar, Babusar Pass; reach Sassi 5 PM, hotel",
@@ -36,15 +28,8 @@
   "excludes": "Personal-luggage porters, emergency evacuation/rescue, tips, personal expenses, anything not listed."
  },
  {
+  "domain": "karakorambackpackers.com",
   "operator": "Karakoram Backpackers",
-  "home": "https://karakorambackpackers.com",
-  "pkg_url": "https://karakorambackpackers.com/haramosh-kutwal-trek/",
-  "days": "5 days",
-  "price_usd": 700,
-  "includes": "private transport, tolls/taxes, accommodation per itinerary, tour guide/driver, daily breakfast, bonfire, basic first aid; lunch and dinner NOT included",
-  "meals": "breakfast only; lunch and dinner paid separately",
-  "good": "Clear published USD price; itemised inclusions",
-  "could_be_better": "Only breakfast included - lunch and dinner extra, unusual for a remote camping trek; conflicting durations on page",
   "itinerary": [
    "Day 1: Breakfast Balakot; via Dassu/Besham/Chilas; reach Gilgit 5 PM",
    "Day 2: Drive to Sassi; trek to Korophon; camp near Kutwalgah",
@@ -69,15 +54,8 @@
   "excludes": "Lunch and dinner, hotel extras (e.g. water), entry tickets, insurance/liability, unforeseen circumstances."
  },
  {
+  "domain": "k2climbers.com",
   "operator": "K2 Climbers",
-  "home": "https://k2climbers.com",
-  "pkg_url": "https://k2climbers.com/tours/haramosh-valley-kutwal-lake/",
-  "days": "6 days",
-  "price_pkr": 60000,
-  "includes": "private 4x4 jeep from Islamabad, hotel + camping (3-4 person sharing), professional guides, mess tent with cook, photography/drone footage, basic first aid, road tolls and fuel; group discounts 5% (4+), 10% (8+)",
-  "meals": "standard breakfast, lunch and dinner daily",
-  "good": "Price published openly (Rs 60,000/person); all meals included; transparent group discounts and exclusions",
-  "could_be_better": "PKR only (no foreigner/USD rate shown); 3-4 person tent sharing is tight",
   "itinerary": [
    "Day 1: Depart Islamabad 10:30 PM via Hazara Motorway; reach Chillas 4 PM",
    "Day 2: Breakfast; drive to Sassi; 2hr jeep then 2-4hr trek to Kutwal Village",
@@ -103,15 +81,8 @@
   "excludes": "Personal expenses, travel insurance, tips for guides/porters, any emergency cost from unforeseen circumstances."
  },
  {
+  "domain": "k2trekkingandexpedition.com",
   "operator": "K2 Trekking and Expedition",
-  "home": "https://k2trekkingandexpedition.com",
-  "pkg_url": "https://k2trekkingandexpedition.com/tours/kutwal-lake-trek-blog/",
-  "days": "7 days",
-  "price_usd": null,
-  "includes": "trained porters, skilled cooks, first aid and backup safety plans; inclusions not itemised; price by enquiry only",
-  "meals": "hot dinner and warm meals from camp kitchen",
-  "good": "Longer 7-day itinerary with explicit emphasis on porter/cook support and safety planning",
-  "could_be_better": "No public price (quote-only); inclusions not itemised",
   "itinerary": [
    "Day 1: Drive to Gilgit, hotel, briefing; 4x4 jeep to Sassi village",
    "Day 2: Trek 4-5hr through pine forests to Iskere camp",

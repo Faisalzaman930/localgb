@@ -1,14 +1,7 @@
 [
  {
+  "domain": "skardutrekkers.com",
   "operator": "Skardu Trekkers",
-  "home": "https://skardutrekkers.com",
-  "pkg_url": "https://skardutrekkers.com/trip/laila-peak-base-camp-trek/",
-  "days": "13 days",
-  "price_usd": 1450,
-  "includes": "domestic flights, road transfers & pickups, hotels (twin), dome-tent camping, licensed guide & staff, govt permits & fees, first aid, satellite phone",
-  "meals": "all meals, beverages & water, snacks, dry fruits, tea/coffee on trek",
-  "good": "Detailed itinerary (10 trekking days, BC at 4,535m); explicit Gondogoro Glacier trekking; 'less crowded alternative' to K2 BC",
-  "could_be_better": "Headline $1,450 is a discounted price (regular $1,850, '22% off')",
   "itinerary": [
    "Day 1-2: Arrive Islamabad, fly to Skardu",
    "Day 3: Skardu acclimatization day and city tour",
@@ -38,16 +31,8 @@
   "excludes": "Excludes international flights, visa fees, personal insurance, personal/technical gear (boots, ice axe, crampons), tips, and force-majeure costs."
  },
  {
+  "domain": "chogoriadventure.com",
   "operator": "Chogori Adventure",
-  "home": "https://chogoriadventure.com",
-  "pkg_url": "https://chogoriadventure.com/tour/laila-peak-base-camp-trek/",
-  "days": "12 days",
-  "price_usd": 1500,
-  "tiers": "9-20pax $1,500 · solo $2,500",
-  "includes": "domestic transport, hotel & tent (twin), professional guide & staff, porters (15kg), cooking staff, permits & waste fees, satellite phone, first aid, camping equipment",
-  "meals": "breakfast, lunch, dinner throughout",
-  "good": "Transparent group-vs-solo pricing; satellite phone and waste-management fees included",
-  "could_be_better": "Best price only for large groups of 9-20; solo travellers pay $2,500",
   "itinerary": [
    "Day 1: Arrival in Islamabad, airport pickup and hotel",
    "Day 2: Scenic flight to Skardu / Karakoram",
@@ -77,15 +62,8 @@
   "excludes": "Excludes international flights, personal clothing, and tips to guides, cooks and porters."
  },
  {
+  "domain": "inspirekarakoram.com",
   "operator": "Inspire Karakoram",
-  "home": "https://inspirekarakoram.com",
-  "pkg_url": "https://inspirekarakoram.com/trip/laila-peak-trek/",
-  "days": "10-12 days",
-  "price_usd": null,
-  "includes": "airport transfers & domestic flights, city-to-city transport, hotels in Islamabad & Skardu, local staff wages, insurance, food & equipment, porter support, all camping equipment & tents, camping fees, permits",
-  "meals": "breakfast, lunch, dinner",
-  "good": "Strong porter/staff welfare detail (wages + insurance); full camping equipment provided",
-  "could_be_better": "No public price ('From TBH'); duration inconsistent on page (10 vs 12 days)",
   "itinerary": [
    "Day 1: Arrival in Islamabad, transfer to hotel",
    "Day 2: Early flight to Skardu, or drive to Skardu",
@@ -114,15 +92,8 @@
   "excludes": "Excludes international flights, personal/high-altitude gear, insurance, helicopter rescue fees ($25,000), and unforeseen expenses."
  },
  {
-  "operator": "Visit In Pakistan",
-  "home": "https://visitinpakistan.com",
-  "pkg_url": "https://visitinpakistan.com/tour/laila-peak-trek/",
-  "days": "14 days",
-  "price_usd": null,
-  "includes": "Ministry of Tourism permit processing, hotels in Rawalpindi/Islamabad and Chilas, all meals on trek and at BC, porterage, road transfers and airport assistance, camping equipment, certified guide/sirdar/cook/support staff, staff insurance",
-  "meals": "all meals during trek and at BC",
-  "good": "Most complete staff structure (guide + sirdar + cook); staff insurance and porter coverage spelled out",
-  "could_be_better": "No public price (quote-only); approach via Chilas suggests overland rather than the faster Skardu flight",
+  "domain": "visitinpakistan.com",
+  "operator": "Visit in Pakistan",
   "itinerary": [
    "Day 1-4: Islamabad arrival, drive via Chilas (480km) to Skardu (2300m), prep day",
    "Day 5: Drive to Hushe valley (5-7h) via Siachen Road, lunch at Khaplu",

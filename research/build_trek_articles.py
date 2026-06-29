@@ -277,17 +277,35 @@ def build_body(route, pkgs):
         meta = f'<span>🗓 <strong>{esc(p.get("days",""))}</strong></span><span>💷 <strong>{price_str(p)}</strong></span>'
         if p.get('meals'): meta += f'<span>🍽 <strong>{esc(p["meals"])}</strong></span>'
         meta += rating_span(p['home']) + origin_span(p['home'])
-        inc = f'<p style="font-size:.9rem;line-height:1.62;color:#2E2A22;margin:.2rem 0 .5rem"><strong>Includes:</strong> {esc(p.get("includes",""))}</p>' if p.get('includes') else ''
-        tiers = f'<div class="rev-verdict">Group-size pricing: {esc(p["tiers"])}.</div>' if p.get('tiers') else ''
+        # includes / excludes
+        incexc = ''
+        if p.get('includes'): incexc += f'<p style="font-size:.9rem;line-height:1.62;color:#2E2A22;margin:.4rem 0 .3rem"><strong>Includes:</strong> {esc(p["includes"])}</p>'
+        if p.get('excludes'): incexc += f'<p style="font-size:.9rem;line-height:1.62;color:#6b6253;margin:0 0 .5rem"><strong>Excludes:</strong> {esc(p["excludes"])}</p>'
+        # itinerary table
+        itin = ''
+        days = p.get('itinerary') or []
+        if days:
+            rws = ''
+            for d in days:
+                lbl, txt = (d.split(':',1)+[''])[:2] if ':' in d else (d, '')
+                rws += f'<tr><td>{esc(lbl.strip())}</td><td>{esc(txt.strip())}</td></tr>'
+            itin = f'<h4>Itinerary, day by day</h4><table class="rev-itin"><tbody>{rws}</tbody></table>'
+        # pros / cons (fall back to single good/could_be_better)
+        pros = p.get('pros') or ([p['good']] if p.get('good') else [])
+        cons = p.get('cons') or ([p['could_be_better']] if p.get('could_be_better') else [])
+        pl = ''.join(f'<li>{esc(x)}</li>' for x in pros)
+        cl = ''.join(f'<li>{esc(x)}</li>' for x in cons)
+        pc = (f'<div class="rev-pc"><div><h4 class="pros">What\'s good</h4><ul>{pl}</ul></div>'
+              f'<div><h4 class="cons">Could be better</h4><ul>{cl}</ul></div></div>')
+        # verdict + group-size tiers
+        verdict = f'<div class="rev-verdict"><strong>Verdict:</strong> {esc(p["verdict"])}</div>' if p.get('verdict') else ''
+        tiers = f'<p style="font-size:.82rem;color:var(--cream-2);margin:.5rem 0 0"><strong>Group-size pricing:</strong> {esc(p["tiers"])}.</p>' if p.get('tiers') else ''
         cards.append(
           '<div class="rev">'
           f'<div class="rev-head"><div><div class="rev-badge">{badge}</div><h3>{esc(p["operator"])}</h3>'
           f'<div class="rev-op">by {op} · {esc(p.get("days",""))} · from {price_str(p)}</div></div>'
           f'<div class="rev-score"><b>{sc}</b><span>/10</span></div></div>'
-          f'<div class="rev-meta">{meta}</div>\n{inc}'
-          f'<div class="rev-pc"><div><h4 class="pros">What\'s good</h4><ul><li>{esc(p.get("good",""))}</li></ul></div>'
-          f'<div><h4 class="cons">Could be better</h4><ul><li>{esc(p.get("could_be_better",""))}</li></ul></div></div>'
-          f'{tiers}'
+          f'<div class="rev-meta">{meta}</div>\n{incexc}{itin}{pc}{verdict}{tiers}'
           f'<div class="rev-links">🔗 <a href="{esc(p["pkg_url"])}" target="_blank" rel="nofollow noopener">View this package</a> · {op}</div>'
           '</div>')
     cards = '\n'.join(cards)

@@ -1,14 +1,7 @@
 [
  {
-  "operator": "PakVoyager",
-  "home": "https://www.pakvoyager.com",
-  "pkg_url": "https://www.pakvoyager.com/pakistan-tour-packages/13-days-rush-lake-trek-with-hunza-sight-seeing-tour",
-  "days": "13 days",
-  "price_usd": 1144,
-  "includes": "mid-level hotels (Islamabad, Chilas, Karimabad) plus camping on trek sections; group size 3-12; peak 15,400 ft",
-  "meals": "breakfast referenced; full meal plan not itemised",
-  "good": "Lowest published price of the set; combines Rush Lake trek with Hunza sightseeing; clear group-size range",
-  "could_be_better": "Price shown as 'starting from'; inclusions and meal plan not fully itemised",
+  "domain": "pakvoyager.com",
+  "operator": "Pak Voyager",
   "itinerary": [
    "Day 1: Arrive Islamabad airport, transfer to hotel",
    "Day 2: Drive Islamabad to Chilas, 8-9 hours",
@@ -39,16 +32,8 @@
   "excludes": "No exclusions list published on the page."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/rash-lake-trek/",
-  "days": "12 days",
-  "price_usd": 1775,
-  "tiers": "12d $1,775 · 14d $1,935 · 15d $2,015",
-  "includes": "domestic flights, road transfers, hotels, camping, professional guides, support staff, porter (15kg), first aid, camping equipment - ALL INCLUSIVE",
-  "meals": "all meals throughout",
-  "good": "Multiple duration/price tiers published openly; explicitly all-inclusive; flights included",
-  "could_be_better": "Page spelled 'Rash Lake'; no PKR option; 15kg porter cap",
   "itinerary": [
    "Day 1: Welcome at Islamabad airport, hotel, afternoon city tour",
    "Day 2: Drive to Naran then continue to Chilas",
@@ -82,15 +67,8 @@
   "excludes": "International airfare/taxes, tips for drivers/porters/staff, single supplement, sleeping bag and personal expenses."
  },
  {
+  "domain": "karakoramtrails.com",
   "operator": "Karakoram Trails",
-  "home": "https://www.karakoramtrails.com",
-  "pkg_url": "https://www.karakoramtrails.com/product/rush-lake-trek/",
-  "days": "14 days",
-  "price_usd": 2700,
-  "includes": "licensed guide, airport transfers, hotel (twin) and trekking tents (twin), all logistics/tents/non-personal gear, support staff (cook, assistants), porters",
-  "meals": "all meals on trek and hotel stays; cooked fresh in mess tent",
-  "good": "Clear flat published USD price; detailed meal breakdown; full support-staff and porter inclusions",
-  "could_be_better": "Long 14-day package; single figure with no group-size tiers",
   "itinerary": [
    "Day 1: Arrive Islamabad International Airport",
    "Day 2: Drive to Chilas on Karakoram Highway",
@@ -123,15 +101,8 @@
   "excludes": "Travel insurance, Pakistan visa, international airfare, gratuities, and personal/miscellaneous expenses."
  },
  {
+  "domain": "mountaintiger.com.pk",
   "operator": "Mountain Tiger",
-  "home": "https://mountaintiger.com.pk",
-  "pkg_url": "https://mountaintiger.com.pk/Pakistan/Trek/40/rush-lake-trek",
-  "days": "12 days",
-  "price_usd": null,
-  "includes": "Islamabad-Gilgit return flights, luxury transport, porter/mule, hotels + camping at Rush Lake, kitchen staff, heated tents, medical kits, farewell dinner",
-  "meals": "three meals/day; welcome + farewell dinner",
-  "good": "Strong inclusions list (flights, heated tents, kitchen staff); 2026 dates shown",
-  "could_be_better": "Price field shows $0 across all tiers - no real public price, must contact",
   "itinerary": [
    "Day 1: Arrive Islamabad, airport pickup",
    "Day 2: Fly to Gilgit, rest and explore",
@@ -163,15 +134,8 @@
   "excludes": "International airfare, Pakistan visa fee, trip-cancellation insurance, and ~8 other personal items."
  },
  {
+  "domain": "karakorumexpedition.com",
   "operator": "Karakorum Expedition",
-  "home": "https://www.karakorumexpedition.com",
-  "pkg_url": "https://www.karakorumexpedition.com/tours/rush-lake-trek/",
-  "days": "12 days",
-  "price_usd": null,
-  "includes": "licensed guide/leader, Islamabad airport transfers, domestic flights + road transport, hotels and camps, support staff, porters, equipment, govt trekking permit fees",
-  "meals": "all meals in Pakistan; vegetarian on request; detailed menu",
-  "good": "Very detailed inclusions and meal menu; pitched as beginner-friendly; permit fees covered",
-  "could_be_better": "No published price - quote-only; 3 days camped at the lake may be more than some want",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Islamabad to Gilgit",

@@ -1,14 +1,7 @@
 [
  {
+  "domain": "trangoadventure.com",
   "operator": "Trango Adventure",
-  "home": "https://trangoadventure.com",
-  "pkg_url": "https://trangoadventure.com/tours/k2-and-gondogoro-la-trek/",
-  "days": "20 days",
-  "price_usd": 1955,
-  "includes": "airport transfers & domestic flights, 3-star hotels (5n) + camping (13n), full food & equipment, English guide, sirdar/porter/cook, satellite phone, solar charging, porter insurance, unlimited boiled water",
-  "meals": "three meals/day, itemised",
-  "good": "Cheapest verified figure; porter insurance, satellite phone and charging included",
-  "could_be_better": "Price tied to a specific Aug 16-Sep 4 departure; insurance, flights, visa, gear, tips excluded",
   "itinerary": [
    "Day 1: Arrive Islamabad",
    "Day 2: Flight to Skardu (2,230m)",
@@ -48,15 +41,8 @@
   "excludes": "International flights, visa, insurance, tips, all personal climbing/trekking gear, trekking permit ($150) and CKNP fee ($190), sightseeing, over-20kg luggage."
  },
  {
+  "domain": "k2basecamptreks.com",
   "operator": "K2 Base Camp Treks",
-  "home": "https://k2basecamptreks.com",
-  "pkg_url": "https://k2basecamptreks.com/tour/k2-and-gondogoro-la-trek/",
-  "days": "20 days",
-  "price_usd": 2055,
-  "includes": "domestic flight, all transfers, 3-4 star hotels, full camping setup (tents, mattresses, mess, kitchen), licensed English guide, permits, parking & camping fees, trekking equipment",
-  "meals": "20 breakfasts, 18 lunches, 18 dinners",
-  "good": "Low all-inclusive price; very specific meal breakdown",
-  "could_be_better": "Sleeping bags, crampons, walking sticks not included; visa and insurance excluded",
   "itinerary": [
    "Day 1: Arrival, Islamabad",
    "Day 2: Mountain-view flight to Skardu",
@@ -96,15 +82,8 @@
   "excludes": "International flights, travel insurance, visa, personal trekking gear (sleeping bag, crampons, poles), tips, extra hotel nights, Islamabad/Skardu sightseeing."
  },
  {
+  "domain": "broadpeakadventures.com",
   "operator": "Broad Peak Adventures",
-  "home": "https://broadpeakadventures.com",
-  "pkg_url": "https://broadpeakadventures.com/trip/gondogoro-la-pass-gg-la-k2-trek/",
-  "days": "20 days",
-  "price_usd": 2100,
-  "includes": "guides and porters, hotels in Islamabad and Skardu, high-altitude camping gear, all KNP permits, 4x4 jeep to/from Askole, airport transfers, internal flights to Skardu",
-  "meals": "all meals on trek + city hotels",
-  "good": "Discounted from $2,700; meals in city hotels also included",
-  "could_be_better": "Crampons for the pass rented separately; intl airfare, insurance, gear excluded",
   "itinerary": [
    "Day 1: Arrive Islamabad",
    "Day 2: Flight to Skardu (2,230m)",
@@ -145,15 +124,8 @@
   "excludes": "International flights, insurance (mandatory), visa, personal gear, climbing-gear rental, Karakoram NP entry fees, pre/post-trek city meals, tips, flight-cancellation costs."
  },
  {
+  "domain": "chogoriadventure.com",
   "operator": "Chogori Adventure",
-  "home": "https://chogoriadventure.com",
-  "pkg_url": "https://chogoriadventure.com/tour/k2-gondogoro-la-trek/",
-  "days": "21 days",
-  "price_usd": 2300,
-  "includes": "all domestic transport, twin hotels, professional guide & staff, twin tents, all meals, permits & waste fees, satellite phone, airport pickup/drop, visa processing assistance",
-  "meals": "breakfast, lunch, dinner throughout",
-  "good": "Full Gondogoro La crossing (5,585m); fixed-departure price, visa assistance and waste fees included",
-  "could_be_better": "Personal climbing gear (ice axe, crampons, harness) rented separately; tips/insurance extra",
   "itinerary": [
    "Day 1: Arrival at Islamabad",
    "Day 2: Flight to Skardu / Karakoram",
@@ -194,15 +166,8 @@
   "excludes": "International flights, visa, insurance, tips, personal climbing/trekking gear (crampons, ice axe, jumar, helmet, harness, sleeping bag), anything beyond 15kg porter allowance."
  },
  {
-  "operator": "K2 Base Camp Trekking",
-  "home": "https://www.k2basecamptrekking.com",
-  "pkg_url": "https://www.k2basecamptrekking.com/products/k2-gondogoro-la-trek",
-  "days": "21 days",
-  "price_usd": 2590,
-  "includes": "domestic flights w/ baggage, hotel + dome-tent (twin), camping & bridge fees, licensed guide & staff, porters (14kg+8kg), snacks & maps, city tours, first aid, satellite phone",
-  "meals": "all meals except 5 lunches/6 dinners (~$4-9)",
-  "good": "Discounted from $3,990; dome tents, city tours and maps included",
-  "could_be_better": "Govt permits ($150-300) NOT included; some city meals excluded; insurance/tips extra",
+  "domain": "k2basecamptrekking.com",
+  "operator": "K2 Base Camp Trek (Apricot Tours)",
   "itinerary": [
    "Day 1: Meet guide at Benazir Airport, Islamabad",
    "Day 2: Early flight to Skardu (2,500m)",
@@ -242,15 +207,8 @@
   "excludes": "International flights, visa, insurance, personal gear, tips; CKNP waste fee ($150) and GB Council permit ($150-300) appear as separately-stated costs."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/k2-base-camp-and-gondogoro-la-trek/",
-  "days": "20 days",
-  "price_usd": 2685,
-  "includes": "accommodation, meals, domestic flights, permits, guide, porters, camping equipment (price for groups of 6-12)",
-  "meals": "all meals on trek; Islamabad B&B",
-  "good": "Established Karakoram operator; permits included in price",
-  "could_be_better": "Higher than peers; Islamabad meals beyond breakfast excluded; price depends on 6-12 group size",
   "itinerary": [
    "Day 1: Islamabad/Rawalpindi (540m), city tour",
    "Day 2: Fly to Skardu (2,228m), afternoon exploration",
@@ -290,15 +248,8 @@
   "excludes": "International airfare, visa, travel insurance, tips, single-room supplement, individual airport transfers, sleeping bag, personal expenses and gratuities."
  },
  {
-  "operator": "SummitClimb",
-  "home": "https://summitclimb.com",
-  "pkg_url": "https://summitclimb.com/trek/k2-trekking",
-  "days": "25 days",
-  "price_usd": 5850,
-  "includes": "expert leadership & local staff, all domestic flights & ground transport, porters, 25kg baggage pp, hotels + camps, all permits & liaison officers, group equipment, full base-camp facilities, glacier training for the pass",
-  "meals": "three meals/day on trek, basecamp and mountain",
-  "good": "Western-led, full base-camp facilities (showers), 2 reserve weather days, glacier training included",
-  "could_be_better": "Far more expensive; Gondogoro La is an optional add-on, not core; insurance/visa/gear excluded",
+  "domain": "summitclimb.com",
+  "operator": "SummitClimb (Dan Mazur)",
   "itinerary": [
    "Day 1: Arrive Islamabad, transfer to hotel",
    "Day 2: Guided sightseeing/shopping, Islamabad (508m)",

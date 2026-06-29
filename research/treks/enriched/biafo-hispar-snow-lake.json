@@ -1,14 +1,7 @@
 [
  {
+  "domain": "k2basecamptreks.com",
   "operator": "K2 Base Camp Treks",
-  "home": "https://k2basecamptreks.com",
-  "pkg_url": "https://k2basecamptreks.com/tour/snow-lake-hispar-la-trek/",
-  "days": "22 days",
-  "price_usd": 2450,
-  "includes": "3-4 star hotels and camping, English licensed guide, all permits/parking/camping fees, private vehicle, domestic flight, airport transfers, full trekking equipment, staff wages (guide, sirdar, porters, cook), staff/porter insurance, emergency gear, first aid",
-  "meals": "all meals Day 1-22 incl three-course dinner",
-  "good": "Lowest published price while still 22 days; staff and porter insurance included",
-  "could_be_better": "Personal luggage/porter weight allowance not stated",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Mountain-view flight to Skardu",
@@ -46,15 +39,8 @@
   "excludes": "International flights, travel insurance, Pakistan visa fee, personal trekking gear/sleeping bag/crampons, and staff tips; helicopter rescue not covered by staff insurance."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/snow-lake-and-hispar-la-trek/",
-  "days": "21 days",
-  "price_usd": 2490,
-  "includes": "domestic flights, road transfers, twin hotels, all camping lodging & equipment, licensed guides, permits & camping fees, support staff & porters (15kg), waste management, first aid, satellite phone",
-  "meals": "breakfast, lunch, dinner daily, itemised",
-  "good": "Second-cheapest all-inclusive; also a 15-day trek-only option at $1,875; transparent USD/EUR pricing",
-  "could_be_better": "Intl airfare, visas, insurance, tips excluded; 15kg porter limit",
   "itinerary": [
    "Day 1: Islamabad/Rawalpindi arrival, afternoon city tour",
    "Day 2: Fly Islamabad to Skardu, ~1 hr",
@@ -92,15 +78,9 @@
   "excludes": "International airfare/taxes, Pakistan visa fee, personal insurance, single supplement, sleeping bag, personal expenses, and tips for drivers/porters/staff."
  },
  {
+  "domain": "chogoriadventure.com",
   "operator": "Chogori Adventure",
-  "home": "https://chogoriadventure.com",
-  "pkg_url": "https://chogoriadventure.com/tour/snow-lake-biafo-hispar-la-trek/",
-  "days": "20 days",
-  "price_usd": 2700,
-  "includes": "domestic flights/jeeps, twin hotels, full camping setup (tents, toilet tent), guides & staff, cook, porters (12kg), permits, satellite phone, boiled water & daily snacks, first aid",
-  "meals": "all meals per itinerary",
-  "good": "Fixed departures at a discounted rate (from $2,800); clear inclusions with satellite phone and first aid",
-  "could_be_better": "Meals only 'per itinerary'; 12kg porter allowance is on the low side",
+  "itinerary": [],
   "pros": [
    "Marketed as a fixed-departure trek with a published fixed price of $2,700 per person",
    "Page describes crevasse navigation where roping up may be required",
@@ -117,15 +97,8 @@
   "excludes": "Not retrievable - the page content could not be rendered; only a marketing summary was available via search."
  },
  {
+  "domain": "trangoadventure.com",
   "operator": "Trango Adventure",
-  "home": "https://trangoadventure.com",
-  "pkg_url": "https://trangoadventure.com/tours/snow-lake-hispar-la-trek-pakistan/",
-  "days": "22 days",
-  "price_usd": 2850,
-  "includes": "professional guide, all transfers & internal flights, land transport, hotels and camping, all permits, full camping infrastructure, porter & cook wages, staff insurance, emergency gear, satellite phone, first aid",
-  "meals": "all meals, Day 1 lunch to Day 22 breakfast",
-  "good": "'No Surcharge Guarantee' fixes the price after booking; low $170 deposit; staff insurance",
-  "could_be_better": "Mid-pack pricing; meal contents not itemised",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Islamabad to Skardu flight (2,228m), 45 min",
@@ -153,15 +126,8 @@
   "excludes": "International flights, travel insurance, Pakistan visa fee, tips, miscellaneous expenses, and Islamabad/Skardu sightseeing; staff insurance excludes helicopter rescue."
  },
  {
+  "domain": "movingmntns.com",
   "operator": "Moving Mountains",
-  "home": "https://www.movingmntns.com",
-  "pkg_url": "https://www.movingmntns.com/snow-lake-hispar-la",
-  "days": "19 days",
-  "price_usd": 4100,
-  "includes": "all hotels between trek days, Islamabad transfers, ground transport, experienced guides, trekking & national-park permits, internal flights, porters (20kg), generator & mess tent, visa Letter of Invitation",
-  "meals": "breakfast, lunch, dinner all days",
-  "good": "Higher 20kg porter allowance; visa Letter of Invitation; Western-operator logistics",
-  "could_be_better": "~1.5x the Pakistan-based operators while being shorter (19 days)",
   "itinerary": [
    "Day 1: Arrival in Islamabad, group meeting and dinner",
    "Day 2: Islamabad to Skardu by flight, hotel, altitude adjustment",
@@ -200,15 +166,8 @@
   "excludes": "International flights, visa fees, pre/post-tour accommodation, personal gear, travel insurance, staff tips, and porter services exceeding 20 kg."
  },
  {
+  "domain": "epicexpeditions.co",
   "operator": "Epic Expeditions",
-  "home": "https://epicexpeditions.co",
-  "pkg_url": "https://epicexpeditions.co/pakistan/snow-lake-hispar-la-trek/",
-  "days": "21 days",
-  "price_usd": 5600,
-  "includes": "hotels between trek days, airport transfers, all trek meals, ground transport, experienced guides, permits, internal flights, alpine tents, porters (20kg), group equipment, satellite phone",
-  "meals": "breakfast, lunch, dinner; vegetarian/vegan/GF/lactose-free on request",
-  "good": "Most detailed catering with dietary accommodation; alpine tents and 20kg porter allowance",
-  "could_be_better": "Most expensive option by a wide margin (over 2x the cheapest)",
   "itinerary": [
    "Day 1: Islamabad arrival, hotel check-in",
    "Day 2: Flight to Skardu (50 min), permit finalization, group dinner",
@@ -249,15 +208,8 @@
   "excludes": "Flights to Pakistan, visa fees, pre/post-tour accommodation, personal gear, mandatory travel/heli-rescue insurance, tips, porter over 20 kg, city lunches/Islamabad dinner, site entry fees, and a $600 single supplement."
  },
  {
+  "domain": "themountaincompany.co.uk",
   "operator": "The Mountain Company",
-  "home": "https://www.themountaincompany.co.uk",
-  "pkg_url": "https://www.themountaincompany.co.uk/trips/snow-lake-and-hispar-la",
-  "days": "22 days",
-  "price_usd": null,
-  "includes": "internal Islamabad-Skardu flights (KKH drive if cancelled), twin hotels & trek tents, permits, guides, porters and cooks, weather forecasts, satellite phone, GPS tracking, tree-planting program",
-  "meals": "breakfast only in Islamabad; all meals in Skardu and on trek",
-  "good": "UK operator with GPS tracking, weather forecasts and a tree-planting program; ~17 trekking days",
-  "could_be_better": "No public price shown (quote/enquiry only)",
   "itinerary": [
    "Day 1: Arrive Islamabad",
    "Day 2-4: Travel to Skardu and drive toward trailhead",
@@ -276,11 +228,11 @@
   ],
   "cons": [
    "Lower porter allowance (15 kg main bag, 5 kg day pack) than rivals' 20 kg",
-   "Tips of ~£140/US$175 into a group fund expected on top",
+   "Tips of ~\u00a3140/US$175 into a group fund expected on top",
    "Itinerary on page is summarised rather than fully day-labelled with locations",
    "No staff insurance detail and no local-vs-foreign pricing published"
   ],
   "verdict": "A UK-operator, financially-protected 22-day trip with an international leader, full technical-gear requirements and good comms, but a tighter 15 kg porter limit and a summarised itinerary.",
-  "excludes": "International flights, travel/trekking insurance, Pakistan visa, Islamabad lunches/dinners, personal equipment and clothing, and tips (~£140/US$175 group fund)."
+  "excludes": "International flights, travel/trekking insurance, Pakistan visa, Islamabad lunches/dinners, personal equipment and clothing, and tips (~\u00a3140/US$175 group fund)."
  }
 ]

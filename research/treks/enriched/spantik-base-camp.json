@@ -1,14 +1,7 @@
 [
  {
+  "domain": "chogoriadventure.com",
   "operator": "Chogori Adventure",
-  "home": "https://chogoriadventure.com",
-  "pkg_url": "https://chogoriadventure.com/tour/spantik-base-camp-trek/",
-  "days": "10 days",
-  "price_usd": 1300,
-  "includes": "domestic transport, hotels & tents, guide & staff, porters, permits & fees, satellite phone, first aid",
-  "meals": "all meals on trek",
-  "good": "True base-camp TREK (not the summit climb) at the lowest published price; clear inclusions",
-  "could_be_better": "Base-camp trek only; reaching the 7,027m summit is a separate, far costlier expedition",
   "itinerary": [
    "Day 1: Arrival at Islamabad",
    "Day 2: Flight to Skardu / Karakoram",
@@ -41,16 +34,8 @@
   "excludes": "International flights, Pakistan visa fees, personal gear, tips, and extra hotel nights."
  },
  {
+  "domain": "trangoadventure.com",
   "operator": "Trango Adventure",
-  "home": "https://trangoadventure.com",
-  "pkg_url": "https://trangoadventure.com/tours/spantik-expedition/",
-  "days": "31 days",
-  "price_usd": 3500,
-  "tiers": "Base Camp Service $3,500 · Full Board $5,000",
-  "includes": "all logistics Islamabad-BC return, climbing permit & royalty, hotels, domestic flights, land transport, trekking guide, individual tent, hot water, solar/generator, emergency satellite phone",
-  "meals": "three meals daily, fully inclusive",
-  "good": "Two clearly tiered options (base-camp $3,500 vs full-board $5,000); lowest entry price in the climbing set",
-  "could_be_better": "Base Camp Service excludes oxygen, high-altitude porters and above-BC summit support",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Islamabad to Skardu flight (2,230m, 45 min)",
@@ -81,16 +66,8 @@
   "excludes": "International flights, visa fees, personal climbing gear, travel/evacuation insurance, Sherpa summit bonus, extra hotel nights, and tips."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/spantik-expedition/",
-  "days": "28-30 days",
-  "price_usd": 3820,
-  "tiers": "28d $3,820 · 30d $3,980",
-  "includes": "royalty/climbing permit ($500pp), all domestic flights & transfers, hotel & trekking accommodation, guides & support staff, permits, camping fees, base-camp logistics, kitchen, first aid",
-  "meals": "breakfast, lunch, dinner throughout",
-  "good": "Native Hunza-based operator; full pricing table shown",
-  "could_be_better": "Headline 'USD 2,965' is a from-figure; detailed table prices are higher; personal climbing gear not included",
   "itinerary": [
    "Day 1: Islamabad and Rawalpindi city tour (Faisal Mosque, museums)",
    "Day 2: Drive Islamabad to Chilas via Babusar Pass (4,173m), 10-11 hrs",
@@ -121,15 +98,8 @@
   "excludes": "International airfare, visa fees, personal insurance, tips, sleeping bag, services beyond base camp, and single-room supplements."
  },
  {
-  "operator": "Karakoram Treks",
-  "home": "https://karakoramtreks.com",
-  "pkg_url": "https://karakoramtreks.com/expeditions/7000m-expeditions/spantik-peak-climbing-expedition/",
-  "days": "31 days",
-  "price_usd": 4500,
-  "includes": "domestic flights, all ground transport & transfers, hotels in Islamabad and Skardu, climbing permits & liaison officer, BC and high-camp camping, licensed guide, cook, support staff, high-altitude porters, fixed ropes on normal route",
-  "meals": "all meals incl high-altitude rations",
-  "good": "Full-board climbing expedition with high-altitude porters and fixed ropes included; clear published USD price",
-  "could_be_better": "Long 31-day itinerary; helicopter evacuation and gear not included",
+  "domain": "karakoramtreks.com",
+  "operator": "Karakorum Treks & Tours",
   "itinerary": [
    "Day 1: Arrival at Islamabad International Airport",
    "Day 2: Scenic flight to Skardu (weather permitting)",
@@ -158,15 +128,8 @@
   "excludes": "International flights, visas, personal insurance, climbing gear, excess baggage, emergency evacuation, and gratuities."
  },
  {
+  "domain": "baltoroadventures.com",
   "operator": "Baltoro Adventures",
-  "home": "https://baltoroadventures.com",
-  "pkg_url": "https://baltoroadventures.com/tour/spantik-peak-expedition/",
-  "days": "28 days",
-  "price_usd": 4600,
-  "includes": "Full Board (groups 2-4): domestic flights & transfers, twin hotels, all trek/camp accommodation, licensed guide, govt climbing permit, cook & staff, porter (35kg), 2 high-altitude porters, 3 oxygen bottles pp, high-altitude tents/ropes/ice screws, first aid, satellite phone",
-  "meals": "all meals throughout",
-  "good": "Full-board with 3 oxygen bottles per person and high-altitude porters; Grade 2, good for a first 7000m ascent",
-  "could_be_better": "Lowest price requires a group of 2-4; solo/small numbers cost more",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Departure to Skardu",
@@ -200,15 +163,8 @@
   "excludes": "Personal travel insurance, international airfare, personal climbing equipment (crampons, ice axe, harness, helmet), extra Islamabad nights, tips, and emergency rescue."
  },
  {
-  "operator": "NAMAS Adventure",
-  "home": "https://www.namasadventure.com",
-  "pkg_url": "https://www.namasadventure.com/spantik-7027m-expedition",
-  "days": "28 days",
-  "price_usd": 7950,
-  "includes": "1:3 guide ratio (Nepalese guide), 1:1 high-altitude Pakistani porter, 16-week training program, chef/kitchen, emergency oxygen, hotels in Islamabad & Skardu, all permits, transport, tents, lodge on trek, satellite phone, first aid & medicines",
-  "meals": "breakfast, lunch, dinner; veg & non-veg",
-  "good": "High guide ratio, 16-week structured training program and emergency oxygen included",
-  "could_be_better": "Most expensive; summit bonus and evacuation charged separately; $1,000 deposit",
+  "domain": "namasadventure.com",
+  "operator": "Namas Adventure",
   "itinerary": [
    "Day 1: Arrival day in Islamabad",
    "Day 2: Fly to Skardu (2,500m); acclimatize, gear check, cultural brief",

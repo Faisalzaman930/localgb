@@ -1,14 +1,7 @@
 [
  {
+  "domain": "saltorosummits.com",
   "operator": "Saltoro Summits",
-  "home": "https://www.saltorosummits.com",
-  "pkg_url": "https://www.saltorosummits.com/package-details/charakusa-trek",
-  "days": "16 days",
-  "price_usd": 1400,
-  "includes": "itinerary lists hotel + camp accommodation and jeep/flight transport; page does not specify which services the $1,400 covers",
-  "meals": "not specified",
-  "good": "Lowest published per-person price; locally run with long guiding experience; longer 16-day itinerary",
-  "could_be_better": "Inclusions/meals not itemised, so the $1,400 scope is unclear; needs direct confirmation",
   "itinerary": [
    "Day 1: Arrival in Islamabad, transfer to hotel",
    "Day 2: Islamabad to Chilas via Babusar Pass",
@@ -43,15 +36,8 @@
   "excludes": "No exclusions list published on the page; inclusions, meals, permits and porter limits all unstated."
  },
  {
+  "domain": "10adventures.com",
   "operator": "10Adventures",
-  "home": "https://www.10adventures.com",
-  "pkg_url": "https://www.10adventures.com/tour/charakusa-valley-trek/",
-  "days": "12 days",
-  "price_usd": 2290,
-  "includes": "licensed local guide, all ground transport with airport pickup/drop, internal Islamabad-Skardu flights, 11 nights hotels + campgrounds, NOC/trekking/national-park permits, entry tickets and cultural activities",
-  "meals": "11 breakfasts, 11 lunches, 11 dinners",
-  "good": "Fully itemised public price and inclusions; permits, internal flights and guide bundled; fixed 2026 dates",
-  "could_be_better": "Highest priced of those publishing a number; intl airfare, visa, insurance, tips excluded",
   "itinerary": [
    "Day 1: Arrive Islamabad, transfer to hotel",
    "Day 2: Fly Islamabad to Skardu (1-hour scenic flight)",
@@ -82,15 +68,8 @@
   "excludes": "Travel insurance, Pakistan visa, international airfare, personal equipment, tips for guide/staff, and miscellaneous expenses."
  },
  {
+  "domain": "btvadventures.com",
   "operator": "Beyond the Valley",
-  "home": "https://btvadventures.com",
-  "pkg_url": "https://www.tourradar.com/t/239024",
-  "days": "12 days",
-  "price_usd": 2800,
-  "includes": "airport transfers, all land transport, internal flights, twin/double hotels, licensed local guide, NOC/trekking/national-park permits, entry tickets, porter (15kg), satellite communication",
-  "meals": "11 breakfasts, 11 lunches, 11 dinners",
-  "good": "Comprehensive inclusions incl porter allowance and sat-comms; price verifiable via TourRadar",
-  "could_be_better": "Price ($2,800 'from') only on the TourRadar reseller, not the operator's own site; insurance/visa/airfare/tips excluded",
   "itinerary": [
    "Day 1: Islamabad, start at airport (lunch, dinner)",
    "Day 2: Islamabad to Skardu, sightseeing (Buddha, fort, bazaar)",
@@ -121,15 +100,8 @@
   "excludes": "Insurance and unspecified additional services; permit and porter details not stated on the page."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/hushe-k7-base-camp-trek/",
-  "days": "14 days",
-  "price_usd": null,
-  "includes": "all domestic flights & road transfers, all hotel (twin) + camping, licensed guide, govt trekking permit & paperwork, cook & support staff, porter (15kg), first-aid kit & satellite phone, camping/toilet/shower tents",
-  "meals": "all meals (breakfast, lunch, dinner)",
-  "good": "Most detailed all-inclusive spec (sat phone, first aid, toilet/shower tents, 15kg porter); 14-day itinerary",
-  "could_be_better": "No public price (quote-only); airfare, visa, insurance, tips, single supplement, sleeping bag excluded",
   "itinerary": [
    "Day 1: Arrive Islamabad",
    "Day 2: Flight to Skardu",
@@ -162,15 +134,8 @@
   "excludes": "International airfare and airport taxes, visa fees, tips for drivers/porters/staff, sleeping bag, and personal expenses such as telephone charges."
  },
  {
-  "operator": "Machulo Treks & Tours",
-  "home": "https://machulo.com.pk",
-  "pkg_url": "https://machulo.com.pk/destinations/k6-k7-base-camp-trek/",
-  "days": "10 days",
-  "price_usd": null,
-  "includes": "hotels (B&B), transport, experienced guide, local porters with pay & food, tents, kitchen/mess tents, cook, hot water, toll taxes, bridge/camp-area and CKNP fees",
-  "meals": "all meals during the trek; hotel stays B&B only",
-  "good": "Hushe-local Balti operator (based in the valley); explicitly itemises CKNP and camp-area fees",
-  "could_be_better": "No public price (quote-only); shortest itinerary (10 days); hotel lunches/dinners, insurance, sleeping bags, tips excluded",
+  "domain": "machulo.com.pk",
+  "operator": "Machulo",
   "itinerary": [
    "Day 1: Islamabad arrival, meet team, optional sightseeing",
    "Day 2: Islamabad to Skardu (1-hr flight or 18-20 hr drive)",

@@ -1,15 +1,7 @@
 [
  {
-  "operator": "TourRangers",
-  "home": "https://tourrangers.pk",
-  "pkg_url": "https://tourrangers.pk/tours/trek-to-karambar-lake-darwaza-pass-and-broghil-valley/",
-  "days": "8 days",
-  "price_usd": 390,
-  "price_pkr": 110000,
-  "includes": "private transport (Grand Cabin), waterproof twin/triple camps, professional guide and porters, mess tent + kitchen + cook, satellite phone and tracking, govt NOC/permits, fuel, tolls, taxes, basic first aid",
-  "meals": "standard breakfast, daypack lunch, and dinner",
-  "good": "Fully published price (PKR 110,000pp from Islamabad) with detailed inclusions; satellite phone and tracking for this remote route",
-  "could_be_better": "Personal-luggage porters cost extra (+PKR 15,000); shorter 8-day window leaves little acclimatization buffer",
+  "domain": "tourrangers.pk",
+  "operator": "Tour Rangers",
   "itinerary": [
    "Day 1: Islamabad to Booni/Chitral, 12-hour AC transport, depart 12:30 AM",
    "Day 2: Booni to Yarkhun (Broghil Valley) by 4x4 jeep, camp setup",
@@ -36,15 +28,8 @@
   "excludes": "Personal-luggage porter, emergency evacuation, personal insurance, and miscellaneous expenses."
  },
  {
+  "domain": "saltorosummits.com",
   "operator": "Saltoro Summits",
-  "home": "https://saltorosummits.com",
-  "pkg_url": "https://saltorosummits.com/package-details/chillinji-pass-trek",
-  "days": "12 days",
-  "price_usd": 1400,
-  "includes": "experienced local guides (20+ years), support team with reliable equipment, focus on safety/acclimatization, tailor-made itineraries; homestay night in Imit Village; no itemised cost breakdown",
-  "meals": "not stated",
-  "good": "Publishes a clear USD price ($1,400pp) and emphasises acclimatization and experienced local guides on a 12-day Ishkoman-region route",
-  "could_be_better": "This is the Chillinji Pass trek (Ishkoman to Chapursan) and does not explicitly list Karambar Lake; inclusions vague",
   "itinerary": [
    "Day 1: Arrive Islamabad, hotel transfer, evening briefing and gear check",
    "Day 2: Islamabad to Gilgit, then Karimabad (Hunza), Baltit Fort",
@@ -75,15 +60,8 @@
   "excludes": "Not specified on the page (no exclusions list published)."
  },
  {
+  "domain": "hunzaadventuretours.com",
   "operator": "Hunza Adventure Tours",
-  "home": "https://hunzaadventuretours.com",
-  "pkg_url": "https://hunzaadventuretours.com/tour/brohil-pass-and-karamber-lake-trek/",
-  "days": "14 days",
-  "price_usd": null,
-  "includes": "transport for whole trip, experienced mountain guide, domestic flights, camping & bridge fees, trekking equipment, mountain jeeps, porters, expert cook, site entrance fees, airport pick/drop; twin-sharing",
-  "meals": "all meals included (hotel meals and trekking food)",
-  "good": "Comprehensive 14-day itinerary including domestic flights and all meals; full all-inclusive with porters and cook",
-  "could_be_better": "No price published; 40% advance deposit; cost is quote-only",
   "itinerary": [
    "Day 1: Islamabad, airport greeting, city tour, overnight",
    "Day 2: Islamabad to Gilgit by early flight",
@@ -117,15 +95,8 @@
   "excludes": "International flights, airport/departure taxes and visa fee, tips for guide/drivers/porters, and personal items."
  },
  {
+  "domain": "karakorumguides.com",
   "operator": "Karakorum Guides",
-  "home": "https://www.karakorumguides.com",
-  "pkg_url": "https://www.karakorumguides.com/trekking/karambar-darkot-an-2395",
-  "days": "17 days",
-  "price_usd": null,
-  "includes": "professional guide/leader, airport transfers, domestic flights & transfers, road transport, hotels and camps, cook + support staff + porters + gear, govt trekking permit fees",
-  "meals": "all meals at hotels and camps",
-  "good": "Most complete expedition (17 days, 123.5km) with full staff, porters, gear, flights and permits; long acclimatization profile",
-  "could_be_better": "Explicitly quote-only ('price after discussion by email/phone'); longest and likely most expensive",
   "itinerary": [
    "Day 1: Islamabad arrival, hotel transfer",
    "Day 2: Drive to Chilas, 10-12 hrs",

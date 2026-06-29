@@ -1,14 +1,7 @@
 [
  {
+  "domain": "skardutrekkers.com",
   "operator": "Skardu Trekkers",
-  "home": "https://skardutrekkers.com",
-  "pkg_url": "https://skardutrekkers.com/trip/k2-concordia-trek-2025-2026-best-trek/",
-  "days": "18 days",
-  "price_usd": 1750,
-  "includes": "domestic flights (20+7kg), transfers, twin hotels, dome tents, camping & bridge fees, all meals + beverages, licensed guide, govt permits, cook & assistants, porters (14kg), first aid, satellite phone, Skardu city tour",
-  "meals": "all meals + beverages",
-  "good": "Lowest 'from' price with a fully inclusive package (flights + permits + city tour bundled)",
-  "could_be_better": "Discounted lead price may not reflect peak Jul-Aug departures",
   "itinerary": [
    "Day 1: Arrival in Islamabad, hotel transfer and welcome dinner",
    "Day 2: Fly to Skardu with scenic mountain views",
@@ -46,15 +39,8 @@
   "excludes": "Travel insurance, Pakistan visa, international airfare, personal equipment (boots/jackets), tips/gratuities and miscellaneous expenses."
  },
  {
+  "domain": "chogoriadventure.com",
   "operator": "Chogori Adventure",
-  "home": "https://chogoriadventure.com",
-  "pkg_url": "https://chogoriadventure.com/tour/concordia-k2-base-camp-trek/",
-  "days": "15 days",
-  "price_usd": 1850,
-  "includes": "jeep to Askole return, all trekking services, twin tents, guides & staff, all meals, permits & waste fees, boiled water, snacks, first aid",
-  "meals": "all meals on trek",
-  "good": "Shortest trek-only itinerary (from/to Skardu); transparent inclusion/exclusion list",
-  "could_be_better": "Excludes Islamabad/Skardu hotels and Skardu flights, so headline understates true cost",
   "itinerary": [
    "Day 1: Arrival at Islamabad, transfer to hotel (540m)",
    "Day 2: Flight to Skardu, Himalaya/Karakoram views (2230m)",
@@ -95,15 +81,8 @@
   "excludes": "Personal insurance, Pakistan visa and fees, international flights, personal clothing and technical equipment, extra hotel stays, tips, and anything not in the listed inclusions."
  },
  {
+  "domain": "trangoadventure.com",
   "operator": "Trango Adventure",
-  "home": "https://trangoadventure.com",
-  "pkg_url": "https://trangoadventure.com/tours/k2-concordia-trek/",
-  "days": "20 days",
-  "price_usd": 1790,
-  "includes": "airport transfers & domestic flights, 3-star hotels + camping, all meals, English guide, porter wages & insurance, camping gear, satellite phone, solar charging",
-  "meals": "all meals",
-  "good": "29 fixed departures (May-Dec) for easy joining; porter insurance explicitly covered",
-  "could_be_better": "Trekking permit ($150) and CKNP fees ($190) billed on top of headline price",
   "itinerary": [
    "Day 1: Arrival day in Islamabad, Pakistan",
    "Day 2: Islamabad to Skardu flight, 45 min (2230m)",
@@ -143,15 +122,8 @@
   "excludes": "Travel insurance, Pakistan visa fees, trekking permit ($150) and CKNP fees ($190), tips, sightseeing tours and miscellaneous expenses."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/k2-base-camp-trek/",
-  "days": "20 days",
-  "price_usd": 2085,
-  "includes": "all domestic flights & transfers, twin hotels, all trek accommodation, all meals, licensed guide, govt permits & paperwork, porter (15kg), camping gear, support staff",
-  "meals": "all meals",
-  "good": "Genuinely all-inclusive (flights AND permits bundled), small max group of 12",
-  "could_be_better": "Header 'from $2,085' is below its own table figure of 'from $2,620' for 6-12 person groups",
   "itinerary": [
    "Day 1: Islamabad/Rawalpindi arrival and city tour (540m)",
    "Day 2: Fly Islamabad to Skardu, road fallback via Babusar (2228m)",
@@ -191,15 +163,8 @@
   "excludes": "International airfare/taxes, Pakistan visa and personal insurance, tips, single supplement, sleeping bag, personal expenses and gratuities, and any service not listed."
  },
  {
+  "domain": "k2basecamptrekking.com",
   "operator": "K2 Base Camp Trekking",
-  "home": "https://www.k2basecamptrekking.com",
-  "pkg_url": "https://www.k2basecamptrekking.com/products/k2-base-camp-trek-cost",
-  "days": "21 days",
-  "price_usd": 2290,
-  "includes": "domestic flights w/ baggage, twin hotels, dome-tent camping, most meals, licensed guide, cook & assistants, porterage (14kg), CKNP waste fee, city tours, first aid, satellite phone, map & certificate",
-  "meals": "all meals except 5 lunches/6 dinners (self-paid ~$4-9)",
-  "good": "Specialist K2 operator; longest standard itinerary (21 days) with strong acclimatisation",
-  "could_be_better": "Govt permit ($150-300) and some city meals excluded, so true cost runs higher",
   "itinerary": [
    "Day 1: Arrival at Benazir/Islamabad airport",
    "Day 2: Flight to Skardu",
@@ -240,15 +205,8 @@
   "excludes": "International airfare and visa, personal travel insurance, government permit fee (USD 150-300), 5 lunches and 6 dinners, and tips/gratuities for guides, porters and staff."
  },
  {
+  "domain": "summitclimb.com",
   "operator": "SummitClimb",
-  "home": "https://summitclimb.com",
-  "pkg_url": "https://summitclimb.com/trek/k2-trekking",
-  "days": "25 days",
-  "price_usd": 5850,
-  "includes": "Western leader, all domestic flights/buses/jeeps/porters, 3 meals/day, all permits & liaison officers, group & emergency equipment, satellite phone, 4 nights Islamabad hotel, basecamp tents w/ dining/shower/bathroom, 25kg baggage",
-  "meals": "three meals/day throughout",
-  "good": "Western expedition leader, optional Gondogoro La, generous 25kg baggage and full basecamp facilities",
-  "could_be_better": "By far the most expensive (premium Western-led); excludes intl flights, insurance, personal gear",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Islamabad sightseeing",
@@ -292,15 +250,8 @@
   "excludes": "International flights to Islamabad, trekking rescue and travel insurance, personal climbing/trekking equipment, and Pakistan visa."
  },
  {
+  "domain": "hunzaadventuretours.com",
   "operator": "Hunza Adventure Tours",
-  "home": "https://hunzaadventuretours.com",
-  "pkg_url": "https://hunzaadventuretours.com/tour/baltoro-glacier-concordia-k-2-base-camp-trek/",
-  "days": "21 days",
-  "price_usd": null,
-  "includes": "9 nights twin accommodation, transport & airport pick/drop, experienced guide, hotel meals, jeep & boating, national park fees, visa invitation letter",
-  "meals": "hotel meals included; bottled water excluded",
-  "good": "Includes visa Letter of Invitation and national park fees",
-  "could_be_better": "Quote only (no public USD price); 40% deposit; bottled water/tips excluded",
   "itinerary": [
    "Day 1: Arrival in Islamabad",
    "Day 2: Islamabad day / transfer",

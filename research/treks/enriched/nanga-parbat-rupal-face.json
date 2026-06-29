@@ -1,14 +1,7 @@
 [
  {
+  "domain": "peakandpeacetours.com",
   "operator": "Peak and Peace Tours",
-  "home": "https://peakandpeacetours.com",
-  "pkg_url": "https://peakandpeacetours.com/trip/nanga-parbat-rupal-face-trek/",
-  "days": "10 days",
-  "price_usd": 1100,
-  "includes": "accommodation (twin), all transportation, domestic flights, trekking equipment, porters, expert cook, route guide map, bottled water; reaches Herrligkoffer Base Camp (3550m) from Tarishing with optional Mazeno Pass extension",
-  "meals": "trekking food included; hotel meals excluded",
-  "good": "Clear public 'from' price ($1,100/adult); correct Tarishing-to-Herrligkoffer route; optional Mazeno Pass add-on",
-  "could_be_better": "No breakfast/lunch/dinner breakdown stated; 'from' figure likely varies by group size",
   "itinerary": [
    "Day 1: Arrive Islamabad, hotel check-in",
    "Day 2: Flight to Gilgit with mountain views",
@@ -38,16 +31,8 @@
   "excludes": "Hotel meals, drinks, personal expenses, guide/driver tips, early check-in/late checkout, airline delays, international flights and visa fees."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/fairy-meadows-and-rupal-valley-trek/",
-  "days": "12-14 days",
-  "price_usd": 1850,
-  "tiers": "12d $1,850 · 13d $1,910 · 14d $1,975",
-  "includes": "all domestic flights & transfers, all hotels (twin), all trekking accommodation, licensed guide, support staff (cook + assistants), porter (15kg), tents & equipment; covers Tarashing, Herrligkoffer BC, Shaigiri, Latobah, Mazeno BC",
-  "meals": "all meals throughout the trek",
-  "good": "Fully transparent tiered pricing; genuinely all-inclusive with full board; licensed guide noted",
-  "could_be_better": "Combined Fairy Meadows (north face) + Rupal Valley (south face) itinerary, not a Rupal-only trek",
   "itinerary": [
    "Day 1: Arrive Islamabad/Rawalpindi, city tour",
    "Day 2: Drive to Chilas (279km via Naran)",
@@ -80,15 +65,8 @@
   "excludes": "International airfare, visa fee, sleeping bag, tips for drivers/porters/staff, and personal expenses; single supplements and some non-package meals not included."
  },
  {
+  "domain": "summitkarakoram.com",
   "operator": "Summit Karakoram",
-  "home": "https://www.summitkarakoram.com",
-  "pkg_url": "https://www.summitkarakoram.com/trekking/nanga-parbat-rupal-face-trek",
-  "days": "10 days",
-  "price_usd": null,
-  "includes": "airport transfers, transportation, hotels in Islamabad and Chilas, professional guide, base camp staff, camping equipment, solar power/generator, satellite phone, medical first-aid kit; Tarishing (2900m) via Helikofer BC (3530m) and Lotobu BC (3650m)",
-  "meals": "three meals a day plus tea/coffee/snacks",
-  "good": "Detailed inclusions (satellite phone, generator, first-aid); explicit full-board meals; clear elevations",
-  "could_be_better": "No public price shown; must inquire for cost",
   "itinerary": [
    "Day 1-2: Arrive Islamabad, city sightseeing",
    "Day 3: Drive Islamabad to Chilas (1265m)",
@@ -115,15 +93,8 @@
   "excludes": "International flights, personal climbing gear, sleeping bags, personal insurance, oxygen equipment, and customs clearing charges; $5000 helicopter-rescue deposit recommended."
  },
  {
+  "domain": "chogholingsa.com",
   "operator": "Chogho Lingsa Adventure",
-  "home": "https://chogholingsa.com",
-  "pkg_url": "https://chogholingsa.com/nanga-parbat-rupal-base-camp-trek/",
-  "days": "5-7 days core (10-12 with logistics)",
-  "price_usd": null,
-  "includes": "accommodation, flights, jeeps, porters, tents & equipment, camping fees, road taxes & bridge crossing, CKNP fee US$150/member; Tarashing (2900m) to Herrligkoffer/Rupal BC (3550m)",
-  "meals": "full board camp food during trek and at BC",
-  "good": "Most detailed permit/fee transparency (states CKNP fee $150/member); full-board on trek; clear elevation data",
-  "could_be_better": "No package price published (contact by phone/email); separates core trek days from logistics days",
   "itinerary": [
    "Day 1: Arrive Islamabad, city tour",
    "Day 2: Flight to Gilgit",

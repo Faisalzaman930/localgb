@@ -1,16 +1,7 @@
 [
  {
+  "domain": "skardutrekkers.com",
   "operator": "Skardu Trekkers",
-  "home": "https://skardutrekkers.com",
-  "pkg_url": "https://skardutrekkers.com/trip/rakaposhi-base-camp-trek/",
-  "trek": "Rakaposhi Base Camp Trek",
-  "days": "12 days",
-  "price_usd": 500,
-  "tiers": "solo $1,250 · 2pax $750pp · 4pax $600pp · 4+ $500pp",
-  "includes": "domestic flights, transfers, hotels (twin), tents, camping & bridge fees, licensed guide, govt permit, porters (14kg), first aid, satellite phone, certificate",
-  "meals": "all meals + beverages on trek",
-  "good": "Most transparent pricing: full USD/PKR group-size tiers published; all-inclusive incl domestic flights, permits, satellite phone",
-  "could_be_better": "12-day framing is long for a short base-camp segment; the '22% off' marketing muddies the real per-person cost",
   "itinerary": [
    "Day 1: Arrival at Islamabad airport, hotel and evening briefing",
    "Day 2: Drive Islamabad to Chilas via Karakoram Highway (10-12 hrs)",
@@ -42,17 +33,8 @@
   "excludes": "Insurance, international airfare, visa fees, personal equipment, extra hotel nights, tips, miscellaneous and Force Majeure costs."
  },
  {
+  "domain": "hunzaguidespakistan.com",
   "operator": "Hunza Guides Pakistan",
-  "home": "https://hunzaguidespakistan.com",
-  "pkg_url": "https://hunzaguidespakistan.com/tours/rakaposhi-base-camp-trek/",
-  "trek": "Rakaposhi Base Camp Trek",
-  "days": "12 days",
-  "price_usd": 1345,
-  "tiers": "12d $1,345 · 14d $1,480 · 15d $1,565",
-  "includes": "domestic flights & transfers, hotel + trekking accommodation, camping & bridge fees, licensed guide, porters (15kg), first aid, satellite phone, tents",
-  "meals": "breakfast, lunch, dinner",
-  "good": "Clear fixed USD/EUR pricing with multiple duration options; permit and satellite phone included",
-  "could_be_better": "Flat price not group-size tiered, so no cheaper solo/small-group rate; hotel-night meals not broken out",
   "itinerary": [
    "Day 1: Islamabad airport welcome and city tour",
    "Day 2: Drive Islamabad to Chilas via Babusar Pass (~10-11 hrs)",
@@ -83,17 +65,8 @@
   "excludes": "International airfare, visas, personal insurance, gratuities, single room supplements, sleeping bags and personal expenses."
  },
  {
-  "operator": "Chog Lingsa Adventures",
-  "home": "https://chogholingsa.com",
-  "pkg_url": "https://chogholingsa.com/rakaposho-base-camp-trek-nagar/",
-  "trek": "Rakaposhi Base Camp Trek",
-  "days": "3 days / 2 nights",
-  "price_usd": 1000,
-  "tiers": "solo $2,000 · 2-3pax $1,500 · 4-6 $1,350 · 7-10 $1,250 · 10+ $1,000",
-  "includes": "local guide & porters, camping gear, transport Gilgit-Minapin return, accommodation, first aid",
-  "meals": "breakfast, lunch, dinner on trek",
-  "good": "True short 3-day Minapin-route trek (closest to the real trek length); full USD/EUR tiers published",
-  "could_be_better": "Steep per person until large groups; 'prices negotiable' note makes real cost ambiguous",
+  "domain": "chogholingsa.com",
+  "operator": "Chogho Lingsa Adventure",
   "itinerary": [
    "Day 1: Gilgit to Minapin, hike to Hapakun 2,800m, camp",
    "Day 2: Hapakun to Rakaposhi Base Camp Taghaphari 3,500m, camp",
@@ -116,16 +89,8 @@
   "excludes": "Personal equipment/supplies, travel insurance and emergency evacuation, additional nights outside the program, and extra gear rentals."
  },
  {
+  "domain": "hunzaadventuretours.com",
   "operator": "Hunza Adventure Tours",
-  "home": "https://hunzaadventuretours.com",
-  "pkg_url": "https://hunzaadventuretours.com/tour/rakaposhi-base-camp-trek/",
-  "trek": "Rakaposhi Base Camp Trek",
-  "days": "12 days",
-  "price_usd": null,
-  "includes": "accommodation (10 nights twin), transport, guide, porters & cook, trekking food, camping gear, entrance fees, airport pickup, visa invitation letter; hotel meals excluded; 40% deposit",
-  "meals": "trek food provided; hotel meals excluded",
-  "good": "Detailed inclusions incl visa invitation letter and cook; clear deposit terms",
-  "could_be_better": "Quote only (no public price); hotel meals excluded adds hidden cost",
   "itinerary": [
    "Day 1: Islamabad arrival and hotel check-in",
    "Day 2: Drive to Chilas via KKH, Shatial rock carvings stop",
@@ -156,16 +121,8 @@
   "excludes": "Early check-in/late checkout, hotel meals, alcohol, personal items, guide/porter tips and trip extensions."
  },
  {
+  "domain": "hunzaexplorer.com",
   "operator": "Hunza Explorer",
-  "home": "https://hunzaexplorer.com",
-  "pkg_url": "https://hunzaexplorer.com/tour/rakaposhi-base-camp-trek/",
-  "trek": "Rakaposhi Base Camp Trek",
-  "days": "11 days",
-  "price_usd": null,
-  "includes": "guides, hotel transfers, transport; no itemised list; quote via email/WhatsApp",
-  "meals": "not specified",
-  "good": "Established operator, contactable for custom quotes",
-  "could_be_better": "No published price, no detailed inclusions, meals unspecified",
   "itinerary": [
    "Day 1: Arrival at Islamabad airport, met by guide/driver",
    "Day 2: Drive to Chilas via KKH or Babusar Pass if open",
@@ -192,6 +149,6 @@
    "No altitudes or trek hours given for the base camp days"
   ],
   "verdict": "An 11-day trek-plus-Hunza-tour with strong scenic coverage (Khunjerab, Hoper, forts) marketed as beginner-friendly. The page omits pricing inclusions, so confirm what is covered before booking.",
-  "excludes": "Not specified on the page  -  what's included/excluded is not stated in the page content."
+  "excludes": "Not specified on the page \u2014 what's included/excluded is not stated in the page content."
  }
 ]

@@ -1,14 +1,7 @@
 [
  {
+  "domain": "tripako.com",
   "operator": "Tripako",
-  "home": "https://tripako.com",
-  "pkg_url": "https://tripako.com/p/5-days-trip-to-hunza-naltar-khunjerab-pass/",
-  "days": "5 days / 4 nights",
-  "price_pkr": 14500,
-  "includes": "private AC vehicle from Lahore/Islamabad, 4 nights hotel (3-4 sharing), Attabad boat ride & Khunjerab tickets; Naltar Valley by 4x4 jeep on Day 4",
-  "meals": "4 breakfasts + dinners + 1 BBQ",
-  "good": "Cheapest verified rate (PKR 14,500pp); group discounts (5-10%) and child discounts published",
-  "could_be_better": "Naltar jeep rental not included; fort tickets excluded; couples pay PKR 2,500 extra for a separate room",
   "itinerary": [
    "Day 0: Departure from Lahore 09:30 PM (food not included)",
    "Day 1: Pick Islamabad participants, breakfast at Besham, overnight Chilas, dinner 8 PM",
@@ -33,15 +26,8 @@
   "excludes": "Naltar jeep, Khunjerab jeep if needed, fort tickets, drinks/laundry/calls, insurance/medical."
  },
  {
+  "domain": "naturehikepakistan.pk",
   "operator": "Nature Hike Pakistan",
-  "home": "https://naturehikepakistan.pk",
-  "pkg_url": "https://naturehikepakistan.pk/tours-page/5-days-hunza-valley-khunjerab-group-tour/",
-  "days": "5 days",
-  "price_pkr": 28000,
-  "includes": "luxury transport (coaster/Grand Cabin), hotel (sharing); Naltar Valley & lakes via jeep on Day 4",
-  "meals": "5 breakfasts + 4 dinners (lunch excluded)",
-  "good": "Clear per-person quad-sharing rate (PKR 28,000); couple/family rooms available",
-  "could_be_better": "Naltar jeep charges, fort/park entry and lunch all excluded; price is for the full Hunza loop, not Naltar-only",
   "itinerary": [
    "Day 0: Departure from Lahore 9-10 PM with short en-route stays",
    "Day 1: Pickup Islamabad members en route, dinner and overnight Chilas",
@@ -66,16 +52,8 @@
   "excludes": "Naltar Valley jeep charges, entry tickets of any kind, water sports, lunch, and unlisted items."
  },
  {
+  "domain": "weekendvikings.com",
   "operator": "Weekend Vikings",
-  "home": "https://www.weekendvikings.com",
-  "pkg_url": "https://www.weekendvikings.com/trip-hunza-naltar",
-  "days": "5 days / 4 nights",
-  "price_pkr": 28000,
-  "tiers": "quad 28,000 · triple 30,500 · twin 33,000 · solo 42,000",
-  "includes": "transport (fuel, tolls, taxes), 4 nights hotel, professional guide, bonfire & musical night; Naltar Satrangi/Blue/Pari lakes via 4x4",
-  "meals": "5 breakfasts + 4 dinners",
-  "good": "Most transparent tiered pricing; names Blue, Satrangi & Pari lakes explicitly",
-  "could_be_better": "Naltar jeep charge PKR 3,000/head excluded; dinner dropped from higher tiers",
   "itinerary": [
    "Day 1: Islamabad to Naran to Chilas, Kaghan, Lulusar Lake, Babusar Top, overnight Chilas",
    "Day 2: Chilas, jeep at Nomal to Naltar lakes, Altit & Baltit Forts, overnight Hunza",
@@ -99,15 +77,8 @@
   "excludes": "Naltar Valley jeep charges (PKR 3,000/head), entry tickets, activity charges, dinner on higher tiers, personal expenses."
  },
  {
+  "domain": "trips.pk",
   "operator": "Trips.pk",
-  "home": "https://www.trips.pk",
-  "pkg_url": "https://www.trips.pk/tours/hunza-special-with-khunjrab-pass-nalter-valley-detail",
-  "days": "5 days",
-  "price_pkr": 30000,
-  "includes": "transport (van/coaster) from Lahore, 4 nights hotel (4-5 sharing), bonfire; Naltar ski slope & snow activities on Day 4",
-  "meals": "5 breakfasts + 4 dinners",
-  "good": "Detailed meal menu published; couple price (PKR 72,000) shown",
-  "could_be_better": "Naltar jeep ~PKR 2,000/person extra; entry tickets, boating, rafting excluded; departs from Lahore only",
   "itinerary": [
    "Day 0: Receive participants at Thokar Niaz Baig, Lahore at 9 PM",
    "Day 1: Pickup Rawalpindi 2 AM, breakfast Besham, Umbrella Waterfall & Daso, overnight Chilas",
