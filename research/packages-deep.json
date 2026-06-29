@@ -10,21 +10,18 @@
     "itinerary": [
       {
         "day": 4,
-        "txt": "Breakfast at 5:00 AM, Hiking from Mulla Ki Basti to Besal 12:00 noon, Besal to Naran 3:00 PM Lunch at Naran Enroute to Lahore from Naran by 4:30 PM Reach Lahore by 3:00 AM Map PhotosRead MoreRelated ToursHoneymoon 2 Days Honeymoon Tour to S"
+        "txt": "Breakfast at 5:00 AM, Hiking from Mulla Ki Basti to Besal 12:00 noon, Besal to Naran 3:00 PM Lunch at Naran Enroute to Lahore from Naran by 4:30 PM Reach Lahore by 3:00 AM Map PhotosRead MoreRelated ToursCherry Blossom Trip to Hunza ValleyF"
       },
       {
         "day": 25,
         "txt": "00 AM Breakfast @ Noori Top Wrapping up Camps Hiking to Saral Lake (5-6 Hour trekking) Dinner and Night Camp near Lake"
       }
     ],
-    "includes": [
-      "d DetailItineraryMapPhotosTour DetailsNaran",
-      "Noori Top",
-      "Saral Lake",
-      "Dudipatsar Lake",
-      "Mulla Ki Basti"
-    ],
-    "excludes": []
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/5-days-trip-to-hunza-valley-khunjrab-pass-chilas-hunza-altit-fort-baltit-fort-attabad-lake-passu-sust-khunjerab-pass/",
@@ -52,16 +49,11 @@
         "txt": "Breakfast at hotel Departure towards Lahore Reach Babosar top & spend quality time Reach lulusar Lake Luch break at Batakundi Short stay at Naran water streams Dinner on the way Reach safely to Lahore at night. Map PhotosRead MoreRelated To"
       }
     ],
-    "includes": [
-      "d DetailItineraryMapPhotosTour DetailsChilas",
-      "Hunza",
-      "Altit Fort",
-      "Baltit Fort",
-      "Attabad Lake",
-      "Passu",
-      "Sust"
-    ],
-    "excludes": []
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/luxury-autumn-tour-to-hunza/",
@@ -93,12 +85,11 @@
         "txt": "Wake up Call 6;00AM Breakfast 7:00 AM Check out 8:00 AM Departure for Lahore Lunch at Abbottabad Dinner at KFC or Macdonald Arrived Lahore at 2:00 AM Meals on Trip5 Breakfast :: Parathay + Omelette/Fri Eggs + Tea 4 Stander Lunchs 5 Meals ::"
       }
     ],
-    "includes": [
-      "d DetailItineraryMapPhotosTour DetailsHunza Valley",
-      "Autumn Trip",
-      "5 Days Fast Mode"
-    ],
-    "excludes": []
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/1-day-tour-to-soon-valley-uchhali-khabeki-lake-kanhati-garden/",
@@ -110,7 +101,10 @@
     "currency": "Rs",
     "itinerary": [],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/camping-night-at-dagri-bangla-and-hike-to-miranjani/",
@@ -123,11 +117,14 @@
     "itinerary": [
       {
         "day": 2,
-        "txt": "Breakfast at Degree Bangla: 08:00 am Departure from Dagri Bangla: 09:30 am Meranjani top at: 12:00 pm Reach NathiaGali Track: 03:30 pm Lunch at Nathia Gali Hotel: 04:00 pm Departure for Lahore: 05:00 pm Map PhotosRead MoreRelated ToursHoney"
+        "txt": "Breakfast at Degree Bangla: 08:00 am Departure from Dagri Bangla: 09:30 am Meranjani top at: 12:00 pm Reach NathiaGali Track: 03:30 pm Lunch at Nathia Gali Hotel: 04:00 pm Departure for Lahore: 05:00 pm Map PhotosRead MoreRelated Tours2 Day"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/6-days-spring-trip-hunza-valley/",
@@ -156,11 +153,14 @@
       },
       {
         "day": 6,
-        "txt": "Breakfast at the hotel’s restaurant Leave for Islamabad Stop at Chattar Plain Stop at Abbotabad Drop in Islamabad Map PhotosRead MoreRelated Tours3 Days Trip to Swat, Kalam & Mahodand LakeFromRs9,500Cherry Blossom Trip to Hunza ValleyFromRs"
+        "txt": "Breakfast at the hotel’s restaurant Leave for Islamabad Stop at Chattar Plain Stop at Abbotabad Drop in Islamabad Map PhotosRead MoreRelated ToursHoneymoon8 Days Honeymoon Tour to Skardu, Shangrila, Khaplu & Shiger ValleyFromRs175,000Rs160,"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-trip-to-shogran/",
@@ -172,7 +172,10 @@
     "currency": "Rs",
     "itinerary": [],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/one-day-tour-to-mukshpuri-and-pir-sohawa/",
@@ -184,7 +187,10 @@
     "currency": "Rs",
     "itinerary": [],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/two-days-tour-of-shogran-siri-paye-meadows-and-khan-pur-dam-siri-paye-meadows-khanpur-shogran-2-days-7000-pkr-available/",
@@ -197,11 +203,14 @@
     "itinerary": [
       {
         "day": 2,
-        "txt": "Morning Breakfast at Hotel Reach Kunhar River site for sightseeing Reach Islamabad Dinner on the way. Reach Lahore Safely around 1:00 am Map PhotosRead MoreRelated Tours1 Day Trip to Mukshpuri And Monal DinnerFromRs4,5008 Days Trip to Skard"
+        "txt": "Morning Breakfast at Hotel Reach Kunhar River site for sightseeing Reach Islamabad Dinner on the way. Reach Lahore Safely around 1:00 am Map PhotosRead MoreRelated Tours3 Days Tour To Neelum Valley, Kel & Arang KelFromRs11,500Rs10,5003 Days"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/1-day-tour-to-khanpur-dam-with-thrilling-water-sports-and-paragliding/",
@@ -213,7 +222,10 @@
     "currency": "Rs",
     "itinerary": [],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-trip-to-swat-kalam-mahodand-lake/",
@@ -230,11 +242,14 @@
       },
       {
         "day": 3,
-        "txt": "Early breakfast 7:00 AM Departure from Kalam 8:30 AM Lunch at Takht Bahi 3:00 PM Arrival in Islamabad 8:00 PM Arrival in Lahore 1:00 AM-midnight Map PhotosRead MoreRelated ToursHoneymoon5 Days Luxury Honeymoon Tour to Hunza Valley Gilgit-Ba"
+        "txt": "Early breakfast 7:00 AM Departure from Kalam 8:30 AM Lunch at Takht Bahi 3:00 PM Arrival in Islamabad 8:00 PM Arrival in Lahore 1:00 AM-midnight Map PhotosRead MoreRelated ToursHoneymoon5 Days Standard Honeymoon Tour to Hunza ValleyFromRs15"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/8-days-trip-to-skardu-deosai-plains-shigar-fort-and-khaplu/",
@@ -271,11 +286,14 @@
       },
       {
         "day": 8,
-        "txt": "Early Morning Breakfast 7:00 AM Off to Islamabad from Chilas 8:00 AM Arrival at Islamabad 6:00 PM Arrival at Lahore 11:45 PM Map PhotosRead MoreRelated Tours3 Days Tour To Naran, Kaghan, Siri Paye And Lake Saiful MalookFromRs12,500Honeymoon"
+        "txt": "Early Morning Breakfast 7:00 AM Off to Islamabad from Chilas 8:00 AM Arrival at Islamabad 6:00 PM Arrival at Lahore 11:45 PM Map PhotosRead MoreRelated Tours5 Days Trip To Hunza Valley & Khunjrab PassFromRs17,500Cherry Blossom Trip to Hunza"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-tour-to-naran-kaghan-siri-paye-and-lake-saiful-malook-naran-kaghan-siri-paye-lake-saiful-malook-3-days-2-nights/",
@@ -292,16 +310,14 @@
       },
       {
         "day": 3,
-        "txt": "Early breakfast 8:00 AM Departure from Naran 09:30 AM Short stay at Kiwai waterfall Lunch in Abbotabad Arrival at Islamabad 07:00 PM Arrival in Lahore by 1:00 AM Midnight Map PhotosRead MoreRelated ToursLuxury Autumn Tour to HunzaFromRs23,0"
+        "txt": "Early breakfast 8:00 AM Departure from Naran 09:30 AM Short stay at Kiwai waterfall Lunch in Abbotabad Arrival at Islamabad 07:00 PM Arrival in Lahore by 1:00 AM Midnight Map PhotosRead MoreRelated ToursHoneymoon5 Days Standard Honeymoon To"
       }
     ],
-    "includes": [
-      "d DetailItineraryMapPhotosTour DetailsNaran",
-      "Kaghan",
-      "Siri Paye",
-      "Lake Saiful Malook"
-    ],
-    "excludes": []
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-tour-to-neelum-valley-kel-arang-kel-neelum-kashmir-keran-shardah-kel-arang-kel/",
@@ -322,11 +338,14 @@
       },
       {
         "day": 3,
-        "txt": "Breakfast 7:00 AM Off to Muzaffarabad Short stay at Keran Dhani Waterfall Lunch at Muzaffarabad Arrival at Lahore after 12:00 AM-Midnight Map PhotosShare Your TripRead MoreRelated Tours3 Days Tour To Naran, Kaghan, Siri Paye And Lake Saiful"
+        "txt": "Breakfast 7:00 AM Off to Muzaffarabad Short stay at Keran Dhani Waterfall Lunch at Muzaffarabad Arrival at Lahore after 12:00 AM-Midnight Map PhotosShare Your TripRead MoreRelated ToursHoneymoon8 Days Honeymoon Tour to Skardu, Shangrila, Kh"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/2-days-trekking-trip-to-miranjani-mushkpuri/",
@@ -343,7 +362,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/2-days-trip-to-tolipeer-and-banjosa-lake-rawalakot-kashmir/",
@@ -356,11 +378,14 @@
     "itinerary": [
       {
         "day": 2,
-        "txt": "Breakfast at 7:00 AM Departure to Banjosa Lake Lunch at Banjosa Lake Departure for Lahore Map PhotosRead MoreRelated ToursHoneymoon3 Days Standard Honeymoon Tour to Arang Kel, Neelum Valley, Azad KashmirFromRs850,000Rs70,000Honeymoon3 Days "
+        "txt": "Breakfast at 7:00 AM Departure to Banjosa Lake Lunch at Banjosa Lake Departure for Lahore Map PhotosRead MoreRelated Tours4 days Trip to kalash Valley & Chitral ValleyFromRs15,500Rs14,5005 Days Trip To Hunza Valley & Khunjrab PassFromRs17,5"
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/4-days-trip-to-kalash-valley-chitral-valley/",
@@ -385,13 +410,14 @@
       },
       {
         "day": 4,
-        "txt": "Breakfast 8:00 AM Departure for Lahore / Islamabad Lunch on way Drop at Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Tour To Neelum Valley, Kel & Arang KelFromRs11,500Rs10,5003 Days Trip to Swat, Kalam & Mahodand LakeFromRs9,50"
+        "txt": "Breakfast 8:00 AM Departure for Lahore / Islamabad Lunch on way Drop at Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Camping Trip to Ratti Gali Lake (Kashmir)FromRs11,5003 Days Tour To Naran, Kaghan, Siri Paye And Lake Saiful M"
       }
     ],
     "includes": [],
-    "excludes": [
-      "Any item not mentioned aboveLunchMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-day-trip-to-kumrat-valley-kpk/",
@@ -412,13 +438,14 @@
       },
       {
         "day": 3,
-        "txt": "Breakfast 7:00 AM Departure 8:00 AM Drop Islamabad Participants 5:00 PM Dinner on the way back to Lahore Arrival at Lahore around 12:00 AM Map PhotosRead MoreRelated Tours3 Days Trip to Swat, Kalam & Mahodand LakeFromRs11,0002 Days Trip to "
+        "txt": "Breakfast 7:00 AM Departure 8:00 AM Drop Islamabad Participants 5:00 PM Dinner on the way back to Lahore Arrival at Lahore around 12:00 AM Map PhotosRead MoreRelated Tours2 Days Trip To Malam Jabba & SwatFromRs7,000Honeymoon3 Days Honeymoon"
       }
     ],
     "includes": [],
-    "excludes": [
-      "LunchAny RefreshmentsAnything other then AgreedMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/2-days-trip-to-trip-to-murree-patriata-galyat-region/",
@@ -439,9 +466,10 @@
       }
     ],
     "includes": [],
-    "excludes": [
-      "Lunch Any item not mentioned aboveMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "3 Star Hotels and Resorts Quality Transportati",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-trip-to-malam-jabba-bahrain-kalam-swat-valley/",
@@ -462,13 +490,14 @@
       },
       {
         "day": 3,
-        "txt": "Breakfast 8:00 am Departure for Lahore 9:00 am Lunch at 4:30 pm Drop Participants of Isb / Rwp Arrival at Lahore 12:30 pm (The Plan May Be Altered In Case of Any Uncertainty) Map PhotosRead MoreRelated Tours3 Days Camping Trip to Ratti Gali"
+        "txt": "Breakfast 8:00 am Departure for Lahore 9:00 am Lunch at 4:30 pm Drop Participants of Isb / Rwp Arrival at Lahore 12:30 pm (The Plan May Be Altered In Case of Any Uncertainty) Map PhotosRead MoreRelated ToursChitta Katha Lake and Shounter Va"
       }
     ],
     "includes": [],
-    "excludes": [
-      "LunchAny RefreshmentsAnything other then AgreedMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/8-days-super-deluxe-honeymoon-tour-to-skardu-shangrila-khaplu-shiger-valley/",
@@ -509,13 +538,14 @@
       },
       {
         "day": 8,
-        "txt": "Breakfast at 7:00 am Short stay at Abbottabad Lunch on the Way Short stay at Bhera Dinner on the Way Drive Back to Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Trip to Neelam Valley Taobat (Kashmir)FromRs10,500Honeymoon5 Days S"
+        "txt": "Breakfast at 7:00 am Short stay at Abbottabad Lunch on the Way Short stay at Bhera Dinner on the Way Drive Back to Islamabad / Lahore Map PhotosRead MoreRelated Tours1 Day Tour to Khanpur Dam with Thrilling Water Sports and ParaglidingFromR"
       }
     ],
     "includes": [],
-    "excludes": [
-      "Any item not mentioned aboveMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "Five star Hotel Driver’s expense paid by Company",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/5-days-super-deluxe-honeymoon-tour-to-hunza-valley/",
@@ -540,13 +570,16 @@
       },
       {
         "day": 5,
-        "txt": "Breakfast at 7:00 am Short stay at Abbottabad Lunch on the way Short stay at Bhera Dinner on the way Drive Back to Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Trip to Swat, Kalam & Mahodand LakeFromRs11,0003 Days Trip to Shogr"
+        "txt": "Breakfast at 7:00 am Short stay at Abbottabad Lunch on the way Short stay at Bhera Dinner on the way Drive Back to Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Tour To Neelum Valley, Kel & Arang KelFromRs11,500Rs10,5003 Days Tr"
       }
     ],
     "includes": [],
     "excludes": [
       "Any tips to waitersExtra locations or any custom request by Couple"
-    ]
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "5 Star Hotel Hygienic Quality Food Serving (3",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/5-days-deluxe-honeymoon-tour-to-hunza-valley/",
@@ -571,11 +604,16 @@
       },
       {
         "day": 5,
-        "txt": "Breakfast at 7:00 am Short stay at Abbottabad Short stay at Bhera Dinner on the way Drive Back to Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Trip to Swat, Kalam & Mahodand LakeFromRs12,500Rs11,500Honeymoon3 Days Honeymoon Tou"
+        "txt": "Breakfast at 7:00 am Short stay at Abbottabad Short stay at Bhera Dinner on the way Drive Back to Islamabad / Lahore Map PhotosRead MoreRelated Tours3 Days Camping Trip to Ratti Gali Lake (Kashmir)FromRs11,500Honeymoon3 Days Honeymoon Tour "
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [
+      "LunchAny tips to waitersAny refreshmentsExtra locations or any custom request by Couple"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "3 Star Hotel Hygienic Quality Food Serving (2",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-super-deluxe-honeymoon-tour-to-arang-kel-neelum-valley-azad-kashmir/",
@@ -596,13 +634,14 @@
       },
       {
         "day": 3,
-        "txt": "Breakfast 7:00 AM Departure for Sharda Lunch on the way Short stay at Keran Dhani Waterfall Dinner on the way Arrival at Lahore Map PhotosRead MoreRelated Tours3 Days Snow Trip to Malam Jabba, Bahrain, Kalam Swat ValleyFromRs11,500Rs10,500H"
+        "txt": "Breakfast 7:00 AM Departure for Sharda Lunch on the way Short stay at Keran Dhani Waterfall Dinner on the way Arrival at Lahore Map PhotosRead MoreRelated ToursHoneymoon 3 Days Honeymoon Tour to Murree & ShogranFromRs70,000Rs60,000Cherry Bl"
       }
     ],
     "includes": [],
-    "excludes": [
-      "Any RefreshmentsAny item not mentioned aboveMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "5 Star Hotel All Toll and Taxes included 3 Qua",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-deluxe-honeymoon-tour-to-naran-kaghan-valley-2/",
@@ -623,14 +662,14 @@
       },
       {
         "day": 3,
-        "txt": "Departure for Lake Saif Ul Malook Breakfast at PTDC Naran around 11:00 am Dinner on the way departure for Islamabad / Lahore Arrival at Lahore Map PhotosRead MoreRelated Tours3 Day Trip to Kumrat Valley KPKFromRs12,500Rs11,500Hiking Trip to"
+        "txt": "Departure for Lake Saif Ul Malook Breakfast at PTDC Naran around 11:00 am Dinner on the way departure for Islamabad / Lahore Arrival at Lahore Map PhotosRead MoreRelated Tours1 Day Trip to Mukshpuri And Monal DinnerFromRs4,500Cherry Blossom"
       }
     ],
     "includes": [],
-    "excludes": [
-      "LunchAny RefreshmentsAnything other then AgreedMedication",
-      "evacuation and rescue etc. in emergenciesMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-deluxe-honeymoon-tour-to-naran-kaghan-valley/",
@@ -651,14 +690,14 @@
       },
       {
         "day": 3,
-        "txt": "Departure for Lake Saif Ul Malook Breakfast at PTDC Naran around 11:00 am Lunch on the way departure for Islamabad / Lahore Dinner on the way Arrival at Lahore Map PhotosRead MoreRelated ToursHoneymoon 3 Days Honeymoon Tour to Murree & Shog"
+        "txt": "Departure for Lake Saif Ul Malook Breakfast at PTDC Naran around 11:00 am Lunch on the way departure for Islamabad / Lahore Dinner on the way Arrival at Lahore Map PhotosRead MoreRelated ToursHoneymoon5 Days Luxury Honeymoon Tour to Hunza V"
       }
     ],
     "includes": [],
-    "excludes": [
-      "LunchAny RefreshmentsAnything other then AgreedMedication",
-      "evacuation and rescue etc. in emergenciesMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "5 Star Hotel All Toll and Taxes included Jeep",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-honeymoon-tour-to-arang-kel-neelum-valley-azad-kashmir-2/",
@@ -679,13 +718,14 @@
       },
       {
         "day": 3,
-        "txt": "Breakfast 7:00 AM Departure for Sharda Short stay at Keran Dhani Waterfall Arrival at Lahore Map PhotosRead MoreRelated ToursHoneymoon5 Days Honeymoon Tour to Hunza ValleyFromRs135,000Rs120,0003 Days Tour To Naran, Kaghan, Siri Paye And Lak"
+        "txt": "Breakfast 7:00 AM Departure for Sharda Short stay at Keran Dhani Waterfall Arrival at Lahore Map PhotosRead MoreRelated ToursHoneymoon3 Days Luxury Honeymoon Tour to Naran, Kaghan ValleyFromRs100,000Rs90,0002 Days Trekking Trip to Miranjani"
       }
     ],
     "includes": [],
-    "excludes": [
-      "Lunch & DinnerAny RefreshmentsAny item not mentioned aboveMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/3-days-honeymoon-tour-to-arang-kel-neelum-valley-azad-kashmir/",
@@ -706,13 +746,14 @@
       },
       {
         "day": 3,
-        "txt": "Breakfast 7:00 AM Departure for Sharda Short stay at Keran Dhani Waterfall Dinner at Muzaffarabad Arrival at Lahore Map PhotosRead MoreRelated Tours2 Days Trip To Malam Jabba & SwatFromRs7,000Honeymoon5 Days Standard Honeymoon Tour to Hunza"
+        "txt": "Breakfast 7:00 AM Departure for Sharda Short stay at Keran Dhani Waterfall Dinner at Muzaffarabad Arrival at Lahore Map PhotosRead MoreRelated Tours2 Days Trip to Shogran, Siri Paye MeadowsFromRs7,000Honeymoon 3 Days Honeymoon Tour to Murre"
       }
     ],
     "includes": [],
-    "excludes": [
-      "DinnerAny item not mentioned aboveMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "3 Stars Hotel Road Taxes DetailItineraryMapPho",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/2-days-deluxe-honeymoon-tour-malam-jabba-swat-valley/",
@@ -729,13 +770,14 @@
       },
       {
         "day": 2,
-        "txt": "Breakfast 8:00 am Departure for Lahore Dinner on the Way Arrival at Islamabad / Lahore Map PhotosRead MoreRelated Tours2 Days Trip To Trip to Murree | Patriata & Galyat RegionFromRs7,500Honeymoon 2 Days Honeymoon Tour to Shogran ValleyFromR"
+        "txt": "Breakfast 8:00 am Departure for Lahore Dinner on the Way Arrival at Islamabad / Lahore Map PhotosRead MoreRelated Tours2 Days Trip To Malam Jabba & SwatFromRs7,000Honeymoon3 Days Honeymoon Tour to Swat, Kalam & Mahodand LakeFromRs70,000Rs60"
       }
     ],
     "includes": [],
-    "excludes": [
-      "Lunch Any item not mentioned aboveMedication"
-    ]
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "3 Star Hotels and Resorts Quality Transportati",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://pakistantravelplaces.com/tour/2-days-honeymoon-tour-malam-jabba-swat-valley/",
@@ -752,15 +794,14 @@
       },
       {
         "day": 2,
-        "txt": "Breakfast 8:00 am Departure for Lahore Arrival at Islamabad / Lahore Map PhotosRead MoreRelated Tours4 days Trip to kalash Valley & Chitral ValleyFromRs15,500Rs14,5003 Days Trip to Swat, Kalam & Mahodand LakeFromRs9,500 Proceed Booking Alre"
+        "txt": "Breakfast 8:00 am Departure for Lahore Arrival at Islamabad / Lahore Map PhotosRead MoreRelated Tours4 days Trip to kalash Valley & Chitral ValleyFromRs15,500Rs14,5001 Day Tour to Soon Valley, Uchhali, Khabeki Lake, Kanhati GardenFromRs3,50"
       }
     ],
-    "includes": [
-      "d Pick and drop Breakfast included Detail"
-    ],
-    "excludes": [
-      "Lunch & DinnerAny RefreshmentsAny item not mentioned aboveMedication"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "before proceeding to the next stepAlready a member?LoginLoginLogin Username or E-Mail Password Forget Password? Do not have an account? Create an Account Sign UpSign UpAfter creating an account, you'll be able to track your payment status, track the confirmation and you can also rate the tour after "
   },
   {
     "url": "https://narankaghantours.com/tours/6-days-5-nights-skardu-tour-via-naran/",
@@ -793,7 +834,12 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [
+      "Skardu, Naran"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": "? 50% deduction if cancellation comes over 7 days prior to the departure. 75% deduction if cancellation happens within 72 hours before the departure. 100% deduction if cancellation happens within 24 hours before the departure Will I have access to the internet? Depending on the location, you can hav"
   },
   {
     "url": "https://narankaghantours.com/tours/4-days-3-nights-couple-trip-naran-kaghan/",
@@ -818,7 +864,12 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [
+      "Kaghan"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": "? 50% deduction if cancellation comes over 7 days prior to the departure. 75% deduction if cancellation happens within 72 hours before the departure. 100% deduction if cancellation happens within 24 hours before the departure Will I have access to the internet? Depending on the location, you can hav"
   },
   {
     "url": "https://narankaghantours.com/tours/5-days-4-nights-trip-naran-kaghan-hunza-naltar-khunjerab/",
@@ -851,7 +902,12 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [
+      "Naran, Kaghan & Shogran"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": "? 50% deduction if cancellation comes over 5 days prior to the departure over the full payment. 75% deduction if cancellation comes over before 3 days of the departure over the full payment. 100% deduction if cancellation happens comes over 1 day before the departure over the full payment. Refund wi"
   },
   {
     "url": "https://narankaghantours.com/tours/7-days-6-nights-trip-to-hunza-valley-khunjerab-pass-via-naran/",
@@ -891,20 +947,7 @@
         "txt": "After your morning meal, we are going to get you to Saif ul Malook Lake on jeeps. (3hrs Return). Soon after lake visit, we'll depart for Islamabad via Balakot, Mansehra, Hazara Express Way, Motorway M-1 (282km-6hrs) Included/Excluded • Acco"
       }
     ],
-    "includes": [
-      "d/Excluded",
-      "Accommodation for 6 Nights",
-      "Quality Food (Breakfast+ Dinner)",
-      "Luxury Transport",
-      "Jeep Expense",
-      "All Toll taxes and etc",
-      "Guide",
-      "Basic first Aid kit",
-      "Lunch",
-      "Entry Tickets",
-      "Porters (for carrying personal equipment of participant)",
-      "Mineral water"
-    ],
+    "includes": [],
     "excludes": [
       "Accommodation for 6 Nights",
       "Quality Food (Breakfast+ Dinner)",
@@ -916,9 +959,12 @@
       "Lunch",
       "Entry Tickets",
       "Porters (for carrying personal equipment of participant)",
-      "Mineral water",
-      "and Cold drink expense"
-    ]
+      "Tea, Mineral water, and Cold drink expense",
+      "Medication, evacuation and rescue etc. in emergencies"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": "? 50% deduction if cancellation comes over 7 days prior to the departure. 75% deduction if cancellation happens within 72 hours before the departure. 100% deduction if cancellation happens within 24 hours before the departure. Do I need any vaccinations? No, you don't have any vaccinations. However,"
   },
   {
     "url": "https://narankaghantours.com/tours/3-days-naran-kaghan-tour-package/",
@@ -943,7 +989,13 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [
+      "This thrilling hill top will entertain you with its brilliance in all possible ways",
+      "With a combination of zigzag road,"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": "? 50% deduction if cancellation comes over 7 days prior to the departure. 75% deduction if cancellation happens within 72 hours before the departure. 100% deduction if cancellation happens within 24 hours before the departure. Are there any age restrictions for this tour? We have no minimum age requ"
   },
   {
     "url": "https://narankaghantours.com/tours/4-days-3-nights-kumrat-kalam-tour/",
@@ -972,7 +1024,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": ""
   },
   {
     "url": "https://narankaghantours.com/tours/6-days-5-nights-tour-to-naran-skardu-deosai/",
@@ -1008,24 +1063,20 @@
         "txt": "Early Morning for saifulmalook Depart for Islambad 4:00 pm Reach islam 7:00 pm Reach Lahore View More HIGHLIGHTS Hazara Expressway Abbotabad tunnels Balakot KiWi Waterfall kagan Kunhar River Naran Batakundi Lulusarlake Babusartop Lake Saifu"
       }
     ],
-    "includes": [
-      "Entry Tickets",
-      "Mineral water and Cold drinks expense",
-      "Extra expenses due to the acts of nature and political reasons etc.",
-      "Personal insurances of client",
-      "Tickets of forts",
-      "boating",
-      "Rafting and parks etc"
-    ],
+    "includes": [],
     "excludes": [
       "Entry Tickets",
-      "Mineral water and Cold drinks expense",
+      "Tea, Mineral water and Cold drinks expense",
       "Extra expenses due to the acts of nature and political reasons etc.",
       "Personal insurances of client",
-      "Tickets of forts",
-      "boating",
-      "Rafting and parks etc"
-    ]
+      "Tickets of forts, boating , Rafting and parks etc not included.",
+      "Jeep charges (if any)",
+      "vehicle use incase of road blockage/ any extra expenses",
+      "Required fields are"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": ""
   },
   {
     "url": "https://narankaghantours.com/tours/5-days-4-nights-tour-to-gilgit-khunjerab-via-besham/",
@@ -1058,7 +1109,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": ""
   },
   {
     "url": "https://narankaghantours.com/tours/8-days-7-nights-tour-to-hunza-skardu-via-naran-valley/",
@@ -1102,13 +1156,11 @@
         "txt": "Breakfast 8:00 am-Departure for Islamabad 9:00 am Travel via Babuar and Naran Rote Stopovers at Babusar, Lulusar Lake and Naran Short stay at Balakot Arrival in Islamabad Arrival in Lahore . View More HIGHLIGHTS Abottabad – Naran – Babusar "
       }
     ],
-    "includes": [
-      "d like Babusar top",
-      "Naran",
-      "Attabad lake",
-      "Shiger valley. Altit fort"
-    ],
-    "excludes": []
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": ""
   },
   {
     "url": "https://narankaghantours.com/tours/3-days-2-nights-trip-to-naran-kaghan/",
@@ -1133,7 +1185,13 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [
+      "This thrilling hill top will entertain you with its brilliance in all possible ways",
+      "With a combination of zigzag road,"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "6 Start time Adults Age 18+ Children Age 6-17",
+    "policy": "? 50% deduction if cancellation comes over 7 days prior to the departure. 75% deduction if cancellation happens within 72 hours before the departure. 100% deduction if cancellation happens within 24 hours before the departure. Are there any age restrictions for this tour? We have no minimum age requ"
   },
   {
     "url": "https://baltistantours.com/tours/rock-climbing/trango-tower/",
@@ -1198,7 +1256,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/photo-safari/spring-blossom-tour/",
@@ -1239,7 +1300,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/photo-safari/autumn-photo-safari/",
@@ -1280,7 +1344,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/jeep-safari/little-tibet-jeep-tour/",
@@ -1388,12 +1455,11 @@
         "txt": "Fly back to Home"
       }
     ],
-    "includes": [
-      "d an easy 3-days trek above Hushe Village",
-      "to the base of Masharbrum. Aimed at adventurous travelers",
-      "this is a unique insight into a hidden kingdom. Trip"
-    ],
-    "excludes": []
+    "includes": [],
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/jeep-safari/silk-road-jeep-safari/",
@@ -1462,7 +1528,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "lunch",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/jeep-safari/swat-hunza-kalash-kaghan-jeep-tour/",
@@ -1531,7 +1600,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/cultural-tours-of-baltistan/central-karakoram-tour/",
@@ -1572,7 +1644,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/cultural-tours-of-baltistan/deosai-plauteau-tour/",
@@ -1613,7 +1688,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/cultural-tours-of-baltistan/guruyatra-tours/",
@@ -1666,7 +1744,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/rock-climbing/charakusa-rock-climbing/",
@@ -1707,7 +1788,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/rock-climbing/hushe-rock-climbing/",
@@ -1784,7 +1868,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/rock-climbing/kanday-nagma-valley/",
@@ -1841,7 +1928,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/rock-climbing/ogre-latok-peaks/",
@@ -1906,7 +1996,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/mountaineering-in-pakistan/broad-peak/",
@@ -1971,7 +2064,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/mountaineering-in-pakistan/gasherbrum-i/",
@@ -2040,7 +2136,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://baltistantours.com/tours/mountaineering-in-pakistan/k2-8611m/",
@@ -2105,7 +2204,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://hunzaadventuretours.com/tour/hunza-valley-and-fairy-meadows-tour/",
@@ -2153,11 +2255,13 @@
         "txt": "Besham – IslamabadIn the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Fasial Mosque, Lok Versa, Saidpur Villa"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/hunza-and-nalter-valley-tour/",
@@ -2205,11 +2309,13 @@
         "txt": "Besham – IslamabadIn the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Fasial Mosque, Lok Versa, Saidpur Villa"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/hunza-valley-and-attabad-lake-tour/",
@@ -2257,11 +2363,13 @@
         "txt": "Gilgit – IslamabadIn the morning after breakfast we will take the flight to Islamabad arrival in Islamabad International Airport then drive to Islamabad en route we will visit Taxila Museum and in the afternoon we will Fasial mosque, Pakist"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/hunza-valley-khunjerab-pass-tour/",
@@ -2309,11 +2417,13 @@
         "txt": "Besham – Islamabad:In the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Fasial Mosque, Lok Versa, Saidpur Vill"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/hunza-rush-lake-trek-hunza-valley-tour/",
@@ -2373,11 +2483,13 @@
         "txt": "Besham –Islamabad:Drive to Islamabad en-route visit Taxila museum then drive to Islamabad. In Islamabad, we will visit Shah Faisal Mosque, Pakistan Monument, and Daman –e –Koh then after the farewell dinner party we will drop you at the air"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/snow-lake-biafo-hisper-la-trek-hunza-valley-tour/",
@@ -2465,11 +2577,13 @@
         "txt": "Gilgit – Islamabad:In the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad then we will drop you at you location. TERMS & CONDITION:Hunza Advent"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/k-2-base-camp-nanga-parbat-trek/",
@@ -2557,11 +2671,13 @@
         "txt": "Naran – Islamabad:In the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we willvisit Fasial Mosque, Lok Versa, Saidpur Villag"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/k-2-base-camp-trek-hunza-valley-tour/",
@@ -2661,11 +2777,13 @@
         "txt": "Islamabad:We will drop you at the airport to catch the flight back home. TERMS & CONDITION:Hunza Adventure Tours promulgates its terms and conditions for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other se"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner, full-board",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/nanga-parbat-base-camp-trek-and-hunza-valley-tour/",
@@ -2713,11 +2831,13 @@
         "txt": "Besham – Islamabad:In the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Fasial Mosque, Lok Versa, Saidpur Vill"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/baltoro-glacier-concordia-k-2-base-camp-trek/",
@@ -2809,11 +2929,13 @@
         "txt": "Trip Concluded in Islamabad.After breakfast, you will transfer to the airport for your return flight. TERMS & CONDITION:Hunza Adventure Tours promulgates its terms and conditions for any kind of trip, trekking, mountaineering, hiking, rafti"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/fairy-meadows-nanga-parbat-and-rakaposhi-base-camp-trek/",
@@ -2877,11 +2999,13 @@
         "txt": "Besham – IslamabadIn the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Fasial Mosque, Lok Versa, Saidpur Villa"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/pakistan-autumn-sightseeing-tour/",
@@ -2929,11 +3053,13 @@
         "txt": "Besham – Islamabad:In the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Faisal Mosque, Lok Versa, Saidpur Vill"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/pakistan-spring-blossom-tour/",
@@ -2981,11 +3107,13 @@
         "txt": "Besham – Islamabad:In the morning after breakfast we will drive to Islamabad en route we will visit the Taxila Museum then further drive to Islamabad arrival in Islamabad after lunch then we will visit Faisal Mosque, Lok Versa, Saidpur Vill"
       }
     ],
-    "includes": [],
-    "excludes": [
-      "dHotel early check in and late check out.Tips of guide",
-      "drivers"
-    ]
+    "includes": [
+      "What is a customized"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/hunza-rush-peak-expedition/",
@@ -3054,13 +3182,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/shaigiri-peak-expedition/",
@@ -3133,13 +3262,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/rupal-peak-expedition/",
@@ -3192,13 +3322,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/wakhan-corridor-and-chilinji-pass-trek/",
@@ -3283,13 +3414,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/shimshal-chafchingol-pass-trek/",
@@ -3362,13 +3494,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/shah-jinali-pass-trek/",
@@ -3425,13 +3558,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/tirich-mir-base-camp-trek/",
@@ -3496,13 +3630,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late checkout"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/brohil-pass-and-karamber-lake-trek/",
@@ -3566,11 +3701,15 @@
         "txt": "Swat Valley – Islamabad:In the morning after breakfast then we will drive to Islamabad via the motorway arrival in Islamabad then we will do the city tour of Islamabad after the city tour we will have a farewell dinner party then drop you a"
       }
     ],
-    "includes": [],
+    "includes": [
+      "What is a customized"
+    ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/around-nanga-parbat-trek/",
@@ -3674,11 +3813,15 @@
         "txt": "Chilas – Islamabad:In the morning after breakfast, we will drive to Islamabad arrive in Islamabad after a farewell dinner party then we will drop you at the airport to take the flight back home. TERMS & CONDITION:Hunza Adventure Tours promu"
       }
     ],
-    "includes": [],
+    "includes": [
+      "What is a customized"
+    ],
     "excludes": [
-      "laundry ect.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out.Hotel Meals"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/karakoram-grand-base-camps-trek/",
@@ -3779,13 +3922,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/great-karakoram-traverse-trek/",
@@ -3894,13 +4038,14 @@
       }
     ],
     "includes": [
-      "some the train stations",
-      "please click on the"
+      "What is a customized"
     ],
     "excludes": [
-      "laundry etc.Tips of guide",
-      "drivers"
-    ]
+      "dHotel early check in and late check out"
+    ],
+    "meals": "breakfast, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/masherbrum-peak-expedition/",
@@ -3937,9 +4082,12 @@
       }
     ],
     "includes": [
-      "lunch and dinner)All meals during trek and at B.C. as per"
+      "What is a customized"
     ],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/muztagh-ata-expedition/",
@@ -4000,9 +4148,12 @@
       }
     ],
     "includes": [
-      "lunch and dinner)All meals during trek and at B.C. as per"
+      "What is a customized"
     ],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/muztagh-tower-expedition/",
@@ -4055,9 +4206,12 @@
       }
     ],
     "includes": [
-      "lunch and dinner)All meals during trek and at B.C. as per"
+      "What is a customized"
     ],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/latok-i-and-ii-expeditions/",
@@ -4102,9 +4256,12 @@
       }
     ],
     "includes": [
-      "lunch and dinner)All meals during trek and at B.C. as per"
+      "What is a customized"
     ],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaadventuretours.com/tour/k-6-and-k-7-expedition/",
@@ -4145,9 +4302,12 @@
       }
     ],
     "includes": [
-      "lunch and dinner)All meals during trek and at B.C. as per"
+      "What is a customized"
     ],
-    "excludes": []
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "for any kind of trip, trekking, mountaineering, hiking, rafting, wild safaris and other services being operated so far by the company. The terms and conditions set forth will bring forward its limitations before any interested visitor advances for the programs alluded. What should our clients do for"
   },
   {
     "url": "https://hunzaexplorers.com/tours/",
@@ -4164,7 +4324,10 @@
       }
     ],
     "includes": [],
-    "excludes": []
+    "excludes": [],
+    "meals": "",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://hunzaexplorers.com/tour/discover-afghanistan/",
@@ -4220,8 +4383,14 @@
         "txt": "Departure from Kabul Transfer to Kabul International Airport for your onward journey, concluding an unforgettable adventure. Destination Afghanistan Balkh Bamyan Herat Kabul Frequently asked questions How long is the tour, and what places w"
       }
     ],
-    "includes": [],
-    "excludes": []
+    "includes": [
+      "We provide visa assistance and guidance on how to obtain it before your trip",
+      "Is this tour suitable for solo travelers? Yes, solo traveler"
+    ],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://hunzaexplorers.com/tour/swat-valley-sightseeing/",
@@ -4261,12 +4430,11 @@
         "txt": "Saidu Sharif – Islamabad Drive back to Islamabad, arrive and explore the city. In the evening drive to the airport and fly to your destination. Durations Multi day Languages English Destination Khyber Pakhtunkhwa Pakistan Swat Valley Freque"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   },
   {
     "url": "https://hunzaexplorers.com/tour/silk-route-festival/",
@@ -4318,12 +4486,11 @@
         "txt": "Besham – Islamabad – Fly to destination Drive for Islamabad, en-route short stops for photography, lunch and visit Taxila museum, later drive to Islamabad, arrive and explore the city, later drive to the airport and fly to destination. Dura"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   },
   {
     "url": "https://hunzaexplorers.com/tour/hunza-cherry-blossom/",
@@ -4375,12 +4542,11 @@
         "txt": "Fly to your destination Depending on your flight time, our services will be tailored to ensure your convenience. If your flight is scheduled for the evening, we will take the opportunity to explore the vibrant twin cities of Islamabad and R"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://hunzaexplorers.com/tour/chitral-hunza-sightseeing/",
@@ -4460,12 +4626,11 @@
         "txt": "Islamabad – Fly to destination Depending on your flight time. If it is in the evening/night we will take your to explore the twin city “Rawalpindi & Islamabad” we will visit Raja bazaar in Rawalpindi, Lok Versa museum and visit the Margalla"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   },
   {
     "url": "https://hunzaexplorers.com/tour/uchal-festival/",
@@ -4498,11 +4663,13 @@
       }
     ],
     "includes": [
-      "lunch"
+      "of the tour package",
+      "Required fields are marked * Hotel Meals"
     ],
-    "excludes": [
-      "lunch"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://hunzaexplorers.com/tour/swat-hunza-cherry-blossom/",
@@ -4558,12 +4725,11 @@
         "txt": "Besham – Islamabad – Fly to destination Drive for Islamabad, en-route short stops for photography, lunch and visit Taxila museum, later drive to Islamabad, arrive and explore the city, later drive to the airport and fly to destination. Dura"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   },
   {
     "url": "https://hunzaexplorers.com/tour/hunza-fairy-meadows/",
@@ -4619,12 +4785,11 @@
         "txt": "Besham/Naran – Islamabad Drive to Islamabad, en-route we will visit Taxila museum at Taxila city, arrive in Islamabad and visit Shah Faisal mosque, Pakistan monument, Lok Virsa and the local bazaar (market) for shopping, in the evening driv"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   },
   {
     "url": "https://hunzaexplorers.com/tour/lok-virsa-folk-festival/",
@@ -4649,11 +4814,12 @@
       }
     ],
     "includes": [
-      "lunch"
+      "It's recommended to check the weather conditions during the f"
     ],
-    "excludes": [
-      "lunch"
-    ]
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": ""
   },
   {
     "url": "https://hunzaexplorers.com/tour/north-pakistan-jeep-safari/",
@@ -4765,12 +4931,11 @@
         "txt": "Khaplu - Hushe valley – Skardu Day to visit Hushe valley, en route the old sattlement of Machulu village, the old mosque in Machulu and Hushe village, explore the Hushe village and drive back to Skardu city."
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   },
   {
     "url": "https://hunzaexplorers.com/tour/gojal-valley-cherry-blossom/",
@@ -4826,11 +4991,10 @@
         "txt": "Besham – Islamabad – Fly to destination Drive for Islamabad, en-route short stops for photography, lunch and visit Taxila museum, later drive to Islamabad, arrive and explore the city, later drive to the airport and fly to destination. Dura"
       }
     ],
-    "includes": [
-      "lunch"
-    ],
-    "excludes": [
-      "lunch"
-    ]
+    "includes": [],
+    "excludes": [],
+    "meals": "breakfast, lunch, dinner",
+    "hotelHint": "",
+    "policy": "is needed to book the tour? A payment of 30% from the tour price is required to fully book your tour with us. Mode of payment We prefer payments through bank transfer, western union transfers are also accepted. We have the option available on our website to pay using your credit card. Can I make pay"
   }
 ]

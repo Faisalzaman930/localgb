@@ -84,7 +84,12 @@
     },
     {
       "source": "/tours/northern-areas",
-      "destination": "/tours/gilgit-baltistan",
+      "destination": "/tours/gilgit",
+      "permanent": true
+    },
+    {
+      "source": "/tours/gilgit-baltistan",
+      "destination": "/tours/gilgit",
       "permanent": true
     }
   ],
