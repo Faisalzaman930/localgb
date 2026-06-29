@@ -116,6 +116,13 @@ COORDS = {
 
 START, END = "<!-- SEO:START -->", "<!-- SEO:END -->"
 
+GA4 = (
+    '<!-- Google tag (gtag.js) -->\n'
+    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2Y8ZSH7FH"></script>\n'
+    "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
+    "gtag('js',new Date());gtag('config','G-Z2Y8ZSH7FH');</script>"
+)
+
 
 def label_for(seg: str) -> str:
     return CRUMB_LABELS.get(seg, seg.replace("-", " ").title())
@@ -137,6 +144,7 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
 
     tags = [
         START,
+        GA4,
         '<meta name="google-site-verification" content="HHV6xWXi_fzm-W0Xq6RMXIilDC7sHeEU4yH0mpGkqAk">',
         '<link rel="icon" href="/favicon.ico" sizes="32x32">',
         '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
