@@ -214,6 +214,25 @@ DISPLAY = {
 
 PAGEMETA = json.load(open(os.path.join(DATA, '_pagemeta.json')))
 
+# "X best" SEO titles (the visible H1 stays first-person; this is the <title>)
+TITLES = {
+ 'k2-base-camp':'9 Best K2 Base Camp Trek Operators 2026 - Reviewed',
+ 'concordia':'7 Best Concordia & Baltoro Trek Operators 2026',
+ 'gondogoro-la':'7 Best Gondogoro La Trek Operators 2026 - Reviewed',
+ 'biafo-hispar-snow-lake':'7 Best Snow Lake (Biafo-Hispar) Trek Operators 2026',
+ 'rush-lake':'5 Best Rush Lake Trek Operators 2026 - Reviewed',
+ 'rakaposhi-base-camp':'5 Best Rakaposhi Base Camp Trek Operators 2026',
+ 'nanga-parbat-base-camp':'5 Best Nanga Parbat Base Camp Trek Operators 2026',
+ 'nanga-parbat-rupal-face':'4 Best Nanga Parbat Rupal Face Trek Operators 2026',
+ 'spantik-base-camp':'6 Best Spantik (Golden Peak) Expedition Operators 2026',
+ 'masherbrum-base-camp':'5 Best Masherbrum Base Camp Trek Operators 2026',
+ 'laila-peak-base-camp':'4 Best Laila Peak Base Camp Trek Operators 2026',
+ 'hushe-valley':'5 Best Charakusa & Hushe Valley Trek Operators 2026',
+ 'haramosh-kutwal-lake':'4 Best Haramosh & Kutwal Lake Trek Operators 2026',
+ 'karambar-lake':'4 Best Karambar Lake Trek Operators 2026 - Reviewed',
+ 'naltar-lakes':'4 Best Naltar Valley Tour Operators 2026 - Reviewed',
+}
+
 def build_body(route, pkgs):
     c = C[route]; name = DISPLAY[route]
     pkgs = sorted(pkgs, key=rank)
@@ -355,6 +374,8 @@ def assemble(route):
     s = open(f).read()
     pkgs_raw = json.load(open(os.path.join(DATA,route+'.json')))
     head = s[:s.index('</head>')+len('</head>')]
+    if route in TITLES:
+        head = re.sub(r'<title>.*?</title>', f'<title>{esc(TITLES[route])}</title>', head, count=1, flags=re.S)
     # nav block: <body> ... up to first <section/<main
     mnav = re.search(r'<body>(.*?)(?=<section|<main)', s, re.S)
     nav = mnav.group(1).strip()
