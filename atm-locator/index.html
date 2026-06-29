@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATM, Hospital, Pharmacy & Petrol Map — Gilgit-Baltistan — GB Guide</title>
+<title>ATM, Hospital, Pharmacy & Petrol Map - Gilgit-Baltistan - GB Guide</title>
 <meta name="description" content="Find ATMs, hospitals, pharmacies and petrol pumps in Gilgit-Baltistan. Live map with nearest-first search, cash availability reports. Essential for GB travel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,13 +77,13 @@
 <link rel="canonical" href="https://www.gilgitbaltistanguide.com/atm-locator">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GB Guide">
-<meta property="og:title" content="ATM, Hospital, Pharmacy & Petrol Map — Gilgit-Baltistan">
+<meta property="og:title" content="ATM, Hospital, Pharmacy & Petrol Map - Gilgit-Baltistan">
 <meta property="og:description" content="Find ATMs, hospitals, pharmacies and petrol pumps in Gilgit-Baltistan. Live map with nearest-first search, cash availability reports. Essential for GB travel.">
 <meta property="og:url" content="https://www.gilgitbaltistanguide.com/atm-locator">
 <meta property="og:image" content="https://www.gilgitbaltistanguide.com/images/hunza-hero.webp">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ATM, Hospital, Pharmacy & Petrol Map — Gilgit-Baltistan">
+<meta name="twitter:title" content="ATM, Hospital, Pharmacy & Petrol Map - Gilgit-Baltistan">
 <meta name="twitter:description" content="Find ATMs, hospitals, pharmacies and petrol pumps in Gilgit-Baltistan. Live map with nearest-first search, cash availability reports. Essential for GB travel.">
 <meta name="twitter:image" content="https://www.gilgitbaltistanguide.com/images/hunza-hero.webp">
 <script type="application/ld+json">
@@ -109,7 +109,7 @@
     },
     {
       "@type": "Article",
-      "headline": "ATM, Hospital, Pharmacy & Petrol Map — Gilgit-Baltistan",
+      "headline": "ATM, Hospital, Pharmacy & Petrol Map - Gilgit-Baltistan",
       "description": "Find ATMs, hospitals, pharmacies and petrol pumps in Gilgit-Baltistan. Live map with nearest-first search, cash availability reports. Essential for GB travel.",
       "image": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
       "author": {
@@ -147,7 +147,7 @@
   <div class="page-hero-content">
     <div class="page-hero-tag">Practical</div>
     <h1 class="page-hero-h1">Essentials Map<br><em>Gilgit-Baltistan</em></h1>
-    <p class="page-hero-sub">ATMs, hospitals, pharmacies, and petrol pumps — everything you need to locate before heading into remote areas.</p>
+    <p class="page-hero-sub">ATMs, hospitals, pharmacies, and petrol pumps - everything you need to locate before heading into remote areas.</p>
     <div class="page-hero-meta">
       <div class="page-hero-meta-item">🏧 <strong>ATMs</strong></div>
       <div class="page-hero-meta-item">🏥 <strong>Hospitals</strong></div>
@@ -163,7 +163,7 @@
 
 <section class="section">
   <div class="notice-cash">
-    <strong>Before you go remote:</strong> Withdraw cash in Gilgit or Skardu — there are no ATMs past Karimabad in Hunza or on any trekking route. Fill up petrol before Chilas northbound and before Skardu for Deosai. Carry basic medication; pharmacies thin out sharply after main towns.
+    <strong>Before you go remote:</strong> Withdraw cash in Gilgit or Skardu - there are no ATMs past Karimabad in Hunza or on any trekking route. Fill up petrol before Chilas northbound and before Skardu for Deosai. Carry basic medication; pharmacies thin out sharply after main towns.
   </div>
 
   <!-- Category toggles -->
@@ -222,7 +222,7 @@
   </div>
 </section>
 <!-- RELATED:START -->
-<section class="related-links"><div class="related-inner"><h2 class="related-title">Related guides &amp; nearby</h2><div class="related-grid"><a href="/status">GB Road & Pass Status — Is the Road Open?<span>Guide</span></a><a href="/travel/what-to-pack">What to Pack for Gilgit-Baltistan — Complete Checklist<span>Travel</span></a><a href="/travel/budget-gb-itinerary">Budget Gilgit-Baltistan — How to Travel Cheaply<span>Travel</span></a></div></div></section>
+<section class="related-links"><div class="related-inner"><h2 class="related-title">Related guides &amp; nearby</h2><div class="related-grid"><a href="/status">GB Road & Pass Status - Is the Road Open?<span>Guide</span></a><a href="/travel/what-to-pack">What to Pack for Gilgit-Baltistan - Complete Checklist<span>Travel</span></a><a href="/travel/budget-gb-itinerary">Budget Gilgit-Baltistan - How to Travel Cheaply<span>Travel</span></a></div></div></section>
 <!-- RELATED:END -->
 <footer>
   <div class="footer-inner">
@@ -311,7 +311,7 @@ const CAT_CFG = {
   petrol:   { color:'#c8a040', emoji:'⛽', label:'Petrol' },
 };
 const STATUS_OPTS = {
-  atm:      [['working','✅ Working — dispensing cash'],['cash-out','⚠️ Out of cash'],['offline','❌ Machine offline']],
+  atm:      [['working','✅ Working - dispensing cash'],['cash-out','⚠️ Out of cash'],['offline','❌ Machine offline']],
   hospital: [['open','✅ Open'],['closed','❌ Closed / emergency only'],['unknown','❓ Not sure']],
   pharmacy: [['open','✅ Open'],['closed','❌ Closed'],['no-stock','⚠️ Limited stock']],
   petrol:   [['available','✅ Fuel available'],['no-petrol','⚠️ No petrol (diesel only)'],['closed','❌ Closed / empty']],
@@ -375,7 +375,7 @@ function render() {
   const counts = {};
   visibleCats.forEach(c=>counts[c]=list.filter(p=>p.cat===c).length);
   const summary = [...visibleCats].map(c=>`${CAT_CFG[c].emoji} ${counts[c]} ${CAT_CFG[c].label}${counts[c]!==1?'s':''}`).join(' · ');
-  document.getElementById('status-bar').textContent = summary + (userLat?' — nearest first':'');
+  document.getElementById('status-bar').textContent = summary + (userLat?' - nearest first':'');
 
   // add markers
   list.forEach(p=>{
@@ -443,7 +443,7 @@ document.getElementById('locateBtn').addEventListener('click',()=>{
     L.circleMarker([userLat,userLng],{radius:9,color:'#C8903A',fillColor:'#C8903A',fillOpacity:0.85}).addTo(map).bindPopup('You are here').openPopup();
     map.setView([userLat,userLng],11);
     render();
-  },()=>{ document.getElementById('status-bar').textContent = 'Location denied — showing all results.'; });
+  },()=>{ document.getElementById('status-bar').textContent = 'Location denied - showing all results.'; });
 });
 
 // ─── Report modal ──────────────────────────────────────────────────────────
