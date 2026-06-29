@@ -1080,3 +1080,15 @@ footer { background: #14110C; border-top: 1px solid rgba(176,125,43,0.30); }
 .article-body .cmp-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
 .article-body .cmp-table td,.article-body .cmp-table th{white-space:normal;min-width:64px}
 .article-body .cmp-table td:first-child,.article-body .cmp-table th:first-child{min-width:140px}
+
+/* ─── TRAVEL UPDATES (news) ─── */
+.news-list{max-width:760px;margin:0 auto;padding:0 1.5rem}
+.news-item{padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.news-item .date{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);font-weight:700}
+.news-item h2{font-family:var(--fd);font-size:1.45rem;font-weight:500;color:var(--cream);margin:.35rem 0 .45rem;line-height:1.18}
+.news-item h2 a{color:inherit}
+.news-item p{font-size:.95rem;color:var(--cream-2);line-height:1.62;margin-bottom:.5rem}
+.news-item .more{color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:.04em}
+.news-meta{font-size:.8rem;color:var(--cream-2);margin-bottom:1.2rem}
+.news-meta a{color:var(--gold)}
+.update-note{background:#F6F2E9;border-left:3px solid var(--gold);border-radius:6px;padding:.8rem 1rem;font-size:.88rem;color:#2E2A22;margin:1.2rem 0}

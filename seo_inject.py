@@ -74,6 +74,7 @@ OG_IMAGES = {
     "trekking/spantik-base-camp": "spantik-hero.webp",
     "trekking/naltar-lakes": "naltar-hero.webp",
     "tours/skardu": "skardu-hero.webp",
+    "updates": "karakoram-highway-hero.webp",
     "tours/naran-kaghan": "naran-kaghan-hero.webp",
     "tours/hunza": "hunza-hero.webp",
     "tours/from-islamabad": "hunza-hero.webp",
