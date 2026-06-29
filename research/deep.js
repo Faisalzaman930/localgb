@@ -11,7 +11,7 @@ const host=u=>{try{return new URL(u).hostname.replace(/^www\./,'');}catch{return
 const homepage=u=>{try{return new URL(u).origin;}catch{return'';}};
 const EXCLUDE=['apricottours','natureadventureclub','pakistantours'];   // top-3 SERP — never feature
 const GEO=/(pakistan|skardu|hunza|gilgit|naran|kaghan|fairy|deosai|baltistan|northern|chitral|swat|kalam|neelam|hushe|shimshal|khaplu|shigar|attabad|phander|shandur|kashmir|murree|nathia|kumrat)/i;
-const DETAIL=/(\/t\/\d|\/tour\/|\/tours\/|\/trip\/|\/p\/|\/packages?\/)/i;
+const DETAIL=/(\/t\/\d|\/tour\/|\/tours\/|\/trip\/|\/p\/|\/packages?\/|trek|expedition|base-?camp|-peak|\/pakistan\/|climb)/i;
 function flat(n,o=[]){if(Array.isArray(n)){n.forEach(x=>flat(x,o));return o;}if(n&&typeof n==='object'){o.push(n);if(n['@graph'])flat(n['@graph'],o);for(const k of ['offers','itemListElement','item'])if(n[k])flat(n[k],o);}return o;}
 function schemaPrice(lds){for(const raw of lds){let d;try{d=JSON.parse(raw);}catch{continue;}for(const n of flat(d)){const o=n.offers?arr(n.offers)[0]:null;const p=(o&&(o.price||o.lowPrice))||n.price||'';const c=(o&&o.priceCurrency)||n.priceCurrency||'';if(p)return{price:String(p),currency:c};}}return{price:'',currency:''};}
 function extractItin(text){
@@ -33,18 +33,24 @@ function section(t,startRe,endRe){
 }
 function bullets(s){return [...new Set(s.split(/[•·▪►|]|(?<=[a-z])\.(?=\s+[A-Z])|\n/).map(x=>x.replace(/\s+/g,' ').trim()).filter(x=>x.length>3&&x.length<90))].slice(0,12);}
 function textPrice(t){
-  // package's own price: prefer the earliest "from Rs X"; else earliest Rs/PKR in range
-  const ms=[...t.matchAll(/(from\s+)?(?:Rs\.?|PKR|₨)\s*([0-9][0-9,]{3,})/gi)];
+  // amounts with currency + preceding context (handles USD treks + PKR tours)
+  const re=/(.{0,16}?)(US\$|USD|Rs\.?|PKR|₨|\$|€)\s*([0-9][0-9,]{2,})/gi;
   let best=null;
-  for(const m of ms){
-    const v=parseInt(m[2].replace(/,/g,''),10);
-    if(v<5000||v>600000) continue;
-    const hasFrom=!!m[1];
-    if(!best) best={v,pos:m.index,hasFrom};
-    else if(hasFrom&&!best.hasFrom) best={v,pos:m.index,hasFrom};   // 'from' beats no-from
-    else if(hasFrom===best.hasFrom&&m.index<best.pos) best={v,pos:m.index,hasFrom};
+  for(const m of t.matchAll(re)){
+    const ctx=m[1].toLowerCase(), raw=m[3].replace(/,/g,''), v=parseInt(raw,10);
+    const usd=/\$|usd|€/i.test(m[2]) && !/rs|pkr/i.test(m[2]);
+    if(/\bwas\b|original|regular|strike|crossed/.test(ctx)) continue;     // skip old/struck prices
+    if(usd){ if(v<150||v>30000) continue; } else { if(v<5000||v>900000) continue; }
+    const strong=/\bfrom\b|starting|price\s*is|now|deposit?from|^from/.test(ctx);
+    const cand={v,usd,strong,pos:m.index};
+    if(!best){ best=cand; continue; }
+    if(strong && !best.strong){ best=cand; continue; }
+    if(strong===best.strong){
+      if(cand.usd===best.usd){ if(v<best.v) best=cand; }
+      else if(!best.strong && cand.pos<best.pos) best=cand;
+    }
   }
-  return best?String(best.v):'';
+  return best ? {price:String(best.v), currency: best.usd?'USD':'PKR'} : {price:'',currency:''};
 }
 async function extract(page,url){
   const d=await page.evaluate(()=>({
@@ -53,7 +59,7 @@ async function extract(page,url){
     text:(()=>{let c=document.body.cloneNode(true);c.querySelectorAll('script,style,noscript,nav,footer,header').forEach(e=>e.remove());return (c.textContent||'').replace(/\r/g,' ');})()}));
   const flatText=d.text.replace(/\s+/g,' ');
   const pr=schemaPrice(d.ld);
-  if(!pr.price){const tp=textPrice(flatText); if(tp){pr.price=tp; pr.currency=pr.currency||'PKR';}}
+  if(!pr.price){const tp=textPrice(flatText); if(tp.price){pr.price=tp.price; pr.currency=pr.currency||tp.currency;}}
   const dm=flatText.match(/(\d{1,2})\s*days?(?:\s*[\/&\-]\s*(\d{1,2})\s*nights?)?/i);
   const incRaw=section(flatText,/(price includes?|tour includes?|package includes?|cost includes?|what'?s included|inclusions?)\s*[:\-]?/i,/(exclusion|not includ|what'?s not|excludes?|itinerary|\bday\s*0?1\b|payment|cancellation|book now)/i);
   const excRaw=section(flatText,/(exclusions?|not included|what'?s not included|excludes?)\s*[:\-]?/i,/(payment|cancellation|terms|policy|faq|note:|book now|itinerary|map\b)/i);
@@ -90,5 +96,5 @@ async function sitemap(dom){for(const c of [`https://www.${dom}/sitemap_index.xm
     }
   }
   await browser.close();
-  if(mode!=='test'){fs.writeFileSync('packages-deep.json',JSON.stringify(out,null,2));console.log(`\n✅ ${out.length} pkgs | ${out.filter(p=>p.itinerary.length>=3).length} w/itinerary | ${out.filter(p=>p.includes.length).length} w/includes | ${out.filter(p=>p.meals).length} w/meals`);}
+  if(mode!=='test'){fs.writeFileSync(process.argv[3]||'packages-deep.json',JSON.stringify(out,null,2));console.log(`\n✅ ${out.length} pkgs | ${out.filter(p=>p.itinerary.length>=3).length} w/itinerary | ${out.filter(p=>p.includes.length).length} w/includes | ${out.filter(p=>p.meals).length} w/meals`);}
 })().catch(e=>{console.error('FATAL',e.message);process.exit(1)});
