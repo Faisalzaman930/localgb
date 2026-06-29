@@ -1,0 +1,182 @@
+[
+ {
+  "name": "Dewanekhas Restaurant",
+  "area": "Naya Bazaar / main Skardu city",
+  "cuisine": "Balti / Pakistani / Chinese",
+  "price": "$$",
+  "must_try": "Balti chicken karahi with daal and naan",
+  "rating": 4.5,
+  "reviews": 54,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Consistently ranked #1 restaurant in Skardu on Tripadvisor",
+   "Authentic Balti home-style cooking (chicken, daal, mixed veg)",
+   "Long-running, reliable spot trusted by repeat travellers"
+  ],
+  "cons": [
+   "Decor is dated and basic",
+   "Can get busy and slow in peak tourist season"
+  ],
+  "take": "The default safe bet in town for proper Balti food - unfussy, tasty, and the most-reviewed restaurant in Skardu."
+ },
+ {
+  "name": "Shahi Dewan",
+  "area": "Skardu city (private themed dining rooms)",
+  "cuisine": "Pakistani / Continental / Chinese / Thai (themed thaals)",
+  "price": "$$$",
+  "must_try": "Pakistani or Kashmiri thaal / BBQ platter",
+  "rating": 4.4,
+  "reviews": 1233,
+  "rating_src": "Google",
+  "pros": [
+   "Private dining rooms with table or floor seating",
+   "Strong, varied platters (BBQ, mutton gravy, fresh naans)",
+   "Attentive service and a genuine sit-down experience"
+  ],
+  "cons": [
+   "Pricier than typical bazaar eateries",
+   "Some reviewers felt ambiance lagged behind the food quality"
+  ],
+  "take": "Skardu's go-to for a special, sit-down meal with a private room - food is the star, book ahead in season."
+ },
+ {
+  "name": "The Grind Cafe and Eatery",
+  "area": "Heart of Skardu city",
+  "cuisine": "Cafe / Continental / Malay-Chinese fusion",
+  "price": "$$",
+  "must_try": "Yak burger and specialty coffee with cake",
+  "rating": 5.0,
+  "reviews": 4,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Rare proper espresso-based coffee and baked cakes in Skardu",
+   "Novel yak burger you won't find easily elsewhere",
+   "Clean, cozy, comfortable with WiFi"
+  ],
+  "cons": [
+   "Very few reviews so far (new-ish spot)",
+   "More of a Western cafe break than a local-food experience"
+  ],
+  "take": "The best Western-style coffee-and-cake stop in town and a fun yak-burger novelty - ideal for a mid-day break."
+ },
+ {
+  "name": "City Inn Restaurant",
+  "area": "Skardu city / main bazaar area",
+  "cuisine": "Pakistani / desi",
+  "price": "$",
+  "must_try": "Karahi and fresh naan",
+  "rating": 4.6,
+  "reviews": 5,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Known among locals as a top spot for honest Pakistani food",
+   "Quick service - food comes out fast",
+   "Good value for budget travellers"
+  ],
+  "cons": [
+   "Few online reviews",
+   "Basic surroundings, not a scenic/destination venue"
+  ],
+  "take": "A local favourite for fast, no-nonsense desi food at fair prices - eat where the Skardu locals eat."
+ },
+ {
+  "name": "Mamtu De Skardu",
+  "area": "Skardu (small local eatery)",
+  "cuisine": "Balti traditional (mamtu/dumplings)",
+  "price": "$",
+  "must_try": "Mamtu (steamed Balti meat dumplings) with sauce",
+  "rating": 4.6,
+  "reviews": 91,
+  "rating_src": "Google",
+  "pros": [
+   "Widely rated the best mamtu/dumplings in Skardu",
+   "Authentic single-dish specialist done very well",
+   "Friendly owner, cheap and genuine"
+  ],
+  "cons": [
+   "Very limited seating and modest premises",
+   "Narrow menu - mainly mamtu"
+  ],
+  "take": "If you try one local dish in Skardu, make it the mamtu here - travellers repeatedly call it the best in town."
+ },
+ {
+  "name": "Cafe De North",
+  "area": "Skardu (family restaurant)",
+  "cuisine": "Continental / Italian / Chinese / family fare",
+  "price": "$$",
+  "must_try": "Pizza or pasta with a coffee",
+  "rating": 4.3,
+  "reviews": 166,
+  "rating_src": "Google",
+  "pros": [
+   "Family-friendly with a varied Western-leaning menu",
+   "Reliable for a quick burger or pizza break",
+   "Decent volume of consistent reviews"
+  ],
+  "cons": [
+   "Continental dishes are good-not-exceptional",
+   "Not the place for authentic Balti cuisine"
+  ],
+  "take": "A solid family/Western option when you want pizza, pasta or coffee rather than karahi."
+ },
+ {
+  "name": "Shangrila Resort (Pagoda Restaurant)",
+  "area": "Lower Kachura Lake, ~20-30 min from Skardu city",
+  "cuisine": "Pakistani / Continental / fresh trout",
+  "price": "$$$",
+  "must_try": "Grilled fresh trout by the heart-shaped lake",
+  "rating": null,
+  "reviews": null,
+  "rating_src": null,
+  "pros": [
+   "Iconic lakeside setting at the heart-shaped Lower Kachura Lake",
+   "Fresh trout from the resort's own hatchery",
+   "The classic Skardu 'dining with a view' experience"
+  ],
+  "cons": [
+   "Service can be slow and patchy (long waits, cleanliness lapses reported)",
+   "Tourist-priced; food quality is inconsistent vs the setting"
+  ],
+  "take": "You come for the unbeatable lake setting and fresh trout more than flawless service - a Skardu rite of passage."
+ },
+ {
+  "name": "Food Street Api Xhoq",
+  "area": "Skardu (open-air venue)",
+  "cuisine": "Balti / Pakistani / Chinese / fast food (BBQ)",
+  "price": "$$",
+  "must_try": "BBQ platter in the open-air setting",
+  "rating": 5.0,
+  "reviews": 3,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Open-air, natural setting with BBQ and bonfire facilities",
+   "Wide menu spanning Balti, Pakistani, Chinese and fast food",
+   "Relaxed atmosphere good for groups"
+  ],
+  "cons": [
+   "Very few reviews to go on",
+   "Open-air format is weather/season dependent"
+  ],
+  "take": "A laid-back open-air BBQ spot - nice for an evening with a fire if the weather is good."
+ },
+ {
+  "name": "Mount Feast Restaurant",
+  "area": "Mount Feast Hotel, Skardu (terrace dining)",
+  "cuisine": "Pakistani / Chinese / Continental / breakfast buffet",
+  "price": "$$",
+  "must_try": "Breakfast buffet on the terrace (desi omelets, pancakes)",
+  "rating": null,
+  "reviews": null,
+  "rating_src": null,
+  "pros": [
+   "Panoramic mountain views from the terrace",
+   "Well-regarded breakfast buffet",
+   "Broad menu (desi karahi/biryani, Chinese, fast food)"
+  ],
+  "cons": [
+   "No verified standalone restaurant rating found (only hotel booking scores)",
+   "Hotel-restaurant feel rather than a destination eatery"
+  ],
+  "take": "Best known for a scenic terrace breakfast - good for the view and buffet, especially if you're staying nearby."
+ }
+]
