@@ -1,0 +1,8 @@
+[
+  {"domain":"saltorosummits.com","operator":"Saltoro Summits","google_rating":null,"google_reviews":null,"google_url":null,"secondary_platform":null,"secondary_rating":null,"secondary_reviews":null,"secondary_url":null},
+  {"domain":"peakandpeacetours.com","operator":"Peak and Peace Tours","google_rating":null,"google_reviews":null,"google_url":null,"secondary_platform":null,"secondary_rating":null,"secondary_reviews":null,"secondary_url":null},
+  {"domain":"summitkarakoram.com","operator":"Summit Karakoram","google_rating":null,"google_reviews":null,"google_url":null,"secondary_platform":"GuidedPeaks","secondary_rating":4.8,"secondary_reviews":7,"secondary_url":"https://www.guidedpeaks.com/guides/summit-karakoram"},
+  {"domain":"btvadventures.com","operator":"Beyond the Valley","google_rating":null,"google_reviews":null,"google_url":null,"secondary_platform":"Tripadvisor","secondary_rating":5.0,"secondary_reviews":16,"secondary_url":"https://www.tripadvisor.com/Attraction_Review-g317119-d24137673-Reviews-Beyond_the_Valley-Skardu_Gilgit_Baltistan.html"},
+  {"domain":"pakvoyager.com","operator":"PakVoyager","google_rating":null,"google_reviews":null,"google_url":null,"secondary_platform":"Trustpilot","secondary_rating":4.7,"secondary_reviews":24,"secondary_url":"https://www.trustpilot.com/review/pakvoyager.com"},
+  {"domain":"visitinpakistan.com","operator":"Visit In Pakistan","google_rating":null,"google_reviews":null,"google_url":null,"secondary_platform":"Trustpilot","secondary_rating":3.9,"secondary_reviews":6,"secondary_url":"https://www.trustpilot.com/review/visitinpakistan.com"}
+]

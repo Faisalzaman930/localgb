@@ -7,6 +7,25 @@ import json, re, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, 'research', 'treks')
+RATINGS = json.load(open(os.path.join(DATA, '_ratings.json')))
+
+def _dom(home):
+    return re.sub(r'^www\.', '', re.sub(r'https?://(?:www\.)?([^/]+).*', r'\1', home or ''))
+
+def rating_obj(home):
+    return RATINGS.get(_dom(home))
+
+def rating_cell(home):
+    r = rating_obj(home)
+    if not r: return '<span style="color:var(--cream-2)">&mdash;</span>'
+    return (f'<a href="{r["url"]}" target="_blank" rel="nofollow noopener" style="white-space:nowrap">'
+            f'{r["rating"]:.1f} &#9733; <span style="color:var(--cream-2)">{r["platform"]} ({r["reviews"]})</span></a>')
+
+def rating_span(home):
+    r = rating_obj(home)
+    if not r: return ''
+    return (f'<span>&#9733; <strong>{r["rating"]:.1f}</strong> '
+            f'<a href="{r["url"]}" target="_blank" rel="nofollow noopener">{r["platform"]} ({r["reviews"]})</a></span>')
 
 def esc(s):
     if s is None: return ''
@@ -198,12 +217,16 @@ def build_body(route, pkgs):
 
     # callout
     n_priced = len(priced); n_total = len(pkgs)
+    n_rated = sum(1 for p in pkgs if rating_obj(p['home']))
+    rating_note = ('' if not n_rated else
+        f' Where an operator has a genuine public rating I\'ve shown it (Tripadvisor, Trustpilot and similar, with the review count and a link) - '
+        f'Google Maps ratings aren\'t publicly queryable, so I don\'t show those; an operator with too few public reviews shows a dash rather than a number.')
     callout = (f'<div class="callout"><h3>How I compared these packages</h3><p>I did this the way I\'d want a friend to do it for me. '
                f'I went through every {esc(name)} operator I could find, read each itinerary, and lined them up on the things that actually '
                f'decide your trip - what\'s included, the porters and meals, the route, and the real 2026 price. {n_priced} of {n_total} below '
                f'publish a price you can hold them to; the rest quote per group, and I\'ve said so plainly rather than guess. Prices are per '
                f'person, usually land-only and group-based, with permits, flights, insurance and tips often on top. Every operator here is '
-               f'judged on the same yardstick. Operator links are nofollow.</p></div>')
+               f'judged on the same yardstick. Operator links are nofollow.{rating_note}</p></div>')
 
     # about + facts
     about = (f'<h2>About the {esc(name)}</h2>\n<p>{c["about"]}</p>\n'
@@ -214,9 +237,10 @@ def build_body(route, pkgs):
     for p in pkgs:
         link = f'<a href="{esc(p["pkg_url"])}" target="_blank" rel="nofollow noopener">link</a>'
         op = f'<a href="{esc(p["home"])}" target="_blank" rel="nofollow noopener">{esc(p["operator"])}</a>'
-        rows.append(f'<tr><td>{op}</td><td>{esc(p.get("days",""))}</td><td>{price_str(p)}</td><td>{link}</td></tr>')
+        rows.append(f'<tr><td>{op}</td><td>{esc(p.get("days",""))}</td><td>{price_str(p)}</td>'
+                    f'<td>{rating_cell(p["home"])}</td><td>{link}</td></tr>')
     table = ('<h2>At a glance - operators compared</h2>\n<table class="cmp-table"><thead><tr><th>Operator</th><th>Length</th>'
-             '<th>From (2026)</th><th>Link</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>')
+             '<th>From (2026)</th><th>Reviews</th><th>Link</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table>')
 
     # standouts
     wins = []
@@ -240,6 +264,7 @@ def build_body(route, pkgs):
         op = f'<a href="{esc(p["home"])}" target="_blank" rel="nofollow noopener">{esc(p["operator"])}</a>'
         meta = f'<span>🗓 <strong>{esc(p.get("days",""))}</strong></span><span>💷 <strong>{price_str(p)}</strong></span>'
         if p.get('meals'): meta += f'<span>🍽 <strong>{esc(p["meals"])}</strong></span>'
+        meta += rating_span(p['home'])
         inc = f'<p style="font-size:.9rem;line-height:1.62;color:#2E2A22;margin:.2rem 0 .5rem"><strong>Includes:</strong> {esc(p.get("includes",""))}</p>' if p.get('includes') else ''
         tiers = f'<div class="rev-verdict">Group-size pricing: {esc(p["tiers"])}.</div>' if p.get('tiers') else ''
         cards.append(
