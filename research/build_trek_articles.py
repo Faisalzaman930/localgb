@@ -198,10 +198,12 @@ def build_body(route, pkgs):
 
     # callout
     n_priced = len(priced); n_total = len(pkgs)
-    callout = (f'<div class="callout"><h3>How I compared these operators</h3><p>I searched for every operator running this trek, '
-               f'opened each package page, and recorded only prices actually published there - {n_priced} of {n_total} below show a real 2026 '
-               f'figure; the rest quote per group. Prices are per person, usually land-only and group-based; permits, flights, insurance and tips '
-               f'are often extra. The top-3 search-result operators are not featured. Operator links are nofollow.</p></div>')
+    callout = (f'<div class="callout"><h3>How I compared these packages</h3><p>I did this the way I\'d want a friend to do it for me. '
+               f'I went through every {esc(name)} operator I could find, read each itinerary, and lined them up on the things that actually '
+               f'decide your trip - what\'s included, the porters and meals, the route, and the real 2026 price. {n_priced} of {n_total} below '
+               f'publish a price you can hold them to; the rest quote per group, and I\'ve said so plainly rather than guess. Prices are per '
+               f'person, usually land-only and group-based, with permits, flights, insurance and tips often on top. Every operator here is '
+               f'judged on the same yardstick. Operator links are nofollow.</p></div>')
 
     # about + facts
     about = (f'<h2>About the {esc(name)}</h2>\n<p>{c["about"]}</p>\n'
@@ -224,7 +226,7 @@ def build_body(route, pkgs):
         wins.append(f'<li>🎒 <strong>Most inclusive</strong> - {esc(allinc["operator"])}, where flights, permits and full board are bundled</li>')
     if dearest and dearest is not cheapest:
         wins.append(f'<li>🧭 <strong>Most support</strong> - {esc(dearest["operator"])} (from {price_str(dearest)}), the premium, higher-ratio option</li>')
-    winners = ('<h2>The standouts</h2>\n<ul>'+''.join(wins)+'</ul>') if wins else ''
+    winners = ('<h2>What stood out to me</h2>\n<ul>'+''.join(wins)+'</ul>') if wins else ''
 
     cta1 = ('<div class="article-cta"><h3>Want a second opinion before you book?</h3><p>I\'ll sanity-check any quote, plan your '
             'route and season, and share vetted guide, porter and jeep contacts - free, with my <a href="/planner">trip planner</a> '
