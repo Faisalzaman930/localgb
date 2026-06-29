@@ -39,11 +39,17 @@ CROSS = {
     "deosai": ["skardu", "skardu/sheosar-lake", "things-to-do/stargazing-gb"],
     "naltar": ["things-to-do/skiing-naltar", "trekking/naltar-lakes", "gilgit"],
     "gilgit": ["naltar", "trekking/haramosh-kutwal-lake"],
-    "tours/hunza": ["hunza", "trekking/k2-base-camp"],
-    "tours/skardu": ["skardu", "deosai"],
+    "tours/hunza": ["hunza","hunza/places-to-visit","hunza/things-to-do","hunza/attabad-lake","hunza/baltit-fort","hunza/khunjerab-pass","hunza/karimabad","hunza/best-time-to-visit"],
+    "tours/skardu": ["skardu","skardu/tourist-places","skardu/things-to-do","skardu/shangrila-resort","skardu/shigar-valley","skardu/khaplu","skardu/satpara-lake","deosai"],
     "tours/k2-base-camp": ["trekking/k2-base-camp", "mountains/k2"],
-    "tours/fairy-meadows": ["fairy-meadows"],
-    "tours/naran-kaghan": ["naran-kaghan"],
+    "tours/fairy-meadows": ["fairy-meadows","fairy-meadows/camping","fairy-meadows/how-to-reach","mountains/nanga-parbat","trekking/nanga-parbat-base-camp"],
+    "tours/naran-kaghan": ["naran-kaghan","fairy-meadows","travel/karakoram-highway","mountains/nanga-parbat","things-to-do/river-rafting"],
+    "tours/gilgit": ["gilgit","gilgit/places-to-visit","gilgit/things-to-do","gilgit/bagrot-valley","gilgit/kargah-buddha","naltar","trekking/naltar-lakes"],
+    "tours/gilgit-baltistan": ["hunza","skardu","gilgit","deosai","fairy-meadows","naran-kaghan"],
+    "tours/chitral": ["things-to-do/shandur-polo-festival","tours/gilgit-baltistan","gilgit"],
+    "tours/from-islamabad": ["tours/hunza","tours/skardu","tours/naran-kaghan","tours/gilgit-baltistan","hunza","skardu"],
+    "tours/from-lahore": ["tours/naran-kaghan","tours/hunza","tours/skardu","tours/gilgit-baltistan","naran-kaghan","hunza"],
+    "tours/from-karachi": ["tours/hunza","tours/skardu","tours/gilgit-baltistan","tours/naran-kaghan","hunza","skardu"],
     # standalone-page rescue
     "kkh-map": ["karakoram-highway", "travel/karakoram-highway", "status"],
     "karakoram-highway": ["travel/karakoram-highway", "kkh-map", "hunza/khunjerab-pass"],
@@ -78,6 +84,14 @@ def main():
         seg = p.split("/")
         is_hub = p in children
         out = []
+        if seg[0]=="tours" and not is_hub:                # tour pages: link destination guides first
+            out = [c for c in CROSS.get(p,[]) if c in titles]
+            if "tours" in titles or "tours" in by_hub: out.append("tours")
+            out += [s for s in children.get("tours",[]) if s!=p][:2]
+            seen=set(); final=[]
+            for t in out:
+                if t and t!=p and t in titles and t not in seen: seen.add(t); final.append(t)
+            return final[:8]
         if is_hub:                                # hub/parent: link ALL children (uncapped)
             out += children[p]
         if len(seg) >= 2:                         # this page is a child
