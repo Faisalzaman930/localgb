@@ -214,6 +214,51 @@ DISPLAY = {
 
 PAGEMETA = json.load(open(os.path.join(DATA, '_pagemeta.json')))
 
+def _exists(url): return os.path.exists(os.path.join(ROOT, url.strip('/'), 'index.html'))
+
+# P1 trek network: valley/group siblings + access town + nearby peak page
+_GROUPS = {
+ 'baltoro': ['k2-base-camp','concordia','gondogoro-la','biafo-hispar-snow-lake'],
+ 'hushe': ['masherbrum-base-camp','laila-peak-base-camp','hushe-valley','gondogoro-la'],
+ 'nagar': ['rush-lake','rakaposhi-base-camp','spantik-base-camp'],
+ 'nangaparbat': ['nanga-parbat-base-camp','nanga-parbat-rupal-face'],
+ 'gbremote': ['haramosh-kutwal-lake','naltar-lakes','karambar-lake'],
+}
+# route -> (group, access-town, peak-slug-or-None)
+TREK_NET = {
+ 'k2-base-camp':('baltoro','skardu','k2'),'concordia':('baltoro','skardu','k2'),
+ 'gondogoro-la':('baltoro','skardu','k2'),'biafo-hispar-snow-lake':('baltoro','skardu',None),
+ 'masherbrum-base-camp':('hushe','skardu','masherbrum'),'laila-peak-base-camp':('hushe','skardu','laila-peak'),
+ 'hushe-valley':('hushe','skardu','masherbrum'),'spantik-base-camp':('nagar','skardu','spantik'),
+ 'rush-lake':('nagar','hunza',None),'rakaposhi-base-camp':('nagar','hunza','rakaposhi'),
+ 'nanga-parbat-base-camp':('nangaparbat','fairy-meadows','nanga-parbat'),
+ 'nanga-parbat-rupal-face':('nangaparbat','astore','nanga-parbat'),
+ 'haramosh-kutwal-lake':('gbremote','gilgit','haramosh-peak'),
+ 'naltar-lakes':('gbremote','gilgit',None),'karambar-lake':('gbremote','gilgit',None),
+}
+TOWN_DISP = {'skardu':'Skardu','hunza':'Hunza','gilgit':'Gilgit','fairy-meadows':'Fairy Meadows','astore':'Astore'}
+PEAK_DISP = {'k2':'K2','masherbrum':'Masherbrum','laila-peak':'Laila Peak','spantik':'Spantik','rakaposhi':'Rakaposhi','nanga-parbat':'Nanga Parbat','haramosh-peak':'Haramosh'}
+
+def trek_net_block(route):
+    if route not in TREK_NET: return ''
+    grp, town, peak = TREK_NET[route]
+    cells = []
+    for sib in _GROUPS[grp]:
+        if sib != route and _exists(f'/trekking/{sib}'):
+            cells.append(('Trek', f'/trekking/{sib}', DISPLAY[sib].replace('&amp;','&')))
+    if _exists(f'/{town}'):
+        cells.append(('Base', f'/{town}', f'{TOWN_DISP.get(town,town.title())} Travel Guide'))
+    if _exists(f'/tours/{town}'):
+        cells.append(('Tours', f'/tours/{town}', f'{TOWN_DISP.get(town,town.title())} Tour Packages'))
+    if peak and _exists(f'/mountains/{peak}'):
+        cells.append(('Peak', f'/mountains/{peak}', f'{PEAK_DISP.get(peak,peak.title())} (the mountain)'))
+    if _exists(f'/{town}/hotels'):
+        cells.append(('Stay', f'/{town}/hotels', f'Where to stay in {TOWN_DISP.get(town,town.title())}'))
+    if len(cells) < 2: return ''
+    inner = ''.join(f'<a href="{u}"><span>{c}</span>{esc(l)}</a>' for c,u,l in cells)
+    return (f'<div class="cluster-links"><h2>Nearby treks, peaks &amp; base towns</h2>'
+            f'<div class="cluster-grid">{inner}</div></div>')
+
 # "X best" SEO titles (the visible H1 stays first-person; this is the <title>)
 TITLES = {
  'k2-base-camp':'9 Best K2 Base Camp Trek Operators 2026 - Reviewed',
@@ -351,7 +396,7 @@ def build_body(route, pkgs):
     faq = '<h2>FAQ</h2>\n<div class="faq">' + ''.join(
         f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs']) + '</div>'
 
-    body = '\n'.join([paras.strip(), about, callout, table, winners, cta1, cards, incl, choose, deeper, cta2, faq])
+    body = '\n'.join([paras.strip(), about, callout, table, winners, cta1, cards, incl, choose, deeper, trek_net_block(route), cta2, faq])
     return body, pkgs
 
 def itemlist_jsonld(route, pkgs):
