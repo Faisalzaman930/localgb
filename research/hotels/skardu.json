@@ -1,0 +1,202 @@
+[
+ {
+  "name": "Serena Shigar Fort",
+  "area": "Shigar village (~30 km / 45 min from Skardu)",
+  "type": "Luxury",
+  "price": "$$$",
+  "highlight": "Restored 17th-century Raja's fort run as an Aga Khan heritage hotel, with apricot gardens against the Karakoram",
+  "rating": 8.7,
+  "reviews": 45,
+  "rating_src": "Booking.com",
+  "pros": [
+   "Genuine 400-year-old fort architecture, beautifully preserved",
+   "Excellent food and fresh apricots from the garden",
+   "Friendly, attentive staff and serene location"
+  ],
+  "cons": [
+   "It's in Shigar, not Skardu town, so you trade convenience for atmosphere",
+   "No AC/TV and patchy in-room internet"
+  ],
+  "take": "The most atmospheric stay in the region and the clear top pick for a splurge, as long as you're happy to be based outside Skardu town."
+ },
+ {
+  "name": "Arish Luxury Suites",
+  "area": "Skardu (near town, with airport transfers)",
+  "type": "Luxury",
+  "price": "$$$",
+  "highlight": "Skardu's best-reviewed modern luxury hotel: spacious, elegant rooms and strong food",
+  "rating": 9.2,
+  "reviews": null,
+  "rating_src": "Booking.com",
+  "pros": [
+   "Very spacious, elegantly decorated rooms with large bathrooms",
+   "Exceptional staff who arrange tours and drivers",
+   "Tasty, varied breakfast and dinner"
+  ],
+  "cons": [
+   "Premium pricing for Skardu",
+   "Books out fast in the July-August peak"
+  ],
+  "take": "If you want polished modern luxury inside Skardu itself rather than a heritage fort, this is the standout, with a 5/5 Tripadvisor rank of #4 to match."
+ },
+ {
+  "name": "Shangrila Resort Skardu",
+  "area": "Lower Kachura Lake (~20 km / 35 min from Skardu)",
+  "type": "Luxury",
+  "price": "$$$",
+  "highlight": "Pakistan's most photographed resort, on the heart-shaped Lower Kachura Lake with the famous grounded-aircraft restaurant",
+  "rating": 3.0,
+  "reviews": 132,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Iconic, genuinely spectacular lakeside setting",
+   "The aeroplane restaurant and lake views are one-of-a-kind",
+   "Established (1983) and reliably operating"
+  ],
+  "cons": [
+   "Widely seen as overpriced for the dated rooms and patchy service",
+   "Ranks low (#37 of 44) on Tripadvisor despite the fame"
+  ],
+  "take": "Go for the unbeatable scenery and the experience, not the rooms; many find a day visit or meal better value than an overnight."
+ },
+ {
+  "name": "Hotel Mountain Lodge Skardu",
+  "area": "Hillside above Skardu valley (out of town)",
+  "type": "Mid-range",
+  "price": "$$",
+  "highlight": "Hillside perch with some of the best valley views in Skardu, quiet and away from town noise",
+  "rating": 4.0,
+  "reviews": null,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Elevated position gives sweeping sunrise/sunset valley views",
+   "Clean, well-run with polite staff and its own restaurant",
+   "Free airport shuttle and parking"
+  ],
+  "cons": [
+   "Out-of-town location means you need transport for the bazaar",
+   "Ranks mid-pack (#29) on Tripadvisor"
+  ],
+  "take": "The pick for travellers who prize the view and quiet over being walkable to town; reliable mid-range comfort."
+ },
+ {
+  "name": "Hotel One Skardu",
+  "area": "Near Skardu Airport / town",
+  "type": "Mid-range",
+  "price": "$$",
+  "highlight": "Consistent, business-grade chain reliability and the #1 Tripadvisor rank in Skardu",
+  "rating": 4.0,
+  "reviews": 67,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Dependable, standardised rooms and service (part of a known PC chain)",
+   "Friendly staff, good food and included breakfast",
+   "Convenient airport location"
+  ],
+  "cons": [
+   "Only ~12 rooms, so it fills quickly",
+   "Functional rather than scenic; views aren't the draw"
+  ],
+  "take": "The safe, no-surprises mid-range choice and currently Tripadvisor's #1 in Skardu, best if you value consistency over character."
+ },
+ {
+  "name": "Byarsa Hotel Skardu",
+  "area": "Ponedas, Skardu",
+  "type": "Mid-range",
+  "price": "$$",
+  "highlight": "Stylish newer hotel with a garden and terrace, strong on design and breakfast",
+  "rating": 8.8,
+  "reviews": null,
+  "rating_src": "Booking.com",
+  "pros": [
+   "Beautifully designed, modern rooms (some with mountain views)",
+   "Delicious, varied breakfast praised by guests",
+   "Garden, terrace and friendly staff"
+  ],
+  "cons": [
+   "Some mixed reviews on staff/policies across platforms",
+   "Booking score (8.8) cited is the couples rating"
+  ],
+  "take": "A good-looking, well-reviewed modern option that punches above typical Skardu mid-range stays on design and food."
+ },
+ {
+  "name": "Hotel Mashabrum",
+  "area": "Skardu city centre",
+  "type": "Mid-range",
+  "price": "$$",
+  "highlight": "One of Skardu's longest-running hotels, walkable to the main bazaar and Kharpocho Fort",
+  "rating": null,
+  "reviews": null,
+  "rating_src": null,
+  "pros": [
+   "Genuinely central; walk to the bazaar and Kharpocho Fort",
+   "Spacious rooms with private balconies",
+   "Helpful staff and an established track record"
+  ],
+  "cons": [
+   "Food quality gets mixed reviews",
+   "Decor is dated/modest rather than stylish"
+  ],
+  "take": "The pick if you want to be right in town and walk everywhere; a dependable old-hand hotel rather than a stylish one."
+ },
+ {
+  "name": "Hotel Himalaya Skardu",
+  "area": "Skardu (garden setting with mountain views)",
+  "type": "Guesthouse",
+  "price": "$$",
+  "highlight": "Warm, family-run feel with a garden and Karakoram/Himalaya views",
+  "rating": 4.0,
+  "reviews": 11,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Friendly, cooperative staff and comfortable rooms",
+   "Beautiful garden and mountain views",
+   "Well located for Skardu's main sights"
+  ],
+  "cons": [
+   "Small review count, so the rating is less robust",
+   "Specialty lodging, so fewer hotel-grade amenities"
+  ],
+  "take": "A pleasant, personable guesthouse-style stay; one reviewer rated it above Skardu's 5-star option, though sample sizes are small."
+ },
+ {
+  "name": "K2 Hotel by Greenpak",
+  "area": "Skardu (terrace and garden)",
+  "type": "Budget",
+  "price": "$",
+  "highlight": "Historic expedition base with an on-site K2/Karakoram museum and great terrace views",
+  "rating": null,
+  "reviews": null,
+  "rating_src": null,
+  "pros": [
+   "Iconic mountaineering history and a genuine K2 museum on site",
+   "Fantastic terrace and garden views",
+   "Long-established budget base for expeditions"
+  ],
+  "cons": [
+   "Rooms and bathrooms are dated and basic; some harsh reviews",
+   "Standards are inconsistent"
+  ],
+  "take": "Choose it for the mountaineering heritage, views and price, not for room comfort; a budget pick with character."
+ },
+ {
+  "name": "Baltistan Continental Hotel",
+  "area": "Skardu (between downtown and outlying sights)",
+  "type": "Budget",
+  "price": "$",
+  "highlight": "Budget-friendly hotel with an in-house antique museum and buffet dining",
+  "rating": 3.0,
+  "reviews": null,
+  "rating_src": "Tripadvisor",
+  "pros": [
+   "Good-value pricing with breakfast/dinner buffets",
+   "In-house antique museum and mountain-view terrace rooms",
+   "Convenient base for exploring the city"
+  ],
+  "cons": [
+   "Mixed reviews: some report congested rooms and unclean washrooms",
+   "Food quality is hit-or-miss"
+  ],
+  "take": "A serviceable budget choice with a bit of character; manage expectations on cleanliness and ask to see the room first."
+ }
+]
