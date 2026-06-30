@@ -7,7 +7,7 @@ import re, os, glob
 # Primary nav: kept tight + identical to the homepage (the approved redesign).
 # Secondary sections (Mountains, Tours, Agencies) live in the mega-footer, which
 # links them sitewide, so trimming the nav doesn't orphan them.
-NAV = [("Destinations","destinations/"),("Treks","trekking/"),
+NAV = [("Destinations","destinations/"),("Tours","tours/"),("Treks","trekking/"),
        ("Things to Do","things-to-do/"),("Travel Tips","travel/"),
        ("Road Status","status/")]
 
