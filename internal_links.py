@@ -35,6 +35,7 @@ def cluster_block(town, current_url):
             items.append((cat, url, label))
     add('Guide',  f'/{town}',               f'{disp} Travel Guide')
     add('Tours',  f'/tours/{town}',         f'{disp} Tour Packages')
+    add('Romance', f'/tours/{town}/honeymoon', f'{disp} Honeymoon Packages')
     add('Stay',   f'/{town}/hotels',        f'Best Hotels in {disp}')
     if eat: add('Eat', eat,                 f'Best Restaurants in {disp}')
     add('Do',     f'/{town}/things-to-do',  f'Things to Do in {disp}')

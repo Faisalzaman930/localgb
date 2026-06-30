@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skardu in July 2026: Weather, What's Open &amp; Tips</title>
+<meta name="description" content="Visiting Skardu in July? Honest 2026 guide to the weather (avg 23/10C), what's open, crowds, the best things to do and what to pack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v=20260630b">
+<style>
+.attractions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 3rem; }
+.attraction-card { height: 240px; position: relative; border-radius: 5px; overflow: hidden; cursor: pointer; transition: transform 0.4s var(--ease); }
+.attraction-card:hover { transform: scale(1.015); }
+.attraction-card .bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+.attraction-card:hover .bg { transform: scale(1.07); }
+.attraction-card .ov { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .bd { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
+.attraction-card .bd-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .bd-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: var(--cream); line-height: 1.1; }
+.attraction-card .bd-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
+
+.stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
+.stay-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
+.stay-card:hover { border-color: var(--gold-border); }
+.stay-tier { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.stay-price { font-family: var(--fd); font-size: 2rem; font-weight: 400; color: var(--cream); margin-bottom: 0.2rem; }
+.stay-per { font-size: 0.68rem; color: var(--cream-2); margin-bottom: 1.2rem; }
+.stay-items { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.stay-item { font-size: 0.78rem; color: var(--cream-2); display: flex; gap: 0.55rem; align-items: flex-start; line-height: 1.5; }
+.stay-item::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-top: 0.5em; flex-shrink: 0; }
+
+.itinerary-tabs { display: flex; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; }
+.itin-tab { padding: 0.45rem 1.1rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; font-family: var(--fu); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; color: var(--cream-2); background: transparent; transition: all 0.2s; }
+.itin-tab:hover, .itin-tab.active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.itin-plan { display: none; }
+.itin-plan.active { display: block; }
+.itin-days { display: flex; flex-direction: column; gap: 0; }
+.itin-day { display: grid; grid-template-columns: 90px 1fr; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.itin-day:last-child { border-bottom: none; }
+.itin-day-label { padding: 1.4rem 1rem 1.4rem 0; }
+.itin-day-num { font-family: var(--fd); font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; }
+.itin-day-name { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-2); margin-top: 0.2rem; }
+.itin-day-body { padding: 1.4rem 0; border-left: 1px solid rgba(255,255,255,0.06); padding-left: 1.5rem; }
+.itin-day-title { font-family: var(--fd); font-size: 1.1rem; color: var(--cream); margin-bottom: 0.4rem; }
+.itin-day-items { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.itin-day-items li { font-size: 0.78rem; color: var(--cream-2); padding-left: 1rem; position: relative; line-height: 1.5; }
+.itin-day-items li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+
+.hidden-gems-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 2.5rem; }
+.gem-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.06); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
+.gem-card:hover { border-color: var(--gold-border); }
+.gem-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.gem-name { font-family: var(--fd); font-size: 1.5rem; color: var(--cream); margin-bottom: 0.7rem; }
+.gem-body { font-size: 0.8rem; color: var(--cream-2); line-height: 1.65; }
+
+@media (max-width: 768px) {
+  .attractions-grid { grid-template-columns: 1fr 1fr; }
+  .stay-grid { grid-template-columns: 1fr; }
+  .hidden-gems-grid { grid-template-columns: 1fr; }
+  .itin-day { grid-template-columns: 70px 1fr; }
+}
+@media (max-width: 480px) {
+  .attractions-grid { grid-template-columns: 1fr; }
+}
+</style>
+<!-- SEO:START -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2Y8ZSH7FH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z2Y8ZSH7FH');</script>
+<meta name="google-site-verification" content="HHV6xWXi_fzm-W0Xq6RMXIilDC7sHeEU4yH0mpGkqAk">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#FBFAF6">
+<link rel="canonical" href="https://www.gilgitbaltistanguide.com/skardu/in-july">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GB Guide">
+<meta property="og:title" content="Skardu in July 2026: Weather, What's Open &amp; Tips">
+<meta property="og:description" content="Visiting Skardu in July? Honest 2026 guide to the weather (avg 23/10C), what's open, crowds, the best things to do and what to pack.">
+<meta property="og:url" content="https://www.gilgitbaltistanguide.com/skardu/in-july">
+<meta property="og:image" content="https://www.gilgitbaltistanguide.com/images/hunza-hero.webp">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Skardu in July 2026: Weather, What's Open &amp; Tips">
+<meta name="twitter:description" content="Visiting Skardu in July? Honest 2026 guide to the weather (avg 23/10C), what's open, crowds, the best things to do and what to pack.">
+<meta name="twitter:image" content="https://www.gilgitbaltistanguide.com/images/hunza-hero.webp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.gilgitbaltistanguide.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Skardu",
+          "item": "https://www.gilgitbaltistanguide.com/skardu/in-july"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "In July",
+          "item": "https://www.gilgitbaltistanguide.com/skardu/in-july"
+        }
+      ]
+    },
+    {
+      "@type": "TouristDestination",
+      "name": "Skardu in July 2026: Weather, What's Open &amp; Tips",
+      "description": "Visiting Skardu in July? Honest 2026 guide to the weather (avg 23/10C), what's open, crowds, the best things to do and what to pack.",
+      "url": "https://www.gilgitbaltistanguide.com/skardu/in-july",
+      "image": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+      "touristType": [
+        "Adventure travel",
+        "Sightseeing",
+        "Trekking"
+      ],
+      "includesAttraction": {
+        "@type": "TouristAttraction",
+        "name": "Skardu in July 2026: Weather, What's Open &amp; Tips"
+      },
+      "isPartOf": {
+        "@type": "Place",
+        "name": "Gilgit-Baltistan, Pakistan"
+      },
+      "dateModified": "2026-06-30"
+    }
+  ]
+}
+</script>
+<!-- SEO:END -->
+</head>
+<body>
+<nav id="navbar" class="solid">
+  <a href="/" class="nav-logo"><svg class="nav-logo-mark" viewBox="0 0 64 50" aria-hidden="true"><path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/><path d="M38 12 L33.5 23 L43 23 Z" fill="#fff"/></svg><span class="l1">GB</span><span class="l2">Guide</span></a>
+  <ul class="nav-links"><li><a href="/destinations">Destinations</a></li><li><a href="/tours">Tours</a></li><li><a href="/trekking">Treks</a></li><li><a href="/things-to-do">Things to Do</a></li><li><a href="/travel">Travel Tips</a></li><li><a href="/status">Road Status</a></li></ul>
+  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan your trip</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <ul><li><a href="/destinations">Destinations</a></li><li><a href="/tours">Tours</a></li><li><a href="/trekking">Treks</a></li><li><a href="/things-to-do">Things to Do</a></li><li><a href="/travel">Travel Tips</a></li><li><a href="/status">Road Status</a></li></ul>
+  <a href="/planner" class="nav-cta" style="text-decoration:none">Plan your trip</a>
+</div>
+
+
+<!-- HERO -->
+<main class="article">
+<div class="article-head"><div class="art-crumb" style="font-size:.7rem;color:var(--cream-2);margin-bottom:1.4rem;letter-spacing:.04em"><a href="/" style="color:inherit">Home</a> / <a href="/skardu" style="color:inherit">Skardu</a> / <span style="color:var(--cream)">in July</span></div>
+<div class="article-eyebrow">When to Go &middot; Skardu &middot; July 2026</div>
+<h1 class="article-title">Thinking of Skardu in July? Here's the Honest Picture</h1>
+<div class="article-meta"><span>By <a href="/about"><strong>Faisal Zaman</strong></a></span><span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span><span class="sep">&middot;</span><span>Updated June 2026</span></div></div>
+<figure class="article-figure"><div class="img" style="background-image:url('/images/skardu-hero.webp')" role="img" aria-label="Skardu in July"></div><figcaption>Skardu in July, Gilgit-Baltistan.</figcaption></figure>
+<div class="article-body">
+<p>Thinking about Skardu in July? Here's the honest, on-the-ground picture for 2026 - the weather, what's actually open, how busy it is, and whether it's worth timing your trip for. In short, July is peak summer: the warmest, busiest month, with everything open.</p>
+<h2>Weather in Skardu in July</h2>
+<ul class="trek-facts"><li>Avg high ~23&deg;C</li><li>Avg low ~10&deg;C</li><li>warm, peak season</li><li>Peak summer</li></ul>
+<p>Expect daytime highs around 23&deg;C and nights near 10&deg;C (warm, peak season). <span style="font-size:.85em;color:var(--cream-2)">(Figures are Skardu station averages (climate-data.org); mountains and high villages are colder.)</span></p>
+<h2>What's open &amp; getting around</h2>
+<ul><li>✅ Deosai National Park (Sheosar Lake) is open</li><li>✅ Shangrila/Lower Kachura, Upper Kachura, Shigar Fort and Khaplu are open year-round</li></ul>
+<h2>Crowds &amp; prices</h2>
+<p>July is <strong>peak</strong> in Skardu. Expect peak-season rates and book hotels and jeeps well ahead.</p>
+<h2>Best things to do in Skardu in July</h2>
+<ul><li>Jeep across Deosai National Park to Sheosar Lake</li><li>Use Skardu as the gateway to K2 and the Baltoro treks</li><li>Camp or picnic by Sadpara and the Kachura lakes</li><li>Boat on the heart-shaped Lower Kachura (Shangrila) lake</li></ul>
+<h2>What to pack</h2>
+<p>Light, breathable clothing for warm days, plus a fleece for cool evenings and strong sun protection.</p>
+<h2>Is July a good time to visit Skardu?</h2>
+<p>July is a good (if busy) time to visit Skardu - the warmest, busiest month, with everything open. See the full <a href="/skardu/weather">Skardu weather guide</a> to compare months.</p>
+<div class="article-cta"><h3>Want a trip planned around the right month?</h3><p>Tell me your dates and I'll plan a Skardu route that fits the season - free, with my <a href="/planner">trip planner</a> or a quick <a href="/contact">message</a>.</p><a href="/planner" class="btn-primary">Plan my trip &rarr;</a></div>
+<div class="cluster-links"><h2>Plan your Skardu trip</h2><div class="cluster-grid"><a href="/skardu"><span>Plan</span>Best time to visit Skardu</a><a href="/skardu/weather"><span>Weather</span>Skardu weather by month</a><a href="/skardu/things-to-do"><span>Do</span>Things to do in Skardu</a><a href="/tours/skardu"><span>Tours</span>Skardu tour packages</a><a href="/skardu/hotels"><span>Stay</span>Best hotels in Skardu</a><a href="/skardu/in-june"><span>Month</span>Skardu in June</a><a href="/skardu/in-august"><span>Month</span>Skardu in August</a></div></div>
+<h2>FAQ</h2>
+<div class="faq"><details><summary>What is the weather like in Skardu in July?</summary><p>Average highs are around 23&deg;C and lows near 10&deg;C - warm, peak season. High villages and passes are colder.</p></details><details><summary>Is July a good time to visit Skardu?</summary><p>July is a good (if busy) time to visit Skardu - the warmest, busiest month, with everything open.</p></details><details><summary>What should I pack for Skardu in July?</summary><p>Light, breathable clothing for warm days, plus a fleece for cool evenings and strong sun protection.</p></details></div>
+</div></main>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the weather like in Skardu in July?", "acceptedAnswer": {"@type": "Answer", "text": "Average highs are around 23C and lows near 10C - warm, peak season."}}, {"@type": "Question", "name": "Is July a good time to visit Skardu?", "acceptedAnswer": {"@type": "Answer", "text": "July is a good (if busy) time to visit Skardu - the warmest, busiest month, with everything open."}}, {"@type": "Question", "name": "What should I pack for Skardu in July?", "acceptedAnswer": {"@type": "Answer", "text": "Light, breathable clothing for warm days, plus a fleece for cool evenings and strong sun protection."}}]}</script>
+
+<!-- RELATED:START -->
+<section class="related-links"><div class="related-inner"><h2 class="related-title">Related guides &amp; nearby</h2><div class="related-grid"><a href="/skardu">Skardu Travel Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/basho-valley">Basho Valley Skardu - Alpine Meadows Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/chunda-valley">Chunda Valley Skardu - Off-Beat Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/hotels">10 Best Hotels in Skardu 2026 - Reviewed<span>Skardu</span></a><a href="/skardu/how-to-reach">How to Reach Skardu 2026 - Flights & Road Guide - GB Guide<span>Skardu</span></a><a href="/skardu/in-april">Skardu in April 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-august">Skardu in August 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a></div></div></section>
+<!-- RELATED:END -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div><a href="/" class="footer-logo"><svg class="footer-logo-mark" viewBox="0 0 64 50" aria-hidden="true"><path d="M3 47 L19 25 L27 34 L38 12 L47 27 L53 21 L61 47 Z" fill="#C8903A"/><path d="M38 12 L33.5 23 L43 23 Z" fill="#fff"/></svg><span class="l1">GB</span><span class="l2">Guide</span></a><p class="footer-tagline">"Gilgit-Baltistan, as only a local can tell it."</p><div class="footer-socials"><div class="social-btn">Y</div><div class="social-btn">I</div><div class="social-btn">T</div><div class="social-btn">F</div></div></div>
+      <div><div class="footer-col-title">Regions</div><ul class="footer-links"><li><a href="/hunza">Hunza Valley</a></li><li><a href="/skardu">Skardu</a></li><li><a href="/gilgit">Gilgit</a></li><li><a href="/fairy-meadows">Fairy Meadows</a></li><li><a href="/naltar">Naltar</a></li><li><a href="/deosai">Deosai</a></li><li><a href="/ghizer">Ghizer</a></li><li><a href="/astore">Astore</a></li><li><a href="/gojal">Gojal</a></li><li><a href="/yasin">Yasin</a></li><li><a href="/ishkoman">Ishkoman</a></li><li><a href="/naran-kaghan">Naran-Kaghan</a></li></ul></div>
+      <div><div class="footer-col-title">Treks &amp; Peaks</div><ul class="footer-links"><li><a href="/trekking">All Treks</a></li><li><a href="/trekking/k2-base-camp">K2 Base Camp</a></li><li><a href="/trekking/concordia">Concordia</a></li><li><a href="/trekking/rakaposhi-base-camp">Rakaposhi BC</a></li><li><a href="/trekking/rush-lake">Rush Lake</a></li><li><a href="/mountains">Mountains</a></li><li><a href="/mountains/k2">K2</a></li><li><a href="/mountains/nanga-parbat">Nanga Parbat</a></li><li><a href="/mountains/rakaposhi">Rakaposhi</a></li></ul></div>
+      <div><div class="footer-col-title">Plan your trip</div><ul class="footer-links"><li><a href="/planner">Trip Planner</a></li><li><a href="/travel/best-time-to-visit-gb">Best Time to Visit</a></li><li><a href="/travel/islamabad-to-hunza">How to Reach</a></li><li><a href="/travel/what-to-pack">What to Pack</a></li><li><a href="/travel/noc-permits-gb">NOC & Permits</a></li><li><a href="/travel/budget-gb-itinerary">Budget Guide</a></li><li><a href="/status">Road & Pass Status</a></li><li><a href="/weather">Weather</a></li><li><a href="/tours">Tours</a></li><li><a href="/agencies">Choosing an Operator</a></li><li><a href="/about">About GB Guide</a></li><li><a href="/contact">Contact</a></li><li><a href="/updates">Travel Updates</a></li><li><a href="/blog">Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 GB Guide · Last updated June 2026</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+  </div>
+</footer>
+
+<script>
+function switchItin(id) {
+  document.querySelectorAll('.itin-plan').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.itin-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('itin-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { const s = [...e.target.parentElement.querySelectorAll('.reveal')]; setTimeout(() => e.target.classList.add('visible'), s.indexOf(e.target) * 90); obs.unobserve(e.target); } }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+<script id="navScript">
+(function(){
+  var btn = document.getElementById('navHamburger');
+  var drawer = document.getElementById('navDrawer');
+  if (!btn || !drawer) return;
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e){
+    if (!btn.contains(e.target) && !drawer.contains(e.target)){
+      btn.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+  });
+})();
+</script>
+</body>
+</html>
