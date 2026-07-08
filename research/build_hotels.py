@@ -8,7 +8,16 @@ DATA = os.path.join(ROOT, 'research', 'hotels')
 def esc(s):
     if s is None: return ''
     return re.sub(r'&(?!amp;|lt;|gt;|#\d+;|quot;)', '&amp;', str(s))
-def gmaps(name, town): return "https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(f"{name} {town}")
+def gmaps(name, town, coords=None):
+    if coords: return "https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(str(coords))
+    return "https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(f"{name} {town}")
+def applemaps(name, town, coords=None):
+    if coords: return f"https://maps.apple.com/?ll={urllib.parse.quote(str(coords))}&q="+urllib.parse.quote(name)
+    return "https://maps.apple.com/?q="+urllib.parse.quote(f"{name} {town}")
+def map_links(h, town):
+    co=h.get('coords'); approx='' if co else ' <span style="color:var(--cream-2);font-size:.9em">(approx.)</span>'
+    return (f'<div class="rev-links">📍 <a href="{gmaps(h["name"],town,co)}" target="_blank" rel="nofollow noopener">Google Maps</a> · '
+            f'<a href="{applemaps(h["name"],town,co)}" target="_blank" rel="nofollow noopener">Apple Maps</a>{approx}</div>')
 
 TOWNS = {
  'skardu': dict(path='skardu/hotels', town='Skardu', hero='/images/skardu-hero.webp',
@@ -100,7 +109,10 @@ def build_body(key, hs):
         meta=''
         if h.get('area'): meta+=f'<span>📍 <strong>{esc(h["area"])}</strong></span>'
         if h.get('type'): meta+=f'<span>🏨 <strong>{esc(h["type"])}</strong></span>'
-        if h.get('price'): meta+=f'<span>💷 <strong>{esc(h["price"])}</strong></span>'
+        pr=esc(h.get('price','')) + (f' &middot; {esc(h["price_pkr"])}' if h.get('price_pkr') else '')
+        if pr.strip(): meta+=f'<span>💷 <strong>{pr}</strong></span>'
+        if h.get('best_for'): meta+=f'<span>👍 <strong>{esc(h["best_for"])}</strong></span>'
+        if h.get('season') and 'year' not in str(h.get('season','')).lower(): meta+=f'<span>🗓 <strong>{esc(h["season"])}</strong></span>'
         meta+=rating_chip(h,town)
         hl=f'<p style="font-size:.9rem;line-height:1.62;color:#2E2A22;margin:.4rem 0 .3rem"><strong>Why stay:</strong> {esc(h["highlight"])}</p>' if h.get('highlight') else ''
         pl=''.join(f'<li>{esc(x)}</li>' for x in (h.get('pros') or []))
@@ -111,12 +123,14 @@ def build_body(key, hs):
         cards.append('<div class="rev">'
           f'<div class="rev-head"><div><div class="rev-badge">#{i}</div><h3>{esc(h["name"])}</h3>'
           f'<div class="rev-op">{esc(h.get("type",""))}{(" · "+esc(h.get("area",""))) if h.get("area") else ""}</div></div></div>'
-          f'<div class="rev-meta">{meta}</div>\n{hl}{pc}{take}</div>')
+          f'<div class="rev-meta">{meta}</div>\n{hl}{pc}{take}{map_links(h,town)}</div>')
     cards='\n'.join(cards)
+    ver=next((h.get('verified') for h in hs if h.get('verified')),None)
+    verline=f'<p style="font-size:.78rem;color:var(--cream-2);margin-top:1.2rem">Ratings and details cross-checked against recent Booking.com/Google/Tripadvisor reviews and local sources{(", last verified "+esc(ver)) if ver else ""}. Confirm current rates, room condition and winter opening directly before booking.</p>'
     ctx=(f'<h2>{c["ctx_h"]}</h2>\n<ul>'+''.join(f'<li>{x}</li>' for x in c['ctx'])+'</ul>')
     deeper=('<h2>Plan your trip deeper</h2>\n<ul>'+''.join(f'<li><a href="{h}">{l}</a></li>' for h,l in c['deeper'])+'</ul>')
     faq='<h2>FAQ</h2>\n<div class="faq">'+''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])+'</div>'
-    return '\n'.join([paras.strip(),callout,table,winners,cta1,cards,ctx,deeper,faq])
+    return '\n'.join([paras.strip(),callout,table,winners,cta1,cards,ctx,deeper,faq,verline])
 def schema(key,hs):
     c=TOWNS[key]; town=c['town']; items=[]
     for i,h in enumerate(hs,1):

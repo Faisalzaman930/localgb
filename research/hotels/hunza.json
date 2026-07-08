@@ -1,182 +1,262 @@
 [
  {
   "name": "Luxus Hunza Attabad Lake Resort",
-  "area": "Aliabad",
+  "area": "Gulmit",
   "type": "Luxury",
   "price": "$$$",
-  "highlight": "Attabad Lake-front views; spa, sauna, fitness center; the most-publicized 5-star resort in the valley",
+  "price_pkr": null,
+  "highlight": "5-star resort perched directly over turquoise Attabad Lake",
   "rating": 9.0,
   "reviews": 361,
   "rating_src": "Booking.com",
+  "coords": null,
+  "best_for": "view / couples",
+  "season": "closes in winter  -  listed closed approx 21 Sep 2025 to 28 Feb 2026 (dates shift yearly; confirm directly)",
+  "open": true,
   "pros": [
-   "Direct turquoise Attabad Lake frontage and dramatic mountain backdrop",
-   "Full spa/wellness facilities (sauna, steam room, hot tub) rare for the region",
-   "Strong marks for staff attentiveness and cleanliness"
+   "Unmatched lakefront setting and views",
+   "Strong cleanliness and staff-attentiveness scores",
+   "Full facilities: restaurant, garden, terrace, activities"
   ],
   "cons": [
-   "Recurring guest complaints about sewage smell in some rooms",
-   "Sits at Aina Abad on the lake, ~45 min from Karimabad's town/forts"
+   "Recurring complaints of sewage/thin-wall noise in some rooms",
+   "Environmental criticism over waste handling near the lake"
   ],
-  "take": "The closest thing Hunza has to a true luxury lake resort, with knockout views; just temper expectations on maintenance versus the 5-star billing. (TripAdvisor scores it lower, ~3/5 from 70 reviews.)"
+  "take": "The signature lakeside splurge in Hunza and genuinely well-rated (9.0/361), but book upper/newer rooms and note it shuts for winter.",
+  "verified": "2026-07"
  },
  {
   "name": "Hunza Serena Hotel",
   "area": "Karimabad",
   "type": "Luxury",
   "price": "$$$",
-  "highlight": "Polished international-brand service in the heart of Karimabad with valley and Rakaposhi views",
-  "rating": 4.0,
-  "reviews": null,
-  "rating_src": "Tripadvisor",
+  "price_pkr": "approx PKR 30,000-45,000",
+  "highlight": "Region's first 5-star; panorama of Rakaposhi, Ultar, Lady Finger, Diran, Golden Peak",
+  "rating": 9.1,
+  "reviews": 24,
+  "rating_src": "Trip.com",
+  "coords": null,
+  "best_for": "couples / view",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Most consistent, professional service of any Karimabad hotel (Serena-managed)",
-   "Central Karimabad location with terrace/restaurant views and a spa",
-   "Clean, comfortable rooms with reliable amenities"
+   "Best-in-class service and five-peak views",
+   "Modern amenities, reliable comfort",
+   "Central Karimabad location"
   ],
   "cons": [
-   "Some guests find rooms smaller/less grand than other Serena properties",
-   "Premium pricing for the area"
+   "Weak/unstable WiFi noted repeatedly",
+   "Kitchen smells reported in corridors"
   ],
-  "take": "The safest high-end pick inside Karimabad itself; ranked #2 of 11 hotels in Karimabad on Tripadvisor and rated up to 9.4-9.8 on booking platforms."
+  "take": "The safe upscale choice with the most consistent service in the valley; also ~4/5 on Tripadvisor. Priciest in Karimabad but reliable.",
+  "verified": "2026-07"
  },
  {
   "name": "Serena Altit Fort Residence",
-  "area": "Karimabad",
+  "area": "Altit",
   "type": "Luxury",
   "price": "$$$",
-  "highlight": "Heritage stay beside Altit Fort with the treehouse-style Kha Basi cafe and complimentary fort tour",
-  "rating": 4.0,
-  "reviews": 12,
-  "rating_src": "Tripadvisor",
+  "price_pkr": null,
+  "highlight": "Heritage rooms + luxury tents inside the royal garden of 11th-century Altit Fort",
+  "rating": 9.7,
+  "reviews": null,
+  "rating_src": "Booking.com",
+  "coords": null,
+  "best_for": "heritage / couples",
+  "season": "year-round (confirm winter tent availability)",
+  "open": true,
   "pros": [
-   "Quiet, historic Altit setting away from Karimabad's bustle",
-   "Phenomenal valley views and the standout Kha Basi cafe",
-   "Complimentary Altit Fort tour for in-house guests"
+   "Arguably the best location in Hunza, inside the historic fort garden",
+   "Authentic heritage build with hand-woven textiles/woodwork",
+   "Complimentary Altit Fort tours; highly praised staff"
   ],
   "cons": [
-   "Described as a temporary/interim property while Serena's permanent Hunza hotel is built",
-   "Very small (only a handful of reviews so far)"
+   "Only ~5 rooms/tents, books out fast",
+   "Premium pricing for limited inventory"
   ],
-  "take": "A characterful heritage residence for travelers who want history and calm over resort scale; #1 of 1 inn in Altit on Tripadvisor."
+  "take": "Highest-rated stay in the valley (9.7). A boutique heritage experience rather than a full-service hotel  -  book well ahead.",
+  "verified": "2026-07"
  },
  {
   "name": "Eagle's Nest Hotel",
   "area": "Karimabad",
   "type": "Mid-range",
   "price": "$$",
-  "highlight": "Duikar viewpoint above Karimabad with the valley's most famous Rakaposhi and Lady Finger panorama",
-  "rating": 3.0,
-  "reviews": 139,
+  "price_pkr": "approx PKR 23,000-25,000",
+  "highlight": "Duikar clifftop viewpoint (~10,000 ft) over 11 peaks incl. Rakaposhi & Lady Finger",
+  "rating": 4.0,
+  "reviews": 141,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "view",
+  "season": "likely closes or limited access in deep winter (high-altitude jeep road to Duikar); confirm directly",
+  "open": true,
   "pros": [
-   "Arguably the single best sunrise/sunset viewpoint of any hotel in Hunza (Duikar)",
-   "Rooms and terrace face Rakaposhi, Lady Finger and the whole valley",
-   "Owners/staff repeatedly described as warm and welcoming"
+   "Widely called the best sunrise/sunset viewpoint in Hunza",
+   "Tripadvisor Travelers' Choice, ranked #3 of 17 in Hunza",
+   "Clean rooms, cooperative family-run staff"
   ],
   "cons": [
-   "Recurring complaints about management/service and only average food",
-   "Up a steep road well above Karimabad town"
+   "6 km jeep road above Karimabad; not walkable to bazaar",
+   "Rooms are simpler than the price/reputation implies"
   ],
-  "take": "You stay here for the legendary Duikar view, not the service; #3 of 17 Hunza hotels on Tripadvisor with notably mixed reviews."
+  "take": "You pay for the view, and it delivers. Go for one or two nights for the sunrise; less ideal as a base for exploring the bazaar.",
+  "verified": "2026-07"
  },
  {
   "name": "Hunza Embassy Hotel",
   "area": "Karimabad",
   "type": "Mid-range",
   "price": "$$",
-  "highlight": "Long-running Karimabad hotel with terraces overlooking the valley and a well-liked restaurant",
-  "rating": 3.4,
+  "price_pkr": null,
+  "highlight": "Terrace valley views, walkable to Karimabad bazaar; new pool/spa being built",
+  "rating": 3.0,
   "reviews": 54,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "view / location",
+  "season": "year-round (confirm)",
+  "open": true,
   "pros": [
-   "Most rooms have private terraces with sweeping valley views",
-   "On-site restaurant praised for tasty food and helpful staff",
-   "Reliable hot water and central Karimabad location"
+   "Great terrace views and central, walkable location",
+   "Owner/staff repeatedly praised as helpful",
+   "Good on-site food"
   ],
   "cons": [
-   "Rooms can get very hot in July/August",
-   "Reports of unreliable Wi-Fi and patchy cleanliness/upkeep"
+   "Cleanliness and maintenance flagged in recent reviews",
+   "Intermittent WiFi; some rooms dark"
   ],
-  "take": "A solid old-guard mid-range choice for the view and the food, but somewhat dated; rated ~3.4/5 from 54 Tripadvisor reviews."
+  "take": "Decent mid-range value for location and views, but quality is inconsistent  -  inspect the room first. Ranked mid-pack (#10 of 16).",
+  "verified": "2026-07"
  },
  {
   "name": "Baltit Heritage Inn",
   "area": "Karimabad",
-  "type": "Mid-range",
+  "type": "Guesthouse",
   "price": "$$",
-  "highlight": "Walkable to Baltit Fort with clean rooms and mountain views at fair value",
-  "rating": 8.0,
-  "reviews": null,
-  "rating_src": "Expedia",
+  "price_pkr": null,
+  "highlight": "Cozy heritage-style inn moments from Baltit Fort with mountain views",
+  "rating": 3.5,
+  "reviews": 2,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "heritage / couples",
+  "season": "year-round (confirm)",
+  "open": true,
   "pros": [
-   "Excellent location steps from Baltit Fort and Karimabad's restaurants",
-   "Clean, comfortable rooms with mountain views",
-   "Helpful, accommodating staff and good value"
+   "Clean, quiet, cosy rooms with mountain views",
+   "Excellent, accommodating owner/staff",
+   "Steps from Baltit Fort and restaurants"
   ],
   "cons": [
-   "Electricity and Wi-Fi can be unstable (common across Hunza)",
-   "Smaller property with limited facilities"
+   "Very thin review base (only ~2 TA reviews)  -  hard to corroborate at scale",
+   "Unstable electricity/WiFi (area-wide issue)"
   ],
-  "take": "A dependable, good-value base for exploring Karimabad on foot; guest rating around 8.0/10."
+  "take": "Charming small heritage inn with strong anecdotal praise, but the review sample is tiny  -  treat rating as indicative only.",
+  "verified": "2026-07"
  },
  {
   "name": "Old Hunza Inn",
   "area": "Karimabad",
   "type": "Budget",
   "price": "$",
-  "highlight": "Backpacker institution since 1981 run by owner 'Leo', great views and traveler hub vibe",
-  "rating": 8.5,
+  "price_pkr": null,
+  "highlight": "Backpacker favourite (now 'Backpackers Stories by Old Hunza Inn') with valley-view lounge",
+  "rating": null,
   "reviews": null,
-  "rating_src": "Booking.com",
+  "rating_src": null,
+  "coords": null,
+  "best_for": "budget",
+  "season": "year-round (confirm)",
+  "open": true,
   "pros": [
-   "Among the cheapest beds in Karimabad with clean rooms and hot showers",
-   "Spectacular mountain/glacier views on a quiet edge of town",
-   "Owner Leo and the social, info-sharing atmosphere are a real draw"
+   "Among the cheapest clean beds in Karimabad; strong value",
+   "Social lounge/terrace over the valley, good for meeting travellers",
+   "Hot showers, shared kitchen, 24h desk (English/Urdu/Chinese/Japanese)"
   ],
   "cons": [
-   "Basic, simple rooms (it's a backpacker guesthouse, not a hotel)",
-   "Limited facilities"
+   "Basic, simple rooms",
+   "No single consolidated rating source to cite reliably"
   ],
-  "take": "The classic budget pick in Hunza for value, views and meeting other travelers; rated ~8.5/10 on Booking.com."
+  "take": "The go-to backpacker/budget pick, rebranded 'Backpackers Stories.' Overwhelmingly positive anecdotal reviews; couldn't pin one authoritative numeric rating.",
+  "verified": "2026-07"
  },
  {
   "name": "Hunza Marcopolo Inn",
   "area": "Gulmit",
   "type": "Guesthouse",
   "price": "$$",
-  "highlight": "40+ year-old Gulmit inn with orchards and Passu Cones views; the main stay option in Gulmit",
-  "rating": null,
+  "price_pkr": "approx PKR 6,000-10,000",
+  "highlight": "40-year-old Gulmit inn near Attabad Lake & Passu Cones with fruit garden",
+  "rating": 4.0,
   "reviews": null,
-  "rating_src": null,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "view / budget",
+  "season": "usable in winter but no running water in bathrooms (bucket service)  -  best in summer",
+  "open": true,
   "pros": [
-   "Magnificent views of the Passu Cones from a peaceful Gulmit setting",
-   "Hands-on GM and personal hospitality frequently praised",
-   "Orchard grounds, 24-hr hot water and on-site restaurant"
+   "#1 of 6 lodgings in Gulmit; friendly staff, clean, 24h hot water in season",
+   "Peaceful setting with organic garden produce",
+   "Best base for Attabad Lake / Passu day trips"
   ],
   "cons": [
-   "Some guests found it shabby/ill-maintained",
-   "Not recommended in winter (running-water issues in cold months)"
+   "A price-quoting dispute reported (confirm rate in writing before arrival)",
+   "Winter: no running bathroom water; some 'shabby/ill-maintained' comments"
   ],
-  "take": "The established, characterful choice if you want to base in Gulmit near the Passu Cones, with mixed reviews on upkeep."
+  "take": "The strongest Gulmit option and fine value in summer; verify the nightly rate up front and skip it midwinter.",
+  "verified": "2026-07"
  },
  {
   "name": "Passu Tourist Lodge",
   "area": "Passu",
-  "type": "Budget",
-  "price": "$",
-  "highlight": "Quiet year-round lodge with front-row Passu Cones views on the Karakoram Highway",
-  "rating": 4.1,
-  "reviews": 71,
+  "type": "Mid-range",
+  "price": "$$",
+  "price_pkr": "approx PKR 3,500-8,000",
+  "highlight": "Quiet KKH lodge under the Passu Cones, open all winter",
+  "rating": 4.5,
+  "reviews": 6,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "view / couples",
+  "season": "year-round  -  explicitly stays open in winter when most Passu/Gulmit hotels close",
+  "open": true,
   "pros": [
-   "Superb, isolated views of the Passu Cones and snow peaks",
-   "Friendly, English-speaking staff and calm atmosphere",
-   "Open year-round, unlike many Hunza hotels that close in winter"
+   "Rare genuinely year-round property in upper Gojal",
+   "Highest TA rating in this set (4.5/5); friendly English-speaking staff",
+   "Calm, isolated setting with Passu Cones views; occasional local music nights"
   ],
   "cons": [
-   "Simple lodge-style rooms and limited amenities",
-   "Remote Passu location, far from Karimabad's sights"
+   "Only 12 rooms; small review base",
+   "Remote  -  limited dining/services nearby off-season"
   ],
-  "take": "The best-reviewed base in Passu for trekkers and Cones-chasers wanting quiet and value; ~4.1/5 from 71 Tripadvisor reviews."
+  "take": "Best base for the Passu Cones/Hussaini bridge and the reliable winter choice in Gojal. Small but consistently well-liked.",
+  "verified": "2026-07"
+ },
+ {
+  "name": "Roomy Daastaan Hotel",
+  "area": "Karimabad",
+  "type": "Mid-range",
+  "price": "$$",
+  "price_pkr": null,
+  "highlight": "Modern Karimabad hotel with a large panoramic terrace over the valley",
+  "rating": 8.7,
+  "reviews": null,
+  "rating_src": "Booking.com",
+  "coords": null,
+  "best_for": "view / couples",
+  "season": "year-round (confirm)",
+  "open": true,
+  "pros": [
+   "Well-rated newer option (8.7 Booking; #2 of 20 specialty lodging, 4/5 TA)",
+   "Big terrace with 'surreal' mountain views",
+   "Family-style, highly rated service (staff named in reviews)"
+  ],
+  "cons": [
+   "Occasional maintenance/cleanliness notes",
+   "Part of a chain  -  less local character than heritage inns"
+  ],
+  "take": "Added as the strongest missing option: a dependable modern mid-range with a standout terrace, well-corroborated across Booking and Tripadvisor.",
+  "verified": "2026-07"
  }
 ]

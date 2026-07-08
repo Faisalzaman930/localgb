@@ -1,182 +1,282 @@
 [
  {
-  "name": "Dewanekhas Restaurant",
-  "area": "Naya Bazaar / main Skardu city",
-  "cuisine": "Balti / Pakistani / Chinese",
+  "name": "Dewanekhas Restaurant Skardu",
+  "area": "Main Bazaar (Naya Bazaar), Skardu city",
+  "cuisine": "Balti local, Pakistani, some Chinese/BBQ",
   "price": "$$",
-  "must_try": "Balti chicken karahi with daal and naan",
-  "rating": 4.5,
-  "reviews": 54,
+  "price_pkr": "800-1500",
+  "must_try": "Balti chicken handi with balay (local soup)",
+  "dish_type": "GB local",
+  "specialty": "Balay (handmade Balti wheat-noodle soup) and traditional Balti prapu-style dishes",
+  "rating": 4.3,
+  "reviews": 56,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Balti food",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Consistently ranked #1 restaurant in Skardu on Tripadvisor",
-   "Authentic Balti home-style cooking (chicken, daal, mixed veg)",
-   "Long-running, reliable spot trusted by repeat travellers"
+   "Long-standing go-to for authentic Balti local food, not just generic desi",
+   "Reasonable prices and heritage-style Balti decor",
+   "Reliable for daal, mixed veg and Balti chicken dishes"
   ],
   "cons": [
-   "Decor is dated and basic",
-   "Can get busy and slow in peak tourist season"
+   "Menu also leans into Chinese/BBQ that dilutes the local focus",
+   "Service and ambiance are dated versus newer cafes"
   ],
-  "take": "The default safe bet in town for proper Balti food - unfussy, tasty, and the most-reviewed restaurant in Skardu."
+  "take": "Still the default recommendation for genuine Balti home-style food in the bazaar; go here for balay and Balti handi rather than continental.",
+  "verified": "2026-06"
  },
  {
   "name": "Shahi Dewan",
-  "area": "Skardu city (private themed dining rooms)",
-  "cuisine": "Pakistani / Continental / Chinese / Thai (themed thaals)",
-  "price": "$$$",
-  "must_try": "Pakistani or Kashmiri thaal / BBQ platter",
-  "rating": 4.4,
-  "reviews": 1233,
-  "rating_src": "Google",
+  "area": "Main city centre, Skardu",
+  "cuisine": "Pakistani, BBQ, some Chinese",
+  "price": "$$",
+  "price_pkr": "1000-2000",
+  "must_try": "Pakistani BBQ platter (BBQ, green chicken, mutton gravy, daal, naan)",
+  "dish_type": "Pakistani",
+  "specialty": "",
+  "rating": 4.3,
+  "reviews": 8,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "groups / dinner",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Private dining rooms with table or floor seating",
-   "Strong, varied platters (BBQ, mutton gravy, fresh naans)",
-   "Attentive service and a genuine sit-down experience"
+   "Generous shared platters praised as among the best food in town",
+   "Central location, good sit-down ambiance for lunch and dinner",
+   "Private rooms with table or floor seating for groups"
   ],
   "cons": [
-   "Pricier than typical bazaar eateries",
-   "Some reviewers felt ambiance lagged behind the food quality"
+   "Small review base so consistency is less proven",
+   "Food is polished Pakistani/BBQ rather than uniquely Balti"
   ],
-  "take": "Skardu's go-to for a special, sit-down meal with a private room - food is the star, book ahead in season."
+  "take": "A comfortable central sit-down spot for a hearty Pakistani BBQ platter with a group; strong sentiment but a thin review history.",
+  "verified": "2026-06"
  },
  {
   "name": "The Grind Cafe and Eatery",
-  "area": "Heart of Skardu city",
-  "cuisine": "Cafe / Continental / Malay-Chinese fusion",
+  "area": "Central Skardu city (near main bazaar)",
+  "cuisine": "Cafe/Continental with Malay-Chinese-Pakistani influences",
   "price": "$$",
-  "must_try": "Yak burger and specialty coffee with cake",
-  "rating": 5.0,
-  "reviews": 4,
-  "rating_src": "Tripadvisor",
+  "price_pkr": "700-1500",
+  "must_try": "Yak burger",
+  "dish_type": "Cafe/Continental",
+  "specialty": "Yak burger (local yak meat)",
+  "rating": 4.7,
+  "reviews": 361,
+  "rating_src": "Google",
+  "coords": null,
+  "best_for": "coffee & cake / yak burger",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Rare proper espresso-based coffee and baked cakes in Skardu",
-   "Novel yak burger you won't find easily elsewhere",
-   "Clean, cozy, comfortable with WiFi"
+   "Best-rated modern cafe in Skardu with a large, consistent review base",
+   "Genuinely good coffee, WiFi and a clean, cozy fit-out",
+   "Signature yak burger applies local ingredients to a Western format"
   ],
   "cons": [
-   "Very few reviews so far (new-ish spot)",
-   "More of a Western cafe break than a local-food experience"
+   "Cafe prices are high for Skardu",
+   "Can get busy and seating is limited in peak season"
   ],
-  "take": "The best Western-style coffee-and-cake stop in town and a fun yak-burger novelty - ideal for a mid-day break."
+  "take": "The town's standout modern cafe and the easiest place to try a yak burger with a proper flat white; reliably the traveller favourite.",
+  "verified": "2026-06"
  },
  {
   "name": "City Inn Restaurant",
-  "area": "Skardu city / main bazaar area",
-  "cuisine": "Pakistani / desi",
+  "area": "Main Bazaar, Skardu",
+  "cuisine": "Pakistani local",
   "price": "$",
-  "must_try": "Karahi and fresh naan",
+  "price_pkr": "400-900",
+  "must_try": "Chicken karahi with fresh naan",
+  "dish_type": "Pakistani",
+  "specialty": "",
   "rating": 4.6,
   "reviews": 5,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "budget",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Known among locals as a top spot for honest Pakistani food",
-   "Quick service - food comes out fast",
-   "Good value for budget travellers"
+   "Known among locals as honest, tasty Pakistani food at local prices",
+   "Fast service, minimal waiting",
+   "Good value fill-up in the bazaar"
   ],
   "cons": [
-   "Few online reviews",
-   "Basic surroundings, not a scenic/destination venue"
+   "No-frills setting with little ambiance",
+   "Very small review base and generic desi menu, nothing uniquely Balti"
   ],
-  "take": "A local favourite for fast, no-nonsense desi food at fair prices - eat where the Skardu locals eat."
+  "take": "A locals' pick for cheap, quick, tasty Pakistani staples in the bazaar; go for value and speed, not atmosphere.",
+  "verified": "2026-06"
  },
  {
   "name": "Mamtu De Skardu",
-  "area": "Skardu (small local eatery)",
-  "cuisine": "Balti traditional (mamtu/dumplings)",
+  "area": "Skardu city (near bazaar)",
+  "cuisine": "GB local / Balti street food",
   "price": "$",
-  "must_try": "Mamtu (steamed Balti meat dumplings) with sauce",
+  "price_pkr": "300-700",
+  "must_try": "Mamtu (steamed minced-meat dumplings with signature sauce)",
+  "dish_type": "GB local",
+  "specialty": "Mamtu (Balti steamed dumplings)",
   "rating": 4.6,
   "reviews": 91,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "budget / local specialty",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Widely rated the best mamtu/dumplings in Skardu",
-   "Authentic single-dish specialist done very well",
-   "Friendly owner, cheap and genuine"
+   "Widely rated the best mamtu in Skardu, better than rivals per recent reviews",
+   "Cheap and authentic, dumplings steamed fresh with a distinctive sauce",
+   "Solid, sizeable review base for a small local spot"
   ],
   "cons": [
-   "Very limited seating and modest premises",
-   "Narrow menu - mainly mamtu"
+   "Very limited seating, often a squeeze",
+   "Focused menu, essentially a one-dish destination"
   ],
-  "take": "If you try one local dish in Skardu, make it the mamtu here - travellers repeatedly call it the best in town."
+  "take": "The single best place in town for mamtu, Skardu's signature dumpling; come for the dumplings and don't expect a full sit-down experience.",
+  "verified": "2026-06"
  },
  {
   "name": "Cafe De North",
-  "area": "Skardu (family restaurant)",
-  "cuisine": "Continental / Italian / Chinese / family fare",
+  "area": "Skardu (mountain-view location outside dense bazaar)",
+  "cuisine": "Cafe/Continental, fast food",
   "price": "$$",
-  "must_try": "Pizza or pasta with a coffee",
+  "price_pkr": "800-1600",
+  "must_try": "Burger with coffee on the view terrace",
+  "dish_type": "Cafe/Continental",
+  "specialty": "",
   "rating": 4.3,
   "reviews": 166,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "families / coffee & cake",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Family-friendly with a varied Western-leaning menu",
-   "Reliable for a quick burger or pizza break",
-   "Decent volume of consistent reviews"
+   "Cozy, family-friendly with good mountain views",
+   "Reliable Western coffee break, burgers and quick bites between adventures",
+   "Healthy review volume and steady ratings"
   ],
   "cons": [
-   "Continental dishes are good-not-exceptional",
-   "Not the place for authentic Balti cuisine"
+   "Menu is familiar Western/fast food, nothing uniquely local",
+   "Quality is good-not-great versus The Grind"
   ],
-  "take": "A solid family/Western option when you want pizza, pasta or coffee rather than karahi."
+  "take": "A comfortable family cafe for a Western coffee-and-burger break with a view; convenient and consistent rather than a culinary destination.",
+  "verified": "2026-06"
  },
  {
-  "name": "Shangrila Resort (Pagoda Restaurant)",
-  "area": "Lower Kachura Lake, ~20-30 min from Skardu city",
-  "cuisine": "Pakistani / Continental / fresh trout",
+  "name": "Shangrila Resort - Pagoda Restaurant",
+  "area": "Lower Kachura Lake, ~20-25 km from Skardu city",
+  "cuisine": "Continental / Pakistani, grilled fish",
   "price": "$$$",
-  "must_try": "Grilled fresh trout by the heart-shaped lake",
-  "rating": null,
+  "price_pkr": "1500-3500",
+  "must_try": "Grilled lake trout on the over-water Pagoda deck",
+  "dish_type": "Cafe/Continental",
+  "specialty": "Grilled Kachura trout",
+  "rating": 4.0,
   "reviews": null,
-  "rating_src": null,
+  "rating_src": "Tripadvisor",
+  "coords": "35.4356,75.5385",
+  "best_for": "trout / setting / couples",
+  "season": "year-round but best in summer",
+  "open": true,
   "pros": [
-   "Iconic lakeside setting at the heart-shaped Lower Kachura Lake",
-   "Fresh trout from the resort's own hatchery",
-   "The classic Skardu 'dining with a view' experience"
+   "Iconic over-water Pagoda setting on the heart-shaped lake",
+   "Generous menu; trout, BBQ, burgers and chicken all recommended when available",
+   "Unbeatable location for a special-occasion meal"
   ],
   "cons": [
-   "Service can be slow and patchy (long waits, cleanliness lapses reported)",
-   "Tourist-priced; food quality is inconsistent vs the setting"
+   "Recurring complaints that trout is often 'unavailable' despite being the draw",
+   "Resort pricing well above town, and mixed service reviews"
   ],
-  "take": "You come for the unbeatable lake setting and fresh trout more than flawless service - a Skardu rite of passage."
+  "take": "You come for the lakeside setting and grilled trout more than value; magical when the trout is actually on, frustrating when it's 'off menu'.",
+  "verified": "2026-06"
  },
  {
-  "name": "Food Street Api Xhoq",
-  "area": "Skardu (open-air venue)",
-  "cuisine": "Balti / Pakistani / Chinese / fast food (BBQ)",
+  "name": "Food Street Api Xhoq Skardu",
+  "area": "Skardu (open-air riverside/garden setting)",
+  "cuisine": "Balti local, Pakistani, Chinese, fast food, BBQ",
   "price": "$$",
-  "must_try": "BBQ platter in the open-air setting",
+  "price_pkr": "700-1500",
+  "must_try": "Chapshoro (Balti baked meat pie) or fresh mamtu",
+  "dish_type": "GB local",
+  "specialty": "Chapshoro and mamtu made the traditional way",
   "rating": 5.0,
   "reviews": 3,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "groups / outdoor dining",
+  "season": "summer-only note (open-air, best in warm months)",
+  "open": true,
   "pros": [
-   "Open-air, natural setting with BBQ and bonfire facilities",
-   "Wide menu spanning Balti, Pakistani, Chinese and fast food",
-   "Relaxed atmosphere good for groups"
+   "Lively open-air spot with camping, bonfire and BBQ facilities",
+   "Broad menu covering Balti traditional food plus Pakistani and Chinese",
+   "Fun group/atmosphere venue popular with tourists"
   ],
   "cons": [
-   "Very few reviews to go on",
-   "Open-air format is weather/season dependent"
+   "Very few online reviews so quality is hard to verify",
+   "Open-air concept is weather-dependent and less appealing off-season"
   ],
-  "take": "A laid-back open-air BBQ spot - nice for an evening with a fire if the weather is good."
+  "take": "More an experience than a fine-dining pick: an outdoor food-street vibe with bonfire and BBQ, good for groups on a summer evening.",
+  "verified": "2026-06"
  },
  {
   "name": "Mount Feast Restaurant",
-  "area": "Mount Feast Hotel, Skardu (terrace dining)",
-  "cuisine": "Pakistani / Chinese / Continental / breakfast buffet",
+  "area": "Mount Feast Hotel, Skardu (terrace with mountain views)",
+  "cuisine": "Pakistani, Chinese, Continental, fast food",
   "price": "$$",
-  "must_try": "Breakfast buffet on the terrace (desi omelets, pancakes)",
-  "rating": null,
+  "price_pkr": "1000-2000",
+  "must_try": "Breakfast buffet (parathas, pancakes, omelettes, fruit) on the terrace",
+  "dish_type": "Pakistani",
+  "specialty": "",
+  "rating": 4.9,
   "reviews": null,
-  "rating_src": null,
+  "rating_src": "Google",
+  "coords": null,
+  "best_for": "breakfast / families / view dining",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Panoramic mountain views from the terrace",
-   "Well-regarded breakfast buffet",
-   "Broad menu (desi karahi/biryani, Chinese, fast food)"
+   "Terrace dining with panoramic mountain views",
+   "Widely praised breakfast buffet with a broad spread",
+   "Large multi-cuisine menu, locally sourced and freshly cooked"
   ],
   "cons": [
-   "No verified standalone restaurant rating found (only hotel booking scores)",
-   "Hotel-restaurant feel rather than a destination eatery"
+   "The headline 4.9 rating leans on hotel/marketing sources; independent review count is thin",
+   "Menu is broad-and-safe rather than distinctly Balti"
   ],
-  "take": "Best known for a scenic terrace breakfast - good for the view and buffet, especially if you're staying nearby."
+  "take": "A newer hotel restaurant that's become a go-to for a view breakfast buffet; strong reputation but verify the hype as its independent review base is still small.",
+  "verified": "2026-06"
+ },
+ {
+  "name": "Rafsal Restaurant",
+  "area": "Skardu (elevated spot with Skardu valley views)",
+  "cuisine": "Pakistani, Continental, international",
+  "price": "$$",
+  "price_pkr": "1000-2000",
+  "must_try": "Grilled/BBQ platter with a valley-view table",
+  "dish_type": "Pakistani",
+  "specialty": "",
+  "rating": 4.9,
+  "reviews": null,
+  "rating_src": "Google",
+  "coords": null,
+  "best_for": "view dining / groups",
+  "season": "year-round",
+  "open": true,
+  "pros": [
+   "Repeatedly cited among Skardu's best for 2025-2026 with a high rating",
+   "Stunning valley views praised in recent write-ups",
+   "Broad international-leaning menu"
+  ],
+  "cons": [
+   "Rating count not independently confirmed, treat 4.9 cautiously",
+   "Menu is general Pakistani/continental, not uniquely local"
+  ],
+  "take": "A newer high-rated option worth adding for the valley-view setting and varied menu; strong current buzz but verify the rating volume yourself.",
+  "verified": "2026-06"
  }
 ]

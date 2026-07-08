@@ -2,181 +2,281 @@
  {
   "name": "Cafe de Hunza",
   "area": "Karimabad",
-  "cuisine": "Cafe / continental (coffee, cakes)",
+  "cuisine": "Cafe / coffee, cake, Hunza tea",
   "price": "$$",
-  "must_try": "Walnut cake with Hunza tea or real espresso",
+  "price_pkr": "600-1400 pp (cake + coffee)",
+  "must_try": "Walnut cake with Hunza tea",
+  "dish_type": "Cafe/Continental",
+  "specialty": "Walnut cake",
   "rating": 4.4,
   "reviews": 125,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "coffee & cake, most reliable WiFi in Karimabad",
+  "season": "seasonal - closes/goes quiet in deep winter (reported shut mid-December)",
+  "open": true,
   "pros": [
-   "Famous honey-caramelized walnut cake, often sells out (order a day ahead)",
-   "One of the few places in Hunza serving genuine brewed/espresso coffee",
-   "Ranked #1 of 19 restaurants in Hunza on Tripadvisor; central in Karimabad Bazaar with wifi"
+   "Iconic honey-caramel walnut cake, made fresh",
+   "Rakaposhi/valley views from upper balcony",
+   "Reliable coffee and WiFi hub"
   ],
   "cons": [
-   "A few reviewers find the walnut cake dry/biscuit-like rather than moist",
-   "Small bazaar-front spot, can get crowded"
+   "Some items feel overpriced for portion",
+   "Cake sweetness not for everyone"
   ],
-  "take": "The iconic Karimabad pit stop. Come for the walnut cake and real coffee; it earns its #1 ranking even if the cake divides opinion."
+  "take": "Still the signature Karimabad cafe stop; go for the walnut cake and the view, not a full meal.",
+  "verified": "2026-07"
  },
  {
   "name": "Hidden Paradise Hunza",
   "area": "Karimabad",
-  "cuisine": "Traditional Hunzai / Pakistani / continental",
+  "cuisine": "Traditional Hunza / Pakistani",
   "price": "$$",
-  "must_try": "Chapshuro (meat-filled flatbread) and yak steak; local platter (supra, hoilo garma, burus)",
+  "price_pkr": "800-1600 pp",
+  "must_try": "Chapshuro; yak karahi",
+  "dish_type": "GB local",
+  "specialty": "Chapshuro (yak also available)",
   "rating": 4.3,
   "reviews": 70,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Hunzai food with valley/orchard seating",
+  "season": "mostly year-round, reduced in deep winter",
+  "open": true,
   "pros": [
-   "Authentic local platters cooked fresh in front of you",
-   "Seating with valley views or in a fruit orchard",
-   "Ranked #2 of 19 in Hunza; generous organic portions"
+   "Authentic local dishes cooked in front of you",
+   "Down-to-earth vibe, fair prices",
+   "Orchard and valley-view seating"
   ],
   "cons": [
-   "Long waits since food is cooked to order",
-   "At least one reviewer reported off-smelling meat in the chapshuro"
+   "Service can be slow when busy",
+   "Basic ambience"
   ],
-  "take": "A go-to for a full traditional Hunzai spread in Karimabad. Order ahead and be patient; the platter is the move."
+  "take": "A dependable, unpretentious spot for real Hunzai food (chapshuro, yak) in the main bazaar.",
+  "verified": "2026-07"
  },
  {
-  "name": "Hunza Food Pavilion (by Laal Shehzadi)",
+  "name": "Hunza Food Pavilion (Laal Shehzadi)",
   "area": "Karimabad",
-  "cuisine": "Traditional Hunzai (organic, home-style)",
-  "price": "$",
-  "must_try": "Chapshuro, Dawdo soup, giyaling, burus shapik",
+  "cuisine": "Traditional Hunza, organic",
+  "price": "$$",
+  "price_pkr": "700-1400 pp",
+  "must_try": "Chapshuro and dowdo (daudo) soup",
+  "dish_type": "GB local",
+  "specialty": "Chapshuro / dowdo / diram fitti",
   "rating": 4.4,
-  "reviews": 18,
+  "reviews": 60,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "authentic Hunzai home cooking beside Baltit Fort",
+  "season": "mostly year-round, reduced in deep winter",
+  "open": true,
   "pros": [
-   "Run by Laal Shehzadi, serving organic local food for over a decade",
-   "On the path up to Baltit Fort with mountain-backdrop seating",
-   "Genuinely home-cooked, cheap, warm hospitality (#1 of 3 in Karimabad listing)"
+   "Woman-run (Laal Shehzadi), organic local ingredients",
+   "Beside Baltit Fort, made famous by Mark Wiens",
+   "Best-known place for a full traditional Hunza spread"
   ],
   "cons": [
-   "Very small / simple setup",
-   "One reviewer called it a tourist trap"
+   "Some 2024-25 reviews say it is over-hyped / quality slipped",
+   "Can feel touristy and a touch pricey"
   ],
-  "take": "The most home-cooked, no-frills Hunzai food in Karimabad. Cheap, organic and personal; great stop on the Baltit Fort walk."
+  "take": "Still the flagship traditional-food name and ranked #1 in Karimabad, but manage expectations - a few recent diners feel it coasts on fame.",
+  "verified": "2026-07"
  },
  {
   "name": "Cafe Culture Hunza",
-  "area": "Karimabad (Altit village)",
-  "cuisine": "Central Hunza traditional (farm-to-table)",
+  "area": "Altit",
+  "cuisine": "Authentic central-Hunza, organic",
   "price": "$$",
-  "must_try": "Walnut chapati, rose dumplings, burus-e-barikutz, chapshuro",
+  "price_pkr": "800-1600 pp",
+  "must_try": "Chapshuro; burus-e-berikutz",
+  "dish_type": "GB local",
+  "specialty": "Burus berikutz / hani-xe-barikutz (apricot-kernel chapati)",
   "rating": 4.7,
   "reviews": 7,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Hunzai food / organic local specialties",
+  "season": "seasonal - quiet/closed in deep winter",
+  "open": true,
   "pros": [
-   "Almost everything made from scratch with ingredients from their own garden",
-   "Highest-rated of the Hunza cafes on Tripadvisor (#6 of 19)",
-   "Warm family hosting; owner will show you the garden"
+   "Highest-rated of the local-cuisine cafes (4.7)",
+   "Genuinely rare dishes (burus berikutz, apricot-kernel chapati)",
+   "Warm owners, homemade organic food"
   ],
   "cons": [
-   "Very few total reviews so the rating is thinly sampled",
-   "Tucked in Altit village, not on the main bazaar strip"
+   "Small and low-volume, so few reviews / limited hours",
+   "In Altit, not central Karimabad (need to go to it)"
   ],
-  "take": "A small family-run gem for organic Central Hunza dishes. Unique items like walnut chapati and rose dumplings set it apart."
+  "take": "A quiet standout for travelers who want the real central-Hunza dishes done well - worth the short trip to Altit.",
+  "verified": "2026-07"
  },
  {
   "name": "Kha Basi Cafe",
-  "area": "Karimabad (Altit Fort gardens)",
-  "cuisine": "Traditional Hunzai (women-run)",
+  "area": "Altit",
+  "cuisine": "Traditional Hunza, women-run",
   "price": "$$",
-  "must_try": "Dawdo soup, chapshuro, berikutz, apricot juice, tumuro chai",
-  "rating": null,
-  "reviews": null,
-  "rating_src": null,
+  "price_pkr": "1000-2000 pp",
+  "must_try": "Dowdo soup and chapshuro",
+  "dish_type": "GB local",
+  "specialty": "Dowdo / diram fitti / burus shapik / apricot juice",
+  "rating": 4.3,
+  "reviews": 40,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Hunzai food in a royal apricot orchard under Altit Fort",
+  "season": "seasonal - orchard cafe, closes in winter",
+  "open": true,
   "pros": [
-   "Entirely women-operated, in the gardens beside Altit Fort",
-   "Standout veranda views over the Hunza Valley",
-   "Cozy vintage interior; consistently praised local dishes"
+   "Stunning setting in the royal Kha Basi orchard below Altit Fort",
+   "Run entirely by local women, Serena-trained",
+   "Wide spread of genuine traditional dishes + fresh apricot juice"
   ],
   "cons": [
-   "On the pricier side for the area",
-   "Slow serving times noted by several visitors"
+   "Prices on the higher side",
+   "Small indoor space; weather-dependent (open-air veranda)"
   ],
-  "take": "Pair it with an Altit Fort visit. The all-women kitchen and garden setting make it as much an experience as a meal."
+  "take": "The most atmospheric place to eat traditional Hunza food - the orchard-and-fort setting is the draw as much as the dowdo.",
+  "verified": "2026-07"
  },
  {
   "name": "Pizza Pamir",
-  "area": "Karimabad (also Aliabad, Attabad)",
-  "cuisine": "Pizza / continental with local touches",
+  "area": "Karimabad",
+  "cuisine": "Pizza / continental (+ local)",
   "price": "$$",
-  "must_try": "Yak pizza",
+  "price_pkr": "700-1500 pp",
+  "must_try": "Yak pizza (~PKR 699)",
+  "dish_type": "Cafe/Continental",
+  "specialty": "Yak pizza; also serves chapshuro",
   "rating": 4.4,
   "reviews": 20,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "pizza fix with a valley view / non-local craving",
+  "season": "mostly year-round, reduced in deep winter",
+  "open": true,
   "pros": [
-   "The yak pizza is a genuinely local specialty and a crowd favorite",
-   "Balcony with stunning Hunza Valley views",
-   "Friendly staff; ranked #4 of 19 in Hunza"
+   "Best pizza in Hunza; fresh, cheese-loaded, good crust",
+   "Novelty yak pizza is a genuine local twist",
+   "Friendly staff and balcony valley views"
   ],
   "cons": [
-   "Yak meat takes time to cook, so expect a wait",
-   "A pizzeria, so it's the non-traditional option if you want local food"
+   "Not the place for authentic Hunzai cuisine",
+   "Small kitchen, waits at peak times"
   ],
-  "take": "When you want a break from Hunzai food, this is the valley's best pizza, and the yak pizza keeps it regional."
+  "take": "The go-to when you want a well-made pizza - the yak topping keeps it local enough to be interesting.",
+  "verified": "2026-07"
  },
  {
   "name": "Glacier Breeze Restaurant",
   "area": "Passu",
-  "cuisine": "Continental / local (cafe + restaurant)",
+  "cuisine": "Cafe / continental + local",
   "price": "$$",
-  "must_try": "Apricot cake with tumoro (green) tea or French-press coffee",
-  "rating": null,
-  "reviews": 46,
+  "price_pkr": "800-1800 pp",
+  "must_try": "Apricot cake (served warm from the oven)",
+  "dish_type": "Cafe/Continental",
+  "specialty": "Apricot cake (local apricots)",
+  "rating": 4.6,
+  "reviews": 47,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Passu Cones/Glacier view + apricot cake pit-stop on the KKH",
+  "season": "seasonal - upper Hunza; closes roughly Nov-Mar (very cold)",
+  "open": true,
   "pros": [
-   "Its warm, syrupy apricot cake is locally legendary",
-   "360-degree views of Passu Glacier and the Passu Cones from the glacier moraine",
-   "Ranked #1 of 2 restaurants in Passu; clean and well-run"
+   "Family-run since 2003, 360° Passu Cathedral/glacier views",
+   "Famous warm apricot cake and good tea",
+   "Reliable clean stop on the KKH"
   ],
   "cons": [
-   "Some report the cake served not-warm or local mains overcooked",
-   "Remote Passu location, mainly a stop en route to/from upper Gojal"
+   "100+ stairs up from the road parking",
+   "Remote/cold; limited winter operation"
   ],
-  "take": "The signature Passu stop for apricot cake and a view of the Cones. Worth timing a Gojal day-trip around. (Rated highly on Tripadvisor; exact star value not confirmed.)"
+  "take": "The essential Upper Hunza stop - climb the stairs for the view and a warm slice of apricot cake.",
+  "verified": "2026-07"
  },
  {
   "name": "Jahaan Restaurant",
   "area": "Gulmit",
-  "cuisine": "Wakhi-Pamirian / Pakistani / Chinese",
+  "cuisine": "Wakhi-Pamirian + Pakistani/Chinese",
   "price": "$$",
-  "must_try": "Gral (sweet wheat with apricot oil), molida, ghilmindi, dowdo",
-  "rating": null,
-  "reviews": null,
-  "rating_src": null,
+  "price_pkr": "1000-2000 pp",
+  "must_try": "Molida / gral (Wakhi specialties)",
+  "dish_type": "GB local",
+  "specialty": "Gral, molida, ghilmindi, dowdo (Wakhi-Pamirian)",
+  "rating": 4.5,
+  "reviews": 30,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Wakhi cuisine with Passu Cones / river views",
+  "season": "seasonal - upper Hunza, closes in winter",
+  "open": true,
   "pros": [
-   "One of the few places highlighting Wakhi-Pamirian dishes like gral and molida",
-   "Scenic terrace over the Hunza River with Passu Cones and the suspension-bridge view",
-   "Broad menu (also karahi, biryani, chow mein) for mixed groups"
+   "Rare, well-executed Wakhi-Pamirian dishes (gral, molida, ghilmindi)",
+   "Modern cozy interior, strong hygiene",
+   "Views of Passu Cones, river and Friendship Bridge"
   ],
   "cons": [
-   "No verifiable rating yet (effectively 0 reviews on Tripadvisor)",
-   "In Gulmit, off the main Karimabad circuit"
+   "Pricier and more polished than village norm",
+   "Out in Gulmit - a detour from central Hunza"
   ],
-  "take": "The best bet for rarer Wakhi-Pamiri cooking in Gulmit, with a knockout terrace. Ratings aren't established yet, so go for the cuisine and the view."
+  "take": "The best modern showcase of Wakhi cuisine in Upper Hunza; go for the dishes you can't get in Karimabad.",
+  "verified": "2026-07"
  },
  {
   "name": "Hunza Embassy Hotel Restaurant",
   "area": "Karimabad",
-  "cuisine": "Hunzai / Pakistani / continental",
+  "cuisine": "Pakistani + local",
   "price": "$$",
-  "must_try": "Local Hunzai set meal",
-  "rating": null,
-  "reviews": null,
-  "rating_src": null,
+  "price_pkr": "1000-2000 pp",
+  "must_try": "Rooftop BBQ / karahi with the view",
+  "dish_type": "Pakistani",
+  "specialty": "",
+  "rating": 3.8,
+  "reviews": 40,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "Rakaposhi / Diran rooftop view over a standard dinner",
+  "season": "mostly year-round (hotel)",
+  "open": true,
   "pros": [
-   "Long-standing Karimabad establishment with valley views",
-   "Reliable mixed menu (local, Pakistani, continental)",
-   "Central, easy to combine with a bazaar/fort visit"
+   "Rooftop with Rakaposhi and Diran Peak views",
+   "Theme/folk-music nights and seasonal BBQ",
+   "Convenient hotel dining near the bazaar"
   ],
   "cons": [
-   "Hotel restaurant rather than a destination eatery",
-   "No specific star rating verified"
+   "Food rated only average; weakest of the list",
+   "Rigid service hours (breakfast cut-offs reported)"
   ],
-  "take": "A dependable, centrally located fallback in Karimabad when the smaller cafes are full or closed."
+  "take": "Come for the rooftop panorama more than the cooking - fine as a hotel meal, not a food destination.",
+  "verified": "2026-07"
+ },
+ {
+  "name": "Gingerfort Cafe",
+  "area": "Karimabad",
+  "cuisine": "Cafe / Italian-American",
+  "price": "$$",
+  "price_pkr": "500-1200 pp",
+  "must_try": "Coffee, snacks and light bites",
+  "dish_type": "Cafe/Continental",
+  "specialty": "",
+  "rating": 5.0,
+  "reviews": 19,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "coffee & cozy hangout / afternoon-evening",
+  "season": "seasonal - Karimabad cafe, quiet in deep winter",
+  "open": true,
+  "pros": [
+   "Currently the top-rated cafe in Hunza (5.0), rising fast",
+   "Cozy wooden decor with Hunza Valley views",
+   "Reasonable prices, drinks + snacks + fuller bites"
+  ],
+  "cons": [
+   "Only open afternoons/evenings",
+   "Newer, so still a small review base"
+  ],
+  "take": "The freshest addition to Karimabad's cafe scene and the current darling of reviewers - a strong coffee-and-chill alternative to Cafe de Hunza.",
+  "verified": "2026-07"
  }
 ]

@@ -1,202 +1,338 @@
 [
  {
-  "name": "Dawat Restaurant @ Indus Lodges",
-  "area": "River View Rd (riverfront, near Food Street)",
-  "cuisine": "Pakistani / Chinese / BBQ",
-  "price": "$$",
-  "must_try": "Charcoal BBQ platter and grilled trout on the rooftop",
+  "name": "Dawat Restaurant (Indus Lodges)",
+  "area": "Konodas / near Gilgit River, Gilgit",
+  "cuisine": "Pakistani, BBQ, Chinese, Indian",
+  "price": "$$$",
+  "price_pkr": "2,500-5,000",
+  "must_try": "Grilled river trout / mixed BBQ platter",
+  "dish_type": "GB local",
+  "specialty": "Grilled river trout",
   "rating": 4.9,
   "reviews": 355,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "river & mountain view / BBQ / trout",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Rooftop terrace with direct Gilgit River and mountain views",
-   "Consistently rated the highest-scoring sit-down spot in the city",
-   "Fresh food, attentive service noted repeatedly in reviews"
+   "Rooftop with panoramic river-and-mountain views",
+   "Generous family BBQ platters and fresh trout",
+   "Attentive service, tourist and local favorite"
   ],
   "cons": [
-   "Rooftop fills up fast at sunset/dinner rush",
-   "Pricier than the bazaar dhabbas"
+   "Pricier than most Gilgit spots",
+   "Small Tripadvisor sample (30) vs strong Google base"
   ],
-  "take": "The current darling of Gilgit dining  -  go at sunset for the river view and order the BBQ or trout. Book ahead in peak season."
+  "take": "Still the standout special-occasion rooftop in Gilgit; trout and BBQ are the reason to come.",
+  "verified": "2026-07"
  },
  {
   "name": "Gilgit Food Yard",
-  "area": "River View Rd (alongside the Gilgit River)",
-  "cuisine": "Local Gilgiti / Central Asian (Chapli kebab, Mantu, Laghman)",
+  "area": "River View Rd (opp. ETI office), Gilgit",
+  "cuisine": "GB local, Pakistani",
   "price": "$$",
-  "must_try": "Wild-caught trout and chapli kebab",
+  "price_pkr": "1,000-2,200",
+  "must_try": "Chapli kebab; wild-caught trout",
+  "dish_type": "GB local",
+  "specialty": "Wild-caught river trout, mantu, laxman",
   "rating": 4.3,
   "reviews": 269,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "river view / local food / trout",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "River-side setting framed by mountains",
-   "Strong on local specialties like Mantu and Laghman, not just generic Pakistani fare",
-   "Reasonable prices for the quality and location"
+   "Riverside outdoor seating with mountain backdrop",
+   "Reputedly best chapli kebab in town, plus wild trout and mantu",
+   "Fair prices for the setting"
   ],
   "cons": [
-   "Casual outdoor seating  -  less polished than hotel restaurants",
-   "Can get busy in the evening rush"
+   "Can get crowded and slow at dinner peak",
+   "Basic service/ambiance"
   ],
-  "take": "Best pick if you want genuine Gilgiti/Central Asian dishes by the river rather than standard karahi. Order the trout and Mantu."
+  "take": "Best-value spot for genuine Gilgiti plates (trout, mantu, laxman) right by the river.",
+  "verified": "2026-07"
  },
  {
   "name": "Cafe 1972",
-  "area": "The Mall of Gilgit, Sakwar",
-  "cuisine": "BBQ / Chinese / cafe",
+  "area": "1st floor, The Mall of Gilgit",
+  "cuisine": "Cafe/Continental, Chinese, BBQ",
   "price": "$$",
-  "must_try": "BBQ platter; cafe-style mains",
+  "price_pkr": "1,200-2,500",
+  "must_try": "1972 Special Karahi; herbal mountain tea",
+  "dish_type": "Cafe/Continental",
+  "specialty": "",
   "rating": 4.5,
   "reviews": 80,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "ambiance / coffee / date or catch-up",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Modern cafe ambience, popular with younger crowd",
-   "Solid BBQ and Chinese options",
-   "Inside the Mall so easy to combine with errands"
+   "Distinctive mountaineering-heritage decor (old expedition photos, wood interior)",
+   "Strong signature 1972 karahi and herbal teas",
+   "Comfortable indoor cafe experience"
   ],
   "cons": [
-   "Mall location lacks the river/mountain view of riverfront spots",
-   "Smaller review base than the top riverfront names"
+   "Cuisine is mostly generic Chinese/continental, little truly local",
+   "Thin review volume"
   ],
-  "take": "A reliable, modern cafe-restaurant in town for BBQ and a coffee  -  good if you want indoor comfort over a riverside view."
+  "take": "Gilgit's most atmospheric cafe; go for the vibe, coffee and the house karahi rather than local specialties.",
+  "verified": "2026-07"
  },
  {
   "name": "Dumani (Gilgit Serena Hotel)",
-  "area": "Sherullah Baig Rd, Jutial",
-  "cuisine": "Pakistani / Continental / Chinese",
+  "area": "Jutial, Gilgit Serena Hotel",
+  "cuisine": "Continental, Chinese, Pakistani (buffet)",
   "price": "$$$",
-  "must_try": "Local trout and the Pakistani mains; valley-view dining",
+  "price_pkr": "3,500-7,000",
+  "must_try": "Grilled trout; buffet spread",
+  "dish_type": "Pakistani",
+  "specialty": "Grilled trout",
   "rating": 4.5,
   "reviews": 19,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "upscale / buffet / families / trout",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Among the best cooking standards in Gilgit",
-   "Excellent valley views, very clean and hygienic",
-   "Reliable for travelers wanting upscale, safe dining"
+   "Highest hygiene and cooking standard in Gilgit",
+   "Lavish breakfast/lunch/dinner buffets with garden-valley views",
+   "Widely praised grilled trout"
   ],
   "cons": [
-   "Serena prices are the highest in town",
-   "Breakfast buffet criticized as below 5-star standard"
+   "Most expensive option in the city",
+   "Buffet skews international; less street-level local character"
   ],
-  "take": "The splurge option  -  Serena's restaurant is the most polished, hygienic, view-blessed dining in Gilgit, at a price to match."
+  "take": "The reliable premium choice; worth it for the buffet, trout and Serena setting if budget allows.",
+  "verified": "2026-07"
  },
  {
   "name": "Mawaid",
-  "area": "Ghazi Market, near FCNA",
-  "cuisine": "Pakistani / Middle Eastern",
+  "area": "Jutial (Ghazi Market area), Gilgit",
+  "cuisine": "Pakistani, BBQ",
   "price": "$$",
-  "must_try": "Tawa Chicken; Yak Karahi with nan",
-  "rating": 4.9,
+  "price_pkr": "1,000-2,500",
+  "must_try": "Tawa chicken",
+  "dish_type": "GB local",
+  "specialty": "Yak karahi",
+  "rating": 4.5,
   "reviews": 10,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "BBQ / local food / families",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Tawa chicken repeatedly singled out as the best in Gilgit",
-   "Unusual Yak Karahi for adventurous eaters",
-   "Calm ambience, ample parking, quick courteous staff"
+   "Signature tawa chicken and charcoal grills widely praised",
+   "Serves yak karahi, a genuine GB highland specialty",
+   "Good ambiance for families"
   ],
   "cons": [
-   "Small review base so far  -  newer spot",
-   "Tucked in a market, not a scenic riverfront setting"
+   "Small review sample so far",
+   "Can be busy at dinner"
   ],
-  "take": "Go for the tawa chicken and yak karahi  -  locals rate the food highly even if it lacks a view. A rising favorite."
+  "take": "Local go-to for tawa chicken and mixed grill; the yak karahi is a rare authentic GB dish worth ordering.",
+  "verified": "2026-07"
  },
  {
   "name": "Pizza King GB",
-  "area": "FCNA Market, Jutial",
-  "cuisine": "Pizza / fast food",
+  "area": "Multiple outlets (Gilgit city / Jutial)",
+  "cuisine": "Pizza, fast food",
   "price": "$$",
-  "must_try": "Pizza and fast-food combos",
+  "price_pkr": "800-2,000",
+  "must_try": "Chicken tikka / malai boti pizza; zinger burger",
+  "dish_type": "Cafe/Continental",
+  "specialty": "",
   "rating": 4.1,
   "reviews": 858,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "families / fast food / delivery / budget",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "By far the most-reviewed eatery in town  -  a genuine local fast-food institution",
-   "Go-to for families and a break from desi food",
-   "Quick, consistent, kid-friendly"
+   "Most popular pizza/fast-food chain in GB with delivery",
+   "Reasonable deals; tikka and malai boti pizzas well liked",
+   "Reliable family-friendly option"
   ],
   "cons": [
-   "Fast-food quality, not gourmet pizza by city standards",
-   "Busy, functional setting with no view"
+   "Recent complaints of undersized pizzas and cold delivery",
+   "Nothing local; standard fast food"
   ],
-  "take": "Where Gilgit goes when it wants pizza  -  not fine dining, but dependable and the local fast-food default."
+  "take": "The default fast-food fix in Gilgit; fine for families and delivery, not for local flavor.",
+  "verified": "2026-07"
  },
  {
-  "name": "Pakiza Hotel and Restaurant",
-  "area": "Shaheed-e-Millat Rd",
-  "cuisine": "Desi / Pakistani",
+  "name": "Pakiza (Hotel & Restaurant)",
+  "area": "Central Gilgit city",
+  "cuisine": "Pakistani / desi",
   "price": "$",
-  "must_try": "Chicken karahi and tandoori roti",
+  "price_pkr": "500-1,200",
+  "must_try": "Lunch karahi / desi thali",
+  "dish_type": "Pakistani",
+  "specialty": "",
   "rating": 4.1,
   "reviews": 150,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "budget / quick lunch",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Solid no-frills desi food at budget prices",
-   "Central, easy to find on the main road",
-   "Decent karahi and BBQ for the money"
+   "Affordable, filling desi lunches popular with working locals",
+   "Clean dining area, indoor and outdoor seating",
+   "Central and convenient"
   ],
   "cons": [
-   "Basic dining room, nothing scenic",
-   "Standard menu  -  few local specialties"
+   "Some reports of indifferent service/management",
+   "Standard Pakistani fare, no local specialty"
   ],
-  "take": "A dependable budget desi stop in the center of town for karahi and roti without fuss."
+  "take": "Solid budget lunch stop in the city center; value over atmosphere.",
+  "verified": "2026-07"
  },
  {
   "name": "Paradise Hotel & Restaurant",
-  "area": "River View Rd, Sonikot",
-  "cuisine": "Pakistani / Gilgiti",
-  "price": "$$",
-  "must_try": "Chicken Handi",
+  "area": "Near Gilgit River, Jutial / Gilgit",
+  "cuisine": "Gilgiti / Northern Pakistani",
+  "price": "$",
+  "price_pkr": "600-1,500",
+  "must_try": "Chapshuro; trout karahi",
+  "dish_type": "GB local",
+  "specialty": "Chapshuro (Gilgiti meat-filled bread)",
   "rating": 3.8,
   "reviews": 989,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "river view / local food / budget",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "One of the most-reviewed restaurants in Gilgit  -  well established",
-   "Chicken Handi singled out by diners",
-   "Riverfront-area location"
+   "Long-running riverside spot with big local following",
+   "Serves genuine chapshuro and trout karahi",
+   "Cheap and central"
   ],
   "cons": [
-   "Mid-3s rating  -  quality and service reported as inconsistent",
-   "Large operation can feel impersonal at peak times"
+   "Inconsistent food and service (rating only ~3.8)",
+   "Dated, no-frills setting"
   ],
-  "take": "A long-standing, high-traffic name; the Chicken Handi is the pick, but expect uneven consistency given the mixed rating."
+  "take": "Reliable for cheap local chapshuro and river views, but quality is hit-or-miss now.",
+  "verified": "2026-07"
  },
  {
   "name": "Indus Hotel & Restaurant",
-  "area": "Indus Market, Col Hassan Rd, Cinema Bazar",
-  "cuisine": "Local / Pakistani",
-  "price": "$",
-  "must_try": "Karahi and local Pakistani staples",
+  "area": "Gilgit city (rooftop)",
+  "cuisine": "Pakistani, local, Chinese",
+  "price": "$$",
+  "price_pkr": "900-2,000",
+  "must_try": "Local platter / karahi",
+  "dish_type": "Pakistani",
+  "specialty": "",
   "rating": 4.1,
   "reviews": 71,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "rooftop view / families",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Right in the bazaar  -  convenient old-city location",
-   "Honest local Pakistani cooking at low prices",
-   "Good for a quick bite while exploring Cinema Bazar"
+   "Rooftop dining with mountain and river views",
+   "Cooperative staff, comfortable ambiance",
+   "Decent range of local and Pakistani dishes"
   ],
   "cons": [
-   "Basic bazaar setting, no views",
-   "Limited menu range"
+   "Smaller/quieter reputation than top spots",
+   "Cooking is solid but not distinctive"
   ],
-  "take": "A handy bazaar eatery for cheap, straightforward local food when you're in the old city."
+  "take": "Pleasant rooftop option for a relaxed Pakistani meal; steady but not a headliner.",
+  "verified": "2026-07"
  },
  {
   "name": "Sivana",
-  "area": "Food Street, River View Rd (Indus bank)",
-  "cuisine": "Local / Continental / Chinese",
+  "area": "Food Street (riverside), Gilgit",
+  "cuisine": "Pakistani, international",
   "price": "$$",
-  "must_try": "Shinwari-style Mutton Karahi with tandoori roti",
+  "price_pkr": "900-2,200",
+  "must_try": "Shinwari-style mutton karahi",
+  "dish_type": "Pakistani",
+  "specialty": "",
   "rating": 4.2,
   "reviews": 34,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "river view / families",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Rooftop seating right on the river bank",
-   "Shinwari mutton karahi and quick, caring service praised",
-   "Hygienic, family-friendly"
+   "Riverside terrace with sunset views on Food Street",
+   "Quick, friendly service and clean kitchen",
+   "Good Shinwari mutton karahi and mixed menu"
   ],
   "cons": [
-   "Reviewers say the interior/ambiance needs work  -  the river view carries it",
-   "Smaller, less-known than the top riverfront spots"
+   "Modest review volume",
+   "Menu is mostly generic Pakistani/international"
   ],
-  "take": "Come for the riverside rooftop and the Shinwari mutton karahi; the setting outshines the decor."
+  "take": "Pleasant riverside all-rounder on Food Street; the mutton karahi is the pick.",
+  "verified": "2026-07"
+ },
+ {
+  "name": "GB Steakhouse",
+  "area": "Shahrah-e-Quaid-e-Azam, near GB Assembly, Jutial",
+  "cuisine": "Steaks, burgers, Italian",
+  "price": "$$$",
+  "price_pkr": "1,800-4,000",
+  "must_try": "Beef steak",
+  "dish_type": "Cafe/Continental",
+  "specialty": "",
+  "rating": 4.1,
+  "reviews": 277,
+  "rating_src": "Google",
+  "coords": null,
+  "best_for": "steaks / a break from desi food / families",
+  "season": "year-round",
+  "open": true,
+  "pros": [
+   "Effectively the only proper steakhouse in Gilgit",
+   "Praised beef steaks and burgers, quality halal meat",
+   "Separate family spaces and ample parking"
+  ],
+  "cons": [
+   "Mixed reports of cold or inconsistent food (some raw-chicken complaints)",
+   "Non-steak fast-food items underwhelm"
+  ],
+  "take": "Added: the go-to when you want a Western steak/burger; stick to the steaks and it delivers.",
+  "verified": "2026-07"
+ },
+ {
+  "name": "Dera Shinwari Gilgit",
+  "area": "Gilgit city",
+  "cuisine": "Pashtun/Shinwari, Pakistani, BBQ",
+  "price": "$$",
+  "price_pkr": "1,200-2,800",
+  "must_try": "Charsi lamb karahi",
+  "dish_type": "Pakistani",
+  "specialty": "Charsi (Shinwari) lamb karahi",
+  "rating": 5.0,
+  "reviews": 4,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "karahi / BBQ / local food",
+  "season": "year-round",
+  "open": true,
+  "pros": [
+   "Newer 2025 arrival already ranked among Gilgit's top few",
+   "Charsi lamb karahi, Kabuli pulao and BBQ praised as excellent",
+   "Authentic Shinwari cooking, a distinct alternative to hotel dining"
+  ],
+  "cons": [
+   "Very new with limited review history",
+   "Meat-heavy menu, few light/veg options"
+  ],
+  "take": "Added: hot newcomer for Shinwari charsi karahi and BBQ; strong early buzz, worth trying.",
+  "verified": "2026-07"
  }
 ]

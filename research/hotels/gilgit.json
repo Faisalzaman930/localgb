@@ -4,138 +4,207 @@
   "area": "Jutial",
   "type": "Luxury",
   "price": "$$$",
-  "highlight": "garden, mountain views & service",
-  "rating": 4.0,
-  "reviews": 332,
+  "price_pkr": "approx PKR 30,000-50,000",
+  "highlight": "Only true 5-star in Gilgit; garden, mountain views, free airport shuttle",
+  "rating": 4.5,
+  "reviews": 333,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "garden / comfort / near airport",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Ranked #1 of hotels in Gilgit on Tripadvisor; the only true 5-star in the city",
-   "Large landscaped garden, Rakaposhi-facing rooms and free airport shuttle",
-   "Well-trained, attentive staff and impeccable cleanliness (Booking.com 8.8/10 over 178 reviews, with 9.1 cleanliness)"
+   "Consistently spacious, clean rooms and highly-rated breakfast buffet",
+   "Professional, attentive staff and free airport transfer",
+   "Beautiful garden and Karakoram views (couples rate 9.4 on Booking.com)"
   ],
   "cons": [
-   "Easily the most expensive option in town",
-   "Restaurant menu selection is fairly limited"
+   "Rates well above the local market",
+   "Reports of higher pricing quoted to foreign guests"
   ],
-  "take": "The default safe choice for foreign and business travelers who want secure, comfortable, internationally-run lodging. You pay a premium, but nothing else in Gilgit matches it."
+  "take": "Still the top choice for comfort/reliability in Gilgit; premium price is the only real drawback.",
+  "verified": "2026-07"
  },
  {
   "name": "Madina Hotel 2",
   "area": "Airport Rd",
-  "type": "Mid-range",
-  "price": "$$",
-  "highlight": "central courtyard garden & traveler hub",
-  "rating": 4.0,
-  "reviews": 23,
+  "type": "Guesthouse",
+  "price": "$",
+  "price_pkr": "approx PKR 4,000-8,000",
+  "highlight": "Backpacker favourite with a flower-filled garden and helpful long-time owner",
+  "rating": 4.5,
+  "reviews": 26,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "budget / garden / near airport",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Booking.com 8.6/10 over ~109 reviews; rooms set around a peaceful garden courtyard",
-   "Two-minute walk from the airport, ~10 minutes to the bazaar",
-   "Owner Mr. Yaqoob is a long-standing local fixer who helps arrange treks and transport"
+   "Clean, affordable rooms with a tranquil flower garden",
+   "Very friendly, experienced staff and good, cheap food",
+   "Close to airport terminal, ~2.6 km from city centre"
   ],
   "cons": [
-   "A backpacker/traveler hub rather than a polished hotel",
-   "Rooms are simple; don't expect luxury finishes"
+   "Inconsistent hot water reported by some guests",
+   "Occasional power/internet outages"
   ],
-  "take": "Gilgit's classic traveler base camp: clean, friendly, great value and a good place to meet other trekkers and sort onward logistics."
+  "take": "Reliable budget/backpacker pick; manage expectations on utilities but great value and hospitality.",
+  "verified": "2026-07"
  },
  {
   "name": "Grand Continental Hotel",
   "area": "Chinar Bagh",
   "type": "Mid-range",
   "price": "$$",
-  "highlight": "river-view location",
+  "price_pkr": "approx PKR 4,000-6,000",
+  "highlight": "Quiet riverside-adjacent spot with good food and clean, spacious rooms",
   "rating": 4.0,
   "reviews": 257,
   "rating_src": "Google",
+  "coords": null,
+  "best_for": "river / quiet / value",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Strong Google score (4.0 over 257 reviews) for a mid-range property",
-   "On Riverview Road in Chinar Bagh, near the Gilgit River",
+   "Quiet, scenic River View Road location with helpful staff",
+   "Clean, spacious rooms and praised food",
    "Free breakfast, WiFi and parking"
   ],
   "cons": [
-   "Listed as a B&B/inn tier, not a full-service hotel",
-   "Finishes and upkeep are modest"
+   "Small property (~15 rooms), books up fast",
+   "Basic facilities compared with the luxury tier"
   ],
-  "take": "A reliable, well-reviewed mid-range pick in the leafy Chinar Bagh riverside area, good if you want decent comfort without Serena pricing."
+  "take": "Solid mid-range value in Chinar Bagh; good for travellers wanting quiet over glitz.",
+  "verified": "2026-07"
  },
  {
   "name": "PTDC Gilgit Motel",
   "area": "bazaar",
   "type": "Mid-range",
   "price": "$$",
-  "highlight": "large lawn & central location",
-  "rating": 4.0,
-  "reviews": 87,
-  "rating_src": "Google",
+  "price_pkr": "approx PKR 5,000-8,000",
+  "highlight": "Old government motel with a big lawn and a well-regarded restaurant, central location",
+  "rating": 3.6,
+  "reviews": 11,
+  "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "central / garden / dining",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "One of the oldest established hotels in Gilgit, centrally located near the river",
-   "Big lawn/garden and well-regarded restaurant with good dinner and breakfast service",
-   "Garden-view rooms are notably nicer than the standards"
+   "Central downtown location with large lawn/garden",
+   "Good restaurant and dining service",
+   "Jeep-rental and tour services on site"
   ],
   "cons": [
-   "State-run upkeep is inconsistent; some rooms and bathrooms feel dated",
-   "WiFi is unreliable"
+   "Ageing property needs maintenance; some bathroom/bed-bug complaints",
+   "Patchy WiFi outside rooms"
   ],
-  "take": "A dependable, centrally-located government-run motel with a pleasant lawn and good food. Ask specifically for a garden-view room, as quality varies."
+  "take": "Dependable central base with charm and good food, but dated  -  set expectations on upkeep.",
+  "verified": "2026-07"
  },
  {
-  "name": "Riveria Hotel",
+  "name": "Hotel Riveria",
   "area": "Chinar Bagh",
-  "type": "Budget",
-  "price": "$",
-  "highlight": "riverside garden & food",
-  "rating": 3.0,
+  "type": "Mid-range",
+  "price": "$$",
+  "price_pkr": "approx PKR 4,000-7,000",
+  "highlight": "Riverside setting on River View Road with balconies and rooftop terrace",
+  "rating": 3.2,
   "reviews": 10,
   "rating_src": "Tripadvisor",
+  "coords": null,
+  "best_for": "river / views",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Excellent flower-filled garden and a restaurant well known locally for its food",
-   "Sits right by the Gilgit River with rooftop terrace and garden views",
-   "Friendly, helpful staff and genuinely cheap rates"
+   "Scenic location across the Gilgit River, ~0.7 mi from centre",
+   "Spacious rooms with balconies and fireplaces",
+   "Free WiFi and parking"
   ],
   "cons": [
-   "Mixed cleanliness reports: dusty, musty rooms noted by some guests",
-   "Hot water only available on demand roughly 7-10 am; limited heating"
+   "Limited/no heating; hot water only 7-10 am reported",
+   "Rooms and amenities feel dated"
   ],
-  "take": "A cheap, characterful riverside spot loved for its garden and food, but a budget stay with hit-or-miss housekeeping. Best in warmer months."
+  "take": "Location and views are the draw; comfort is hit-or-miss, so best in warmer months.",
+  "verified": "2026-07"
  },
  {
-  "name": "Marco Polo Hotel",
+  "name": "MarcoPolo Hotel",
   "area": "bazaar",
   "type": "Budget",
   "price": "$",
-  "highlight": "low price & central Khomer location",
+  "price_pkr": "approx PKR 3,500-5,000",
+  "highlight": "Cheap, central bazaar-area rooms with basic full amenities",
   "rating": null,
   "reviews": null,
-  "rating_src": null,
+  "rating_src": "Google",
+  "coords": null,
+  "best_for": "budget / central",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Very cheap, around PKR 3,500/night",
-   "Central at Yadgah Chowk, Khomer, close to bazaar amenities",
-   "Rooms include TV, room service, heater/geyser and 24-hour security"
+   "Low nightly rate (~PKR 3,500 avg)",
+   "Spacious rooms with heater/geyser and 24-hr security",
+   "Central Khomar/Yadgar Chowk location"
   ],
   "cons": [
-   "Only ~15 rooms, so it books out fast in peak season",
-   "Basic standard-hotel finishes; no notable views"
+   "Thin recent review base  -  quality hard to verify",
+   "Basic budget standard, no standout features"
   ],
-  "take": "A no-frills, budget-friendly base in central Gilgit. Fine for a functional, cheap night near the bazaar if you book ahead."
+  "take": "Fine no-frills budget option in town; corroborated as open but lightly reviewed  -  verify at booking.",
+  "verified": "2026-07"
  },
  {
-  "name": "North Inn Hotel",
-  "area": "bazaar",
-  "type": "Budget",
-  "price": "$",
-  "highlight": "long-established central inn",
-  "rating": null,
+  "name": "Ramada Resort by Wyndham Gilgit",
+  "area": "Airport Rd",
+  "type": "Luxury",
+  "price": "$$$",
+  "price_pkr": "approx PKR 25,000-40,000",
+  "highlight": "Newest international-brand resort  -  pool, spa/sauna, panoramic valley views (ADDED)",
+  "rating": 9.1,
   "reviews": null,
-  "rating_src": null,
+  "rating_src": "Booking.com",
+  "coords": null,
+  "best_for": "modern amenities / views / spa",
+  "season": "year-round",
+  "open": true,
   "pros": [
-   "Long-running property established in 1987 at Khomer Chowk",
-   "Central location convenient to the bazaar and transport"
+   "Modern rooms with balconies overlooking Gilgit and the mountains",
+   "Full resort facilities: pool, spa, sauna, steam room, gym",
+   "Friendly staff and well-reviewed breakfast (couples rate 9.6)"
   ],
   "cons": [
-   "An older, basic property; expect dated rooms",
-   "Little verifiable recent review data online"
+   "In Sakwar, a short drive out from the city centre",
+   "Priciest new option alongside Serena"
   ],
-  "take": "A veteran budget inn in central Gilgit. Worth considering as a fallback when the better-reviewed budget options are full, but inspect the room first."
+  "take": "The standout newcomer  -  a genuine international-standard resort now rivaling Serena for the top spot.",
+  "verified": "2026-07"
+ },
+ {
+  "name": "Das-e-Basi",
+  "area": "Jutial",
+  "type": "Luxury",
+  "price": "$$$",
+  "price_pkr": null,
+  "highlight": "New 5-star with an outdoor swimming pool and garden (ADDED)",
+  "rating": null,
+  "reviews": null,
+  "rating_src": "Booking.com",
+  "coords": null,
+  "best_for": "pool / garden / upscale",
+  "season": "year-round",
+  "open": true,
+  "pros": [
+   "One of very few Gilgit properties with an outdoor pool",
+   "Modern 5-star build with garden and restaurant",
+   "Frequently surfaced among top current Gilgit picks"
+  ],
+  "cons": [
+   "Still a thin published review record  -  reputation not yet established",
+   "Pricing not consistently published"
+  ],
+  "take": "Promising upscale newcomer worth watching; corroborated as open and praised but review volume is still low.",
+  "verified": "2026-07"
  }
 ]

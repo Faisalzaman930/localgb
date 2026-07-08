@@ -22,7 +22,7 @@ TREKS = [("All Treks","trekking/"),("K2 Base Camp","trekking/k2-base-camp/"),
 PLAN = [("Trip Planner","planner/"),("Best Time to Visit","travel/best-time-to-visit-gb/"),
         ("How to Reach","travel/islamabad-to-hunza/"),("What to Pack","travel/what-to-pack/"),
         ("NOC & Permits","travel/noc-permits-gb/"),("Budget Guide","travel/budget-gb-itinerary/"),
-        ("Road & Pass Status","status/"),("Weather","weather/"),("Tours","tours/"),
+        ("Road & Pass Status","status/"),("Weather","weather/"),("Tours","tours/"),("What to Eat","food/"),
         ("Choosing an Operator","agencies/"),("About GB Guide","about/"),("Contact","contact/"),("Travel Updates","updates/"),("Blog","blog/")]
 
 MARK = ('<svg class="nav-logo-mark" viewBox="0 0 64 50" aria-hidden="true">'

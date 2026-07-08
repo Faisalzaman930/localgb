@@ -13,7 +13,18 @@ def esc(s):
     return re.sub(r'&(?!amp;|lt;|gt;|#\d+;|quot;)', '&amp;', str(s))
 
 import urllib.parse
-def gmaps(name, town): return "https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(f"{name} {town}")
+def gmaps(name, town, coords=None):
+    if coords: return "https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(str(coords))
+    return "https://www.google.com/maps/search/?api=1&query="+urllib.parse.quote(f"{name} {town}")
+def applemaps(name, town, coords=None):
+    if coords: return f"https://maps.apple.com/?ll={urllib.parse.quote(str(coords))}&q="+urllib.parse.quote(name)
+    return "https://maps.apple.com/?q="+urllib.parse.quote(f"{name} {town}")
+def map_links(r, town):
+    co=r.get('coords'); approx='' if co else ' <span style="color:var(--cream-2);font-size:.9em">(approx.)</span>'
+    return (f'<div class="rev-links">📍 <a href="{gmaps(r["name"],town,co)}" target="_blank" rel="nofollow noopener">Google Maps</a> · '
+            f'<a href="{applemaps(r["name"],town,co)}" target="_blank" rel="nofollow noopener">Apple Maps</a>{approx}</div>')
+def is_local(r):
+    return bool(r.get('specialty')) or 'local' in (r.get('dish_type','')).lower() or 'gb ' in (r.get('dish_type','')).lower()
 
 TOWNS = {
  'skardu': dict(
@@ -121,9 +132,14 @@ def build_body(key, rests):
         meta = ''
         if r.get('area'): meta += f'<span>📍 <strong>{esc(r["area"])}</strong></span>'
         if r.get('cuisine'): meta += f'<span>🍴 <strong>{esc(r["cuisine"])}</strong></span>'
-        if r.get('price'): meta += f'<span>💷 <strong>{esc(r["price"])}</strong></span>'
+        pr = esc(r.get('price','')) + (f' &middot; {esc(r["price_pkr"])} PKR' if r.get('price_pkr') else '')
+        if pr.strip(): meta += f'<span>💷 <strong>{pr}</strong></span>'
+        if r.get('best_for'): meta += f'<span>👍 <strong>{esc(r["best_for"])}</strong></span>'
+        if r.get('season') and 'year' not in str(r.get('season','')).lower(): meta += f'<span>🗓 <strong>{esc(r["season"])}</strong></span>'
         meta += rating_chip(r, town)
+        spec = (f'<p style="font-size:.85rem;margin:.2rem 0 .3rem"><span style="background:#F2E7D0;color:var(--gold-dk);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:5px">GB local specialty</span> {esc(r["specialty"])}</p>') if r.get('specialty') else ''
         must = f'<p style="font-size:.9rem;line-height:1.62;color:#2E2A22;margin:.4rem 0 .3rem"><strong>Must try:</strong> {esc(r["must_try"])}</p>' if r.get('must_try') else ''
+        must = spec + must
         pros = r.get('pros') or []
         cons = r.get('cons') or []
         pl = ''.join(f'<li>{esc(x)}</li>' for x in pros)
@@ -135,13 +151,28 @@ def build_body(key, rests):
           '<div class="rev">'
           f'<div class="rev-head"><div><div class="rev-badge">#{i}</div><h3>{esc(r["name"])}</h3>'
           f'<div class="rev-op">{esc(r.get("cuisine",""))}{(" · "+esc(r.get("area",""))) if r.get("area") else ""}</div></div></div>'
-          f'<div class="rev-meta">{meta}</div>\n{must}{pc}{take}'
+          f'<div class="rev-meta">{meta}</div>\n{must}{pc}{take}{map_links(r, town)}'
           '</div>')
     cards = '\n'.join(cards)
+    # "Try something you can't get elsewhere" - unique local dishes + where
+    uniq = [r for r in rests if r.get('specialty')]
+    unique_sec = ''
+    if uniq:
+        li = ''.join(f'<li><strong>{esc(r["specialty"])}</strong> - at {esc(r["name"])}</li>' for r in uniq[:8])
+        unique_sec = (f'<h2>Try something you can\'t get elsewhere</h2>\n'
+                      f'<p>The dishes worth crossing {town} for - genuinely local to Gilgit-Baltistan, not the usual Pakistani menu:</p>\n<ul>{li}</ul>')
     food = (f'<h2>{c["food_h"]}</h2>\n<ul>'+''.join(f'<li>{x}</li>' for x in c['food'])+'</ul>')
     deeper = ('<h2>Plan your trip deeper</h2>\n<ul>'+''.join(f'<li><a href="{h}">{l}</a></li>' for h,l in c['deeper'])+'</ul>')
-    faq = '<h2>FAQ</h2>\n<div class="faq">'+''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])+'</div>'
-    return '\n'.join([paras.strip(), callout, table, winners, cta1, cards, food, deeper, faq])
+    # dynamic specialty FAQ
+    faqs = list(c['faqs'])
+    if uniq:
+        top = uniq[0]
+        faqs.append((f'Where can I try {esc(top["specialty"]).split(",")[0].split("(")[0].strip()} in {town}?',
+                     f'{esc(top["name"])} is the spot locals point to. See the full list above for other genuinely local dishes and where to find them.'))
+    ver = next((r.get('verified') for r in rests if r.get('verified')), None)
+    verline = f'<p style="font-size:.78rem;color:var(--cream-2);margin-top:1.2rem">Ratings and details cross-checked against recent Google/Tripadvisor reviews and local sources{(", last verified "+esc(ver)) if ver else ""}. Always confirm opening hours and prices before you go - small GB kitchens change fast.</p>'
+    faq = '<h2>FAQ</h2>\n<div class="faq">'+''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in faqs)+'</div>'
+    return '\n'.join([paras.strip(), callout, table, winners, cta1, cards, unique_sec, food, deeper, faq, verline])
 
 def schema(key, rests):
     c = TOWNS[key]; town = c['town']
