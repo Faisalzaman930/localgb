@@ -1,0 +1,5 @@
+# Working files: keep out of the public site
+research/
+*.md
+*.py
+__pycache__/
