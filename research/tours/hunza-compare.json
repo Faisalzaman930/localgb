@@ -1,6 +1,30 @@
 {
   "page": "tours/hunza",
+  "place": "Hunza",
   "checked": "20 October 2026",
+  "mix": "cheap road trips from Lahore and Islamabad, flight-based tours, and long overland loops through Chitral and Shandur",
+  "day_groups": [
+    {
+      "label": "5-6 days",
+      "min": 1,
+      "max": 6,
+      "why": "Enough for Karimabad, the forts, Attabad and Khunjerab by road - but expect two long driving days."
+    },
+    {
+      "label": "9-11 days",
+      "min": 7,
+      "max": 11,
+      "why": "Time for Upper Hunza (Passu, Gulmit, Borith) and an add-on such as Fairy Meadows, Ghizer or Chapursan - some fly to Gilgit to save two days of road."
+    },
+    {
+      "label": "14 days or more",
+      "min": 12,
+      "max": 99,
+      "why": "The overland loops through Chitral, the Kalash valleys and Shandur Pass into Hunza."
+    }
+  ],
+  "days_tip": "If you only have 5 days, pick a trip that drives up via Babusar in summer or flies one way - and keep a buffer day for weather.",
+  "footer_html": "<p style=\"font-size:.85rem;color:var(--cream-2)\">Planning a honeymoon? The private couples' packages are compared separately on my <a href=\"/tours/hunza/honeymoon\">Hunza honeymoon packages</a> page.</p>",
   "operators": {
     "ptp": {
       "name": "Pakistan Travel Places",

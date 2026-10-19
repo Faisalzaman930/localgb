@@ -33,7 +33,7 @@ def wa_match(place):
     return f"https://wa.me/{WA}?text={urllib.parse.quote(msg)}"
 
 
-def render(d, place):
+def render(d):
     ops, pk = d["operators"], d["packages"]
     n_ops = len({p["op"] for p in pk})
     rows = "".join(
@@ -43,12 +43,11 @@ def render(d, place):
         f'<td>{e(p["price"])}</td></tr>' for p in pk)
     best = "".join(f'<li><strong>{e(p["best"])}</strong> - <a href="#{p["id"]}">{e(p["name"])}</a> '
                    f'({e(ops[p["op"]]["name"])}, {e(p["price"])})</li>' for p in pk)
-    groups = [("5-6 days", lambda n: n <= 6, "Enough for Karimabad, the forts, Attabad and Khunjerab by road - but expect two long driving days."),
-              ("9-11 days", lambda n: 9 <= n <= 11, "Time for Upper Hunza (Passu, Gulmit, Borith) and an add-on such as Fairy Meadows, Ghizer or Chapursan - some fly to Gilgit to save two days of road."),
-              ("14 days or more", lambda n: n >= 12, "The overland loops through Chitral, the Kalash valleys and Shandur Pass into Hunza.")]
+    place = d["place"]
+    groups = [(g["label"], g["min"], g["max"], g["why"]) for g in d["day_groups"]]
     days_html = "".join(
-        f'<li><strong>{label}:</strong> {why} ' + ", ".join(f'<a href="#{p["id"]}">{e(p["name"])}</a>' for p in pk if test(p["days"])) + '.</li>'
-        for label, test, why in groups if any(test(p["days"]) for p in pk))
+        f'<li><strong>{label}:</strong> {why} ' + ", ".join(f'<a href="#{p["id"]}">{e(p["name"])}</a>' for p in pk if lo <= p["days"] <= hi) + '.</li>'
+        for label, lo, hi, why in groups if any(lo <= p["days"] <= hi for p in pk))
     notes = "".join(f"<p>{e(n)}</p>" for n in d.get("notes", []))
     cards = []
     for i, p in enumerate(pk, 1):
@@ -64,22 +63,22 @@ def render(d, place):
 <div class="rev-links">Full details and booking: {ext(p["url"], op["name"] + " - " + p["name"])}</div>
 </div>''')
     return f'''{START}
-<p>I'm from Gilgit-Baltistan, so here's the honest comparison: <strong>{len(pk)} Hunza tour packages from {n_ops} different operators</strong> - cheap road trips from Lahore and Islamabad, flight-based tours, and long overland loops through Chitral and Shandur. I read every itinerary day by day and rewrote it below in plain words, so you can see exactly where each trip spends its time.</p>
+<p>I'm from Gilgit-Baltistan, so here's the honest comparison: <strong>{len(pk)} {place} tour packages from {n_ops} different operators</strong> - {d["mix"]}. I read every itinerary day by day and rewrote it below in plain words, so you can see exactly where each trip spends its time.</p>
 <div class="callout"><h3>How I compared them</h3><p>Packages, prices and dates were re-checked on each operator's own website on {e(d["checked"])}. Many operators don't publish prices ("on request") - that's normal in Pakistan, and I say so rather than guess. Where an operator says where it's based, I show it.</p>{notes}</div>
-<h2>At a glance - {len(pk)} Hunza packages compared</h2>
+<h2>At a glance - {len(pk)} {place} packages compared</h2>
 <div style="overflow-x:auto"><table class="cmp-table"><thead><tr><th>Package</th><th>Operator</th><th>Days</th><th>Route</th><th>Price</th></tr></thead><tbody>{rows}</tbody></table></div>
 <h2>Which one is best for you?</h2><ul>{best}</ul>
-<h2>How many days do you need for a Hunza tour?</h2><ul>{days_html}</ul><p>If you only have 5 days, pick a trip that drives up via Babusar in summer or flies one way - and keep a buffer day for weather.</p>
+<h2>How many days do you need for a {place} tour?</h2><ul>{days_html}</ul><p>{d["days_tip"]}</p>
 <div class="article-cta"><h3>Not sure which to book? Ask me.</h3><p>Send me your dates, group size and budget on WhatsApp. I'll tell you which of these fits, or match you with a locally owned operator I trust. It's free.</p><a href="{e(wa_match(place))}" class="btn-primary" target="_blank" rel="noopener">Get matched on WhatsApp &rarr;</a></div>
 <h2>The {len(pk)} packages, day by day</h2>
 {chr(10).join(cards)}
-<p style="font-size:.85rem;color:var(--cream-2)">Planning a honeymoon? The private couples' packages are compared separately on my <a href="/tours/hunza/honeymoon">Hunza honeymoon packages</a> page.</p>
+{d.get("footer_html", "")}
 {END}'''
 
 
 def itemlist(d, page):
     return {"@context": "https://schema.org", "@type": "ItemList",
-            "name": f"Hunza tour packages compared ({len(d['packages'])})",
+            "name": f"{d['place']} tour packages compared ({len(d['packages'])})",
             "url": f"{DOMAIN}/{page}",
             "itemListElement": [{"@type": "ListItem", "position": i, "name": p["name"], "url": p["url"]}
                                 for i, p in enumerate(d["packages"], 1)]}
@@ -89,11 +88,11 @@ def main(slug):
     d = json.loads((ROOT / "research" / "tours" / f"{slug}-compare.json").read_text(encoding="utf-8"))
     path = ROOT / d["page"] / "index.html"
     s = path.read_text(encoding="utf-8")
-    block = render(d, slug.replace("-", " ").title())
+    block = render(d)
     if START in s:
         s = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda m: block, s, flags=re.S)
     else:  # first run: replace the old single-operator review section
-        a = s.index("<p>I only include packages")
+        a = s.index(d.get("replace_from", "<p>I only include packages"))
         b = s.index("<h2>What&#x27;s usually included") if "<h2>What&#x27;s usually included" in s else s.index("<h2>What's usually included")
         s = s[:a] + block + "\n" + s[b:]
     # ItemList JSON-LD

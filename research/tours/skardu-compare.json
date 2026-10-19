@@ -1,0 +1,335 @@
+{
+  "page": "tours/skardu",
+  "place": "Skardu",
+  "checked": "20 October 2026",
+  "mix": "a budget road trip from Islamabad, Skardu-based operators' own tours, flight-based blossom and autumn trips, and long routes that cross Deosai into Astore or Hunza",
+  "day_groups": [
+    {
+      "label": "7-9 days",
+      "min": 1,
+      "max": 9,
+      "why": "Enough for Skardu's lakes, Shigar, Khaplu and a Deosai day - fly at least one way or you lose two days on the road each way."
+    },
+    {
+      "label": "10-11 days",
+      "min": 10,
+      "max": 11,
+      "why": "Adds Hushe or Machulo in the Ghanche valleys, or a proper hike like Marsur Rock."
+    },
+    {
+      "label": "15 days or more",
+      "min": 12,
+      "max": 99,
+      "why": "Grand loops that cross Deosai to Astore and Rama Lake, then carry on to Hunza."
+    }
+  ],
+  "days_tip": "Skardu flights use jets (Gilgit's use small turboprops), but they're still weather-dependent - keep a buffer day, and know the road plan B before you go.",
+  "footer_html": "<p style=\"font-size:.85rem;color:var(--cream-2)\">Planning a honeymoon? Couples' packages are compared on my <a href=\"/tours/skardu/honeymoon\">Skardu honeymoon packages</a> page.</p>",
+  "notes": [
+    "Deosai is only open from about mid-June to late September or early October; any trip that crosses it is summer-only. UK travel advice (FCDO) warns against all travel on the KKH between Mansehra and Chilas - trips that fly, or use the Babusar road (open roughly late May to October), avoid it."
+  ],
+  "operators": {
+    "ptp": {
+      "name": "Pakistan Travel Places",
+      "url": "https://pakistantravelplaces.com",
+      "based": "Lahore (per their site)"
+    },
+    "hat": {
+      "name": "Hunza Adventure Tours",
+      "url": "https://hunzaadventuretours.com",
+      "based": "Gulmit, Upper Hunza (per their site)"
+    },
+    "ik": {
+      "name": "Inspire Karakoram",
+      "url": "https://inspirekarakoram.com",
+      "based": "Skardu (per their site)"
+    },
+    "mac": {
+      "name": "Machulo Treks & Tours",
+      "url": "https://machulo.com.pk",
+      "based": "Skardu (per their site)"
+    },
+    "sk": {
+      "name": "Summit Karakoram",
+      "url": "https://www.summitkarakoram.com",
+      "based": "Skardu (per their site)"
+    },
+    "he": {
+      "name": "Hunza Explorers",
+      "url": "https://hunzaexplorers.com",
+      "based": "Ghulkin, Upper Hunza (per their site)"
+    },
+    "bt": {
+      "name": "Baltistan Tours",
+      "url": "https://baltistantours.com",
+      "based": "Skardu (per their site)"
+    }
+  },
+  "packages": [
+    {
+      "id": "ptp-skardu-8",
+      "op": "ptp",
+      "name": "8-Day Skardu, Deosai, Shigar & Khaplu Trip",
+      "url": "https://pakistantravelplaces.com/tour/8-days-trip-to-skardu-deosai-plains-shigar-fort-and-khaplu/",
+      "days": 8,
+      "start": "Islamabad (ends Lahore)",
+      "travel": "Road (via Naran and Babusar)",
+      "price": "from Rs 25,500",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Cheapest way to see all of Skardu's highlights",
+      "itinerary": [
+        "Pre-dawn start from Islamabad; breakfast in Balakot, through Naran and over Babusar to Chilas.",
+        "Chilas to Skardu, stopping where three mountain ranges meet.",
+        "Katpana Lake, Shangrila Resort and Upper Kachura Lake.",
+        "The cold desert and Shigar Fort.",
+        "Khaplu: the palace-fort, Chaqchan Mosque and bazaar, then Manthokha waterfall.",
+        "Deosai National Park via Satpara Lake, with stops at Bara Pani and Kala Pani.",
+        "Skardu back down to Chilas.",
+        "Chilas to Islamabad, and on to Lahore near midnight."
+      ],
+      "good": [
+        "Lowest published price, with all meals listed",
+        "Covers Shigar, Khaplu and Deosai in one trip"
+      ],
+      "watch": [
+        "The Babusar route only runs from about late May to October",
+        "Three of eight days are mostly driving",
+        "\"From\" price - ask what's included and how many share the vehicle"
+      ]
+    },
+    {
+      "id": "he-skardu-blossom",
+      "op": "he",
+      "name": "Skardu Cherry Blossom Tour",
+      "url": "https://hunzaexplorers.com/tour/skardu-cherry-blossom-tour/",
+      "days": 7,
+      "start": "Islamabad",
+      "travel": "Fly both ways",
+      "price": "Not published",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "The shortest Skardu trip, timed for blossom",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Skardu and explore the town.",
+        "Through Shigar's heritage villages on the way to Khaplu.",
+        "Khaplu up to Hushe for cherry and apricot blossom.",
+        "Back to Skardu via Satpara Lake, the sacred rock carvings and the bazaar.",
+        "Fly to Islamabad; sunset in the Margalla Hills.",
+        "Taxila, then departure."
+      ],
+      "good": [
+        "Flights both ways keep it to a week",
+        "Includes Hushe, which most short trips skip"
+      ],
+      "watch": [
+        "Two flight days - ask what happens if a flight is cancelled",
+        "No price on the page"
+      ]
+    },
+    {
+      "id": "mac-skardu",
+      "op": "mac",
+      "name": "Skardu Tour (starts in Skardu)",
+      "url": "https://machulo.com.pk/tour/skardu-tour/",
+      "days": 9,
+      "start": "Skardu",
+      "travel": "Starts and ends at Skardu airport",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Lesser-known Baltistan with a Skardu-based team",
+      "itinerary": [
+        "Arrive at Skardu airport; Upper Kachura Lake and Chunda Valley.",
+        "Katpana cold desert and lake, and the Buddha rock carvings.",
+        "Shigar: Sarfaranga cold desert, Blind Lake and Shigar Fort.",
+        "To Khaplu, stopping at Chocolate Rock where the Indus and Shyok meet.",
+        "Morning hike to the Thoksi Khar viewpoint, then on to Machulo village.",
+        "A short guided walk on the Thagus \"death track\", then back to Skardu.",
+        "Basho Valley's forests and meadows.",
+        "Hike from Hussaini village up to Marsur Rock (about 2-2.5 hours).",
+        "Transfer to Skardu airport."
+      ],
+      "good": [
+        "All nine days are spent in Baltistan - no days lost in Islamabad",
+        "Machulo, Basho and Thagus are rarely in packages"
+      ],
+      "watch": [
+        "Getting to and from Skardu isn't part of the day plan - ask if it's included",
+        "Two hiking days; check they suit your fitness",
+        "No price published"
+      ]
+    },
+    {
+      "id": "ik-skardu",
+      "op": "ik",
+      "name": "Skardu Valley Tour",
+      "url": "https://inspirekarakoram.com/skardu-valley-tour/",
+      "days": 10,
+      "start": "Islamabad",
+      "travel": "Fly both ways",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Active travellers who want a real hike",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Skardu; Buddha Rock and Kharpocho Fort.",
+        "Shigar: a walk to Blind Lake, Shigar Fort and Sarfaranga cold desert.",
+        "A full day out to Manthokha (or Khamosh) waterfall.",
+        "Khaplu: Chaqchan Mosque, Masherbrum views and a trout lunch at Saling.",
+        "Back to Skardu, then a long hike (about 8 hours) up to Marsur Rock.",
+        "Day trip to Deosai National Park.",
+        "Shangrila, Upper Kachura Lake and Choq Valley.",
+        "Fly back to Islamabad.",
+        "Departure."
+      ],
+      "good": [
+        "Skardu-based operator, full board",
+        "Covers both Deosai and a proper hike"
+      ],
+      "watch": [
+        "Flights both ways - keep a buffer day",
+        "The Marsur Rock day is long and high; ask about pace and fitness",
+        "No price published"
+      ]
+    },
+    {
+      "id": "sk-autumn",
+      "op": "sk",
+      "name": "Baltistan Autumn Tour",
+      "url": "https://summitkarakoram.com/trip/baltistan-autumn-tour/",
+      "days": 11,
+      "start": "Islamabad",
+      "travel": "Fly, with a road plan B built in",
+      "price": "From US$1,050 per adult",
+      "meals": "Full board listed",
+      "best": "Autumn colours with a clear flight plan B",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Skardu - or, if the flight fails, drive to Chilas.",
+        "Skardu sightseeing - or drive on from Chilas to Skardu.",
+        "Buddha Rock, Shangrila and Upper Kachura Lake.",
+        "Drive to Shigar Valley.",
+        "Shigar to Khaplu via Ghowari.",
+        "Through Haldi and Kanday to Hushe.",
+        "Hushe back via Khaplu and Kharmang to Skardu.",
+        "Fly to Islamabad - or drive to Chilas.",
+        "Islamabad sightseeing - or drive on to Islamabad.",
+        "Departure."
+      ],
+      "good": [
+        "Published price and a written road back-up for every flight day",
+        "Includes Hushe and the Kharmang road"
+      ],
+      "watch": [
+        "Priced in US dollars for foreign visitors - ask about a local rate"
+      ]
+    },
+    {
+      "id": "bt-deosai",
+      "op": "bt",
+      "name": "Deosai Plateau Tour (camping)",
+      "url": "https://baltistantours.com/tours/cultural-tours-of-baltistan/deosai-plauteau-tour/",
+      "days": 7,
+      "start": "Islamabad",
+      "travel": "Fly in, drive out via Astore",
+      "price": "On request",
+      "meals": "Not listed",
+      "best": "Camping on Deosai",
+      "itinerary": [
+        "Islamabad hotel.",
+        "Fly to Skardu.",
+        "Skardu to Khaplu via Shigar.",
+        "Khaplu up to the Deosai plateau (camp).",
+        "A day on Deosai, camping near Small Deosai.",
+        "Down through Astore to Chilas.",
+        "Chilas back to Islamabad."
+      ],
+      "good": [
+        "Two nights camping on Deosai - the best way to see it",
+        "Skardu-based operator"
+      ],
+      "watch": [
+        "Summer only (Deosai opens about mid-June)",
+        "Nights at around 4,000m are cold - check the tents and sleeping bags",
+        "No price or meals published"
+      ]
+    },
+    {
+      "id": "hat-deosai-fm",
+      "op": "hat",
+      "name": "Skardu, Deosai, Rama Lake & Fairy Meadows Tour",
+      "url": "https://hunzaadventuretours.com/tour/skardu-deosai-plains-rama-lake-and-fairy-meadows-tour/",
+      "days": 15,
+      "start": "Islamabad",
+      "travel": "Road (via Babusar and Deosai)",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "The full loop: Astore, Deosai, Skardu, Hunza and Fairy Meadows",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Over Babusar Pass to Chilas, with lunch in Naran.",
+        "Chilas up to Rama Meadows near Astore.",
+        "Across the Deosai plateau to Khaplu.",
+        "Day trip from Khaplu to Machulo valley.",
+        "Khaplu to Shigar.",
+        "Shigar to Skardu.",
+        "Skardu to Karimabad, Hunza.",
+        "Baltit Fort, Hopper and Attabad Lake, then on to Gulmit.",
+        "Passu, Borith Lake and the suspension bridges.",
+        "Full-day trip to Khunjerab Pass.",
+        "Gulmit to Gilgit via the Rakaposhi viewpoint.",
+        "Jeep from Raikot Bridge and hike up to Fairy Meadows.",
+        "Back down and on to Besham.",
+        "Taxila and Islamabad."
+      ],
+      "good": [
+        "Enters Baltistan across Deosai - a spectacular way in",
+        "Skardu, Hunza and Fairy Meadows in one trip, full board"
+      ],
+      "watch": [
+        "Summer only - it needs both Babusar and Deosai open (about mid-June to September)",
+        "Fifteen days, mostly on the move",
+        "No price published"
+      ]
+    },
+    {
+      "id": "sk-deosai",
+      "op": "sk",
+      "name": "Deosai Plateau Tour (Deosai, Astore and Hunza)",
+      "url": "https://summitkarakoram.com/trip/deosai-plateau-tour/",
+      "days": 17,
+      "start": "Islamabad",
+      "travel": "Road (out via Chilas, back via Babusar)",
+      "price": "From US$1,850 per adult",
+      "meals": "Full board listed",
+      "best": "Deosai and Sheosar Lake, then Astore and Hunza",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Drive to Chilas.",
+        "Chilas to Skardu.",
+        "Buddha Rock, Shangrila and Upper Kachura Lake.",
+        "Up past Satpara Lake onto Deosai.",
+        "A day on Deosai, including Sheosar Lake.",
+        "From Sheosar down to Rama Lake.",
+        "Rama Lake to Astore.",
+        "Astore to Gilgit.",
+        "Gilgit to Karimabad, Hunza.",
+        "Eagle's Nest, Altit and Baltit forts.",
+        "Khunjerab Pass, back to Sost.",
+        "Sost down to Gilgit.",
+        "Over Babusar Top to Naran.",
+        "A day around Naran.",
+        "Taxila Museum and back to Islamabad.",
+        "Departure."
+      ],
+      "good": [
+        "Published price; unhurried Deosai crossing with Sheosar Lake",
+        "Returns over Babusar instead of repeating the KKH"
+      ],
+      "watch": [
+        "The page says 13 days, but the day plan runs 17 - confirm which is right",
+        "Summer only (Deosai and Babusar)",
+        "Priced in US dollars"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "page": "tours/fairy-meadows",
+  "place": "Fairy Meadows",
+  "checked": "20 October 2026",
+  "replace_from": "<p>I pulled the real, current itineraries",
+  "mix": "a short 5-6 day trip just to Fairy Meadows and Nanga Parbat base camp, trips that add Hunza, and long routes that carry on to Rupal, Deosai and Skardu",
+  "day_groups": [
+    {"label": "5-6 days", "min": 1, "max": 6, "why": "Fairy Meadows and the Nanga Parbat base camp walk, with a long drive each way from Islamabad."},
+    {"label": "9-11 days", "min": 7, "max": 11, "why": "Fairy Meadows plus Hunza: Karimabad, Upper Hunza and usually Khunjerab."},
+    {"label": "14 days or more", "min": 12, "max": 99, "why": "Fairy Meadows as part of a grand loop through Astore, Rupal, Deosai and Skardu."}
+  ],
+  "days_tip": "Whatever you book, the jeep track from Raikot Bridge is the hard part - don't do it in rain or after dark, and keep a spare day for weather.",
+  "notes": ["UK travel advice (FCDO) warns against all travel on the KKH between Mansehra and Chilas. In summer the Babusar road (open roughly late May to October) avoids that stretch - check which route your trip uses."],
+  "operators": {
+    "kb":  {"name": "Karakoram Backpackers", "url": "https://karakorambackpackers.com", "based": "Danyore, Gilgit (per their site)"},
+    "he":  {"name": "Hunza Explorers", "url": "https://hunzaexplorers.com", "based": "Ghulkin, Upper Hunza (per their site)"},
+    "hat": {"name": "Hunza Adventure Tours", "url": "https://hunzaadventuretours.com", "based": "Gulmit, Upper Hunza (per their site)"},
+    "ik":  {"name": "Inspire Karakoram", "url": "https://inspirekarakoram.com", "based": "Skardu (per their site)"},
+    "sk":  {"name": "Summit Karakoram", "url": "https://www.summitkarakoram.com", "based": "Skardu (per their site)"}
+  },
+  "packages": [
+    {
+      "id": "kb-fm-5", "op": "kb", "name": "Fairy Meadows 5-Day Tour",
+      "url": "https://www.karakorambackpackers.com/tours/fairy-meadows",
+      "days": 5, "start": "Islamabad or Lahore", "travel": "Road (Babusar when open, otherwise KKH)", "price": "From US$500 per person", "meals": "Breakfast",
+      "best": "The shortest trip, with the jeep included",
+      "itinerary": [
+        "Early start from Islamabad to Chilas, over Babusar Top when it's open.",
+        "Jeep from Raikot Bridge to Tato, then hike up to Fairy Meadows.",
+        "A full day at Fairy Meadows, with an optional hike to Nanga Parbat base camp.",
+        "Hike down, jeep back to Raikot Bridge and drive to Chilas (or Naran).",
+        "Back to Islamabad, continuing to Lahore for those heading south."
+      ],
+      "good": ["Gilgit-based operator that says it focuses on sustainable tourism", "Jeep charges are listed as included"],
+      "watch": ["Breakfast only", "Priced in US dollars for groups of 8-12 - ask about a private or local rate"]
+    },
+    {
+      "id": "he-fm-6", "op": "he", "name": "Fairy Meadows Adventure",
+      "url": "https://hunzaexplorers.com/tour/fairy-meadows/",
+      "days": 6, "start": "Islamabad", "travel": "Road (Babusar when open)", "price": "Not published", "meals": "Breakfast, lunch and dinner",
+      "best": "Fairy Meadows at an easy pace, full board",
+      "itinerary": [
+        "Arrive in Islamabad; Faisal Mosque and the city if time allows.",
+        "Through the Kaghan Valley and over Babusar Pass (if open) to Chilas.",
+        "Raikot Bridge, jeep to Tato and the walk up to Fairy Meadows.",
+        "Hike to Nanga Parbat base camp and back.",
+        "Down to Raikot Bridge and on to Besham or Naran.",
+        "Taxila, Islamabad and departure."
+      ],
+      "good": ["A full day for the base camp hike", "Full board, with drive times and altitudes listed for every day"],
+      "watch": ["No price on the page", "Two long road days each way"]
+    },
+    {
+      "id": "hat-fm-hunza", "op": "hat", "name": "Fairy Meadows, Nanga Parbat Base Camp & Hunza",
+      "url": "https://hunzaadventuretours.com/tour/nanga-parbat-fairy-meadows-trek/",
+      "days": 10, "start": "Islamabad", "travel": "Road (KKH)", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Fairy Meadows plus Hunza in ten days",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Up the KKH to Chilas, stopping at the Shatial rock carvings.",
+        "Jeep from Raikot Bridge and hike up to Fairy Meadows.",
+        "Hike to Nanga Parbat base camp and back.",
+        "Down from Fairy Meadows and on to Karimabad, Hunza.",
+        "Baltit and Altit forts, then via Hopper to Gulmit.",
+        "Passu Glacier, Borith Lake and the suspension bridges.",
+        "Full-day trip to Khunjerab Pass.",
+        "Gulmit to Gilgit (Rakaposhi viewpoint) and on to Besham.",
+        "Taxila Museum and back to Islamabad."
+      ],
+      "good": ["Full base camp day before moving on", "Covers Upper Hunza and Khunjerab too"],
+      "watch": ["Uses the KKH both ways", "No price published"]
+    },
+    {
+      "id": "ik-fm", "op": "ik", "name": "Nanga Parbat & Fairy Meadows",
+      "url": "https://inspirekarakoram.com/nanga-parbat-fairy-meadows/",
+      "days": 9, "start": "Islamabad", "travel": "Road", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Hiking beyond the meadow to Beyal camp",
+      "itinerary": [
+        "Arrive in Islamabad; city sightseeing.",
+        "Long drive (about 12 hours) to Raikot Bridge.",
+        "Jeep from Raikot Bridge to Tato, then up to Fairy Meadows.",
+        "Hike on to Beyal camp (5-6 hours).",
+        "Hike back down to Tato and jeep to Raikot Bridge.",
+        "Drive to Hunza.",
+        "Passu Cones, the Hussaini suspension bridge, a walk on Batura Glacier and Attabad Lake.",
+        "Long drive back to Islamabad.",
+        "Departure."
+      ],
+      "good": ["Skardu-based operator, full board", "Goes past the meadow to Beyal for closer Nanga Parbat views"],
+      "watch": ["Listed as 10 days, but the day plan runs 9 - confirm", "Hunza to Islamabad in one day is a very long drive", "No price published"]
+    },
+    {
+      "id": "he-hunza-fm", "op": "he", "name": "Hunza & Fairy Meadows Tour",
+      "url": "https://hunzaexplorers.com/tour/hunza-fairy-meadows/",
+      "days": 11, "start": "Islamabad", "travel": "Road (KKH, Babusar option on return)", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Fairy Meadows first, then a slow Hunza",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Up the KKH to Chilas.",
+        "Jeep and short hike up to Fairy Meadows.",
+        "Hike to Nanga Parbat base camp and back.",
+        "Down from Fairy Meadows and on to Upper Hunza (Ghulkin, Passu or Gulmit).",
+        "Khunjerab Pass.",
+        "Ghulkin, Passu and Gulmit villages.",
+        "Via Hopper Valley to Karimabad.",
+        "Karimabad and central Hunza's heritage sites.",
+        "South via the KKH or Babusar Pass to Besham or Naran.",
+        "Taxila and an Islamabad city tour."
+      ],
+      "good": ["Gentle pace in Hunza after the hike", "Full board"],
+      "watch": ["No price published"]
+    },
+    {
+      "id": "sk-fm", "op": "sk", "name": "Fairy Meadow Tour (with Rupal, Deosai and Skardu)",
+      "url": "https://summitkarakoram.com/trip/fairy-meadow-tour/",
+      "days": 14, "start": "Islamabad", "travel": "Road via Babusar; fly or drive back from Skardu", "price": "From US$1,450 per adult", "meals": "Full board listed",
+      "best": "Both faces of Nanga Parbat - Fairy Meadows and Rupal",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Drive to Naran.",
+        "Over Babusar Top to Chilas.",
+        "Raikot Bridge, jeep to Tato and the walk up to Fairy Meadows.",
+        "Hike to Beyal and back to Fairy Meadows.",
+        "Down to Astore.",
+        "Astore to Tarashing.",
+        "Hike from Tarashing towards the Rupal face of Nanga Parbat, and back.",
+        "Tarashing to Rama Lake.",
+        "Rama Lake across to Deosai.",
+        "Deosai down to Skardu.",
+        "Buddha Rock, Shangrila and Upper Kachura Lake.",
+        "Fly to Islamabad - or drive to Chilas.",
+        "Islamabad sightseeing - or drive on to Islamabad."
+      ],
+      "good": ["Published price; sees Nanga Parbat from both the north and the Rupal side", "Ends with Deosai and Skardu"],
+      "watch": ["The page says 13 days, but the day plan runs 14 - confirm", "Summer only (Babusar and Deosai)", "Priced in US dollars"]
+    },
+    {
+      "id": "hat-skardu-fm", "op": "hat", "name": "Skardu, Deosai, Rama Lake & Fairy Meadows Tour",
+      "url": "https://hunzaadventuretours.com/tour/skardu-deosai-plains-rama-lake-and-fairy-meadows-tour/",
+      "days": 15, "start": "Islamabad", "travel": "Road (via Babusar and Deosai)", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Fairy Meadows at the end of a Baltistan and Hunza loop",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Over Babusar Pass to Chilas, with lunch in Naran.",
+        "Chilas up to Rama Meadows near Astore.",
+        "Across the Deosai plateau to Khaplu.",
+        "Day trip from Khaplu to Machulo valley.",
+        "Khaplu to Shigar.",
+        "Shigar to Skardu.",
+        "Skardu to Karimabad, Hunza.",
+        "Baltit Fort, Hopper and Attabad Lake, then on to Gulmit.",
+        "Passu, Borith Lake and the suspension bridges.",
+        "Full-day trip to Khunjerab Pass.",
+        "Gulmit to Gilgit via the Rakaposhi viewpoint.",
+        "Jeep from Raikot Bridge and hike up to Fairy Meadows.",
+        "Back down and on to Besham.",
+        "Taxila and Islamabad."
+      ],
+      "good": ["Skardu, Hunza and Fairy Meadows in one trip, full board"],
+      "watch": ["Only one night at Fairy Meadows, so no base camp day", "Summer only", "No price published"]
+    }
+  ]
+}
