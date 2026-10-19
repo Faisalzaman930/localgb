@@ -13,6 +13,13 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AAstore-Valley.jpg"
  },
+ "astore-town-photo.webp": {
+  "title": "The village of Astore in Astore Valley",
+  "artist": "Faisal Iqbal",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AThe_village_of_Astore_in_Astore_Valley.jpg"
+ },
  "attabad-photo.webp": {
   "title": "Attabad Lake,Gojal",
   "artist": "Azeemtariq9293",
@@ -153,6 +160,13 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AMorning_at_Phander_lake.jpg"
  },
+ "ghulkin-photo.webp": {
+  "title": "Ghulkin Glacier",
+  "artist": "Akbar Khan Niazi",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AGhulkin_Glacier.jpg"
+ },
  "gilgit-photo.webp": {
   "title": "Gilgit City and Danyore (19550281023)",
   "artist": "Imran Shah from Islamabad, Pakistan",
@@ -180,6 +194,13 @@
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AGulmit_hunza_best.jpg"
+ },
+ "gupis-photo.webp": {
+  "title": "Gupis lake",
+  "artist": "ADIL RIAZ",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AGupis_lake.jpg"
  },
  "hunza-autumn-photo.webp": {
   "title": "Autumn at hunza ,Pakistan",
@@ -279,6 +300,13 @@
   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
   "source": "https://commons.wikimedia.org/wiki/File%3ASkardu_Katpana_Desert.jpg"
  },
+ "khalti-photo.webp": {
+  "title": "Khalti Lake view",
+  "artist": "Sabahat isha",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AKhalti_Lake_view.jpg"
+ },
  "khaplu-photo.webp": {
   "title": "Khaplu Palace Skardu",
   "artist": "Furqanlw",
@@ -300,12 +328,33 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3APakistan_and_China_Check_Posts_at_Khunjrab_Pass.jpg"
  },
+ "kunhar-photo.webp": {
+  "title": "Rafting At Kunhar River, Naran, Pakistan",
+  "artist": "Mbilalgul",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ARafting_At_Kunhar_River%2C_Naran%2C_Pakistan.jpg"
+ },
  "laila-peak-photo.webp": {
   "title": "Laila peak hushaye valley",
   "artist": "Maqsood aktar",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ALaila_peak_hushaye_valley.jpg"
+ },
+ "lalazar-photo.webp": {
+  "title": "Lalazar LRMEXPORT 83033782688339 20210823 144253798 01",
+  "artist": "Shahzaib Damn Cruze",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ALalazar_LRMEXPORT_83033782688339_20210823_144253798_01.jpg"
+ },
+ "lulusar-photo.webp": {
+  "title": "Lulusar Lake 4",
+  "artist": "Shahzaib Damn Cruze",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ALulusar_Lake_4.jpg"
  },
  "manthokha-photo.webp": {
   "title": "Mantoka Waterfall Skardu",
@@ -321,6 +370,41 @@
   "license_url": "https://creativecommons.org/licenses/by/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AMasherbrum_240629.jpg"
  },
+ "minimarg-photo.webp": {
+  "title": "Near Minimarg",
+  "artist": "Hammad Hassan Baloch",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ANear_Minimarg.jpg"
+ },
+ "misgar-photo.webp": {
+  "title": "Misghar valley Hunza",
+  "artist": "Saeedkakakhel",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AMisghar_valley_Hunza.jpg"
+ },
+ "naltar-forest-photo.webp": {
+  "title": "Naltar River, Naltar, Gilgit Baltistan",
+  "artist": "Thealimir",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ANaltar_River%2C_Naltar%2C_Gilgit_Baltistan.jpg"
+ },
+ "naltar-lower-lake-photo.webp": {
+  "title": "Satrangi lake, Naltar",
+  "artist": "Ammad wiki",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASatrangi_lake%2C_Naltar.jpg"
+ },
+ "naltar-meadows-photo.webp": {
+  "title": "Grazing yalks in Naltar Valley",
+  "artist": "Irfansheen",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AGrazing_yalks_in_Naltar_Valley.jpg"
+ },
  "naltar-photo.webp": {
   "title": "Reflections in Naltar",
   "artist": "Thealimir",
@@ -334,6 +418,20 @@
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ANaltar_Slopy_Lands.jpg"
+ },
+ "naltar-upper-lake-photo.webp": {
+  "title": "Satrangi",
+  "artist": "Art of nj",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASatrangi.jpg"
+ },
+ "naltar-village-photo.webp": {
+  "title": "Naltar Naltar Valley Gilgit View 2",
+  "artist": "Faisal Rafiq",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ANaltar_Naltar_Valley_Gilgit_View_2.jpg"
  },
  "nanga-parbat-photo.webp": {
   "title": "Nanga parbat peak",
@@ -356,6 +454,27 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ARakaposhi_West.jpg"
  },
+ "rama-lake-photo.webp": {
+  "title": "Rama Lake, Astore",
+  "artist": "Muhammad Ishaq",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ARama_Lake%2C_Astore.JPG"
+ },
+ "rama-meadows-photo.webp": {
+  "title": "Astore - Rama lake area",
+  "artist": "Ahtisham mir",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AAstore_-_Rama_lake_area.jpg"
+ },
+ "rupal-photo.webp": {
+  "title": "Rupal Valley, Astore",
+  "artist": "Ahmad Omer",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ARupal_Valley%2C_Astore.jpg"
+ },
  "rush-lake-photo.webp": {
   "title": "Rush Lake, Hooper Valley",
   "artist": "Muhammad Azeem",
@@ -377,12 +496,26 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ASatpara_Lake%2C_Skardu.JPG"
  },
+ "shandur-lake-photo.webp": {
+  "title": "Sunrise at Shandur lake",
+  "artist": "A.A. Rabbani",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASunrise_at_Shandur_lake.jpg"
+ },
  "shandur-photo.webp": {
   "title": "Shandur Polo festival 2016",
   "artist": "Ijlalahmed",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AShandur_Polo_festival_2016.jpg"
+ },
+ "shangrila-photo.webp": {
+  "title": "Shangrila resort skardu",
+  "artist": "S SHER XAMAN photography",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AShangrila_resort_skardu.jpg"
  },
  "sheosar-lake-photo.webp": {
   "title": "Sheosar lake, deosai",
@@ -412,6 +545,13 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AThe_Green_Shimshal_Valley.jpg"
  },
+ "shogran-photo.webp": {
+  "title": "Makra Peak from Siri Paye Meadows Shogran Pakistan 03",
+  "artist": "TalhaImtiaz007",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AMakra_Peak_from_Siri_Paye_Meadows_Shogran_Pakistan_03.jpg"
+ },
  "skardu-airport-photo.webp": {
   "title": "Skardu Runway",
   "artist": "Abbas Shah1",
@@ -440,6 +580,13 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ALukpe_Lao_or_popularly_known_as_Snow_Lake_%2C_is_a_glacial_basin_which_located_at_the_confluence_of_Biafo_and_Hispar_glacier_in_Central_Karakoram_National_Park.jpg"
  },
+ "sost-photo.webp": {
+  "title": "Sost or Sust Gojal Upper Hunza",
+  "artist": "Aamir Fawad",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASost_or_Sust_Gojal_Upper_Hunza.jpg"
+ },
  "spantik-photo.webp": {
   "title": "Golden Peak- View from Eagles Nest",
   "artist": "Akbar Khan Niazi",
@@ -453,6 +600,13 @@
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ASost_at_night.jpg"
+ },
+ "teru-photo.webp": {
+  "title": "Teru, Ghizer NA Pakistan",
+  "artist": "Zafar Iqbal",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ATeru%2C_Ghizer_NA_Pakistan.jpg"
  },
  "trango-photo.webp": {
   "title": "Pakistan Karakoram Trango Towers Baltoro Glacier",

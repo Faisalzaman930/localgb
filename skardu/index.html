@@ -15,10 +15,10 @@
 .attraction-card:hover { transform: scale(1.015); }
 .attraction-card .bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .attraction-card:hover .bg { transform: scale(1.07); }
-.attraction-card .ov { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%); }
 .attraction-card .bd { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
-.attraction-card .bd-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
-.attraction-card .bd-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: var(--cream); line-height: 1.1; }
+.attraction-card .bd-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt,#DEAD68); margin-bottom: 0.25rem; display: block; }
+.attraction-card .bd-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: #fff; line-height: 1.1; }
 .attraction-card .bd-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
 
 .stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
@@ -273,7 +273,7 @@ loadWeather(35.2971, 75.6333);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="bg" style="background:linear-gradient(155deg, #010610 0%, #061222 40%, #0C2040 70%, #143070 100%)"></div>
+        <div class="bg" style="background:url('/images/shangrila-photo.webp') center/cover no-repeat" role="img" aria-label="Shangrila Resort"></div>
         <div class="ov"></div>
         <div class="bd">
           <span class="bd-tag">~20km from Skardu · day entry ~PKR 1,000</span>
@@ -282,7 +282,7 @@ loadWeather(35.2971, 75.6333);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="bg" style="background:linear-gradient(155deg, #040A06 0%, #0C1C0A 40%, #162C10 70%, #244018 100%)"></div>
+        <div class="bg" style="background:url('/images/deosai-photo.webp') center/cover no-repeat" role="img" aria-label="Deosai Plains"></div>
         <div class="ov"></div>
         <div class="bd">
           <span class="bd-tag">4,114m · 2h from Skardu · July-Aug best</span>
@@ -291,7 +291,7 @@ loadWeather(35.2971, 75.6333);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="bg" style="background:linear-gradient(155deg, #080408 0%, #161010 35%, #2A1A18 65%, #402820 100%)"></div>
+        <div class="bg" style="background:url('/images/shigar-fort-photo.webp') center/cover no-repeat" role="img" aria-label="Shigar Fort"></div>
         <div class="ov"></div>
         <div class="bd">
           <span class="bd-tag">45km · heritage hotel ~PKR 21,000-35,000/night</span>
@@ -300,7 +300,7 @@ loadWeather(35.2971, 75.6333);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="bg" style="background:linear-gradient(155deg, #080808 0%, #181510 40%, #2A2218 70%, #403228 100%)"></div>
+        <div class="bg" style="background:url('/images/kharpocho-photo.webp') center/cover no-repeat" role="img" aria-label="Kharpocho Fort"></div>
         <div class="ov"></div>
         <div class="bd">
           <span class="bd-tag">Above Skardu · free · 30-45 min climb</span>
@@ -309,7 +309,7 @@ loadWeather(35.2971, 75.6333);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="bg" style="background:linear-gradient(155deg, #050A10 0%, #0C1828 40%, #162840 70%, #243A58 100%)"></div>
+        <div class="bg" style="background:url('/images/katpana-photo.webp') center/cover no-repeat" role="img" aria-label="Katpana Cold Desert"></div>
         <div class="ov"></div>
         <div class="bd">
           <span class="bd-tag">~10km from Skardu, near the airport · free</span>
@@ -318,7 +318,7 @@ loadWeather(35.2971, 75.6333);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="bg" style="background:linear-gradient(155deg, #040808 0%, #0A1818 40%, #121F20 70%, #1A2E2E 100%)"></div>
+        <div class="bg" style="background:url('/images/satpara-lake-photo.webp') center/cover no-repeat" role="img" aria-label="Satpara Lake"></div>
         <div class="ov"></div>
         <div class="bd">
           <span class="bd-tag">~9km from Skardu · kayaking available</span>
@@ -715,7 +715,7 @@ loadWeather(35.2971, 75.6333);
 <section class="related-links"><div class="related-inner"><h2 class="related-title">Related guides &amp; nearby</h2><div class="related-grid"><a href="/skardu/basho-valley">Basho Valley Skardu - Alpine Meadows Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/chunda-valley">Chunda Valley Skardu - Off-Beat Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/hotels">12 Best Hotels in Skardu 2026 - Reviewed<span>Skardu</span></a><a href="/skardu/how-to-reach">How to Reach Skardu 2026 - Flights & Road Guide - GB Guide<span>Skardu</span></a><a href="/skardu/in-april">Skardu in April 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-august">Skardu in August 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-december">Skardu in December 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-february">Skardu in February 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-january">Skardu in January 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-july">Skardu in July 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-june">Skardu in June 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-march">Skardu in March 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-may">Skardu in May 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-november">Skardu in November 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-october">Skardu in October 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/in-september">Skardu in September 2026: Weather, What's Open &amp; Tips<span>Skardu</span></a><a href="/skardu/kachura-lake">Kachura Lake Skardu - Upper & Lower Lake Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/katpana-desert">Katpana Cold Desert Skardu - Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/khaplu">Khaplu Guide 2026 - Ghanche District - GB Guide<span>Skardu</span></a><a href="/skardu/khaplu-palace">Khaplu Palace Guide 2026 - Serena Heritage Hotel - GB Guide<span>Skardu</span></a><a href="/skardu/kharpocho-fort">Kharpocho Fort Skardu - Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/manthokha-waterfall">Manthokha Waterfall Guide 2026 - Near Khaplu - GB Guide<span>Skardu</span></a><a href="/skardu/restaurants">10 Best Restaurants in Skardu 2026 - Reviewed<span>Skardu</span></a><a href="/skardu/sarfaranga-cold-desert">Sarfaranga Cold Desert Skardu - Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/satpara-lake">Satpara Lake Skardu - Guide & Visiting Tips 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/shangrila-resort">Shangrila Resort Skardu (Heaven on Earth) - Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/sheosar-lake">Sheosar Lake Deosai - Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/shigar-fort">Shigar Fort Skardu - Heritage Hotel Guide 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/shigar-valley">Shigar Valley Skardu - Guide & Day Trip 2026 - GB Guide<span>Skardu</span></a><a href="/skardu/things-to-do">What to Do in Skardu 2026: Best Things to Do &amp; Activities - GB Guide<span>Skardu</span></a><a href="/skardu/tourist-places">Skardu Tourist Places 2026: Best Spots to Visit - GB Guide<span>Skardu</span></a><a href="/skardu/weather">Skardu Weather 2026 - Month by Month Temperature Guide - GB Guide<span>Skardu</span></a><a href="/tours/skardu">4 Best Skardu Tour Packages 2026 - Reviewed<span>Tour</span></a><a href="/deosai">Deosai Plains Guide 2026 - Asia's Second Highest Plateau - GB Guide<span>Deosai</span></a><a href="/trekking/k2-base-camp">9 Best K2 Base Camp Trek Operators 2026 - Reviewed<span>Trek</span></a></div></div></section>
 <!-- RELATED:END -->
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AValleys_and_sighst_-_Skardu_-_Pakistan_3.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Valleys and sighst - Skardu - Pakistan 3</a> by Nedian91, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3AValleys_and_sighst_-_Skardu_-_Pakistan_3.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Valleys and sighst - Skardu - Pakistan 3</a> by Nedian91, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AShangrila_resort_skardu.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Shangrila resort skardu</a> by S SHER XAMAN photography, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ADeosai_Plains_Beauty.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Deosai Plains Beauty</a> by Imran Yaqub, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AShigar_Fort.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Shigar Fort</a> by Shahid Rao, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AKharpocho_Fort_Skardu.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Kharpocho Fort Skardu</a> by Usmaan.khaled, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ASkardu_Katpana_Desert.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Skardu Katpana Desert</a> by Abdullah Shakoor, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ASatpara_Lake%2C_Skardu.JPG" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Satpara Lake, Skardu</a> by Muhammad Ashar, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">

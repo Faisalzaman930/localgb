@@ -15,10 +15,10 @@
 .attraction-card:hover{transform:scale(1.015);}
 .attraction-card .img-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s ease;}
 .attraction-card:hover .img-card-bg{transform:scale(1.07);}
-.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(170deg,transparent 30%,rgba(0,0,0,0.78) 100%);}
+.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%);}
 .attraction-card .img-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.5rem;z-index:2;}
-.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:var(--cream);line-height:1.1;}
-.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem;display:block;}
+.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:#fff;line-height:1.1;}
+.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-lt,#DEAD68);margin-bottom:0.25rem;display:block;}
 .attraction-card .img-card-desc{font-size:0.72rem;color:rgba(240,232,213,0.75);margin-top:0.35rem;line-height:1.45;}
 .stay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:2.5rem;}
 .stay-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:1.8rem;transition:border-color 0.3s;}
@@ -207,7 +207,7 @@ loadWeather(35.3633,74.8533);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A06 0%,#081808 40%,#0E2810 70%,#163418 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/rama-meadows-photo.webp') center/cover no-repeat" role="img" aria-label="Rama Meadows"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,500m · pine forest · wildflowers Jun-Aug</span>
@@ -216,7 +216,7 @@ loadWeather(35.3633,74.8533);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#080606 0%,#181010 35%,#281A18 65%,#3A2420 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/rupal-photo.webp') center/cover no-repeat" role="img" aria-label="Rupal Valley"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~3,550m base camp · tallest mountain face on earth</span>
@@ -225,7 +225,7 @@ loadWeather(35.3633,74.8533);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040808 0%,#081818 35%,#102828 65%,#183C3C 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/minimarg-photo.webp') center/cover no-repeat" role="img" aria-label="Minimarg"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,500m · en route to Deosai · wildflowers</span>
@@ -234,7 +234,7 @@ loadWeather(35.3633,74.8533);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040608 0%,#080C18 35%,#101828 65%,#182638 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/deosai-photo.webp') center/cover no-repeat" role="img" aria-label="Deosai (Astore Side)"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">4,114m · via Chilam · brown bears</span>
@@ -243,7 +243,7 @@ loadWeather(35.3633,74.8533);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060808 0%,#101414 40%,#1C2020 70%,#283030 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/rama-lake-photo.webp') center/cover no-repeat" role="img" aria-label="Rama Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Above Rama · 2h walk · glacier</span>
@@ -252,7 +252,7 @@ loadWeather(35.3633,74.8533);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060606 0%,#121010 35%,#201C18 65%,#302820 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/astore-town-photo.webp') center/cover no-repeat" role="img" aria-label="Astore Town &amp; Bazaar"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Traditional Shina culture · rarely visited</span>
@@ -383,7 +383,7 @@ loadWeather(35.3633,74.8533);
 
 <section class="photo-credits"><div class="photo-credits-inner"><div class="photo-credits-title">Photo credit</div><span class="photo-credit">Hero - Rama, Astore: <a href="https://commons.wikimedia.org/wiki/File:Astore_Rama_Valley.jpg" target="_blank" rel="noopener nofollow">photo</a> by Obaid Hassan Qureshi · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener nofollow">CC BY-SA 4.0</a> · via Wikimedia Commons</span></div></section>
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AAstore-Valley.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Astore-Valley</a> by Syedusman, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3AAstore-Valley.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Astore-Valley</a> by Syedusman, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AAstore_-_Rama_lake_area.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Astore - Rama lake area</a> by Ahtisham mir, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ARupal_Valley%2C_Astore.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Rupal Valley, Astore</a> by Ahmad Omer, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ANear_Minimarg.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Near Minimarg</a> by Hammad Hassan Baloch, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ADeosai_Plains_Beauty.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Deosai Plains Beauty</a> by Imran Yaqub, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ARama_Lake%2C_Astore.JPG" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Rama Lake, Astore</a> by Muhammad Ishaq, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AThe_village_of_Astore_in_Astore_Valley.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">The village of Astore in Astore Valley</a> by Faisal Iqbal, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">

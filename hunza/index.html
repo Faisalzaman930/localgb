@@ -27,10 +27,10 @@
 .attraction-card:hover { transform: scale(1.015); }
 .attraction-card .img-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .attraction-card:hover .img-card-bg { transform: scale(1.07); }
-.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%); }
 .attraction-card .img-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
 .attraction-card .img-card-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: #fff; line-height: 1.1; }
-.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt,#DEAD68); margin-bottom: 0.25rem; display: block; }
 .attraction-card .img-card-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
 
 .stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
@@ -298,7 +298,7 @@ loadWeather(36.3167, 74.65);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #081418 0%, #0E2A38 40%, #1A4A60 75%, #2A7090 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/attabad-photo.webp') center/cover no-repeat" role="img" aria-label="Attabad Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~20-35km north · boat PKR 500-4,000 (confirm)</span>
@@ -307,7 +307,7 @@ loadWeather(36.3167, 74.65);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #0A0A05 0%, #1A1A08 35%, #2E2A10 65%, #4A3E18 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/hunza-photo.webp') center/cover no-repeat" role="img" aria-label="Eagle&#x27;s Nest / Duikar"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~2,900m · jeep PKR 1,500-4,000 return</span>
@@ -316,7 +316,7 @@ loadWeather(36.3167, 74.65);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #100808 0%, #281210 35%, #4A2218 65%, #7A3A28 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/baltit-fort-photo.webp') center/cover no-repeat" role="img" aria-label="Baltit Fort"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Entry ~PKR 2,000 foreigners · AKTC restored</span>
@@ -325,7 +325,7 @@ loadWeather(36.3167, 74.65);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #0A0A10 0%, #161828 40%, #22284A 70%, #303A6E 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/altit-fort-photo.webp') center/cover no-repeat" role="img" aria-label="Altit Fort"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Entry ~PKR 1,600 non-locals · 15 min from Karimabad</span>
@@ -334,7 +334,7 @@ loadWeather(36.3167, 74.65);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #060A08 0%, #0C1810 40%, #162A1A 70%, #203A22 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/khunjerab-photo.webp') center/cover no-repeat" role="img" aria-label="Khunjerab Pass"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">4,693m · Chinese border · open May-Oct</span>
@@ -343,7 +343,7 @@ loadWeather(36.3167, 74.65);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #080410 0%, #160A28 40%, #2A1248 70%, #401A68 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/gojal-photo.webp') center/cover no-repeat" role="img" aria-label="Passu Cones"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~45-47km north · Tupopdan 6,106m</span>
@@ -845,7 +845,7 @@ loadWeather(36.3167, 74.65);
 <section class="related-links"><div class="related-inner"><h2 class="related-title">Related guides &amp; nearby</h2><div class="related-grid"><a href="/hunza/altit-fort">Altit Fort Hunza - Guide, Entry Fee & Visiting Tips 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/attabad-lake">Attabad Lake Hunza - Boat Trips, Camping & Visiting Guide 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/baltit-fort">Baltit Fort Hunza - Entry, Timings & Visiting Guide 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/best-time-to-visit">Best Time to Visit Hunza Valley 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/borith-lake">Borith Lake Passu - Guide, Camping & Batura Glacier 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/chapursan-valley">Chapursan Valley Guide 2026 - Hunza's Wakhan Border Valley - GB Guide<span>Hunza</span></a><a href="/hunza/eagle-nest-viewpoint">Eagle's Nest Viewpoint Hunza (Duikar) - Sunrise Guide 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/food">10 Best Restaurants in Hunza 2026 - Reviewed<span>Hunza</span></a><a href="/hunza/gulmit">Gulmit Village Hunza - Guide, Museum & Guesthouses 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/hotels">10 Best Hotels in Hunza 2026 - Reviewed<span>Hunza</span></a><a href="/hunza/how-to-reach">How to Reach Hunza from Islamabad, Lahore & Karachi 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/in-april">Hunza in April 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-august">Hunza in August 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-autumn">Hunza in Autumn (October) 2026 - Foliage, Harvest & Guide - GB Guide<span>Hunza</span></a><a href="/hunza/in-december">Hunza in December 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-february">Hunza in February 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-january">Hunza in January 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-july">Hunza in July 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-june">Hunza in June 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-march">Hunza in March 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-may">Hunza in May 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-november">Hunza in November 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-october">Hunza in October 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-september">Hunza in September 2026: Weather, What's Open &amp; Tips<span>Hunza</span></a><a href="/hunza/in-winter">Hunza in Winter 2026 - What to Expect, What's Open & Why Go - GB Guide<span>Hunza</span></a><a href="/hunza/karimabad">Karimabad Hunza - Complete Town Guide 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/khunjerab-pass">Khunjerab Pass Guide 2026 - World's Highest Border Crossing - GB Guide<span>Hunza</span></a><a href="/hunza/passu-cones">Passu Cones Hunza - Photography Guide & How to Visit 2026 - GB Guide<span>Hunza</span></a><a href="/hunza/places-to-visit">Places to Visit in Hunza 2026: Best Tourist Spots &amp; Sights - GB Guide<span>Hunza</span></a><a href="/hunza/shimshal-valley">Shimshal Valley Guide 2026 - Pakistan's Most Remote Road Village - GB Guide<span>Hunza</span></a><a href="/hunza/things-to-do">What to Do in Hunza 2026: Best Things to Do &amp; Activities - GB Guide<span>Hunza</span></a><a href="/hunza/weather">Hunza Valley Weather 2026 - Month by Month Guide - GB Guide<span>Hunza</span></a><a href="/tours/hunza">5 Best Hunza Tour Packages 2026 - Reviewed<span>Tour</span></a><a href="/trekking/rakaposhi-base-camp">5 Best Rakaposhi Base Camp Trek Operators 2026<span>Trek</span></a></div></div></section>
 <!-- RELATED:END -->
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AHunza_Valley%2C_view_from_Eagle%27s_Nest.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Hunza Valley, view from Eagle&#x27;s Nest</a> by Alllexxxis, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3AHunza_Valley%2C_view_from_Eagle%27s_Nest.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Hunza Valley, view from Eagle&#x27;s Nest</a> by Alllexxxis, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AAttabad_Lake%2CGojal.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Attabad Lake,Gojal</a> by Azeemtariq9293, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AArchitecture_of_Baltit_fort.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Architecture of Baltit fort</a> by mhtoori, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AAltit_Fort_with_glacier.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Altit Fort with glacier</a> by Asad.aman83, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3APakistan_and_China_Check_Posts_at_Khunjrab_Pass.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Pakistan and China Check Posts at Khunjrab Pass</a> by Waseem Abbas, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3APassu_Cones_from_near_Passu.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Passu Cones from near Passu</a> by Ilm naseer, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">

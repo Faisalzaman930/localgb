@@ -15,10 +15,10 @@
 .attraction-card:hover{transform:scale(1.015);}
 .attraction-card .img-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s ease;}
 .attraction-card:hover .img-card-bg{transform:scale(1.07);}
-.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(170deg,transparent 30%,rgba(0,0,0,0.78) 100%);}
+.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%);}
 .attraction-card .img-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.5rem;z-index:2;}
-.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:var(--cream);line-height:1.1;}
-.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem;display:block;}
+.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:#fff;line-height:1.1;}
+.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-lt,#DEAD68);margin-bottom:0.25rem;display:block;}
 .attraction-card .img-card-desc{font-size:0.72rem;color:rgba(240,232,213,0.75);margin-top:0.35rem;line-height:1.45;}
 .stay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:2.5rem;}
 .stay-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:1.8rem;transition:border-color 0.3s;}
@@ -208,7 +208,7 @@ loadWeather(36.4667,74.8500);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040808 0%,#0C1818 35%,#162828 65%,#223838 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/gulmit-photo.webp') center/cover no-repeat" role="img" aria-label="Gulmit"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">2,480m · Wakhi museum · glacier walk</span>
@@ -217,7 +217,7 @@ loadWeather(36.4667,74.8500);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060606 0%,#121010 35%,#201A18 65%,#302820 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/shimshal-photo.webp') center/cover no-repeat" role="img" aria-label="Shimshal Valley"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,100m · register at checkposts · 3-4h from Passu</span>
@@ -226,7 +226,7 @@ loadWeather(36.4667,74.8500);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A0A 0%,#081A1A 35%,#102A2A 65%,#183C3A 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/khunjerab-photo.webp') center/cover no-repeat" role="img" aria-label="Khunjerab Pass &amp; NP"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">4,693m · Khunjerab NP · Marco Polo sheep</span>
@@ -235,7 +235,7 @@ loadWeather(36.4667,74.8500);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060804 0%,#101408 35%,#1C2010 65%,#2A2E18 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/misgar-photo.webp') center/cover no-repeat" role="img" aria-label="Misgar"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Last Pakistani village on Silk Road · ancient</span>
@@ -244,7 +244,7 @@ loadWeather(36.4667,74.8500);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#050A08 0%,#0C1A10 35%,#142818 65%,#1E3A22 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/ghulkin-photo.webp') center/cover no-repeat" role="img" aria-label="Ghulkin Glacier"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Walk from Ghulkin · easier than Passu</span>
@@ -253,7 +253,7 @@ loadWeather(36.4667,74.8500);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#050808 0%,#0C1618 35%,#142428 65%,#1E3438 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/sost-photo.webp') center/cover no-repeat" role="img" aria-label="Sost Dry Port"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">2,790m · customs &amp; trade post</span>
@@ -387,7 +387,7 @@ loadWeather(36.4667,74.8500);
 
 <section class="photo-credits"><div class="photo-credits-inner"><div class="photo-credits-title">Photo credit</div><span class="photo-credit">Hero - Passu Cones, Gojal: <a href="https://commons.wikimedia.org/wiki/File:Pasu_cones.jpg" target="_blank" rel="noopener nofollow">photo</a> by Mehrunisa Reimoo · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener nofollow">CC BY-SA 4.0</a> · via Wikimedia Commons</span></div></section>
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3APassu_Cones_from_near_Passu.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Passu Cones from near Passu</a> by Ilm naseer, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3APassu_Cones_from_near_Passu.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Passu Cones from near Passu</a> by Ilm naseer, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AGulmit_hunza_best.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Gulmit hunza best</a> by Baqhusbti, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AThe_Green_Shimshal_Valley.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">The Green Shimshal Valley</a> by Shimshalee, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3APakistan_and_China_Check_Posts_at_Khunjrab_Pass.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Pakistan and China Check Posts at Khunjrab Pass</a> by Waseem Abbas, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AMisghar_valley_Hunza.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Misghar valley Hunza</a> by Saeedkakakhel, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AGhulkin_Glacier.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Ghulkin Glacier</a> by Akbar Khan Niazi, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ASost_or_Sust_Gojal_Upper_Hunza.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Sost or Sust Gojal Upper Hunza</a> by Aamir Fawad, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">

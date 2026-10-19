@@ -15,10 +15,10 @@
 .attraction-card:hover { transform: scale(1.015); }
 .attraction-card .img-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .attraction-card:hover .img-card-bg { transform: scale(1.07); }
-.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%); }
 .attraction-card .img-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
 .attraction-card .img-card-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: #fff; line-height: 1.1; }
-.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt,#DEAD68); margin-bottom: 0.25rem; display: block; }
 .attraction-card .img-card-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
 .stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
 .stay-card { background: var(--ink-3); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 1.8rem; transition: border-color 0.3s; }
@@ -231,7 +231,7 @@ loadWeather(36.1833,73.5833);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040C18 0%,#081A2E 40%,#0E2840 70%,#163448 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/ghizer-photo.webp') center/cover no-repeat" role="img" aria-label="Phander Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~2,800m · ~170km from Gilgit · no crowds</span>
@@ -240,7 +240,7 @@ loadWeather(36.1833,73.5833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060808 0%,#101410 35%,#1C241C 65%,#283428 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/shandur-lake-photo.webp') center/cover no-repeat" role="img" aria-label="Shandur Pass"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,734m · world's highest polo ground</span>
@@ -249,7 +249,7 @@ loadWeather(36.1833,73.5833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#050A08 0%,#0C1A10 35%,#162C18 65%,#203C22 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/khalti-photo.webp') center/cover no-repeat" role="img" aria-label="Khalti Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Near Gupis · red cliffs · quiet</span>
@@ -258,7 +258,7 @@ loadWeather(36.1833,73.5833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#080606 0%,#181010 35%,#281818 65%,#382020 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/gupis-photo.webp') center/cover no-repeat" role="img" aria-label="Gupis Fort"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Historic · above Gupis</span>
@@ -267,7 +267,7 @@ loadWeather(36.1833,73.5833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A0A 0%,#081818 35%,#102828 65%,#183838 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/teru-photo.webp') center/cover no-repeat" role="img" aria-label="Teru"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">2,800m · trout fishing · quiet village</span>
@@ -383,7 +383,7 @@ loadWeather(36.1833,73.5833);
 <!-- RELATED:END -->
 <section class="photo-credits"><div class="photo-credits-inner"><div class="photo-credits-title">Photo credit</div><span class="photo-credit">Hero - Phander Lake, Ghizer: <a href="https://commons.wikimedia.org/wiki/File:Phander_Lake%2C_Ghizer%2C_Gilgit%E2%80%93Baltistan.jpg" target="_blank" rel="noopener nofollow">photo</a> by FaizanAhmad · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener nofollow">CC BY-SA 4.0</a> · via Wikimedia Commons</span></div></section>
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AMorning_at_Phander_lake.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Morning at Phander lake</a> by A.A. Rabbani, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3AMorning_at_Phander_lake.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Morning at Phander lake</a> by A.A. Rabbani, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ASunrise_at_Shandur_lake.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Sunrise at Shandur lake</a> by A.A. Rabbani, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AKhalti_Lake_view.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Khalti Lake view</a> by Sabahat isha, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AGupis_lake.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Gupis lake</a> by ADIL RIAZ, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ATeru%2C_Ghizer_NA_Pakistan.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Teru, Ghizer NA Pakistan</a> by Zafar Iqbal, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">

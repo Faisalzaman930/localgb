@@ -15,10 +15,10 @@
 .attraction-card:hover { transform: scale(1.015); }
 .attraction-card .img-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
 .attraction-card:hover .img-card-bg { transform: scale(1.07); }
-.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, transparent 30%, rgba(0,0,0,0.78) 100%); }
+.attraction-card .img-card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%); }
 .attraction-card .img-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.5rem; z-index: 2; }
 .attraction-card .img-card-name { font-family: var(--fd); font-size: 1.35rem; font-weight: 400; color: #fff; line-height: 1.1; }
-.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; display: block; }
+.attraction-card .img-card-tag { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt,#DEAD68); margin-bottom: 0.25rem; display: block; }
 .attraction-card .img-card-desc { font-size: 0.72rem; color: rgba(240,232,213,0.75); margin-top: 0.35rem; line-height: 1.45; }
 
 .stay-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 2.5rem; }
@@ -274,7 +274,7 @@ loadWeather(34.9075, 73.6497);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #040A14 0%, #081A28 40%, #102A40 70%, #183C58 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naran-kaghan-photo.webp') center/cover no-repeat" role="img" aria-label="Lake Saif-ul-Malook"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,224m · 10km from Naran · jeep PKR 5,500 return</span>
@@ -283,7 +283,7 @@ loadWeather(34.9075, 73.6497);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #060808 0%, #101410 35%, #1A2018 65%, #283028 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/babusar-photo.webp') center/cover no-repeat" role="img" aria-label="Babusar Pass"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">4,173m · open ~late May/June-Oct/Nov · daylight only</span>
@@ -292,7 +292,7 @@ loadWeather(34.9075, 73.6497);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #040A08 0%, #081808 35%, #102808 65%, #1C3C10 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/lulusar-photo.webp') center/cover no-repeat" role="img" aria-label="Lulusar Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,440m · 20km north of Naran · quieter</span>
@@ -301,7 +301,7 @@ loadWeather(34.9075, 73.6497);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #070A04 0%, #141808 35%, #222C10 65%, #324020 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/shogran-photo.webp') center/cover no-repeat" role="img" aria-label="Shogran"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">2,362m · forested · views of Malika Parbat</span>
@@ -310,7 +310,7 @@ loadWeather(34.9075, 73.6497);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #060808 0%, #101414 40%, #1A2828 70%, #2A4040 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/lalazar-photo.webp') center/cover no-repeat" role="img" aria-label="Lalazar Plateau"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">3,200m · forested plateau · 20km from Naran</span>
@@ -319,7 +319,7 @@ loadWeather(34.9075, 73.6497);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg, #040608 0%, #080C14 40%, #0E1428 70%, #161E3C 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/kunhar-photo.webp') center/cover no-repeat" role="img" aria-label="Kunhar River"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Trout fishing · river access from town</span>
@@ -646,7 +646,7 @@ loadWeather(34.9075, 73.6497);
 <section class="related-links"><div class="related-inner"><h2 class="related-title">Related guides &amp; nearby</h2><div class="related-grid"><a href="/tours/naran-kaghan">7 Best Naran Kaghan Tour Packages 2026 - Reviewed<span>Tour</span></a><a href="/travel/karakoram-highway">Driving the Karakoram Highway - Stages, Stops & Safety - GB Guide<span>Travel</span></a><a href="/fairy-meadows">Fairy Meadows Guide 2026 - How to Get There, Camping & Base Camp - GB Guide<span>Fairy Meadows</span></a></div></div></section>
 <!-- RELATED:END -->
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3ASaiful_Muluk_A20210605102231003_04.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Saiful Muluk A20210605102231003 04</a> by Shahzaib Damn Cruze, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3ASaiful_Muluk_A20210605102231003_04.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Saiful Muluk A20210605102231003 04</a> by Shahzaib Damn Cruze, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ABabusar_Pass_1.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Babusar Pass 1</a> by Hassanalee, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ALulusar_Lake_4.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Lulusar Lake 4</a> by Shahzaib Damn Cruze, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AMakra_Peak_from_Siri_Paye_Meadows_Shogran_Pakistan_03.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Makra Peak from Siri Paye Meadows Shogran Pakistan 03</a> by TalhaImtiaz007, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ALalazar_LRMEXPORT_83033782688339_20210823_144253798_01.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Lalazar LRMEXPORT 83033782688339 20210823 144253798 01</a> by Shahzaib Damn Cruze, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ARafting_At_Kunhar_River%2C_Naran%2C_Pakistan.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Rafting At Kunhar River, Naran, Pakistan</a> by Mbilalgul, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">

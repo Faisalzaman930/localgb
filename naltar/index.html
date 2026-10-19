@@ -15,10 +15,10 @@
 .attraction-card:hover{transform:scale(1.015);}
 .attraction-card .img-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.6s ease;}
 .attraction-card:hover .img-card-bg{transform:scale(1.07);}
-.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(170deg,transparent 30%,rgba(0,0,0,0.78) 100%);}
+.attraction-card .img-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,8,13,0.15) 0%, rgba(7,8,13,0.62) 32%, rgba(7,8,13,0.9) 100%);}
 .attraction-card .img-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.5rem;z-index:2;}
-.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:var(--cream);line-height:1.1;}
-.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.25rem;display:block;}
+.attraction-card .img-card-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;color:#fff;line-height:1.1;}
+.attraction-card .img-card-tag{font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-lt,#DEAD68);margin-bottom:0.25rem;display:block;}
 .attraction-card .img-card-desc{font-size:0.72rem;color:rgba(240,232,213,0.75);margin-top:0.35rem;line-height:1.45;}
 .stay-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:2.5rem;}
 .stay-card{background:var(--ink-3);border:1px solid rgba(255,255,255,0.05);border-radius:5px;padding:1.8rem;transition:border-color 0.3s;}
@@ -201,7 +201,7 @@ loadWeather(36.1667,74.1833);
     </div>
     <div class="attractions-grid reveal">
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040A14 0%,#081A28 40%,#0E2840 70%,#163450 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naltar-lower-lake-photo.webp') center/cover no-repeat" role="img" aria-label="Lower Naltar Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~3,050m · 45 min walk from village</span>
@@ -210,7 +210,7 @@ loadWeather(36.1667,74.1833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040C08 0%,#081C0C 35%,#102C14 65%,#1C3C1E 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naltar-upper-lake-photo.webp') center/cover no-repeat" role="img" aria-label="Upper Naltar Lake"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">~3,150m · 30 min from lower lake</span>
@@ -219,7 +219,7 @@ loadWeather(36.1667,74.1833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060608 0%,#101018 35%,#1A1A28 65%,#262638 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naltar-ski-photo.webp') center/cover no-repeat" role="img" aria-label="PAF Ski Resort"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Dec-Feb · ski season · lifts operational</span>
@@ -228,7 +228,7 @@ loadWeather(36.1667,74.1833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#040808 0%,#0A1414 35%,#122020 65%,#1A3030 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naltar-forest-photo.webp') center/cover no-repeat" role="img" aria-label="Naltar Forest"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Dense forest · silver fir &amp; blue pine</span>
@@ -237,7 +237,7 @@ loadWeather(36.1667,74.1833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060808 0%,#0E1818 35%,#162A2A 65%,#1E3838 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naltar-meadows-photo.webp') center/cover no-repeat" role="img" aria-label="Upper Naltar Meadows"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Above the lakes · ibex habitat</span>
@@ -246,7 +246,7 @@ loadWeather(36.1667,74.1833);
         </div>
       </div>
       <div class="attraction-card">
-        <div class="img-card-bg" style="background:linear-gradient(155deg,#060606 0%,#101010 35%,#1C1C18 65%,#2A2820 100%)"></div>
+        <div class="img-card-bg" style="background:url('/images/naltar-village-photo.webp') center/cover no-repeat" role="img" aria-label="Naltar Village"></div>
         <div class="img-card-overlay"></div>
         <div class="img-card-body">
           <span class="img-card-tag">Naltar village · Shina and Gujjar culture</span>
@@ -342,7 +342,7 @@ loadWeather(36.1667,74.1833);
 <!-- RELATED:END -->
 <section class="photo-credits"><div class="photo-credits-inner"><div class="photo-credits-title">Photo credit</div><span class="photo-credit">Hero - Naltar Valley: <a href="https://commons.wikimedia.org/wiki/File:Naltar_lake_in_Autumn%2C_Gilgit.JPG" target="_blank" rel="noopener nofollow">photo</a> by Tipuabdul · <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener nofollow">CC BY-SA 3.0</a> · via Wikimedia Commons</span></div></section>
 <!-- PHOTO-CREDITS:START -->
-<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photo: <a href="https://commons.wikimedia.org/wiki/File%3AReflections_in_Naltar.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Reflections in Naltar</a> by Thealimir, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
+<div class="photo-credit" style="max-width:1100px;margin:2.5rem auto 1.5rem;padding:0 1.5rem;font-size:0.72rem;line-height:1.7;color:var(--cream-2,#6B6458);text-align:center">Photos: <a href="https://commons.wikimedia.org/wiki/File%3AReflections_in_Naltar.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Reflections in Naltar</a> by Thealimir, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ASatrangi_lake%2C_Naltar.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Satrangi lake, Naltar</a> by Ammad wiki, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ASatrangi.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Satrangi</a> by Art of nj, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ANaltar_Slopy_Lands.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Naltar Slopy Lands</a> by Mr Haseeb Ahmed, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ANaltar_River%2C_Naltar%2C_Gilgit_Baltistan.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Naltar River, Naltar, Gilgit Baltistan</a> by Thealimir, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AGrazing_yalks_in_Naltar_Valley.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Grazing yalks in Naltar Valley</a> by Irfansheen, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ANaltar_Naltar_Valley_Gilgit_View_2.jpg" rel="noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Naltar Naltar Valley Gilgit View 2</a> by Faisal Rafiq, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:2px">CC BY-SA 4.0</a>, via Wikimedia Commons (resized). <a href="/photo-credits" style="color:inherit;text-decoration:underline;text-underline-offset:2px">All photo credits</a></div>
 <!-- PHOTO-CREDITS:END -->
 <footer>
   <div class="footer-inner">
