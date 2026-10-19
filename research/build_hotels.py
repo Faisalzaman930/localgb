@@ -20,7 +20,7 @@ def map_links(h, town):
             f'<a href="{applemaps(h["name"],town,co)}" target="_blank" rel="nofollow noopener">Apple Maps</a>{approx}</div>')
 
 TOWNS = {
- 'skardu': dict(path='skardu/hotels', town='Skardu', hero='/images/skardu-hero.webp',
+ 'skardu': dict(path='skardu/hotels', town='Skardu', hero='/images/skardu-photo.webp',
    h1="I Checked Out Where to Stay in Skardu - the Best Hotels for 2026",
    crumb_parent=('/skardu','Skardu'),
    intro=["Where you stay in Skardu shapes the trip: a lakeside resort, a town hotel near the bazaar, or a budget guesthouse close to the jeep stands for Deosai and K2. I'm from Gilgit-Baltistan, so here's the honest ranked list for 2026 across every budget.",
@@ -35,7 +35,7 @@ TOWNS = {
          ("Do Skardu hotels have heating and wifi?","The better hotels do, but in shoulder season and at remote/lake properties confirm heating, hot water and backup power before booking."),
          ("When should I book?","For July-September and the Deosai/K2 season, book weeks ahead - the best rooms and rates go early.")],
    deeper=[("/skardu","Skardu Travel Guide"),("/skardu/restaurants","Best Restaurants in Skardu"),("/skardu/tourist-places","Places to Visit in Skardu"),("/tours/skardu","Skardu Tour Packages")]),
- 'hunza': dict(path='hunza/hotels', town='Hunza', hero='/images/hunza-hero.webp',
+ 'hunza': dict(path='hunza/hotels', town='Hunza', hero='/images/hunza-photo.webp',
    h1="I Checked Out Where to Stay in Hunza - the Best Hotels for 2026",
    crumb_parent=('/hunza','Hunza'),
    intro=["Hunza has some of the most spectacular places to stay in Pakistan: heritage hotels by Altit and Baltit forts, view hotels terraced above Karimabad facing Rakaposhi, and friendly guesthouses for a fraction of the price. I'm from Hunza, so here's the honest ranked list for 2026.",
@@ -50,7 +50,7 @@ TOWNS = {
          ("How much is a hotel in Hunza?","Guesthouses are inexpensive; mid-range view hotels are moderate; heritage and luxury properties are the priciest. Marked $ to $$$ in the table."),
          ("When should I book Hunza hotels?","For cherry-blossom (late March-April) and autumn (October), book weeks ahead - those are the busiest, most beautiful windows.")],
    deeper=[("/hunza","Hunza Travel Guide"),("/hunza/karimabad","Karimabad Guide"),("/hunza/food","Best Restaurants in Hunza"),("/tours/hunza","Hunza Tour Packages")]),
- 'gilgit': dict(path='gilgit/hotels', town='Gilgit', hero='/images/gilgit-hero.webp',
+ 'gilgit': dict(path='gilgit/hotels', town='Gilgit', hero='/images/gilgit-photo.webp',
    h1="I Checked Out Where to Stay in Gilgit - the Best Hotels for 2026",
    crumb_parent=('/gilgit','Gilgit'),
    intro=["Most GB trips pass through Gilgit, and it has the region's widest range of places to stay: a polished luxury hotel, reliable mid-range business hotels near the airport, and cheap, central guesthouses. Here's the honest ranked list for 2026.",

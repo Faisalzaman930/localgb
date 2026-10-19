@@ -2,7 +2,7 @@
  "biafo-hispar-snow-lake": {
   "title": "Biafo-Hispar Snow Lake Trek - Guide to the Great Glacial Traverse - GB Guide",
   "desc": "The Biafo-Hispar Snow Lake trek: ~100km across one of the longest glacial systems outside the poles, ~20-22 days, serious mountaineering. Route, season, access.",
-  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-photo.webp",
   "h1": "Biafo-Hispar Snow Lake Traverse",
   "hero_meta": [
    [
@@ -27,7 +27,7 @@
  "concordia": {
   "title": "Concordia Trek - The Throne Room of the Mountain Gods - GB Guide",
   "desc": "The Concordia trek: up the Baltoro Glacier to the confluence below K2, Broad Peak and the Gasherbrums. Route, difficulty, best season and how to start.",
-  "hero": "/images/concordia-hero.webp",
+  "hero": "/images/concordia-photo.webp",
   "h1": "Concordia Trek Guide",
   "hero_meta": [
    [
@@ -52,7 +52,7 @@
  "gondogoro-la": {
   "title": "Gondogoro La Trek - The High Pass from Concordia to Hushe - GB Guide",
   "desc": "The Gondogoro La trek: a technical ~5,585m pass linking Concordia to the Hushe Valley, with rope-and-harness glacier crossing. Route, difficulty, season, access.",
-  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-photo.webp",
   "h1": "Gondogoro La Trek Guide",
   "hero_meta": [
    [
@@ -77,7 +77,7 @@
  "haramosh-kutwal-lake": {
   "title": "Haramosh & Kutwal Lake Trek - Moderate Karakoram Valley Walk - GB Guide",
   "desc": "The Haramosh Kutwal Lake trek: a moderate, scenic walk up the Haramosh valley to an alpine lake beneath Haramosh peak. Route, difficulty, best season and access.",
-  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-photo.webp",
   "h1": "Haramosh & Kutwal Lake",
   "hero_meta": [
    [
@@ -102,7 +102,7 @@
  "hushe-valley": {
   "title": "Hushe Valley - Gateway to Masherbrum, Laila & Gondogoro - GB Guide",
   "desc": "The Hushe Valley: the gateway village for Masherbrum, Laila Peak and the Gondogoro La. Day walks and base-camp treks, difficulty, best season and how to get there.",
-  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-photo.webp",
   "h1": "Hushe Valley Trekking Guide",
   "hero_meta": [
    [
@@ -127,7 +127,7 @@
  "k2-base-camp": {
   "title": "K2 Base Camp Trek 2026 - Complete Guide, Costs & Permits - GB Guide",
   "desc": "K2 Base Camp trek guide: 18-21 days on the Baltoro Glacier, 5,150m, permits, real costs, day-by-day itinerary. The world's greatest wilderness walk.",
-  "hero": "/images/k2-hero.webp",
+  "hero": "/images/k2-photo.webp",
   "h1": "K2 Base Camp Trek Guide",
   "hero_meta": [
    [
@@ -152,7 +152,7 @@
  "karambar-lake": {
   "title": "Karambar Lake Trek - High Alpine Lake on the Ishkoman Edge - GB Guide",
   "desc": "The Karambar Lake trek: a remote high alpine lake (~4,300m) on the Ishkoman/Chitral edge of Gilgit-Baltistan. Route, difficulty, best season and how to access it.",
-  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-photo.webp",
   "h1": "Karambar Lake Trek Guide",
   "hero_meta": [
    [
@@ -177,7 +177,7 @@
  "laila-peak-base-camp": {
   "title": "Laila Peak Base Camp Trek - Hushe Valley Route in Baltistan - GB Guide",
   "desc": "Laila Peak Base Camp trek guide: a moderate multi-day walk from Hushe village in Baltistan to a base camp around 4,200-4,500m beneath the scythe-shaped ~6,096m peak, with honest route, season and acclimatisation advice.",
-  "hero": "/images/hero-k2.jpg",
+  "hero": "/images/baltoro-photo.webp",
   "h1": "Laila Peak Base Camp",
   "hero_meta": [
    [
@@ -202,7 +202,7 @@
  "masherbrum-base-camp": {
   "title": "Masherbrum Base Camp Trek - Hushe Valley Route Guide - GB Guide",
   "desc": "Masherbrum (K1) Base Camp trek guide: a remote multi-day wilderness walk from Hushe village through the Ghanche valleys to base camp around 4,280-4,500m, with route notes and honest hazard advice.",
-  "hero": "/images/masherbrum-hero.webp",
+  "hero": "/images/masherbrum-photo.webp",
   "h1": "Masherbrum Base Camp Trek Guide",
   "hero_meta": [
    [
@@ -227,7 +227,7 @@
  "naltar-lakes": {
   "title": "Naltar Lakes Trek - Blue Lake Day Walk from Gilgit Guide - GB Guide",
   "desc": "Naltar Lakes guide: an easy jeep-and-walk day trek from Gilgit to the vivid Blue Lake and Bashkiri lakes, with route notes, season advice and honest logistics.",
-  "hero": "/images/naltar-hero.webp",
+  "hero": "/images/naltar-photo.webp",
   "h1": "Naltar Lakes Trek Guide",
   "hero_meta": [
    [
@@ -252,7 +252,7 @@
  "nanga-parbat-base-camp": {
   "title": "Nanga Parbat Base Camp Trek - Fairy Meadows & Raikot Route Guide - GB Guide",
   "desc": "Nanga Parbat (Raikot) Base Camp trek guide: the Fairy Meadows side approach to roughly 3,900m, with route notes, an honest word on the Tato jeep road and season advice.",
-  "hero": "/images/nanga-parbat-hero.webp",
+  "hero": "/images/nanga-parbat-photo.webp",
   "h1": "Nanga Parbat Base Camp Trek Guide",
   "hero_meta": [
    [
@@ -277,7 +277,7 @@
  "nanga-parbat-rupal-face": {
   "title": "Nanga Parbat Rupal Face Trek - Tarashing & Astore Route Guide - GB Guide",
   "desc": "Nanga Parbat Rupal Face trek guide: a moderate 3-4 day walk from Tarashing in the Astore valley to the Rupal base camp at roughly 3,550m, beneath the world's highest mountain face.",
-  "hero": "/images/nanga-parbat-hero.webp",
+  "hero": "/images/nanga-parbat-photo.webp",
   "h1": "Nanga Parbat Rupal Face Trek Guide",
   "hero_meta": [
    [
@@ -302,7 +302,7 @@
  "rakaposhi-base-camp": {
   "title": "Rakaposhi Base Camp Trek - Minapin & Hopper Route Guide - GB Guide",
   "desc": "Rakaposhi Base Camp trek guide: an easy-moderate 2-3 day walk from Minapin near Hunza to a meadow at roughly 3,300-3,500m, with camps, route notes and honest season advice.",
-  "hero": "/images/rakaposhi-hero.webp",
+  "hero": "/images/rakaposhi-photo.webp",
   "h1": "Rakaposhi Base Camp Trek Guide",
   "hero_meta": [
    [
@@ -327,7 +327,7 @@
  "rush-lake": {
   "title": "Rush Lake Trek - Hopper & Nagar Route to One of the World's Highest Lakes - GB Guide",
   "desc": "Rush Lake trek guide: a challenging 4-6 day high-altitude walk from Hopper in Nagar past the Barpu Glacier to an alpine lake at roughly 4,700m, with honest route, season and acclimatisation advice.",
-  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-hero.webp",
+  "hero": "https://www.gilgitbaltistanguide.com/images/hunza-photo.webp",
   "h1": "Rush Lake Trek Guide",
   "hero_meta": [
    [
@@ -352,7 +352,7 @@
  "spantik-base-camp": {
   "title": "Spantik (Golden Peak) Base Camp Trek - Arandu & Chogo Lungma Route Guide - GB Guide",
   "desc": "Spantik (Golden Peak) Base Camp trek guide: a remote multi-day wilderness walk from Arandu up the Chogo Lungma Glacier to a high camp above 4,000m, with honest route, season and remoteness notes.",
-  "hero": "/images/spantik-hero.webp",
+  "hero": "/images/spantik-photo.webp",
   "h1": "Spantik (Golden Peak) Base Camp Trek",
   "hero_meta": [
    [

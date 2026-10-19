@@ -3,3 +3,4 @@ research/
 *.md
 *.py
 __pycache__/
+photo_credits.json

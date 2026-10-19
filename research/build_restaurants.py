@@ -28,7 +28,7 @@ def is_local(r):
 
 TOWNS = {
  'skardu': dict(
-   path='skardu/restaurants', town='Skardu', hero='/images/skardu-hero.webp',
+   path='skardu/restaurants', town='Skardu', hero='/images/skardu-photo.webp',
    h1="I Ate Around Skardu to Find Its Best Restaurants for 2026",
    crumb_parent=('/skardu','Skardu'),
    intro=["Skardu's food is its own quiet pleasure: fresh trout from the rivers, slow-cooked Balti karahi, apricot-sweet desserts, and a handful of cafes with a Shangri-La view. I'm from Gilgit-Baltistan, so here is the honest list of where to actually eat in 2026, not a copy-paste of the same three names.",
@@ -44,7 +44,7 @@ TOWNS = {
          ("How much does a meal cost in Skardu?","A simple local meal runs a few hundred rupees; trout and full karahi at a mid-range place cost more. Prices are marked $ (budget) to $$$ (upscale) in the table.")],
    deeper=[("/skardu","Skardu Travel Guide"),("/skardu/hotels","Where to Stay in Skardu"),("/skardu/tourist-places","Places to Visit in Skardu"),("/tours/skardu","Skardu Tour Packages")]),
  'hunza': dict(
-   path='hunza/food', town='Hunza', hero='/images/hunza-hero.webp',
+   path='hunza/food', town='Hunza', hero='/images/hunza-photo.webp',
    h1="I Ate My Way Around Hunza - the Best Restaurants for 2026",
    crumb_parent=('/hunza','Hunza'),
    intro=["Hunza is one of the most rewarding places to eat in Pakistan: organic Hunzai dishes you won't find elsewhere, apricot and walnut everything, and cafes terraced above Karimabad with Rakaposhi filling the window. I'm from Hunza, so this is the real ranked list for 2026.",
@@ -60,7 +60,7 @@ TOWNS = {
          ("How much does eating in Hunza cost?","Chapshuro and cafe plates are inexpensive; a full sit-down meal with a view costs more. The table marks each place $ to $$$.")],
    deeper=[("/hunza","Hunza Travel Guide"),("/hunza/karimabad","Karimabad Guide"),("/hunza/hotels","Where to Stay in Hunza"),("/tours/hunza","Hunza Tour Packages")]),
  'gilgit': dict(
-   path='gilgit/restaurants', town='Gilgit', hero='/images/gilgit-hero.webp',
+   path='gilgit/restaurants', town='Gilgit', hero='/images/gilgit-photo.webp',
    h1="I Tried Gilgit's Restaurants - Here Are the Best for 2026",
    crumb_parent=('/gilgit','Gilgit'),
    intro=["Gilgit is where most GB trips begin or end, and it has the region's broadest spread of food: river trout, hearty Pakistani karahi and BBQ, Hunzai and Shina local dishes, and the chai dhabbas locals actually use. Here is the honest ranked list for 2026.",

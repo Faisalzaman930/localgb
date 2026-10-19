@@ -73,7 +73,7 @@ def build():
           f'<h1 class="article-title">What to Eat in Gilgit-Baltistan: A Local\'s Food Guide</h1>\n'
           f'<div class="article-meta"><span>By <a href="/about"><strong>Faisal Zaman</strong></a></span>'
           f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span><span class="sep">&middot;</span><span>Updated June 2026</span></div></div>\n'
-          f'<figure class="article-figure"><div class="img" style="background-image:url(\'/images/hunza-hero.webp\')" role="img" aria-label="Gilgit-Baltistan food"></div>'
+          f'<figure class="article-figure"><div class="img" style="background-image:url(\'/images/hunza-photo.webp\')" role="img" aria-label="Gilgit-Baltistan food"></div>'
           f'<figcaption>The food of Gilgit-Baltistan - local, organic and unlike anywhere else in Pakistan.</figcaption></figure>\n'
           f'<div class="article-body">\n{build_body()}\n</div></main>')
     out=head+'\n<body>\n'+nav+'\n'+main+'\n'+schema()+'\n\n'+foot

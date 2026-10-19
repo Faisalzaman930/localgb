@@ -28,10 +28,10 @@ WX_SRC = {'hunza':'approximate averages for Karimabad (~2,500m); Gilgit, about 1
           'skardu':'Skardu station averages (Pakistan Meteorological Department)'}
 
 CITY = {
- 'hunza': dict(disp='Hunza', hero='/images/hunza-hero.webp', guide='/hunza', tours='/tours/hunza',
+ 'hunza': dict(disp='Hunza', hero='/images/hunza-photo.webp', guide='/hunza', tours='/tours/hunza',
    hotels='/hunza/hotels', eat='/hunza/food', do='/hunza/things-to-do', best='/hunza/best-time-to-visit',
    weather='/hunza/weather'),
- 'skardu': dict(disp='Skardu', hero='/images/skardu-hero.webp', guide='/skardu', tours='/tours/skardu',
+ 'skardu': dict(disp='Skardu', hero='/images/skardu-photo.webp', guide='/skardu', tours='/tours/skardu',
    hotels='/skardu/hotels', eat='/skardu/restaurants', do='/skardu/things-to-do', best=None,
    weather='/skardu/weather', tourist='/skardu/tourist-places'),
 }
