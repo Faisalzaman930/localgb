@@ -24,7 +24,7 @@
     }
   ],
   "days_tip": "If you only have 5 days, pick a trip that drives up via Babusar in summer or flies one way - and keep a buffer day for weather.",
-  "footer_html": "<p style=\"font-size:.85rem;color:var(--cream-2)\">Planning a honeymoon? The private couples' packages are compared separately on my <a href=\"/tours/hunza/honeymoon\">Hunza honeymoon packages</a> page.</p>",
+  "footer_html": "<p style=\"font-size:.9rem\">More Hunza trips: <a href=\"/tours/hunza/5-days\">5-day Hunza tour itinerary</a> &middot; <a href=\"/tours/hunza/family\">Hunza family tour</a> &middot; <a href=\"/tours/hunza/budget\">cheap Hunza tours on a budget</a> &middot; <a href=\"/tours/hunza/honeymoon\">Hunza honeymoon packages</a></p>",
   "operators": {
     "ptp": {
       "name": "Pakistan Travel Places",

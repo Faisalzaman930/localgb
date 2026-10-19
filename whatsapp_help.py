@@ -85,7 +85,8 @@ def wa_link(topic: str, food: bool = False) -> str:
     return f"https://wa.me/{NUMBER}?text={urllib.parse.quote(msg)}"
 
 
-TOPICS = {"food": "food in Gilgit-Baltistan", "travel/gb-food-guide": "GB food"}
+TOPICS = {"food": "food in Gilgit-Baltistan", "travel/gb-food-guide": "GB food", "tours/hunza/5-days": "5-day Hunza tours",
+          "tours/hunza/family": "Hunza family trips", "tours/hunza/budget": "budget Hunza tours"}
 SECTIONS = {"tours", "agencies", "trekking", "mountains", "things-to-do", "updates", "travel"}
 NAMES = {"gb": "GB", "kkh": "KKH", "noc": "NOC", "k2": "K2", "atm": "ATM", "ptdc": "PTDC"}
 MONTHS = {"january", "february", "march", "april", "may", "june", "july", "august",
