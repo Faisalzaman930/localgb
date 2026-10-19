@@ -35,6 +35,10 @@ HELP_PAGES = [
 ]
 HELP_PREFIXES = ["agencies/", "tours/"]          # every page under these
 HELP_SUFFIXES = ["/hotels"]                      # e.g. hunza/hotels
+# Food pages get a food-first version of the section (and of the button + message)
+FOOD_PAGES = ["food", "hunza/food", "gilgit/restaurants", "skardu/restaurants", "travel/gb-food-guide"]
+# Pages that tease the secret dumpling spot (food pages + Gilgit)
+DUMPLING_PAGES = FOOD_PAGES + ["gilgit", "gilgit/places-to-visit", "gilgit/things-to-do"]
 
 ICON = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">'
         '<path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2'
@@ -57,6 +61,8 @@ STYLE = """<style>
 .wa-help ul{margin:.4rem 0 0;padding:0;list-style:none;color:#4A453D;font-size:.92rem;line-height:1.6}
 .wa-help li{padding-left:1.35rem;position:relative;margin:.3rem 0}
 .wa-help li::before{content:"";position:absolute;left:0;top:.55em;width:.55rem;height:.55rem;border-radius:50%;background:#1A7F4B}
+.wa-help-psst{margin:1rem 0 0!important;padding:.75rem 1rem;border-radius:10px;background:#FFF7E8;border:1px dashed #C8903A;color:#4A3A1E!important;font-size:.93rem!important}
+.wa-help-psst strong{color:#9A6A1F}
 .wa-help-cta{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-align:center}
 .wa-help-btn{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.5rem;border-radius:999px;background:#1A7F4B;color:#fff!important;font:700 .95rem/1 var(--fu,'Manrope',system-ui,sans-serif);text-decoration:none!important;white-space:nowrap;transition:background .2s}
 .wa-help-btn:hover,.wa-help-btn:focus-visible{background:#146B3F}
@@ -67,15 +73,19 @@ STYLE = """<style>
 </style>"""
 
 
-def wa_link(topic: str) -> str:
+def wa_link(topic: str, food: bool = False) -> str:
     if topic:
-        msg = f"Hi Faisal, I was reading your page on {topic} and I'm planning a trip to Gilgit-Baltistan."
+        msg = f"Hi Faisal, I was reading your page on {topic}"
     else:
-        msg = "Hi Faisal, I found GB Guide and I'm planning a trip to Gilgit-Baltistan."
-    msg += " Could you help me with a few questions?"
+        msg = "Hi Faisal, I found GB Guide"
+    if food:
+        msg += ". Where should I eat? (And where's that secret dumpling place in Gilgit?)"
+    else:
+        msg += " and I'm planning a trip to Gilgit-Baltistan. Could you help me with a few questions?"
     return f"https://wa.me/{NUMBER}?text={urllib.parse.quote(msg)}"
 
 
+TOPICS = {"food": "food in Gilgit-Baltistan", "travel/gb-food-guide": "GB food"}
 SECTIONS = {"tours", "agencies", "trekking", "mountains", "things-to-do", "updates", "travel"}
 NAMES = {"gb": "GB", "kkh": "KKH", "noc": "NOC", "k2": "K2", "atm": "ATM", "ptdc": "PTDC"}
 MONTHS = {"january", "february", "march", "april", "may", "june", "july", "august",
@@ -101,6 +111,8 @@ def page_topic(rel: str) -> str:
     """Short topic from the URL: 'hunza/hotels' -> 'Hunza hotels', 'tours/skardu' -> 'Skardu tours'."""
     if not rel:
         return ""
+    if rel in TOPICS:
+        return TOPICS[rel]
     parts = rel.split("/")
     if parts[0] in SECTIONS and len(parts) > 1:
         topic = title(parts[1]) + "".join(sub(x) for x in parts[2:])
@@ -111,23 +123,46 @@ def page_topic(rel: str) -> str:
     return topic
 
 
-def float_block(link: str) -> str:
+def float_block(link: str, food: bool = False) -> str:
+    label = "Where to eat? Ask me" if food else "Free trip help"
+    aria = "Ask Faisal on WhatsApp where to eat" if food else "Free trip help from Faisal on WhatsApp"
     return (f'{FLOAT_START}\n{STYLE}\n<a class="wa-float" href="{html.escape(link)}" target="_blank" rel="noopener" '
-            f'aria-label="Free trip help from Faisal on WhatsApp">{ICON}<span>Free trip help</span></a>\n{FLOAT_END}\n')
+            f'aria-label="{aria}">{ICON}<span>{label}</span></a>\n{FLOAT_END}\n')
 
 
-def help_block(link: str) -> str:
+DUMPLING = ('<p class="wa-help-psst"><strong>Psst:</strong> I know a secret dumpling place in Gilgit. '
+            'It isn\'t on any list, and it won\'t be on this site either. Message me and I\'ll tell you where.</p>')
+
+
+def help_block(link: str, food: bool = False, dumpling: bool = False) -> str:
+    if food:
+        eyebrow = "Hungry? &middot; WhatsApp"
+        heading = "Already in GB and not sure where to eat? Ask me."
+        intro = ("I'm Faisal, from Gilgit-Baltistan. Tell me where you are and what you feel like, and I'll point "
+                 "you to the local spots - the small, family-run places where people here actually eat. Free, no catch.")
+        items = ["What to try: the local dishes most visitors never hear about",
+                 "Where to eat near you right now, whether you're in Gilgit, Hunza, Skardu or on the road",
+                 "Honest picks from someone who actually eats here"]
+    else:
+        eyebrow = "Free help &middot; WhatsApp"
+        heading = "Not sure where to start? Ask me."
+        intro = ("I'm Faisal, from Gilgit-Baltistan. Message me your dates, budget and what you'd love to see, and "
+                 "I'll help you plan it - or, if you're already here, where to go and eat next. It's free - no booking, no catch.")
+        items = ["Honest answers on routes, roads, weather and how many days you really need",
+                 "Tour operators I recommend: locally owned, and more about the valleys than the profit",
+                 "Hotels and guesthouses that support sustainable eco-tourism and the families who run them",
+                 "What to eat and where: local spots, even if you're already in GB and not sure where to go tonight"]
+    lis = "\n".join(f"      <li>{i}</li>" for i in items)
+    psst = f"\n    {DUMPLING}" if dumpling else ""
     return f"""{HELP_START}
 <section class="wa-help" aria-labelledby="wa-help-title"><div class="wa-help-in">
   <div>
-    <div class="wa-help-eyebrow">Free help &middot; WhatsApp</div>
-    <h2 id="wa-help-title">Not sure where to start? Ask me.</h2>
-    <p>I'm Faisal, from Gilgit-Baltistan. Message me your dates, budget and what you'd love to see, and I'll help you plan it. It's free - no booking, no catch.</p>
+    <div class="wa-help-eyebrow">{eyebrow}</div>
+    <h2 id="wa-help-title">{heading}</h2>
+    <p>{intro}</p>
     <ul>
-      <li>Honest answers on routes, roads, weather and how many days you really need</li>
-      <li>Tour operators I recommend: locally owned, and more about the valleys than the profit</li>
-      <li>Hotels and guesthouses that support sustainable eco-tourism and the families who run them</li>
-    </ul>
+{lis}
+    </ul>{psst}
   </div>
   <div class="wa-help-cta">
     <a class="wa-help-btn" href="{html.escape(link)}" target="_blank" rel="noopener">{ICON}Chat on WhatsApp</a>
@@ -140,7 +175,7 @@ def help_block(link: str) -> str:
 
 
 def wants_help(rel: str) -> bool:
-    return (rel in HELP_PAGES or any(rel.startswith(p) for p in HELP_PREFIXES)
+    return (rel in HELP_PAGES or rel in DUMPLING_PAGES or any(rel.startswith(p) for p in HELP_PREFIXES)
             or any(rel.endswith(s) for s in HELP_SUFFIXES))
 
 
@@ -157,15 +192,16 @@ def main():
         rel = "" if rel == "." else rel
         doc = path.read_text(encoding="utf-8")
         new = strip(strip(doc, FLOAT_START, FLOAT_END), HELP_START, HELP_END)
-        link = wa_link(page_topic(rel))
+        food = rel in FOOD_PAGES
+        link = wa_link(page_topic(rel), food)
 
         if "</body>" in new:
-            new = new.replace("</body>", float_block(link) + "</body>", 1)
+            new = new.replace("</body>", float_block(link, food) + "</body>", 1)
             n_float += 1
         if wants_help(rel):
             anchor = next((a for a in ("<!-- EMAIL -->", "<!-- PHOTO-CREDITS:START -->", "<footer>") if a in new), None)
             if anchor:
-                new = new.replace(anchor, help_block(link) + anchor, 1)
+                new = new.replace(anchor, help_block(link, food, rel in DUMPLING_PAGES) + anchor, 1)
                 n_help += 1
         if new != doc:
             path.write_text(new, encoding="utf-8")
