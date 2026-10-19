@@ -1,0 +1,15 @@
+{
+  "_how": "Add operators you personally vouch for. Only entries with \"approved\": true appear on the site. Then run: python3 recommended_operators.py",
+  "operators": [
+    {
+      "name": "EXAMPLE - replace me",
+      "based_in": "Karimabad, Hunza",
+      "regions": ["hunza"],
+      "what": "One line on what they run, e.g. small-group Hunza and Upper Hunza trips with local drivers.",
+      "why": "In your own words: why you trust them.",
+      "whatsapp": "923000000000",
+      "website": "https://example.com",
+      "approved": false
+    }
+  ]
+}

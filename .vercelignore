@@ -4,3 +4,4 @@ research/
 *.py
 __pycache__/
 photo_credits.json
+recommended_operators.json
