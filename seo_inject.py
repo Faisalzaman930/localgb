@@ -233,6 +233,12 @@ def build_block(rel_dir: str, title: str, desc: str) -> str:
             "logo": og_url,
             "description": "Honest, on-the-ground travel guides to Gilgit-Baltistan, "
                            "written by a local — plus a free trip planner.",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer support",
+                "telephone": "+92-311-1915550",
+                "description": "Free trip-planning help on WhatsApp",
+            },
             "founder": {
                 "@type": "Person",
                 "@id": f"{DOMAIN}/#faisal",
