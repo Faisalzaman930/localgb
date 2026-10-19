@@ -20,6 +20,20 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AAttabad_Lake%2CGojal.jpg"
  },
+ "babusar-photo.webp": {
+  "title": "Babusar Pass 1",
+  "artist": "Hassanalee",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ABabusar_Pass_1.jpg"
+ },
+ "babusar-road-photo.webp": {
+  "title": "Babusar Pass to Chillas",
+  "artist": "Muhammad Ishaq",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ABabusar_Pass_to_Chillas.JPG"
+ },
  "bagrot-valley-photo.webp": {
   "title": "Bagrot valley",
   "artist": "Nadia khan Ali bouq",
@@ -41,6 +55,13 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ABaltoro.jpg"
  },
+ "basho-photo.webp": {
+  "title": "Basho Valley",
+  "artist": "Uzair889",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ABasho_Valley.jpg"
+ },
  "blossom-photo.webp": {
   "title": "Cherry Blossom, Hunza 7",
   "artist": "Maria.khanum1983",
@@ -54,6 +75,34 @@
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ABorith_lake.JPG"
+ },
+ "broad-peak-photo.webp": {
+  "title": "Broad Peak",
+  "artist": "Flothias at English Wikipedia",
+  "license": "Public domain",
+  "license_url": "",
+  "source": "https://commons.wikimedia.org/wiki/File%3ABroad_Peak.JPG"
+ },
+ "camping-photo.webp": {
+  "title": "Shyoser Lake Deosai",
+  "artist": "Hamid Baltistani",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AShyoser_Lake_Deosai.JPG"
+ },
+ "chapursan-photo.webp": {
+  "title": "Unnamed Peak, Chupurson Valley",
+  "artist": "Ahmad Nafees Torwali",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AUnnamed_Peak%2C_Chupurson_Valley.jpg"
+ },
+ "chitral-photo.webp": {
+  "title": "Golian Valley Chitral Pakistan",
+  "artist": "AadilAbbas",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AGolian_Valley_Chitral_Pakistan.jpg"
  },
  "concordia-photo.webp": {
   "title": "K2 from Concordia",
@@ -69,12 +118,33 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ADeosai_Plains_Beauty.jpg"
  },
+ "fairymeadows-camp-photo.webp": {
+  "title": "Bayal Camp, Nanga Parbat, Gilgit Baltistan-Pakistan",
+  "artist": "Sheraly28",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ABayal_Camp%2C_Nanga_Parbat%2C_Gilgit_Baltistan-Pakistan.jpg"
+ },
  "fairymeadows-photo.webp": {
   "title": "Nanga Parbat (Fairy Meadows)",
   "artist": "Zaki Khan89",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ANanga_Parbat_%28Fairy_Meadows%29.jpg"
+ },
+ "food-photo.webp": {
+  "title": "Brumhanik",
+  "artist": "Khalid Mahmood",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ABrumhanik.JPG"
+ },
+ "gasherbrum-photo.webp": {
+  "title": "Gasherbrum group",
+  "artist": "Florian Ederer",
+  "license": "CC BY 2.5",
+  "license_url": "https://creativecommons.org/licenses/by/2.5",
+  "source": "https://commons.wikimedia.org/wiki/File%3AGasherbrum_group.JPG"
  },
  "ghizer-photo.webp": {
   "title": "Morning at Phander lake",
@@ -97,12 +167,26 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3APassu_Cones_from_near_Passu.jpg"
  },
+ "gondogoro-photo.webp": {
+  "title": "Gondogoro Pass 2019",
+  "artist": "Sonic Velvet",
+  "license": "Public domain",
+  "license_url": "",
+  "source": "https://commons.wikimedia.org/wiki/File%3AGondogoro_Pass_2019.jpg"
+ },
  "gulmit-photo.webp": {
   "title": "Gulmit hunza best",
   "artist": "Baqhusbti",
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AGulmit_hunza_best.jpg"
+ },
+ "hunza-autumn-photo.webp": {
+  "title": "Autumn at hunza ,Pakistan",
+  "artist": "Tariqsulemani",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AAutumn_at_hunza_%2CPakistan.jpg"
  },
  "hunza-photo.webp": {
   "title": "Hunza Valley, view from Eagle's Nest",
@@ -111,12 +195,47 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AHunza_Valley%2C_view_from_Eagle%27s_Nest.jpg"
  },
+ "hunza-winter-photo.webp": {
+  "title": "Hunza Valley in winters",
+  "artist": "Leo0858",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AHunza_Valley_in_winters.jpg"
+ },
+ "hushe-photo.webp": {
+  "title": "Mashaburum Peak from Hushe",
+  "artist": "Zafaryaab",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AMashaburum_Peak_from_Hushe.jpg"
+ },
+ "ishkoman-photo.webp": {
+  "title": "Ishkoman Valley in summer",
+  "artist": "EAhmadNawaz",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AIshkoman_Valley_in_summer.jpg"
+ },
+ "jeep-photo.webp": {
+  "title": "Jeeps track of fairy meadows",
+  "artist": "Shahbaz Aslam",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AJeeps_track_of_fairy_meadows.jpg"
+ },
  "k2-photo.webp": {
   "title": "K2 2006b",
   "artist": "Svy123",
   "license": "CC BY 3.0",
   "license_url": "https://creativecommons.org/licenses/by/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AK2_2006b.jpg"
+ },
+ "kachura-photo.webp": {
+  "title": "Upper Kachura Lake, Skardu",
+  "artist": "Hammadnasim",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AUpper_Kachura_Lake%2C_Skardu.JPG"
  },
  "karakoram-highway-photo.webp": {
   "title": "Rakaposhi from Karakoram Highway",
@@ -132,6 +251,13 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ABaltoro_glacier_from_air.jpg"
  },
+ "karambar-photo.webp": {
+  "title": "Karamber lake",
+  "artist": "Talha Mahin Mir",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AKaramber_lake.jpg"
+ },
  "kargah-buddha-photo.webp": {
   "title": "Kargah Buddha, Gilgit",
   "artist": "Mountainsoil",
@@ -139,12 +265,54 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AKargah_Buddha%2C_Gilgit.jpg"
  },
+ "karimabad-photo.webp": {
+  "title": "Town of Hunza",
+  "artist": "Obaid Hassan Qureshi",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ATown_of_Hunza.jpg"
+ },
+ "katpana-photo.webp": {
+  "title": "Skardu Katpana Desert",
+  "artist": "Abdullah Shakoor",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASkardu_Katpana_Desert.jpg"
+ },
  "khaplu-photo.webp": {
   "title": "Khaplu Palace Skardu",
   "artist": "Furqanlw",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AKhaplu_Palace_Skardu.jpg"
+ },
+ "kharpocho-photo.webp": {
+  "title": "Kharpocho Fort Skardu",
+  "artist": "Usmaan.khaled",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AKharpocho_Fort_Skardu.jpg"
+ },
+ "khunjerab-photo.webp": {
+  "title": "Pakistan and China Check Posts at Khunjrab Pass",
+  "artist": "Waseem Abbas",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3APakistan_and_China_Check_Posts_at_Khunjrab_Pass.jpg"
+ },
+ "laila-peak-photo.webp": {
+  "title": "Laila peak hushaye valley",
+  "artist": "Maqsood aktar",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ALaila_peak_hushaye_valley.jpg"
+ },
+ "manthokha-photo.webp": {
+  "title": "Mantoka Waterfall Skardu",
+  "artist": "Muhammad Ashar",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AMantoka_Waterfall_Skardu.jpg"
  },
  "masherbrum-photo.webp": {
   "title": "Masherbrum 240629",
@@ -159,6 +327,13 @@
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AReflections_in_Naltar.jpg"
+ },
+ "naltar-ski-photo.webp": {
+  "title": "Naltar Slopy Lands",
+  "artist": "Mr Haseeb Ahmed",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ANaltar_Slopy_Lands.jpg"
  },
  "nanga-parbat-photo.webp": {
   "title": "Nanga parbat peak",
@@ -181,6 +356,20 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ARakaposhi_West.jpg"
  },
+ "rush-lake-photo.webp": {
+  "title": "Rush Lake, Hooper Valley",
+  "artist": "Muhammad Azeem",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ARush_Lake%2C_Hooper_Valley.jpg"
+ },
+ "sarfaranga-photo.webp": {
+  "title": "A Road thru the desert",
+  "artist": "Shahid Rao",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AA_Road_thru_the_desert.jpg"
+ },
  "satpara-lake-photo.webp": {
   "title": "Satpara Lake, Skardu",
   "artist": "Muhammad Ashar",
@@ -188,12 +377,26 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ASatpara_Lake%2C_Skardu.JPG"
  },
+ "shandur-photo.webp": {
+  "title": "Shandur Polo festival 2016",
+  "artist": "Ijlalahmed",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AShandur_Polo_festival_2016.jpg"
+ },
  "sheosar-lake-photo.webp": {
   "title": "Sheosar lake, deosai",
   "artist": "Uzair889",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ASheosar_lake%2C_deosai.jpg"
+ },
+ "shigar-fort-photo.webp": {
+  "title": "Shigar Fort",
+  "artist": "Shahid Rao",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3AShigar_Fort.jpg"
  },
  "shigar-valley-photo.webp": {
   "title": "Shigar Valley, District Shigar, Gilgit-Baltistan",
@@ -209,12 +412,33 @@
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3AThe_Green_Shimshal_Valley.jpg"
  },
+ "skardu-airport-photo.webp": {
+  "title": "Skardu Runway",
+  "artist": "Abbas Shah1",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASkardu_Runway.jpg"
+ },
  "skardu-photo.webp": {
   "title": "Valleys and sighst - Skardu - Pakistan 3",
   "artist": "Nedian91",
   "license": "CC0",
   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
   "source": "https://commons.wikimedia.org/wiki/File%3AValleys_and_sighst_-_Skardu_-_Pakistan_3.jpg"
+ },
+ "skardu-winter-photo.webp": {
+  "title": "Snow Desert",
+  "artist": "Yawar talib",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ASnow_Desert.jpg"
+ },
+ "snow-lake-photo.webp": {
+  "title": "Lukpe Lao or popularly known as Snow Lake , is a glacial basin which located at the confluence of Biafo and Hispar glacier in Central Karakoram National Park",
+  "artist": "Vasiq Eqbal",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3ALukpe_Lao_or_popularly_known_as_Snow_Lake_%2C_is_a_glacial_basin_which_located_at_the_confluence_of_Biafo_and_Hispar_glacier_in_Central_Karakoram_National_Park.jpg"
  },
  "spantik-photo.webp": {
   "title": "Golden Peak- View from Eagles Nest",
@@ -229,6 +453,13 @@
   "license": "CC BY-SA 3.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
   "source": "https://commons.wikimedia.org/wiki/File%3ASost_at_night.jpg"
+ },
+ "trango-photo.webp": {
+  "title": "Pakistan Karakoram Trango Towers Baltoro Glacier",
+  "artist": "mtzendo",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "source": "https://commons.wikimedia.org/wiki/File%3APakistan_Karakoram_Trango_Towers_Baltoro_Glacier.jpg"
  },
  "yasin-photo.webp": {
   "title": "Thalti ,Thoi, Yasin, Gilgit Baltistan",
