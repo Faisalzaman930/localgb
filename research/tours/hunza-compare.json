@@ -1,0 +1,353 @@
+{
+  "page": "tours/hunza",
+  "checked": "20 October 2026",
+  "operators": {
+    "ptp": {
+      "name": "Pakistan Travel Places",
+      "url": "https://pakistantravelplaces.com",
+      "based": "Lahore (per their site)"
+    },
+    "hat": {
+      "name": "Hunza Adventure Tours",
+      "url": "https://hunzaadventuretours.com",
+      "based": "Not stated on their site"
+    },
+    "he": {
+      "name": "Hunza Explorers",
+      "url": "https://hunzaexplorers.com",
+      "based": "Ghulkin, Upper Hunza (per their site)"
+    },
+    "hh": {
+      "name": "Hunza Holidays",
+      "url": "https://www.hunzaholidays.com",
+      "based": "Not stated on their site"
+    },
+    "bt": {
+      "name": "Baltistan Tours",
+      "url": "https://baltistantours.com",
+      "based": "Skardu (per their site)"
+    }
+  },
+  "packages": [
+    {
+      "id": "ptp-5",
+      "op": "ptp",
+      "name": "5-Day Hunza & Khunjerab Pass Trip",
+      "url": "https://pakistantravelplaces.com/tour/5-days-trip-to-hunza-valley-khunjrab-pass-chilas-hunza-altit-fort-baltit-fort-attabad-lake-passu-sust-khunjerab-pass/",
+      "days": 5,
+      "start": "Lahore / Islamabad",
+      "travel": "Road (via Babusar)",
+      "price": "from Rs 17,500",
+      "meals": "Breakfast and dinner",
+      "best": "Cheapest way to see Hunza and Khunjerab by road",
+      "itinerary": [
+        "Overnight departure; breakfast in Mansehra, then over Babusar Pass past Lulusar Lake to Chilas.",
+        "Chilas to Hunza, stopping where three mountain ranges meet and at the Rakaposhi viewpoint.",
+        "Khunjerab day: Passu Cones, Hussaini Bridge and the Pakistan-China border at Khunjerab Pass.",
+        "Altit Fort and old Altit village, free time in Karimabad bazaar, then start the drive back south.",
+        "Back over Babusar Top with stops at Lulusar Lake and Naran, arriving in Lahore late at night."
+      ],
+      "good": [
+        "Lowest published price in this comparison",
+        "Covers the classic trio: Karimabad, Passu and Khunjerab"
+      ],
+      "watch": [
+        "Two of five days are mostly driving, and the first starts with an overnight bus",
+        "The Babusar route is seasonal (roughly late May to October); outside that the trip must use the KKH",
+        "\"From\" price - ask what is included and how many share the vehicle"
+      ]
+    },
+    {
+      "id": "ptp-autumn",
+      "op": "ptp",
+      "name": "Autumn Tour to Hunza (\"Luxury\")",
+      "url": "https://pakistantravelplaces.com/tour/luxury-autumn-tour-to-hunza/",
+      "days": 5,
+      "start": "Lahore",
+      "travel": "Road (KKH)",
+      "price": "from Rs 22,000",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Autumn colours with all meals included",
+      "itinerary": [
+        "Overnight departure from Lahore; breakfast in Mansehra and on up the KKH to Chilas.",
+        "Chilas to Hunza via the Nanga Parbat viewpoint, with a local-food lunch in Nagar.",
+        "Boat ride on Attabad Lake, then on to Khunjerab Pass and the China border.",
+        "Guided visits to Altit and Baltit forts and lunch in Karimabad, then back down to Chilas.",
+        "Long drive home, reaching Lahore in the early hours."
+      ],
+      "good": [
+        "All three meals listed, and the Chilas hotel is named",
+        "Fits autumn colour (late September to October) into five days"
+      ],
+      "watch": [
+        "Only about two full days in Hunza itself",
+        "\"Luxury\" at this price - confirm the Hunza hotel name and whether transport is shared"
+      ]
+    },
+    {
+      "id": "ptp-naltar",
+      "op": "ptp",
+      "name": "6-Day Hunza & Naltar Valley Trip",
+      "url": "https://pakistantravelplaces.com/tour/6-days-spring-trip-hunza-valley/",
+      "days": 6,
+      "start": "Islamabad",
+      "travel": "Road (KKH)",
+      "price": "from Rs 19,500",
+      "meals": "Breakfast",
+      "best": "Adding Naltar to a short Hunza trip",
+      "itinerary": [
+        "Midnight departure from Islamabad; breakfast in Besham and on to Chilas by evening.",
+        "To Hunza: Rakaposhi viewpoint, Baltit and Altit forts, and sunset at Eagle's Nest.",
+        "Khunjerab Pass, with stops at Attabad Lake and Gulmit on the way.",
+        "Across to Naltar Valley for the lakes and ski area, then down to Gilgit for the night.",
+        "Gilgit back down the KKH to Besham.",
+        "Besham to Islamabad via Abbottabad."
+      ],
+      "good": [
+        "Six days for under Rs 20,000 (published)",
+        "Eagle's Nest sunset and Naltar - two things short trips usually skip"
+      ],
+      "watch": [
+        "Breakfast only, so budget for lunch and dinner",
+        "The last stretch into Naltar is rough and needs a 4x4 - check it's included"
+      ]
+    },
+    {
+      "id": "hat-khunjerab",
+      "op": "hat",
+      "name": "Hunza Valley & Khunjerab Pass Tour",
+      "url": "https://hunzaadventuretours.com/tour/hunza-valley-khunjerab-pass-tour/",
+      "days": 10,
+      "start": "Islamabad",
+      "travel": "Fly to Gilgit, return by road",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Seeing Upper Hunza properly, plus Fairy Meadows",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Gilgit and drive up to Karimabad.",
+        "Baltit Fort, Karimabad bazaar and Altit Fort, then via Hopper to Gulmit.",
+        "Passu Glacier, Borith Lake and the Hussaini suspension bridge.",
+        "Full-day trip to Khunjerab Pass.",
+        "Chapursan Valley: horse or yak rides and, if it's on, a local polo match.",
+        "Gulmit down to Gilgit, with a stop at the Chinese cemetery.",
+        "Jeep from Raikot Bridge and hike up to Fairy Meadows.",
+        "Hike and jeep back down, then drive on to Besham.",
+        "Taxila Museum on the way back to Islamabad."
+      ],
+      "good": [
+        "Includes Chapursan - rarely in Hunza packages",
+        "Full board, and the route mixes Hunza with Fairy Meadows"
+      ],
+      "watch": [
+        "The Gilgit flight is weather-dependent; ask what happens if it is cancelled",
+        "No price published - get the quote and the hotel names in writing"
+      ]
+    },
+    {
+      "id": "hat-attabad",
+      "op": "hat",
+      "name": "Hunza Valley & Attabad Lake Tour",
+      "url": "https://hunzaadventuretours.com/tour/hunza-valley-and-attabad-lake-tour/",
+      "days": 10,
+      "start": "Islamabad",
+      "travel": "Fly both ways (Islamabad-Gilgit)",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Hunza plus Phander and Ghizer, without the long KKH drive",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Gilgit and drive up to Karimabad.",
+        "Baltit and Altit forts.",
+        "Hopper Glacier, then Attabad Lake and on to Gulmit.",
+        "Hussaini Bridge, Borith Lake and Passu Glacier.",
+        "Full-day trip to Khunjerab Pass.",
+        "West through Gilgit to Gupis in Ghizer.",
+        "Day trip to Phander Valley and its lake.",
+        "Back to Gilgit for the bazaar.",
+        "Fly from Gilgit to Islamabad."
+      ],
+      "good": [
+        "Flights both ways save around four days of road",
+        "Adds Ghizer (Gupis and Phander), which few Hunza tours do"
+      ],
+      "watch": [
+        "Two flight days means two chances of weather delays - keep a buffer day",
+        "No price published"
+      ]
+    },
+    {
+      "id": "hat-blossom",
+      "op": "hat",
+      "name": "Pakistan Spring Blossom Tour",
+      "url": "https://hunzaadventuretours.com/tour/pakistan-spring-blossom-tour/",
+      "days": 10,
+      "start": "Islamabad",
+      "travel": "Road (KKH)",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Blossom season by road, with rafting",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Up the KKH to Chilas, with lunch in Besham.",
+        "Chilas to Karimabad, stopping where three mountain ranges meet.",
+        "Baltit Fort, Karimabad bazaar and Altit Fort.",
+        "Hopper Glacier, then on to Gulmit in Upper Hunza.",
+        "Passu Glacier, Borith Lake and the suspension bridges.",
+        "Full-day trip to Khunjerab Pass.",
+        "White-water rafting on the upper Hunza River, then down to Gilgit.",
+        "Gilgit to Besham, with the Nanga Parbat viewpoint.",
+        "Taxila Museum on the way back to Islamabad."
+      ],
+      "good": [
+        "No flights, so no cancellation risk",
+        "Paced well for blossom (late March to mid-April)"
+      ],
+      "watch": [
+        "Four of ten days are on the KKH",
+        "No price published"
+      ]
+    },
+    {
+      "id": "he-blossom",
+      "op": "he",
+      "name": "Hunza Cherry Blossom Tour (fixed date)",
+      "url": "https://hunzaexplorers.com/tour/hunza-cherry-blossom/",
+      "days": 9,
+      "start": "Islamabad",
+      "travel": "Fly to Gilgit (road back-up), return by road",
+      "price": "US$850 per person (early booking US$765)",
+      "meals": "Breakfast and lunch",
+      "best": "A group departure run by a Hunza-based operator",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Gilgit and drive to Hunza; if the flight is cancelled, drive to Chilas instead.",
+        "Karimabad: blossom, forts and the old town.",
+        "Hopper Valley, then on to Gojal (Upper Hunza).",
+        "Khunjerab Pass at 4,693m.",
+        "Passu, Gulmit and Ghulkin villages.",
+        "Long KKH drive down to Besham or Naran.",
+        "Taxila and Islamabad sightseeing.",
+        "Twin-city tour and departure."
+      ],
+      "good": [
+        "Clear published price and dates (26 March to 3 April 2027 listed)",
+        "Each day lists drive time and altitude, and there's a stated plan B if the flight fails"
+      ],
+      "watch": [
+        "Priced in US dollars for foreign visitors; ask about a local rate",
+        "Dinner is not listed as included"
+      ]
+    },
+    {
+      "id": "he-fairy",
+      "op": "he",
+      "name": "Hunza & Fairy Meadows Tour",
+      "url": "https://hunzaexplorers.com/tour/hunza-fairy-meadows/",
+      "days": 11,
+      "start": "Islamabad",
+      "travel": "Road (KKH, Babusar option on return)",
+      "price": "On request",
+      "meals": "Breakfast, lunch and dinner",
+      "best": "Hunza and Nanga Parbat in one trip",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Up the KKH to Chilas.",
+        "Jeep and short hike up to Fairy Meadows.",
+        "Hike to Nanga Parbat Base Camp and back.",
+        "Down from Fairy Meadows and on to Upper Hunza (Ghulkin, Passu or Gulmit).",
+        "Khunjerab Pass.",
+        "Ghulkin, Passu and Gulmit villages.",
+        "Via Hopper Valley to Karimabad.",
+        "Karimabad and central Hunza's heritage sites.",
+        "South via the KKH or Babusar Pass to Besham or Naran.",
+        "Taxila and an Islamabad city tour."
+      ],
+      "good": [
+        "A full day at Nanga Parbat Base Camp, not just a night at Fairy Meadows",
+        "Full board and a gentle pace in Hunza"
+      ],
+      "watch": [
+        "Eleven days, and most of the return is on the road",
+        "No price published"
+      ]
+    },
+    {
+      "id": "hh-kalash",
+      "op": "hh",
+      "name": "Hunza & Kalash Valley Tour",
+      "url": "https://www.hunzaholidays.com/tour/hunza-kalash-valley-tours/",
+      "days": 16,
+      "start": "Islamabad",
+      "travel": "Road (via Chitral and Shandur)",
+      "price": "On request",
+      "meals": "Not listed",
+      "best": "The full overland loop: Swat, Kalash, Shandur, Hunza",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Drive to Peshawar.",
+        "On to Swat.",
+        "Swat to Chitral.",
+        "Into the Kalash valleys.",
+        "A day exploring Bumburet.",
+        "Over Shandur Pass to Phander.",
+        "Phander to Gilgit.",
+        "Gilgit to Karimabad.",
+        "A day around Karimabad.",
+        "Karimabad to Passu.",
+        "Khunjerab Pass and back to Passu.",
+        "Jeep day trip to Shimshal.",
+        "Over Babusar Pass to Naran.",
+        "Naran to Islamabad.",
+        "Departure."
+      ],
+      "good": [
+        "Includes Shimshal and the Shandur crossing",
+        "Two nights in Passu for Upper Hunza"
+      ],
+      "watch": [
+        "Very little detail published - ask for inclusions, meals and hotels",
+        "Shandur and Babusar are summer-only passes"
+      ]
+    },
+    {
+      "id": "bt-jeep",
+      "op": "bt",
+      "name": "Swat, Kalash, Hunza & Kaghan Jeep Tour",
+      "url": "https://baltistantours.com/tours/jeep-safari/swat-hunza-kalash-kaghan-jeep-tour/",
+      "days": 14,
+      "start": "Rawalpindi",
+      "travel": "Jeep, overland",
+      "price": "On request",
+      "meals": "Not listed",
+      "best": "Adventurous travellers happy to camp",
+      "itinerary": [
+        "Arrive in Rawalpindi and drive straight to Mingora, Swat.",
+        "Day trip to Kalam and back.",
+        "To Bumburet in the Kalash valleys (camping).",
+        "Birir valley and back to Bumburet (camping).",
+        "On to Mastuj (camping).",
+        "Over Shandur Pass to Phander (camping).",
+        "To Cher Qila in Punial (camping).",
+        "To Karimabad, Hunza.",
+        "Day trip to Khunjerab Pass.",
+        "Free day in Karimabad.",
+        "Down to Chilas.",
+        "Over Babusar Pass to Naran.",
+        "Back to Rawalpindi.",
+        "Airport transfer."
+      ],
+      "good": [
+        "Skardu-based operator; jeeps suit the rough Chitral-Shandur road",
+        "Camping nights in the Kalash valleys and Ghizer"
+      ],
+      "watch": [
+        "Listed as 9 days, but the day plan runs 14 - confirm which is right",
+        "Five nights camping; no meals or price published"
+      ]
+    }
+  ],
+  "notes": [
+    "UK travel advice (FCDO) warns against all travel on the KKH between Mansehra and Chilas. If that applies to you, pick a trip that flies to Gilgit or uses the Babusar road (open roughly late May to October)."
+  ]
+}
