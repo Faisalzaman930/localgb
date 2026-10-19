@@ -34,7 +34,7 @@ def esc(s):
 
 def price_str(p):
     if p.get('price_usd'): return '$%s' % format(int(p['price_usd']), ',')
-    if p.get('price_pkr'): return 'Rs %s' % format(int(p['price_pkr']), ',')
+    if p.get('price_pkr'): return 'Rs %s' % format(int(p['price_pkr']), ',') + (' (%s)' % p['price_note'] if p.get('price_note') else '')
     return 'Quote only'
 
 def price_rank(p):
@@ -48,7 +48,7 @@ def has_price(p):
 CTA = '''
   <div style="background:var(--gold-glow);border:1px solid var(--gold-border);border-radius:14px;padding:1.6rem 1.7rem;margin:1.8rem 0;">
     <h3 style="font-family:var(--fd);font-size:1.3rem;margin:0 0 .5rem;color:var(--cream)">Want a second opinion before you book?</h3>
-    <p style="font-size:.92rem;color:var(--cream-2);line-height:1.6;margin:0 0 1rem">I'm Faisal, from Hunza. I'll sanity-check any quote, plan your route and season, and share vetted contacts for guides, porters, jeeps and hotels across Gilgit-Baltistan. No fee.</p>
+    <p style="font-size:.92rem;color:var(--cream-2);line-height:1.6;margin:0 0 1rem">I'm Faisal, from Gilgit. I'll sanity-check any quote, plan your route and season, and share vetted contacts for guides, porters, jeeps and hotels across Gilgit-Baltistan. No fee.</p>
     <div style="display:flex;gap:.7rem;flex-wrap:wrap">
       <a href="/planner?entry=trekking" style="display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--fu);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 1.8rem;text-decoration:none;border-radius:6px;">Build my trek plan &rarr;</a>
       <a href="/contact" style="display:inline-block;border:1px solid var(--gold-border);color:var(--cream);font-family:var(--fu);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 1.8rem;text-decoration:none;border-radius:6px;">Ask for guide / porter contacts</a>

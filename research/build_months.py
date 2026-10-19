@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Generate /<city>/in-<month> pages (Hunza + Skardu x 12) targeting
-'<city> in <month>'. Weather + access data are verified (climate-data.org /
-weather2travel); seasonal narrative is authored. Run then seo_inject.py."""
+'<city> in <month>'. Weather + access data are verified (Skardu: Pakistan
+Meteorological Department station normals; Hunza: approximate Karimabad
+averages); seasonal narrative is authored. Fact-checked October 2026. Run then seo_inject.py."""
 import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def esc(s): return re.sub(r'&(?!amp;|lt;|gt;|#\d+;|quot;)','&amp;',str(s or ''))
@@ -16,15 +17,15 @@ CLIMATE = {
    {'high':26,'low':13,'cond':'hot, dry, glacial-melt rivers high'},{'high':25,'low':12,'cond':'warm, mostly clear, busy'},
    {'high':22,'low':8,'cond':'warm days, cool nights'},{'high':16,'low':2,'cond':'crisp, golden autumn foliage'},
    {'high':9,'low':-3,'cond':'cold, late foliage, first snow'},{'high':2,'low':-7,'cond':'cold, clear, snow on peaks'}],
- 'skardu':[{'high':-3,'low':-12,'cond':'very cold, frozen, snow'},{'high':-1,'low':-11,'cond':'freezing, snowy, cloudy'},
-   {'high':5,'low':-5,'cond':'cold, thaw, blossom starts'},{'high':12,'low':0,'cond':'mild, apricot blossom'},
-   {'high':15,'low':3,'cond':'pleasant, green, clear'},{'high':20,'low':7,'cond':'warm, sunny, dry'},
-   {'high':23,'low':10,'cond':'warm, peak season'},{'high':22,'low':10,'cond':'warm, clear, lush'},
-   {'high':20,'low':5,'cond':'mild, crisp, clear'},{'high':14,'low':-1,'cond':'cool, autumn colours'},
-   {'high':7,'low':-6,'cond':'cold, dry, clearing'},{'high':0,'low':-10,'cond':'very cold, snow begins'}],
+ 'skardu':[{'high':3,'low':-8,'cond':'very cold, frozen, snow'},{'high':6,'low':-4,'cond':'freezing, snowy, cloudy'},
+   {'high':12,'low':2,'cond':'cold, thaw, blossom starts'},{'high':19,'low':7,'cond':'mild, apricot blossom'},
+   {'high':23,'low':10,'cond':'pleasant, green, clear'},{'high':29,'low':13,'cond':'warm, sunny, dry'},
+   {'high':32,'low':16,'cond':'warm, peak season'},{'high':31,'low':16,'cond':'warm, clear, lush'},
+   {'high':27,'low':11,'cond':'mild, crisp, clear'},{'high':20,'low':4,'cond':'cool, autumn colours'},
+   {'high':13,'low':-2,'cond':'cold, dry, clearing'},{'high':7,'low':-6,'cond':'very cold, snow begins'}],
 }
-WX_SRC = {'hunza':'Gilgit station averages (weather2travel.com); Karimabad/valley villages run a few degrees cooler',
-          'skardu':'Skardu station averages (climate-data.org)'}
+WX_SRC = {'hunza':'approximate averages for Karimabad (~2,500m); Gilgit, about 1,000m lower, is much warmer',
+          'skardu':'Skardu station averages (Pakistan Meteorological Department)'}
 
 CITY = {
  'hunza': dict(disp='Hunza', hero='/images/hunza-hero.webp', guide='/hunza', tours='/tours/hunza',
@@ -54,22 +55,29 @@ SEASON = {
 def access_bullets(city, m):
     b=[]
     if city=='hunza':
-        b.append(('open' if 5<=m<=11 else 'closed',
-                  'Khunjerab Pass (Pak-China border, 4,693m) is normally open' if 5<=m<=11
-                  else 'Khunjerab Pass is snow-closed for the season'))
+        if 5<=m<=10: b.append(('open','Khunjerab Pass (Pak-China border, 4,693m) is normally open'))
+        elif m==11: b.append(('check','Khunjerab Pass (4,693m) stays open for trade, but tourist trips this late depend on snow - check before going'))
+        elif m==4: b.append(('closed','Khunjerab Pass is officially open year-round for trade, but tourist trips are not assured until May - check before planning on it'))
+        else: b.append(('closed','Khunjerab Pass is officially open year-round for trade, but winter tourist trips are not assured - plan on May-October'))
         if 7<=m<=9: b.append(('open','Babusar Pass is open - the scenic shortcut via Naran'))
-        elif m in (6,10): b.append(('check','Babusar Pass is opening/closing this month - check before relying on it'))
+        elif m==5: b.append(('check','Babusar Pass usually reopens in late May (25-27 May in 2026) and can shut again for snow - check before relying on it, otherwise use the KKH via Chilas'))
+        elif m==6: b.append(('check','Babusar Pass is usually open by June but can close for days after late snow (it shut ~4-6 June 2026) - check before relying on it'))
+        elif m==10: b.append(('check','Babusar Pass is opening/closing this month - check before relying on it'))
+        elif m==11: b.append(('check','Babusar Pass usually closes for winter during November (snow closures from ~6 Nov in 2025) - check before relying on it, otherwise use the KKH via Chilas'))
         else: b.append(('closed','Babusar Pass is closed; use the main Karakoram Highway via Chilas'))
         b.append(('open','Attabad Lake, Karimabad and the Baltit & Altit forts are open year-round'))
+        if m==7: b.append(('check','Late July to mid-August floods and landslides closed the KKH and Babusar for days in both 2025 and 2026 - keep buffer days'))
+        if m==8: b.append(('check','Late July to mid-August floods and landslides closed the KKH and Babusar for days in both 2025 and 2026 (the Shishper GLOF cut the KKH at Hassanabad in August 2025) - keep buffer days'))
         if m in (12,1,2): b.append(('snow','Upper Hunza (Passu, Gulmit, Gojal) gets heavy snow and roads can be disrupted'))
     else:  # skardu
         if 7<=m<=8: b.append(('open','Deosai National Park (Sheosar Lake) is open'))
-        elif m==9: b.append(('check','Deosai is open early in the month then starts to close with the first snow'))
-        elif m==6: b.append(('check','Deosai usually opens late this month once the snow clears'))
+        elif m==9: b.append(('check','Deosai is usually open until late September or early October, depending on the first snow'))
+        elif m==6: b.append(('check','Deosai usually opens mid-to-late this month once the snow clears'))
         else: b.append(('closed','Deosai National Park is snow-bound and closed'))
+        if m in (7,8): b.append(('check','Late July to mid-August floods closed the Jaglot-Skardu road and valley roads for days in 2025 and 2026 - keep 1-2 buffer days and flexible flights'))
         b.append(('open','Shangrila/Lower Kachura, Upper Kachura, Shigar Fort and Khaplu are open year-round'))
         if m in (12,1,2): b.append(('snow','Skardu flights and the road are most weather-affected now - keep buffer days'))
-        if m in (4,5,9,10): b.append(('open','The Sarfaranga cold desert is at its best (good light, jeep rallies in spring)'))
+        if m in (4,5,9,10): b.append(('open',"The Sarfaranga cold desert is at its best (good light, the annual jeep rally's dates vary)"))
     # blossom / foliage shared
     if m==3: b.append(('bloom','Apricot and cherry blossom begins in the lower valleys late in the month'))
     if m==4: b.append(('bloom','Blossom is in full bloom (peaks early-mid April) - the signature spring sight'))
@@ -82,17 +90,30 @@ def do_items(city, m):
     if city=='hunza':
         base=['Walk up to the Baltit and Altit forts above Karimabad','Coffee and walnut cake at the Karimabad view cafes','Photograph the Passu Cones and Hussaini bridge']
         if m in (3,4): return ['See the cherry & apricot blossom across the terraces (the spring highlight)','Walk the Karimabad orchards and forts in mild weather']+base[:1]
-        if 5<=m<=9: return ['Day trip to Khunjerab Pass on the Pakistan-China border','Boat on the turquoise Attabad Lake','Explore upper Hunza - Passu, Gulmit and the Hopper glacier viewpoints']+base[:1]
+        if 5<=m<=9: return ['Day trip to Khunjerab Pass on the Pakistan-China border','Boat on the turquoise Attabad Lake','Explore upper Hunza (Passu, Gulmit) and the Hopar glacier viewpoints in Nagar']+base[:1]
         if m==10 or (m==11): return ['Shoot the golden autumn foliage around Karimabad and Duikar','Sunrise at Eagle\'s Nest (Duikar) over Rakaposhi']+base[:2]
         return ['Snow-quiet forts and bazaar with almost no crowds','Warm up with chapshuro, harissa and tumuro tea','Clear-sky peak views of Rakaposhi from Eagle\'s Nest']
     else:
         base=['Boat on the heart-shaped Lower Kachura (Shangrila) lake','Visit the 17th-century Shigar Fort and Khaplu Palace','Hike up to Kharpocho Fort over the Indus']
         if m in (3,4): return ['See the apricot blossom in Shigar and the side valleys','Sarfaranga cold desert in soft spring light']+base[:1]
+        if m==5: return ['Green orchards and late blossom in Shigar and the side valleys','Sarfaranga and Katpana cold deserts before the summer heat']+base[:1]
+        if m==6: return ['Jeep into Deosai once it opens (usually mid-to-late June)','Shigar Fort and Khaplu Palace in long, clear days']+base[:1]
         if 7<=m<=9: return ['Jeep across Deosai National Park to Sheosar Lake','Use Skardu as the gateway to K2 and the Baltoro treks','Camp or picnic by Sadpara and the Kachura lakes']+base[:1]
         if m in (10,11): return ['Autumn colours along the Indus and Sarfaranga desert','Quiet fort and lake photography in crisp, clear air']+base[:2]
         return ['Snowbound Katpana/Sarfaranga desert and frozen lakes','Fresh trout and Balti karahi in a near-empty town','Shigar and Khaplu forts without a single other tourist']
 
+# Skardu packing advice is set per month (written against the old, colder
+# station figures and kept after the switch to PMD normals in October 2026).
+_DOWN='A proper down jacket, thermals, gloves, hat and waterproof boots - '
+_WARM='Warm layers and a windproof jacket for cold mornings and nights, lighter clothing for midday sun.'
+_LAYERS='Layers: comfortable daytime clothing plus a warm jacket for the evenings, and sun protection.'
+_LIGHT='Light, breathable clothing for warm days, plus a fleece for cool evenings and strong sun protection.'
+PACK_TEXT = {'skardu': [_DOWN+'nights are well below freezing.', _DOWN+'nights are well below freezing.',
+                        _DOWN+'nights still drop to around freezing.', _WARM, _LAYERS, _LAYERS, _LIGHT, _LIGHT,
+                        _LAYERS, _WARM, _DOWN+'nights drop below freezing.', _DOWN+'nights are well below freezing.']}
+
 def pack(city, m):
+    if city in PACK_TEXT: return PACK_TEXT[city][m-1]
     hi=CLIMATE[city][m-1]['high']; lo=CLIMATE[city][m-1]['low']
     if lo<=-5: return 'A proper down jacket, thermals, gloves, hat and waterproof boots - nights are well below freezing.'
     if lo<3: return 'Warm layers and a windproof jacket for cold mornings and nights, lighter clothing for midday sun.'
@@ -179,7 +200,7 @@ def build(city, m):
           f'<div class="article-eyebrow">When to Go &middot; {disp} &middot; {mn} 2026</div>\n'
           f'<h1 class="article-title">Thinking of {disp} in {mn}? Here\'s the Honest Picture</h1>\n'
           f'<div class="article-meta"><span>By <a href="/about"><strong>Faisal Zaman</strong></a></span>'
-          f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span><span class="sep">&middot;</span><span>Updated June 2026</span></div></div>\n'
+          f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span><span class="sep">&middot;</span><span>Updated October 2026</span></div></div>\n'
           f'<figure class="article-figure"><div class="img" style="background-image:url(\'{c["hero"]}\')" role="img" aria-label="{disp} in {mn}"></div>'
           f'<figcaption>{disp} in {mn}, Gilgit-Baltistan.</figcaption></figure>\n'
           f'<div class="article-body">\n{build_body(city,m)}\n</div></main>')

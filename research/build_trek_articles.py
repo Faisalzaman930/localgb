@@ -45,7 +45,7 @@ def esc(s):
 
 def price_str(p):
     if p.get('price_usd'): return '$%s' % format(int(p['price_usd']), ',')
-    if p.get('price_pkr'): return 'Rs %s' % format(int(p['price_pkr']), ',')
+    if p.get('price_pkr'): return 'Rs %s' % format(int(p['price_pkr']), ',') + (' (%s)' % p['price_note'] if p.get('price_note') else '')
     return 'Quote only'
 def has_price(p): return bool(p.get('price_usd') or p.get('price_pkr'))
 def rank(p):
@@ -69,24 +69,24 @@ C = {
  'k2-base-camp': dict(region='Baltoro, Skardu', h1='I Compared Every K2 Base Camp Trek Operator for 2026',
    intro=["The K2 Base Camp trek is the big one - up the Baltoro Glacier to Concordia, where four of the world's fourteen 8,000m peaks stand in a single arc, then on to the foot of K2 itself. I'm from Gilgit-Baltistan, so here is the honest version: who actually runs it, what they charge in 2026, and what you get for the money.",
           "I only compare operators who publish a real price (no \"contact us\"), read each itinerary, and note where permits, flights and porters are bundled or billed on top. It is a restricted-zone trek, so a licensed operator and guide are mandatory."],
-   about="Reckon on 18-21 days return from Askole, with Concordia at around 4,600m and the K2 base camp viewpoint near 5,150m. The walking is non-technical but long and remote; the bill moves with group size, porter stages and the government royalty.",
-   faqs=[("How much does the K2 Base Camp trek cost in 2026?","Locally run, group-based itineraries start around $1,400-$2,300 per person; Western-led expeditions run $4,500-$5,850. Government royalty and permit fees are usually extra. See the table above."),
+   about="Reckon on 18-21 days door to door from Islamabad (about 12-15 of them on foot from Askole), with Concordia at around 4,600m and the K2 base camp viewpoint near 5,150m. The walking is non-technical but long and remote; the bill moves with group size, porter stages and the trekking permit and park fees. Skardu flights are often cancelled and in late July-August of 2025 and 2026 floods cut the Skardu road for days, so keep a spare day at each end.",
+   faqs=[("How much does the K2 Base Camp trek cost in 2026?","Locally run, group-based itineraries start around $1,400-$2,300 per person; Western-led expeditions run $4,500-$5,850. Trekking permit and CKNP park fees are sometimes extra (royalties apply only to climbing expeditions). See the table above."),
          ("How many days do you need?","Most itineraries are 18-21 days door to door, including the drive or flight to Skardu, the jeep to Askole, and weather buffer days."),
          ("Do I need a permit and a guide?","Yes. The Baltoro is a restricted zone: a licensed operator, registered guide and trekking permit are required, and solo trekking is not allowed."),
-         ("When is the season?","Mid-June to mid-September. July and August are the most reliable for the high glacier sections.")],
+         ("When is the season?","Mid-June to early September. July and August are the most reliable for the high glacier sections.")],
    deeper=[("/trekking/k2-base-camp/itinerary","K2 Base Camp Itinerary, Day by Day"),("/trekking/k2-base-camp/cost","What Drives the K2 Trek Cost"),("/trekking/k2-base-camp/permits","K2 Trek Permits"),("/trekking/concordia","Concordia Trek"),("/trekking/gondogoro-la","Gondogoro La Trek"),("/skardu","Skardu Travel Guide")]),
  'concordia': dict(region='Baltoro, Baltistan', h1='I Compared the Concordia Trek Operators for 2026',
    intro=["Concordia, the \"Throne Room of the Mountain Gods\", sits where the Baltoro and Godwin-Austen glaciers meet, ringed by K2, Broad Peak and the Gasherbrums. Most operators sell it as the same trip as K2 Base Camp; here is who runs it and what they charge in 2026.",
           "I only list operators with a published price, and flag where permits and Skardu flights are bundled or extra. Like the K2 trek, it is a restricted zone needing a licensed operator and guide."],
-   about="Concordia sits at about 4,600m; trips run 15-21 days depending on whether you add the K2 base camp leg or cross the Gondogoro La on the way out. Long, remote glacier walking rather than technical climbing.",
+   about="Concordia sits at about 4,500-4,600m; trips run roughly 18-21 days from Islamabad (about 12-15 days on foot from Askole) depending on whether you add the K2 base camp leg or cross the Gondogoro La on the way out. Long, remote glacier walking rather than technical climbing.",
    faqs=[("Is Concordia the same as the K2 Base Camp trek?","Almost - Concordia is the hub; K2 Base Camp is a day leg beyond it, and many packages combine both. Pricing is effectively the same trip."),
          ("How much does it cost in 2026?","Locally run trips start around $1,750-$2,300 per person; Western-led from $5,850. Permits and flights may be extra."),
          ("How hard is it?","Demanding but non-technical - long days on glacier and moraine at altitude. Adding the Gondogoro La makes it technical."),
-         ("When should I go?","Mid-June to mid-September, with July-August the most settled.")],
+         ("When should I go?","Mid-June to early September, with July-August the most settled.")],
    deeper=[("/trekking/k2-base-camp","K2 Base Camp Trek"),("/trekking/gondogoro-la","Gondogoro La Trek"),("/trekking/biafo-hispar-snow-lake","Snow Lake Trek"),("/skardu","Skardu Travel Guide"),("/travel/noc-permits-gb","NOC &amp; Permits")]),
  'gondogoro-la': dict(region='Concordia to Hushe', h1='I Reviewed the Gondogoro La Trek Operators for 2026',
    intro=["The Gondogoro La (5,585m) is the spectacular, technical way out of Concordia - a roped dawn crossing with all four local 8,000m peaks behind you, dropping into the Hushe valley. Here are the operators who publish a 2026 price for it.",
-          "Only priced operators are compared below, with notes on where crampons, harness and the pass crossing are included or rented separately. A licensed operator, guide and permit are mandatory."],
+          "Only priced operators are compared below, with notes on where crampons, harness and the pass crossing are included or rented separately. A licensed operator, guide and permit are mandatory, and the pass itself needs an ACP-certified guide; porter loads are capped at 15 kg on the pass."],
    about="The full circuit runs 20-21 days. The pass itself is glaciated and steep enough to need crampons, harness and fixed ropes, so it sits a notch above a standard base-camp trek.",
    faqs=[("How is the Gondogoro La different from the K2 trek?","It is the same Baltoro/Concordia approach, but instead of returning via Askole you cross the 5,585m Gondogoro La into Hushe - a technical, roped section."),
          ("What does it cost in 2026?","Local operators run roughly $1,955-$2,685 per person; Western-led from $5,850. Confirm whether climbing gear for the pass is included."),
@@ -96,16 +96,16 @@ C = {
  'biafo-hispar-snow-lake': dict(region='Askole to Hispar', h1='I Compared the Snow Lake / Hispar La Trek Operators for 2026',
    intro=["The Biafo-Hispar traverse links two of the longest glaciers outside the poles across Snow Lake and the Hispar La (~5,151m) - a serious, committing expedition from Askole to Nagar. Here is who runs it and what they charge in 2026.",
           "I compare only operators with a published price, noting porter allowances and whether staff insurance is included. This is a remote, crevassed route needing a licensed operator and guide."],
-   about="Plan on 18-22 days. Snow Lake is a vast glacial basin around 4,800m and the Hispar La tops out near 5,151m; expect roped glacier travel and full self-sufficiency for two weeks.",
+   about="Plan on 18-22 days. Snow Lake is a vast glacial basin around 4,800m and the Hispar La tops out near 5,151m; expect roped glacier travel and full self-sufficiency for two weeks. Floods cut the Hispar-Nagar road at the exit for about two months in 2026, so confirm the jeep pickup at Hispar before you commit.",
    faqs=[("How hard is the Snow Lake trek?","Serious - it is a glaciated, crevassed traverse with no resupply, closer to a mountaineering expedition than a walk-in trek."),
          ("What does it cost in 2026?","Local operators run about $2,450-$2,850 per person; Western-led $4,100-$5,600. Confirm porter weight limits and staff insurance."),
          ("How many days?","18-22 days point to point, Askole to Hispar/Nagar, including buffer days."),
          ("Best time to go?","July to early September.")],
    deeper=[("/trekking/concordia","Concordia Trek"),("/trekking/rush-lake","Rush Lake Trek"),("/hunza","Hunza Travel Guide"),("/skardu","Skardu Travel Guide"),("/travel/noc-permits-gb","NOC &amp; Permits")]),
- 'spantik-base-camp': dict(region='Arandu, Nagar', h1='I Looked at Every Spantik Trek &amp; Expedition Operator for 2026',
+ 'spantik-base-camp': dict(region='Arandu, Shigar', h1='I Looked at Every Spantik Trek &amp; Expedition Operator for 2026',
    intro=["Spantik, the Golden Peak (7,027m), is one of the most accessible 7,000m climbs in the Karakoram - and there is also a shorter base-camp trek for those who just want the glacier and the views. Here is who runs both, and what they charge in 2026.",
           "I separate the base-camp trek from the full climbing expedition and only compare operators publishing a real price, noting where oxygen, high-altitude porters and royalty fees are included."],
-   about="The base-camp trek is a few days up the Chogo Lungma glacier from Arandu; the climbing expedition runs 28-31 days. The mountain is graded a good first 7,000er, but it is a genuine high-altitude climb above base camp.",
+   about="The base-camp trek is a few days up the Chogo Lungma glacier from Arandu; the climbing expedition runs 28-31 days. The mountain is graded a good first 7,000er, but it is a genuine high-altitude climb above base camp. Since May 2025 the climbing royalty is charged per person (roughly USD 500 per climber for a 7,000m peak), so check whether it is in the quote.",
    faqs=[("Is Spantik a trek or a climb?","Both. There is a short base-camp trek (from about $1,300), and a 28-31 day climbing expedition to the 7,027m summit (from about $3,500)."),
          ("What does the expedition cost in 2026?","Base-camp service expeditions start near $3,500; full-board with oxygen and high-altitude porters runs $4,500-$7,950 depending on operator and ratio."),
          ("Do I need climbing experience for the summit?","Spantik is considered a good first 7,000m peak, but you need solid fitness, basic glacier/rope skills and acclimatisation. The base-camp trek needs none of that."),
@@ -121,18 +121,18 @@ C = {
          ("When should I go?","June to September.")],
    deeper=[("/trekking/hushe-valley","Hushe Valley"),("/trekking/laila-peak-base-camp","Laila Peak Base Camp"),("/trekking/gondogoro-la","Gondogoro La Trek"),("/skardu","Skardu Travel Guide")]),
  'laila-peak-base-camp': dict(region='Hushe, Baltistan', h1='I Reviewed the Laila Peak Base Camp Trek Operators for 2026',
-   intro=["Laila Peak's impossibly thin, leaning spire (6,096m) is one of the most photographed mountains in the Karakoram, and the base-camp trek through the Hushe valley is a quieter alternative to the Baltoro. Here is who runs it and what they charge in 2026.",
+   intro=["Laila Peak's impossibly thin, leaning spire (~6,096m, height disputed) is one of the most photographed mountains in the Karakoram, and the base-camp trek through the Hushe valley is a quieter alternative to the Baltoro. Here is who runs it and what they charge in 2026.",
           "Only operators with a published price are compared below, with notes on what each includes."],
    about="Base camp sits around 4,200-4,535m, reached over roughly 12-13 days door to door via Hushe and the Gondogoro glacier approach. Moderate trekking, no technical climbing.",
    faqs=[("How much does the Laila Peak trek cost in 2026?","Published rates run about $1,450-$1,500 per person for group departures; solo and small groups cost more. Several operators are quote-only."),
-         ("How hard is it?","Moderate - a Hushe-valley approach trek to base camp, not a climb. Laila Peak itself (6,096m) is a serious technical objective for mountaineers only."),
+         ("How hard is it?","Moderate - a Hushe-valley approach trek to base camp, not a climb. Laila Peak itself (~6,096m) is a serious technical objective for mountaineers only."),
          ("How many days?","Around 12-13 days including travel to and from Skardu."),
          ("When is the season?","June to September.")],
    deeper=[("/trekking/masherbrum-base-camp","Masherbrum Base Camp"),("/trekking/hushe-valley","Hushe Valley"),("/trekking/gondogoro-la","Gondogoro La Trek"),("/skardu","Skardu Travel Guide")]),
  'rush-lake': dict(region='Nagar / Hopper', h1='I Compared the Rush Lake Trek Operators for 2026',
    intro=["Rush Lake, at around 4,700m above the Hopper glaciers in Nagar, is one of the highest alpine lakes in the world, with Spantik and Malubiting filling the skyline. Here is who runs the trek and what they charge in 2026.",
           "I compare operators with a published price and flag what is bundled. It is a challenging high-altitude trek but non-technical."],
-   about="Most itineraries run 12-14 days door to door (the lake leg itself is a few days from Hopper); the lake and Rush Pari viewpoint sit near 4,700m. Challenging mainly for the altitude.",
+   about="Most itineraries run 12-14 days door to door (the lake leg itself is a few days from Hopper); the lake and Rush Pari viewpoint sit near 4,700m. Challenging mainly for the altitude. Glacial-lake floods cut Nagar's Hispar valley roads for about two months in 2026, so confirm road access to Hopper before you book.",
    faqs=[("How much does the Rush Lake trek cost in 2026?","Published prices range from about $1,144 to $2,700 per person depending on length and inclusions; several operators are quote-only."),
          ("How hard is the trek?","Challenging - steep ascents and high altitude (~4,700m), but no technical climbing."),
          ("How many days?","12-14 days from Islamabad including the Hunza/Nagar drive; the core lake trek is shorter."),
@@ -141,8 +141,8 @@ C = {
  'rakaposhi-base-camp': dict(region='Minapin, Nagar', h1='I Compared the Rakaposhi Base Camp Trek Operators for 2026',
    intro=["The Rakaposhi base-camp trek climbs from Minapin to a meadow beneath the 7,788m north face - a short, rewarding trek you can do in a few days from Hunza. Here is who runs it and what they charge in 2026.",
           "Operators with a published price are compared below; note how widely durations vary, from a true 3-day trek to 12-day Islamabad-to-Islamabad packages."],
-   about="The actual trek to Tagaphari base camp (~3,800-4,150m) is 2-3 days return from Minapin; many operators wrap it in a longer Hunza tour. Easy to moderate and beginner-friendly.",
-   faqs=[("How much does the Rakaposhi trek cost in 2026?","Group tiers start around $500 per person; flat all-inclusive packages run $1,345-$1,800. Watch whether the price is the short trek or a full Hunza package."),
+   about="The actual trek to Tagaphari base camp (~3,300-3,500m, with Kacheli Lake around 4,000m above it) is 2-3 days return from Minapin; many operators wrap it in a longer Hunza tour. Easy to moderate and beginner-friendly.",
+   faqs=[("How much does the Rakaposhi trek cost in 2026?","Group tiers start around $500 per person; other published packages run about $1,000-$1,345 per person, more for solo travellers. Watch whether the price is the short trek or a full Hunza package."),
          ("How long is the trek?","The trek itself is 2-3 days from Minapin; packages bundling flights and Hunza sightseeing run 11-12 days."),
          ("Is it suitable for beginners?","Yes - it is one of the most accessible base-camp treks in GB, though the final day to the upper camp is a steep climb."),
          ("When should I go?","May to October.")],
@@ -150,7 +150,7 @@ C = {
  'nanga-parbat-base-camp': dict(region='Fairy Meadows / Raikot', h1='I Compared the Nanga Parbat Base Camp Trek Operators for 2026',
    intro=["From Fairy Meadows, the trek to Nanga Parbat's Raikot base camp puts you under the 8,126m north face - the most popular short trek in Gilgit-Baltistan. Here is who runs it and what they charge in 2026.",
           "I compare operators with a published price (some local ones quote in rupees), and note that many sell it as a Fairy Meadows package with the base-camp leg as one day."],
-   about="The base camp on the Raikot side sits around 3,900m, reached on a day hike from Fairy Meadows; full packages run 3-8 days from Islamabad. Easy to moderate.",
+   about="The base camp on the Raikot side sits around 3,900m, reached on a day hike from Fairy Meadows; full packages run about 6-11 days from Islamabad. Easy to moderate. Foreigners register with police at Raikot Bridge, and the UK FCDO advises against all travel on the KKH between Mansehra and Chilas, so prefer packages routed via Naran-Babusar (open roughly late May/June to Oct/Nov) over those driving via Besham.",
    faqs=[("How much does the Nanga Parbat base camp trek cost in 2026?","International-facing operators charge about $1,400-$1,700 per person; local operators price in rupees (around PKR 165,000 for a full package) and per-group tiers drop sharply with group size."),
          ("How hard is it?","Easy to moderate - a day hike from Fairy Meadows to base camp at ~3,900m. The hard part is the jeep road to Tatu and the walk up to Fairy Meadows."),
          ("How many days?","3-4 days for the core trip; 6-8 days for packages from Islamabad."),
@@ -159,16 +159,16 @@ C = {
  'nanga-parbat-rupal-face': dict(region='Tarashing / Astore', h1='I Reviewed the Nanga Parbat Rupal Face Trek Operators for 2026',
    intro=["The Rupal face is the highest mountain wall on earth - 4,600m of rock and ice - and the trek from Tarashing to the Herrligkoffer base camp puts you right beneath it. Here is who runs it and what they charge in 2026.",
           "Operators with a published price are compared below; some sell a combined Fairy Meadows (north) plus Rupal (south) itinerary rather than Rupal alone."],
-   about="The Herrligkoffer/Rupal base camp sits around 3,550m, reached from Tarashing in the Astore valley over 3-4 trekking days; full itineraries run 10-14 days. Moderate.",
+   about="The Herrligkoffer/Rupal base camp sits around 3,550m, reached from Tarashing in the Astore valley over 3-4 trekking days; full itineraries run 10-14 days. Moderate. Rupal lies in Nanga Parbat National Park, not the CKNP, so a \"CKNP fee\" on a Rupal quote is worth questioning. The Gilgit-Astore road was cut by floods in July 2026, so keep buffer days in late July-August.",
    faqs=[("How much does the Rupal face trek cost in 2026?","Published prices start around $1,100 per person; combined Fairy Meadows + Rupal itineraries run $1,850-$1,975. Several operators are quote-only."),
          ("How is it different from the Fairy Meadows side?","Fairy Meadows is the north (Raikot) face; Rupal is the south face, reached via Tarashing in Astore - quieter, and beneath the famous Rupal wall."),
          ("How hard is it?","Moderate - valley and meadow walking to base camp at ~3,550m, with an optional harder push toward the Mazeno area."),
          ("When should I go?","June to September.")],
    deeper=[("/trekking/nanga-parbat-base-camp","Nanga Parbat (Fairy Meadows) Base Camp"),("/astore","Astore Valley Guide"),("/mountains/nanga-parbat","Nanga Parbat Mountain"),("/travel/noc-permits-gb","NOC &amp; Permits")]),
  'hushe-valley': dict(region='Hushe, Baltistan', h1='I Compared the Charakusa / Hushe Valley Trek Operators for 2026',
-   intro=["The Hushe valley is the gateway to the Charakusa - a granite amphitheatre under K6, K7 and Laila Peak that climbers rate among the most beautiful on earth. Here is who runs treks here and what they charge in 2026.",
+   intro=["The Hushe valley is the gateway to the Charakusa - a granite amphitheatre under K6, K7 and the Charakusa spires (Laila Peak sits in the neighbouring Gondogoro valley) that climbers rate among the most beautiful on earth. Here is who runs treks here and what they charge in 2026.",
           "I compare operators with a published price, with notes on what each includes. Trips range from valley walks to multi-week K6/K7 base-camp treks."],
-   about="The valley village sits around 3,050m; the Charakusa and K7 base-camp treks run 10-16 days door to door, reaching base camps around 4,000-4,500m. Moderate trekking in a technical-climbing arena.",
+   about="The valley village sits around 3,050m; the Charakusa and K7 base-camp treks run 10-16 days door to door, reaching base camps around 4,000-4,500m. Moderate trekking in a technical-climbing arena. The Hushe road was among those cut by the July 2026 floods, so check access and keep a buffer day in late July-August.",
    faqs=[("How much does the Charakusa / Hushe trek cost in 2026?","Published prices run about $1,400-$2,800 per person depending on length and inclusions; several operators are quote-only."),
          ("What is there to trek to?","The Charakusa valley and K6/K7 base camps, plus approaches to Laila Peak, Masherbrum and the Gondogoro La - all from Hushe."),
          ("How hard is it?","Moderate trekking, though the setting is a serious climbing area; the base-camp walks themselves are non-technical."),
@@ -177,16 +177,16 @@ C = {
  'haramosh-kutwal-lake': dict(region='Haramosh, near Gilgit', h1='I Went and Looked at the Haramosh / Kutwal Lake Trek Operators for 2026',
    intro=["The Haramosh valley trek to Kutwal Lake, under the 7,409m Haramosh peak, is a short, scenic trek off the Gilgit-Skardu road that few foreigners reach. Here is who runs it and what they charge in 2026.",
           "This is a thin-pricing route - a few local operators publish a rupee or dollar figure, the rest quote per group. All compared below."],
-   about="Kutwal Lake sits around 3,300m, reached in 5-7 days door to door via Sassi and a jeep track. Moderate walking, with a steep approach day.",
+   about="Kutwal Lake sits around 3,300m, reached in 5-7 days door to door via Sassi and a jeep track. Moderate walking, with a steep approach day. Foreign visitors note: the UK FCDO advises against all travel on the KKH between Mansehra and Chilas, which some packages below drive (via Besham and Dasu), so pick one routed over Naran-Babusar (open roughly late May/June to Oct/Nov) or fly to Gilgit. The Haramosh valley road was also cut by the July 2026 floods, so check access.",
    faqs=[("How much does the Kutwal Lake trek cost in 2026?","Local operators publish around PKR 60,000 (about $700-$750 for foreigners); some are breakfast-only or quote-only, so confirm exactly what is included."),
          ("How hard is it?","Moderate - a short trek with one steep approach day to the lake at ~3,300m."),
-         ("How many days?","5-7 days from Islamabad including the drive up the Karakoram Highway."),
+         ("How many days?","5-7 days from Islamabad including the long drive north."),
          ("When should I go?","June to September.")],
    deeper=[("/gilgit","Gilgit Travel Guide"),("/skardu","Skardu Travel Guide"),("/trekking/rakaposhi-base-camp","Rakaposhi Base Camp"),("/travel/best-time-to-visit-gb","Best Time to Visit GB")]),
  'karambar-lake': dict(region='Ishkoman / Broghil', h1='I Researched the Karambar Lake Trek Operators for 2026',
    intro=["Karambar Lake, near the Broghil and the Afghan Wakhan, is one of the highest large lakes on earth and one of the remotest treks in Gilgit-Baltistan. Here is who runs it and what they charge in 2026.",
           "Few operators publish a price for somewhere this remote; those that do are compared below, the rest quote per group."],
-   about="The lake sits around 4,300m, reached over 8-17 days depending on the approach (Ishkoman/Broghil or Chapursan). Challenging and committing, with full self-sufficiency.",
+   about="The lake sits around 4,300m, reached over 8-17 days depending on the approach (Ishkoman/Broghil or Chapursan). Challenging and committing, with full self-sufficiency. The lake lies close to the Afghan (Wakhan) border: foreigners need a permit arranged by the operator, and the UK FCDO advises against all travel within 10 miles of the Afghan border and on the N45 road to Chitral used by the Broghil approach, so check your insurance.",
    faqs=[("How much does the Karambar Lake trek cost in 2026?","One operator publishes about PKR 110,000 ($390) for an 8-day version; longer expedition-style itineraries run $1,400+ and many are quote-only."),
          ("How hard and remote is it?","Very remote and challenging - long days, river crossings and high camps with no resupply; satellite communication is sensible."),
          ("How many days?","8 days for the shortest published trip; 12-17 days for full Broghil/Darkot crossings."),
@@ -195,8 +195,8 @@ C = {
  'naltar-lakes': dict(region='Naltar, near Gilgit', h1='I Compared the Naltar Valley Tours for 2026',
    intro=["Naltar is the easy one - a forested valley above Gilgit with the famous Satrangi (rainbow) lakes, reached by jeep and short walks rather than a multi-day trek. Here is who runs Naltar trips and what they charge in 2026.",
           "Operators sell Naltar as a day or jeep excursion inside 4-5 day Hunza/Gilgit packages; prices below are in rupees, as nearly all are local operators."],
-   about="The valley and Blue/Satrangi lakes sit around 3,050-3,150m, reached by 4x4 jeep with short walks. Easy, family-friendly, and good from late spring to autumn (also a winter ski spot).",
-   faqs=[("How much does a Naltar trip cost in 2026?","Local packages run about PKR 14,500-30,000 per person, usually as part of a 5-day Hunza/Gilgit tour. The Naltar jeep charge (PKR 2,000-3,000/head) is often extra."),
+   about="The valley and Blue/Satrangi lakes sit around 3,050-3,150m, reached by 4x4 jeep with short walks. Easy, family-friendly, and good from late spring to autumn (also a winter ski spot). Floods hit Naltar in July 2026, so check the state of the jeep track before you go.",
+   faqs=[("How much does a Naltar trip cost in 2026?","Current local packages run about PKR 28,000-30,000 per person (Tripako's PKR 14,500 is a 2021 listing), usually as part of a 5-day Hunza/Gilgit tour. The Naltar jeep charge (PKR 2,000-3,000/head) is often extra."),
          ("Is Naltar a trek or a tour?","Mostly a tour - you reach the lakes by jeep with short walks, so it suits families and those who don't want a multi-day trek."),
          ("How many days?","Naltar itself is a day; most buy it inside a 4-5 day Hunza/Gilgit package."),
          ("When should I go?","May to September for the lakes; winter for skiing.")],
@@ -295,8 +295,8 @@ def build_body(route, pkgs):
     n_priced = len(priced); n_total = len(pkgs)
     n_rated = sum(1 for p in pkgs if rating_obj(p['home']))
     rating_note = ('' if not n_rated else
-        f' Where an operator has a genuine public rating I\'ve shown it (Tripadvisor, Trustpilot and similar, with the review count and a link) - '
-        f'Google Maps ratings aren\'t publicly queryable, so I don\'t show those; an operator with too few public reviews shows a dash rather than a number.')
+        f' Where an operator has a public rating I\'ve shown it with the platform (Google, Tripadvisor, Trustpilot or similar), the review count and a link; '
+        f'an operator with too few public reviews shows a dash rather than a number.')
     callout = (f'<div class="callout"><h3>How I compared these packages</h3><p>I did this the way I\'d want a friend to do it for me. '
                f'I went through every {esc(name)} operator I could find, read each itinerary, and lined them up on the things that actually '
                f'decide your trip - what\'s included, the porters and meals, the route, and the real 2026 price. {n_priced} of {n_total} below '
@@ -441,7 +441,7 @@ def assemble(route):
             f'<h1 class="article-title">{C[route]["h1"]}</h1>\n'
             f'<div class="article-meta"><span>By <a href="/about"><strong>Faisal Zaman</strong></a></span>'
             f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span>'
-            f'<span class="sep">&middot;</span><span>Updated June 2026</span></div></div>\n'
+            f'<span class="sep">&middot;</span><span>Updated October 2026</span></div></div>\n'
             f'<figure class="article-figure"><div class="img" style="background-image:url(\'{hero}\')" role="img" aria-label="{DISPLAY[route]}"></div>'
             f'<figcaption>{DISPLAY[route]}, Gilgit-Baltistan.</figcaption></figure>\n'
             f'<div class="article-body">\n{body}\n</div></main>')

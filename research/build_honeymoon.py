@@ -34,7 +34,7 @@ CITY = {
    title='Hunza Honeymoon Packages 2026: Reviewed + Best Romantic Stays',
    desc="Honest 2026 Hunza honeymoon guide: the published honeymoon packages reviewed, the most romantic places to stay (Serena Altit, Eagle's Nest), the best months, and how to plan a private Hunza honeymoon.",
    h1="Planning a Hunza Honeymoon? The Packages and Stays I'd Pick for 2026",
-   blossom='late March to mid-April (cherry blossom)', autumn='mid-October to early November',
+   blossom='late March to mid-April (cherry blossom)', autumn='October',
    packages=[dict(name='5 Days Luxury Honeymoon Tour to Hunza Valley',
                   op='Pakistan Travel Places', home='https://pakistantravelplaces.com',
                   url='https://pakistantravelplaces.com/tour/5-days-super-deluxe-honeymoon-tour-to-hunza-valley/',
@@ -50,19 +50,49 @@ CITY = {
                   bad=['Breakfast and dinner only - lunch is on you','Unnamed 3-star hotel; no published cancellation terms'],
                   verdict='The budget-friendlier private Hunza honeymoon. Good value if you accept a 3-star unnamed hotel and pay your own lunches.')],
    stays=['Serena Altit Fort Residence','Eagle\'s Nest Hotel','Luxus Hunza Attabad Lake Resort'],
-   plan=["<strong>Best months:</strong> late March-mid April for the famous cherry blossom, or mid-October-early November for golden foliage. Both are the most romantic windows; book early as they are popular.",
+   plan=["<strong>Best months:</strong> late March-mid April for the famous cherry blossom, or October for golden foliage (peak usually mid-to-late October). Both are the most romantic windows; book early as they are popular.",
          "<strong>Pay for the view:</strong> a Rakaposhi or valley-facing room is the whole point in Hunza - it is worth the upgrade on a honeymoon.",
          "<strong>Stay in Karimabad:</strong> walkable to the forts, cafes and viewpoints, so you are not driving every evening; Duikar (Eagle's Nest) for sunrise.",
          "<strong>Build your own:</strong> most Hunza honeymoons are custom - send me your dates and budget and I will plan a private route and lock in the best rooms."],
    faqs=[("How much does a Hunza honeymoon package cost?","The published private honeymoon packages run about Rs 135,000 (standard) to Rs 160,000 (luxury) for 5 days. Custom trips vary with the hotel and vehicle - get an itemised quote."),
-         ("What is the best month for a Hunza honeymoon?","Late March to mid-April for cherry blossom, or mid-October to early November for autumn foliage. Both are mild, photogenic and the most romantic times to go."),
+         ("What is the best month for a Hunza honeymoon?","Late March to mid-April for cherry blossom, or October for autumn foliage (peak usually mid-to-late October). Both are mild, photogenic and the most romantic times to go."),
          ("Where should we stay in Hunza for a honeymoon?","Serena Altit Fort Residence (heritage and quiet) and Eagle's Nest at Duikar (the legendary Rakaposhi sunrise view) are the most romantic; Luxus is the luxury lake resort at Attabad."),
          ("How many days do we need?","Five days covers the Hunza honeymoon highlights comfortably; add two or three if you want Khunjerab Pass and upper Hunza at a relaxed pace.")]),
 }
 
+# Per-page stay-card snapshot (fact-checked October 2026). These fields win over
+# research/hotels/<city>.json so a rebuild reproduces the published cards; keep
+# them in step with the hotels JSON when either is re-verified.
+STAY_OVERRIDES = {
+ 'hunza': {
+  'Serena Altit Fort Residence': dict(area='Altit', type='Luxury', rating=4.0, rating_src='Tripadvisor', reviews=12,
+     highlight='Heritage stay beside Altit Fort with the treehouse-style Kha Basi cafe and complimentary fort tour',
+     take='A characterful heritage residence for travelers who want history and calm over resort scale; #1 of 1 inn in Altit on Tripadvisor.'),
+  "Eagle's Nest Hotel": dict(area='Duikar', type='Upper tier', rating=4.0, rating_src='Tripadvisor', reviews=142,
+     highlight="Duikar viewpoint above Karimabad with the valley's most famous Rakaposhi and Lady Finger panorama",
+     take='You stay here for the legendary Duikar view, not the service; #3 of 18 Hunza hotels on Tripadvisor (4.0/5), though reviews are mixed on service.'),
+  'Luxus Hunza Attabad Lake Resort': dict(area='Ainabad, Attabad Lake', type='Luxury', rating=9.0, rating_src='Booking.com', reviews=361,
+     highlight='Attabad Lake-front views; spa, sauna, fitness center; the most-publicized 5-star resort in the valley',
+     take='The closest thing Hunza has to a true luxury lake resort, with knockout views; just temper expectations on maintenance versus the 5-star billing. (TripAdvisor scores it lower, ~3/5 from 70 reviews.)'),
+ },
+ 'skardu': {
+  'Serena Shigar Fort': dict(area='Shigar village (~45 km / 1-2 h from Skardu)', type='Luxury', rating=8.7, rating_src='Booking.com', reviews=45,
+     highlight="Restored 17th-century Raja's fort run as an Aga Khan heritage hotel, with apricot gardens against the Karakoram",
+     take="The most atmospheric stay in the region and the clear top pick for a splurge, as long as you're happy to be based outside Skardu town."),
+  'Shangrila Resort Skardu': dict(area='Lower Kachura Lake (~20 km / 35 min from Skardu)', type='Luxury', rating=3.0, rating_src='Tripadvisor', reviews=132,
+     highlight="Pakistan's most photographed resort, on the heart-shaped Lower Kachura Lake with the famous grounded-aircraft restaurant",
+     take='Go for the unbeatable scenery and the experience, not the rooms; many find a day visit or meal better value than an overnight.'),
+  'Arish Luxury Suites': dict(area='Skardu (near town, with airport transfers)', type='Luxury', rating=9.2, rating_src='Booking.com', reviews=None,
+     highlight="Skardu's best-reviewed modern luxury hotel: spacious, elegant rooms and strong food",
+     take='If you want polished modern luxury inside Skardu itself rather than a heritage fort, this is the standout, with a 5/5 Tripadvisor rank of #4 to match.'),
+ },
+}
+
 def load_hotels(city):
-    try: return {h['name']: h for h in json.load(open(os.path.join(ROOT,'research','hotels',city+'.json')))}
-    except: return {}
+    try: hs={h['name']: h for h in json.load(open(os.path.join(ROOT,'research','hotels',city+'.json')))}
+    except: hs={}
+    for n,o in STAY_OVERRIDES.get(city,{}).items(): hs[n]={**hs.get(n,{}),'name':n,**o}
+    return hs
 
 def stay_card(h):
     meta=''
@@ -103,7 +133,7 @@ def build_body(key):
     faq='<h2>FAQ</h2>\n<div class="faq">'+''.join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in c['faqs'])+'</div>'
     intro=(f'<p>A {disp} honeymoon is one of the most beautiful (and underrated) you can have in Asia: '
            f'{c["blossom"].split("(")[0].strip()} blossom or {c["autumn"]} foliage, snow peaks over your room, and very few crowds. '
-           f"I'm from Gilgit-Baltistan, so here's the honest version - the one published package worth a look, the genuinely romantic places to stay, and how I'd plan it.</p>"
+           f"I'm from Gilgit-Baltistan, so here's the honest version - the {'one published package' if len(c['packages'])==1 else 'two published packages'} worth a look, the genuinely romantic places to stay, and how I'd plan it.</p>"
            f'<p>There are very few <em>published</em> {disp} honeymoon packages (most are built custom), so I review what exists, then give you the romantic stays and a plan to build your own.</p>')
     cta=('<div class="article-cta"><h3>Want it planned around just the two of you?</h3>'
          '<p>Tell me your dates and budget and I\'ll plan a private route and lock in the romantic rooms before they go - free, with my '
@@ -138,7 +168,7 @@ def build(key):
           f'<div class="article-eyebrow">Honeymoon &middot; {disp} &middot; 2026</div>\n'
           f'<h1 class="article-title">{esc(c["h1"])}</h1>\n'
           f'<div class="article-meta"><span>By <a href="/about"><strong>Faisal Zaman</strong></a></span>'
-          f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span><span class="sep">&middot;</span><span>Updated June 2026</span></div></div>\n'
+          f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span><span class="sep">&middot;</span><span>Updated October 2026</span></div></div>\n'
           f'<div class="article-body">\n{build_body(key)}\n</div></main>')
     out=head+'\n<body>\n'+nav+'\n'+main+'\n'+schema(key)+'\n\n'+foot
     d=os.path.join(ROOT, c['tour'].strip('/'), 'honeymoon'); os.makedirs(d, exist_ok=True)

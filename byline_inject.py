@@ -5,6 +5,7 @@ on every article, matching the Person author in each page's schema."""
 import re, os, glob
 
 START, END = "<!-- BYLINE:START -->", "<!-- BYLINE:END -->"
+DEFAULT_UPDATED = "October 2026"
 SKIP = {"about", "planner", "kkh-map", "atm-locator", "status"}  # self/tool pages
 
 def main():
@@ -16,9 +17,13 @@ def main():
         h = open(f, encoding="utf-8").read()
         if "byline" in h and START not in h:
             pass
+        # Keep each page's own "Updated <Month YYYY>" so a re-run never resets
+        # fact-checked pages; new pages get DEFAULT_UPDATED.
+        prev = re.search(r'Updated ([A-Z][a-z]+ \d{4})</div>', h)
+        updated = prev.group(1) if prev else DEFAULT_UPDATED
         byline = (f'{START}\n<div class="byline">By <a href="/about">Faisal Zaman</a>'
                   f'<span class="sep">·</span>Local from Gilgit-Baltistan'
-                  f'<span class="sep">·</span>Updated June 2026</div>\n{END}')
+                  f'<span class="sep">·</span>Updated {updated}</div>\n{END}')
         if START in h:
             h2 = re.sub(re.escape(START) + r".*?" + re.escape(END), byline, h, flags=re.S)
         else:

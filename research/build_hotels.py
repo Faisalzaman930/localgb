@@ -156,7 +156,7 @@ def assemble(key,title):
           f'<h1 class="article-title">{esc(c["h1"])}</h1>\n'
           f'<div class="article-meta"><span>By <a href="/about"><strong>Faisal Zaman</strong></a></span>'
           f'<span class="sep">&middot;</span><span>Local, Gilgit-Baltistan</span>'
-          f'<span class="sep">&middot;</span><span>Updated June 2026</span></div></div>\n'
+          f'<span class="sep">&middot;</span><span>Updated October 2026</span></div></div>\n'
           f'<figure class="article-figure"><div class="img" style="background-image:url(\'{c["hero"]}\')" role="img" aria-label="{esc(c["town"])} hotels"></div>'
           f'<figcaption>Where to stay in {esc(c["town"])}, Gilgit-Baltistan.</figcaption></figure>\n'
           f'<div class="article-body">\n{build_body(key,hs)}\n</div></main>')

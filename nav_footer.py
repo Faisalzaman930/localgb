@@ -56,7 +56,7 @@ def build_footer(p):
         f'      <div><div class="footer-col-title">Treks &amp; Peaks</div><ul class="footer-links">{li(TREKS,p)}</ul></div>\n'
         f'      <div><div class="footer-col-title">Plan your trip</div><ul class="footer-links">{li(PLAN,p)}</ul></div>\n'
         f'    </div>\n'
-        f'    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 GB Guide · Last updated June 2026</span>'
+        f'    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 GB Guide · Last updated October 2026</span>'
         f'<span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>\n'
         f'  </div>\n</footer>')
 

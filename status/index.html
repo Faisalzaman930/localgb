@@ -114,7 +114,7 @@
       "publisher": {
         "@id": "https://www.gilgitbaltistanguide.com/#org"
       },
-      "dateModified": "2026-07-09",
+      "dateModified": "2026-10-16",
       "mainEntityOfPage": "https://www.gilgitbaltistanguide.com/status"
     }
   ]
@@ -167,17 +167,17 @@
   <!-- ── FLIGHTS ── -->
   <div class="flight-sec">
     <h2>Flights to Skardu &amp; Gilgit</h2>
-    <p class="lead">The single biggest logistical risk on a GB trip. Both airports are sight-flying only - pilots need clear weather over the Karakoram, the military gets priority, and seats are confirmed barely 24 hours out. Cancellations are normal, not exceptional.</p>
+    <p class="lead">The single biggest logistical risk on a GB trip. Both airports need clear weather over the mountains (Gilgit is visual-flight-rules only), and flights are often cancelled at short notice. Cancellations are normal, not exceptional.</p>
     <div class="flight-grid">
       <div class="fcard">
         <h3>Skardu (KDU)</h3>
-        <div class="rate">~40-60% winter cancellation</div>
-        <p>Daily PIA flights from Islamabad. The approach over Nanga Parbat is spectacular - but in Nov-Feb, delays of several days are common. Summer is far more reliable. Always hold a road backup date.</p>
+        <div class="rate">Frequently cancelled, worst in winter</div>
+        <p>PIA, Airblue and AirSial fly A320 jets from Islamabad (roughly 13-21 flights a week, fewer in winter). The approach over Nanga Parbat is spectacular - but in Nov-Feb, delays of several days are common. Summer is far more reliable. Always hold a road backup date.</p>
       </div>
       <div class="fcard">
         <h3>Gilgit (GIL)</h3>
-        <div class="rate">~40-60% winter cancellation</div>
-        <p>Small ATR flights, weather-dependent year-round. Frequently cancelled same-day. The KKH by road (Islamabad → Gilgit, ~14-16h) is the dependable fallback if your flight is scrubbed.</p>
+        <div class="rate">Frequently cancelled, all year</div>
+        <p>PIA only, small ATR turboprops (~6 flights a week), weather-dependent year-round. Frequently cancelled same-day and often not retried that day. The KKH by road (Islamabad → Gilgit, ~12-16h) is the dependable fallback if your flight is scrubbed.</p>
       </div>
     </div>
     <div class="planb">
@@ -205,7 +205,7 @@
       <div><div class="footer-col-title">Treks &amp; Peaks</div><ul class="footer-links"><li><a href="/trekking">All Treks</a></li><li><a href="/trekking/k2-base-camp">K2 Base Camp</a></li><li><a href="/trekking/concordia">Concordia</a></li><li><a href="/trekking/rakaposhi-base-camp">Rakaposhi BC</a></li><li><a href="/trekking/rush-lake">Rush Lake</a></li><li><a href="/mountains">Mountains</a></li><li><a href="/mountains/k2">K2</a></li><li><a href="/mountains/nanga-parbat">Nanga Parbat</a></li><li><a href="/mountains/rakaposhi">Rakaposhi</a></li></ul></div>
       <div><div class="footer-col-title">Plan your trip</div><ul class="footer-links"><li><a href="/planner">Trip Planner</a></li><li><a href="/travel/best-time-to-visit-gb">Best Time to Visit</a></li><li><a href="/travel/islamabad-to-hunza">How to Reach</a></li><li><a href="/travel/what-to-pack">What to Pack</a></li><li><a href="/travel/noc-permits-gb">NOC & Permits</a></li><li><a href="/travel/budget-gb-itinerary">Budget Guide</a></li><li><a href="/status">Road & Pass Status</a></li><li><a href="/weather">Weather</a></li><li><a href="/tours">Tours</a></li><li><a href="/food">What to Eat</a></li><li><a href="/agencies">Choosing an Operator</a></li><li><a href="/about">About GB Guide</a></li><li><a href="/contact">Contact</a></li><li><a href="/updates">Travel Updates</a></li><li><a href="/blog">Blog</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 GB Guide · Last updated June 2026</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
+    <div class="footer-bottom"><span class="footer-copy">&copy; 2026 GB Guide · Last updated October 2026</span><span class="footer-made">Made with honesty, <span>from Gilgit-Baltistan.</span></span></div>
   </div>
 </footer>
 
@@ -224,23 +224,23 @@ const ROUTES = [
     id:'kkh', name:'Karakoram Highway', type:'Highway', on:'Islamabad → Chilas → Gilgit → Khunjerab',
     elev:'up to 4,693m', coords:[35.4200,74.0980],
     openMonths:[1,2,3,4,5,6,9,10,11,12], marginalMonths:[7,8],
-    note:'Open most of the year. The Mansehra-Chilas section is the weak point - monsoon landslides (Jul-Aug) can block it for hours to days. Drive it in daylight.',
+    note:'Open most of the year. The Mansehra-Chilas section is the weak point - monsoon landslides (late Jul-Aug) can block it for hours to days, and protests at Chilas have shut it for days in 2026. Drive it in daylight. The UK FCDO advises against all travel on the Mansehra-Chilas section.',
     source:'NHA bulletins + local drivers',
     override:{ status:null, note:'', updated:'2026-06-27' },
   },
   {
     id:'babusar', name:'Babusar Pass', type:'Pass', on:'Naran → Chilas (KKH shortcut)',
     elev:'4,173m', coords:[35.1430,74.0560],
-    openMonths:[7,8,9,10], marginalMonths:[6,11],
-    note:'Closed by snow roughly Nov-May. Even in season it is daylight-only (gates ~7am-6pm) and the first/last weeks are weather-dependent. When closed, use the KKH via Besham instead.',
+    openMonths:[6,7,8,9,10], marginalMonths:[5,11],
+    note:'Open roughly late May/June to Oct/Nov (it opened ~25-27 May in 2026, one-way at first, then shut again for snow in early June). Even in season it is daylight-only (gates ~7am-6pm) and the first/last weeks are weather-dependent. When closed, use the KKH via Besham instead.',
     source:'NHA + Naran transporters',
     override:{ status:null, note:'', updated:'2026-06-27' },
   },
   {
     id:'khunjerab', name:'Khunjerab Pass', type:'Border Pass', on:'Upper Hunza → China border',
     elev:'4,693m', coords:[36.8510,75.4270],
-    openMonths:[5,6,7,8,9,10,11], marginalMonths:[4],
-    note:'Officially Apr/May-Nov; the gate and border services close for winter. Snowfall can shut it for a day even mid-season. Carry warm layers - it is below freezing at the top most mornings.',
+    openMonths:[5,6,7,8,9,10], marginalMonths:[11,12,1,2,3,4],
+    note:'Officially open year-round since Dec 2024 (for trade), but the practical tourist window is May-Oct and winter access can be suspended for days. The Sost border runs Mon-Fri only and closes on Pakistani/Chinese holidays. Snowfall can shut it for a day even mid-season. Carry warm layers - it is below freezing at the top most mornings.',
     source:'Customs/NLI checkpoints',
     override:{ status:null, note:'', updated:'2026-06-27' },
   },
@@ -248,15 +248,15 @@ const ROUTES = [
     id:'deosai', name:'Deosai Plains', type:'High Plateau Track', on:'Skardu ↔ Astore',
     elev:'4,114m avg', coords:[34.9700,75.4000],
     openMonths:[7,8,9], marginalMonths:[6,10],
-    note:'The second-highest plateau on earth - snowbound and impassable most of the year. The track is reliably open only roughly mid-June/July to September. 4x4 only; no fuel, no services on the plateau.',
+    note:'The second-highest plateau on earth - snowbound and impassable most of the year. The track is open roughly mid-June to late September/early October (best Jun-Aug). 4x4 only; no fuel, no services on the plateau.',
     source:'Skardu jeep operators + Parks dept',
     override:{ status:null, note:'', updated:'2026-06-27' },
   },
   {
     id:'fairy', name:'Fairy Meadows Track', type:'Jeep Track + Hike', on:'Raikot Bridge → Tato → hike',
     elev:'3,300m', coords:[35.3900,74.5800],
-    openMonths:[4,5,6,7,8,9,10], marginalMonths:[11],
-    note:'The infamous Raikot jeep track plus a 1-2h hike. Open spring-autumn; the meadow huts close and the track ices over in winter. The jeep stage is genuinely exposed - go with an experienced local driver.',
+    openMonths:[5,6,7,8,9], marginalMonths:[4,10],
+    note:'The infamous Raikot jeep track plus a 2-3h uphill hike. Open roughly Apr/May to Sep/Oct; the meadow huts close and the track ices over in winter. The jeep stage is genuinely exposed - go with an experienced local driver.',
     source:'Tato jeep union + lodge owners',
     override:{ status:null, note:'', updated:'2026-06-27' },
   },
@@ -264,7 +264,7 @@ const ROUTES = [
     id:'skardu-road', name:'Skardu Road (Jaglot Junction)', type:'Highway', on:'KKH (Jaglot) → Skardu',
     elev:'~2,400m', coords:[35.3300,75.5500],
     openMonths:[1,2,3,4,5,6,7,8,9,10,11,12], marginalMonths:[7,8],
-    note:'Now mostly paved and open year-round - the dependable way into Skardu when flights are cancelled. Occasional rockfall/landslide closures in monsoon; winter ice on shaded bends.',
+    note:'Now mostly paved and open year-round - the dependable way into Skardu when flights are cancelled. Monsoon floods closed it for days in both 2025 and 2026, and in Sep 2026 some flood-damaged sections (diversions, one-lane stretches, a Bailey bridge) still add 1-2h. Winter ice on shaded bends.',
     source:'FWO + Skardu transporters',
     override:{ status:null, note:'', updated:'2026-06-27' },
   },
