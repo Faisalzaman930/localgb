@@ -33,6 +33,7 @@ HELP_PAGES = [
     "hunza", "skardu", "gilgit", "fairy-meadows", "gojal", "ghizer", "naltar", "astore",
     "yasin", "deosai", "ishkoman", "naran-kaghan",
     "travel/honeymoon", "hunza/honeymoon", "skardu/honeymoon", "naran-kaghan/honeymoon",
+    "travel/is-gilgit-baltistan-safe", "updates/is-gilgit-baltistan-open-for-tourists-2026",
 ]
 HELP_PREFIXES = ["agencies/", "tours/"]          # every page under these
 HELP_SUFFIXES = ["/hotels"]                      # e.g. hunza/hotels

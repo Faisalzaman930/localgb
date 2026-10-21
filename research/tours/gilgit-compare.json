@@ -1,0 +1,187 @@
+{
+  "page": "tours/gilgit",
+  "place": "Gilgit-Baltistan",
+  "checked": "21 October 2026",
+  "mix": "short road trips to Hunza, flight-based circuits, and grand tours that take in Hunza, Skardu, Fairy Meadows, Deosai and the Ghizer valleys",
+  "top_html": "<h2>Gilgit tour package prices in 2026</h2>\n<p>Most people searching for a \"Gilgit tour\" mean a trip around Gilgit-Baltistan - Hunza, Skardu, Fairy Meadows and the valleys around them. Here is what those trips cost in 2026, per person unless noted (always confirm the current rate):</p>\n<div style=\"overflow-x:auto\"><table class=\"cmp-table\"><thead><tr><th>Type of trip</th><th>Typical 2026 price</th></tr></thead><tbody>\n<tr><td>Budget group trip by road, 5-8 days</td><td>Published from about Rs 17,500 (Hunza, 5 days) to Rs 25,500 (Skardu, 8 days)</td></tr>\n<tr><td>Private trip with your own car and driver - Hunza</td><td>About Rs 29,500 (3 days), Rs 49,500 (5 days), Rs 69,500 (7 days)</td></tr>\n<tr><td>Skardu group trip by road, 7-8 days</td><td>About Rs 29,500-39,500</td></tr>\n<tr><td>Skardu by air, 4-6 days</td><td>About Rs 63,000-145,000</td></tr>\n<tr><td>Guided tours for foreign visitors</td><td>About US$850 (Hunza, 7-9 days) to US$1,050-1,850 (11-17 day circuits)</td></tr>\n<tr><td>Honeymoon packages, 5-8 days</td><td>Rs 120,000-190,000 per package, as listed</td></tr>\n</tbody></table></div>\n<p><strong>What changes the price:</strong> flying instead of driving (flights cost about PKR 18,000-30,000 each way), a private car instead of a shared group vehicle, the hotel level, and the season - blossom (late March to mid-April) and autumn (late September to October) are the busiest. Travelling from Lahore adds about PKR 6,900-8,400 each way by coach; from Karachi, PIA flies direct to Skardu about 3-4 times a week, or you can connect through Islamabad.</p>\n<p>Want a specific destination? See my comparisons of <a href=\"/tours/hunza\">Hunza tour packages</a>, <a href=\"/tours/skardu\">Skardu tour packages</a> and <a href=\"/tours/fairy-meadows\">Fairy Meadows tour packages</a>.</p>\n",
+  "day_groups": [
+    {"label": "5-8 days", "min": 1, "max": 8, "why": "One or two regions by road - Hunza, or Hunza and Skardu - with long drives at each end."},
+    {"label": "10-13 days", "min": 9, "max": 13, "why": "Hunza plus Fairy Meadows, or Skardu, Khaplu and Hunza with a flight - the sweet spot for a first trip."},
+    {"label": "15 days or more", "min": 14, "max": 99, "why": "The full circuit: add Chapursan, the Ghizer valleys (Phander, Yasin, Ishkoman) or Deosai and Astore."}
+  ],
+  "days_tip": "Whatever the length, keep one spare day for a cancelled flight or a landslide - Machulo's spring tour builds one in, which is a good sign.",
+  "footer_html": "<p style=\"font-size:.9rem\">Starting from a particular city? See tours <a href=\"/tours/from-islamabad\">from Islamabad</a>, <a href=\"/tours/from-lahore\">from Lahore</a> and <a href=\"/tours/from-karachi\">from Karachi</a>.</p>",
+  "notes": ["UK travel advice (FCDO) warns against all travel on the KKH between Mansehra and Chilas. If that applies to you, choose a trip that flies, or uses the Babusar road (open roughly late May to October)."],
+  "operators": {
+    "nkt": {"name": "Naran Kaghan Tours", "url": "https://narankaghantours.com", "based": "Not stated on their site"},
+    "hat": {"name": "Hunza Adventure Tours", "url": "https://hunzaadventuretours.com", "based": "Gulmit, Upper Hunza (per their site)"},
+    "he":  {"name": "Hunza Explorers", "url": "https://hunzaexplorers.com", "based": "Ghulkin, Upper Hunza (per their site)"},
+    "mac": {"name": "Machulo Treks & Tours", "url": "https://machulo.com.pk", "based": "Skardu (per their site)"},
+    "sk":  {"name": "Summit Karakoram", "url": "https://www.summitkarakoram.com", "based": "Skardu (per their site)"}
+  },
+  "packages": [
+    {
+      "id": "nkt-gilgit-5", "op": "nkt", "name": "5-Day Hunza, Gilgit & Khunjerab Trip",
+      "url": "https://narankaghantours.com/tours/5-days-4-nights-tour-to-gilgit-khunjerab-via-besham/",
+      "days": 5, "start": "Islamabad (drops in Lahore)", "travel": "Road (KKH via Besham)", "price": "On request (WhatsApp)", "meals": "Breakfast, lunch and dinner",
+      "best": "The shortest trip to Hunza and Khunjerab",
+      "itinerary": [
+        "2am pick-up in Islamabad, breakfast in Besham, then up the KKH past Dasu to Chilas.",
+        "Chilas to Hunza, stopping where three mountain ranges meet and at the Nanga Parbat and Rakaposhi viewpoints.",
+        "Baltit or Altit Fort, Attabad Lake through the tunnels, the Passu Cones and - if possible, by jeep - Khunjerab Pass.",
+        "Back down to Chilas or Besham.",
+        "Early start to Islamabad (about 5pm), continuing to Lahore (around midnight)."
+      ],
+      "good": ["Fits Hunza and Khunjerab into five days", "All meals listed"],
+      "watch": ["Only one full day in Hunza; Khunjerab is \"if possible\"", "The page notes fuel-price rises can add Rs 2,000-3,000", "No price shown - ask on WhatsApp"]
+    },
+    {
+      "id": "nkt-hunza-skardu-8", "op": "nkt", "name": "8-Day Hunza & Skardu via Naran",
+      "url": "https://narankaghantours.com/tours/8-days-7-nights-tour-to-hunza-skardu-via-naran-valley/",
+      "days": 8, "start": "Islamabad (drops in Lahore)", "travel": "Road (via Naran and Babusar both ways)", "price": "On request (WhatsApp)", "meals": "Breakfast, lunch and dinner",
+      "best": "Hunza and Skardu in one week by road",
+      "itinerary": [
+        "Islamabad through Balakot and Naran, past Lulusar Lake and over Babusar Pass to Chilas.",
+        "A long day from Chilas to Skardu, via the Nanga Parbat viewpoint and the three-ranges junction.",
+        "Shigar: the cold desert, Blind Lake (from a distance) and Shigar Fort, plus Manthokha waterfall.",
+        "By 4x4 to Deosai via Satpara Lake: Bara Pani and Sheosar Lake.",
+        "Shangrila and Upper Kachura Lake, then another long drive to Hunza.",
+        "Attabad Lake, Gulmit, Passu, the Hussaini bridge and Khunjerab Pass.",
+        "Altit and Baltit forts and the royal garden, then down to Chilas.",
+        "Back over Babusar to Islamabad and on to Lahore."
+      ],
+      "good": ["Covers Shigar, Deosai, Kachura, Upper Hunza and Khunjerab", "Uses the Babusar road both ways"],
+      "watch": ["Two very long driving days (arriving in Skardu around 11pm)", "Summer only - needs Babusar and Deosai open", "No price shown"]
+    },
+    {
+      "id": "hat-gb-autumn-10", "op": "hat", "name": "Gilgit-Baltistan Autumn Tour",
+      "url": "https://hunzaadventuretours.com/tour/gilgit-baltistan-autumn-tour/",
+      "days": 10, "start": "Islamabad", "travel": "Fly to Gilgit, return by road", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Fairy Meadows and Hunza in ten days",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Fly to Gilgit, then jeep from Raikot Bridge and hike up to Fairy Meadows.",
+        "Hike to Nanga Parbat base camp and back.",
+        "Down from Fairy Meadows and on to Karimabad, Hunza.",
+        "Baltit Fort, then via Hopper to Gulmit in Upper Hunza.",
+        "Passu Glacier, Borith Lake and the suspension bridges.",
+        "Full-day trip to Khunjerab Pass.",
+        "Gulmit to Gilgit, via the Rakaposhi viewpoint.",
+        "Gilgit down to Besham.",
+        "Taxila Museum and back to Islamabad."
+      ],
+      "good": ["Full day at Nanga Parbat base camp", "Flying in saves a long day on the KKH"],
+      "watch": ["The Gilgit flight is often cancelled - ask about the plan B", "No price published"]
+    },
+    {
+      "id": "mac-spring-13", "op": "mac", "name": "Northern Spring Tour",
+      "url": "https://machulo.com.pk/tour/northern-spring-tour/",
+      "days": 13, "start": "Islamabad", "travel": "Fly to Skardu, fly back from Gilgit", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Skardu, Hushe and Hunza with a spare day built in",
+      "itinerary": [
+        "Arrive in Islamabad and transfer to your hotel.",
+        "Fly to Skardu.",
+        "Shigar Valley, then on to Khaplu.",
+        "Machulo village and up to Hushe.",
+        "Back to Skardu, with the Manthal Buddha rock.",
+        "Skardu to Karimabad, Hunza (5-6 h), via the Rakaposhi viewpoint.",
+        "Baltit and Altit forts and the Karimabad bazaar.",
+        "Hopper Glacier viewpoint, then on to Passu.",
+        "Passu to Gilgit, with the Kargah Buddha.",
+        "Fly from Gilgit to Islamabad.",
+        "Day trip to the Taxila Museum.",
+        "A reserve day in case a flight is cancelled.",
+        "Departure."
+      ],
+      "good": ["A reserve day is built in for flight cancellations", "Skardu-based operator; includes Hushe and Machulo"],
+      "watch": ["Two flight days", "No price published"]
+    },
+    {
+      "id": "mac-gb-12", "op": "mac", "name": "Gilgit-Baltistan Tour (Fairy Meadows, Skardu, Hunza)",
+      "url": "https://machulo.com.pk/tour/gilgit-baltistan-tour/",
+      "days": 12, "start": "Islamabad", "travel": "Road (out via KKH, back via Babusar)", "price": "On request", "meals": "Not listed",
+      "best": "Fairy Meadows, Skardu and Hunza in one loop",
+      "itinerary": [
+        "Arrive in Islamabad and drive to Chilas.",
+        "Chilas to Fairy Meadows.",
+        "Down from Fairy Meadows and on to Skardu.",
+        "Shangrila, Upper Kachura and Shigar Valley.",
+        "Khaplu and the Ghanche district.",
+        "Skardu to Karimabad, Hunza.",
+        "Baltit and Altit forts and Eagle's Nest at Duikar.",
+        "Attabad Lake, Passu and Hopper Glacier.",
+        "Hunza to Naran over Babusar Pass.",
+        "Naran to Islamabad.",
+        "Islamabad sightseeing and departure."
+      ],
+      "good": ["Three regions in one trip, returning over Babusar instead of the KKH"],
+      "watch": ["The page lists \"Hunza to Naran\" twice and says \"12 days / 13 nights\" - confirm the real day plan", "Only one night at Fairy Meadows", "No price published"]
+    },
+    {
+      "id": "hat-gb-15", "op": "hat", "name": "Gilgit-Baltistan Tour (Fairy Meadows, Hunza, Ghizer)",
+      "url": "https://hunzaadventuretours.com/tour/gilgit-baltistan-tour/",
+      "days": 15, "start": "Islamabad", "travel": "Road (KKH)", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Hunza in depth, plus Chapursan and Phander",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Up the KKH to Chilas, with the Shatial rock carvings.",
+        "Jeep from Raikot Bridge and hike up to Fairy Meadows.",
+        "Hike to Nanga Parbat base camp and back.",
+        "Down from Fairy Meadows and on to Karimabad.",
+        "Baltit and Altit forts, then via Hopper to Gulmit.",
+        "Borith Lake and the suspension bridges.",
+        "Full-day trip to Khunjerab Pass.",
+        "Chapursan Valley: horse or yak rides and local polo.",
+        "Around Gulmit and Upper Hunza.",
+        "Gulmit to Gilgit, via the Rakaposhi viewpoint.",
+        "Gilgit to Gupis in Ghizer.",
+        "On to Phander Valley.",
+        "Phander back through Gilgit to Besham.",
+        "Taxila Museum and back to Islamabad."
+      ],
+      "good": ["Two full days in Upper Hunza plus Chapursan", "Adds the Ghizer valleys, which most tours skip"],
+      "watch": ["Road both ways - a lot of driving", "No price published"]
+    },
+    {
+      "id": "he-gb-autumn-16", "op": "he", "name": "Gilgit-Baltistan Autumn Tour",
+      "url": "https://hunzaexplorers.com/tour/gilgit-baltistan-autumn/",
+      "days": 16, "start": "Islamabad", "travel": "Fly to Skardu, return by road", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "Autumn colours across Baltistan, Hunza and Ghizer",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Fly to Skardu and drive on to Khaplu.",
+        "Khaplu's heritage and autumn colours.",
+        "Through Shigar Valley to Skardu.",
+        "Skardu to Karimabad, Hunza.",
+        "Karimabad's heritage and autumn colours.",
+        "Via Hopar Valley to Upper Hunza.",
+        "Gulmit, Ghulkin and Passu.",
+        "Khunjerab Pass and the valleys of Upper Gojal.",
+        "Upper Hunza across to Ghizer.",
+        "Phander and Yasin valleys.",
+        "Yasin on to Ishkoman.",
+        "A day in Ishkoman Valley.",
+        "Ishkoman back to Gilgit.",
+        "Down the KKH to Besham.",
+        "Islamabad and departure."
+      ],
+      "good": ["Hunza-based operator; full board", "Covers Yasin and Ishkoman, the least-visited valleys"],
+      "watch": ["Long - 16 days, much of it driving", "No price published"]
+    },
+    {
+      "id": "sk-deosai-17", "op": "sk", "name": "Deosai Plateau Tour (Skardu, Deosai, Astore, Hunza)",
+      "url": "https://summitkarakoram.com/trip/deosai-plateau-tour/",
+      "days": 17, "start": "Islamabad", "travel": "Road (out via Chilas, back via Babusar)", "price": "From US$1,850 per adult", "meals": "Full board listed",
+      "best": "The full loop with a published price",
+      "itinerary": [
+        "Arrive in Islamabad.", "Drive to Chilas.", "Chilas to Skardu.", "Buddha Rock, Shangrila and Upper Kachura Lake.",
+        "Up past Satpara Lake onto Deosai.", "A day on Deosai, including Sheosar Lake.", "From Sheosar down to Rama Lake.",
+        "Rama Lake to Astore.", "Astore to Gilgit.", "Gilgit to Karimabad, Hunza.", "Eagle's Nest, Altit and Baltit forts.",
+        "Khunjerab Pass, back to Sost.", "Sost down to Gilgit.", "Over Babusar Top to Naran.", "A day around Naran.",
+        "Taxila Museum and back to Islamabad.", "Departure."
+      ],
+      "good": ["The only circuit here with a published price", "Crosses Deosai to Astore - one of GB's great drives"],
+      "watch": ["The page says 13 days but the day plan runs 17 - confirm", "Summer only (Deosai and Babusar)", "Priced in US dollars"]
+    }
+  ]
+}

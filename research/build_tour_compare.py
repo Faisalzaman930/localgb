@@ -65,7 +65,7 @@ def render(d):
     return f'''{START}
 <p>I'm from Gilgit-Baltistan, so here's the honest comparison: <strong>{len(pk)} {place} tour packages from {n_ops} different operators</strong> - {d["mix"]}. I read every itinerary day by day and rewrote it below in plain words, so you can see exactly where each trip spends its time.</p>
 <div class="callout"><h3>How I compared them</h3><p>Packages, prices and dates were re-checked on each operator's own website on {e(d["checked"])}. Many operators don't publish prices ("on request") - that's normal in Pakistan, and I say so rather than guess. Where an operator says where it's based, I show it.</p>{notes}</div>
-<h2>At a glance - {len(pk)} {place} packages compared</h2>
+{d.get("top_html", "")}<h2>At a glance - {len(pk)} {place} packages compared</h2>
 <div style="overflow-x:auto"><table class="cmp-table"><thead><tr><th>Package</th><th>Operator</th><th>Days</th><th>Route</th><th>Price</th></tr></thead><tbody>{rows}</tbody></table></div>
 <h2>Which one is best for you?</h2><ul>{best}</ul>
 <h2>How many days do you need for a {place} tour?</h2><ul>{days_html}</ul><p>{d["days_tip"]}</p>

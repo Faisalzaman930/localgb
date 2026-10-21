@@ -1,0 +1,78 @@
+{
+  "page": "tours/naran-kaghan",
+  "place": "Naran Kaghan",
+  "checked": "21 October 2026",
+  "replace_from": "<p>I pulled the real, current itineraries",
+  "mix": "budget 3-day group trips from Islamabad and Lahore, a 4-day trip with Shogran, a slow 7-day tour, and couples' packages",
+  "top_html": "<h2>Naran Kaghan tour package prices in 2026</h2>\n<div style=\"overflow-x:auto\"><table class=\"cmp-table\"><thead><tr><th>Type of trip</th><th>2026 price (confirm when you book)</th></tr></thead><tbody>\n<tr><td>3-day group trip from Islamabad or Lahore</td><td>From about Rs 11,500 per person (published)</td></tr>\n<tr><td>Honeymoon / couples' package</td><td>Rs 40,000 (2 days, Shogran) to Rs 60,000 (3 days, Naran) as listed</td></tr>\n<tr><td>Guided tours for foreign visitors</td><td>On request</td></tr>\n<tr><td>Doing it yourself - jeep to Lake Saif-ul-Malook</td><td>About PKR 5,500 return</td></tr>\n<tr><td>Doing it yourself - jeep from Naran to Babusar Top</td><td>PKR 12,000 return (official fare, July 2026)</td></tr>\n<tr><td>Hotels</td><td>About PKR 2,000-4,000 (PTDC Motel, Naran) to PKR 10,000-18,000 (PTDC log huts, Shogran) a night</td></tr>\n</tbody></table></div>\n<p>Prices rise sharply in July and August, when the valley is at its busiest.</p>\n<h2>Naran Kaghan tours from Islamabad, Lahore and Karachi</h2>\n<ul>\n<li><strong>From Islamabad or Rawalpindi:</strong> Naran is 6-9 hours by road, so most tours start here and a 3-day trip works well.</li>\n<li><strong>From Lahore:</strong> most group trips pick up in Lahore as well; Lahore to Islamabad adds about 4-5 hours on the M2, and buses usually get back to Lahore around midnight on the last day.</li>\n<li><strong>From Faisalabad, Sialkot, Gujranwala or Multan:</strong> join a Lahore or Islamabad departure - ask the operator which pick-up points they use.</li>\n<li><strong>From Karachi:</strong> fly to Islamabad and join a trip from there.</li>\n</ul>\n<h2>Is Naran Kaghan open for tourists?</h2>\n<ul>\n<li><strong>Main season:</strong> roughly May-June to October. June and September are the best months; July and August are the most crowded.</li>\n<li><strong>Babusar Pass:</strong> open roughly late May or June to October or November, depending on snow, and only in daylight (gates roughly 7am-6pm).</li>\n<li><strong>Autumn and winter:</strong> from October guesthouses in Naran start to close; the lower valley (Balakot, Kiwai and Shogran) stays open year-round.</li>\n<li><strong>Monsoon:</strong> floods closed Babusar and the Kaghan road for days in late July to mid-August in both 2025 and 2026 - keep a spare day.</li>\n</ul>\n<p>For live conditions see my <a href=\"/status\">road and pass status</a> page, and the full <a href=\"/naran-kaghan\">Naran and Kaghan guide</a>.</p>\n",
+  "day_groups": [
+    {"label": "3-4 days", "min": 1, "max": 4, "why": "Shogran and Siri Paye, Lake Saif-ul-Malook, and Lulusar and Babusar Top - the classic weekend loop."},
+    {"label": "7 days", "min": 5, "max": 99, "why": "The same highlights at an easy pace, with a full day for each excursion."}
+  ],
+  "days_tip": "Three days is enough for the highlights from Islamabad. In July and August, add a day - traffic in the valley can triple driving times.",
+  "footer_html": "<p style=\"font-size:.9rem\">Planning a trip for two? See <a href=\"/naran-kaghan/honeymoon\">honeymoon in Naran and Kaghan</a>. Going on to Gilgit-Baltistan? See my <a href=\"/tours/gilgit\">Gilgit-Baltistan tour packages</a>.</p>",
+  "operators": {
+    "ptp": {"name": "Pakistan Travel Places", "url": "https://pakistantravelplaces.com", "based": "Lahore (per their site)"},
+    "tp":  {"name": "Tripako", "url": "https://tripako.com", "based": "Not stated on their site"},
+    "he":  {"name": "Hunza Explorers", "url": "https://hunzaexplorers.com", "based": "Ghulkin, Upper Hunza (per their site)"}
+  },
+  "packages": [
+    {
+      "id": "ptp-naran-3", "op": "ptp", "name": "3-Day Shogran, Siri Paye, Naran & Saif-ul-Malook Trip",
+      "url": "https://pakistantravelplaces.com/tour/trip-shogran-siri-paye-naran-and-lake-saif-ul-malook/",
+      "days": 3, "start": "Islamabad or Lahore", "travel": "Road", "price": "From Rs 11,500 per person", "meals": "Breakfast, lunch and dinner",
+      "best": "The cheapest published Naran trip",
+      "itinerary": [
+        "Overnight departure; breakfast in Balakot or Mansehra, then jeeps from Kiwai up to Shogran and the Siri Paye meadows. Night in Shogran.",
+        "On to Naran, then by jeep to Lake Saif-ul-Malook; barbecue and bonfire in the evening.",
+        "Kiwai waterfall on the way down, lunch in Abbottabad, Islamabad by evening and Lahore around 1am."
+      ],
+      "good": ["Lowest published price, all meals listed", "Covers both Shogran and Saif-ul-Malook"],
+      "watch": ["Starts and ends with long overnight drives", "The same trip is also listed from Rs 12,500 under another name - confirm which price applies", "Group trip - ask how many share the vehicle"]
+    },
+    {
+      "id": "tp-naran-4", "op": "tp", "name": "Naran, Kaghan & Shogran 4-Day Tour (Standard)",
+      "url": "https://tripako.com/p/naran-kaghan-shogran-4-days-standard-tour-package/",
+      "days": 4, "start": "Islamabad", "travel": "Road", "price": "On request (quote form)", "meals": "Breakfast",
+      "best": "Babusar Top as well as the lakes",
+      "itinerary": [
+        "Islamabad to Naran via Balakot, with stops at the Kunhar viewpoint and Kiwai.",
+        "By jeep to Lake Saif-ul-Malook, then up the valley past Burawai and Batakundi to Lulusar Lake and Babusar Top.",
+        "Down to Kiwai and by 4x4 up to Shogran; jeep to the Siri Paye meadows.",
+        "Down from Shogran and back to Islamabad via Balakot."
+      ],
+      "good": ["Adds Lulusar and Babusar Top, which the 3-day trips skip", "A night in Shogran as well as Naran"],
+      "watch": ["Breakfast only", "Price isn't shown - you fill in a quote form"]
+    },
+    {
+      "id": "he-naran-7", "op": "he", "name": "Naran & Kaghan Tour",
+      "url": "https://hunzaexplorers.com/tour/naran-kaghan/",
+      "days": 7, "start": "Islamabad", "travel": "Road", "price": "On request", "meals": "Breakfast, lunch and dinner",
+      "best": "A relaxed pace, one excursion a day",
+      "itinerary": [
+        "Arrive in Islamabad.",
+        "Drive up the Kaghan Valley to Naran.",
+        "A full day at Lake Saif-ul-Malook.",
+        "A full day out to Babusar Pass.",
+        "Down to Shogran.",
+        "Jeep to the Siri Paye meadows (about 45 minutes).",
+        "Back to Islamabad and departure."
+      ],
+      "good": ["Full board and an unhurried pace", "Good for families or older travellers"],
+      "watch": ["Seven days for sights others fit into three or four", "No price published"]
+    },
+    {
+      "id": "ptp-naran-honeymoon", "op": "ptp", "name": "3-Day Honeymoon Tour to Naran & Kaghan",
+      "url": "https://pakistantravelplaces.com/tour/3-days-honeymoon-tour-to-naran-kaghan/",
+      "days": 3, "start": "Islamabad or Lahore", "travel": "Road (private car)", "price": "Rs 60,000 as listed", "meals": "Breakfast and dinner",
+      "best": "Couples who want their own car",
+      "itinerary": [
+        "Breakfast in Balakot, a stop at Kiwai waterfall, then to your hotel in Naran.",
+        "Lulusar Lake and Babusar Top.",
+        "Lake Saif-ul-Malook in the morning, then the drive home to Islamabad or Lahore."
+      ],
+      "good": ["Private car for two", "Lulusar, Babusar and Saif-ul-Malook in three days"],
+      "watch": ["Hotel not named - ask before paying", "Long drive home on the last day"]
+    }
+  ]
+}
