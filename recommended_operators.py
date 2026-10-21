@@ -27,8 +27,8 @@ e = html.escape
 # page -> regions it shows ("*" = every approved operator)
 PAGES = {
     "tours": "*", "agencies": "*",
-    "tours/hunza": ["hunza"], "tours/hunza/honeymoon": ["hunza"], "agencies/hunza": ["hunza"],
-    "tours/skardu": ["skardu"], "tours/skardu/honeymoon": ["skardu"], "agencies/skardu": ["skardu"],
+    "tours/hunza": ["hunza"], "hunza/honeymoon": ["hunza"], "agencies/hunza": ["hunza"],
+    "tours/skardu": ["skardu"], "skardu/honeymoon": ["skardu"], "agencies/skardu": ["skardu"],
     "agencies/k2-trekking": ["skardu", "k2"], "tours/fairy-meadows": ["fairy-meadows"],
     "tours/gilgit": ["gilgit"], "tours/chitral": ["chitral"], "tours/naran-kaghan": ["naran-kaghan"],
     "tours/from-islamabad": "*", "tours/from-lahore": "*", "tours/from-karachi": "*",

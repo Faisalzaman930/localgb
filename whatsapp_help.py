@@ -32,6 +32,7 @@ HELP_PAGES = [
     "travel", "travel/7-day-itinerary", "travel/14-day-itinerary", "travel/budget-gb-itinerary",
     "hunza", "skardu", "gilgit", "fairy-meadows", "gojal", "ghizer", "naltar", "astore",
     "yasin", "deosai", "ishkoman", "naran-kaghan",
+    "travel/honeymoon", "hunza/honeymoon", "skardu/honeymoon", "naran-kaghan/honeymoon",
 ]
 HELP_PREFIXES = ["agencies/", "tours/"]          # every page under these
 HELP_SUFFIXES = ["/hotels"]                      # e.g. hunza/hotels
@@ -86,7 +87,9 @@ def wa_link(topic: str, food: bool = False) -> str:
 
 
 TOPICS = {"food": "food in Gilgit-Baltistan", "travel/gb-food-guide": "GB food", "tours/hunza/5-days": "5-day Hunza tours",
-          "tours/hunza/family": "Hunza family trips", "tours/hunza/budget": "budget Hunza tours"}
+          "tours/hunza/family": "Hunza family trips", "tours/hunza/budget": "budget Hunza tours",
+          "travel/honeymoon": "honeymoons in northern Pakistan", "hunza/honeymoon": "a honeymoon in Hunza",
+          "skardu/honeymoon": "a honeymoon in Skardu", "naran-kaghan/honeymoon": "a honeymoon in Naran"}
 SECTIONS = {"tours", "agencies", "trekking", "mountains", "things-to-do", "updates", "travel"}
 NAMES = {"gb": "GB", "kkh": "KKH", "noc": "NOC", "k2": "K2", "atm": "ATM", "ptdc": "PTDC"}
 MONTHS = {"january", "february", "march", "april", "may", "june", "july", "august",

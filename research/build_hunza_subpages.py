@@ -2,7 +2,7 @@
 """
 Hunza tour sub-pages: /tours/hunza/5-days, /tours/hunza/family, /tours/hunza/budget.
 
-Clones the site shell (head, nav, footer, scripts) from tours/hunza/honeymoon and
+Clones the site shell (head, nav, footer, scripts) from tours/hunza/5-days and
 writes each page's article from the PAGES data below. Visible FAQ and FAQPage
 JSON-LD come from the same list, so they always match. Facts follow FACTS.md
 (Oct 2026). Re-run after editing, then run the sitewide generators:
@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 D = "https://www.gilgitbaltistanguide.com"
-TEMPLATE = ROOT / "tours/hunza/honeymoon/index.html"
+TEMPLATE = ROOT / "tours/hunza/5-days/index.html"
 TODAY = "2026-10-20"
 e = html.escape
 

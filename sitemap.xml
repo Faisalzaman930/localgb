@@ -706,22 +706,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.gilgitbaltistanguide.com/tours/hunza/honeymoon</loc>
-    <lastmod>2026-10-16</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.gilgitbaltistanguide.com/tours/naran-kaghan</loc>
     <lastmod>2026-10-16</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.gilgitbaltistanguide.com/tours/skardu</loc>
-    <lastmod>2026-10-16</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gilgitbaltistanguide.com/tours/skardu/honeymoon</loc>
     <lastmod>2026-10-16</lastmod>
     <priority>0.7</priority>
   </url>
@@ -964,5 +954,25 @@
     <loc>https://www.gilgitbaltistanguide.com/yasin/weather</loc>
     <lastmod>2026-10-16</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gilgitbaltistanguide.com/travel/honeymoon</loc>
+    <lastmod>2026-10-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gilgitbaltistanguide.com/hunza/honeymoon</loc>
+    <lastmod>2026-10-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gilgitbaltistanguide.com/skardu/honeymoon</loc>
+    <lastmod>2026-10-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.gilgitbaltistanguide.com/naran-kaghan/honeymoon</loc>
+    <lastmod>2026-10-21</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

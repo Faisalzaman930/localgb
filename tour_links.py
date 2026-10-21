@@ -23,24 +23,32 @@ GB = ("/tours", "all Gilgit-Baltistan tours")
 H5 = ("/tours/hunza/5-days", "a 5-day Hunza tour")
 HFAM = ("/tours/hunza/family", "Hunza with the family")
 HBUD = ("/tours/hunza/budget", "cheap Hunza tours")
-HMOON = ("/tours/hunza/honeymoon", "Hunza honeymoon packages")
+HMOON = ("/hunza/honeymoon", "a honeymoon in Hunza")
+SMOON = ("/skardu/honeymoon", "a honeymoon in Skardu")
+NMOON = ("/naran-kaghan/honeymoon", "a honeymoon in Naran")
+MOONS = ("/travel/honeymoon", "honeymoon ideas for northern Pakistan")
 
 LINKS = {
     "tours": ("Planning Hunza?", [HUNZA, H5, HFAM, HBUD, HMOON]),
-    "tours/hunza/honeymoon": ("Other ways to do Hunza:", [HUNZA, H5, HFAM]),
     "tours/hunza/5-days": ("Other ways to do Hunza:", [HUNZA, HBUD, HFAM]),
     "tours/hunza/family": ("Other ways to do Hunza:", [HUNZA, H5, HMOON]),
     "tours/hunza/budget": ("Other ways to do Hunza:", [HUNZA, H5, HFAM]),
-    "hunza": ("Rather have your trip organised?", [HUNZA, H5, HFAM, HBUD]),
+    "hunza": ("Rather have your trip organised?", [HUNZA, H5, HFAM, HBUD, HMOON]),
     "hunza/places-to-visit": ("Want these sights in a ready-made trip?", [HUNZA, ISB]),
     "hunza/things-to-do": ("Prefer a guided trip that covers these?", [HUNZA, HFAM, FAIRY]),
     "hunza/karimabad": ("Planning a trip to Hunza?", [HUNZA, ISB]),
     "hunza/food": ("Planning the rest of your Hunza trip?", [HUNZA]),
     "hunza/weather": ("Picked your month?", [HUNZA, FAIRY]),
-    "skardu": ("Rather have your trip organised?", [SKARDU, ISB, LHR]),
+    "skardu": ("Rather have your trip organised?", [SKARDU, SMOON, ISB]),
+    "naran-kaghan": ("Planning a trip for two?", [NMOON, MOONS]),
+    "travel": ("Planning a honeymoon?", [MOONS, HMOON, SMOON, NMOON]),
+    "travel/honeymoon": ("Ready to book?", [HUNZA, SKARDU, GB]),
+    "hunza/honeymoon": ("Other honeymoon ideas:", [MOONS, SMOON, NMOON]),
+    "skardu/honeymoon": ("Other honeymoon ideas:", [MOONS, HMOON, NMOON]),
+    "naran-kaghan/honeymoon": ("Other honeymoon ideas:", [MOONS, HMOON, SMOON]),
+    "travel/best-time-to-visit-gb": ("Know when you're going?", [HUNZA, SKARDU, FAIRY, GB]),
     "skardu/restaurants": ("Planning the rest of your trip?", [SKARDU, HUNZA]),
     "gilgit/restaurants": ("Planning the rest of your trip?", [GILGIT, HUNZA, FAIRY]),
-    "travel/best-time-to-visit-gb": ("Know when you're going?", [HUNZA, SKARDU, FAIRY, GB]),
     "travel/7-day-itinerary": ("Prefer a ready-made version of this itinerary?", [HUNZA, H5, SKARDU]),
     "travel/14-day-itinerary": ("Prefer a ready-made trip?", [HUNZA, SKARDU, FAIRY]),
     "travel/budget-gb-itinerary": ("Comparing against a package?", [HBUD, HUNZA, LHR]),

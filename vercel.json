@@ -91,6 +91,16 @@
       "source": "/tours/gilgit-baltistan",
       "destination": "/tours/gilgit",
       "permanent": true
+    },
+    {
+      "source": "/tours/hunza/honeymoon",
+      "destination": "/hunza/honeymoon",
+      "permanent": true
+    },
+    {
+      "source": "/tours/skardu/honeymoon",
+      "destination": "/skardu/honeymoon",
+      "permanent": true
     }
   ],
   "headers": [
