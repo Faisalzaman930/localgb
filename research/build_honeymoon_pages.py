@@ -47,6 +47,17 @@ def cta(heading, text, msg):
             f'<a href="{e(wa(msg))}" class="btn-primary" target="_blank" rel="noopener">Plan our honeymoon on WhatsApp &rarr;</a></div>')
 
 
+def gallery(items):
+    """2-3 captioned photos in a responsive grid. Real <img> tags: lazy-loaded, alt text for image search."""
+    figs = "".join(
+        f'<figure style="margin:0"><img src="/images/{f}" alt="{e(alt)}" loading="lazy" decoding="async" '
+        f'style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block">'
+        f'<figcaption style="font-size:.78rem;color:var(--cream-2);margin-top:.4rem;line-height:1.45">{e(cap)}</figcaption></figure>'
+        for f, alt, cap in items)
+    return ('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.6rem 0 2rem">'
+            f"{figs}</div>")
+
+
 PTP = "https://pakistantravelplaces.com/tour/"
 COUPLE_TIPS = """<h2>Tips for couples travelling in Gilgit-Baltistan</h2>
 <ul>
@@ -84,10 +95,18 @@ PAGES = [
 <li><strong>Choose Skardu</strong> if you want the most special hotels - a restored fort in Shigar, a palace in Khaplu, lakeside resorts - and you can fly. <a href="/skardu/honeymoon">Honeymoon in Skardu &rarr;</a></li>
 <li><strong>Choose Naran</strong> if you only have 3-4 days or don't want to fly: Lake Saif-ul-Malook, Shogran's forests and Babusar are a day's drive from Islamabad. <a href="/naran-kaghan/honeymoon">Honeymoon in Naran &rarr;</a></li>
 </ul>
+{gallery([
+  ("hunza-photo.webp", "Hunza Valley seen from Eagle's Nest", "Hunza: the classic view from Eagle's Nest."),
+  ("shigar-fort-photo.webp", "Shigar Fort heritage hotel near Skardu", "Skardu: stay in the restored fort at Shigar."),
+  ("naran-kaghan-photo.webp", "Lake Saif-ul-Malook in the Kaghan Valley", "Naran: Lake Saif-ul-Malook."),
+])}
 <h2>Can we combine two?</h2>
 <p>Yes - in summer (roughly late May to October) the Babusar road links Naran to Chilas, so you can do Naran and Hunza in one trip of about 8-9 days without coming back to Islamabad. Skardu and Hunza combine well too (Gilgit to Skardu is about 4-5 hours by road), but you'll want 10 days or more.</p>
 <h2>For adventurous couples: Fairy Meadows</h2>
 <p>If your idea of romance is a wooden cottage facing Nanga Parbat, <a href="/fairy-meadows">Fairy Meadows</a> is unforgettable - but it's rustic. You'll take a rough jeep track and hike 2-3 hours to reach it, rooms are simple (about Rs 3,500-10,000 a night in 2026) and there's no luxury option. Add it to a Hunza trip rather than making it the whole honeymoon.</p>
+{gallery([
+  ("fairymeadows-photo.webp", "Nanga Parbat from Fairy Meadows", "Fairy Meadows, with Nanga Parbat right in front of the cottages."),
+])}
 <h2>When to go</h2>
 <ul>
 <li><strong>Spring blossom</strong> (late March to mid-April) - Hunza and Skardu at their most romantic.</li>
@@ -134,6 +153,11 @@ PAGES = [
   ("Roomy Daastaan Hotel", "Karimabad &middot; mid-range", "Modern rooms and a big panoramic terrace - the best value for couples on a budget.", "8.7 Booking.com"),
   ("Passu Tourist Lodge", "Passu &middot; mid-range", "A small, quiet lodge under the Passu Cones - and open all winter.", "4.5 Tripadvisor (6)"),
 ])}
+{gallery([
+  ("altit-fort-photo.webp", "Altit Fort in Hunza, beside the Serena Altit Fort Residence", "Altit Fort - the Serena residence sits in its royal garden."),
+  ("hunza-photo.webp", "Hunza Valley from Eagle's Nest at Duikar", "The sunrise view from Eagle's Nest."),
+  ("attabad-photo.webp", "Attabad Lake in Upper Hunza", "Attabad Lake, home of the Luxus lake resort."),
+])}
 <p>Ratings were checked in July 2026; prices change by season, so ask for a valley- or Rakaposhi-facing room - on a honeymoon, the view is the point. More options in my <a href="/hunza/hotels">Hunza hotels guide</a>.</p>
 <h2>Romantic things to do in Hunza</h2>
 <ul>
@@ -144,6 +168,11 @@ PAGES = [
 <li>Cross the <strong>Hussaini suspension bridge</strong> together - if you're both brave.</li>
 <li>Wander Karimabad's lanes and cafes in the evening, below <a href="/hunza/baltit-fort">Baltit Fort</a>.</li>
 </ul>
+{gallery([
+  ("borith-lake-photo.webp", "Borith Lake near Passu in Upper Hunza", "Borith Lake - a quiet walk for two."),
+  ("gojal-photo.webp", "Passu Cones in Upper Hunza", "The Passu Cones in late-afternoon light."),
+  ("blossom-photo.webp", "Cherry blossom in Hunza", "Cherry blossom in Hunza, late March to mid-April."),
+])}
 <h2>A 5-day Hunza honeymoon plan</h2>
 <table class="rev-itin"><tbody>
 <tr><td>Day 1</td><td>Fly Islamabad to Gilgit (about 1 h, weather permitting) and drive to Karimabad (2-3.5 h). Slow evening.</td></tr>
@@ -198,6 +227,11 @@ PAGES = [
   ("Shangrila Resort", "Lower Kachura Lake &middot; resort", "The famous red-roofed cottages around the heart-shaped lake. Come for the setting - rooms are tired; a day visit or one night is enough.", "6.6 HotelsCombined (81)"),
   ("Hotel Himalaya Skardu", "Outside town &middot; mid-range", "Small, quiet and service-first - good value for couples.", "4.3 Google (692)"),
 ])}
+{gallery([
+  ("shigar-fort-photo.webp", "Serena Shigar Fort heritage hotel courtyard", "Shigar Fort, now a Serena heritage hotel."),
+  ("khaplu-photo.webp", "Khaplu Palace in Baltistan in blossom season", "Khaplu Palace in blossom season."),
+  ("kachura-photo.webp", "Upper Kachura Lake near Skardu", "Upper Kachura Lake, 30-40 minutes from Skardu."),
+])}
 <p>Ratings were checked in July 2026. Split your stay: one or two nights at Shigar Fort, the rest in Skardu or by the river. More in my <a href="/skardu/hotels">Skardu hotels guide</a>.</p>
 <h2>Romantic things to do in Skardu</h2>
 <ul>
@@ -207,6 +241,11 @@ PAGES = [
 <li>A day in <a href="/skardu/khaplu">Khaplu</a>: the palace and the old Chaqchan Mosque.</li>
 <li>In summer, a private jeep to <a href="/deosai">Deosai</a> for wildflowers and Sheosar Lake.</li>
 </ul>
+{gallery([
+  ("katpana-photo.webp", "Katpana cold desert dunes near Skardu", "Katpana's dunes - go at sunset."),
+  ("sarfaranga-photo.webp", "Road through the Sarfaranga cold desert in Shigar", "The road across Sarfaranga desert."),
+  ("deosai-photo.webp", "Deosai Plains in summer", "Deosai in summer (mid-June to September)."),
+])}
 <h2>A 6-day Skardu honeymoon plan</h2>
 <table class="rev-itin"><tbody>
 <tr><td>Day 1</td><td>Fly Islamabad to Skardu (about 1 h). Settle in; evening at Upper Kachura Lake.</td></tr>
@@ -258,6 +297,10 @@ PAGES = [
 <li><strong>Lalazar Hotel, Naran</strong> - the best-appointed hotel in Naran town, with river views and reliable heating.</li>
 <li><strong>PTDC Motel, Naran</strong> - basic but dependable, about PKR 2,000-4,000, if you'd rather spend on experiences.</li>
 </ul>
+{gallery([
+  ("shogran-photo.webp", "Siri Paye meadows above Shogran with Makra Peak", "Siri Paye meadows above Shogran."),
+  ("lalazar-photo.webp", "Lalazar plateau above Naran", "Lalazar's terraced fields and forest above Naran."),
+])}
 <p>For a quieter honeymoon, stay at Shogran rather than in Naran town - it's lower (2,362m), forested and much calmer. Prices are 2026 guides; they rise sharply in August.</p>
 <h2>Romantic things to do</h2>
 <ul>
@@ -267,6 +310,11 @@ PAGES = [
 <li><strong>Siri Paye meadows</strong> above Shogran - a 2-hour walk or a horse ride (about PKR 800-1,500 one way).</li>
 <li><strong>Lalazar plateau</strong> for wildflowers and birch forest, and a trout lunch by the Kunhar River.</li>
 </ul>
+{gallery([
+  ("lulusar-photo.webp", "Lulusar Lake in the upper Kaghan Valley", "Lulusar Lake - bigger and quieter than Saif-ul-Malook."),
+  ("babusar-photo.webp", "View from Babusar Pass", "The view from Babusar Pass (4,173m)."),
+  ("kunhar-photo.webp", "The Kunhar River near Naran", "The Kunhar River below Naran."),
+])}
 <h2>A 3-day Naran honeymoon plan</h2>
 <table class="rev-itin"><tbody>
 <tr><td>Day 1</td><td>Islamabad to Shogran (via Kiwai). Afternoon walk towards Siri Paye; night in a log hut.</td></tr>
